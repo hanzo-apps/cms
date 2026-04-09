@@ -1,3 +1,4 @@
+import type { DrizzleAdapter } from '@payloadcms/drizzle'
 import type {
   BasePostgresAdapter,
   GenericEnum,
@@ -5,20 +6,12 @@ import type {
   MigrateUpArgs,
   PostgresSchemaHook,
 } from '@payloadcms/drizzle/postgres'
-import type { DrizzleAdapter } from '@payloadcms/drizzle/types'
-import type { DrizzleConfig, ExtractTablesWithRelations } from 'drizzle-orm'
+import type { DrizzleConfig } from 'drizzle-orm'
 import type { NodePgDatabase } from 'drizzle-orm/node-postgres'
-import type {
-  PgDatabase,
-  PgQueryResultHKT,
-  PgSchema,
-  PgTableFn,
-  PgTransactionConfig,
-  PgWithReplicas,
-} from 'drizzle-orm/pg-core'
+import type { PgSchema, PgTableFn, PgTransactionConfig, PgWithReplicas } from 'drizzle-orm/pg-core'
 import type { Pool, PoolConfig } from 'pg'
 
-type PgDependency = typeof import('pg')
+type PgDependency = typeof import('pg').default
 
 export type Args = {
   /**
