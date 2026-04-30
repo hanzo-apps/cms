@@ -308,9 +308,16 @@ export interface CollapsibleField {
 export interface DateField {
   id: string;
   default?: string | null;
+  /**
+   * Select a date from the calendar
+   */
+  required: string;
+  disabled?: string | null;
+  readOnly?: string | null;
   dayOnly?: string | null;
   timeOnly?: string | null;
   dayAndTime?: string | null;
+  monthOnly?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -958,9 +965,13 @@ export interface CollapsibleFieldsSelect<T extends boolean = true> {
  */
 export interface DateFieldsSelect<T extends boolean = true> {
   default?: T;
+  required?: T;
+  disabled?: T;
+  readOnly?: T;
   dayOnly?: T;
   timeOnly?: T;
   dayAndTime?: T;
+  monthOnly?: T;
   updatedAt?: T;
   createdAt?: T;
 }
