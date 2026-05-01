@@ -94,6 +94,9 @@ export interface Config {
   globals: {};
   globalsSelect: {};
   locale: null;
+  widgets: {
+    collections: CollectionsWidget;
+  };
   user: User;
   jobs: {
     tasks: {
@@ -138,6 +141,8 @@ export interface Config {
       noConcurrency: WorkflowNoConcurrency;
       queueSpecificConcurrency: WorkflowQueueSpecificConcurrency;
       supersedesConcurrency: WorkflowSupersedesConcurrency;
+      throwsInHandlerNoRetries: WorkflowThrowsInHandlerNoRetries;
+      throwsInHandlerRetries1: WorkflowThrowsInHandlerRetries1;
     };
   };
 }
@@ -361,6 +366,8 @@ export interface PayloadJob {
         | 'noConcurrency'
         | 'queueSpecificConcurrency'
         | 'supersedesConcurrency'
+        | 'throwsInHandlerNoRetries'
+        | 'throwsInHandlerRetries1'
       )
     | null;
   taskSlug?:
@@ -564,6 +571,16 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections_widget".
+ */
+export interface CollectionsWidget {
+  data?: {
+    [k: string]: unknown;
+  };
+  width: 'full';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -908,6 +925,20 @@ export interface WorkflowSupersedesConcurrency {
     resourceId: string;
     delayMs?: number | null;
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WorkflowThrowsInHandlerNoRetries".
+ */
+export interface WorkflowThrowsInHandlerNoRetries {
+  input?: unknown;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WorkflowThrowsInHandlerRetries1".
+ */
+export interface WorkflowThrowsInHandlerRetries1 {
+  input?: unknown;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
