@@ -587,10 +587,6 @@ export type CollectionAdminOptions = {
    */
   hidden?: ((args: { user: ClientUser }) => boolean) | boolean
   /**
-   * Hide the API URL within the Edit view
-   */
-  hideAPIURL?: boolean
-  /**
    * Additional fields to be searched via the full text search
    */
   listSearchableFields?: string[]
