@@ -926,8 +926,9 @@ export interface UploadField {
   id: string;
   heroImage?: (string | null) | Upload;
   heroImageRequired: string | Upload;
-  heroImageDisabled?: (string | null) | Upload;
+  heroImageReadOnly?: (string | null) | Upload;
   heroImageHasMany?: (string | Upload)[] | null;
+  heroImageHasManyReadOnly?: (string | Upload)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1621,8 +1622,9 @@ export interface UploadsSelect<T extends boolean = true> {
 export interface UploadFieldsSelect<T extends boolean = true> {
   heroImage?: T;
   heroImageRequired?: T;
-  heroImageDisabled?: T;
+  heroImageReadOnly?: T;
   heroImageHasMany?: T;
+  heroImageHasManyReadOnly?: T;
   updatedAt?: T;
   createdAt?: T;
 }
