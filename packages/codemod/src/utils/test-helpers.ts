@@ -1,4 +1,4 @@
-import { Project } from 'ts-morph'
+import { IndentationText, Project } from 'ts-morph'
 
 import type { Transform } from '../types.js'
 
@@ -19,7 +19,10 @@ export async function runTransform({
   source,
   transform,
 }: RunTransformArgs): Promise<string> {
-  const project = new Project({ useInMemoryFileSystem: true })
+  const project = new Project({
+    manipulationSettings: { indentationText: IndentationText.TwoSpaces },
+    useInMemoryFileSystem: true,
+  })
   const file = project.createSourceFile(filename, source)
 
   await runTransforms({ project, transforms: [transform] })
