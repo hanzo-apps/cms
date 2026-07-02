@@ -7,6 +7,10 @@ const __filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(__filename)
 
 const nextConfig: NextConfig = {
+  // Standalone server output for the container image. Traces workspace deps
+  // from the monorepo root so the runner image is self-contained.
+  output: 'standalone',
+  outputFileTracingRoot: path.resolve(dirname, '../../'),
   images: {
     localPatterns: [
       {
