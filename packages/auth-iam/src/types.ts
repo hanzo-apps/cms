@@ -51,3 +51,31 @@ export type HanzoIAMStrategyConfig = {
    */
   tenantsSlug?: string
 }
+
+/**
+ * Config for the same-origin SSO proxy strategy (browser admin embed). The
+ * proxy has already verified the IAM session; this strategy trusts its
+ * session-derived tenant headers only when the shared secret matches.
+ */
+export type HanzoProxyStrategyConfig = {
+  /** Header carrying the actor (user) id. Defaults to 'x-actor-id'. */
+  actorHeader?: string
+  /** Payload auth collection slug. Defaults to 'users'. */
+  authSlug?: string
+  /** Strategy name surfaced to Payload. Defaults to 'hanzo-proxy'. */
+  name?: string
+  /** Header carrying the IAM org (== tenant) slug. Defaults to 'x-org-id'. */
+  orgHeader?: string
+  /**
+   * Shared secret the proxy must present. Defaults to env HANZO_PROXY_SECRET.
+   * When unset the strategy is DISABLED (fail-secure) — a header alone can
+   * never authenticate.
+   */
+  secret?: string
+  /** Header carrying the shared secret. Defaults to 'x-hanzo-proxy-secret'. */
+  secretHeader?: string
+  /** User→tenant array field managed by the multi-tenant plugin. Defaults 'tenants'. */
+  tenantsArrayField?: string
+  /** Tenants collection slug (org == tenant). Defaults to 'tenants'. */
+  tenantsSlug?: string
+}

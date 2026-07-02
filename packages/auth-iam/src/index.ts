@@ -1,7 +1,8 @@
 import type { Field } from '@hanzo/cms'
 
 export { hanzoIAMStrategy } from './strategy.js'
-export type { HanzoIAMStrategyConfig, IAMClaims } from './types.js'
+export { hanzoProxyStrategy } from './proxy.js'
+export type { HanzoIAMStrategyConfig, HanzoProxyStrategyConfig, IAMClaims } from './types.js'
 
 /**
  * Fields the IAM strategy needs on the auth collection to map + dedupe users.
