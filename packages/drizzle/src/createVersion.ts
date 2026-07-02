@@ -1,8 +1,8 @@
-import type { CreateVersionArgs, JsonObject, TypeWithVersion } from 'payload'
+import type { CreateVersionArgs, JsonObject, TypeWithVersion } from @hanzo/cms'from 
 
 import { sql } from 'drizzle-orm'
-import { buildVersionCollectionFields } from 'payload'
-import { hasDraftsEnabled } from 'payload/shared'
+import { buildVersionCollectionFields } from @hanzo/cms'from 
+import { hasDraftsEnabled } from @hanzo/cms'from 
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from './types.js'

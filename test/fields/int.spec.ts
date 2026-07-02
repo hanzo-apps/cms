@@ -1,9 +1,9 @@
-import type { MongooseAdapter } from '@payloadcms/db-mongodb'
+import type { MongooseAdapter } from '@hanzo/cms-db-mongodb'
 import type { IndexDirection, IndexOptions } from 'mongoose'
-import type { Payload, ValidationError } from 'payload'
+import type { Payload, ValidationError } from @hanzo/cms'from 
 
 import path from 'path'
-import { reload } from 'payload'
+import { reload } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
 

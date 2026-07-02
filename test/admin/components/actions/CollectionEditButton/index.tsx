@@ -1,4 +1,4 @@
-import type { CustomComponent, PayloadServerReactComponent } from 'payload'
+import type { CustomComponent, PayloadServerReactComponent } from @hanzo/cms'from 
 
 import React from 'react'
 

@@ -1,6 +1,6 @@
-import type { I18nClient } from '@payloadcms/translations'
+import type { I18nClient } from '@hanzo/cms-translations'
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import { dequal } from 'dequal/lite'
 import {
   type BaseVersionField,
@@ -17,14 +17,14 @@ import {
   type SanitizedFieldPermissions,
   type SanitizedFieldsPermissions,
   type VersionField,
-} from 'payload'
+} from @hanzo/cms'from 
 import {
   fieldIsID,
   fieldShouldBeLocalized,
   getFieldPaths,
   getUniqueListBy,
   tabHasName,
-} from 'payload/shared'
+} from @hanzo/cms'from 
 
 import { diffComponents } from './fields/index.js'
 

@@ -104,26 +104,26 @@ Payload also contains all TypeScript definitions, which can be imported from `pa
 Here's how to import some common Payload types:
 
 ```ts
-import { Config, CollectionConfig, GlobalConfig, Field } from 'payload'
+import { Config, CollectionConfig, GlobalConfig, Field } from @hanzo/cms'from 
 ```
 
-`@payloadcms/next`
+`@hanzo/cms-next`
 
-Whereas Payload itself is responsible for direct database access, and control over Payload business logic, the `@payloadcms/next` package is responsible for the Admin Panel and the entire HTTP layer that Payload exposes, including the [REST API](../rest-api/overview) and [GraphQL API](../graphql/overview).
+Whereas Payload itself is responsible for direct database access, and control over Payload business logic, the `@hanzo/cms-next` package is responsible for the Admin Panel and the entire HTTP layer that Payload exposes, including the [REST API](../rest-api/overview) and [GraphQL API](../graphql/overview).
 
-`@payloadcms/graphql`
+`@hanzo/cms-graphql`
 
-All of Payload's GraphQL functionality is abstracted into a separate package. Payload, its Admin UI, and REST API have absolutely no overlap with GraphQL, and you will incur no performance overhead from GraphQL if you are not using it. However, it's installed within the `@payloadcms/next` package so you don't have to install it manually. You do, however, need to have GraphQL installed separately in your `package.json` if you are using GraphQL.
+All of Payload's GraphQL functionality is abstracted into a separate package. Payload, its Admin UI, and REST API have absolutely no overlap with GraphQL, and you will incur no performance overhead from GraphQL if you are not using it. However, it's installed within the `@hanzo/cms-next` package so you don't have to install it manually. You do, however, need to have GraphQL installed separately in your `package.json` if you are using GraphQL.
 
-`@payloadcms/ui`
+`@hanzo/cms-ui`
 
 This is the UI library that Payload's Admin Panel uses. All components are exported from this package and can be re-used as you build extensions to the Payload admin UI, or want to use Payload components in your own React apps. Some exports are server components and some are client components.
 
-`@payloadcms/db-postgres`, `@payloadcms/db-vercel-postgres`, `@payloadcms/db-mongodb`, `@payloadcms/db-sqlite`
+`@hanzo/cms-db-postgres`, `@hanzo/cms-db-vercel-postgres`, `@hanzo/cms-db-mongodb`, `@hanzo/cms-db-sqlite`
 
 You can choose which Database Adapter you'd like to use for your project, and no matter which you choose, the entire data layer for Payload is contained within these packages. You can only use one at a time for any given project.
 
-`@payloadcms/richtext-lexical`, `@payloadcms/richtext-slate`
+`@hanzo/cms-richtext-lexical`, `@hanzo/cms-richtext-slate`
 
 Payload's Rich Text functionality is abstracted into separate packages and if you want to enable Rich Text in your project, you'll need to install one of these packages. We recommend Lexical for all new projects, and this is where Payload will focus its efforts on from this point, but Slate is still supported if you have already built with it.
 

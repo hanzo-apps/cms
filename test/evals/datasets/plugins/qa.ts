@@ -34,7 +34,7 @@ export const pluginsQADataset: EvalCase[] = [
     category: 'plugins',
   },
   {
-    input: 'What types should you import from "payload" when writing a plugin?',
+    input: 'What types should you import from @hanzo/cms"from  when writing a plugin?',
     expected:
       'Config and Plugin — Config is the full Payload config type and Plugin is the canonical type alias for a function that receives and returns a Config',
     category: 'plugins',

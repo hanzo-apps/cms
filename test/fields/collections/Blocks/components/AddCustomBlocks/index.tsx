@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, useField, useForm } from '@payloadcms/ui'
+import { Button, useField, useForm } from '@hanzo/cms-ui'
 import * as React from 'react'
 
 import './index.scss'

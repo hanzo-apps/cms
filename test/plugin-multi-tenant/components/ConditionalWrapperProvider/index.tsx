@@ -1,7 +1,7 @@
 'use client'
 import type React from 'react'
 
-import { useAuth } from '@payloadcms/ui'
+import { useAuth } from '@hanzo/cms-ui'
 import { createContext } from 'react'
 
 const DummyContext = createContext<null>(null)

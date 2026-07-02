@@ -10,21 +10,21 @@ Payload offers additional storage adapters to handle file uploads. These adapter
 
 | Service              | Package                                                                                                           |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Vercel Blob          | [`@payloadcms/storage-vercel-blob`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-vercel-blob) |
-| AWS S3               | [`@payloadcms/storage-s3`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-s3)                   |
-| Azure                | [`@payloadcms/storage-azure`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-azure)             |
-| Google Cloud Storage | [`@payloadcms/storage-gcs`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-gcs)                 |
-| Uploadthing          | [`@payloadcms/storage-uploadthing`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-uploadthing) |
-| R2                   | [`@payloadcms/storage-r2`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-r2)                   |
+| Vercel Blob          | [`@hanzo/cms-storage-vercel-blob`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-vercel-blob) |
+| AWS S3               | [`@hanzo/cms-storage-s3`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-s3)                   |
+| Azure                | [`@hanzo/cms-storage-azure`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-azure)             |
+| Google Cloud Storage | [`@hanzo/cms-storage-gcs`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-gcs)                 |
+| Uploadthing          | [`@hanzo/cms-storage-uploadthing`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-uploadthing) |
+| R2                   | [`@hanzo/cms-storage-r2`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-r2)                   |
 
 ## Vercel Blob Storage
 
-[`@payloadcms/storage-vercel-blob`](https://www.npmjs.com/package/@payloadcms/storage-vercel-blob)
+[`@hanzo/cms-storage-vercel-blob`](https://www.npmjs.com/package/@hanzo/cms-storage-vercel-blob)
 
 ### Installation#vercel-blob-installation
 
 ```sh
-pnpm add @payloadcms/storage-vercel-blob
+pnpm add @hanzo/cms-storage-vercel-blob
 ```
 
 ### Usage#vercel-blob-usage
@@ -35,7 +35,7 @@ pnpm add @payloadcms/storage-vercel-blob
 - When deploying to Vercel, server uploads are limited with 4.5MB. Set `clientUploads` to `true` to do uploads directly on the client.
 
 ```ts
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { vercelBlobStorage } from '@hanzo/cms-storage-vercel-blob'
 import { Media } from './collections/Media'
 import { MediaWithPrefix } from './collections/MediaWithPrefix'
 
@@ -72,12 +72,12 @@ export default buildConfig({
 
 ## S3 Storage
 
-[`@payloadcms/storage-s3`](https://www.npmjs.com/package/@payloadcms/storage-s3)
+[`@hanzo/cms-storage-s3`](https://www.npmjs.com/package/@hanzo/cms-storage-s3)
 
 ### Installation#s3-installation
 
 ```sh
-pnpm add @payloadcms/storage-s3
+pnpm add @hanzo/cms-storage-s3
 ```
 
 ### Usage#s3-usage
@@ -90,7 +90,7 @@ pnpm add @payloadcms/storage-s3
 - You can conditionally enable the plugin using the `enabled` option. For example, `enabled: Boolean(process.env.S3_BUCKET)` skips the plugin in local development when credentials are not set.
 
 ```ts
-import { s3Storage } from '@payloadcms/storage-s3'
+import { s3Storage } from '@hanzo/cms-storage-s3'
 import { Media } from './collections/Media'
 import { MediaWithPrefix } from './collections/MediaWithPrefix'
 
@@ -143,7 +143,7 @@ For full `S3ClientConfig` options, see the [AWS SDK Package](https://github.com/
 
 ### Using with Cloudflare R2 (via S3 API)#s3-r2
 
-Cloudflare R2 exposes an S3-compatible API, so you can use `@payloadcms/storage-s3` to connect to it. This is the recommended approach when deploying to Vercel, Netlify, or any Node.js environment. (The `@payloadcms/storage-r2` adapter is for Cloudflare Workers only, where R2 is available as a native bucket binding.)
+Cloudflare R2 exposes an S3-compatible API, so you can use `@hanzo/cms-storage-s3` to connect to it. This is the recommended approach when deploying to Vercel, Netlify, or any Node.js environment. (The `@hanzo/cms-storage-r2` adapter is for Cloudflare Workers only, where R2 is available as a native bucket binding.)
 
 <Banner type="warning">
   R2 buckets are **private by default**. The S3 API endpoint (e.g.
@@ -154,7 +154,7 @@ Cloudflare R2 exposes an S3-compatible API, so you can use `@payloadcms/storage-
 </Banner>
 
 ```ts
-import { s3Storage } from '@payloadcms/storage-s3'
+import { s3Storage } from '@hanzo/cms-storage-s3'
 
 export default buildConfig({
   collections: [Media],
@@ -204,12 +204,12 @@ R2_PUBLIC_URL=https://media.yourdomain.com
 
 ## Azure Blob Storage
 
-[`@payloadcms/storage-azure`](https://www.npmjs.com/package/@payloadcms/storage-azure)
+[`@hanzo/cms-storage-azure`](https://www.npmjs.com/package/@hanzo/cms-storage-azure)
 
 ### Installation#azure-installation
 
 ```sh
-pnpm add @payloadcms/storage-azure
+pnpm add @hanzo/cms-storage-azure
 ```
 
 ### Usage#azure-usage
@@ -219,7 +219,7 @@ pnpm add @payloadcms/storage-azure
 - When deploying to Vercel, server uploads are limited with 4.5MB. Set `clientUploads` to `true` to do uploads directly on the client. You must allow CORS PUT method to your website.
 
 ```ts
-import { azureStorage } from '@payloadcms/storage-azure'
+import { azureStorage } from '@hanzo/cms-storage-azure'
 import { Media } from './collections/Media'
 import { MediaWithPrefix } from './collections/MediaWithPrefix'
 
@@ -258,12 +258,12 @@ export default buildConfig({
 
 ## Google Cloud Storage
 
-[`@payloadcms/storage-gcs`](https://www.npmjs.com/package/@payloadcms/storage-gcs)
+[`@hanzo/cms-storage-gcs`](https://www.npmjs.com/package/@hanzo/cms-storage-gcs)
 
 ### Installation#gcs-installation
 
 ```sh
-pnpm add @payloadcms/storage-gcs
+pnpm add @hanzo/cms-storage-gcs
 ```
 
 ### Usage#gcs-usage
@@ -273,7 +273,7 @@ pnpm add @payloadcms/storage-gcs
 - When deploying to Vercel, server uploads are limited with 4.5MB. Set `clientUploads` to `true` to do uploads directly on the client. You must allow CORS PUT method for the bucket to your website.
 
 ```ts
-import { gcsStorage } from '@payloadcms/storage-gcs'
+import { gcsStorage } from '@hanzo/cms-storage-gcs'
 import { Media } from './collections/Media'
 import { MediaWithPrefix } from './collections/MediaWithPrefix'
 
@@ -311,12 +311,12 @@ export default buildConfig({
 
 ## Uploadthing Storage
 
-[`@payloadcms/storage-uploadthing`](https://www.npmjs.com/package/@payloadcms/storage-uploadthing)
+[`@hanzo/cms-storage-uploadthing`](https://www.npmjs.com/package/@hanzo/cms-storage-uploadthing)
 
 ### Installation#uploadthing-installation
 
 ```sh
-pnpm add @payloadcms/storage-uploadthing
+pnpm add @hanzo/cms-storage-uploadthing
 ```
 
 ### Usage#uploadthing-usage
@@ -361,14 +361,14 @@ export default buildConfig({
   change on any minor releases.
 </Banner>
 
-[`@payloadcms/storage-r2`](https://www.npmjs.com/package/@payloadcms/storage-r2)
+[`@hanzo/cms-storage-r2`](https://www.npmjs.com/package/@hanzo/cms-storage-r2)
 
 Use this adapter to store uploads in a Cloudflare R2 bucket via the Cloudflare Workers environment. If you're connecting to R2 from a Node.js environment (Vercel, Netlify, etc.) using the S3-compatible API, see [Using with Cloudflare R2 (via S3 API)](#s3-r2) instead.
 
 ### Installation#r2-installation
 
 ```sh
-pnpm add @payloadcms/storage-r2
+pnpm add @hanzo/cms-storage-r2
 ```
 
 ### Usage#r2-usage
@@ -393,11 +393,11 @@ export default buildConfig({
 
 ## Custom Storage Adapters
 
-If you need to create a custom storage adapter, you can use the [`@payloadcms/plugin-cloud-storage`](https://www.npmjs.com/package/@payloadcms/plugin-cloud-storage) package. This package is used internally by the storage adapters mentioned above.
+If you need to create a custom storage adapter, you can use the [`@hanzo/cms-plugin-cloud-storage`](https://www.npmjs.com/package/@hanzo/cms-plugin-cloud-storage) package. This package is used internally by the storage adapters mentioned above.
 
 ### Installation#custom-installation
 
-`pnpm add @payloadcms/plugin-cloud-storage`
+`pnpm add @hanzo/cms-plugin-cloud-storage`
 
 ### Usage#custom-usage
 
@@ -423,8 +423,8 @@ export interface GeneratedAdapter {
 ```
 
 ```ts
-import { buildConfig } from 'payload'
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
+import { buildConfig } from @hanzo/cms'from 
+import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'
 
 export default buildConfig({
   plugins: [

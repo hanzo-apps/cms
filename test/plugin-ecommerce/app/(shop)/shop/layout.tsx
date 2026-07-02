@@ -1,6 +1,6 @@
 import { currenciesConfig } from '@payload-config'
-import { EcommerceProvider } from '@payloadcms/plugin-ecommerce/react'
-import { stripeAdapterClient } from '@payloadcms/plugin-ecommerce/payments/stripe'
+import { EcommerceProvider } from '@hanzo/cms-plugin-ecommerce/react'
+import { stripeAdapterClient } from '@hanzo/cms-plugin-ecommerce/payments/stripe'
 
 export const metadata = {
   title: 'Next.js',

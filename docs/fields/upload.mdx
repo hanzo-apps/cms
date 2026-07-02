@@ -25,7 +25,7 @@ Upload fields are useful for a variety of use cases, such as:
 To create an Upload Field, set the `type` to `upload` in your [Field Config](./overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyUploadField: Field = {
   // ...
@@ -76,7 +76,7 @@ _\* An asterisk denotes that a property is required._
 ## Example
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',
@@ -146,7 +146,7 @@ the [Join field](./join)
 Upload fields can reference multiple upload collections by providing an array of collection slugs to the `relationTo` property.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',
@@ -163,7 +163,7 @@ export const ExampleCollection: CollectionConfig = {
 This can be combined with the `hasMany` property to allow multiple uploads from multiple collections.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',

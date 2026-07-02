@@ -1,6 +1,6 @@
-import type { PayloadHandler } from 'payload'
+import type { PayloadHandler } from @hanzo/cms'from 
 
-import { PayloadIcon } from '@payloadcms/ui/shared'
+import { PayloadIcon } from '@hanzo/cms-ui/shared'
 import fs from 'fs/promises'
 import { ImageResponse } from 'next/og.js'
 import path from 'path'

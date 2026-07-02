@@ -4,7 +4,7 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { headers as getHeaders } from 'next/headers.js'
 import configPromise from '@payload-config'
 import { Order } from '@/payload-types'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import { redirect } from 'next/navigation'
 import { AddressListing } from '@/components/addresses/AddressListing'
 import { CreateAddressModal } from '@/components/addresses/CreateAddressModal'

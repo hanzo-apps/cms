@@ -1,5 +1,5 @@
 'use client'
-import { PublishButton } from '@payloadcms/ui'
+import { PublishButton } from '@hanzo/cms-ui'
 import * as React from 'react'
 
 import classes from './index.module.scss'

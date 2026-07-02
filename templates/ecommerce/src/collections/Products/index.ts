@@ -1,24 +1,24 @@
 import { CallToAction } from '@/blocks/CallToAction/config'
 import { Content } from '@/blocks/Content/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
-import { slugField } from 'payload'
+import { slugField } from @hanzo/cms'from 
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
-import { CollectionOverride } from '@payloadcms/plugin-ecommerce/types'
+import { CollectionOverride } from '@hanzo/cms-plugin-ecommerce/types'
 import {
   MetaDescriptionField,
   MetaImageField,
   MetaTitleField,
   OverviewField,
   PreviewField,
-} from '@payloadcms/plugin-seo/fields'
+} from '@hanzo/cms-plugin-seo/fields'
 import {
   FixedToolbarFeature,
   HeadingFeature,
   HorizontalRuleFeature,
   InlineToolbarFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
-import { DefaultDocumentIDType, Where } from 'payload'
+} from '@hanzo/cms-richtext-lexical'
+import { DefaultDocumentIDType, Where } from @hanzo/cms'from 
 
 export const ProductsCollection: CollectionOverride = ({ defaultCollection }) => ({
   ...defaultCollection,

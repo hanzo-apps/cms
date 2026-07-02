@@ -6,7 +6,7 @@ desc: Easily build and manage forms from the Admin Panel. Send dynamic, personal
 keywords: plugins, plugin, form, forms, form builder
 ---
 
-![https://www.npmjs.com/package/@payloadcms/plugin-form-builder](https://img.shields.io/npm/v/@payloadcms/plugin-form-builder)
+![https://www.npmjs.com/package/@hanzo/cms-plugin-form-builder](https://img.shields.io/npm/v/@hanzo/cms-plugin-form-builder)
 
 This plugin allows you to build and manage custom forms directly within the [Admin Panel](../admin/overview). Instead of hard-coding a new form into your website or application every time you need one, admins can simply define the schema for each form they need on-the-fly, and your front-end can map over this schema, render its own UI components, and match your brand's design system.
 
@@ -37,7 +37,7 @@ Forms can be as simple or complex as you need, from a basic contact form, to a m
 Install the plugin using any JavaScript package manager like [pnpm](https://pnpm.io), [npm](https://npmjs.com), or [Yarn](https://yarnpkg.com):
 
 ```bash
-pnpm add @payloadcms/plugin-form-builder
+pnpm add @hanzo/cms-plugin-form-builder
 ```
 
 ## Basic Usage
@@ -45,8 +45,8 @@ pnpm add @payloadcms/plugin-form-builder
 In the `plugins` array of your [Payload Config](https://payloadcms.com/docs/configuration/overview), call the plugin with [options](#options):
 
 ```ts
-import { buildConfig } from 'payload'
-import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
+import { buildConfig } from @hanzo/cms'from 
+import { formBuilderPlugin } from '@hanzo/cms-plugin-form-builder'
 
 const config = buildConfig({
   collections: [
@@ -128,7 +128,7 @@ formBuilderPlugin({
 For full types with `beforeChangeParams`, you can import the types from the plugin:
 
 ```ts
-import type { BeforeEmail } from '@payloadcms/plugin-form-builder'
+import type { BeforeEmail } from '@hanzo/cms-plugin-form-builder'
 // Your generated FormSubmission type
 import type { FormSubmission } from '@payload-types'
 
@@ -235,7 +235,7 @@ First import the utility function. This will execute all of the price conditions
 
 ```ts
 // payload.config.ts
-import { getPaymentTotal } from '@payloadcms/plugin-form-builder'
+import { getPaymentTotal } from '@hanzo/cms-plugin-form-builder'
 ```
 
 Then in your plugin's config:
@@ -623,7 +623,7 @@ async function uploadWithPresignedUrl(
 You can provide your own custom fields by passing a new [Payload Block](https://payloadcms.com/docs/fields/blocks#block-configs) object into `fields`. You can override or extend any existing fields by first importing the `fields` from the plugin:
 
 ```ts
-import { fields } from '@payloadcms/plugin-form-builder'
+import { fields } from '@hanzo/cms-plugin-form-builder'
 ```
 
 Then merging it into your own custom field:
@@ -650,7 +650,7 @@ You can custommise the default value of the date field and any other aspects of 
 Note that the end submission source will be responsible for the timezone of the date. Payload only stores the date in UTC format.
 
 ```ts
-import { fields as formFields } from '@payloadcms/plugin-form-builder'
+import { fields as formFields } from '@hanzo/cms-plugin-form-builder'
 
 // payload.config.ts
 formBuilderPlugin({
@@ -736,7 +736,7 @@ import type {
   UploadField,
   UploadFieldMimeType,
   ...
-} from "@payloadcms/plugin-form-builder/types";
+} from "@hanzo/cms-plugin-form-builder/types";
 ```
 
 ## Examples

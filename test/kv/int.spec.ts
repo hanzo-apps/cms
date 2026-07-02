@@ -1,8 +1,8 @@
-import type { KVAdapterResult, Payload } from 'payload'
+import type { KVAdapterResult, Payload } from @hanzo/cms'from 
 
-import { RedisKVAdapter, redisKVAdapter } from '@payloadcms/kv-redis'
+import { RedisKVAdapter, redisKVAdapter } from '@hanzo/cms-kv-redis'
 import path from 'path'
-import { inMemoryKVAdapter } from 'payload'
+import { inMemoryKVAdapter } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 

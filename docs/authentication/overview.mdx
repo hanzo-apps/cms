@@ -25,7 +25,7 @@ When Authentication is enabled on a [Collection](../configuration/collections), 
 To enable Authentication on a Collection, use the `auth` property in the [Collection Config](../configuration/collections#config-options):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Users: CollectionConfig = {
   // ...
@@ -49,7 +49,7 @@ Any [Collection](../configuration/collections) can opt-in to supporting Authenti
 To enable Authentication on a Collection, use the `auth` property in the [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Admins: CollectionConfig = {
   // ...
@@ -138,7 +138,7 @@ For testing and demo purposes you may want to skip forcing the user to login in 
 To enable auto-login, set the `autoLogin` property in the [Payload Config](../admin/overview#admin-options):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -180,7 +180,7 @@ Turning this property on will allow users to stay logged in indefinitely while t
 To enable auto-refresh for user tokens, set `autoRefresh: true` in the [Payload Config](../admin/overview#admin-options) to:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -229,7 +229,7 @@ Default auth fields including `email`, `username`, and `password` can be overrid
 Here's an example of how to restrict access to default auth fields:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Auth: CollectionConfig = {
   slug: 'users',

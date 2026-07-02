@@ -1,4 +1,4 @@
-import type { I18nClient } from '@payloadcms/translations'
+import type { I18nClient } from '@hanzo/cms-translations'
 import type {
   ClientField,
   DefaultCellComponentProps,
@@ -8,10 +8,10 @@ import type {
   Payload,
   PayloadRequest,
   ViewTypes,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { MissingEditorProp } from 'payload'
-import { formatAdminURL } from 'payload/shared'
+import { MissingEditorProp } from @hanzo/cms'from 
+import { formatAdminURL } from @hanzo/cms'from 
 
 import { RenderCustomComponent } from '../../../elements/RenderCustomComponent/index.js'
 import { RenderServerComponent } from '../../../elements/RenderServerComponent/index.js'

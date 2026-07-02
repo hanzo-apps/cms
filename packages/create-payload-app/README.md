@@ -8,9 +8,9 @@ CLI for easily starting new Payload project
 
   USAGE
 
-      $ npx create-payload-app
-      $ npx create-payload-app my-project
-      $ npx create-payload-app -n my-project -t website
+      $ npx @hanzo/create-cms-app
+      $ npx @hanzo/create-cms-app my-project
+      $ npx @hanzo/create-cms-app -n my-project -t website
 
   OPTIONS
 

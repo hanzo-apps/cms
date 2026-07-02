@@ -23,7 +23,7 @@ This makes Blocks perfect for building dynamic, editor-friendly experiences, suc
 To add a Blocks Field, set the `type` to `blocks` in your [Field Config](./overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyBlocksField: Field = {
   // ...
@@ -80,7 +80,7 @@ _\* An asterisk denotes that a property is required._
 To customize the appearance and behavior of the Blocks Field in the [Admin Panel](../admin/overview), you can use the `admin` option:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyBlocksField: Field = {
   // ...
@@ -140,7 +140,7 @@ import {
   // The default "collapsible" UI that is rendered for a regular block
   // if you want to re-use it
   BlockCollapsible,
-} from '@payloadcms/richtext-lexical/client'
+} from '@hanzo/cms-richtext-lexical/client'
 ```
 
 ## Copying and Pasting Blocks
@@ -347,8 +347,8 @@ If you provide `admin.components.Label`, that component replaces both the name a
 
 ```tsx
 import type React from 'react'
-import { BlocksField } from '@payloadcms/ui'
-import type { BlocksFieldServerComponent } from 'payload'
+import { BlocksField } from '@hanzo/cms-ui'
+import type { BlocksFieldServerComponent } from @hanzo/cms'from 
 
 export const CustomBlocksFieldServer: BlocksFieldServerComponent = ({
   clientField,
@@ -372,8 +372,8 @@ export const CustomBlocksFieldServer: BlocksFieldServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { BlocksField } from '@payloadcms/ui'
-import type { BlocksFieldClientComponent } from 'payload'
+import { BlocksField } from '@hanzo/cms-ui'
+import type { BlocksFieldClientComponent } from @hanzo/cms'from 
 
 export const CustomBlocksFieldClient: BlocksFieldClientComponent = (props) => {
   return <BlocksField {...props} />
@@ -386,8 +386,8 @@ export const CustomBlocksFieldClient: BlocksFieldClientComponent = (props) => {
 
 ```tsx
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { BlocksFieldLabelServerComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { BlocksFieldLabelServerComponent } from @hanzo/cms'from 
 
 export const CustomBlocksFieldLabelServer: BlocksFieldLabelServerComponent = ({
   clientField,
@@ -408,8 +408,8 @@ export const CustomBlocksFieldLabelServer: BlocksFieldLabelServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { BlocksFieldLabelClientComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { BlocksFieldLabelClientComponent } from @hanzo/cms'from 
 
 export const CustomBlocksFieldLabelClient: BlocksFieldLabelClientComponent = ({
   label,
@@ -431,7 +431,7 @@ export const CustomBlocksFieldLabelClient: BlocksFieldLabelClientComponent = ({
 `collections/ExampleCollection.js`
 
 ```ts
-import { Block, CollectionConfig } from 'payload'
+import { Block, CollectionConfig } from @hanzo/cms'from 
 
 const QuoteBlock: Block = {
   slug: 'Quote', // required
@@ -476,8 +476,8 @@ If you have multiple blocks used in multiple places, your Payload Config can gro
 To do this, define the block in the `blocks` array of the Payload Config. Then, in the Blocks Field, pass the block slug to the `blockReferences` array - leaving the `blocks` array empty for compatibility reasons.
 
 ```ts
-import { buildConfig } from 'payload'
-import { lexicalEditor, BlocksFeature } from '@payloadcms/richtext-lexical'
+import { buildConfig } from @hanzo/cms'from 
+import { lexicalEditor, BlocksFeature } from '@hanzo/cms-richtext-lexical'
 
 // Payload Config
 const config = buildConfig({
@@ -540,7 +540,7 @@ const config = buildConfig({
 As you build your own Block configs, you might want to store them in separate files but retain typing accordingly. To do so, you can import and use Payload's `Block` type:
 
 ```ts
-import type { Block } from 'payload'
+import type { Block } from @hanzo/cms'from 
 ```
 
 ## Conditional Blocks

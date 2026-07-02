@@ -1,7 +1,7 @@
 'use client'
-import type { TextFieldClientProps } from 'payload'
+import type { TextFieldClientProps } from @hanzo/cms'from 
 
-import { DatePicker, FieldLabel, useField } from '@payloadcms/ui'
+import { DatePicker, FieldLabel, useField } from '@hanzo/cms-ui'
 import { type FunctionComponent, useEffect, useRef } from 'react'
 
 export const DocumentLoaded: FunctionComponent<TextFieldClientProps> = ({ field: label }) => {

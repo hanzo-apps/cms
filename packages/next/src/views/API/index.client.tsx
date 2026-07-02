@@ -13,12 +13,12 @@ import {
   useDocumentInfo,
   useLocale,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import { useSearchParams } from 'next/navigation.js'
 
 import './index.scss'
 
-import { formatAdminURL, hasDraftsEnabled } from 'payload/shared'
+import { formatAdminURL, hasDraftsEnabled } from @hanzo/cms'from 
 import * as React from 'react'
 
 import { LocaleSelector } from './LocaleSelector/index.js'

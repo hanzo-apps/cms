@@ -18,15 +18,15 @@
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
   },
   "dependencies": {
-    "@payloadcms/db-mongodb": "workspace:*",
-    "@payloadcms/next": "workspace:*",
-    "@payloadcms/richtext-lexical": "workspace:*",
-    "@payloadcms/ui": "workspace:*",
+    "@hanzo/cms-db-mongodb": "workspace:*",
+    "@hanzo/cms-next": "workspace:*",
+    "@hanzo/cms-richtext-lexical": "workspace:*",
+    "@hanzo/cms-ui": "workspace:*",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
     "graphql": "^16.8.1",
     "next": "16.2.6",
-    "payload": "workspace:*",
+    "@hanzo/cms": "workspace:*",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "sharp": "0.34.2"

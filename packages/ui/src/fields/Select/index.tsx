@@ -4,7 +4,7 @@ import type {
   OptionObject,
   SelectFieldClientComponent,
   SelectFieldClientProps,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import React, { useCallback, useMemo } from 'react'
 

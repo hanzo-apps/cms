@@ -1,8 +1,8 @@
 'use client'
 
-import { $isInlineBlockNode, createClientFeature } from '@payloadcms/richtext-lexical/client'
-import { $getSelection } from '@payloadcms/richtext-lexical/lexical'
-import { CloseMenuIcon } from '@payloadcms/ui'
+import { $isInlineBlockNode, createClientFeature } from '@hanzo/cms-richtext-lexical/client'
+import { $getSelection } from '@hanzo/cms-richtext-lexical/lexical'
+import { CloseMenuIcon } from '@hanzo/cms-ui'
 
 import { ModifyInlineBlockPlugin } from './plugin.js'
 

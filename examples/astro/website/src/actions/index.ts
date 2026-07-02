@@ -1,6 +1,6 @@
 import { defineAction } from 'astro:actions'
 import { z } from 'astro:schema'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import { config } from 'payload-app'
 
 export const server = {

@@ -1,4 +1,4 @@
-import { definePlugin } from 'payload'
+import { definePlugin } from @hanzo/cms'from 
 
 import type { MCPAccessSettings, MCPPluginConfig } from './types.js'
 
@@ -10,7 +10,7 @@ declare module 'payload' {
     payloadAPI: 'GraphQL' | 'local' | 'MCP' | 'REST'
   }
   interface RegisteredPlugins {
-    '@payloadcms/plugin-mcp': MCPPluginConfig
+    '@hanzo/cms-plugin-mcp': MCPPluginConfig
   }
 }
 
@@ -24,7 +24,7 @@ export type { MCPAccessSettings, MCPPluginConfig }
  * @param pluginOptions - The options for the MCP plugin.
  */
 export const mcpPlugin = definePlugin<MCPPluginConfig>({
-  slug: '@payloadcms/plugin-mcp',
+  slug: '@hanzo/cms-plugin-mcp',
   order: 10,
   plugin: ({ config, plugins: _plugins, ...pluginOptions }) => {
     if (!config.collections) {

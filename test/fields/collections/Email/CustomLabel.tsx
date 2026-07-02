@@ -1,6 +1,6 @@
 'use client'
 
-import type { EmailFieldClientComponent } from 'payload'
+import type { EmailFieldClientComponent } from @hanzo/cms'from 
 
 import React from 'react'
 

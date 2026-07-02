@@ -131,7 +131,7 @@ Queue jobs from Next.js server actions:
 ```ts
 'use server'
 
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import config from '@payload-config'
 
 export async function scheduleEmail(userId: string) {
@@ -234,7 +234,7 @@ By default, Payload's job operations bypass access control when used from the Lo
 To define custom access control for jobs, add an `access` property to your Jobs Config:
 
 ```ts
-import type { SanitizedConfig } from 'payload'
+import type { SanitizedConfig } from @hanzo/cms'from 
 
 const config: SanitizedConfig = {
   // ...

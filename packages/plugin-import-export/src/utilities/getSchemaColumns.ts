@@ -1,4 +1,4 @@
-import type { SanitizedCollectionConfig } from 'payload'
+import type { SanitizedCollectionConfig } from @hanzo/cms'from 
 
 import { getFlattenedFieldKeys } from './getFlattenedFieldKeys.js'
 

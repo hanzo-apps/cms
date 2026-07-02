@@ -1,8 +1,8 @@
 'use client'
 
 import { useModal } from '@faceless-ui/modal'
-import { getTranslation } from '@payloadcms/translations'
-import { type FolderOrDocument, formatAdminURL } from 'payload/shared'
+import { getTranslation } from '@hanzo/cms-translations'
+import { type FolderOrDocument, formatAdminURL } from @hanzo/cms'from 
 import React, { useId } from 'react'
 import { toast } from 'sonner'
 

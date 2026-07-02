@@ -9,7 +9,7 @@ import type {
   Operation,
   PayloadRequest,
   SanitizedFieldPermissions,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export type RenderFieldArgs = {
   clientFieldSchemaMap?: ClientFieldSchemaMap

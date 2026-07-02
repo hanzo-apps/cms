@@ -1,7 +1,7 @@
-import type { SelectFieldServerComponent } from 'payload'
+import type { SelectFieldServerComponent } from @hanzo/cms'from 
 import type React from 'react'
 
-import { SelectField } from '@payloadcms/ui'
+import { SelectField } from '@hanzo/cms-ui'
 
 export const CustomSelectFieldServer: SelectFieldServerComponent = ({
   clientField,

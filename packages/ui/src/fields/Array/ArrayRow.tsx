@@ -5,9 +5,9 @@ import type {
   ClientField,
   Row,
   SanitizedFieldPermissions,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'
 
 import type { UseDraggableSortableReturn } from '../../elements/DraggableSortable/useDraggableSortable/types.js'

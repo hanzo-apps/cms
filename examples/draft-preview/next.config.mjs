@@ -1,4 +1,4 @@
-import { withPayload } from '@payloadcms/next/withPayload'
+import { withPayload } from '@hanzo/cms-next/withPayload'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

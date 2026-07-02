@@ -1,9 +1,9 @@
 import type { BrowserContext, Page } from '@playwright/test'
-import type { TypeWithID } from 'payload'
+import type { TypeWithID } from @hanzo/cms'from 
 
 import { expect, test } from '@playwright/test'
 import path from 'path'
-import { formatAdminURL, wait } from 'payload/shared'
+import { formatAdminURL, wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../__helpers/shared/sdk/index.js'

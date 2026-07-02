@@ -45,10 +45,10 @@ export async function updatePayloadInProject(
 
   // Update all existing Payload packages
   const payloadPackages = Object.keys(packageObj.dependencies).filter((dep) =>
-    dep.startsWith('@payloadcms/'),
+    dep.startsWith('@hanzo/cms-'),
   )
 
-  const packageNames = ['payload', ...payloadPackages]
+  const packageNames = ['@hanzo/cms', ...payloadPackages]
 
   const packagesToUpdate = packageNames.map((pkg) => `${pkg}@${latestPayloadVersion}`)
 

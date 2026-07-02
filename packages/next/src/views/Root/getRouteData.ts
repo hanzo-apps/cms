@@ -10,11 +10,11 @@ import type {
   SanitizedConfig,
   SanitizedGlobalConfig,
   ViewTypes,
-} from 'payload'
+} from @hanzo/cms'from 
 import type React from 'react'
 
-import { parseDocumentID } from 'payload'
-import { formatAdminURL, isNumber } from 'payload/shared'
+import { parseDocumentID } from @hanzo/cms'from 
+import { formatAdminURL, isNumber } from @hanzo/cms'from 
 
 import { AccountView } from '../Account/index.js'
 import { BrowseByFolder } from '../BrowseByFolder/index.js'

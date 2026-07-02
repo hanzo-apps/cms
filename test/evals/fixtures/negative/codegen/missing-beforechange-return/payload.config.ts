@@ -1,4 +1,4 @@
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   db: null as unknown as Parameters<typeof buildConfig>[0]['db'],

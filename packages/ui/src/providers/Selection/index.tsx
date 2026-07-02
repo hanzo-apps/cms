@@ -1,5 +1,5 @@
 'use client'
-import type { Where } from 'payload'
+import type { Where } from @hanzo/cms'from 
 
 import { useSearchParams } from 'next/navigation.js'
 import * as qs from 'qs-esm'

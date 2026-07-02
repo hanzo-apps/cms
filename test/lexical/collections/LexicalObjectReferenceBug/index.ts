@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { lexicalEditor, UploadFeature } from '@payloadcms/richtext-lexical'
+import { lexicalEditor, UploadFeature } from '@hanzo/cms-richtext-lexical'
 
 /**
  * Do not change this specific CollectionConfig. Simply having this config in payload used to cause the admin panel to hang.

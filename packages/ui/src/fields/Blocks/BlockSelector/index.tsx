@@ -1,8 +1,8 @@
 'use client'
-import type { I18nClient } from '@payloadcms/translations'
-import type { ClientBlock } from 'payload'
+import type { I18nClient } from '@hanzo/cms-translations'
+import type { ClientBlock } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React, { Fragment, useEffect, useMemo, useState } from 'react'
 
 import { ThumbnailCard } from '../../../elements/ThumbnailCard/index.js'

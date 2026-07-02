@@ -1,5 +1,5 @@
-import type { TFunction } from '@payloadcms/translations'
-import type { Pill } from '@payloadcms/ui'
+import type { TFunction } from '@hanzo/cms-translations'
+import type { Pill } from '@hanzo/cms-ui'
 
 type Args = {
   currentLocale?: string

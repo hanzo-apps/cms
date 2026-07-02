@@ -1,5 +1,5 @@
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { buildConfig as createConfig } from 'payload'
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
+import { buildConfig as createConfig } from @hanzo/cms'from 
 
 export default createConfig({
   collections: [],

@@ -1,7 +1,7 @@
-import type { JSONFieldServerComponent } from 'payload'
+import type { JSONFieldServerComponent } from @hanzo/cms'from 
 import type React from 'react'
 
-import { JSONField } from '@payloadcms/ui'
+import { JSONField } from '@hanzo/cms-ui'
 
 export const CustomJSONFieldServer: JSONFieldServerComponent = ({
   clientField,

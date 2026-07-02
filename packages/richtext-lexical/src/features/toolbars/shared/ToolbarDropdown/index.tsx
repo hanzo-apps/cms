@@ -5,7 +5,7 @@ const baseClass = 'toolbar-popup__dropdown'
 
 import type { LexicalEditor } from 'lexical'
 
-import { useTranslation } from '@payloadcms/ui'
+import { useTranslation } from '@hanzo/cms-ui'
 
 import type { ToolbarDropdownGroup, ToolbarGroupItem } from '../../types.js'
 import type { ToolbarGroupState } from '../useToolbarStates.js'

@@ -1,5 +1,5 @@
 'use client'
-import type { ColumnPreference, JSONFieldClientComponent } from 'payload'
+import type { ColumnPreference, JSONFieldClientComponent } from @hanzo/cms'from 
 
 import React, { useId, useMemo } from 'react'
 

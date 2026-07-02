@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/plugin-stripe",
+  "name": "@hanzo/cms-plugin-stripe",
   "version": "3.85.2",
   "description": "Stripe plugin for Payload",
   "keywords": [
@@ -62,22 +62,22 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@payloadcms/translations": "workspace:*",
-    "@payloadcms/ui": "workspace:*",
+    "@hanzo/cms-translations": "workspace:*",
+    "@hanzo/cms-ui": "workspace:*",
     "lodash.get": "^4.4.2",
     "stripe": "^10.2.0",
     "uuid": "13.0.2"
   },
   "devDependencies": {
-    "@payloadcms/eslint-config": "workspace:*",
-    "@payloadcms/next": "workspace:*",
+    "@hanzo/cms-eslint-config": "workspace:*",
+    "@hanzo/cms-next": "workspace:*",
     "@types/lodash.get": "^4.4.7",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "publishConfig": {
     "exports": {

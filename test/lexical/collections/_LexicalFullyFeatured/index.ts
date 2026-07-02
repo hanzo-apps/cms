@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import {
   BlocksFeature,
@@ -9,7 +9,7 @@ import {
   lexicalEditor,
   TextStateFeature,
   TreeViewFeature,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 import { lexicalFullyFeaturedSlug } from '../../slugs.js'
 

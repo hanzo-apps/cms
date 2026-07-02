@@ -1,9 +1,9 @@
 'use client'
-import type { AcceptedLanguages } from '@payloadcms/translations'
-import type { ReactSelectOption } from '@payloadcms/ui'
-import type { LanguageOptions } from 'payload'
+import type { AcceptedLanguages } from '@hanzo/cms-translations'
+import type { ReactSelectOption } from '@hanzo/cms-ui'
+import type { LanguageOptions } from @hanzo/cms'from 
 
-import { ReactSelect, useTranslation } from '@payloadcms/ui'
+import { ReactSelect, useTranslation } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const LanguageSelector: React.FC<{

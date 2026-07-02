@@ -139,7 +139,7 @@ export const slugField: SlugField = ({
               clientProps: {
                 useAsSlug,
               } satisfies SlugFieldClientPropsOnly,
-              path: '@payloadcms/next/client#SlugField',
+              path: '@hanzo/cms-next/client#SlugField',
             },
           },
           width: '100%',

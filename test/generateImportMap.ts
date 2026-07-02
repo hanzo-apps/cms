@@ -2,10 +2,10 @@ import path from 'path'
 
 const [testConfigDir] = process.argv.slice(2)
 
-import type { SanitizedConfig } from 'payload'
+import type { SanitizedConfig } from @hanzo/cms'from 
 
 import fs from 'fs'
-import { generateImportMap } from 'payload'
+import { generateImportMap } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 const filename = fileURLToPath(import.meta.url)

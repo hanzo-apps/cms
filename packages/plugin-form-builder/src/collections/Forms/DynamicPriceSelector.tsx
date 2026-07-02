@@ -1,8 +1,8 @@
 'use client'
 
-import type { Data, TextFieldClientComponent } from 'payload'
+import type { Data, TextFieldClientComponent } from @hanzo/cms'from 
 
-import { TextField, useLocale, useWatchForm } from '@payloadcms/ui'
+import { TextField, useLocale, useWatchForm } from '@hanzo/cms-ui'
 import React, { useEffect, useState } from 'react'
 
 type FieldWithID = {

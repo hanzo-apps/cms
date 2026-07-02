@@ -1,6 +1,6 @@
 'use server'
 
-import { refresh } from '@payloadcms/next/auth'
+import { refresh } from '@hanzo/cms-next/auth'
 
 import config from '../config.js'
 

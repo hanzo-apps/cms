@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 export const Regression2: CollectionConfig = {
   slug: 'regression2',

@@ -20,7 +20,7 @@ This page covers the advanced plugin API that makes plugins more powerful: execu
 The plain function form is unchanged and will always be supported:
 
 ```ts
-import type { Config } from 'payload'
+import type { Config } from @hanzo/cms'from 
 
 export const myPlugin =
   (opts: MyOptions) =>
@@ -50,7 +50,7 @@ export const seoPlugin = definePlugin<SEOPluginOptions>({
 Import it from `payload`:
 
 ```ts
-import { definePlugin } from 'payload'
+import { definePlugin } from @hanzo/cms'from 
 ```
 
 The result of `definePlugin` is a factory function — call it with your options to get a `Plugin`:
@@ -160,8 +160,8 @@ export const writerPlugin = definePlugin({
 Here is a complete example of two decoupled plugins that communicate via the `plugins` map. The writer plugin (order 1) runs first and injects an item into the reader plugin's options. The reader plugin (order 10) runs second and sees the injected item.
 
 ```ts
-import type { Config } from 'payload'
-import { definePlugin } from 'payload'
+import type { Config } from @hanzo/cms'from 
+import { definePlugin } from @hanzo/cms'from 
 
 // --- reader plugin ---
 

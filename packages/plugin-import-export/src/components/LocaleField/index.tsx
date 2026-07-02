@@ -1,8 +1,8 @@
 'use client'
 
-import type { SelectFieldClientComponent } from 'payload'
+import type { SelectFieldClientComponent } from @hanzo/cms'from 
 
-import { SelectField, useDocumentInfo, useField, useLocale } from '@payloadcms/ui'
+import { SelectField, useDocumentInfo, useField, useLocale } from '@hanzo/cms-ui'
 import React, { useEffect, useRef } from 'react'
 
 export const LocaleField: SelectFieldClientComponent = (props) => {

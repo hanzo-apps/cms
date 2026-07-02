@@ -1,6 +1,6 @@
 import type { ContainerClient } from '@azure/storage-blob'
 
-import { getFileKey } from '@payloadcms/plugin-cloud-storage/utilities'
+import { getFileKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
 
 interface DeleteArgs {
   client: ContainerClient

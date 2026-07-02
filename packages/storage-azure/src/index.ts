@@ -2,11 +2,11 @@ import type {
   ClientUploadsConfig,
   PluginOptions as CloudStoragePluginOptions,
   CollectionOptions,
-} from '@payloadcms/plugin-cloud-storage/types'
-import type { Config, Plugin, UploadCollectionSlug } from 'payload'
+} from '@hanzo/cms-plugin-cloud-storage/types'
+import type { Config, Plugin, UploadCollectionSlug } from @hanzo/cms'from 
 
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
-import { initClientUploads } from '@payloadcms/plugin-cloud-storage/utilities'
+import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'
+import { initClientUploads } from '@hanzo/cms-plugin-cloud-storage/utilities'
 
 import { createAzureAdapter } from './adapter.js'
 import { getGenerateSignedURLHandler } from './generateSignedURL.js'
@@ -100,7 +100,7 @@ export const azureStorage: AzureStoragePlugin =
     const isPluginDisabled = azureStorageOptions.enabled === false
 
     initClientUploads({
-      clientHandler: '@payloadcms/storage-azure/client#AzureClientUploadHandler',
+      clientHandler: '@hanzo/cms-storage-azure/client#AzureClientUploadHandler',
       collections: azureStorageOptions.collections,
       config: incomingConfig,
       enabled: !isPluginDisabled && Boolean(azureStorageOptions.clientUploads),

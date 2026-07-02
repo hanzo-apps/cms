@@ -1,6 +1,6 @@
 'use client'
 
-import { PopupList } from '@payloadcms/ui'
+import { PopupList } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const SettingsMenuItem1 = () => {

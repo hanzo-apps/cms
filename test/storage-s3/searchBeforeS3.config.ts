@@ -1,5 +1,5 @@
-import { searchPlugin } from '@payloadcms/plugin-search'
-import { s3Storage } from '@payloadcms/storage-s3'
+import { searchPlugin } from '@hanzo/cms-plugin-search'
+import { s3Storage } from '@hanzo/cms-storage-s3'
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'node:url'
 import path from 'path'

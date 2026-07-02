@@ -8,7 +8,7 @@ To spin up this example locally, follow the steps below:
 
 1. Run the following command to create a project from the example:
 
-- `npx create-payload-app --example auth`
+- `npx @hanzo/create-cms-app --example auth`
 
 2. Ensure MongoDB is running:
 
@@ -44,7 +44,7 @@ See the [Collections](https://payloadcms.com/docs/configuration/collections) doc
 
   ```ts
     import { headers as getHeaders } from 'next/headers.js'
-    import { getPayload } from 'payload'
+    import { getPayload } from @hanzo/cms'from 
     import config from '../../payload.config'
 
     export default async function AccountPage({ searchParams }) {

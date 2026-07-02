@@ -1,6 +1,6 @@
-import type { SanitizedConfig, SanitizedPermissions, VisibleEntities } from 'payload'
+import type { SanitizedConfig, SanitizedPermissions, VisibleEntities } from @hanzo/cms'from 
 
-import { type I18nClient } from '@payloadcms/translations'
+import { type I18nClient } from '@hanzo/cms-translations'
 
 import { EntityType } from './groupNavItems.js'
 import { type EntityToGroup, groupNavItems } from './groupNavItems.js'

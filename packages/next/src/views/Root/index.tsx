@@ -1,4 +1,4 @@
-import type { I18nClient } from '@payloadcms/translations'
+import type { I18nClient } from '@hanzo/cms-translations'
 import type { Metadata } from 'next'
 import type {
   AdminViewClientProps,
@@ -8,14 +8,14 @@ import type {
   SanitizedCollectionConfig,
   SanitizedConfig,
   SanitizedGlobalConfig,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { PageConfigProvider } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { getVisibleEntities } from '@payloadcms/ui/shared'
-import { getClientConfig } from '@payloadcms/ui/utilities/getClientConfig'
+import { PageConfigProvider } from '@hanzo/cms-ui'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
+import { getVisibleEntities } from '@hanzo/cms-ui/shared'
+import { getClientConfig } from '@hanzo/cms-ui/utilities/getClientConfig'
 import { notFound, redirect } from 'next/navigation.js'
-import { applyLocaleFiltering, formatAdminURL } from 'payload/shared'
+import { applyLocaleFiltering, formatAdminURL } from @hanzo/cms'from 
 import * as qs from 'qs-esm'
 import React from 'react'
 

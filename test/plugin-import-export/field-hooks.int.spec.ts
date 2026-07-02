@@ -1,4 +1,4 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -18,7 +18,7 @@ let user: any
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-describe('@payloadcms/plugin-import-export — field-level hooks', () => {
+describe('@hanzo/cms-plugin-import-export — field-level hooks', () => {
   beforeAll(async () => {
     ;({ payload, restClient } = await initPayloadInt(dirname))
     user = await payload.login({

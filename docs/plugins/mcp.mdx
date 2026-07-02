@@ -6,7 +6,7 @@ desc: MCP (Model Context Protocol) capabilities with Payload
 keywords: plugins, mcp, ai, model context protocol, plugin, payload, cms
 ---
 
-![https://www.npmjs.com/package/@payloadcms/plugin-mcp](https://img.shields.io/npm/v/@payloadcms/plugin-mcp)
+![https://www.npmjs.com/package/@hanzo/cms-plugin-mcp](https://img.shields.io/npm/v/@hanzo/cms-plugin-mcp)
 
 This plugin adds [Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro) capabilities.
 
@@ -38,7 +38,7 @@ This plugin adds [Model Context Protocol](https://modelcontextprotocol.io/docs/g
 Install the plugin using any JavaScript package manager like [pnpm](https://pnpm.io), [npm](https://npmjs.com), or [Yarn](https://yarnpkg.com):
 
 ```bash
-  pnpm add @payloadcms/plugin-mcp
+  pnpm add @hanzo/cms-plugin-mcp
 ```
 
 ## Basic Usage
@@ -46,8 +46,8 @@ Install the plugin using any JavaScript package manager like [pnpm](https://pnpm
 In the `plugins` array of your [Payload Config](https://payloadcms.com/docs/configuration/overview), call the plugin with [options](#options):
 
 ```ts
-import { buildConfig } from 'payload'
-import { mcpPlugin } from '@payloadcms/plugin-mcp'
+import { buildConfig } from @hanzo/cms'from 
+import { mcpPlugin } from '@hanzo/cms-plugin-mcp'
 
 const config = buildConfig({
   collections: [
@@ -553,7 +553,7 @@ mcpPlugin({
 You can create an MCP access strategy using the `overrideAuth` option:
 
 ```ts
-import { type MCPAccessSettings, mcpPlugin } from '@payloadcms/plugin-mcp'
+import { type MCPAccessSettings, mcpPlugin } from '@hanzo/cms-plugin-mcp'
 
 // ... other config
 
@@ -588,7 +588,7 @@ To understand or modify data returned by models at runtime use a collection [Hoo
 In this example, Post titles are modified to include '(MCP Hook Override)' when they are read using MCP.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',

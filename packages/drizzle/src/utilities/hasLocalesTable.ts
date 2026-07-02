@@ -1,6 +1,6 @@
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
-import { fieldAffectsData, fieldHasSubFields, fieldShouldBeLocalized } from 'payload/shared'
+import { fieldAffectsData, fieldHasSubFields, fieldShouldBeLocalized } from @hanzo/cms'from 
 
 export const hasLocalesTable = ({
   fields,

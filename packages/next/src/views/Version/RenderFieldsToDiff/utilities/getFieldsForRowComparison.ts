@@ -6,9 +6,9 @@ import type {
   ClientConfig,
   ClientField,
   VersionField,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { getUniqueListBy } from 'payload/shared'
+import { getUniqueListBy } from @hanzo/cms'from 
 
 /**
  * Get the fields for a row in an iterable field for comparison.

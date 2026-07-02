@@ -1,4 +1,4 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 export const mongooseList = ['cosmosdb', 'documentdb', 'firestore', 'mongodb', 'mongodb-atlas']
 

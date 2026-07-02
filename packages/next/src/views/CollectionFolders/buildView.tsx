@@ -5,12 +5,12 @@ import type {
   FolderListViewServerPropsOnly,
   FolderSortKeys,
   ListQuery,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { DefaultCollectionFolderView, HydrateAuthProvider } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { getFolderResultsComponentAndData, upsertPreferences } from '@payloadcms/ui/rsc'
-import { formatAdminURL } from '@payloadcms/ui/shared'
+import { DefaultCollectionFolderView, HydrateAuthProvider } from '@hanzo/cms-ui'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
+import { getFolderResultsComponentAndData, upsertPreferences } from '@hanzo/cms-ui/rsc'
+import { formatAdminURL } from '@hanzo/cms-ui/shared'
 import { redirect } from 'next/navigation.js'
 import React from 'react'
 

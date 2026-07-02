@@ -1,4 +1,4 @@
-import type { MigrateUpArgs } from '@payloadcms/db-mongodb'
+import type { MigrateUpArgs } from '@hanzo/cms-db-mongodb'
 
 import { home } from '../seed/home'
 import { examplePage } from '../seed/page'

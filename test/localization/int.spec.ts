@@ -1,7 +1,7 @@
-import type { Payload, User, Where } from 'payload'
+import type { Payload, User, Where } from @hanzo/cms'from 
 
 import path from 'path'
-import { createLocalReq } from 'payload'
+import { createLocalReq } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 

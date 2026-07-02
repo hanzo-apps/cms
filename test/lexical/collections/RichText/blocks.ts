@@ -1,6 +1,6 @@
-import type { Block } from 'payload'
+import type { Block } from @hanzo/cms'from 
 
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 export const TextBlock: Block = {
   fields: [

@@ -1,4 +1,4 @@
-import type { ClientTranslationKeys, TFunction } from '@payloadcms/translations'
+import type { ClientTranslationKeys, TFunction } from '@hanzo/cms-translations'
 
 import * as React from 'react'
 

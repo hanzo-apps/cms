@@ -2,12 +2,12 @@
 
 This package provides a simple way to use [Vercel Blob](https://vercel.com/docs/storage/vercel-blob) storage with Payload.
 
-**NOTE:** This package removes the need to use `@payloadcms/plugin-cloud-storage` as was needed in Payload 2.x.
+**NOTE:** This package removes the need to use `@hanzo/cms-plugin-cloud-storage` as was needed in Payload 2.x.
 
 ## Installation
 
 ```sh
-pnpm add @payloadcms/storage-vercel-blob
+pnpm add @hanzo/cms-storage-vercel-blob
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ pnpm add @payloadcms/storage-vercel-blob
 - When deploying to Vercel, server uploads are limited with 4.5MB. Set `clientUploads` to `true` to do uploads directly on the client.
 
 ```ts
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { vercelBlobStorage } from '@hanzo/cms-storage-vercel-blob'
 import { Media } from './collections/Media'
 import { MediaWithPrefix } from './collections/MediaWithPrefix'
 

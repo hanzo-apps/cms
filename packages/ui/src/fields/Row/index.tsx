@@ -1,5 +1,5 @@
 'use client'
-import type { RowFieldClientComponent } from 'payload'
+import type { RowFieldClientComponent } from @hanzo/cms'from 
 
 import React from 'react'
 

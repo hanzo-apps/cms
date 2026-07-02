@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 
 import { headers as getHeaders } from 'next/headers.js'
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import { RenderParams } from '@/components/RenderParams'
 import { AccountNav } from '@/components/AccountNav'
 

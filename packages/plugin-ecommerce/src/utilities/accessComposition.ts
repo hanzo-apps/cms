@@ -1,6 +1,6 @@
-import type { Access, Where } from 'payload'
+import type { Access, Where } from @hanzo/cms'from 
 
-import { combineWhereConstraints } from 'payload/shared'
+import { combineWhereConstraints } from @hanzo/cms'from 
 
 /**
  * Combines multiple access functions with OR logic.

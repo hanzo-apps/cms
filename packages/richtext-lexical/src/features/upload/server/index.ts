@@ -7,9 +7,9 @@ import type {
   Payload,
   TypeWithID,
   UploadCollectionSlug,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { sanitizeFields } from 'payload'
+import { sanitizeFields } from @hanzo/cms'from 
 
 import type { UploadFeaturePropsClient } from '../client/index.js'
 
@@ -110,7 +110,7 @@ export const UploadFeature = createServerFeature<
     }
 
     return {
-      ClientFeature: '@payloadcms/richtext-lexical/client#UploadFeatureClient',
+      ClientFeature: '@hanzo/cms-richtext-lexical/client#UploadFeatureClient',
       clientFeatureProps: clientProps,
       generateSchemaMap: ({ props }) => {
         if (!props?.collections) {

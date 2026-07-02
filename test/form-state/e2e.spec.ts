@@ -1,9 +1,9 @@
 import type { BrowserContext, CDPSession, Page } from '@playwright/test'
-import type { FormState } from 'payload'
+import type { FormState } from @hanzo/cms'from 
 
 import { expect, test } from '@playwright/test'
 import * as path from 'path'
-import { formatAdminURL, wait } from 'payload/shared'
+import { formatAdminURL, wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../__helpers/shared/sdk/index.js'

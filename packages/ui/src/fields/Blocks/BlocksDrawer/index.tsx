@@ -1,8 +1,8 @@
 'use client'
-import type { ClientBlock, Labels } from 'payload'
+import type { ClientBlock, Labels } from @hanzo/cms'from 
 
 import { useModal } from '@faceless-ui/modal'
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React, { useEffect } from 'react'
 
 import { Drawer } from '../../../elements/Drawer/index.js'

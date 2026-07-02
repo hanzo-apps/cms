@@ -1,7 +1,7 @@
-import type { DrizzleAdapter } from '@payloadcms/drizzle'
-import type { Connect, Migration } from 'payload'
+import type { DrizzleAdapter } from '@hanzo/cms-drizzle'
+import type { Connect, Migration } from @hanzo/cms'from 
 
-import { pushDevSchema } from '@payloadcms/drizzle'
+import { pushDevSchema } from '@hanzo/cms-drizzle'
 import { drizzle } from 'drizzle-orm/d1'
 
 import type { SQLiteD1Adapter } from './types.js'

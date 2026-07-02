@@ -1,5 +1,5 @@
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import { unstable_cache } from 'next/cache'
 
 export async function getRedirects(depth = 1) {

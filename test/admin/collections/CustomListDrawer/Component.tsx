@@ -1,5 +1,5 @@
 'use client'
-import { toast, useListDrawer, useListDrawerContext, useTranslation } from '@payloadcms/ui'
+import { toast, useListDrawer, useListDrawerContext, useTranslation } from '@hanzo/cms-ui'
 import React, { useCallback } from 'react'
 
 export const CustomListDrawer = () => {

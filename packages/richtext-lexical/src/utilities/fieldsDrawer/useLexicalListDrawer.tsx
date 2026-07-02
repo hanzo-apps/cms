@@ -1,9 +1,9 @@
 'use client'
-import type { UseListDrawer } from '@payloadcms/ui'
+import type { UseListDrawer } from '@hanzo/cms-ui'
 import type { BaseSelection } from 'lexical'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { useListDrawer, useModal } from '@payloadcms/ui'
+import { useListDrawer, useModal } from '@hanzo/cms-ui'
 import {
   $getNodeByKey,
   $getPreviousSelection,

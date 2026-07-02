@@ -1,5 +1,5 @@
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
-import type { CollectionAfterReadHook, CollectionBeforeChangeHook, RichTextField } from 'payload'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
+import type { CollectionAfterReadHook, CollectionBeforeChangeHook, RichTextField } from @hanzo/cms'from 
 
 import {
   $convertFromMarkdownString,
@@ -9,12 +9,12 @@ import {
   type LexicalRichTextAdapter,
   objectToFrontmatter,
   type SanitizedServerEditorConfig,
-} from '@payloadcms/richtext-lexical'
-import { createHeadlessEditor } from '@payloadcms/richtext-lexical/lexical/headless'
-import { $convertToMarkdownString } from '@payloadcms/richtext-lexical/lexical/markdown'
+} from '@hanzo/cms-richtext-lexical'
+import { createHeadlessEditor } from '@hanzo/cms-richtext-lexical/lexical/headless'
+import { $convertToMarkdownString } from '@hanzo/cms-richtext-lexical/lexical/markdown'
 import fs from 'node:fs'
 import path from 'path'
-import { deepCopyObjectSimple } from 'payload'
+import { deepCopyObjectSimple } from @hanzo/cms'from 
 
 import { docsBasePath } from '../collections/Posts/shared.js'
 

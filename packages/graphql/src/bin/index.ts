@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import minimist from 'minimist'
 import { pathToFileURL } from 'node:url'
-import { findConfig, loadEnv } from 'payload/node'
+import { findConfig, loadEnv } from @hanzo/cms'from 
 
 import { generateSchema } from './generateSchema.js'
 

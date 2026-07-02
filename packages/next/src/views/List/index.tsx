@@ -10,11 +10,11 @@ import type {
   PayloadComponent,
   QueryPreset,
   SanitizedCollectionPermission,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { DefaultListView, HydrateAuthProvider, ListQueryProvider } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { getColumns, renderFilters, renderTable, upsertPreferences } from '@payloadcms/ui/rsc'
+import { DefaultListView, HydrateAuthProvider, ListQueryProvider } from '@hanzo/cms-ui'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
+import { getColumns, renderFilters, renderTable, upsertPreferences } from '@hanzo/cms-ui/rsc'
 import { notFound } from 'next/navigation.js'
 import {
   appendUploadSelectFields,
@@ -24,7 +24,7 @@ import {
   mergeListSearchAndWhere,
   transformColumnsToPreferences,
   transformColumnsToSearchParams,
-} from 'payload/shared'
+} from @hanzo/cms'from 
 import React, { Fragment } from 'react'
 
 import { getDocumentPermissions } from '../Document/getDocumentPermissions.js'

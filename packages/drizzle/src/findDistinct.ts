@@ -1,7 +1,7 @@
 import type { asc, desc, SQL } from 'drizzle-orm'
 
 import { max, sql } from 'drizzle-orm'
-import { type FindDistinct, getFieldByPath, type SanitizedCollectionConfig } from 'payload'
+import { type FindDistinct, getFieldByPath, type SanitizedCollectionConfig } from @hanzo/cms'from 
 import toSnakeCase from 'to-snake-case'
 
 import type { BuildQueryJoinAliases, DrizzleAdapter, GenericColumn } from './types.js'

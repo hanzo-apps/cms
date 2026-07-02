@@ -1,4 +1,4 @@
-import type { Block, Config, Field, RelationshipField, SanitizedConfig } from 'payload'
+import type { Block, Config, Field, RelationshipField, SanitizedConfig } from @hanzo/cms'from 
 
 import type { MultiTenantPluginConfig } from '../types.js'
 

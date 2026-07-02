@@ -1,6 +1,6 @@
 import { sql } from 'drizzle-orm'
-import { APIError, type FlattenedField } from 'payload'
-import { fieldIsVirtual, fieldShouldBeLocalized } from 'payload/shared'
+import { APIError, type FlattenedField } from @hanzo/cms'from 
+import { fieldIsVirtual, fieldShouldBeLocalized } from @hanzo/cms'from 
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from '../../types.js'

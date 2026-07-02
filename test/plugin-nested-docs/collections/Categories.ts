@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs'
+import { createBreadcrumbsField, createParentField } from '@hanzo/cms-plugin-nested-docs'
 
 export const Categories: CollectionConfig = {
   access: {

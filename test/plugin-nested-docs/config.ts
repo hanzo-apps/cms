@@ -2,7 +2,7 @@ import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
+import { nestedDocsPlugin } from '@hanzo/cms-plugin-nested-docs'
 
 import { buildConfigWithDefaults } from '../buildConfigWithDefaults.js'
 import { devUser } from '../credentials.js'

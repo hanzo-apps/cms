@@ -1,4 +1,4 @@
-import type { Endpoint } from 'payload'
+import type { Endpoint } from @hanzo/cms'from 
 
 import Stripe from 'stripe'
 

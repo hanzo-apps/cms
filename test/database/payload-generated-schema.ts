@@ -6,7 +6,7 @@
  * and re-run `payload generate:db-schema` to regenerate this file.
  */
 
-import type {} from '@payloadcms/db-sqlite'
+import type {} from '@hanzo/cms-db-sqlite'
 import {
   sqliteTable,
   index,
@@ -16,8 +16,8 @@ import {
   text,
   type AnySQLiteColumn,
   numeric,
-} from '@payloadcms/db-sqlite/drizzle/sqlite-core'
-import { sql, relations } from '@payloadcms/db-sqlite/drizzle'
+} from '@hanzo/cms-db-sqlite/drizzle/sqlite-core'
+import { sql, relations } from '@hanzo/cms-db-sqlite/drizzle'
 
 export const no_time_stamps = sqliteTable('no_time_stamps', {
   id: integer('id').primaryKey({ autoIncrement: true }),
@@ -3571,7 +3571,7 @@ type DatabaseSchema = {
   relations_virtual_relation_global: typeof relations_virtual_relation_global
 }
 
-declare module '@payloadcms/db-sqlite' {
+declare module '@hanzo/cms-db-sqlite' {
   export interface GeneratedDatabaseSchema {
     schema: DatabaseSchema
   }

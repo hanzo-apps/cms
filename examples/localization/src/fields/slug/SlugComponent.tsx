@@ -1,8 +1,8 @@
 'use client'
 import React, { useCallback, useEffect } from 'react'
-import { TextFieldClientProps } from 'payload'
+import { TextFieldClientProps } from @hanzo/cms'from 
 
-import { useField, Button, TextInput, FieldLabel, useFormFields, useForm } from '@payloadcms/ui'
+import { useField, Button, TextInput, FieldLabel, useFormFields, useForm } from '@hanzo/cms-ui'
 
 import { formatSlug } from './formatSlug'
 import './index.scss'

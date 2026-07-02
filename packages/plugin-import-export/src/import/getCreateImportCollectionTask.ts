@@ -1,6 +1,6 @@
-import type { Config, TaskConfig } from 'payload'
+import type { Config, TaskConfig } from @hanzo/cms'from 
 
-import { FileRetrievalError } from 'payload'
+import { FileRetrievalError } from @hanzo/cms'from 
 
 import { getFileFromDoc } from '../utilities/getFileFromDoc.js'
 import { createImport } from './createImport.js'

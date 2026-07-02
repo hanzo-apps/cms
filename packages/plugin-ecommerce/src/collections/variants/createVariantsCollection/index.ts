@@ -1,4 +1,4 @@
-import type { CollectionConfig, Field } from 'payload'
+import type { CollectionConfig, Field } from @hanzo/cms'from 
 
 import type { AccessConfig, CurrenciesConfig, InventoryConfig } from '../../../types/index.js'
 
@@ -69,7 +69,7 @@ export const createVariantsCollection: (props: Props) => CollectionConfig = (pro
       admin: {
         components: {
           Field: {
-            path: '@payloadcms/plugin-ecommerce/rsc#VariantOptionsSelector',
+            path: '@hanzo/cms-plugin-ecommerce/rsc#VariantOptionsSelector',
           },
         },
       },

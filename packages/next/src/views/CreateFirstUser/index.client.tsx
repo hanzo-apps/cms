@@ -1,11 +1,11 @@
 'use client'
-import type { FormProps, UserWithToken } from '@payloadcms/ui'
+import type { FormProps, UserWithToken } from '@hanzo/cms-ui'
 import type {
   DocumentPreferences,
   FormState,
   LoginWithUsernameOptions,
   SanitizedDocumentPermissions,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import {
   ConfirmPasswordField,
@@ -18,9 +18,9 @@ import {
   useConfig,
   useServerFunctions,
   useTranslation,
-} from '@payloadcms/ui'
-import { abortAndIgnore, handleAbortRef } from '@payloadcms/ui/shared'
-import { formatAdminURL } from 'payload/shared'
+} from '@hanzo/cms-ui'
+import { abortAndIgnore, handleAbortRef } from '@hanzo/cms-ui/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import React, { useEffect } from 'react'
 
 export const CreateFirstUserClient: React.FC<{

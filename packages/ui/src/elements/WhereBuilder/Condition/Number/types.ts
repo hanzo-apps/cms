@@ -1,4 +1,4 @@
-import type { NumberFieldClient } from 'payload'
+import type { NumberFieldClient } from @hanzo/cms'from 
 
 import type { DefaultFilterProps } from '../types.js'
 

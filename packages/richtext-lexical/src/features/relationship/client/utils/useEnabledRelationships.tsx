@@ -1,7 +1,7 @@
 'use client'
-import type { ClientCollectionConfig, CollectionSlug } from 'payload'
+import type { ClientCollectionConfig, CollectionSlug } from @hanzo/cms'from 
 
-import { useConfig, useEntityVisibility } from '@payloadcms/ui'
+import { useConfig, useEntityVisibility } from '@hanzo/cms-ui'
 import * as React from 'react'
 
 type UseEnabledRelationshipsOptions = {

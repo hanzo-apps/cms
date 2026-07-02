@@ -1,10 +1,10 @@
 'use client'
 
-import type { BlocksFieldClient, ClientBlock, Data, FormState } from 'payload'
+import type { BlocksFieldClient, ClientBlock, Data, FormState } from @hanzo/cms'from 
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   Button,
   Drawer,
@@ -20,13 +20,13 @@ import {
   useEditDepth,
   useServerFunctions,
   useTranslation,
-} from '@payloadcms/ui'
-import { abortAndIgnore } from '@payloadcms/ui/shared'
+} from '@hanzo/cms-ui'
+import { abortAndIgnore } from '@hanzo/cms-ui/shared'
 import { $getNodeByKey, SKIP_DOM_SELECTION_TAG } from 'lexical'
 
 import './index.scss'
 
-import { deepCopyObjectSimpleWithoutReactComponents, reduceFieldsToValues } from 'payload/shared'
+import { deepCopyObjectSimpleWithoutReactComponents, reduceFieldsToValues } from @hanzo/cms'from 
 import React, { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
 import { v4 as uuid } from 'uuid'
 

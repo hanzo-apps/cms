@@ -3,7 +3,7 @@ import type {
   CollectionBeforeOperationHook,
   CollectionConfig,
   Config,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import type { ExportConfig, ImportExportPluginConfig, Limit } from '../types.js'
 import type { Export } from './createExport.js'
@@ -45,7 +45,7 @@ export const getExportCollection = ({
     admin: {
       components: {
         edit: {
-          SaveButton: '@payloadcms/plugin-import-export/rsc#ExportSaveButton',
+          SaveButton: '@hanzo/cms-plugin-import-export/rsc#ExportSaveButton',
         },
       },
       custom: {

@@ -1,6 +1,6 @@
-import type { Block } from 'payload'
+import type { Block } from @hanzo/cms'from 
 
-import { BlocksFeature, lexicalEditor, TreeViewFeature } from '@payloadcms/richtext-lexical'
+import { BlocksFeature, lexicalEditor, TreeViewFeature } from '@hanzo/cms-richtext-lexical'
 
 import { bannerTypes } from '../../collections/Posts/shared.js'
 import { InlineCodeBlock } from './inlineCode.js'

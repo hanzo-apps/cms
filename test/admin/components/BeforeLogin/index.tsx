@@ -1,8 +1,8 @@
 'use client'
 
-import type { PayloadClientReactComponent, SanitizedConfig } from 'payload'
+import type { PayloadClientReactComponent, SanitizedConfig } from @hanzo/cms'from 
 
-import { useTranslation } from '@payloadcms/ui'
+import { useTranslation } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const BeforeLogin: PayloadClientReactComponent<

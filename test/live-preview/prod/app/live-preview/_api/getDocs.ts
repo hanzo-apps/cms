@@ -1,5 +1,5 @@
 import config from '@payload-config'
-import { type CollectionSlug, getPayload } from 'payload'
+import { type CollectionSlug, getPayload } from @hanzo/cms'from 
 
 export const getDocs = async <T>(collection: CollectionSlug): Promise<T[]> => {
   const payload = await getPayload({ config })

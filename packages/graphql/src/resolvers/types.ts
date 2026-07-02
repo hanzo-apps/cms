@@ -1,4 +1,4 @@
-import type { PayloadRequest, SelectType } from 'payload'
+import type { PayloadRequest, SelectType } from @hanzo/cms'from 
 
 export type Context = {
   headers: {

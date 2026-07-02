@@ -1,1 +1,1 @@
-export { bg } from '@payloadcms/translations/languages/bg'
+export { bg } from '@hanzo/cms-translations/languages/bg'

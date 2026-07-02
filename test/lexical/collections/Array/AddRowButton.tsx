@@ -1,6 +1,6 @@
 'use client'
 
-import { useForm } from '@payloadcms/ui'
+import { useForm } from '@hanzo/cms-ui'
 
 const AddRowButton = () => {
   const { addFieldRow } = useForm()

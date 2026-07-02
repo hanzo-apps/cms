@@ -1,4 +1,4 @@
-import { sanitizeID, traverseForLocalizedFields } from '@payloadcms/ui/shared'
+import { sanitizeID, traverseForLocalizedFields } from '@hanzo/cms-ui/shared'
 import {
   combineQueries,
   extractAccessFromPermission,
@@ -7,8 +7,8 @@ import {
   type SanitizedDocumentPermissions,
   type SanitizedGlobalConfig,
   type TypedUser,
-} from 'payload'
-import { hasAutosaveEnabled, hasDraftsEnabled } from 'payload/shared'
+} from @hanzo/cms'from 
+import { hasAutosaveEnabled, hasDraftsEnabled } from @hanzo/cms'from 
 
 type Args = {
   collectionConfig?: SanitizedCollectionConfig

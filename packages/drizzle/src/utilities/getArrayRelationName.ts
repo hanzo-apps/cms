@@ -1,4 +1,4 @@
-import type { ArrayField } from 'payload'
+import type { ArrayField } from @hanzo/cms'from 
 
 export const getArrayRelationName = ({
   field,

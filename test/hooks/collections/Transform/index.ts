@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 const validateFieldTransformAction = (hook: string, value) => {
   if (value !== undefined && value !== null && !Array.isArray(value)) {

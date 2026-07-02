@@ -1,7 +1,7 @@
-import type { CollectionSlug, Payload } from 'payload'
+import type { CollectionSlug, Payload } from @hanzo/cms'from 
 
 import path from 'path'
-import { createLocalReq } from 'payload'
+import { createLocalReq } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, describe, expect, it, vitest } from 'vitest'
 

@@ -1,9 +1,9 @@
 'use client'
 
-import type { PayloadAdminBarProps } from '@payloadcms/admin-bar'
+import type { PayloadAdminBarProps } from '@hanzo/cms-admin-bar'
 
 import { useRouter } from 'next/navigation'
-import { PayloadAdminBar } from '@payloadcms/admin-bar'
+import { PayloadAdminBar } from '@hanzo/cms-admin-bar'
 import React, { useState } from 'react'
 
 import { Gutter } from '../Gutter'

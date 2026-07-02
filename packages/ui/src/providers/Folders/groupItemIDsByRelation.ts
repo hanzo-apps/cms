@@ -1,4 +1,4 @@
-import type { FolderOrDocument } from 'payload/shared'
+import type { FolderOrDocument } from @hanzo/cms'from 
 
 export function groupItemIDsByRelation(items: FolderOrDocument[]) {
   return items.reduce(

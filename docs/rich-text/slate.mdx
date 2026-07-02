@@ -15,14 +15,14 @@ The [default Payload editor](/docs/rich-text/overview) is currently based on Lex
 To use the Slate editor, first you need to install it:
 
 ```
-npm install --save @payloadcms/richtext-slate
+npm install --save @hanzo/cms-richtext-slate
 ```
 
 After installation, you can pass it to your top-level Payload Config:
 
 ```ts
-import { buildConfig } from 'payload'
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { buildConfig } from @hanzo/cms'from 
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 export default buildConfig({
   collections: [
@@ -36,8 +36,8 @@ export default buildConfig({
 And here's an example for how to install the Slate editor on a field-by-field basis, while customizing its options:
 
 ```ts
-import type { CollectionConfig } from 'payload'
-import { slateEditor } from '@payloadcms/richtext-slate'
+import type { CollectionConfig } from @hanzo/cms'from 
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -169,9 +169,9 @@ Specifying custom `Type`s let you extend your custom elements by adding addition
 ### Example
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',
@@ -362,5 +362,5 @@ If you are building your own custom Rich Text elements or leaves, you may benefi
 import type {
   RichTextCustomElement,
   RichTextCustomLeaf,
-} from '@payloadcms/richtext-slate'
+} from '@hanzo/cms-richtext-slate'
 ```

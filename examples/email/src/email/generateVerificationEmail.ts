@@ -1,6 +1,6 @@
 import { generateEmailHTML } from './generateEmailHTML'
 
-import { sanitizeUserDataForEmail } from 'payload/shared'
+import { sanitizeUserDataForEmail } from @hanzo/cms'from 
 
 type User = {
   email: string

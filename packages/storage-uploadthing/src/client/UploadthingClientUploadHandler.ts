@@ -1,6 +1,6 @@
 'use client'
-import { createClientUploadHandler } from '@payloadcms/plugin-cloud-storage/client'
-import { formatAdminURL } from 'payload/shared'
+import { createClientUploadHandler } from '@hanzo/cms-plugin-cloud-storage/client'
+import { formatAdminURL } from @hanzo/cms'from 
 import { genUploader } from 'uploadthing/client'
 
 export const UploadthingClientUploadHandler = createClientUploadHandler({

@@ -1,8 +1,8 @@
 'use client'
-import type { GroupFieldClientComponent } from 'payload'
+import type { GroupFieldClientComponent } from @hanzo/cms'from 
 
-import { RichTextViewProvider } from '@payloadcms/richtext-lexical/client'
-import { GroupField } from '@payloadcms/ui'
+import { RichTextViewProvider } from '@hanzo/cms-richtext-lexical/client'
+import { GroupField } from '@hanzo/cms-ui'
 
 /**
  * Custom group field component that wraps its children in a RichTextViewProvider

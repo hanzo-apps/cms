@@ -1,5 +1,5 @@
 import type { SerializedLexicalNode } from 'lexical'
-import type { SelectType, TypeWithID } from 'payload'
+import type { SelectType, TypeWithID } from @hanzo/cms'from 
 
 import type {
   DefaultNodeTypes,

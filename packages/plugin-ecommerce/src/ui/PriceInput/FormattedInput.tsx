@@ -1,8 +1,8 @@
 'use client'
 
-import type { StaticDescription, StaticLabel } from 'payload'
+import type { StaticDescription, StaticLabel } from @hanzo/cms'from 
 
-import { FieldDescription, FieldLabel, useField, useFormFields } from '@payloadcms/ui'
+import { FieldDescription, FieldLabel, useField, useFormFields } from '@hanzo/cms-ui'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import type { Currency } from '../../types/index.js'

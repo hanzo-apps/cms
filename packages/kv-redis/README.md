@@ -5,13 +5,13 @@ This package provides a way to use [Redis](https://redis.io) as a KV adapter wit
 ## Installation
 
 ```sh
-pnpm add @payloadcms/kv-redis
+pnpm add @hanzo/cms-kv-redis
 ```
 
 ## Usage
 
 ```ts
-import { redisKVAdapter } from '@payloadcms/kv-redis'
+import { redisKVAdapter } from '@hanzo/cms-kv-redis'
 
 export default buildConfig({
   collections: [Media],

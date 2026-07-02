@@ -1,4 +1,4 @@
-import type { CollectionConfig, Config } from 'payload'
+import type { CollectionConfig, Config } from @hanzo/cms'from 
 
 import type { ImportExportPluginConfig } from '../types.js'
 

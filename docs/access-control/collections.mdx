@@ -11,7 +11,7 @@ Collection Access Control is [Access Control](../access-control/overview) used t
 To add Access Control to a Collection, use the `access` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const CollectionWithAccessControl: CollectionConfig = {
   // ...
@@ -29,7 +29,7 @@ Access Control is specific to the operation of the request.
 To add Access Control to a Collection, use the `access` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig } from @hanzo/cms'from ;
 
 export const CollectionWithAccessControl: CollectionConfig = {
   // ...
@@ -80,7 +80,7 @@ Returns a boolean which allows/denies access to the `create` request.
 To add create Access Control to a Collection, use the `create` property in the [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const CollectionWithCreateAccess: CollectionConfig = {
   // ...
@@ -108,7 +108,7 @@ Returns a boolean which allows/denies access to the `read` request.
 To add read Access Control to a Collection, use the `read` property in the [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const CollectionWithReadAccess: CollectionConfig = {
   // ...
@@ -131,7 +131,7 @@ export const CollectionWithReadAccess: CollectionConfig = {
 As your application becomes more complex, you may want to define your function in a separate file and import them into your Collection Config:
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 import type { Page } from '@/payload-types'
 
 export const canReadPage: Access<Page> = ({ req: { user } }) => {
@@ -164,7 +164,7 @@ Returns a boolean which allows/denies access to the `update` request.
 To add update Access Control to a Collection, use the `update` property in the [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const CollectionWithUpdateAccess: CollectionConfig = {
   // ...
@@ -187,7 +187,7 @@ export const CollectionWithUpdateAccess: CollectionConfig = {
 As your application becomes more complex, you may want to define your function in a separate file and import them into your Collection Config:
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 import type { User } from '@/payload-types'
 
 export const canUpdateUser: Access<User> = ({ req: { user }, id }) => {
@@ -223,7 +223,7 @@ Similarly to the Update function, returns a boolean or a [query constraint](/doc
 To add delete Access Control to a Collection, use the `delete` property in the [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const CollectionWithDeleteAccess: CollectionConfig = {
   // ...
@@ -240,7 +240,7 @@ export const CollectionWithDeleteAccess: CollectionConfig = {
 As your application becomes more complex, you may want to define your function in a separate file and import them into your Collection Config:
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 import type { Customer } from '@/payload-types'
 
 export const canDeleteCustomer: Access<Customer> = async ({ req, id }) => {
@@ -285,7 +285,7 @@ If the Collection is used to access the [Admin Panel](../admin/overview#the-admi
 To add Admin Access Control to a Collection, use the `admin` property in the [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const CollectionWithAdminAccess: CollectionConfig = {
   // ...
@@ -312,7 +312,7 @@ Determines which users can [unlock](/docs/authentication/operations#unlock) othe
 To add Unlock Access Control to a Collection, use the `unlock` property in the [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const CollectionWithUnlockAccess: CollectionConfig = {
   // ...
@@ -339,7 +339,7 @@ If the Collection has [Versions](../versions/overview) enabled, the `readVersion
 To add Read Versions Access Control to a Collection, use the `readVersions` property in the [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const CollectionWithVersionsAccess: CollectionConfig = {
   // ...

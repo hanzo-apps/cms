@@ -1,6 +1,6 @@
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { s3Storage } from '@payloadcms/storage-s3'
-import { buildConfig } from 'payload'
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
+import { s3Storage } from '@hanzo/cms-storage-s3'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   collections: [],

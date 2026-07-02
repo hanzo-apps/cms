@@ -1,4 +1,4 @@
-import { Button } from '@payloadcms/ui'
+import { Button } from '@hanzo/cms-ui'
 
 const sizes = ['small', 'medium', 'large'] as const
 const buttonStyles = [

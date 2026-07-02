@@ -1,12 +1,12 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import {
   handleMessage as handleMessageImport,
   type LivePreviewMessageEvent,
   mergeData as mergeDataImport,
-} from '@payloadcms/live-preview'
+} from '@hanzo/cms-live-preview'
 import path from 'path'
-import { getFileByPath } from 'payload'
+import { getFileByPath } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 

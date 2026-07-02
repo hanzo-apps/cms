@@ -1,9 +1,9 @@
 'use client'
 
-import type { PluginComponent } from '@payloadcms/richtext-lexical'
+import type { PluginComponent } from '@hanzo/cms-richtext-lexical'
 
-import { useLexicalComposerContext } from '@payloadcms/richtext-lexical/lexical/react/LexicalComposerContext'
-import { defaultJSXConverters, RichText } from '@payloadcms/richtext-lexical/react'
+import { useLexicalComposerContext } from '@hanzo/cms-richtext-lexical/lexical/react/LexicalComposerContext'
+import { defaultJSXConverters, RichText } from '@hanzo/cms-richtext-lexical/react'
 
 import './style.scss'
 

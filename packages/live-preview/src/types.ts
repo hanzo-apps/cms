@@ -1,4 +1,4 @@
-import type { DocumentEvent } from 'payload'
+import type { DocumentEvent } from @hanzo/cms'from 
 
 export type CollectionPopulationRequestHandler = ({
   apiPath,

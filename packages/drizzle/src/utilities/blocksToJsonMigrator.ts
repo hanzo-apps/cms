@@ -4,7 +4,7 @@ import type {
   Payload,
   PayloadRequest,
   SanitizedConfig,
-} from 'payload'
+} from @hanzo/cms'from 
 import type tsTypes from 'typescript'
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'fs'
@@ -14,9 +14,9 @@ import {
   buildVersionCollectionFields,
   buildVersionGlobalFields,
   dynamicImport,
-} from 'payload'
-import { findConfig } from 'payload/node'
-import { fieldShouldBeLocalized } from 'payload/shared'
+} from @hanzo/cms'from 
+import { findConfig } from @hanzo/cms'from 
+import { fieldShouldBeLocalized } from @hanzo/cms'from 
 
 import type {
   BlocksToJsonBlockToMigrate,

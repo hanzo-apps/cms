@@ -34,7 +34,7 @@ export const pluginsOfficialQADataset: EvalCase[] = [
   {
     input: 'What package provides the Payload Form Builder plugin and what does it add?',
     expected:
-      '@payloadcms/plugin-form-builder; adds a Forms collection for building dynamic forms with configurable fields, submissions collection, and email confirmations',
+      '@hanzo/cms-plugin-form-builder; adds a Forms collection for building dynamic forms with configurable fields, submissions collection, and email confirmations',
     category: 'plugins',
   },
   {

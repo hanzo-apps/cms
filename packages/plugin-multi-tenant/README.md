@@ -9,7 +9,7 @@ A plugin for [Payload](https://github.com/payloadcms/payload) to easily manage m
 ## Installation
 
 ```bash
-pnpm add @payloadcms/plugin-multi-tenant
+pnpm add @hanzo/cms-plugin-multi-tenant
 ```
 
 ## Plugin Types
@@ -187,9 +187,9 @@ In the multi-tenant plugin config you can set `useTenantAccess` to false:
 ```ts
 // File: payload.config.ts
 
-import { buildConfig } from 'payload'
-import { multiTenantPlugin } from '@payloadcms/plugin-multi-tenant'
-import { getTenantAccess } from '@payloadcms/plugin-multi-tenant/utilities'
+import { buildConfig } from @hanzo/cms'from 
+import { multiTenantPlugin } from '@hanzo/cms-plugin-multi-tenant'
+import { getTenantAccess } from '@hanzo/cms-plugin-multi-tenant/utilities'
 import { Config as ConfigTypes } from './payload-types'
 
 // Add the plugin to your payload config
@@ -254,8 +254,8 @@ This field cannot be nested inside a named field, ie a group, named-tab or array
 To make it easier, this plugin exports the field for you to import and merge in your own properties.
 
 ```ts
-import type { CollectionConfig } from 'payload'
-import { tenantsArrayField } from '@payloadcms/plugin-multi-tenant/fields'
+import type { CollectionConfig } from @hanzo/cms'from 
+import { tenantsArrayField } from '@hanzo/cms-plugin-multi-tenant/fields'
 
 const customTenantsArrayField = tenantsArrayField({
   arrayFieldAccess: {}, // access control for the array field

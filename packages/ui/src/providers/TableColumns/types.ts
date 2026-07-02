@@ -1,4 +1,4 @@
-import type { CollectionPreferences, Column } from 'payload'
+import type { CollectionPreferences, Column } from @hanzo/cms'from 
 
 import type { SortColumnProps } from '../../elements/SortColumn/index.js'
 

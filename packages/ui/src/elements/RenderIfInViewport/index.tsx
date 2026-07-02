@@ -1,5 +1,5 @@
 'use client'
-import type { ClientComponentProps } from 'payload'
+import type { ClientComponentProps } from @hanzo/cms'from 
 
 import React from 'react'
 

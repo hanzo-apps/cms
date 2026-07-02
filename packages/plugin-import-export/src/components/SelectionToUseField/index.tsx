@@ -1,6 +1,6 @@
 'use client'
 
-import type { Where } from 'payload'
+import type { Where } from @hanzo/cms'from 
 
 import {
   RadioGroupField,
@@ -9,7 +9,7 @@ import {
   useListQuery,
   useSelection,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import React, { useEffect, useMemo } from 'react'
 
 const isWhereEmpty = (where: Where): boolean => {

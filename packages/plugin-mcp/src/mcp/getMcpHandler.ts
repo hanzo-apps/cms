@@ -2,7 +2,7 @@ import type { JSONSchema4 } from 'json-schema'
 
 import { createMcpHandler } from 'mcp-handler'
 import { join } from 'path'
-import { APIError, configToJSONSchema, type PayloadRequest, type TypedUser } from 'payload'
+import { APIError, configToJSONSchema, type PayloadRequest, type TypedUser } from @hanzo/cms'from 
 
 import type { MCPAccessSettings, MCPPluginConfig } from '../types.js'
 

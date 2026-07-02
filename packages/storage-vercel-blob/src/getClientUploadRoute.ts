@@ -1,7 +1,7 @@
-import type { PayloadHandler, PayloadRequest, UploadCollectionSlug } from 'payload'
+import type { PayloadHandler, PayloadRequest, UploadCollectionSlug } from @hanzo/cms'from 
 
 import { handleUpload, type HandleUploadBody } from '@vercel/blob/client'
-import { APIError, Forbidden } from 'payload'
+import { APIError, Forbidden } from @hanzo/cms'from 
 
 type Args = {
   access?: (args: {

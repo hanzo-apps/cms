@@ -8,7 +8,7 @@ export const blockquote: RichTextCustomElement = {
     clientProps: {
       format: name,
     },
-    path: '@payloadcms/richtext-slate/client#BlockquoteElementButton',
+    path: '@hanzo/cms-richtext-slate/client#BlockquoteElementButton',
   },
-  Element: '@payloadcms/richtext-slate/client#BlockquoteElement',
+  Element: '@hanzo/cms-richtext-slate/client#BlockquoteElement',
 }

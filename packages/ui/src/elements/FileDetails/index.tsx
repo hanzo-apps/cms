@@ -1,5 +1,5 @@
 'use client'
-import type { Data, FileSizes, SanitizedCollectionConfig } from 'payload'
+import type { Data, FileSizes, SanitizedCollectionConfig } from @hanzo/cms'from 
 
 import React from 'react'
 

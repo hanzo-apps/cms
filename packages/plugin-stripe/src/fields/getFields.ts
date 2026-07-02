@@ -1,4 +1,4 @@
-import type { CollectionConfig, Field } from 'payload'
+import type { CollectionConfig, Field } from @hanzo/cms'from 
 
 import type { SanitizedStripePluginConfig } from '../types.js'
 
@@ -37,7 +37,7 @@ export const getFields = ({ collection, pluginConfig, syncConfig }: Args): Field
     type: 'ui',
     admin: {
       components: {
-        Field: '@payloadcms/plugin-stripe/client#LinkToDoc',
+        Field: '@hanzo/cms-plugin-stripe/client#LinkToDoc',
       },
       custom: {
         isTestKey: pluginConfig.isTestKey,

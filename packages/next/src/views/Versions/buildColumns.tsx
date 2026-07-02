@@ -1,14 +1,14 @@
-import type { I18n } from '@payloadcms/translations'
+import type { I18n } from '@hanzo/cms-translations'
 import type {
   Column,
   PaginatedDocs,
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
   TypeWithVersion,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { SortColumn } from '@payloadcms/ui'
-import { hasDraftsEnabled } from 'payload/shared'
+import { SortColumn } from '@hanzo/cms-ui'
+import { hasDraftsEnabled } from @hanzo/cms'from 
 import React from 'react'
 
 import { AutosaveCell } from './cells/AutosaveCell/index.js'

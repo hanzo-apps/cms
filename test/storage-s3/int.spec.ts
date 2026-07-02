@@ -1,4 +1,4 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -30,7 +30,7 @@ let restClient: NextRESTClient
 
 let payload: Payload
 
-describe('@payloadcms/storage-s3', () => {
+describe('@hanzo/cms-storage-s3', () => {
   beforeAll(async () => {
     ;({ payload, restClient } = await initPayloadInt(dirname))
 

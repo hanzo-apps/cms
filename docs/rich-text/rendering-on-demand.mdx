@@ -22,12 +22,12 @@ If you have an existing Form and want to render a richtext field within it, you 
 ```tsx
 'use client'
 
-import type { JSONFieldClientComponent } from 'payload'
+import type { JSONFieldClientComponent } from @hanzo/cms'from 
 
 import {
   buildEditorState,
   RenderLexical,
-} from '@payloadcms/richtext-lexical/client'
+} from '@hanzo/cms-richtext-lexical/client'
 
 import { lexicalFullyFeaturedSlug } from '../../slugs.js'
 
@@ -51,13 +51,13 @@ export const Component: JSONFieldClientComponent = (args) => {
 ```tsx
 'use client'
 
-import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
-import type { JSONFieldClientComponent } from 'payload'
+import type { DefaultTypedEditorState } from '@hanzo/cms-richtext-lexical'
+import type { JSONFieldClientComponent } from @hanzo/cms'from 
 
 import {
   buildEditorState,
   RenderLexical,
-} from '@payloadcms/richtext-lexical/client'
+} from '@hanzo/cms-richtext-lexical/client'
 import React, { useState } from 'react'
 
 import { lexicalFullyFeaturedSlug } from '../../slugs.js'

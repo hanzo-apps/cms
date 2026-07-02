@@ -1,6 +1,6 @@
-import type { Config } from 'payload'
+import type { Config } from @hanzo/cms'from 
 
-import { deepMergeSimple } from 'payload'
+import { deepMergeSimple } from @hanzo/cms'from 
 
 import type { PluginDefaultTranslationsObject } from './translations/types.js'
 import type {
@@ -69,7 +69,7 @@ export const importExportPlugin =
     config.admin.components = config.admin.components || {}
     config.admin.components.providers = config.admin.components.providers || []
     config.admin.components.providers.push(
-      '@payloadcms/plugin-import-export/rsc#ImportExportProvider',
+      '@hanzo/cms-plugin-import-export/rsc#ImportExportProvider',
     )
 
     // inject the createExport and createImport jobs into the config
@@ -128,7 +128,7 @@ export const importExportPlugin =
             collectionSlug: collection.slug,
             exportCollectionSlug: exportSlugForCollection,
           },
-          path: '@payloadcms/plugin-import-export/rsc#ExportListMenuItem',
+          path: '@hanzo/cms-plugin-import-export/rsc#ExportListMenuItem',
         })
       }
 
@@ -139,7 +139,7 @@ export const importExportPlugin =
             collectionSlug: collection.slug,
             importCollectionSlug: importSlugForCollection,
           },
-          path: '@payloadcms/plugin-import-export/rsc#ImportListMenuItem',
+          path: '@hanzo/cms-plugin-import-export/rsc#ImportListMenuItem',
         })
       }
 

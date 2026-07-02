@@ -5,7 +5,7 @@ Complete reference for querying data across Local API, REST, and GraphQL.
 ## Query Operators
 
 ```ts
-import type { Where } from 'payload'
+import type { Where } from @hanzo/cms'from 
 
 // Equals
 const equalsQuery: Where = { color: { equals: 'blue' } }
@@ -36,7 +36,7 @@ const nearQuery: Where = { location: { near: '-122.4194,37.7749,10000' } }
 ## AND/OR Logic
 
 ```ts
-import type { Where } from 'payload'
+import type { Where } from @hanzo/cms'from 
 
 const complexQuery: Where = {
   or: [
@@ -51,7 +51,7 @@ const complexQuery: Where = {
 ## Nested Properties
 
 ```ts
-import type { Where } from 'payload'
+import type { Where } from @hanzo/cms'from 
 
 const nestedQuery: Where = {
   'author.role': { equals: 'editor' },

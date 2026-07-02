@@ -1,6 +1,6 @@
-import type { Block, BlockSlug, CollectionConfig } from 'payload'
+import type { Block, BlockSlug, CollectionConfig } from @hanzo/cms'from 
 
-import { BlocksFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import { BlocksFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 import { lexicalNestedBlocksSlug } from '../../slugs.js'
 

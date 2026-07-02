@@ -5,7 +5,7 @@ import type {
   ClientField,
   FieldPaths,
   SanitizedFieldPermissions,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import React from 'react'
 

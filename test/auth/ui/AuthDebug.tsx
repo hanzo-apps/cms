@@ -1,6 +1,6 @@
-import type { UIField, User } from 'payload'
+import type { UIField, User } from @hanzo/cms'from 
 
-import { useAuth } from '@payloadcms/ui'
+import { useAuth } from '@hanzo/cms-ui'
 import React, { useEffect, useState } from 'react'
 
 export const AuthDebug: React.FC<UIField> = () => {

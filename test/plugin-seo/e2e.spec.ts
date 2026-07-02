@@ -4,8 +4,8 @@ import { expect, test } from '@playwright/test'
 import { checkFocusIndicators } from '__helpers/e2e/checkFocusIndicators.js'
 import { runAxeScan } from '__helpers/e2e/runAxeScan.js'
 import path from 'path'
-import { getFileByPath } from 'payload'
-import { wait } from 'payload/shared'
+import { getFileByPath } from @hanzo/cms'from 
+import { wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { Config, Page as PayloadPage } from './payload-types.js'

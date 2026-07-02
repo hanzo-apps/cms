@@ -1,4 +1,4 @@
-import type { AcceptedLanguages } from '@payloadcms/translations'
+import type { AcceptedLanguages } from '@hanzo/cms-translations'
 
 import type { ImportMap } from '../../bin/generateImportMap/index.js'
 import type { Locale, SanitizedConfig } from '../../config/types.js'

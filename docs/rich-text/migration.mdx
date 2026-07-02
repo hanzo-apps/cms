@@ -34,10 +34,10 @@ You can verify that:
 **Example:**
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { SlateToLexicalFeature } from '@payloadcms/richtext-lexical/migrate'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { SlateToLexicalFeature } from '@hanzo/cms-richtext-lexical/migrate'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 const Pages: CollectionConfig = {
   slug: 'pages',
@@ -99,9 +99,9 @@ This prevents the `afterRead` hook from running during migration, improving perf
 Create a migration script and run it:
 
 ```ts
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import config from '@payload-config'
-import { migrateSlateToLexical } from '@payloadcms/richtext-lexical/migrate'
+import { migrateSlateToLexical } from '@hanzo/cms-richtext-lexical/migrate'
 
 const payload = await getPayload({ config })
 
@@ -132,8 +132,8 @@ Each converter receives the Slate node and returns the corresponding Lexical nod
 Here's the built-in Upload converter as an example:
 
 ```ts
-import type { SerializedUploadNode } from '@payloadcms/richtext-lexical'
-import type { SlateNodeConverter } from '@payloadcms/richtext-lexical'
+import type { SerializedUploadNode } from '@hanzo/cms-richtext-lexical'
+import type { SlateNodeConverter } from '@hanzo/cms-richtext-lexical'
 
 export const SlateUploadConverter: SlateNodeConverter = {
   converter({ slateNode }) {
@@ -160,9 +160,9 @@ export const SlateUploadConverter: SlateNodeConverter = {
 For nodes that contain child nodes (like links), recursively convert the children:
 
 ```ts
-import type { SerializedLinkNode } from '@payloadcms/richtext-lexical'
-import type { SlateNodeConverter } from '@payloadcms/richtext-lexical'
-import { convertSlateNodesToLexical } from '@payloadcms/richtext-lexical/migrate'
+import type { SerializedLinkNode } from '@hanzo/cms-richtext-lexical'
+import type { SlateNodeConverter } from '@hanzo/cms-richtext-lexical'
+import { convertSlateNodesToLexical } from '@hanzo/cms-richtext-lexical/migrate'
 
 export const SlateLinkConverter: SlateNodeConverter = {
   converter({ converters, slateNode }) {
@@ -208,12 +208,12 @@ Your converter function receives these parameters:
 You can add custom converters by passing an array of converters to the `converters` property of the `SlateToLexicalFeature` props:
 
 ```ts
-import type { CollectionConfig } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import type { CollectionConfig } from @hanzo/cms'from 
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 import {
   SlateToLexicalFeature,
   defaultSlateConverters,
-} from '@payloadcms/richtext-lexical/migrate'
+} from '@hanzo/cms-richtext-lexical/migrate'
 import { MyCustomConverter } from './converters/MyCustomConverter'
 
 const Pages: CollectionConfig = {
@@ -251,7 +251,7 @@ This ensures your migration completes even if some converters are missing, allow
 If you're manually calling `convertSlateToLexical`, you can pass converters directly:
 
 ```ts
-import { convertSlateToLexical } from '@payloadcms/richtext-lexical/migrate'
+import { convertSlateToLexical } from '@hanzo/cms-richtext-lexical/migrate'
 
 const lexicalData = convertSlateToLexical({
   slateData: mySlateData,
@@ -271,7 +271,7 @@ To solve this, we export an `upgradeLexicalData` function which goes through eve
 IMPORTANT: Take a backup of your entire database. If anything goes wrong and you do not have a backup, you are on your own and will not receive any support.
 
 ```ts
-import { upgradeLexicalData } from '@payloadcms/richtext-lexical'
+import { upgradeLexicalData } from '@hanzo/cms-richtext-lexical'
 
 await upgradeLexicalData({ payload })
 ```

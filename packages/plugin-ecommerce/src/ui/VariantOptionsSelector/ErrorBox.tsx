@@ -1,6 +1,6 @@
 'use client'
 
-import { FieldError, useField, useTranslation } from '@payloadcms/ui'
+import { FieldError, useField, useTranslation } from '@hanzo/cms-ui'
 
 type Props = {
   children?: React.ReactNode

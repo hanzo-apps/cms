@@ -1,6 +1,6 @@
 'use client'
 
-import { useAuth, useForm, useTranslation } from '@payloadcms/ui'
+import { useAuth, useForm, useTranslation } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const TestButton: React.FC = () => {

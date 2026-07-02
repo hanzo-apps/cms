@@ -1,10 +1,10 @@
-import type { FieldHook, Where } from 'payload'
+import type { FieldHook, Where } from @hanzo/cms'from 
 
-import { ValidationError } from 'payload'
+import { ValidationError } from @hanzo/cms'from 
 
 import { getUserTenantIDs } from '../../../utilities/getUserTenantIDs'
 import { extractID } from '@/utilities/extractID'
-import { getTenantFromCookie } from '@payloadcms/plugin-multi-tenant/utilities'
+import { getTenantFromCookie } from '@hanzo/cms-plugin-multi-tenant/utilities'
 import { getCollectionIDType } from '@/utilities/getCollectionIDType'
 
 export const ensureUniqueUsername: FieldHook = async ({ data, originalDoc, req, value }) => {

@@ -1,4 +1,4 @@
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import * as qs from 'qs-esm'
 
 export const path = '/re-initialize'

@@ -1,7 +1,7 @@
 'use client'
 
 import { LoadingSpinner } from '@/components/LoadingSpinner'
-import { useCart, usePayments } from '@payloadcms/plugin-ecommerce/client/react'
+import { useCart, usePayments } from '@hanzo/cms-plugin-ecommerce/client/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 

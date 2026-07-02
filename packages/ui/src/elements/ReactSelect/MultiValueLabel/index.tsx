@@ -1,8 +1,8 @@
 'use client'
-import type { OptionLabel } from 'payload'
+import type { OptionLabel } from @hanzo/cms'from 
 import type { MultiValueProps } from 'react-select'
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'
 import { components as SelectComponents } from 'react-select'
 

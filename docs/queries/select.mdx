@@ -15,7 +15,7 @@ With the Select API, you can define exactly which fields you'd like to retrieve.
 To specify `select` in the [Local API](../local-api/overview), you can use the `select` option in your query:
 
 ```ts
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 // Include mode - result type will only contain: id, text, group.number, and array
 const getPosts = async (payload: Payload) => {
@@ -99,7 +99,7 @@ For this reason, we recommend to use the extremely helpful and ubiquitous [`qs-e
 
 ```ts
 import { stringify } from 'qs-esm'
-import type { Where } from 'payload'
+import type { Where } from @hanzo/cms'from 
 
 const select: Where = {
   text: true,
@@ -142,7 +142,7 @@ For example, in your content model, you might have a `Link` field which links ou
 Loading all of the page content, its related links, and everything else is going to be overkill and will bog down your Payload APIs. Instead, you can define the `defaultPopulate` property on your `Pages` collection, so that when Payload "populates" a related Page, it only selects the `slug` field and therefore returns significantly less JSON:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 // The TSlug generic can be passed to have type safety for `defaultPopulate`.
 // If avoided, the `defaultPopulate` type resolves to `SelectType`.
@@ -182,7 +182,7 @@ Setting `defaultPopulate` will enforce that each time Payload performs a "popula
 **Local API:**
 
 ```ts
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 const getPosts = async (payload: Payload) => {
   const posts = await payload.find({

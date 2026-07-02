@@ -28,7 +28,7 @@ The exact list of available keys depends on the scope of the view you are custom
 Here is an example of how to swap out a built-in view:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -71,7 +71,7 @@ To add a _new_ view to the [Admin Panel](../admin/overview), simply add your own
 New views require at least the `Component` and `path` properties:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -104,7 +104,7 @@ Custom Views are simply [Custom Components](./overview) rendered at the page-lev
 To understand how to build Custom Views, first review the [Building Custom Components](./overview#building-custom-components) guide. Once you have a Custom Component ready, you can use it as a Custom View.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollectionConfig: CollectionConfig = {
   // ...
@@ -148,9 +148,9 @@ Your Custom Views will be provided with the following props:
 Here is an example of a Custom View component:
 
 ```tsx
-import type { AdminViewServerProps } from 'payload'
+import type { AdminViewServerProps } from @hanzo/cms'from 
 
-import { Gutter } from '@payloadcms/ui'
+import { Gutter } from '@hanzo/cms-ui'
 import React from 'react'
 
 export function MyCustomView(props: AdminViewServerProps) {
@@ -175,10 +175,10 @@ Your Custom Root Views can optionally use one of the templates that Payload prov
 Here is an example of how to use the Default Template in your Custom View:
 
 ```tsx
-import type { AdminViewServerProps } from 'payload'
+import type { AdminViewServerProps } from @hanzo/cms'from 
 
-import { DefaultTemplate } from '@payloadcms/next/templates'
-import { Gutter } from '@payloadcms/ui'
+import { DefaultTemplate } from '@hanzo/cms-next/templates'
+import { Gutter } from '@hanzo/cms-ui'
 import React from 'react'
 
 export function MyCustomView({
@@ -213,9 +213,9 @@ All Custom Views are public by default. It's up to you to secure your custom vie
 Here is how you might secure a Custom View:
 
 ```tsx
-import type { AdminViewServerProps } from 'payload'
+import type { AdminViewServerProps } from @hanzo/cms'from 
 
-import { Gutter } from '@payloadcms/ui'
+import { Gutter } from '@hanzo/cms-ui'
 import React from 'react'
 
 export function MyCustomView({ initPageResult }: AdminViewServerProps) {
@@ -243,7 +243,7 @@ Root Views are the main views of the [Admin Panel](../admin/overview). These are
 To [swap out](#replacing-views) Root Views with your own, or to [create entirely new ones](#adding-new-views), use the `admin.components.views` property at the root of your [Payload Config](../configuration/overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -282,7 +282,7 @@ Collection Views are views that are scoped under the `/collections` route, such 
 To [swap out](#replacing-views) Collection Views with your own, or to [create entirely new ones](#adding-new-views), use the `admin.components.views` property of your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollectionConfig: CollectionConfig = {
   // ...
@@ -329,7 +329,7 @@ Global Views are views that are scoped under the `/globals` route, such as the E
 To [swap out](#replacing-views) Global Views with your own or [create entirely new ones](#adding-new-views), use the `admin.components.views` property in your [Global Config](../configuration/globals):
 
 ```ts
-import type { SanitizedGlobalConfig } from 'payload'
+import type { SanitizedGlobalConfig } from @hanzo/cms'from 
 
 export const MyGlobalConfig: SanitizedGlobalConfig = {
   // ...

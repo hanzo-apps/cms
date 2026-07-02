@@ -1,9 +1,9 @@
-import { en } from '@payloadcms/translations/languages/en'
-import { es } from '@payloadcms/translations/languages/es'
-import { he } from '@payloadcms/translations/languages/he'
+import { en } from '@hanzo/cms-translations/languages/en'
+import { es } from '@hanzo/cms-translations/languages/es'
+import { he } from '@hanzo/cms-translations/languages/he'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
-import { type Config } from 'payload'
+import { type Config } from @hanzo/cms'from 
 
 import { LexicalFullyFeatured } from './collections/_LexicalFullyFeatured/index.js'
 import ArrayFields from './collections/Array/index.js'

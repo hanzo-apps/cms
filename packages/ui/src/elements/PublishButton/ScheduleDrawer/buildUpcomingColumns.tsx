@@ -1,6 +1,6 @@
-import type { ClientConfig, Column } from 'payload'
+import type { ClientConfig, Column } from @hanzo/cms'from 
 
-import { getTranslation, type I18nClient, type TFunction } from '@payloadcms/translations'
+import { getTranslation, type I18nClient, type TFunction } from '@hanzo/cms-translations'
 import React from 'react'
 
 import type { UpcomingEvent } from './types.js'

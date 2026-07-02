@@ -1,7 +1,7 @@
-import type { CollectionSlug, Where } from 'payload'
+import type { CollectionSlug, Where } from @hanzo/cms'from 
 
 import config from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 
 export const getDoc = async <T>(args: {
   collection: CollectionSlug

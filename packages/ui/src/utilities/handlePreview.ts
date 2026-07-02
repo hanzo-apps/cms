@@ -5,7 +5,7 @@ import {
   type Operation,
   type PayloadRequest,
   type SanitizedConfig,
-} from 'payload'
+} from @hanzo/cms'from 
 
 /**
  * Multi-level check to determine whether live preview is enabled on a collection or global.

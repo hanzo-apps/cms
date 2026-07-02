@@ -1,7 +1,7 @@
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { FixedToolbarFeature, lexicalEditor, TreeViewFeature } from '@payloadcms/richtext-lexical'
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { FixedToolbarFeature, lexicalEditor, TreeViewFeature } from '@hanzo/cms-richtext-lexical'
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 export const richTextSlug = 'richText'
 

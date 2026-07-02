@@ -1,4 +1,4 @@
-import type { CollectionSlug, Data, ListQuery } from 'payload'
+import type { CollectionSlug, Data, ListQuery } from @hanzo/cms'from 
 
 import { createContext, use } from 'react'
 

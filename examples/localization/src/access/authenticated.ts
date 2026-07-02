@@ -1,4 +1,4 @@
-import type { AccessArgs } from 'payload'
+import type { AccessArgs } from @hanzo/cms'from 
 
 import type { User } from '@/payload-types'
 

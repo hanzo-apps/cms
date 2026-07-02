@@ -1,7 +1,7 @@
 import type { PaginateOptions, PipelineStage } from 'mongoose'
-import type { Find } from 'payload'
+import type { Find } from @hanzo/cms'from 
 
-import { flattenWhereToOperators } from 'payload'
+import { flattenWhereToOperators } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from './index.js'
 

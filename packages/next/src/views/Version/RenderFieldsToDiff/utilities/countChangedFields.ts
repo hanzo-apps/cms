@@ -1,6 +1,6 @@
-import type { ArrayFieldClient, BlocksFieldClient, ClientConfig, ClientField } from 'payload'
+import type { ArrayFieldClient, BlocksFieldClient, ClientConfig, ClientField } from @hanzo/cms'from 
 
-import { fieldShouldBeLocalized, groupHasName } from 'payload/shared'
+import { fieldShouldBeLocalized, groupHasName } from @hanzo/cms'from 
 
 import { fieldHasChanges } from './fieldHasChanges.js'
 import { getFieldsForRowComparison } from './getFieldsForRowComparison.js'

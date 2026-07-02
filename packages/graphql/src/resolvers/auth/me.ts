@@ -1,6 +1,6 @@
-import type { Collection } from 'payload'
+import type { Collection } from @hanzo/cms'from 
 
-import { extractJWT, isolateObjectProperty, meOperation } from 'payload'
+import { extractJWT, isolateObjectProperty, meOperation } from @hanzo/cms'from 
 
 import type { Context } from '../types.js'
 

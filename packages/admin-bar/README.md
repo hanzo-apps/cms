@@ -5,13 +5,13 @@ An admin bar for React apps using [Payload](https://github.com/payloadcms/payloa
 ### Installation
 
 ```bash
-pnpm i @payloadcms/admin-bar
+pnpm i @hanzo/cms-admin-bar
 ```
 
 ### Basic Usage
 
 ```jsx
-import { PayloadAdminBar } from '@payloadcms/admin-bar'
+import { PayloadAdminBar } from '@hanzo/cms-admin-bar'
 
 export const App = () => {
   return <PayloadAdminBar cmsURL="https://cms.website.com" collection="pages" id="12345" />
@@ -67,7 +67,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
 Now your app can forward these props onto the admin bar. Something like this:
 
 ```ts
-import { PayloadAdminBar } from '@payloadcms/admin-bar';
+import { PayloadAdminBar } from '@hanzo/cms-admin-bar';
 
 export const App = (appProps) => {
   const {

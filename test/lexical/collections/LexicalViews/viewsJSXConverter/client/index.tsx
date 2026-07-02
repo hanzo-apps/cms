@@ -1,6 +1,6 @@
 'use client'
 
-import { createClientFeature } from '@payloadcms/richtext-lexical/client'
+import { createClientFeature } from '@hanzo/cms-richtext-lexical/client'
 
 import type { DebugViewsJSXConverterFeatureProps } from '../server/index.js'
 

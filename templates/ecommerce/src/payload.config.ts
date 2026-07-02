@@ -1,4 +1,4 @@
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 
 import {
   BoldFeature,
@@ -10,9 +10,9 @@ import {
   UnderlineFeature,
   UnorderedListFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 import path from 'path'
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import { Categories } from '@/collections/Categories'

@@ -1,4 +1,4 @@
-import type { RollbackTransaction } from 'payload'
+import type { RollbackTransaction } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from '../index.js'
 

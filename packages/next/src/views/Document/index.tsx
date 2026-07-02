@@ -8,21 +8,21 @@ import type {
   EditViewComponent,
   PayloadComponent,
   RenderDocumentVersionsProperties,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import {
   DocumentInfoProvider,
   EditDepthProvider,
   HydrateAuthProvider,
   LivePreviewProvider,
-} from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { handleLivePreview, handlePreview } from '@payloadcms/ui/rsc'
-import { isEditing as getIsEditing } from '@payloadcms/ui/shared'
-import { buildFormState } from '@payloadcms/ui/utilities/buildFormState'
+} from '@hanzo/cms-ui'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
+import { handleLivePreview, handlePreview } from '@hanzo/cms-ui/rsc'
+import { isEditing as getIsEditing } from '@hanzo/cms-ui/shared'
+import { buildFormState } from '@hanzo/cms-ui/utilities/buildFormState'
 import { notFound, redirect } from 'next/navigation.js'
-import { isolateObjectProperty, logError } from 'payload'
-import { formatAdminURL, hasAutosaveEnabled, hasDraftsEnabled } from 'payload/shared'
+import { isolateObjectProperty, logError } from @hanzo/cms'from 
+import { formatAdminURL, hasAutosaveEnabled, hasDraftsEnabled } from @hanzo/cms'from 
 import React from 'react'
 
 import type { GenerateEditViewMetadata } from './getMetaBySegment.js'

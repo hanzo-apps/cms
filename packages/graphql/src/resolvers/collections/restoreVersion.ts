@@ -1,6 +1,6 @@
-import type { Collection, PayloadRequest } from 'payload'
+import type { Collection, PayloadRequest } from @hanzo/cms'from 
 
-import { isolateObjectProperty, restoreVersionOperation } from 'payload'
+import { isolateObjectProperty, restoreVersionOperation } from @hanzo/cms'from 
 
 import type { Context } from '../types.js'
 

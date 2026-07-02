@@ -4,8 +4,8 @@ import React from 'react'
 
 const baseClass = 'login__form'
 
-import type { UserWithToken } from '@payloadcms/ui'
-import type { FormState } from 'payload'
+import type { UserWithToken } from '@hanzo/cms-ui'
+import type { FormState } from @hanzo/cms'from 
 
 import {
   Form,
@@ -15,8 +15,8 @@ import {
   useAuth,
   useConfig,
   useTranslation,
-} from '@payloadcms/ui'
-import { formatAdminURL, getLoginOptions, getSafeRedirect } from 'payload/shared'
+} from '@hanzo/cms-ui'
+import { formatAdminURL, getLoginOptions, getSafeRedirect } from @hanzo/cms'from 
 
 import type { LoginFieldProps } from '../LoginField/index.js'
 

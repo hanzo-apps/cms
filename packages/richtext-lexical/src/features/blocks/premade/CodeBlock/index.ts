@@ -1,4 +1,4 @@
-import type { Block } from 'payload'
+import type { Block } from @hanzo/cms'from 
 
 import type { AdditionalCodeComponentProps } from './Component/Code.js'
 
@@ -25,10 +25,10 @@ export const CodeBlock: (
             // If default languages are used, return undefined (=> do not pass `languages` variable) in order to reduce data sent to the client
             languages: args?.languages,
           },
-          path: '@payloadcms/richtext-lexical/client#CodeBlockBlockComponent',
+          path: '@hanzo/cms-richtext-lexical/client#CodeBlockBlockComponent',
         },
       },
-      jsx: '@payloadcms/richtext-lexical/client#codeConverterClient',
+      jsx: '@hanzo/cms-richtext-lexical/client#codeConverterClient',
     },
     fields: [
       {
@@ -51,7 +51,7 @@ export const CodeBlock: (
           components: {
             Field: {
               clientProps: args,
-              path: '@payloadcms/richtext-lexical/client#CodeComponent',
+              path: '@hanzo/cms-richtext-lexical/client#CodeComponent',
             },
           },
         },

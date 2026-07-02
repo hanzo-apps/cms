@@ -10,7 +10,7 @@
       "path": "./packages/admin-bar"
     },
     {
-      "path": "./packages/create-payload-app"
+      "path": "./packages/@hanzo/create-cms-app"
     },
     {
       "path": "./packages/db-mongodb"

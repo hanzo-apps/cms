@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { EXPERIMENTAL_TableFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import { EXPERIMENTAL_TableFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 export const OnDemandOutsideForm: CollectionConfig = {
   slug: 'OnDemandOutsideForm',

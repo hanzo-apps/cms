@@ -1,7 +1,7 @@
-import type { AcceptedLanguages } from '@payloadcms/translations'
+import type { AcceptedLanguages } from '@hanzo/cms-translations'
 
-import { en } from '@payloadcms/translations/languages/en'
-import { deepMergeSimple } from '@payloadcms/translations/utilities'
+import { en } from '@hanzo/cms-translations/languages/en'
+import { deepMergeSimple } from '@hanzo/cms-translations/utilities'
 
 import type { OrderableJoinInfo } from '../fields/config/sanitizeJoinField.js'
 import type { CollectionSlug, GlobalSlug, SanitizedCollectionConfig } from '../index.js'
@@ -59,7 +59,7 @@ const sanitizeAdminConfig = (configToSanitize: Config): Partial<SanitizedConfig>
   }
   ;(sanitizedConfig.admin!.dashboard ??= { widgets: [] }).widgets.push({
     slug: 'collections',
-    Component: '@payloadcms/next/rsc#CollectionCards',
+    Component: '@hanzo/cms-next/rsc#CollectionCards',
     minWidth: 'full',
   })
   sanitizedConfig.admin!.dashboard.defaultLayout ??= [
@@ -476,7 +476,7 @@ export const sanitizeConfig = async (incomingConfig: Config): Promise<SanitizedC
     validRelationships,
   )
 
-  // @ts-expect-error indexSortableFields is only valid for @payloadcms/db-mongodb
+  // @ts-expect-error indexSortableFields is only valid for @hanzo/cms-db-mongodb
   if (config?.db?.indexSortableFields) {
     migrations.indexes = [
       {

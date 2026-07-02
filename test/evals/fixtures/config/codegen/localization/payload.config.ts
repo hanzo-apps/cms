@@ -1,4 +1,4 @@
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 // db is a required field; the eval fixture uses a stub so the LLM can focus on the specific task
 export default buildConfig({

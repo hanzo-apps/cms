@@ -1,6 +1,6 @@
-import type { FilterOptions } from 'payload'
+import type { FilterOptions } from @hanzo/cms'from 
 
-import { getTenantFromCookie } from '@payloadcms/plugin-multi-tenant/utilities'
+import { getTenantFromCookie } from '@hanzo/cms-plugin-multi-tenant/utilities'
 
 export const userFilterOptions: FilterOptions = ({ req }) => {
   const selectedTenant = getTenantFromCookie(req.headers, req.payload.db.defaultIDType)

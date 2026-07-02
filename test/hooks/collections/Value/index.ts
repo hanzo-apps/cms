@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const valueHooksSlug = 'value-hooks'
 export const ValueCollection: CollectionConfig = {

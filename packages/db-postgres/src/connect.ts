@@ -1,7 +1,7 @@
-import type { DrizzleAdapter } from '@payloadcms/drizzle/types'
-import type { Connect, Migration } from 'payload'
+import type { DrizzleAdapter } from '@hanzo/cms-drizzle/types'
+import type { Connect, Migration } from @hanzo/cms'from 
 
-import { pushDevSchema } from '@payloadcms/drizzle'
+import { pushDevSchema } from '@hanzo/cms-drizzle'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { withReplicas } from 'drizzle-orm/pg-core'
 

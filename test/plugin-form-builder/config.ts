@@ -2,12 +2,12 @@ import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-import type { BeforeEmail } from '@payloadcms/plugin-form-builder/types'
-import type { Block, CollectionConfig, Field } from 'payload'
+import type { BeforeEmail } from '@hanzo/cms-plugin-form-builder/types'
+import type { Block, CollectionConfig, Field } from @hanzo/cms'from 
 
-//import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
-import { formBuilderPlugin, fields as formFields } from '@payloadcms/plugin-form-builder'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+//import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
+import { formBuilderPlugin, fields as formFields } from '@hanzo/cms-plugin-form-builder'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 import type { FormSubmission } from './payload-types.js'
 

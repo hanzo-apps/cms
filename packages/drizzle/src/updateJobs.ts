@@ -1,4 +1,4 @@
-import type { UpdateJobs, Where } from 'payload'
+import type { UpdateJobs, Where } from @hanzo/cms'from 
 
 import toSnakeCase from 'to-snake-case'
 

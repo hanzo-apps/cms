@@ -14,9 +14,9 @@ import type {
   StaticDescription,
   ViewDescriptionClientProps,
   ViewDescriptionServerPropsOnly,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 
 type Args = {
   clientProps: ListViewSlotSharedClientProps

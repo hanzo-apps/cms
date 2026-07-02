@@ -1,5 +1,5 @@
 import type { SerializedElementNode, SerializedLexicalNode } from 'lexical'
-import type { DefaultDocumentIDType, JsonValue } from 'payload'
+import type { DefaultDocumentIDType, JsonValue } from @hanzo/cms'from 
 
 import type { StronglyTypedElementNode } from '../../../nodeTypes.js'
 

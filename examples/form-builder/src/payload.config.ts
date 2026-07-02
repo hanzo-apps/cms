@@ -1,5 +1,5 @@
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
+import { formBuilderPlugin } from '@hanzo/cms-plugin-form-builder'
 import {
   BoldFeature,
   FixedToolbarFeature,
@@ -8,9 +8,9 @@ import {
   ItalicFeature,
   lexicalEditor,
   LinkFeature,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 import path from 'path'
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import { Pages } from './collections/Pages'

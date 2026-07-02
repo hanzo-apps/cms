@@ -3,7 +3,7 @@ import type {
   AdminViewServerProps,
   PayloadComponent,
   SanitizedCollectionConfig,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import type { ViewFromConfig } from './getRouteData.js'
 

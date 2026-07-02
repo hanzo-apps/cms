@@ -1,4 +1,4 @@
-import type { TaskHandler } from 'payload'
+import type { TaskHandler } from @hanzo/cms'from 
 
 export const externalTaskHandler: TaskHandler<'ExternalTask'> = async ({ input, req }) => {
   const newSimple = await req.payload.create({

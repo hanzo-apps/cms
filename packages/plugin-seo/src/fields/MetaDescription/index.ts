@@ -1,4 +1,4 @@
-import type { TextareaField } from 'payload'
+import type { TextareaField } from @hanzo/cms'from 
 
 interface FieldFunctionProps {
   /**
@@ -20,7 +20,7 @@ export const MetaDescriptionField: FieldFunction = ({ hasGenerateFn = false, ove
           clientProps: {
             hasGenerateDescriptionFn: hasGenerateFn,
           },
-          path: '@payloadcms/plugin-seo/client#MetaDescriptionComponent',
+          path: '@hanzo/cms-plugin-seo/client#MetaDescriptionComponent',
         },
       },
     },

@@ -1,9 +1,9 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import { fileURLToPath } from 'node:url'
 import path from 'path'
-import { getFileByPath, mapAsync } from 'payload'
-import { wait } from 'payload/shared'
+import { getFileByPath, mapAsync } from @hanzo/cms'from 
+import { wait } from @hanzo/cms'from 
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import type { NextRESTClient } from '../__helpers/shared/NextRESTClient.js'

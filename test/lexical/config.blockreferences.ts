@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-exports */
 
-import type { BlockSlug } from 'payload'
+import type { BlockSlug } from @hanzo/cms'from 
 
 import { autoDedupeBlocksPlugin } from '../__helpers/shared/autoDedupeBlocksPlugin/index.js'
 import { buildConfigWithDefaults } from '../buildConfigWithDefaults.js'

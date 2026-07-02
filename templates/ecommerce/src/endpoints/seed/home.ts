@@ -1,5 +1,5 @@
 import type { Category, Media } from '@/payload-types'
-import { RequiredDataFromCollectionSlug } from 'payload'
+import { RequiredDataFromCollectionSlug } from @hanzo/cms'from 
 
 type ProductArgs = {
   metaImage: Media

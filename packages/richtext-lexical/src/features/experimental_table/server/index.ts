@@ -4,10 +4,10 @@ import type {
   SerializedTableRowNode as _SerializedTableRowNode,
 } from '@lexical/table'
 import type { SerializedLexicalNode } from 'lexical'
-import type { Config, Field, FieldSchemaMap } from 'payload'
+import type { Config, Field, FieldSchemaMap } from @hanzo/cms'from 
 
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
-import { sanitizeFields } from 'payload'
+import { sanitizeFields } from @hanzo/cms'from 
 
 import type { StronglyTypedElementNode } from '../../../nodeTypes.js'
 
@@ -51,7 +51,7 @@ export const EXPERIMENTAL_TableFeature = createServerFeature({
       validRelationships,
     })
     return {
-      ClientFeature: '@payloadcms/richtext-lexical/client#TableFeatureClient',
+      ClientFeature: '@hanzo/cms-richtext-lexical/client#TableFeatureClient',
       generateSchemaMap: () => {
         const schemaMap: FieldSchemaMap = new Map()
 

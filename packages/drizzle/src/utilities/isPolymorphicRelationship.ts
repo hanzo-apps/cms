@@ -1,4 +1,4 @@
-import type { CollectionSlug } from 'payload'
+import type { CollectionSlug } from @hanzo/cms'from 
 
 export const isPolymorphicRelationship = (
   value: unknown,

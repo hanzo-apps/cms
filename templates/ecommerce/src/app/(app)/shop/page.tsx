@@ -1,7 +1,7 @@
 import { Grid } from '@/components/Grid'
 import { ProductGridItem } from '@/components/ProductGridItem'
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import React from 'react'
 
 export const metadata = {

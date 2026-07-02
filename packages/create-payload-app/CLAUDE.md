@@ -1,4 +1,4 @@
-# create-payload-app
+# @hanzo/create-cms-app
 
 Package for creating new Payload projects with custom configurations.
 
@@ -6,7 +6,7 @@ Package for creating new Payload projects with custom configurations.
 
 ### AST-Based File Modification
 
-create-payload-app uses AST (Abstract Syntax Tree) parsing with ts-morph to modify template files during project creation.
+@hanzo/create-cms-app uses AST (Abstract Syntax Tree) parsing with ts-morph to modify template files during project creation.
 
 **3-Phase Pipeline:**
 
@@ -52,7 +52,7 @@ No comment markers needed - AST finds structure by code patterns.
 
 ### Package Management Flows
 
-create-payload-app has two distinct flows for handling package installation:
+@hanzo/create-cms-app has two distinct flows for handling package installation:
 
 #### Flow 1: `--init-next` (Next.js Integration)
 
@@ -66,7 +66,7 @@ sequenceDiagram
 
     CLI->>initNext: --init-next with dbType
     initNext->>FS: Copy template files
-    initNext->>PM: pnpm add payload @payloadcms/next @payloadcms/db-{type}
+    initNext->>PM: pnpm add payload @hanzo/cms-next @hanzo/cms-db-{type}
     PM->>FS: Install packages to node_modules
     initNext->>AST: configurePayloadConfig(filePath, {db})
     AST->>FS: Update payload.config.ts (imports/config)
@@ -115,6 +115,6 @@ sequenceDiagram
 ### Testing
 
 **Unit tests:** Test individual transformation functions
-**Integration tests:** Test full create-payload-app flows
+**Integration tests:** Test full @hanzo/create-cms-app flows
 
-Run tests: `pnpm --filter create-payload-app test`
+Run tests: `pnpm --filter @hanzo/create-cms-app test`

@@ -1,5 +1,5 @@
 'use client'
-import type { DefaultCellComponentProps } from 'payload'
+import type { DefaultCellComponentProps } from @hanzo/cms'from 
 
 import React from 'react'
 

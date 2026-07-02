@@ -3,7 +3,7 @@ import path from 'node:path'
 
 import { builtinModules } from 'node:module'
 
-const WHITELIST = ['ts-essentials', 'croner', '@payloadcms/translations'] // <-- only these get bundled
+const WHITELIST = ['ts-essentials', 'croner', '@hanzo/cms-translations'] // <-- only these get bundled
 
 /**
  * One-step DTS bundle:

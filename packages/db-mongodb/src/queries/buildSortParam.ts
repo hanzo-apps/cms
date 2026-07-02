@@ -6,7 +6,7 @@ import {
   getFieldByPath,
   type SanitizedConfig,
   type Sort,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import type { MongooseAdapter } from '../index.js'
 

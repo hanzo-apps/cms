@@ -1,9 +1,9 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
-import { sql } from '@payloadcms/db-postgres'
+import { sql } from '@hanzo/cms-db-postgres'
 import { Types } from 'mongoose'
 import path from 'path'
-import { localizeStatus } from 'payload/migrations'
+import { localizeStatus } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 

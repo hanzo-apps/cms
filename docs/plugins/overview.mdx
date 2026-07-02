@@ -13,7 +13,7 @@ There are many [Official Plugins](#official-plugins) available that solve for so
 To configure Plugins, use the `plugins` property in your [Payload Config](../configuration/overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -87,7 +87,7 @@ Some plugins have become so widely used that they are adopted as an [Official Pl
 The base [Payload Config](../configuration/overview) allows for a `plugins` property which takes an `array` of [Plugin Configs](./build-your-own).
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 import { addLastModified } from './addLastModified.ts'
 
 const config = buildConfig({
@@ -107,7 +107,7 @@ const config = buildConfig({
 Here is an example what the `addLastModified` plugin from above might look like. It adds a `lastModifiedBy` field to all Payload collections. For full details, see [how to build your own plugin](./build-your-own).
 
 ```ts
-import { Config, Plugin } from 'payload'
+import { Config, Plugin } from @hanzo/cms'from 
 
 export const addLastModified: Plugin = (incomingConfig: Config): Config => {
   // Find all incoming auth-enabled collections

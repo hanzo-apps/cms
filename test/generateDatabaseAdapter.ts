@@ -17,7 +17,7 @@ export const defaultPostgresUrl = 'postgres://payload:payload@127.0.0.1:5433/pay
 
 export const allDatabaseAdapters = {
   mongodb: `
-  import { mongooseAdapter } from '@payloadcms/db-mongodb'
+  import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 
   export const databaseAdapter = mongooseAdapter({
     ${mongooseAdapterArgs}
@@ -26,7 +26,7 @@ export const allDatabaseAdapters = {
   // Start with: pnpm docker:start (or --profile mongodb-atlas for just this service)
   // Runs on port 27019 to avoid conflicts with mongodb
   'mongodb-atlas': `
-  import { mongooseAdapter } from '@payloadcms/db-mongodb'
+  import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 
   export const databaseAdapter = mongooseAdapter({
     ensureIndexes: true,
@@ -35,21 +35,21 @@ export const allDatabaseAdapters = {
       'mongodb://localhost:27019/payload?directConnection=true&replicaSet=mongodb-atlas-local',
   })`,
   cosmosdb: `
-  import { mongooseAdapter, compatibilityOptions } from '@payloadcms/db-mongodb'
+  import { mongooseAdapter, compatibilityOptions } from '@hanzo/cms-db-mongodb'
 
   export const databaseAdapter = mongooseAdapter({
     ...compatibilityOptions.cosmosdb,
     ${mongooseAdapterArgs}
   })`,
   documentdb: `
-  import { mongooseAdapter, compatibilityOptions } from '@payloadcms/db-mongodb'
+  import { mongooseAdapter, compatibilityOptions } from '@hanzo/cms-db-mongodb'
 
   export const databaseAdapter = mongooseAdapter({
     ...compatibilityOptions.documentdb,
     ${mongooseAdapterArgs}
   })`,
   firestore: `
-  import { mongooseAdapter, compatibilityOptions } from '@payloadcms/db-mongodb'
+  import { mongooseAdapter, compatibilityOptions } from '@hanzo/cms-db-mongodb'
 
   export const databaseAdapter = mongooseAdapter({
     ...compatibilityOptions.firestore,
@@ -61,7 +61,7 @@ export const allDatabaseAdapters = {
     useAlternativeDropDatabase: false,
   })`,
   postgres: `
-  import { postgresAdapter } from '@payloadcms/db-postgres'
+  import { postgresAdapter } from '@hanzo/cms-db-postgres'
 
   export const databaseAdapter = postgresAdapter({
     pool: {
@@ -69,7 +69,7 @@ export const allDatabaseAdapters = {
     },
   })`,
   'postgres-custom-schema': `
-  import { postgresAdapter } from '@payloadcms/db-postgres'
+  import { postgresAdapter } from '@hanzo/cms-db-postgres'
 
   export const databaseAdapter = postgresAdapter({
     pool: {
@@ -78,7 +78,7 @@ export const allDatabaseAdapters = {
     schemaName: 'custom',
   })`,
   'postgres-uuid': `
-    import { postgresAdapter } from '@payloadcms/db-postgres'
+    import { postgresAdapter } from '@hanzo/cms-db-postgres'
 
   export const databaseAdapter = postgresAdapter({
     idType: 'uuid',
@@ -87,7 +87,7 @@ export const allDatabaseAdapters = {
     },
   })`,
   'postgres-uuidv7': `
-    import { postgresAdapter } from '@payloadcms/db-postgres'
+    import { postgresAdapter } from '@hanzo/cms-db-postgres'
 
   export const databaseAdapter = postgresAdapter({
     idType: 'uuidv7',
@@ -96,7 +96,7 @@ export const allDatabaseAdapters = {
     },
   })`,
   'postgres-read-replica': `
-  import { postgresAdapter } from '@payloadcms/db-postgres'
+  import { postgresAdapter } from '@hanzo/cms-db-postgres'
 
   export const databaseAdapter = postgresAdapter({
     pool: {
@@ -107,7 +107,7 @@ export const allDatabaseAdapters = {
     ],
   })`,
   'postgres-read-replicas': `
-  import { postgresAdapter } from '@payloadcms/db-postgres'
+  import { postgresAdapter } from '@hanzo/cms-db-postgres'
 
   export const databaseAdapter = postgresAdapter({
     pool: {
@@ -118,7 +118,7 @@ export const allDatabaseAdapters = {
     ],
   })`,
   'content-api': `
-import { contentAPIAdapter } from '@payloadcms/figma'
+import { contentAPIAdapter } from '@hanzo/cms-figma'
 export const databaseAdapter = contentAPIAdapter({
   auth: {
     mode: 'devJwt',
@@ -128,7 +128,7 @@ export const databaseAdapter = contentAPIAdapter({
 })
   `,
   'vercel-postgres-read-replica': `
-  import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
+  import { vercelPostgresAdapter } from '@hanzo/cms-db-vercel-postgres'
 
   export const databaseAdapter = vercelPostgresAdapter({
     pool: {
@@ -138,7 +138,7 @@ export const databaseAdapter = contentAPIAdapter({
   })
   `,
   sqlite: `
-  import { sqliteAdapter } from '@payloadcms/db-sqlite'
+  import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
 
   export const databaseAdapter = sqliteAdapter({
     client: {
@@ -147,7 +147,7 @@ export const databaseAdapter = contentAPIAdapter({
     autoIncrement: true
   })`,
   'sqlite-uuid': `
-  import { sqliteAdapter } from '@payloadcms/db-sqlite'
+  import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
 
   export const databaseAdapter = sqliteAdapter({
     idType: 'uuid',
@@ -156,7 +156,7 @@ export const databaseAdapter = contentAPIAdapter({
     }
   })`,
   'sqlite-uuidv7': `
-  import { sqliteAdapter } from '@payloadcms/db-sqlite'
+  import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
 
   export const databaseAdapter = sqliteAdapter({
     idType: 'uuidv7',
@@ -165,7 +165,7 @@ export const databaseAdapter = contentAPIAdapter({
     }
   })`,
   supabase: `
-  import { postgresAdapter } from '@payloadcms/db-postgres'
+  import { postgresAdapter } from '@hanzo/cms-db-postgres'
 
   export const databaseAdapter = postgresAdapter({
     pool: {
@@ -174,7 +174,7 @@ export const databaseAdapter = contentAPIAdapter({
     },
   })`,
   d1: `
-import { sqliteD1Adapter } from '@payloadcms/db-d1-sqlite'
+import { sqliteD1Adapter } from '@hanzo/cms-db-d1-sqlite'
 
 export const databaseAdapter = sqliteD1Adapter({ binding: global.d1 })
   `,

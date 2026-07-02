@@ -45,7 +45,7 @@ export const FixedToolbarFeature = createServerFeature<
     }
 
     return {
-      ClientFeature: '@payloadcms/richtext-lexical/client#FixedToolbarFeatureClient',
+      ClientFeature: '@hanzo/cms-richtext-lexical/client#FixedToolbarFeatureClient',
       clientFeatureProps: sanitizedProps,
       sanitizedServerFeatureProps: sanitizedProps,
     }

@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const RestrictedMedia: CollectionConfig = {
   slug: 'restricted-media',

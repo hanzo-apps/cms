@@ -24,8 +24,8 @@ To do so, import the `useField` hook as follows:
 
 ```tsx
 'use client'
-import type { TextFieldClientComponent } from 'payload'
-import { useField } from '@payloadcms/ui'
+import type { TextFieldClientComponent } from @hanzo/cms'from 
+import { useField } from '@hanzo/cms-ui'
 
 export const CustomTextField: TextFieldClientComponent = ({ path }) => {
   const { value, setValue } = useField({ path }) // highlight-line
@@ -84,7 +84,7 @@ To programmatically update a Lexical rich text field and have the editor visuall
 
 ```tsx
 'use client'
-import { useAllFormFields } from '@payloadcms/ui'
+import { useAllFormFields } from '@hanzo/cms-ui'
 
 export const MyComponent: React.FC = () => {
   const [, dispatchFields] = useAllFormFields()
@@ -135,7 +135,7 @@ You can pass a Redux-like selector into the hook, which will ensure that you ret
 
 ```tsx
 'use client'
-import { useFormFields } from '@payloadcms/ui'
+import { useFormFields } from '@hanzo/cms-ui'
 
 const MyComponent: React.FC = () => {
   // Get only the `amount` field state, and only cause a rerender when that field changes
@@ -174,8 +174,8 @@ You can do lots of powerful stuff by retrieving the full form state, like using 
 
 ```tsx
 'use client'
-import { useAllFormFields } from '@payloadcms/ui'
-import { reduceFieldsToValues, getSiblingData } from 'payload/shared'
+import { useAllFormFields } from '@hanzo/cms-ui'
+import { reduceFieldsToValues, getSiblingData } from @hanzo/cms'from 
 
 const ExampleComponent: React.FC = () => {
   // the `fields` const will be equal to all fields' state,
@@ -460,7 +460,7 @@ The `useForm` hook returns an object with the following properties:
   />
 
 \`\`\`tsx
-import { useForm } from "@payloadcms/ui"
+import { useForm } from "@hanzo/cms-ui"
 
 export const CustomArrayManager = () => {
   const { addFieldRow } = useForm()
@@ -557,7 +557,7 @@ Field: '/path/to/CustomArrayManagerField',
 />
 
 \`\`\`tsx
-import { useForm } from "@payloadcms/ui"
+import { useForm } from "@hanzo/cms-ui"
 
 export const CustomArrayManager = () => {
   const { removeFieldRow } = useForm()
@@ -652,7 +652,7 @@ Field: '/path/to/CustomArrayManagerField',
 />
 
 \`\`\`tsx
-import { useForm } from "@payloadcms/ui"
+import { useForm } from "@hanzo/cms-ui"
 
 export const CustomArrayManager = () => {
   const { replaceFieldRow } = useForm()
@@ -725,7 +725,7 @@ An example where this could happen would be custom components within lexical blo
 ```tsx
 'use client'
 
-import { useDocumentForm } from '@payloadcms/ui'
+import { useDocumentForm } from '@hanzo/cms-ui'
 
 const MyComponent: React.FC = () => {
   const { fields: parentDocumentFields } = useDocumentForm()
@@ -755,7 +755,7 @@ The `useCollapsible` hook allows you to control parent collapsibles:
 'use client'
 import React from 'react'
 
-import { useCollapsible } from '@payloadcms/ui'
+import { useCollapsible } from '@hanzo/cms-ui'
 
 const CustomComponent: React.FC = () => {
   const { isCollapsed, toggle } = useCollapsible()
@@ -815,7 +815,7 @@ The `useDocumentInfo` hook provides information about the current document being
 
 ```tsx
 'use client'
-import { useDocumentInfo } from '@payloadcms/ui'
+import { useDocumentInfo } from '@hanzo/cms-ui'
 
 const LinkFromCategoryToPosts: React.FC = () => {
   // highlight-start
@@ -843,7 +843,7 @@ The `useListQuery` hook is used to subscribe to the data, current query, and oth
 
 ```tsx
 'use client'
-import { useListQuery } from '@payloadcms/ui'
+import { useListQuery } from '@hanzo/cms-ui'
 
 const MyComponent: React.FC = () => {
   // highlight-start
@@ -887,7 +887,7 @@ The `useSelection` hook provides information on the selected rows in the List vi
 
 ```tsx
 'use client'
-import { useSelection } from '@payloadcms/ui'
+import { useSelection } from '@hanzo/cms-ui'
 
 const MyComponent: React.FC = () => {
   // highlight-start
@@ -913,7 +913,7 @@ In any Custom Component you can get the selected locale object with the `useLoca
 
 ```tsx
 'use client'
-import { useLocale } from '@payloadcms/ui'
+import { useLocale } from '@hanzo/cms-ui'
 
 const Greeting: React.FC = () => {
   // highlight-start
@@ -945,7 +945,7 @@ Useful to retrieve info about the currently logged in user as well as methods fo
 
 ```tsx
 'use client'
-import { useAuth } from '@payloadcms/ui'
+import { useAuth } from '@hanzo/cms-ui'
 import type { User } from '../payload-types.ts'
 
 const Greeting: React.FC = () => {
@@ -963,7 +963,7 @@ Used to retrieve the Payload [Client Config](../custom-components/overview#acces
 
 ```tsx
 'use client'
-import { useConfig } from '@payloadcms/ui'
+import { useConfig } from '@hanzo/cms-ui'
 
 const MyComponent: React.FC = () => {
   // highlight-start
@@ -978,7 +978,7 @@ If you need to retrieve a specific collection or global config by its slug, `get
 
 ```tsx
 'use client'
-import { useConfig } from '@payloadcms/ui'
+import { useConfig } from '@hanzo/cms-ui'
 
 const MyComponent: React.FC = () => {
   // highlight-start
@@ -998,7 +998,7 @@ Sends back how many editing levels "deep" the current component is. Edit depth i
 
 ```tsx
 'use client'
-import { useEditDepth } from '@payloadcms/ui'
+import { useEditDepth } from '@hanzo/cms-ui'
 
 const MyComponent: React.FC = () => {
   // highlight-start
@@ -1019,7 +1019,7 @@ Returns the currently selected theme (`light`, `dark` or `auto`), a set function
 
 ```tsx
 'use client'
-import { useTheme } from '@payloadcms/ui'
+import { useTheme } from '@hanzo/cms-ui'
 
 const MyComponent: React.FC = () => {
   // highlight-start
@@ -1058,7 +1058,7 @@ Returns properties and methods to manipulate table columns:
 
 ```tsx
 'use client'
-import { useTableColumns } from '@payloadcms/ui'
+import { useTableColumns } from '@hanzo/cms-ui'
 
 const MyComponent: React.FC = () => {
   // highlight-start
@@ -1103,7 +1103,7 @@ The `useDocumentEvents` hook provides a way of subscribing to cross-document eve
 
 ```tsx
 'use client'
-import { useDocumentEvents } from '@payloadcms/ui'
+import { useDocumentEvents } from '@hanzo/cms-ui'
 
 const ListenForUpdates: React.FC = () => {
   const { mostRecentUpdate } = useDocumentEvents()
@@ -1131,7 +1131,7 @@ The `useStepNav` hook provides a way to change the step-nav breadcrumb links in 
 
 ```tsx
 'use client'
-import { type StepNavItem, useStepNav } from '@payloadcms/ui'
+import { type StepNavItem, useStepNav } from '@hanzo/cms-ui'
 import { useEffect } from 'react'
 
 export const MySetStepNavComponent: React.FC<{
@@ -1160,7 +1160,7 @@ This hook returns an array with two elements:
 
 ```tsx
 'use client'
-import { usePayloadAPI } from '@payloadcms/ui'
+import { usePayloadAPI } from '@hanzo/cms-ui'
 
 const MyComponent: React.FC = () => {
   // Fetch data from a collection item using its ID
@@ -1229,10 +1229,10 @@ This is useful for scenarios where you need to trigger another fetch regardless 
 
 Route transitions are useful in showing immediate visual feedback to the user when navigating between pages. This is especially useful on slow networks when navigating to data heavy or process intensive pages.
 
-By default, any instances of `Link` from `@payloadcms/ui` will trigger route transitions by default.
+By default, any instances of `Link` from `@hanzo/cms-ui` will trigger route transitions by default.
 
 ```tsx
-import { Link } from '@payloadcms/ui'
+import { Link } from '@hanzo/cms-ui'
 
 const MyComponent = () => {
   return <Link href="/somewhere">Go Somewhere</Link>
@@ -1244,7 +1244,7 @@ You can also trigger route transitions programmatically, such as when using `rou
 ```ts
 'use client'
 import React, { useCallback } from 'react'
-import { useTransition } from '@payloadcms/ui'
+import { useTransition } from '@hanzo/cms-ui'
 import { useRouter } from 'next/navigation'
 
 const MyComponent: React.FC = () => {

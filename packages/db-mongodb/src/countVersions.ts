@@ -1,7 +1,7 @@
 import type { CountOptions } from 'mongodb'
-import type { CountVersions } from 'payload'
+import type { CountVersions } from @hanzo/cms'from 
 
-import { buildVersionCollectionFields, flattenWhereToOperators } from 'payload'
+import { buildVersionCollectionFields, flattenWhereToOperators } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from './index.js'
 

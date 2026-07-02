@@ -1,4 +1,4 @@
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import React from 'react'
 
 import { useConfig } from '../../../providers/Config/index.js'

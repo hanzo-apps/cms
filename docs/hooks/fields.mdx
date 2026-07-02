@@ -11,7 +11,7 @@ Field Hooks are [Hooks](./overview) that run on Documents on a per-field basis. 
 To add Hooks to a Field, use the `hooks` property in your [Field Config](../fields/overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const FieldWithHooks: Field = {
   // ...
@@ -37,7 +37,7 @@ All Field Hooks accept an array of synchronous or asynchronous functions. These 
 To add hooks to a Field, use the `hooks` property in your [Field Config](../fields/overview):
 
 ```ts
-import type { Field } from 'payload';
+import type { Field } from @hanzo/cms'from ;
 
 const FieldWithHooks: Field = {
   name: 'name',
@@ -96,7 +96,7 @@ Please do note that this does not run before client-side validation. If you rend
 3. `validate` runs on the server
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 const usernameField: Field = {
   name: 'username',
@@ -121,7 +121,7 @@ stored in a consistent format in the database.
 Immediately before validation, beforeChange hooks will run during create and update operations. At this stage, the data should be treated as unvalidated user input. There is no guarantee that required fields exist or that fields are in the correct format. As such, using this data for side effects requires manual validation. You can optionally modify the shape of the data to be saved.
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 const emailField: Field = {
   name: 'email',
@@ -149,7 +149,7 @@ The `afterChange` hook is executed after a field's value has been changed and sa
 for post-processing or triggering side effects based on the new value of the field.
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 const membershipStatusField: Field = {
   name: 'membershipStatus',
@@ -186,7 +186,7 @@ The `afterRead` hook is invoked after a field value is read from the database. T
 transforming the field data for output.
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 const dateField: Field = {
   name: 'createdAt',
@@ -217,7 +217,7 @@ By Default, unique and required text fields Payload will append "- Copy" to the 
 Here is an example of a number field with a hook that increments the number to avoid unique constraint errors when duplicating a document:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 const numberField: Field = {
   name: 'number',
@@ -238,7 +238,7 @@ const numberField: Field = {
 Payload exports a type for field hooks which can be accessed and used as follows:
 
 ```ts
-import type { FieldHook } from 'payload'
+import type { FieldHook } from @hanzo/cms'from 
 
 // Field hook type is a generic that takes three arguments:
 // 1: The document type
@@ -268,7 +268,7 @@ const exampleFieldHook: ExampleFieldHook = (args) => {
 Here's a real-world example using generated Payload types:
 
 ```ts
-import type { FieldHook } from 'payload'
+import type { FieldHook } from @hanzo/cms'from 
 import type { Post } from '@/payload-types'
 
 // Hook for a text field in a Post collection

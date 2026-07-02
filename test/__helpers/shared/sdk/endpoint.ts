@@ -1,7 +1,7 @@
-import type { Endpoint, PayloadHandler } from 'payload'
+import type { Endpoint, PayloadHandler } from @hanzo/cms'from 
 
 import { status as httpStatus } from 'http-status'
-import { addDataAndFileToRequest } from 'payload'
+import { addDataAndFileToRequest } from @hanzo/cms'from 
 
 export const handler: PayloadHandler = async (req) => {
   await addDataAndFileToRequest(req)

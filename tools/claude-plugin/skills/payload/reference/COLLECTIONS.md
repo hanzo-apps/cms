@@ -5,7 +5,7 @@ Complete reference for collection configurations and patterns.
 ## Basic Collection
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -128,7 +128,7 @@ export const Media: CollectionConfig = {
 Enable real-time content preview during editing.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 const generatePreviewPath = ({
   slug,
@@ -176,7 +176,7 @@ export const Pages: CollectionConfig = {
 Payload maintains version history and supports draft/publish workflows.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 // Basic versioning (audit log only)
 export const Users: CollectionConfig = {
@@ -267,7 +267,7 @@ The `_status` field is auto-injected when drafts are enabled:
 Globals are single-instance documents (not collections).
 
 ```ts
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 export const Header: GlobalConfig = {
   slug: 'header',

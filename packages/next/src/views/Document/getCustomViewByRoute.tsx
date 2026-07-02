@@ -1,4 +1,4 @@
-import type { EditViewComponent, SanitizedCollectionConfig, SanitizedGlobalConfig } from 'payload'
+import type { EditViewComponent, SanitizedCollectionConfig, SanitizedGlobalConfig } from @hanzo/cms'from 
 
 import { isPathMatchingRoute } from '../Root/isPathMatchingRoute.js'
 

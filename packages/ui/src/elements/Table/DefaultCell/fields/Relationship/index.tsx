@@ -4,9 +4,9 @@ import type {
   JoinFieldClient,
   RelationshipFieldClient,
   UploadFieldClient,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React, { useEffect, useMemo, useState } from 'react'
 
 import { useIntersect } from '../../../../../hooks/useIntersect.js'

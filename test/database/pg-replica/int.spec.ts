@@ -1,8 +1,8 @@
-import type { PostgresAdapter } from '@payloadcms/db-postgres'
-import type { DrizzleAdapter } from '@payloadcms/drizzle/types'
+import type { PostgresAdapter } from '@hanzo/cms-db-postgres'
+import type { DrizzleAdapter } from '@hanzo/cms-drizzle/types'
 
 import path from 'path'
-import { BasePayload, buildConfig, type DatabaseAdapterObj, type Payload } from 'payload'
+import { BasePayload, buildConfig, type DatabaseAdapterObj, type Payload } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 

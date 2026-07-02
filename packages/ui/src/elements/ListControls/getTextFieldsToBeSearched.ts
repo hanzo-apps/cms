@@ -1,8 +1,8 @@
 'use client'
-import type { I18nClient } from '@payloadcms/translations'
-import type { ClientField } from 'payload'
+import type { I18nClient } from '@hanzo/cms-translations'
+import type { ClientField } from @hanzo/cms'from 
 
-import { fieldAffectsData, flattenTopLevelFields } from 'payload/shared'
+import { fieldAffectsData, flattenTopLevelFields } from @hanzo/cms'from 
 
 export const getTextFieldsToBeSearched = (
   listSearchableFields: string[],

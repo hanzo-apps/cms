@@ -1,6 +1,6 @@
-import type { PointFieldLabelServerComponent } from 'payload'
+import type { PointFieldLabelServerComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomPointFieldLabelServer: PointFieldLabelServerComponent = ({

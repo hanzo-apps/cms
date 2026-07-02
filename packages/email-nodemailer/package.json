@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/email-nodemailer",
+  "name": "@hanzo/cms-email-nodemailer",
   "version": "3.85.2",
   "description": "Payload Nodemailer Email Adapter",
   "homepage": "https://payloadcms.com",
@@ -46,10 +46,10 @@
   },
   "devDependencies": {
     "@types/nodemailer": "^8.0.0",
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"

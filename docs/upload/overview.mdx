@@ -44,7 +44,7 @@ A common pattern is to create a **"media"** collection and enable **upload** on 
 </Banner>
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -142,7 +142,7 @@ Upload options are specifiable on a Collection by Collection basis, you can also
 A common example of what you might want to customize within Payload-wide Upload options would be to increase the allowed `fileSize` of uploads sent to Payload:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   collections: [
@@ -190,7 +190,7 @@ The [Admin Panel](../admin/overview) will also automatically display all availab
 
 Behind the scenes, Payload relies on [`sharp`](https://sharp.pixelplumbing.com/api-resize#resize) to perform its image resizing. You can specify additional options for `sharp` to use while resizing your images.
 
-Note that for image resizing to work, `sharp` must be specified in your [Payload Config](../configuration/overview). This is configured by default if you created your Payload project with `create-payload-app`. See `sharp` in [Config Options](../configuration/overview#config-options).
+Note that for image resizing to work, `sharp` must be specified in your [Payload Config](../configuration/overview). This is configured by default if you created your Payload project with `@hanzo/create-cms-app`. See `sharp` in [Config Options](../configuration/overview#config-options).
 
 #### Admin List View Options
 
@@ -288,7 +288,7 @@ You can specify how Payload retrieves admin thumbnails for your upload-enabled C
 1. `adminThumbnail` as a **string**, equal to one of your provided image size names.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -317,7 +317,7 @@ export const Media: CollectionConfig = {
 2. `adminThumbnail` as a **function** that takes the document's data and sends back a full URL to load the thumbnail.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -339,7 +339,7 @@ You can completely customize the upload interface in the Admin Panel by swapping
 To customize the upload UI for an upload-enabled collection, use the `admin.components.edit.Upload` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -362,7 +362,7 @@ export const Media: CollectionConfig = {
 
 ### Building Custom Upload Components
 
-Custom upload components must integrate with Payload's form system to work correctly. The recommended approach is to use Payload's built-in `<Upload>` component from `@payloadcms/ui` and wrap it with additional functionality.
+Custom upload components must integrate with Payload's form system to work correctly. The recommended approach is to use Payload's built-in `<Upload>` component from `@hanzo/cms-ui` and wrap it with additional functionality.
 
 <Banner type="warning">
   You should not use a simple `<input type="file" />` element
@@ -382,7 +382,7 @@ import React from 'react'
 import type {
   PayloadServerReactComponent,
   SanitizedCollectionConfig,
-} from 'payload'
+} from @hanzo/cms'from 
 import { CustomUploadClient } from './CustomUpload.client'
 
 export const CustomUploadServer: PayloadServerReactComponent<
@@ -402,7 +402,7 @@ export const CustomUploadServer: PayloadServerReactComponent<
 ```tsx
 'use client'
 import React from 'react'
-import { Upload, useDocumentInfo } from '@payloadcms/ui'
+import { Upload, useDocumentInfo } from '@hanzo/cms-ui'
 
 export const CustomUploadClient = () => {
   const { collectionSlug, docConfig, initialState } = useDocumentInfo()
@@ -430,7 +430,7 @@ import {
   TextField,
   Upload,
   useDocumentInfo,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 
 const customDrawerSlug = 'custom-upload-drawer'
 
@@ -477,7 +477,7 @@ export const CustomUploadClient = () => {
 
 ### Available Hooks and Components
 
-When building custom upload components, you have access to several useful hooks and components from `@payloadcms/ui`:
+When building custom upload components, you have access to several useful hooks and components from `@hanzo/cms-ui`:
 
 | Hook / Component    | Description                                                           |
 | ------------------- | --------------------------------------------------------------------- |
@@ -501,7 +501,7 @@ It's important to understand the difference between these two customization appr
 **Example of Upload Field Customization:**
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -592,7 +592,7 @@ Some example values are: `image/*`, `audio/*`, `video/*`, `image/png`, `applicat
 **Example mimeTypes usage:**
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -692,7 +692,7 @@ To fetch files from **restricted URLs** that would otherwise be blocked by CORS,
 Here’s how to configure the pasteURL option to control remote URL fetching:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -719,7 +719,7 @@ export const Media: CollectionConfig = {
 You can also adjust server-side fetching at the upload level as well, this does not effect the `CORS` policy like the `pasteURL` option does, but it allows you to skip the safe fetch check for specific URLs.
 
 ```
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -767,7 +767,7 @@ You can modify the response headers for files by specifying the `modifyResponseH
 With this method you can directly interface with the `Headers` object and modify the existing headers to append or remove headers.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -784,7 +784,7 @@ export const Media: CollectionConfig = {
 You can also return a new `Headers` object with the modified headers. This is useful if you want to set new headers or remove existing ones.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Media: CollectionConfig = {
   slug: 'media',

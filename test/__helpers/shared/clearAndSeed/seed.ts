@@ -1,7 +1,7 @@
 import fs from 'fs'
 import * as os from 'node:os'
 import path from 'path'
-import { type Payload } from 'payload'
+import { type Payload } from @hanzo/cms'from 
 
 import { isErrorWithCode } from '../isErrorWithCode.js'
 import { resetDB } from './reset.js'

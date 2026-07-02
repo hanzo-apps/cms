@@ -6,7 +6,7 @@ desc: Scaffolds multi-tenancy for your Payload application
 keywords: plugins, multi-tenant, multi-tenancy, plugin, payload, cms, seo, indexing, search, search engine
 ---
 
-![https://www.npmjs.com/package/@payloadcms/plugin-multi-tenant](https://img.shields.io/npm/v/@payloadcms/plugin-multi-tenant)
+![https://www.npmjs.com/package/@hanzo/cms-plugin-multi-tenant](https://img.shields.io/npm/v/@hanzo/cms-plugin-multi-tenant)
 
 This plugin sets up multi-tenancy for your application from within your [Admin Panel](../admin/overview). It does so by adding a `tenant` field to all specified collections. Your front-end application can then query data by tenant. You must add the Tenants collection so you control what fields are available for each tenant.
 
@@ -48,7 +48,7 @@ You can disable this behavior by setting `cleanupAfterTenantDelete` to `false` i
 Install the plugin using any JavaScript package manager like [pnpm](https://pnpm.io), [npm](https://npmjs.com), or [Yarn](https://yarnpkg.com):
 
 ```bash
-  pnpm add @payloadcms/plugin-multi-tenant
+  pnpm add @hanzo/cms-plugin-multi-tenant
 ```
 
 ### Options
@@ -285,8 +285,8 @@ type MultiTenantPluginConfig<ConfigTypes = unknown> = {
 In the `plugins` array of your [Payload Config](https://payloadcms.com/docs/configuration/overview), call the plugin with [options](#options):
 
 ```ts
-import { buildConfig } from 'payload'
-import { multiTenantPlugin } from '@payloadcms/plugin-multi-tenant'
+import { buildConfig } from @hanzo/cms'from 
+import { multiTenantPlugin } from '@hanzo/cms-plugin-multi-tenant'
 import type { Config } from './payload-types'
 
 const config = buildConfig({
@@ -387,7 +387,7 @@ Below are the hooks exported from the plugin that you can import into your own c
 You can import this like so:
 
 ```tsx
-import { useTenantSelection } from '@payloadcms/plugin-multi-tenant/client'
+import { useTenantSelection } from '@hanzo/cms-plugin-multi-tenant/client'
 
 ...
 

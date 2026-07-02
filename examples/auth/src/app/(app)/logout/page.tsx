@@ -1,6 +1,6 @@
 import { headers as getHeaders } from 'next/headers.js'
 import Link from 'next/link'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import React from 'react'
 
 import config from '../../../payload.config'

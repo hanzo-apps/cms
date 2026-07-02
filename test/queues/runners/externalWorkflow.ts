@@ -1,4 +1,4 @@
-import type { WorkflowHandler } from 'payload'
+import type { WorkflowHandler } from @hanzo/cms'from 
 
 export const externalWorkflowHandler: WorkflowHandler<'externalWorkflow'> = async ({
   job,

@@ -1,7 +1,7 @@
-import type { Config, ImportMap, ServerProps } from 'payload'
+import type { Config, ImportMap, ServerProps } from @hanzo/cms'from 
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import '@payloadcms/ui/scss/app.scss'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
+import '@hanzo/cms-ui/scss/app.scss'
 import React from 'react'
 
 type Args = {

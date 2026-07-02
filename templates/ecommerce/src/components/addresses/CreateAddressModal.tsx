@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/dialog'
 import { AddressForm } from '@/components/forms/AddressForm'
 import { Address } from '@/payload-types'
-import { DefaultDocumentIDType } from 'payload'
+import { DefaultDocumentIDType } from @hanzo/cms'from 
 
 type Props = {
   addressID?: DefaultDocumentIDType

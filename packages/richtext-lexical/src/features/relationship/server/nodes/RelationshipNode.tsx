@@ -1,5 +1,5 @@
 import type { SerializedDecoratorBlockNode } from '@lexical/react/LexicalDecoratorBlockNode.js'
-import type { CollectionSlug, DataFromCollectionSlug } from 'payload'
+import type { CollectionSlug, DataFromCollectionSlug } from @hanzo/cms'from 
 import type { JSX } from 'react'
 
 import { DecoratorBlockNode } from '@lexical/react/LexicalDecoratorBlockNode.js'

@@ -5,9 +5,9 @@ import type {
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
   SanitizedPermissions,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import React from 'react'
 
 import { ShouldRenderTabs } from './ShouldRenderTabs.js'

@@ -1,4 +1,4 @@
-import type { Config } from 'payload'
+import type { Config } from @hanzo/cms'from 
 
 export const slugSingularLabel = 'Post'
 

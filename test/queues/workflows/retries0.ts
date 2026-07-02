@@ -1,4 +1,4 @@
-import type { WorkflowConfig } from 'payload'
+import type { WorkflowConfig } from @hanzo/cms'from 
 
 export const retries0Workflow: WorkflowConfig<'workflowRetries0'> = {
   slug: 'workflowRetries0',

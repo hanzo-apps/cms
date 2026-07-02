@@ -2,7 +2,7 @@ import type { Page } from '@playwright/test'
 
 import { expect, test } from '@playwright/test'
 import path from 'path'
-import { formatAdminURL, wait } from 'payload/shared'
+import { formatAdminURL, wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { Config } from './payload-types.js'

@@ -1,6 +1,6 @@
-import type { RichTextAdapter } from 'payload'
+import type { RichTextAdapter } from @hanzo/cms'from 
 
-import { genImportMapIterateFields } from 'payload'
+import { genImportMapIterateFields } from @hanzo/cms'from 
 
 import type { ResolvedServerFeatureMap } from '../features/typesServer.js'
 import type { LexicalEditorProps } from '../types.js'
@@ -11,9 +11,9 @@ export const getGenerateImportMap =
     resolvedFeatureMap: ResolvedServerFeatureMap
   }): RichTextAdapter['generateImportMap'] =>
   ({ addToImportMap, baseDir, config, importMap, imports }) => {
-    addToImportMap('@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell')
-    addToImportMap('@payloadcms/richtext-lexical/rsc#RscEntryLexicalField')
-    addToImportMap('@payloadcms/richtext-lexical/rsc#LexicalDiffComponent')
+    addToImportMap('@hanzo/cms-richtext-lexical/rsc#RscEntryLexicalCell')
+    addToImportMap('@hanzo/cms-richtext-lexical/rsc#RscEntryLexicalField')
+    addToImportMap('@hanzo/cms-richtext-lexical/rsc#LexicalDiffComponent')
 
     addToImportMap(args.lexicalEditorArgs?.views)
 

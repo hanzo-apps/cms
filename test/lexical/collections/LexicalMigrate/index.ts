@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import {
   lexicalEditor,
@@ -6,11 +6,11 @@ import {
   LinkFeature,
   TreeViewFeature,
   UploadFeature,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 import {
   LexicalPluginToLexicalFeature,
   SlateToLexicalFeature,
-} from '@payloadcms/richtext-lexical/migrate'
+} from '@hanzo/cms-richtext-lexical/migrate'
 
 import { lexicalMigrateFieldsSlug } from '../../slugs.js'
 import { getSimpleLexicalData } from './data.js'

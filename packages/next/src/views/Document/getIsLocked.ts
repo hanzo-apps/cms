@@ -4,10 +4,10 @@ import type {
   SanitizedGlobalConfig,
   TypedUser,
   Where,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { sanitizeID } from '@payloadcms/ui/shared'
-import { extractID } from 'payload/shared'
+import { sanitizeID } from '@hanzo/cms-ui/shared'
+import { extractID } from @hanzo/cms'from 
 
 type Args = {
   collectionConfig?: SanitizedCollectionConfig

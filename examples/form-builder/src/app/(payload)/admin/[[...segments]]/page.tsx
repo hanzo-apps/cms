@@ -3,7 +3,7 @@
 import type { Metadata } from 'next'
 
 import config from '@payload-config'
-import { generatePageMetadata, RootPage } from '@payloadcms/next/views'
+import { generatePageMetadata, RootPage } from '@hanzo/cms-next/views'
 
 import { importMap } from '../importMap'
 

@@ -1,6 +1,6 @@
 'use client'
 
-import type { RelationshipFieldClientProps } from 'payload'
+import type { RelationshipFieldClientProps } from @hanzo/cms'from 
 
 import {
   Pill,
@@ -10,7 +10,7 @@ import {
   useForm,
   useFormModified,
   useModal,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import React from 'react'
 
 import { useTenantSelection } from '../../providers/TenantSelectionProvider/index.client.js'

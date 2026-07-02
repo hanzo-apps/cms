@@ -1,4 +1,4 @@
-import type { Plugin, SingleRelationshipField } from 'payload'
+import type { Plugin, SingleRelationshipField } from @hanzo/cms'from 
 
 import type { NestedDocsPluginConfig } from './types.js'
 

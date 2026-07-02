@@ -1,5 +1,5 @@
 'use client'
-import type { CheckboxFieldClient, DefaultCellComponentProps } from 'payload'
+import type { CheckboxFieldClient, DefaultCellComponentProps } from @hanzo/cms'from 
 
 import React from 'react'
 

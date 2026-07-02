@@ -4,7 +4,7 @@ import type {
   SelectType,
   TypedLocale,
   UploadCollectionSlug,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import type { PayloadSDK } from '../index.js'
 import type {

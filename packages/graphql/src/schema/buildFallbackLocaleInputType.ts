@@ -1,4 +1,4 @@
-import type { SanitizedLocalizationConfig } from 'payload'
+import type { SanitizedLocalizationConfig } from @hanzo/cms'from 
 
 import { GraphQLEnumType } from 'graphql'
 

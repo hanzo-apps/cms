@@ -27,7 +27,7 @@ There are two ways to do this:
 1. Using pnpm's built-in inspection tool
 
 ```bash
-pnpm why @payloadcms/ui
+pnpm why @hanzo/cms-ui
 ```
 
 This prints the dependency tree and shows which versions are being installed. If you see more than one distinct version—or the same version listed under different paths—you have duplication.
@@ -36,7 +36,7 @@ This prints the dependency tree and shows which versions are being installed. If
 
 ```bash
 find node_modules -name package.json \
-     -exec grep -H '"name": "@payloadcms/ui"' {} \;
+     -exec grep -H '"name": "@hanzo/cms-ui"' {} \;
 ```
 
 Most of these hits are likely symlinks created by pnpm. Edit the matching package.json files (temporarily add a comment or change a description) to confirm whether they point to the same physical folder or to multiple copies.
@@ -45,13 +45,13 @@ Perform the same two checks for react and react-dom; a second copy of React can 
 
 #### If no duplicates are found
 
-`@payloadcms/ui` intentionally contains two bundles of itself, so you may see dual paths even when everything is correct. Inside the Payload Admin UI you must import only:
+`@hanzo/cms-ui` intentionally contains two bundles of itself, so you may see dual paths even when everything is correct. Inside the Payload Admin UI you must import only:
 
-- `@payloadcms/ui`
-- `@payloadcms/ui/rsc`
-- `@payloadcms/ui/shared`
+- `@hanzo/cms-ui`
+- `@hanzo/cms-ui/rsc`
+- `@hanzo/cms-ui/shared`
 
-Any other deep import such as `@payloadcms/ui/elements/Button` should **only** be used in your own frontend, outside of the Payload Admin Panel. Those deep entries are published un-bundled to help you tree-shake and ship a smaller client bundle if you only need a few components from `@payloadcms/ui`.
+Any other deep import such as `@hanzo/cms-ui/elements/Button` should **only** be used in your own frontend, outside of the Payload Admin Panel. Those deep entries are published un-bundled to help you tree-shake and ship a smaller client bundle if you only need a few components from `@hanzo/cms-ui`.
 
 ### Fixing dependency issues
 

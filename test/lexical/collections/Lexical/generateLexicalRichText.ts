@@ -4,7 +4,7 @@ import type {
   SerializedTextNode,
   SerializedUploadNode,
   TypedEditorState,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 export function generateLexicalRichText(): TypedEditorState<
   SerializedBlockNode | SerializedParagraphNode | SerializedTextNode | SerializedUploadNode

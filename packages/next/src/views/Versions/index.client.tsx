@@ -1,5 +1,5 @@
 'use client'
-import type { Column, SanitizedCollectionConfig } from 'payload'
+import type { Column, SanitizedCollectionConfig } from @hanzo/cms'from 
 
 import {
   LoadingOverlayToggle,
@@ -8,7 +8,7 @@ import {
   Table,
   useListQuery,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import { useSearchParams } from 'next/navigation.js'
 import React from 'react'
 

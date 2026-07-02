@@ -1,5 +1,5 @@
-import type { TFunction } from '@payloadcms/translations'
-import type { FolderSortKeys } from 'payload'
+import type { TFunction } from '@hanzo/cms-translations'
+import type { FolderSortKeys } from @hanzo/cms'from 
 
 import React from 'react'
 

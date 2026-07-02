@@ -1,6 +1,6 @@
 'use client'
 
-import type { ClientCollectionConfig } from 'payload'
+import type { ClientCollectionConfig } from @hanzo/cms'from 
 
 import React from 'react'
 

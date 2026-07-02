@@ -8,7 +8,7 @@
 ## Installation
 
 ```bash
-npm install @payloadcms/db-vercel-postgres
+npm install @hanzo/cms-db-vercel-postgres
 ```
 
 ## Usage
@@ -16,8 +16,8 @@ npm install @payloadcms/db-vercel-postgres
 ### Explicit Connection String
 
 ```ts
-import { buildConfig } from 'payload'
-import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
+import { buildConfig } from @hanzo/cms'from 
+import { vercelPostgresAdapter } from '@hanzo/cms-db-vercel-postgres'
 
 export default buildConfig({
   db: vercelPostgresAdapter({

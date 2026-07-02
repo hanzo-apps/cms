@@ -1,7 +1,7 @@
 'use client'
-import type { QueryPreset } from 'payload'
+import type { QueryPreset } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 
 import { PeopleIcon } from '../../../icons/People/index.js'
 import { XIcon } from '../../../icons/X/index.js'

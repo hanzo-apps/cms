@@ -1,5 +1,5 @@
 'use client'
-import type { TextFieldDiffClientComponent } from 'payload'
+import type { TextFieldDiffClientComponent } from @hanzo/cms'from 
 
 import {
   escapeDiffHTML,
@@ -7,7 +7,7 @@ import {
   getHTMLDiffComponents,
   unescapeDiffHTML,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import React from 'react'
 
 import './index.scss'

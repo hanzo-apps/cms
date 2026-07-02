@@ -1,7 +1,7 @@
 'use client'
-import type { ClientCollectionConfig } from 'payload'
+import type { ClientCollectionConfig } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'
 
 import { useTranslation } from '../../../providers/Translation/index.js'

@@ -1,6 +1,6 @@
 'use client'
 
-import { useConfig } from '@payloadcms/ui'
+import { useConfig } from '@hanzo/cms-ui'
 
 export const BeforeDashboard = () => {
   const { config } = useConfig()

@@ -1,6 +1,6 @@
-import type { PayloadRequest, SelectType } from 'payload'
+import type { PayloadRequest, SelectType } from @hanzo/cms'from 
 
-import { createDataloaderCacheKey } from 'payload'
+import { createDataloaderCacheKey } from @hanzo/cms'from 
 
 type PopulateArguments = {
   collectionSlug: string

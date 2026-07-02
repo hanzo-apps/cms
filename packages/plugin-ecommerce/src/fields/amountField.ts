@@ -1,4 +1,4 @@
-import type { NumberField } from 'payload'
+import type { NumberField } from @hanzo/cms'from 
 
 import type { CurrenciesConfig, Currency } from '../types/index.js'
 
@@ -31,14 +31,14 @@ export const amountField: (props: Props) => NumberField = ({
             currenciesConfig,
             currency,
           },
-          path: '@payloadcms/plugin-ecommerce/client#PriceCell',
+          path: '@hanzo/cms-plugin-ecommerce/client#PriceCell',
         },
         Field: {
           clientProps: {
             currenciesConfig,
             currency,
           },
-          path: '@payloadcms/plugin-ecommerce/rsc#PriceInput',
+          path: '@hanzo/cms-plugin-ecommerce/rsc#PriceInput',
         },
         ...overrides?.admin?.components,
       },

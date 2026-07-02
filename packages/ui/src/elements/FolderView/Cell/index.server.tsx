@@ -1,4 +1,4 @@
-import type { DefaultServerCellComponentProps } from 'payload'
+import type { DefaultServerCellComponentProps } from @hanzo/cms'from 
 
 import React from 'react'
 

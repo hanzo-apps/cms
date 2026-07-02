@@ -1,6 +1,6 @@
-import type { Block, CollectionConfig } from 'payload'
+import type { Block, CollectionConfig } from @hanzo/cms'from 
 
-import { BlocksFeature, FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import { BlocksFeature, FixedToolbarFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 import { lexicalBenchmarkSlug } from '../../slugs.js'
 

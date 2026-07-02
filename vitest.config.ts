@@ -17,7 +17,7 @@ const graphqlDir = path.dirname(_require.resolve('graphql/package.json'))
 
 console.log('[Dev Setup] Checking for local Figma plugin at:', figmaPath)
 if (hasFigma) {
-  console.log('[Dev Setup] Using local @payloadcms/figma source')
+  console.log('[Dev Setup] Using local @hanzo/cms-figma source')
 } else {
   console.log('[Dev Setup] Local Figma plugin NOT found, using node_modules')
 }
@@ -25,7 +25,7 @@ if (hasFigma) {
 export default defineConfig({
   resolve: {
     alias: {
-      ...(hasFigma ? { '@payloadcms/figma': figmaPath } : {}),
+      ...(hasFigma ? { '@hanzo/cms-figma': figmaPath } : {}),
     },
   },
   test: {
@@ -50,7 +50,7 @@ export default defineConfig({
           alias: [
             { find: /^graphql\/(.*)/, replacement: graphqlDir + '/$1' },
             { find: /^graphql$/, replacement: path.join(graphqlDir, 'index.js') },
-            ...(hasFigma ? [{ find: '@payloadcms/figma', replacement: figmaPath }] : []),
+            ...(hasFigma ? [{ find: '@hanzo/cms-figma', replacement: figmaPath }] : []),
           ],
         },
         test: {
@@ -62,8 +62,8 @@ export default defineConfig({
           testTimeout: 90000,
           setupFiles: ['./test/vitest.setup.ts'],
           // Root-level `server.deps.inline` is not inherited by projects. Without
-          // this, @payloadcms/figma (used by PAYLOAD_DATABASE=content-api) is
-          // externalized, and its static `import ... from 'payload'` falls to
+          // this, @hanzo/cms-figma (used by PAYLOAD_DATABASE=content-api) is
+          // externalized, and its static `import ... from @hanzo/cms'from ` falls to
           // Node's loader, which cannot read payload's .ts source exports.
           server: {
             deps: {

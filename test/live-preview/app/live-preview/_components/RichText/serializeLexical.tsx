@@ -1,4 +1,4 @@
-import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
+import type { DefaultTypedEditorState } from '@hanzo/cms-richtext-lexical'
 
 import React from 'react'
 

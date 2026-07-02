@@ -1,5 +1,5 @@
 'use client'
-import { GearIcon, Popup, useTranslation } from '@payloadcms/ui'
+import { GearIcon, Popup, useTranslation } from '@hanzo/cms-ui'
 import React, { Fragment } from 'react'
 
 import './index.scss'

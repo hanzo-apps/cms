@@ -3,9 +3,9 @@ import type {
   SanitizedGlobalConfig,
   TypeWithVersion,
   UpdateGlobalVersionArgs,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { buildVersionGlobalFields } from 'payload'
+import { buildVersionGlobalFields } from @hanzo/cms'from 
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from './types.js'

@@ -63,17 +63,17 @@ If your framework is not listed, you can still integrate with Live Preview using
 
 If your front-end application is built with client-side [React](https://react.dev) like [Next.js Pages Router](https://nextjs.org/docs/pages), you can use the `useLivePreview` hook that Payload provides.
 
-First, install the `@payloadcms/live-preview-react` package:
+First, install the `@hanzo/cms-live-preview-react` package:
 
 ```bash
-npm install @payloadcms/live-preview-react
+npm install @hanzo/cms-live-preview-react
 ```
 
 Then, use the `useLivePreview` hook in your React component:
 
 ```tsx
 'use client'
-import { useLivePreview } from '@payloadcms/live-preview-react'
+import { useLivePreview } from '@hanzo/cms-live-preview-react'
 import { Page as PageType } from '@/payload-types'
 
 // Fetch the page in a server component, pass it to the client component, then thread it through the hook
@@ -104,10 +104,10 @@ export const PageClient: React.FC<{
 
 If your front-end application is built with [Vue 3](https://vuejs.org) or [Nuxt 3](https://nuxt.js), you can use the `useLivePreview` composable that Payload provides.
 
-First, install the `@payloadcms/live-preview-vue` package:
+First, install the `@hanzo/cms-live-preview-vue` package:
 
 ```bash
-npm install @payloadcms/live-preview-vue
+npm install @hanzo/cms-live-preview-vue
 ```
 
 Then, use the `useLivePreview` hook in your Vue component:
@@ -116,7 +116,7 @@ Then, use the `useLivePreview` hook in your Vue component:
 <script setup lang="ts">
 import type { PageData } from '~/types';
 import { defineProps } from 'vue';
-import { useLivePreview } from '@payloadcms/live-preview-vue';
+import { useLivePreview } from '@hanzo/cms-live-preview-vue';
 
 // Fetch the initial data on the parent component or using async state
 const props = defineProps<{ initialData: PageData }>();
@@ -139,10 +139,10 @@ const { data } = useLivePreview<PageData>({
 
 No matter what front-end framework you are using, you can build your own hook using the same underlying tooling that Payload provides.
 
-First, install the base `@payloadcms/live-preview` package:
+First, install the base `@hanzo/cms-live-preview` package:
 
 ```bash
-npm install @payloadcms/live-preview
+npm install @hanzo/cms-live-preview
 ```
 
 This package provides the following functions:
@@ -166,7 +166,7 @@ The `subscribe` function takes the following args:
 With these functions, you can build your own hook using your front-end framework of choice:
 
 ```tsx
-import { subscribe, unsubscribe } from '@payloadcms/live-preview'
+import { subscribe, unsubscribe } from '@hanzo/cms-live-preview'
 
 // To build your own hook, subscribe to Live Preview events using the `subscribe` function
 // It handles everything from:
@@ -183,7 +183,7 @@ import { subscribe, unsubscribe } from '@payloadcms/live-preview'
 Here is an example of what the same `useLivePreview` React hook from above looks like under the hood:
 
 ```tsx
-import { subscribe, unsubscribe, ready } from '@payloadcms/live-preview'
+import { subscribe, unsubscribe, ready } from '@hanzo/cms-live-preview'
 import { useCallback, useEffect, useState, useRef } from 'react'
 
 export const useLivePreview = <T extends any>(props: {

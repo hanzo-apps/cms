@@ -1,8 +1,8 @@
 'use client'
-import type { ReactSelectOption } from '@payloadcms/ui'
-import type { TextFieldClientProps } from 'payload'
+import type { ReactSelectOption } from '@hanzo/cms-ui'
+import type { TextFieldClientProps } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   FieldDescription,
   FieldError,
@@ -12,7 +12,7 @@ import {
   useDocumentInfo,
   useField,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import { useCallback, useEffect, useMemo } from 'react'
 
 import { useImportExport } from '../ImportExportProvider/index.js'

@@ -1,7 +1,7 @@
 'use client'
-import type { LabelFunction, OptionObject, StaticDescription, StaticLabel } from 'payload'
+import type { LabelFunction, OptionObject, StaticDescription, StaticLabel } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'
 
 import type { ReactSelectAdapterProps } from '../../elements/ReactSelect/types.js'

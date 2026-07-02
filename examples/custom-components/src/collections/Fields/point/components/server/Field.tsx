@@ -1,7 +1,7 @@
-import type { PointFieldServerComponent } from 'payload'
+import type { PointFieldServerComponent } from @hanzo/cms'from 
 import type React from 'react'
 
-import { PointField } from '@payloadcms/ui'
+import { PointField } from '@hanzo/cms-ui'
 
 export const CustomPointFieldServer: PointFieldServerComponent = ({
   clientField,

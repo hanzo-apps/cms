@@ -1,4 +1,4 @@
-import type { CollectionConfig, Field, FieldHook, FieldHookArgs } from 'payload'
+import type { CollectionConfig, Field, FieldHook, FieldHookArgs } from @hanzo/cms'from 
 
 import { fieldPathsSlug } from '../../shared.js'
 

@@ -1,4 +1,4 @@
-import type { NumberField } from 'payload'
+import type { NumberField } from @hanzo/cms'from 
 
 type Props = {
   overrides?: Partial<NumberField>

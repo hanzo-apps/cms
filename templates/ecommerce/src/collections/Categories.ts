@@ -1,5 +1,5 @@
-import { slugField } from 'payload'
-import type { CollectionConfig } from 'payload'
+import { slugField } from @hanzo/cms'from 
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import { adminOnly } from '@/access/adminOnly'
 

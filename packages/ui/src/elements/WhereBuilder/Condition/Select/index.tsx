@@ -1,6 +1,6 @@
 'use client'
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'
 
 import type { SelectFilterProps as Props } from './types.js'

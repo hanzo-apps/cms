@@ -1,11 +1,11 @@
-import type { AdminViewServerProps } from 'payload'
+import type { AdminViewServerProps } from @hanzo/cms'from 
 
 import LinkImport from 'next/link.js'
 import React from 'react'
 
 const Link = 'default' in LinkImport ? LinkImport.default : LinkImport
 
-import { Button } from '@payloadcms/ui'
+import { Button } from '@hanzo/cms-ui'
 
 import { customNestedViewPath, customViewTitle } from '../../../shared.js'
 import { ClientForm } from './index.client.js'

@@ -1,9 +1,9 @@
-import type { EntityToGroup } from '@payloadcms/ui/shared'
-import type { PayloadRequest, ServerProps } from 'payload'
+import type { EntityToGroup } from '@hanzo/cms-ui/shared'
+import type { PayloadRequest, ServerProps } from @hanzo/cms'from 
 
-import { Logout } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { EntityType, groupNavItems } from '@payloadcms/ui/shared'
+import { Logout } from '@hanzo/cms-ui'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
+import { EntityType, groupNavItems } from '@hanzo/cms-ui/shared'
 import React from 'react'
 
 import { NavHamburger } from './NavHamburger/index.js'

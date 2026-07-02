@@ -1,11 +1,11 @@
-import type { I18nClient } from '@payloadcms/translations'
+import type { I18nClient } from '@hanzo/cms-translations'
 import type {
   ClientCollectionConfig,
   PaginatedDocs,
   RelationshipFieldClient,
   ResolvedFilterOptions,
   UploadFieldClient,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import type { DefaultFilterProps } from '../types.js'
 

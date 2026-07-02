@@ -1,6 +1,6 @@
-import type { AdminViewServerProps } from 'payload'
+import type { AdminViewServerProps } from @hanzo/cms'from 
 
-import { MinimalTemplate } from '@payloadcms/next/templates'
+import { MinimalTemplate } from '@hanzo/cms-next/templates'
 import React from 'react'
 
 import { UploadFormTestClient } from './index.client.js'

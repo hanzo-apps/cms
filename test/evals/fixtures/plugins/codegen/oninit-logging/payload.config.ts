@@ -1,6 +1,6 @@
-import type { Plugin } from 'payload'
+import type { Plugin } from @hanzo/cms'from 
 
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 // TODO: implement this plugin so that it extends the config's onInit
 // to log "Plugin initialized" via payload.logger.info after any

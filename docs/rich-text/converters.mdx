@@ -15,15 +15,15 @@ Richtext fields save data in JSON - this is great for storage and flexibility an
 
 ## Retrieving the Editor Config
 
-Some converters require access to the Lexical editor config, which defines available features and behaviors. Payload provides multiple ways to obtain the editor config through the `editorConfigFactory` from `@payloadcms/richtext-lexical`.
+Some converters require access to the Lexical editor config, which defines available features and behaviors. Payload provides multiple ways to obtain the editor config through the `editorConfigFactory` from `@hanzo/cms-richtext-lexical`.
 
 ### Importing the Factory
 
 First, import the necessary utilities:
 
 ```ts
-import type { SanitizedConfig } from 'payload'
-import { editorConfigFactory } from '@payloadcms/richtext-lexical'
+import type { SanitizedConfig } from @hanzo/cms'from 
+import { editorConfigFactory } from '@hanzo/cms-richtext-lexical'
 
 // Your Payload Config needs to be available in order to retrieve the default editor config
 const config: SanitizedConfig = {} as SanitizedConfig
@@ -52,7 +52,7 @@ const fieldEditorConfig = editorConfigFactory.fromField({
 You can create a custom editor configuration by specifying additional features:
 
 ```ts
-import { FixedToolbarFeature } from '@payloadcms/richtext-lexical'
+import { FixedToolbarFeature } from '@hanzo/cms-richtext-lexical'
 
 const customEditorConfig = await editorConfigFactory.fromFeatures({
   config,
@@ -88,13 +88,13 @@ For better efficiency, consider extracting the `features` into a separate variab
 If you have access to the sanitized collection config, you can access the lexical sanitized editor config, as every lexical richText field returns it. Here is an example how you can retrieve it from another field's afterRead hook:
 
 ```ts
-import type { CollectionConfig, RichTextField } from 'payload'
+import type { CollectionConfig, RichTextField } from @hanzo/cms'from 
 
 import {
   editorConfigFactory,
   getEnabledNodes,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 export const MyCollection: CollectionConfig = {
   slug: 'slug',

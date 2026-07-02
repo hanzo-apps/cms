@@ -1,9 +1,9 @@
 'use client'
-import type { ClientUser, SanitizedPermissions, TypedUser } from 'payload'
+import type { ClientUser, SanitizedPermissions, TypedUser } from @hanzo/cms'from 
 
 import { useModal } from '@faceless-ui/modal'
 import { usePathname, useRouter } from 'next/navigation.js'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import * as qs from 'qs-esm'
 import React, { createContext, use, useCallback, useEffect, useState } from 'react'
 import { toast } from 'sonner'
@@ -34,7 +34,7 @@ export type AuthContext<T = ClientUser> = {
    * @example
    *
    * ```tsx
-   * import { useAuth } from 'payload/ui'
+   * import { useAuth } from @hanzo/cms'from 
    *
    * const MyComponent: React.FC = () => {
    *   const { permissions } = useAuth()
@@ -50,7 +50,7 @@ export type AuthContext<T = ClientUser> = {
    * with useDocumentInfo:
    *
    * ```tsx
-   * import { useDocumentInfo } from 'payload/ui'
+   * import { useDocumentInfo } from @hanzo/cms'from 
    *
    * const MyComponent: React.FC = () => {
    *  const { docPermissions } = useDocumentInfo()

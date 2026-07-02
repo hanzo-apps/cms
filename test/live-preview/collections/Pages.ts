@@ -1,7 +1,7 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { BlocksFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { BlocksFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 import { Archive } from '../blocks/ArchiveBlock/index.js'
 import { CallToAction } from '../blocks/CallToAction/index.js'

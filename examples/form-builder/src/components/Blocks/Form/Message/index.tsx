@@ -1,4 +1,4 @@
-import type { MessageField } from '@payloadcms/plugin-form-builder/types'
+import type { MessageField } from '@hanzo/cms-plugin-form-builder/types'
 
 import React from 'react'
 

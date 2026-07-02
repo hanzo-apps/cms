@@ -1,4 +1,4 @@
-import type { AuthCollectionSlug, PayloadTypesShape } from 'payload'
+import type { AuthCollectionSlug, PayloadTypesShape } from @hanzo/cms'from 
 
 import type { PayloadSDK } from '../index.js'
 import type { DataFromAuthSlug } from '../types.js'

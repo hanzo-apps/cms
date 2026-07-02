@@ -1,6 +1,6 @@
-import type { BasePayload, TypedUser } from 'payload'
+import type { BasePayload, TypedUser } from @hanzo/cms'from 
 
-import { PREFERENCE_KEYS } from 'payload/shared'
+import { PREFERENCE_KEYS } from @hanzo/cms'from 
 
 import type { WidgetItem } from '../index.client.js'
 

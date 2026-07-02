@@ -1,4 +1,4 @@
-import { commitTransaction, initTransaction, killTransaction, readMigrationFiles } from 'payload'
+import { commitTransaction, initTransaction, killTransaction, readMigrationFiles } from @hanzo/cms'from 
 import prompts from 'prompts'
 
 import type { MongooseAdapter } from './index.js'

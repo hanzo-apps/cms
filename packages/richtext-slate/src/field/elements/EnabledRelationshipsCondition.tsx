@@ -1,8 +1,8 @@
 'use client'
 
-import type { ClientCollectionConfig, ClientUser, VisibleEntities } from 'payload'
+import type { ClientCollectionConfig, ClientUser, VisibleEntities } from @hanzo/cms'from 
 
-import { useAuth, useConfig, useEntityVisibility } from '@payloadcms/ui'
+import { useAuth, useConfig, useEntityVisibility } from '@hanzo/cms-ui'
 import * as React from 'react'
 
 type Options = {

@@ -1,6 +1,6 @@
 'use client'
 
-import { useAddClientFunction } from '@payloadcms/ui'
+import { useAddClientFunction } from '@hanzo/cms-ui'
 
 import type { FeatureProviderClient } from '../features/typesClient.js'
 

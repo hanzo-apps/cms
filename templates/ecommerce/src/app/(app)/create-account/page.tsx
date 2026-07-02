@@ -5,7 +5,7 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import React from 'react'
 import { headers as getHeaders } from 'next/headers'
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 
 import { CreateAccountForm } from '@/components/forms/CreateAccountForm'
 import { redirect } from 'next/navigation'

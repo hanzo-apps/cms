@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 
 export const mediaSlug = 'media'
 

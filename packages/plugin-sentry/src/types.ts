@@ -1,5 +1,5 @@
 import type { ScopeContext } from '@sentry/types'
-import type { AfterErrorHookArgs } from 'payload'
+import type { AfterErrorHookArgs } from @hanzo/cms'from 
 
 type SentryInstance = {
   captureException: (err: Error, hint: any) => string

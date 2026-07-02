@@ -1,13 +1,13 @@
 'use client'
 
-import type { LexicalBlockClientProps } from '@payloadcms/richtext-lexical'
+import type { LexicalBlockClientProps } from '@hanzo/cms-richtext-lexical'
 
 import {
   BlockCollapsible,
   BlockEditButton,
   BlockRemoveButton,
-} from '@payloadcms/richtext-lexical/client'
-import { useFormFields } from '@payloadcms/ui'
+} from '@hanzo/cms-richtext-lexical/client'
+import { useFormFields } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const BlockComponent: React.FC<LexicalBlockClientProps> = () => {

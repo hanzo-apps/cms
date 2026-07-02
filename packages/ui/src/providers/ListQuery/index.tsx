@@ -1,6 +1,6 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation.js'
-import { type ListQuery, type Where } from 'payload'
+import { type ListQuery, type Where } from @hanzo/cms'from 
 import * as qs from 'qs-esm'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 

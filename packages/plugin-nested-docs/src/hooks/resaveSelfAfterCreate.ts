@@ -1,4 +1,4 @@
-import type { CollectionAfterChangeHook } from 'payload'
+import type { CollectionAfterChangeHook } from @hanzo/cms'from 
 
 import type { Breadcrumb, NestedDocsPluginConfig } from '../types.js'
 

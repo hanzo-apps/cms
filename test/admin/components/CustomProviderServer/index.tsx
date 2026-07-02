@@ -1,4 +1,4 @@
-import type { ServerProps } from 'payload'
+import type { ServerProps } from @hanzo/cms'from 
 
 import React, { Fragment } from 'react'
 

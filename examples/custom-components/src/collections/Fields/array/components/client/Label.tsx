@@ -1,7 +1,7 @@
 'use client'
-import type { ArrayFieldLabelClientComponent } from 'payload'
+import type { ArrayFieldLabelClientComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomArrayFieldLabelClient: ArrayFieldLabelClientComponent = ({ field, path }) => {

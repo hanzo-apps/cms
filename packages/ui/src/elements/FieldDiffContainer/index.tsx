@@ -1,8 +1,8 @@
-import type { LabelFunction, StaticLabel } from 'payload'
+import type { LabelFunction, StaticLabel } from @hanzo/cms'from 
 
 import './index.scss'
 
-import { getTranslation, type I18nClient } from '@payloadcms/translations'
+import { getTranslation, type I18nClient } from '@hanzo/cms-translations'
 
 import { FieldDiffLabel } from '../FieldDiffLabel/index.js'
 

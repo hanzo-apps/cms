@@ -1,7 +1,7 @@
 import type { Config } from 'src/payload-types'
 
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import { unstable_cache } from 'next/cache'
 
 type Global = keyof Config['globals']

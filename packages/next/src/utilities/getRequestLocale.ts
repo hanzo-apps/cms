@@ -1,7 +1,7 @@
-import type { Locale, PayloadRequest } from 'payload'
+import type { Locale, PayloadRequest } from @hanzo/cms'from 
 
-import { upsertPreferences } from '@payloadcms/ui/rsc'
-import { findLocaleFromCode } from '@payloadcms/ui/shared'
+import { upsertPreferences } from '@hanzo/cms-ui/rsc'
+import { findLocaleFromCode } from '@hanzo/cms-ui/shared'
 
 import { getPreferences } from './getPreferences.js'
 

@@ -1,7 +1,7 @@
-import type { Payload, TypeWithID } from 'payload'
+import type { Payload, TypeWithID } from @hanzo/cms'from 
 
 import path from 'path'
-import { getFileByPath } from 'payload'
+import { getFileByPath } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest'
 

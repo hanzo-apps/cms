@@ -1,7 +1,7 @@
 'use client'
-import type { ClientBlock, ClientField, Labels, Row, SanitizedFieldPermissions } from 'payload'
+import type { ClientBlock, ClientField, Labels, Row, SanitizedFieldPermissions } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'
 
 import type { UseDraggableSortableReturn } from '../../elements/DraggableSortable/useDraggableSortable/types.js'

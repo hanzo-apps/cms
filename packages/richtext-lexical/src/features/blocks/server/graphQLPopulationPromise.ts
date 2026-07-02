@@ -1,4 +1,4 @@
-import type { Block } from 'payload'
+import type { Block } from @hanzo/cms'from 
 
 import type { PopulationPromise } from '../../typesServer.js'
 import type { SerializedInlineBlockNode } from '../server/nodes/InlineBlocksNode.js'

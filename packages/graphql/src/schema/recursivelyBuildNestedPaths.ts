@@ -1,6 +1,6 @@
-import type { FieldWithSubFields, Tab, TabsField } from 'payload'
+import type { FieldWithSubFields, Tab, TabsField } from @hanzo/cms'from 
 
-import { fieldAffectsData, fieldIsPresentationalOnly } from 'payload/shared'
+import { fieldAffectsData, fieldIsPresentationalOnly } from @hanzo/cms'from 
 
 import { fieldToSchemaMap } from './fieldToWhereInputSchemaMap.js'
 

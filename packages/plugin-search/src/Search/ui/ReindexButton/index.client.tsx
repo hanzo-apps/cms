@@ -9,9 +9,9 @@ import {
   useLocale,
   useModal,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import { useRouter } from 'next/navigation.js'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import React, { useCallback, useMemo, useState } from 'react'
 
 import type { ReindexButtonProps } from './types.js'

@@ -1,11 +1,11 @@
 {
-  "name": "create-payload-app",
+  "name": "@hanzo/create-cms-app",
   "version": "3.85.2",
   "homepage": "https://payloadcms.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/payloadcms/payload.git",
-    "directory": "packages/create-payload-app"
+    "directory": "packages/@hanzo/create-cms-app"
   },
   "license": "MIT",
   "author": "Payload <dev@payloadcms.com> (https://payloadcms.com)",
@@ -40,7 +40,7 @@
     }
   },
   "bin": {
-    "create-payload-app": "bin/cli.js"
+    "hanzo-cms-create": "bin/cli.js"
   },
   "files": [
     "package.json",

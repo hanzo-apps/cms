@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { PayloadAdminBar } from '@payloadcms/admin-bar'
+import { PayloadAdminBar } from '@hanzo/cms-admin-bar'
 import React from 'react'
 
 import './app.scss'

@@ -2,11 +2,11 @@ import type {
   ClientUploadsConfig,
   PluginOptions as CloudStoragePluginOptions,
   CollectionOptions,
-} from '@payloadcms/plugin-cloud-storage/types'
-import type { Config, Plugin, UploadCollectionSlug } from 'payload'
+} from '@hanzo/cms-plugin-cloud-storage/types'
+import type { Config, Plugin, UploadCollectionSlug } from @hanzo/cms'from 
 
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
-import { initClientUploads } from '@payloadcms/plugin-cloud-storage/utilities'
+import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'
+import { initClientUploads } from '@hanzo/cms-plugin-cloud-storage/utilities'
 
 import type { R2Bucket, R2StorageClientUploadHandlerParams } from './types.js'
 
@@ -68,7 +68,7 @@ export const r2Storage: R2StoragePlugin =
       R2StorageClientUploadHandlerParams,
       R2StorageOptions['collections'][keyof R2StorageOptions['collections']]
     >({
-      clientHandler: '@payloadcms/storage-r2/client#R2ClientUploadHandler',
+      clientHandler: '@hanzo/cms-storage-r2/client#R2ClientUploadHandler',
       collections: r2StorageOptions.collections,
       config: incomingConfig,
       enabled: !isPluginDisabled && Boolean(r2StorageOptions.clientUploads),

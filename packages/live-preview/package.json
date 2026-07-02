@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/live-preview",
+  "name": "@hanzo/cms-live-preview",
   "version": "3.85.2",
   "description": "The official live preview JavaScript SDK for Payload",
   "homepage": "https://payloadcms.com",
@@ -42,8 +42,8 @@
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@payloadcms/eslint-config": "workspace:*",
-    "payload": "workspace:*"
+    "@hanzo/cms-eslint-config": "workspace:*",
+    "@hanzo/cms": "workspace:*"
   },
   "publishConfig": {
     "exports": {

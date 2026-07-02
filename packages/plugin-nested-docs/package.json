@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/plugin-nested-docs",
+  "name": "@hanzo/cms-plugin-nested-docs",
   "version": "3.85.2",
   "description": "The official Nested Docs plugin for Payload",
   "homepage": "https://payloadcms.com",
@@ -47,11 +47,11 @@
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@payloadcms/eslint-config": "workspace:*",
-    "payload": "workspace:*"
+    "@hanzo/cms-eslint-config": "workspace:*",
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "publishConfig": {
     "exports": {

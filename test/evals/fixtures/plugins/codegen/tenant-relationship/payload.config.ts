@@ -1,6 +1,6 @@
-import type { Config, Plugin } from 'payload'
+import type { Config, Plugin } from @hanzo/cms'from 
 
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 // TODO: implement this plugin so that it adds a "tenant" relationship
 // field (pointing to the "tenants" collection) to every collection

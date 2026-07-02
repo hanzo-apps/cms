@@ -1,8 +1,8 @@
 'use client'
 
-import type { GenericLabelProps } from 'payload'
+import type { GenericLabelProps } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'
 
 import { useForm } from '../../forms/Form/context.js'

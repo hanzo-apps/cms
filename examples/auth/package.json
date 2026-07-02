@@ -16,19 +16,19 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
-    "@payloadcms/db-mongodb": "latest",
-    "@payloadcms/next": "latest",
-    "@payloadcms/richtext-slate": "latest",
-    "@payloadcms/ui": "latest",
+    "@hanzo/cms-db-mongodb": "latest",
+    "@hanzo/cms-next": "latest",
+    "@hanzo/cms-richtext-slate": "latest",
+    "@hanzo/cms-ui": "latest",
     "cross-env": "^7.0.3",
     "next": "^15.4.10",
-    "payload": "latest",
+    "@hanzo/cms": "latest",
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "react-hook-form": "^7.51.3"
   },
   "devDependencies": {
-    "@payloadcms/graphql": "latest",
+    "@hanzo/cms-graphql": "latest",
     "@swc/core": "^1.6.13",
     "@types/ejs": "^3.1.5",
     "@types/react": "19.2.9",

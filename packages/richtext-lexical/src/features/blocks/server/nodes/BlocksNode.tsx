@@ -1,5 +1,5 @@
 import type { SerializedDecoratorBlockNode } from '@lexical/react/LexicalDecoratorBlockNode.js'
-import type { JsonObject } from 'payload'
+import type { JsonObject } from @hanzo/cms'from 
 import type { JSX } from 'react'
 
 import { DecoratorBlockNode } from '@lexical/react/LexicalDecoratorBlockNode.js'

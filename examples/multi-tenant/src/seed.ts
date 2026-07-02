@@ -1,4 +1,4 @@
-import { Config } from 'payload'
+import { Config } from @hanzo/cms'from 
 
 export const seed: NonNullable<Config['onInit']> = async (payload): Promise<void> => {
   const tenant1 = await payload.create({

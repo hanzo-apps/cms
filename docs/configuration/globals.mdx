@@ -13,7 +13,7 @@ Globals are the primary way to structure singletons in Payload, such as a header
 To define a Global Config, use the `globals` property in your [Payload Config](./overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -36,7 +36,7 @@ It's often best practice to write your Globals in separate files and then import
 Here is what a simple Global Config might look like:
 
 ```ts
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 export const Nav: GlobalConfig = {
   slug: 'nav',
@@ -107,7 +107,7 @@ The behavior of Globals within the [Admin Panel](../admin/overview) can be fully
 To configure Admin Options for Globals, use the `admin` property in your Global Config:
 
 ```ts
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 export const MyGlobal: GlobalConfig = {
   // ...
@@ -137,7 +137,7 @@ Globals can set their own [Custom Components](../custom-components/overview) whi
 To override Global Components, use the `admin.components` property in your Global Config:
 
 ```ts
-import type { SanitizedGlobalConfig } from 'payload'
+import type { SanitizedGlobalConfig } from @hanzo/cms'from 
 
 export const MyGlobal: SanitizedGlobalConfig = {
   // ...
@@ -164,7 +164,7 @@ The following options are available:
 Custom components within the Edit View are configured under `admin.components.elements`:
 
 ```ts
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 export const MyGlobal: GlobalConfig = {
   // ...
@@ -219,5 +219,5 @@ You can import types from Payload to help make writing your Global configs easie
 The `GlobalConfig` type represents a raw Global Config in its full form, where only the bare minimum properties are marked as required. The `SanitizedGlobalConfig` type represents a Global Config after it has been fully sanitized. Generally, this is only used internally by Payload.
 
 ```ts
-import type { GlobalConfig, SanitizedGlobalConfig } from 'payload'
+import type { GlobalConfig, SanitizedGlobalConfig } from @hanzo/cms'from 
 ```

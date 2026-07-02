@@ -1,5 +1,5 @@
 'use client'
-import type { PayloadRequest } from 'payload'
+import type { PayloadRequest } from @hanzo/cms'from 
 
 import React, { useCallback, useMemo, useRef } from 'react'
 

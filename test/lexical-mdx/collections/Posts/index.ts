@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import {
   BlocksFeature,
@@ -6,7 +6,7 @@ import {
   FixedToolbarFeature,
   lexicalEditor,
   TreeViewFeature,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 import { loadMDXAfterRead, saveMDXBeforeChange } from '../../mdx/hooks.js'
 import { BannerBlock } from '../../mdx/jsxBlocks/banner.js'

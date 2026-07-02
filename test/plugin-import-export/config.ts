@@ -1,12 +1,12 @@
-import { importExportPlugin } from '@payloadcms/plugin-import-export'
-import { s3Storage } from '@payloadcms/storage-s3'
-import { en } from '@payloadcms/translations/languages/en'
-import { es } from '@payloadcms/translations/languages/es'
-import { he } from '@payloadcms/translations/languages/he'
+import { importExportPlugin } from '@hanzo/cms-plugin-import-export'
+import { s3Storage } from '@hanzo/cms-storage-s3'
+import { en } from '@hanzo/cms-translations/languages/en'
+import { es } from '@hanzo/cms-translations/languages/es'
+import { he } from '@hanzo/cms-translations/languages/he'
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
-import { defaultTimezones } from 'payload/shared'
+import { defaultTimezones } from @hanzo/cms'from 
 
 import { buildConfigWithDefaults } from '../buildConfigWithDefaults.js'
 import { createTestBucket } from '../plugin-cloud-storage/utils.js'

@@ -1,11 +1,11 @@
 'use client'
-import type { GroupFieldDiffClientComponent } from 'payload'
+import type { GroupFieldDiffClientComponent } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 
 import './index.scss'
 
-import { useTranslation } from '@payloadcms/ui'
+import { useTranslation } from '@hanzo/cms-ui'
 import React from 'react'
 
 import { useSelectedLocales } from '../../../Default/SelectedLocalesContext.js'

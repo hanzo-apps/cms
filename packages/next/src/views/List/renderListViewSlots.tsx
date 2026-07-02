@@ -14,10 +14,10 @@ import type {
   StaticDescription,
   ViewDescriptionClientProps,
   ViewDescriptionServerPropsOnly,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { Banner } from '@payloadcms/ui/elements/Banner'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { Banner } from '@hanzo/cms-ui/elements/Banner'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import React from 'react'
 
 type Args = {

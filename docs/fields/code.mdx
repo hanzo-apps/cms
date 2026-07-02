@@ -19,7 +19,7 @@ The Code Field saves a string in the database, but provides the [Admin Panel](..
 To add a Code Field, set the `type` to `code` in your [Field Config](./overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyBlocksField: Field = {
   // ...
@@ -57,7 +57,7 @@ _\* An asterisk denotes that a property is required._
 To customize the appearance and behavior of the Code Field in the [Admin Panel](../admin/overview), you can use the `admin` option:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyCodeField: Field = {
   // ...
@@ -80,7 +80,7 @@ The Code Field inherits all of the default admin options from the base [Field Ad
 `collections/ExampleCollection.ts
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',
@@ -105,8 +105,8 @@ export const ExampleCollection: CollectionConfig = {
 
 ```tsx
 import type React from 'react'
-import { CodeField } from '@payloadcms/ui'
-import type { CodeFieldServerComponent } from 'payload'
+import { CodeField } from '@hanzo/cms-ui'
+import type { CodeFieldServerComponent } from @hanzo/cms'from 
 
 export const CustomCodeFieldServer: CodeFieldServerComponent = ({
   clientField,
@@ -130,8 +130,8 @@ export const CustomCodeFieldServer: CodeFieldServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { CodeField } from '@payloadcms/ui'
-import type { CodeFieldClientComponent } from 'payload'
+import { CodeField } from '@hanzo/cms-ui'
+import type { CodeFieldClientComponent } from @hanzo/cms'from 
 
 export const CustomCodeFieldClient: CodeFieldClientComponent = (props) => {
   return <CodeField {...props} />
@@ -144,8 +144,8 @@ export const CustomCodeFieldClient: CodeFieldClientComponent = (props) => {
 
 ```tsx
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { CodeFieldLabelServerComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { CodeFieldLabelServerComponent } from @hanzo/cms'from 
 
 export const CustomCodeFieldLabelServer: CodeFieldLabelServerComponent = ({
   clientField,
@@ -166,8 +166,8 @@ export const CustomCodeFieldLabelServer: CodeFieldLabelServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { CodeFieldLabelClientComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { CodeFieldLabelClientComponent } from @hanzo/cms'from 
 
 export const CustomCodeFieldLabelClient: CodeFieldLabelClientComponent = ({
   field,

@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/plugin-redirects",
+  "name": "@hanzo/cms-plugin-redirects",
   "version": "3.85.2",
   "description": "Redirects plugin for Payload",
   "keywords": [
@@ -57,14 +57,14 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@payloadcms/translations": "workspace:*",
-    "payload": "workspace:*"
+    "@hanzo/cms-translations": "workspace:*",
+    "@hanzo/cms": "workspace:*"
   },
   "devDependencies": {
-    "@payloadcms/eslint-config": "workspace:*"
+    "@hanzo/cms-eslint-config": "workspace:*"
   },
   "peerDependencies": {
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "publishConfig": {
     "exports": {

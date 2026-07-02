@@ -1,7 +1,7 @@
-import type { CheckboxFieldServerComponent } from 'payload'
+import type { CheckboxFieldServerComponent } from @hanzo/cms'from 
 import type React from 'react'
 
-import { CheckboxField } from '@payloadcms/ui'
+import { CheckboxField } from '@hanzo/cms-ui'
 
 export const CustomCheckboxFieldServer: CheckboxFieldServerComponent = ({
   clientField,

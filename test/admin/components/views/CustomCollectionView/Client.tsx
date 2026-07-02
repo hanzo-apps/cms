@@ -1,7 +1,7 @@
 'use client'
-import type { AdminViewClientProps } from 'payload'
+import type { AdminViewClientProps } from @hanzo/cms'from 
 
-import { useConfig } from '@payloadcms/ui'
+import { useConfig } from '@hanzo/cms-ui'
 import React from 'react'
 
 import { customCollectionViewClientTitle } from '../../../shared.js'

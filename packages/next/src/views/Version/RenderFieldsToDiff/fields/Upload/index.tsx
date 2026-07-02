@@ -4,10 +4,10 @@ import type {
   TypeWithID,
   UploadField,
   UploadFieldDiffServerComponent,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { getTranslation, type I18nClient } from '@payloadcms/translations'
-import { FieldDiffContainer, File, getHTMLDiffComponents } from '@payloadcms/ui/rsc'
+import { getTranslation, type I18nClient } from '@hanzo/cms-translations'
+import { FieldDiffContainer, File, getHTMLDiffComponents } from '@hanzo/cms-ui/rsc'
 
 import './index.scss'
 

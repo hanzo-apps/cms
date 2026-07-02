@@ -1,9 +1,9 @@
 'use client'
 
-import type { ClientTab } from 'payload'
+import type { ClientTab } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
-import { tabHasName } from 'payload/shared'
+import { getTranslation } from '@hanzo/cms-translations'
+import { tabHasName } from @hanzo/cms'from 
 import React, { useState } from 'react'
 
 import { ErrorPill } from '../../../elements/ErrorPill/index.js'

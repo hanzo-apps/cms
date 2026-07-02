@@ -1,7 +1,7 @@
 'use client'
-import type { ClientUser, DocumentPreferences } from 'payload'
+import type { ClientUser, DocumentPreferences } from @hanzo/cms'from 
 
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import * as qs from 'qs-esm'
 import React, { createContext, use, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 

@@ -1,6 +1,6 @@
-import type { ClientField, Field } from 'payload'
+import type { ClientField, Field } from @hanzo/cms'from 
 
-import { fieldAffectsData, fieldHasSubFields, tabHasName } from 'payload/shared'
+import { fieldAffectsData, fieldHasSubFields, tabHasName } from @hanzo/cms'from 
 
 type AnyField = ClientField | Field
 

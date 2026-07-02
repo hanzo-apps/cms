@@ -1,7 +1,7 @@
 'use client'
-import type { ListDrawerProps } from '@payloadcms/ui'
+import type { ListDrawerProps } from '@hanzo/cms-ui'
 
-import { useListDrawer, useTranslation } from '@payloadcms/ui'
+import { useListDrawer, useTranslation } from '@hanzo/cms-ui'
 import React, { Fragment, useCallback, useState } from 'react'
 import { ReactEditor, useSlate } from 'slate-react'
 

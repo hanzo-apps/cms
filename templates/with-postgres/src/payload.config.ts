@@ -1,7 +1,7 @@
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { postgresAdapter } from '@hanzo/cms-db-postgres'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 import path from 'path'
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 

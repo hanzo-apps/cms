@@ -1,9 +1,9 @@
 'use client'
 
-import type { CollectionSlug, JsonObject } from 'payload'
+import type { CollectionSlug, JsonObject } from @hanzo/cms'from 
 
 import { useModal } from '@faceless-ui/modal'
-import { validateMimeType } from 'payload/shared'
+import { validateMimeType } from @hanzo/cms'from 
 import React, { useEffect } from 'react'
 import { toast } from 'sonner'
 

@@ -1,4 +1,4 @@
-import type { TFunction } from '@payloadcms/translations'
+import type { TFunction } from '@hanzo/cms-translations'
 
 export const validateLimitValue = (
   value: null | number | undefined,

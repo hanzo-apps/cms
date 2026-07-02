@@ -1,4 +1,4 @@
-import { I18nClient } from '@payloadcms/translations'
+import { I18nClient } from '@hanzo/cms-translations'
 import { describe, it, expect } from 'vitest'
 import { ClientField } from '../fields/config/client.js'
 import { flattenTopLevelFields } from './flattenTopLevelFields.js'

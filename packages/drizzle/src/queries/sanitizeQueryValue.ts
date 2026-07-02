@@ -1,7 +1,7 @@
 import type { SQL } from 'drizzle-orm'
 
-import { APIError, createArrayFromCommaDelineated, type Field, type TabAsField } from 'payload'
-import { fieldAffectsData } from 'payload/shared'
+import { APIError, createArrayFromCommaDelineated, type Field, type TabAsField } from @hanzo/cms'from 
+import { fieldAffectsData } from @hanzo/cms'from 
 import { validate as uuidValidate } from 'uuid'
 
 import type { DrizzleAdapter } from '../types.js'

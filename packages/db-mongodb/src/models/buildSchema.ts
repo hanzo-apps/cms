@@ -30,14 +30,14 @@ import {
   type TextareaField,
   type TextField,
   type UploadField,
-} from 'payload'
+} from @hanzo/cms'from 
 import {
   fieldAffectsData,
   fieldIsPresentationalOnly,
   fieldIsVirtual,
   fieldShouldBeLocalized,
   tabHasName,
-} from 'payload/shared'
+} from @hanzo/cms'from 
 
 export type BuildSchemaOptions = {
   allowIDField?: boolean

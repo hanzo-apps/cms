@@ -1,9 +1,9 @@
 'use client'
-import type { FormField, FormState, Row } from 'payload'
+import type { FormField, FormState, Row } from @hanzo/cms'from 
 
 import ObjectIdImport from 'bson-objectid'
 import { dequal } from 'dequal/lite' // lite: no need for Map and Set support
-import { deepCopyObjectSimpleWithoutReactComponents } from 'payload/shared'
+import { deepCopyObjectSimpleWithoutReactComponents } from @hanzo/cms'from 
 
 import type { FieldAction } from './types.js'
 

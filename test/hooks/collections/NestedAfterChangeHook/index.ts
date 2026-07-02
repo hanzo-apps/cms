@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { BlocksFeature, lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
+import { BlocksFeature, lexicalEditor, LinkFeature } from '@hanzo/cms-richtext-lexical'
 export const nestedAfterChangeHooksSlug = 'nested-after-change-hooks'
 
 const NestedAfterChangeHooks: CollectionConfig = {

@@ -1,4 +1,4 @@
-import type { RollbackTransaction } from 'payload'
+import type { RollbackTransaction } from @hanzo/cms'from 
 
 export const rollbackTransaction: RollbackTransaction = async function rollbackTransaction(
   incomingID = '',

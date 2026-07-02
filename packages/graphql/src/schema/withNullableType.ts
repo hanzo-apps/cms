@@ -1,5 +1,5 @@
 import type { GraphQLType } from 'graphql'
-import type { FieldAffectingData } from 'payload'
+import type { FieldAffectingData } from @hanzo/cms'from 
 
 import { GraphQLNonNull } from 'graphql'
 

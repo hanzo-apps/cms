@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import {
   defaultEditorFeatures,
@@ -6,7 +6,7 @@ import {
   lexicalEditor,
   RelationshipFeature,
   UploadFeature,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 import { lexicalRelationshipFieldsSlug } from '../../slugs.js'
 

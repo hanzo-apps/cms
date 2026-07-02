@@ -1,8 +1,8 @@
 'use client'
 
-import type { Data } from 'payload'
+import type { Data } from @hanzo/cms'from 
 
-import { EditIcon, useConfig, useModal, useTranslation } from '@payloadcms/ui'
+import { EditIcon, useConfig, useModal, useTranslation } from '@hanzo/cms-ui'
 import React, { useId } from 'react'
 
 import { WidgetConfigDrawer } from './WidgetConfigDrawer.js'

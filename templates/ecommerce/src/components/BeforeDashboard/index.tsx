@@ -1,4 +1,4 @@
-import { Banner } from '@payloadcms/ui'
+import { Banner } from '@hanzo/cms-ui'
 import React from 'react'
 
 import { SeedButton } from './SeedButton'

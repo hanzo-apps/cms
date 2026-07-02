@@ -1,6 +1,6 @@
-import type { ClientField, CollectionConfig, CollectionPreferences, Field } from 'payload'
+import type { ClientField, CollectionConfig, CollectionPreferences, Field } from @hanzo/cms'from 
 
-import { fieldAffectsData } from 'payload/shared'
+import { fieldAffectsData } from @hanzo/cms'from 
 
 const getRemainingColumns = <T extends ClientField[] | Field[]>(
   fields: T,

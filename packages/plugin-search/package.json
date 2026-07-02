@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/plugin-search",
+  "name": "@hanzo/cms-plugin-search",
   "version": "3.85.2",
   "description": "Search plugin for Payload",
   "keywords": [
@@ -60,17 +60,17 @@
     "test": "echo \"Error: no tests specified\""
   },
   "dependencies": {
-    "@payloadcms/next": "workspace:*",
-    "@payloadcms/ui": "workspace:*"
+    "@hanzo/cms-next": "workspace:*",
+    "@hanzo/cms-ui": "workspace:*"
   },
   "devDependencies": {
-    "@payloadcms/eslint-config": "workspace:*",
+    "@hanzo/cms-eslint-config": "workspace:*",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "payload": "workspace:*",
+    "@hanzo/cms": "workspace:*",
     "react": "^19.0.1 || ^19.1.2 || ^19.2.1",
     "react-dom": "^19.0.1 || ^19.1.2 || ^19.2.1"
   },

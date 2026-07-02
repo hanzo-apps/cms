@@ -1,4 +1,4 @@
-import type { CollectionSlug, GlobalSlug } from 'payload'
+import type { CollectionSlug, GlobalSlug } from @hanzo/cms'from 
 
 export const collectionSlugs: {
   [key: string]: CollectionSlug

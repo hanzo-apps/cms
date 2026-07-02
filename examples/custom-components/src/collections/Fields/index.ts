@@ -1,4 +1,4 @@
-import type { CollectionConfig, Field } from 'payload'
+import type { CollectionConfig, Field } from @hanzo/cms'from 
 
 import { arrayFields } from './array'
 import { blocksFields } from './blocks'

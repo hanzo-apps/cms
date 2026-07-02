@@ -8,7 +8,7 @@ import {
   useModal,
   useServerFunctions,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import { useSearchParams } from 'next/navigation.js'
 
 import './index.scss'

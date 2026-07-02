@@ -6,10 +6,10 @@ import type {
   SanitizedFieldPermissions,
   StaticDescription,
   TabsFieldClientComponent,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
-import { getFieldPaths, toKebabCase } from 'payload/shared'
+import { getTranslation } from '@hanzo/cms-translations'
+import { getFieldPaths, toKebabCase } from @hanzo/cms'from 
 import React, { useCallback, useEffect, useState } from 'react'
 
 import { useCollapsible } from '../../elements/Collapsible/provider.js'

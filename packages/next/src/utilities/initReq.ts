@@ -1,7 +1,7 @@
-import type { I18n, I18nClient } from '@payloadcms/translations'
-import type { ImportMap, InitReqResult, PayloadRequest, SanitizedConfig } from 'payload'
+import type { I18n, I18nClient } from '@hanzo/cms-translations'
+import type { ImportMap, InitReqResult, PayloadRequest, SanitizedConfig } from @hanzo/cms'from 
 
-import { initI18n } from '@payloadcms/translations'
+import { initI18n } from '@hanzo/cms-translations'
 import { headers as getHeaders } from 'next/headers.js'
 import {
   createLocalReq,
@@ -10,7 +10,7 @@ import {
   getPayload,
   getRequestLanguage,
   parseCookies,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import { getRequestLocale } from './getRequestLocale.js'
 import { selectiveCache } from './selectiveCache.js'

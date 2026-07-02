@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/db-sqlite",
+  "name": "@hanzo/cms-db-sqlite",
   "version": "3.85.2",
   "description": "The officially supported SQLite database adapter for Payload",
   "homepage": "https://payloadcms.com",
@@ -73,7 +73,7 @@
   },
   "dependencies": {
     "@libsql/client": "0.14.0",
-    "@payloadcms/drizzle": "workspace:*",
+    "@hanzo/cms-drizzle": "workspace:*",
     "console-table-printer": "2.12.1",
     "drizzle-kit": "0.31.7",
     "drizzle-orm": "0.45.2",
@@ -82,13 +82,13 @@
     "uuid": "13.0.2"
   },
   "devDependencies": {
-    "@payloadcms/eslint-config": "workspace:*",
+    "@hanzo/cms-eslint-config": "workspace:*",
     "@types/pg": "8.20.0",
     "@types/to-snake-case": "1.0.0",
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "publishConfig": {
     "exports": {

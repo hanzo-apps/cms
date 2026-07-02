@@ -1,4 +1,4 @@
-import type { I18n } from '@payloadcms/translations'
+import type { I18n } from '@hanzo/cms-translations'
 import type {
   ClientBlock,
   ClientConfig,
@@ -7,10 +7,10 @@ import type {
   FieldSchemaMap,
   Payload,
   TabAsFieldClient,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { createClientBlocks, createClientFields } from 'payload'
-import { fieldAffectsData, getFieldPaths, tabHasName } from 'payload/shared'
+import { createClientBlocks, createClientFields } from @hanzo/cms'from 
+import { fieldAffectsData, getFieldPaths, tabHasName } from @hanzo/cms'from 
 
 type Args = {
   clientSchemaMap: ClientFieldSchemaMap

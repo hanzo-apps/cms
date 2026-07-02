@@ -1,6 +1,6 @@
-import type { Collection } from 'payload'
+import type { Collection } from @hanzo/cms'from 
 
-import { generatePayloadCookie, isolateObjectProperty, loginOperation } from 'payload'
+import { generatePayloadCookie, isolateObjectProperty, loginOperation } from @hanzo/cms'from 
 
 import type { Context } from '../types.js'
 

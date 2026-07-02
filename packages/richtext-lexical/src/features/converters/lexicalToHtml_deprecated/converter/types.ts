@@ -1,5 +1,5 @@
 import type { SerializedLexicalNode } from 'lexical'
-import type { PayloadRequest } from 'payload'
+import type { PayloadRequest } from @hanzo/cms'from 
 
 /**
  * @deprecated - will be removed in 4.0

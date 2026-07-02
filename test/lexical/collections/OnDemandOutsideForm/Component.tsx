@@ -1,9 +1,9 @@
 'use client'
 
-import type { DefaultNodeTypes, DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
-import type { JSONFieldClientComponent } from 'payload'
+import type { DefaultNodeTypes, DefaultTypedEditorState } from '@hanzo/cms-richtext-lexical'
+import type { JSONFieldClientComponent } from @hanzo/cms'from 
 
-import { buildEditorState, RenderLexical } from '@payloadcms/richtext-lexical/client'
+import { buildEditorState, RenderLexical } from '@hanzo/cms-richtext-lexical/client'
 import React, { useState } from 'react'
 
 export const Component: JSONFieldClientComponent = () => {

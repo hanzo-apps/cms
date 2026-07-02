@@ -18,7 +18,7 @@ The Textarea Field is nearly identical to the [Text Field](./text) but it featur
 To add a Textarea Field, set the `type` to `textarea` in your [Field Config](./overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyTextareaField: Field = {
   // ...
@@ -56,7 +56,7 @@ _\* An asterisk denotes that a property is required._
 To customize the appearance and behavior of the Textarea Field in the [Admin Panel](../admin/overview), you can use the `admin` option:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyTextareaField: Field = {
   // ...
@@ -79,7 +79,7 @@ The Textarea Field inherits all of the default admin options from the base [Fiel
 ## Example
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',
@@ -101,8 +101,8 @@ export const ExampleCollection: CollectionConfig = {
 
 ```tsx
 import type React from 'react'
-import { TextareaField } from '@payloadcms/ui'
-import type { TextareaFieldServerComponent } from 'payload'
+import { TextareaField } from '@hanzo/cms-ui'
+import type { TextareaFieldServerComponent } from @hanzo/cms'from 
 
 export const CustomTextareaFieldServer: TextareaFieldServerComponent = ({
   clientField,
@@ -126,8 +126,8 @@ export const CustomTextareaFieldServer: TextareaFieldServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { TextareaField } from '@payloadcms/ui'
-import type { TextareaFieldClientComponent } from 'payload'
+import { TextareaField } from '@hanzo/cms-ui'
+import type { TextareaFieldClientComponent } from @hanzo/cms'from 
 
 export const CustomTextareaFieldClient: TextareaFieldClientComponent = (
   props,
@@ -142,8 +142,8 @@ export const CustomTextareaFieldClient: TextareaFieldClientComponent = (
 
 ```tsx
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { TextareaFieldLabelServerComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { TextareaFieldLabelServerComponent } from @hanzo/cms'from 
 
 export const CustomTextareaFieldLabelServer: TextareaFieldLabelServerComponent =
   ({ clientField, path }) => {
@@ -162,8 +162,8 @@ export const CustomTextareaFieldLabelServer: TextareaFieldLabelServerComponent =
 ```tsx
 'use client'
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { TextareaFieldLabelClientComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { TextareaFieldLabelClientComponent } from @hanzo/cms'from 
 
 export const CustomTextareaFieldLabelClient: TextareaFieldLabelClientComponent =
   ({ field, path }) => {

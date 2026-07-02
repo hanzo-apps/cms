@@ -1,4 +1,4 @@
-import { type CustomVersionParser, checkDependencies as payloadCheckDependencies } from 'payload'
+import { type CustomVersionParser, checkDependencies as payloadCheckDependencies } from @hanzo/cms'from 
 
 const customReactVersionParser: CustomVersionParser = (version) => {
   const [mainVersion, ...preReleases] = version.split('-')

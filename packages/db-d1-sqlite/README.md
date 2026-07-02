@@ -8,13 +8,13 @@ Official D1 SQLite adapter for [Payload](https://payloadcms.com).
 ## Installation
 
 ```bash
-npm install @payloadcms/db-d1-sqlite
+npm install @hanzo/cms-db-d1-sqlite
 ```
 
 ## Usage
 
 ```ts
-import { sqliteD1Adapter } from '@payloadcms/db-d1-sqlite'
+import { sqliteD1Adapter } from '@hanzo/cms-db-d1-sqlite'
 
 export default buildConfig({
   // Your config goes here

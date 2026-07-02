@@ -8,7 +8,7 @@ To spin up this example locally, follow the steps below:
 
 1. Run the following command to create a project from the example:
 
-- `npx create-payload-app --example custom-components`
+- `npx @hanzo/create-cms-app --example custom-components`
 
 2. Ensure MongoDB is running:
 

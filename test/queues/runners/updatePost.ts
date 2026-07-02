@@ -1,4 +1,4 @@
-import type { TaskHandler } from 'payload'
+import type { TaskHandler } from @hanzo/cms'from 
 
 export const updatePostStep1: TaskHandler<'UpdatePost'> = async ({ req, input }) => {
   const postID =

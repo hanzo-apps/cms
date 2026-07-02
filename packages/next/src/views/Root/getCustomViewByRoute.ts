@@ -1,4 +1,4 @@
-import type { AdminViewConfig, SanitizedConfig } from 'payload'
+import type { AdminViewConfig, SanitizedConfig } from @hanzo/cms'from 
 
 import type { ViewFromConfig } from './getRouteData.js'
 

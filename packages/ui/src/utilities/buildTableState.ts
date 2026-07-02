@@ -9,10 +9,10 @@ import type {
   SanitizedCollectionConfig,
   ServerFunction,
   Where,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { APIError, canAccessAdmin, formatErrors } from 'payload'
-import { applyLocaleFiltering, isNumber } from 'payload/shared'
+import { APIError, canAccessAdmin, formatErrors } from @hanzo/cms'from 
+import { applyLocaleFiltering, isNumber } from @hanzo/cms'from 
 
 import { getClientConfig } from './getClientConfig.js'
 import { getColumns } from './getColumns.js'

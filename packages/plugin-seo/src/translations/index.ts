@@ -1,4 +1,4 @@
-import type { GenericTranslationsObject, NestedKeysStripped } from '@payloadcms/translations'
+import type { GenericTranslationsObject, NestedKeysStripped } from '@hanzo/cms-translations'
 
 import { ar } from './ar.js'
 import { az } from './az.js'

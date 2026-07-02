@@ -1,5 +1,5 @@
 'use client'
-import type { RichTextField } from 'payload'
+import type { RichTextField } from @hanzo/cms'from 
 
 import {
   FieldContext,
@@ -10,7 +10,7 @@ import {
   type ServerFunctionsContextType,
   ShimmerEffect,
   useServerFunctions,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import React, { useCallback, useEffect, useRef } from 'react'
 
 import type { DefaultTypedEditorState } from '../../nodeTypes.js'

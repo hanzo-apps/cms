@@ -1,9 +1,9 @@
 'use server'
 
-import type { CollectionSlug, MaybePromise, SanitizedConfig } from 'payload'
+import type { CollectionSlug, MaybePromise, SanitizedConfig } from @hanzo/cms'from 
 
 import { headers as nextHeaders } from 'next/headers.js'
-import { createLocalReq, getPayload, refreshOperation } from 'payload'
+import { createLocalReq, getPayload, refreshOperation } from @hanzo/cms'from 
 
 import { getExistingAuthToken } from '../utilities/getExistingAuthToken.js'
 import { setPayloadAuthCookie } from '../utilities/setPayloadAuthCookie.js'

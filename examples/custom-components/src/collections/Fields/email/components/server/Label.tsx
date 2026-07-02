@@ -1,6 +1,6 @@
-import type { EmailFieldLabelServerComponent } from 'payload'
+import type { EmailFieldLabelServerComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomEmailFieldLabelServer: EmailFieldLabelServerComponent = ({

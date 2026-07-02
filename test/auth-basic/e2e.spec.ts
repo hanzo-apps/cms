@@ -1,10 +1,10 @@
 import type { Page } from '@playwright/test'
-import type { SanitizedConfig } from 'payload'
+import type { SanitizedConfig } from @hanzo/cms'from 
 
 import { expect, test } from '@playwright/test'
 import { devUser } from 'credentials.js'
 import path from 'path'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../__helpers/shared/sdk/index.js'

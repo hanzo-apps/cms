@@ -1,9 +1,9 @@
 'use client'
 
-import type { ListDrawerProps } from '@payloadcms/ui'
-import type { ClientCollectionConfig } from 'payload'
+import type { ListDrawerProps } from '@hanzo/cms-ui'
+import type { ClientCollectionConfig } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   Button,
   DrawerToggler,
@@ -14,8 +14,8 @@ import {
   useListDrawer,
   usePayloadAPI,
   useTranslation,
-} from '@payloadcms/ui'
-import { formatAdminURL } from 'payload/shared'
+} from '@hanzo/cms-ui'
+import { formatAdminURL } from @hanzo/cms'from 
 import React, { useCallback, useReducer, useState } from 'react'
 import { Transforms } from 'slate'
 import { ReactEditor, useFocused, useSelected, useSlateStatic } from 'slate-react'

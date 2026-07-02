@@ -3,7 +3,7 @@
 Package to allow querying Payload REST API in a fully type safe way. Has support for all necessary operations, including auth, type safe `select`, `populate`, `joins` properties and simplified file uploading. Its interface is _very_ similar to the Local API.
 
 ```ts
-import { PayloadSDK } from '@payloadcms/sdk'
+import { PayloadSDK } from '@hanzo/cms-sdk'
 import type { Config } from './payload-types'
 
 // Pass your config from generated types as generic

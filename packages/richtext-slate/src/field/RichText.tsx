@@ -1,11 +1,11 @@
 'use client'
 
-import type { PayloadRequest } from 'payload'
+import type { PayloadRequest } from @hanzo/cms'from 
 import type { BaseEditor, BaseOperation } from 'slate'
 import type { HistoryEditor } from 'slate-history'
 import type { ReactEditor } from 'slate-react'
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   FieldDescription,
   FieldError,
@@ -14,8 +14,8 @@ import {
   useEditDepth,
   useField,
   useTranslation,
-} from '@payloadcms/ui'
-import { mergeFieldStyles } from '@payloadcms/ui/shared'
+} from '@hanzo/cms-ui'
+import { mergeFieldStyles } from '@hanzo/cms-ui/shared'
 import { isHotkey } from 'is-hotkey'
 import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { createEditor, Node, Element as SlateElement, Text, Transforms } from 'slate'

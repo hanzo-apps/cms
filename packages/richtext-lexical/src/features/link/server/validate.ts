@@ -1,6 +1,6 @@
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
-import { fieldSchemasToFormState } from '@payloadcms/ui/forms/fieldSchemasToFormState'
+import { fieldSchemasToFormState } from '@hanzo/cms-ui/forms/fieldSchemasToFormState'
 
 import type { NodeValidation } from '../../typesServer.js'
 import type { SerializedAutoLinkNode, SerializedLinkNode } from '../nodes/types.js'

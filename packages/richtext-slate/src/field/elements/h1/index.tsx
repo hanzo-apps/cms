@@ -8,7 +8,7 @@ export const h1: RichTextCustomElement = {
     clientProps: {
       format: name,
     },
-    path: '@payloadcms/richtext-slate/client#H1ElementButton',
+    path: '@hanzo/cms-richtext-slate/client#H1ElementButton',
   },
-  Element: '@payloadcms/richtext-slate/client#Heading1Element',
+  Element: '@hanzo/cms-richtext-slate/client#Heading1Element',
 }

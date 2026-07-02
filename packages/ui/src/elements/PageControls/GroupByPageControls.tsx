@@ -1,5 +1,5 @@
 'use client'
-import type { ClientCollectionConfig, PaginatedDocs } from 'payload'
+import type { ClientCollectionConfig, PaginatedDocs } from @hanzo/cms'from 
 
 import React, { useCallback } from 'react'
 

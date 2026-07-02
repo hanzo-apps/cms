@@ -1,7 +1,7 @@
 'use client'
-import type { TypeWithVersion } from 'payload'
+import type { TypeWithVersion } from @hanzo/cms'from 
 
-import { Pill, useTranslation } from '@payloadcms/ui'
+import { Pill, useTranslation } from '@hanzo/cms-ui'
 import React from 'react'
 
 import { VersionPillLabel } from '../../../Version/VersionPillLabel/VersionPillLabel.js'

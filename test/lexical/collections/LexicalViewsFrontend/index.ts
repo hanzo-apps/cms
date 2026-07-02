@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import {
   BlocksFeature,
@@ -6,7 +6,7 @@ import {
   FixedToolbarFeature,
   lexicalEditor,
   type SerializedBlockNode,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 import type { BannerBlock } from '../../payload-types.js'
 

@@ -1,6 +1,6 @@
-import type { RadioFieldLabelServerComponent } from 'payload'
+import type { RadioFieldLabelServerComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomRadioFieldLabelServer: RadioFieldLabelServerComponent = ({

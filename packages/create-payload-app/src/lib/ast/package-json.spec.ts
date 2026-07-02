@@ -20,7 +20,7 @@ describe('updatePackageJson', () => {
     const originalPkg = {
       name: 'test-app',
       dependencies: {
-        '@payloadcms/db-mongodb': '^3.0.0',
+        '@hanzo/cms-db-mongodb': '^3.0.0',
         payload: '^3.0.0',
       },
     }
@@ -31,8 +31,8 @@ describe('updatePackageJson', () => {
     })
 
     const updated = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
-    expect(updated.dependencies['@payloadcms/db-postgres']).toBeDefined()
-    expect(updated.dependencies['@payloadcms/db-mongodb']).toBeUndefined()
+    expect(updated.dependencies['@hanzo/cms-db-postgres']).toBeDefined()
+    expect(updated.dependencies['@hanzo/cms-db-mongodb']).toBeUndefined()
   })
 
   it('removes sharp when requested', () => {

@@ -3,7 +3,7 @@ import {
   type TaskConfig,
   type TaskType,
   type WorkflowTypes,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export const EverySecondMax2Task: TaskConfig<'EverySecondMax2'> = {
   schedule: [

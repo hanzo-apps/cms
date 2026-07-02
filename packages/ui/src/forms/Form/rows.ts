@@ -1,5 +1,5 @@
 'use client'
-import type { FormState } from 'payload'
+import type { FormState } from @hanzo/cms'from 
 
 type Result = {
   remainingFields: FormState

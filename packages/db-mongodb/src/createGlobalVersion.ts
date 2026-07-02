@@ -1,4 +1,4 @@
-import { buildVersionGlobalFields, type CreateGlobalVersion } from 'payload'
+import { buildVersionGlobalFields, type CreateGlobalVersion } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from './index.js'
 

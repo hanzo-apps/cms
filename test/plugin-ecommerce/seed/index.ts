@@ -1,4 +1,4 @@
-import type { Payload, PayloadRequest } from 'payload'
+import type { Payload, PayloadRequest } from @hanzo/cms'from 
 
 const sizeVariantOptions = [
   { label: 'Small', value: 'small' },

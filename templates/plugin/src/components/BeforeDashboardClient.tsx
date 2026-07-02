@@ -1,6 +1,6 @@
 'use client'
-import { useConfig } from '@payloadcms/ui'
-import { formatAdminURL } from 'payload/shared'
+import { useConfig } from '@hanzo/cms-ui'
+import { formatAdminURL } from @hanzo/cms'from 
 import { useEffect, useState } from 'react'
 
 export const BeforeDashboardClient = () => {

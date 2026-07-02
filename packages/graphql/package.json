@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/graphql",
+  "name": "@hanzo/cms-graphql",
   "version": "3.85.2",
   "homepage": "https://payloadcms.com",
   "repository": {
@@ -59,14 +59,14 @@
     "tsx": "4.22.4"
   },
   "devDependencies": {
-    "@payloadcms/eslint-config": "workspace:*",
+    "@hanzo/cms-eslint-config": "workspace:*",
     "@types/pluralize": "^0.0.33",
     "graphql-http": "^1.22.0",
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
     "graphql": "^16.8.1",
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "publishConfig": {
     "exports": {

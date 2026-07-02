@@ -1,4 +1,4 @@
-import type { TextFieldSingleValidation } from 'payload'
+import type { TextFieldSingleValidation } from @hanzo/cms'from 
 import {
   BoldFeature,
   ItalicFeature,
@@ -7,7 +7,7 @@ import {
   lexicalEditor,
   UnderlineFeature,
   type LinkFields,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 export const defaultLexical = lexicalEditor({
   features: [

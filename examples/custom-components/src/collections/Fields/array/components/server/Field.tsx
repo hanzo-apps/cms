@@ -1,7 +1,7 @@
-import type { ArrayFieldServerComponent } from 'payload'
+import type { ArrayFieldServerComponent } from @hanzo/cms'from 
 import type React from 'react'
 
-import { ArrayField } from '@payloadcms/ui'
+import { ArrayField } from '@hanzo/cms-ui'
 
 export const CustomArrayFieldServer: ArrayFieldServerComponent = ({
   clientField,

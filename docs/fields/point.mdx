@@ -18,7 +18,7 @@ The Point Field saves a pair of coordinates in the database and assigns an index
 To add a Point Field, set the `type` to `point` in your [Field Config](./overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyPointField: Field = {
   // ...
@@ -56,7 +56,7 @@ _\* An asterisk denotes that a property is required._
 ## Example
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',
@@ -136,8 +136,8 @@ payload.find({
 
 ```tsx
 import type React from 'react'
-import { PointField } from '@payloadcms/ui'
-import type { PointFieldServerComponent } from 'payload'
+import { PointField } from '@hanzo/cms-ui'
+import type { PointFieldServerComponent } from @hanzo/cms'from 
 
 export const CustomPointFieldServer: PointFieldServerComponent = ({
   clientField,
@@ -161,8 +161,8 @@ export const CustomPointFieldServer: PointFieldServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { PointField } from '@payloadcms/ui'
-import type { PointFieldClientComponent } from 'payload'
+import { PointField } from '@hanzo/cms-ui'
+import type { PointFieldClientComponent } from @hanzo/cms'from 
 
 export const CustomPointFieldClient: PointFieldClientComponent = (props) => {
   return <PointField {...props} />
@@ -175,8 +175,8 @@ export const CustomPointFieldClient: PointFieldClientComponent = (props) => {
 
 ```tsx
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { PointFieldLabelServerComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { PointFieldLabelServerComponent } from @hanzo/cms'from 
 
 export const CustomPointFieldLabelServer: PointFieldLabelServerComponent = ({
   clientField,
@@ -197,8 +197,8 @@ export const CustomPointFieldLabelServer: PointFieldLabelServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { PointFieldLabelClientComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { PointFieldLabelClientComponent } from @hanzo/cms'from 
 
 export const CustomPointFieldLabelClient: PointFieldLabelClientComponent = ({
   field,

@@ -1,4 +1,4 @@
-import type { DefaultTypedEditorState, SerializedBlockNode } from '@payloadcms/richtext-lexical'
+import type { DefaultTypedEditorState, SerializedBlockNode } from '@hanzo/cms-richtext-lexical'
 
 import { mediaCollectionSlug, textCollectionSlug } from '../../slugs.js'
 

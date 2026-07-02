@@ -1,4 +1,4 @@
-import type { I18n } from '@payloadcms/translations'
+import type { I18n } from '@hanzo/cms-translations'
 import type { JSONSchema4, JSONSchema4TypeName } from 'json-schema'
 
 import type { Auth } from '../auth/types.js'

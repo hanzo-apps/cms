@@ -1,4 +1,4 @@
-import type { FieldAffectingData } from 'payload'
+import type { FieldAffectingData } from @hanzo/cms'from 
 
 import type { RawColumn } from '../types.js'
 

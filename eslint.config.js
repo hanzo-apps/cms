@@ -1,6 +1,6 @@
-import payloadEsLintConfig from '@payloadcms/eslint-config'
-import payloadPlugin from '@payloadcms/eslint-plugin'
-import mdxTextParser from '@payloadcms/eslint-plugin/customRules/mdx-text-parser.js'
+import payloadEsLintConfig from '@hanzo/cms-eslint-config'
+import payloadPlugin from '@hanzo/cms-eslint-plugin'
+import mdxTextParser from '@hanzo/cms-eslint-plugin/customRules/mdx-text-parser.js'
 
 export const defaultESLintIgnores = [
   '**/.temp',

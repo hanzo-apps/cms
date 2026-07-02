@@ -21,7 +21,7 @@ The List View can be swapped out in its entirety for a Custom View, or it can be
 To swap out the entire List View with a [Custom View](./custom-views), use the `admin.components.views.list` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -45,7 +45,7 @@ Here is an example of a custom List View:
 
 ```tsx
 import React from 'react'
-import type { ListViewServerProps } from 'payload'
+import type { ListViewServerProps } from @hanzo/cms'from 
 
 export function MyCustomServerListView(props: ListViewServerProps) {
   return <div>This is a custom List View (Server)</div>
@@ -57,7 +57,7 @@ export function MyCustomServerListView(props: ListViewServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import type { ListViewClientProps } from 'payload'
+import type { ListViewClientProps } from @hanzo/cms'from 
 
 export function MyCustomClientListView(props: ListViewClientProps) {
   return <div>This is a custom List View (Client)</div>
@@ -115,19 +115,19 @@ Server components receive all [client props](#client-component-props-listviewcli
 <Banner type="info">
   **Note:** Custom List Views are rendered inside a `ListQueryProvider`. This
   means any Client Component in the tree can call `useListQuery()` from
-  `@payloadcms/ui` to read or update the current query state (search term, sort,
+  `@hanzo/cms-ui` to read or update the current query state (search term, sort,
   page, filters, etc.).
 </Banner>
 
 ### Using DefaultListView
 
-If you want to keep Payload's built-in table and controls but add your own layout around them, import and render `DefaultListView` from `@payloadcms/ui`:
+If you want to keep Payload's built-in table and controls but add your own layout around them, import and render `DefaultListView` from `@hanzo/cms-ui`:
 
 ```tsx
 'use client'
 import React from 'react'
-import type { ListViewClientProps } from 'payload'
-import { DefaultListView } from '@payloadcms/ui'
+import type { ListViewClientProps } from @hanzo/cms'from 
+import { DefaultListView } from '@hanzo/cms-ui'
 
 export function MyCustomClientListView(props: ListViewClientProps) {
   return (
@@ -174,7 +174,7 @@ All slot components (`beforeList`, `beforeListTable`, `afterList`, `afterListTab
 | `user`                 | The currently authenticated user.                                                     |
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -206,7 +206,7 @@ The `beforeList` property allows you to inject custom components before the list
 To add `beforeList` components, use the `components.beforeList` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -226,7 +226,7 @@ Here's an example of a custom `beforeList` component:
 
 ```tsx
 import React from 'react'
-import type { BeforeListServerProps } from 'payload'
+import type { BeforeListServerProps } from @hanzo/cms'from 
 
 export function MyBeforeListComponent(props: BeforeListServerProps) {
   return <div>This is a custom beforeList component (Server)</div>
@@ -238,7 +238,7 @@ export function MyBeforeListComponent(props: BeforeListServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import type { BeforeListClientProps } from 'payload'
+import type { BeforeListClientProps } from @hanzo/cms'from 
 
 export function MyBeforeListComponent(props: BeforeListClientProps) {
   return <div>This is a custom beforeList component (Client)</div>
@@ -252,7 +252,7 @@ The `beforeListTable` property allows you to inject custom components before the
 To add `beforeListTable` components, use the `components.beforeListTable` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -272,7 +272,7 @@ Here's an example of a custom `beforeListTable` component:
 
 ```tsx
 import React from 'react'
-import type { BeforeListTableServerProps } from 'payload'
+import type { BeforeListTableServerProps } from @hanzo/cms'from 
 
 export function MyBeforeListTableComponent(props: BeforeListTableServerProps) {
   return <div>This is a custom beforeListTable component (Server)</div>
@@ -284,7 +284,7 @@ export function MyBeforeListTableComponent(props: BeforeListTableServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import type { BeforeListTableClientProps } from 'payload'
+import type { BeforeListTableClientProps } from @hanzo/cms'from 
 
 export function MyBeforeListTableComponent(props: BeforeListTableClientProps) {
   return <div>This is a custom beforeListTable component (Client)</div>
@@ -298,7 +298,7 @@ The `afterList` property allows you to inject custom components after the list o
 To add `afterList` components, use the `components.afterList` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -318,7 +318,7 @@ Here's an example of a custom `afterList` component:
 
 ```tsx
 import React from 'react'
-import type { AfterListServerProps } from 'payload'
+import type { AfterListServerProps } from @hanzo/cms'from 
 
 export function MyAfterListComponent(props: AfterListServerProps) {
   return <div>This is a custom afterList component (Server)</div>
@@ -330,7 +330,7 @@ export function MyAfterListComponent(props: AfterListServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import type { AfterListClientProps } from 'payload'
+import type { AfterListClientProps } from @hanzo/cms'from 
 
 export function MyAfterListComponent(props: AfterListClientProps) {
   return <div>This is a custom afterList component (Client)</div>
@@ -344,7 +344,7 @@ The `afterListTable` property allows you to inject custom components after the t
 To add `afterListTable` components, use the `components.afterListTable` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -364,7 +364,7 @@ Here's an example of a custom `afterListTable` component:
 
 ```tsx
 import React from 'react'
-import type { AfterListTableServerProps } from 'payload'
+import type { AfterListTableServerProps } from @hanzo/cms'from 
 
 export function MyAfterListTableComponent(props: AfterListTableServerProps) {
   return <div>This is a custom afterListTable component (Server)</div>
@@ -376,7 +376,7 @@ export function MyAfterListTableComponent(props: AfterListTableServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import type { AfterListTableClientProps } from 'payload'
+import type { AfterListTableClientProps } from @hanzo/cms'from 
 
 export function MyAfterListTableComponent(props: AfterListTableClientProps) {
   return <div>This is a custom afterListTable component (Client)</div>
@@ -390,7 +390,7 @@ The `Description` property allows you to render a custom description of the Coll
 To add a `Description` component, use the `components.Description` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -415,7 +415,7 @@ Here's an example of a custom `Description` component:
 
 ```tsx
 import React from 'react'
-import type { ViewDescriptionServerProps } from 'payload'
+import type { ViewDescriptionServerProps } from @hanzo/cms'from 
 
 export function MyDescriptionComponent(props: ViewDescriptionServerProps) {
   return <div>This is a custom Collection description component (Server)</div>
@@ -427,7 +427,7 @@ export function MyDescriptionComponent(props: ViewDescriptionServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import type { ViewDescriptionClientProps } from 'payload'
+import type { ViewDescriptionClientProps } from @hanzo/cms'from 
 
 export function MyDescriptionComponent(props: ViewDescriptionClientProps) {
   return <div>This is a custom Collection description component (Client)</div>

@@ -1,4 +1,4 @@
-import type { WidgetWidth } from 'payload'
+import type { WidgetWidth } from @hanzo/cms'from 
 
 import { arrayMove } from '@dnd-kit/sortable'
 import {
@@ -9,8 +9,8 @@ import {
   usePreferences,
   useServerFunctions,
   useTranslation,
-} from '@payloadcms/ui'
-import { PREFERENCE_KEYS } from 'payload/shared'
+} from '@hanzo/cms-ui'
+import { PREFERENCE_KEYS } from @hanzo/cms'from 
 import React, { useCallback, useEffect, useState } from 'react'
 
 import type { WidgetInstanceClient, WidgetItem } from './index.client.js'

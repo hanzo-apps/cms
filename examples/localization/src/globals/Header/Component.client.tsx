@@ -17,7 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { TypedLocale } from 'payload'
+import { TypedLocale } from @hanzo/cms'from 
 import { usePathname, useRouter } from '@/i18n/routing'
 
 interface HeaderClientProps {

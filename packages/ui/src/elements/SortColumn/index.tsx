@@ -1,5 +1,5 @@
 'use client'
-import type { StaticLabel } from 'payload'
+import type { StaticLabel } from @hanzo/cms'from 
 
 import React from 'react'
 

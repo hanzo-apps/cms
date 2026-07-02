@@ -1,7 +1,7 @@
 'use client'
-import type { CheckboxFieldClientComponent } from 'payload'
+import type { CheckboxFieldClientComponent } from @hanzo/cms'from 
 
-import { CheckboxField } from '@payloadcms/ui'
+import { CheckboxField } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomCheckboxFieldClient: CheckboxFieldClientComponent = (props) => {

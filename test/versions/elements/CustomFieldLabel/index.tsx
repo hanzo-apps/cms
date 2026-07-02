@@ -1,5 +1,5 @@
 'use client'
-import { useDocumentInfo } from '@payloadcms/ui'
+import { useDocumentInfo } from '@hanzo/cms-ui'
 
 export const CustomFieldLabel = () => {
   const { data } = useDocumentInfo()

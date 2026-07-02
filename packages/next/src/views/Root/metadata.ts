@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import type { SanitizedConfig } from 'payload'
+import type { SanitizedConfig } from @hanzo/cms'from 
 
 import { getNextRequestI18n } from '../../utilities/getNextRequestI18n.js'
 import { generateAccountViewMetadata } from '../Account/metadata.js'

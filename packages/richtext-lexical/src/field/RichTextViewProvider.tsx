@@ -1,5 +1,5 @@
 'use client'
-import { useControllableState } from '@payloadcms/ui'
+import { useControllableState } from '@hanzo/cms-ui'
 import React, { createContext, use, useMemo } from 'react'
 
 import type { LexicalEditorNodeMap, LexicalEditorViewMap } from '../types.js'

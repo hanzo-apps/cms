@@ -1,4 +1,4 @@
-import type { FlattenedField, Where } from 'payload'
+import type { FlattenedField, Where } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from '../index.js'
 

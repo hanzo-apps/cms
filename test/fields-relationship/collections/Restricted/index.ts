@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import { baseRelationshipFields } from '../../baseFields.js'
 import { relationRestrictedSlug } from '../../slugs.js'

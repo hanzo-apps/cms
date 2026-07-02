@@ -1,6 +1,6 @@
-import type { TFunction } from '@payloadcms/translations'
+import type { TFunction } from '@hanzo/cms-translations'
 
-import { en } from '@payloadcms/translations/languages/en'
+import { en } from '@hanzo/cms-translations/languages/en'
 import { status as httpStatus } from 'http-status'
 
 import type { LabelFunction, StaticLabel } from '../config/types.js'

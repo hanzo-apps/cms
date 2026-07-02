@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 import { customTabAdminDescription, slugPluralLabel, slugSingularLabel } from '../shared.js'
 import { postsCollectionSlug, uploadCollectionSlug } from '../slugs.js'

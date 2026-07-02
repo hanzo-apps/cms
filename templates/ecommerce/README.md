@@ -36,10 +36,10 @@ To spin up this example locally, follow these steps:
 
 If you have not done so already, you need to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
 
-Use the `create-payload-app` CLI to clone this template directly to your machine:
+Use the `@hanzo/create-cms-app` CLI to clone this template directly to your machine:
 
 ```bash
-pnpx create-payload-app my-project -t ecommerce
+pnpx @hanzo/create-cms-app my-project -t ecommerce
 ```
 
 ### Development
@@ -259,7 +259,7 @@ Core features:
 
 ### Cache
 
-Although Next.js includes a robust set of caching strategies out of the box, Payload Cloud proxies and caches all files through Cloudflare using the [Official Cloud Plugin](https://www.npmjs.com/package/@payloadcms/payload-cloud). This means that Next.js caching is not needed and is disabled by default. If you are hosting your app outside of Payload Cloud, you can easily reenable the Next.js caching mechanisms by removing the `no-store` directive from all fetch requests in `./src/app/_api` and then removing all instances of `export const dynamic = 'force-dynamic'` from pages files, such as `./src/app/(pages)/[slug]/page.tsx`. For more details, see the official [Next.js Caching Docs](https://nextjs.org/docs/app/building-your-application/caching).
+Although Next.js includes a robust set of caching strategies out of the box, Payload Cloud proxies and caches all files through Cloudflare using the [Official Cloud Plugin](https://www.npmjs.com/package/@hanzo/cms-payload-cloud). This means that Next.js caching is not needed and is disabled by default. If you are hosting your app outside of Payload Cloud, you can easily reenable the Next.js caching mechanisms by removing the `no-store` directive from all fetch requests in `./src/app/_api` and then removing all instances of `export const dynamic = 'force-dynamic'` from pages files, such as `./src/app/(pages)/[slug]/page.tsx`. For more details, see the official [Next.js Caching Docs](https://nextjs.org/docs/app/building-your-application/caching).
 
 ## Development
 
@@ -332,12 +332,12 @@ To run Payload in production, you need to build and start the Admin panel. To do
 This template can also be deployed to Vercel for free. You can get started by choosing the Vercel DB adapter during the setup of the template or by manually installing and configuring it:
 
 ```bash
-pnpm add @payloadcms/db-vercel-postgres
+pnpm add @hanzo/cms-db-vercel-postgres
 ```
 
 ```ts
 // payload.config.ts
-import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
+import { vercelPostgresAdapter } from '@hanzo/cms-db-vercel-postgres'
 
 export default buildConfig({
   // ...
@@ -352,12 +352,12 @@ export default buildConfig({
 We also support Vercel's blob storage:
 
 ```bash
-pnpm add @payloadcms/storage-vercel-blob
+pnpm add @hanzo/cms-storage-vercel-blob
 ```
 
 ```ts
 // payload.config.ts
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { vercelBlobStorage } from '@hanzo/cms-storage-vercel-blob'
 
 export default buildConfig({
   // ...

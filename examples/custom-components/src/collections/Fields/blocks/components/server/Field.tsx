@@ -1,7 +1,7 @@
-import type { BlocksFieldServerComponent } from 'payload'
+import type { BlocksFieldServerComponent } from @hanzo/cms'from 
 import type React from 'react'
 
-import { BlocksField } from '@payloadcms/ui'
+import { BlocksField } from '@hanzo/cms-ui'
 
 export const CustomBlocksFieldServer: BlocksFieldServerComponent = ({
   clientField,

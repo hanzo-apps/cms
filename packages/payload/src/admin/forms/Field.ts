@@ -1,4 +1,4 @@
-import type { I18nClient } from '@payloadcms/translations'
+import type { I18nClient } from '@hanzo/cms-translations'
 import type { MarkOptional } from 'ts-essentials'
 
 import type { SanitizedFieldPermissions } from '../../auth/types.js'

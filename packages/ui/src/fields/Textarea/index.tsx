@@ -1,7 +1,7 @@
 'use client'
-import type { TextareaFieldClientComponent, TextareaFieldValidation } from 'payload'
+import type { TextareaFieldClientComponent, TextareaFieldValidation } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React, { useCallback, useMemo } from 'react'
 
 import type { TextAreaInputProps } from './types.js'

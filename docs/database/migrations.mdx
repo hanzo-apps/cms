@@ -37,7 +37,7 @@ all changes that you attempt to make within the migration, and the `down` should
 Here is an example migration file:
 
 ```ts
-import { MigrateUpArgs, MigrateDownArgs } from '@payloadcms/your-db-adapter'
+import { MigrateUpArgs, MigrateDownArgs } from '@hanzo/cms-your-db-adapter'
 
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   // Perform changes to your database here.
@@ -65,7 +65,7 @@ Additionally, you can bypass Payload's layer entirely and perform operations dir
 ### MongoDB:
 
 ```ts
-import { type MigrateUpArgs } from '@payloadcms/db-mongodb'
+import { type MigrateUpArgs } from '@hanzo/cms-db-mongodb'
 
 export async function up({
   session,
@@ -81,7 +81,7 @@ export async function up({
 ### Postgres:
 
 ```ts
-import { type MigrateUpArgs, sql } from '@payloadcms/db-postgres'
+import { type MigrateUpArgs, sql } from '@hanzo/cms-db-postgres'
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   const { rows: posts } = await db.execute(sql`SELECT * from posts`)
@@ -93,7 +93,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
 In SQLite, transactions are disabled by default. [More](./transactions).
 
 ```ts
-import { type MigrateUpArgs, sql } from '@payloadcms/db-sqlite'
+import { type MigrateUpArgs, sql } from '@hanzo/cms-db-sqlite'
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   const { rows: posts } = await db.run(sql`SELECT * from posts`)
@@ -280,7 +280,7 @@ In order to run migrations at runtime, on initialization, you can pass your migr
 // Import your migrations from the `index.ts` file
 // that Payload generates for you
 import { migrations } from './migrations'
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // your config here

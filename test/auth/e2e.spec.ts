@@ -3,7 +3,7 @@ import type { BrowserContext, Page } from '@playwright/test'
 import { expect, test } from '@playwright/test'
 import { devUser } from 'credentials.js'
 import path from 'path'
-import { formatAdminURL, wait } from 'payload/shared'
+import { formatAdminURL, wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { v4 as uuid } from 'uuid'
 

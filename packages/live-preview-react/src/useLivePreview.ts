@@ -1,7 +1,7 @@
 'use client'
-import type { CollectionPopulationRequestHandler } from '@payloadcms/live-preview'
+import type { CollectionPopulationRequestHandler } from '@hanzo/cms-live-preview'
 
-import { ready, subscribe, unsubscribe } from '@payloadcms/live-preview'
+import { ready, subscribe, unsubscribe } from '@hanzo/cms-live-preview'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 /**

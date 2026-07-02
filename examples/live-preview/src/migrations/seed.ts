@@ -1,7 +1,7 @@
-import type { MigrateUpArgs } from '@payloadcms/db-mongodb'
+import type { MigrateUpArgs } from '@hanzo/cms-db-mongodb'
 
 import type { Page } from '../payload-types'
-import { DefaultDocumentIDType } from 'payload'
+import { DefaultDocumentIDType } from @hanzo/cms'from 
 
 export const home = (id: DefaultDocumentIDType): Partial<Page> => ({
   slug: 'home',

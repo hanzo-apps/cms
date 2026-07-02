@@ -1,7 +1,7 @@
 'use client'
-import type { OptionObject, RadioFieldClientProps } from 'payload'
+import type { OptionObject, RadioFieldClientProps } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'
 
 import { useEditDepth } from '../../../providers/EditDepth/index.js'

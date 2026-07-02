@@ -1,4 +1,4 @@
-import type { CollectionConfig, Field } from 'payload'
+import type { CollectionConfig, Field } from @hanzo/cms'from 
 
 import type { AccessConfig, CountryType } from '../../types/index.js'
 

@@ -18,7 +18,7 @@ import type {
   TextareaField,
   TextField,
   UploadField,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import { GraphQLEnumType, GraphQLInputObjectType } from 'graphql'
 

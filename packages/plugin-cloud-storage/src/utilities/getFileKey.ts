@@ -1,5 +1,5 @@
 import path from 'path'
-import { sanitizeFilename } from 'payload/shared'
+import { sanitizeFilename } from @hanzo/cms'from 
 
 import { sanitizePrefix } from './sanitizePrefix.js'
 

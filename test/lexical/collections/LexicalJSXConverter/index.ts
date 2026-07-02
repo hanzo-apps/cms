@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { DebugJsxConverterFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import { DebugJsxConverterFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 import { lexicalJSXConverterSlug } from '../../slugs.js'
 

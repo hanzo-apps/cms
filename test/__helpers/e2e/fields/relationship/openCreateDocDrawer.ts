@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test'
 
 import { expect } from '@playwright/test'
-import { wait } from 'payload/shared'
+import { wait } from @hanzo/cms'from 
 
 export async function openCreateDocDrawer({
   page,

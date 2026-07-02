@@ -1,6 +1,6 @@
-import type { AdminViewServerProps } from 'payload'
+import type { AdminViewServerProps } from @hanzo/cms'from 
 
-import { Button } from '@payloadcms/ui'
+import { Button } from '@hanzo/cms-ui'
 import LinkImport from 'next/link.js'
 import React from 'react'
 

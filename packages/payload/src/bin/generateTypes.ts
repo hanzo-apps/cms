@@ -1,6 +1,6 @@
-import type { AcceptedLanguages } from '@payloadcms/translations'
+import type { AcceptedLanguages } from '@hanzo/cms-translations'
 
-import { initI18n } from '@payloadcms/translations'
+import { initI18n } from '@hanzo/cms-translations'
 import fs from 'fs/promises'
 import { compile } from 'json-schema-to-typescript'
 

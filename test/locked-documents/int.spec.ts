@@ -1,9 +1,9 @@
-import type { Payload, SanitizedCollectionConfig, SanitizedGlobalConfig } from 'payload'
+import type { Payload, SanitizedCollectionConfig, SanitizedGlobalConfig } from @hanzo/cms'from 
 import { describe, beforeAll, afterAll, afterEach, it, expect } from 'vitest'
 
 import path from 'path'
-import { Locked, NotFound } from 'payload'
-import { wait } from 'payload/shared'
+import { Locked, NotFound } from @hanzo/cms'from 
+import { wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { Post, User } from './payload-types.js'

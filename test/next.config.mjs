@@ -1,6 +1,6 @@
 import bundleAnalyzer from '@next/bundle-analyzer'
 
-import { withPayload } from '@payloadcms/next/withPayload'
+import { withPayload } from '@hanzo/cms-next/withPayload'
 import path from 'path'
 import { fileURLToPath } from 'url'
 

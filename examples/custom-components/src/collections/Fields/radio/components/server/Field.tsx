@@ -1,7 +1,7 @@
-import type { RadioFieldServerComponent } from 'payload'
+import type { RadioFieldServerComponent } from @hanzo/cms'from 
 import type React from 'react'
 
-import { RadioGroupField } from '@payloadcms/ui'
+import { RadioGroupField } from '@hanzo/cms-ui'
 
 export const CustomRadioFieldServer: RadioFieldServerComponent = ({
   clientField,

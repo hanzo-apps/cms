@@ -1,4 +1,4 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 import type { SuiteAPI } from 'vitest'
 
 import * as AWS from '@aws-sdk/client-s3'
@@ -31,7 +31,7 @@ function describeIfInCIOrHasLocalstack(): SuiteAPI | SuiteAPI['skip'] {
   return describe
 }
 
-describe('@payloadcms/plugin-cloud-storage (composite prefixes)', () => {
+describe('@hanzo/cms-plugin-cloud-storage (composite prefixes)', () => {
   let payload: Payload
   let TEST_BUCKET: string
 

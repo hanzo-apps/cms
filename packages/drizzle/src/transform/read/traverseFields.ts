@@ -1,6 +1,6 @@
-import type { FlattenedBlock, FlattenedField, JoinQuery, SanitizedConfig } from 'payload'
+import type { FlattenedBlock, FlattenedField, JoinQuery, SanitizedConfig } from @hanzo/cms'from 
 
-import { fieldIsVirtual, fieldShouldBeLocalized } from 'payload/shared'
+import { fieldIsVirtual, fieldShouldBeLocalized } from @hanzo/cms'from 
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from '../../types.js'

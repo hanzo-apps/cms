@@ -6,11 +6,11 @@ import type {
   Locator,
   Page,
 } from '@playwright/test'
-import type { Config, SanitizedConfig } from 'payload'
+import type { Config, SanitizedConfig } from @hanzo/cms'from 
 
 import { expect } from '@playwright/test'
-import { defaults } from 'payload'
-import { formatAdminURL, wait } from 'payload/shared'
+import { defaults } from @hanzo/cms'from 
+import { formatAdminURL, wait } from @hanzo/cms'from 
 import { setTimeout } from 'timers/promises'
 
 import { POLL_TOPASS_TIMEOUT } from '../../playwright.config.js'

@@ -1,4 +1,4 @@
-import { APIError } from 'payload'
+import { APIError } from @hanzo/cms'from 
 
 export const subscriptionCreatedOrUpdated = async (args) => {
   const {

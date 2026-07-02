@@ -26,7 +26,7 @@ import type {
   MigrationData,
   Payload,
   PayloadRequest,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import type { BuildQueryJoinAliases } from './queries/buildQuery.js'
 

@@ -1,7 +1,7 @@
-import type { PayloadRequest } from 'payload'
+import type { PayloadRequest } from @hanzo/cms'from 
 import type { UTApi } from 'uploadthing/server'
 
-import { APIError } from 'payload'
+import { APIError } from @hanzo/cms'from 
 
 import { getKeyFromFilename } from './utilities.js'
 

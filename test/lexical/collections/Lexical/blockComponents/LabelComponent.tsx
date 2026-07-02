@@ -1,8 +1,8 @@
 'use client'
 
-import type { LexicalBlockLabelClientProps } from '@payloadcms/richtext-lexical'
+import type { LexicalBlockLabelClientProps } from '@hanzo/cms-richtext-lexical'
 
-import { useFormFields } from '@payloadcms/ui'
+import { useFormFields } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const LabelComponent: React.FC<LexicalBlockLabelClientProps> = () => {

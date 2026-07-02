@@ -1,6 +1,6 @@
 'use client'
 import { dequal } from 'dequal/lite' // lite: no need for Map and Set support
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import React, { createContext, use, useCallback, useEffect, useRef } from 'react'
 
 import type { Preferences } from '../../forms/Form/types.js'

@@ -4,7 +4,7 @@ import { uploadName } from './shared.js'
 
 export const upload: RichTextCustomElement = {
   name: uploadName,
-  Button: '@payloadcms/richtext-slate/client#UploadElementButton',
-  Element: '@payloadcms/richtext-slate/client#UploadElement',
-  plugins: ['@payloadcms/richtext-slate/client#WithUpload'],
+  Button: '@hanzo/cms-richtext-slate/client#UploadElementButton',
+  Element: '@hanzo/cms-richtext-slate/client#UploadElement',
+  plugins: ['@hanzo/cms-richtext-slate/client#WithUpload'],
 }

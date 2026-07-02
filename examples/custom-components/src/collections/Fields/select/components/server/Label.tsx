@@ -1,6 +1,6 @@
-import type { SelectFieldLabelServerComponent } from 'payload'
+import type { SelectFieldLabelServerComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomSelectFieldLabelServer: SelectFieldLabelServerComponent = ({

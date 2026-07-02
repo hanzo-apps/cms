@@ -36,4 +36,4 @@ export { traverseForLocalizedFields } from '../../utilities/traverseForLocalized
  * The `mergeListSearchAndWhere` function is deprecated.
  * Import this from `payload/shared` instead.
  */
-export { mergeListSearchAndWhere } from 'payload/shared'
+export { mergeListSearchAndWhere } from @hanzo/cms'from 

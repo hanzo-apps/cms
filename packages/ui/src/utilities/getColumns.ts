@@ -1,12 +1,12 @@
-import type { I18nClient } from '@payloadcms/translations'
+import type { I18nClient } from '@hanzo/cms-translations'
 import type {
   ClientCollectionConfig,
   ClientConfig,
   ColumnPreference,
   SanitizedPermissions,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { fieldAffectsData, flattenTopLevelFields } from 'payload/shared'
+import { fieldAffectsData, flattenTopLevelFields } from @hanzo/cms'from 
 
 import { filterFieldsWithPermissions } from '../providers/TableColumns/buildColumnState/filterFieldsWithPermissions.js'
 import { getInitialColumns } from '../providers/TableColumns/getInitialColumns.js'

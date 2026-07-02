@@ -18,7 +18,7 @@ The Select Field provides a dropdown-style interface for choosing options from a
 To add a Select Field, set the `type` to `select` in your [Field Config](./overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MySelectField: Field = {
   // ...
@@ -85,7 +85,7 @@ The result of `filterOptions` will determine:
 To do this, use the `filterOptions` property in your [Field Config](./overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MySelectField: Field = {
   // ...
@@ -128,7 +128,7 @@ export const MySelectField: Field = {
 To customize the appearance and behavior of the Select Field in the [Admin Panel](../admin/overview), you can use the `admin` option:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MySelectField: Field = {
   // ...
@@ -150,7 +150,7 @@ The Select Field inherits all of the default admin options from the base [Field 
 ## Example
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',
@@ -189,10 +189,10 @@ export const ExampleCollection: CollectionConfig = {
 #### Server Component
 
 ```tsx
-import type { SelectFieldServerComponent } from 'payload'
+import type { SelectFieldServerComponent } from @hanzo/cms'from 
 import type React from 'react'
 
-import { SelectField } from '@payloadcms/ui'
+import { SelectField } from '@hanzo/cms-ui'
 
 export const CustomSelectFieldServer: SelectFieldServerComponent = ({
   clientField,
@@ -215,9 +215,9 @@ export const CustomSelectFieldServer: SelectFieldServerComponent = ({
 
 ```tsx
 'use client'
-import type { SelectFieldClientComponent } from 'payload'
+import type { SelectFieldClientComponent } from @hanzo/cms'from 
 
-import { SelectField } from '@payloadcms/ui'
+import { SelectField } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomSelectFieldClient: SelectFieldClientComponent = (props) => {
@@ -231,8 +231,8 @@ export const CustomSelectFieldClient: SelectFieldClientComponent = (props) => {
 
 ```tsx
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { SelectFieldLabelServerComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { SelectFieldLabelServerComponent } from @hanzo/cms'from 
 
 export const CustomSelectFieldLabelServer: SelectFieldLabelServerComponent = ({
   clientField,
@@ -253,8 +253,8 @@ export const CustomSelectFieldLabelServer: SelectFieldLabelServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { SelectFieldLabelClientComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { SelectFieldLabelClientComponent } from @hanzo/cms'from 
 
 export const CustomSelectFieldLabelClient: SelectFieldLabelClientComponent = ({
   field,

@@ -1,7 +1,7 @@
 'use client'
-import { useCurrency } from '@payloadcms/plugin-ecommerce/react'
+import { useCurrency } from '@hanzo/cms-plugin-ecommerce/react'
 import React from 'react'
-import { CurrenciesConfig } from '@payloadcms/plugin-ecommerce/types'
+import { CurrenciesConfig } from '@hanzo/cms-plugin-ecommerce/types'
 
 type Props = {
   currenciesConfig: CurrenciesConfig

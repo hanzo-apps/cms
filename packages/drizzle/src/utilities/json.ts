@@ -1,7 +1,7 @@
 import type { Column, SQL } from 'drizzle-orm'
 
 import { sql } from 'drizzle-orm'
-import { APIError } from 'payload'
+import { APIError } from @hanzo/cms'from 
 
 import type { DrizzleAdapter } from '../types.js'
 

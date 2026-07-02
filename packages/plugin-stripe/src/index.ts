@@ -1,4 +1,4 @@
-import type { Config, Endpoint } from 'payload'
+import type { Config, Endpoint } from @hanzo/cms'from 
 
 import type { SanitizedStripePluginConfig, StripePluginConfig } from './types.js'
 

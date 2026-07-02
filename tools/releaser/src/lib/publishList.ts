@@ -16,7 +16,7 @@ export const packagePublishList = [
   'richtext-slate',
   'richtext-lexical',
 
-  'create-payload-app',
+  '@hanzo/create-cms-app',
 
   // DB Adapters
   'drizzle',

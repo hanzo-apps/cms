@@ -1,4 +1,4 @@
-import type { SanitizedConfig } from 'payload'
+import type { SanitizedConfig } from @hanzo/cms'from 
 
 import { describe, expect, it } from 'vitest'
 

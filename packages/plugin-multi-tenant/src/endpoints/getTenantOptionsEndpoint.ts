@@ -1,6 +1,6 @@
-import type { Endpoint } from 'payload'
+import type { Endpoint } from @hanzo/cms'from 
 
-import { APIError } from 'payload'
+import { APIError } from @hanzo/cms'from 
 
 import type { MultiTenantPluginConfig } from '../types.js'
 

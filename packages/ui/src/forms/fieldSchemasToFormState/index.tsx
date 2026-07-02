@@ -11,7 +11,7 @@ import type {
   SanitizedFieldsPermissions,
   SelectMode,
   SelectType,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import type { RenderFieldMethod } from './types.js'
 

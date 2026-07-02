@@ -1,6 +1,6 @@
-import type { Collection, Field, PayloadRequest, RichTextField, SelectType } from 'payload'
+import type { Collection, Field, PayloadRequest, RichTextField, SelectType } from @hanzo/cms'from 
 
-import { createDataloaderCacheKey } from 'payload'
+import { createDataloaderCacheKey } from @hanzo/cms'from 
 
 import type { AdapterArguments } from '../types.js'
 

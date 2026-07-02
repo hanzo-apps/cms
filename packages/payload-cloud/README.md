@@ -18,11 +18,11 @@ Payload Cloud provides a caching for all upload collections by default through C
 
 Add the plugin to your Payload config
 
-`yarn add @payloadcms/payload-cloud`
+`yarn add @hanzo/cms-payload-cloud`
 
 ```ts
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { buildConfig } from 'payload'
+import { payloadCloudPlugin } from '@hanzo/cms-payload-cloud'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   plugins: [payloadCloudPlugin()],

@@ -1,7 +1,7 @@
-import type { Config } from 'payload'
+import type { Config } from @hanzo/cms'from 
 
-import { multiTenantPlugin } from '@payloadcms/plugin-multi-tenant'
-import { getTenantFromCookie } from '@payloadcms/plugin-multi-tenant/utilities'
+import { multiTenantPlugin } from '@hanzo/cms-plugin-multi-tenant'
+import { getTenantFromCookie } from '@hanzo/cms-plugin-multi-tenant/utilities'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)

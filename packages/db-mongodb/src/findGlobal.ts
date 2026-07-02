@@ -1,7 +1,7 @@
 import type { QueryOptions } from 'mongoose'
-import type { FindGlobal } from 'payload'
+import type { FindGlobal } from @hanzo/cms'from 
 
-import { combineQueries } from 'payload'
+import { combineQueries } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from './index.js'
 

@@ -33,17 +33,17 @@
     "@tools/releaser": "workspace:*",
     "chalk": "^4.1.2",
     "changelogen": "^0.6.2",
-    "create-payload-app": "workspace:*",
+    "@hanzo/create-cms-app": "workspace:*",
     "csv-stringify": "^6.5.2",
     "license-checker": "25.0.1",
     "open": "^10.1.0",
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "devDependencies": {
-    "@payloadcms/plugin-ecommerce": "workspace:*",
-    "@payloadcms/plugin-import-export": "workspace:*",
-    "@payloadcms/plugin-multi-tenant": "workspace:*",
-    "@payloadcms/richtext-lexical": "workspace:*",
-    "@payloadcms/translations": "workspace:*"
+    "@hanzo/cms-plugin-ecommerce": "workspace:*",
+    "@hanzo/cms-plugin-import-export": "workspace:*",
+    "@hanzo/cms-plugin-multi-tenant": "workspace:*",
+    "@hanzo/cms-richtext-lexical": "workspace:*",
+    "@hanzo/cms-translations": "workspace:*"
   }
 }

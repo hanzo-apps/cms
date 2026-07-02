@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/ui",
+  "name": "@hanzo/cms-ui",
   "version": "3.85.2",
   "homepage": "https://payloadcms.com",
   "repository": {
@@ -145,7 +145,7 @@
     "@faceless-ui/scroll-info": "2.0.0",
     "@faceless-ui/window-info": "3.0.1",
     "@monaco-editor/react": "4.7.0",
-    "@payloadcms/translations": "workspace:*",
+    "@hanzo/cms-translations": "workspace:*",
     "bson-objectid": "2.0.4",
     "date-fns": "4.1.0",
     "dequal": "2.0.3",
@@ -168,17 +168,17 @@
     "@babel/preset-react": "7.27.1",
     "@babel/preset-typescript": "7.27.1",
     "@hyrious/esbuild-plugin-commonjs": "0.2.6",
-    "@payloadcms/eslint-config": "workspace:*",
+    "@hanzo/cms-eslint-config": "workspace:*",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "babel-plugin-react-compiler": "19.1.0-rc.3",
     "esbuild": "0.27.1",
     "esbuild-sass-plugin": "3.3.1",
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
     "next": ">=15.2.9 <15.3.0 || >=15.3.9 <15.4.0 || >=15.4.11 <15.5.0 || >=16.2.6 <17.0.0",
-    "payload": "workspace:*",
+    "@hanzo/cms": "workspace:*",
     "react": "^19.0.1 || ^19.1.2 || ^19.2.1",
     "react-dom": "^19.0.1 || ^19.1.2 || ^19.2.1"
   },

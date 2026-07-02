@@ -1,4 +1,4 @@
-import { buildDefaultEditorState, buildEditorState } from '@payloadcms/richtext-lexical'
+import { buildDefaultEditorState, buildEditorState } from '@hanzo/cms-richtext-lexical'
 import { expect, test } from '@playwright/test'
 import path from 'path'
 import { fileURLToPath } from 'url'

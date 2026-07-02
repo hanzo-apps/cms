@@ -21,8 +21,8 @@ import {
   type AnyPgColumn,
   jsonb,
   pgEnum,
-} from '@payloadcms/db-postgres/drizzle/pg-core'
-import { sql, relations } from '@payloadcms/db-postgres/drizzle'
+} from '@hanzo/cms-db-postgres/drizzle/pg-core'
+import { sql, relations } from '@hanzo/cms-db-postgres/drizzle'
 export const enum__locales = pgEnum('enum__locales', ['en', 'de'])
 export const enum_movie_reviews_visibility = pgEnum('enum_movie_reviews_visibility', [
   'followers',
@@ -1432,7 +1432,7 @@ type DatabaseSchema = {
   relations_payload_migrations: typeof relations_payload_migrations
 }
 
-declare module '@payloadcms/db-postgres/types' {
+declare module '@hanzo/cms-db-postgres/types' {
   export interface GeneratedDatabaseSchema {
     schema: DatabaseSchema
   }

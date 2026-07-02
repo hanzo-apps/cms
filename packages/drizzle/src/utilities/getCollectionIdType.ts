@@ -1,4 +1,4 @@
-import type { Collection } from 'payload'
+import type { Collection } from @hanzo/cms'from 
 
 import type { DrizzleAdapter } from '../types.js'
 

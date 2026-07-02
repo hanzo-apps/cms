@@ -1,4 +1,4 @@
-import type { AcceptedLanguages } from '@payloadcms/translations'
+import type { AcceptedLanguages } from '@hanzo/cms-translations'
 import type {
   AccessArgs,
   AccessResult,
@@ -9,7 +9,7 @@ import type {
   RelationshipField,
   SingleRelationshipField,
   TypedUser,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export type MultiTenantPluginConfig<ConfigTypes = unknown> = {
   /**

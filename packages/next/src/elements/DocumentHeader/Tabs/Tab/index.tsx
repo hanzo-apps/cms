@@ -5,10 +5,10 @@ import type {
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
   SanitizedPermissions,
-} from 'payload'
+} from @hanzo/cms'from 
 import type React from 'react'
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import { Fragment } from 'react'
 
 import { DocumentTabLink } from './TabLink.js'

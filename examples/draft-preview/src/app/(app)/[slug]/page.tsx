@@ -1,6 +1,6 @@
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import React, { cache, Fragment } from 'react'
 
 import type { Page as PageType } from '@payload-types'

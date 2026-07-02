@@ -6,14 +6,14 @@ import React from 'react'
 const Link = 'default' in LinkImport ? LinkImport.default : LinkImport
 
 // In your projects, you can import as follows:
-// import { MinimalTemplate } from 'payload/components/templates';
-// import { Button } from 'payload/components/elements';
-// import { useConfig } from 'payload/components/utilities';
+// import { MinimalTemplate } from @hanzo/cms'from ;
+// import { Button } from @hanzo/cms'from ;
+// import { useConfig } from @hanzo/cms'from ;
 
-import type { AdminViewServerProps } from 'payload'
+import type { AdminViewServerProps } from @hanzo/cms'from 
 
-import { MinimalTemplate } from '@payloadcms/next/templates'
-import { Button } from '@payloadcms/ui'
+import { MinimalTemplate } from '@hanzo/cms-next/templates'
+import { Button } from '@hanzo/cms-ui'
 
 import { customViewPath } from '../../../shared.js'
 import './index.scss'

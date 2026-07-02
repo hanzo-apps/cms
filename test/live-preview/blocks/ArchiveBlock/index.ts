@@ -1,6 +1,6 @@
-import type { Block } from 'payload'
+import type { Block } from @hanzo/cms'from 
 
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 export const Archive: Block = {
   slug: 'archive',

@@ -1,5 +1,5 @@
 'use client'
-import { Button, useUploadControls } from '@payloadcms/ui'
+import { Button, useUploadControls } from '@hanzo/cms-ui'
 import React, { useCallback } from 'react'
 
 export const UploadControl = () => {

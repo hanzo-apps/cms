@@ -1,7 +1,7 @@
 'use client'
-import type { TextFieldLabelClientComponent } from 'payload'
+import type { TextFieldLabelClientComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomTextFieldLabelClient: TextFieldLabelClientComponent = ({ field, path }) => {

@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/plugin-mcp",
+  "name": "@hanzo/cms-plugin-mcp",
   "version": "3.85.2",
   "description": "MCP (Model Context Protocol) capabilities with Payload",
   "keywords": [
@@ -55,11 +55,11 @@
     "zod": "^3.25.50"
   },
   "devDependencies": {
-    "@payloadcms/eslint-config": "workspace:*",
-    "payload": "workspace:*"
+    "@hanzo/cms-eslint-config": "workspace:*",
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "publishConfig": {
     "exports": {

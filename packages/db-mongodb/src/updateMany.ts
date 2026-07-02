@@ -1,6 +1,6 @@
 import type { QueryOptions, UpdateQuery } from 'mongoose'
 
-import { flattenWhereToOperators, type UpdateMany } from 'payload'
+import { flattenWhereToOperators, type UpdateMany } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from './index.js'
 

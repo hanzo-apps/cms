@@ -1,4 +1,4 @@
-import type { PayloadRequest, VisibleEntities } from 'payload'
+import type { PayloadRequest, VisibleEntities } from @hanzo/cms'from 
 
 type Hidden = ((args: { user: unknown }) => boolean) | boolean
 

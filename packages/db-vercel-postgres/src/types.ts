@@ -5,8 +5,8 @@ import type {
   MigrateUpArgs,
   PostgresDB,
   PostgresSchemaHook,
-} from '@payloadcms/drizzle/postgres'
-import type { DrizzleAdapter } from '@payloadcms/drizzle/types'
+} from '@hanzo/cms-drizzle/postgres'
+import type { DrizzleAdapter } from '@hanzo/cms-drizzle/types'
 import type { VercelPool, VercelPostgresPoolConfig } from '@vercel/postgres'
 import type { DrizzleConfig } from 'drizzle-orm'
 import type { NodePgDatabase } from 'drizzle-orm/node-postgres'

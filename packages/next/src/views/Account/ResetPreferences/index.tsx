@@ -1,5 +1,5 @@
 'use client'
-import type { TypedUser } from 'payload'
+import type { TypedUser } from @hanzo/cms'from 
 
 import {
   Button,
@@ -8,8 +8,8 @@ import {
   useConfig,
   useModal,
   useTranslation,
-} from '@payloadcms/ui'
-import { formatAdminURL } from 'payload/shared'
+} from '@hanzo/cms-ui'
+import { formatAdminURL } from @hanzo/cms'from 
 import * as qs from 'qs-esm'
 import { Fragment, useCallback } from 'react'
 

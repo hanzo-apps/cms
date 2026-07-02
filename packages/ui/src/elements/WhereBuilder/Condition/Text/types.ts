@@ -1,4 +1,4 @@
-import type { TextFieldClient } from 'payload'
+import type { TextFieldClient } from @hanzo/cms'from 
 
 import type { DefaultFilterProps } from '../types.js'
 

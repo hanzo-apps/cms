@@ -1,4 +1,4 @@
-import type { CollectionBeforeChangeHook, FieldAccess } from 'payload'
+import type { CollectionBeforeChangeHook, FieldAccess } from @hanzo/cms'from 
 
 interface Props {
   isCustomer?: FieldAccess

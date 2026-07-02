@@ -1,8 +1,8 @@
-import type { AfterErrorHook, AfterErrorHookArgs, Config, PayloadRequest } from 'payload'
+import type { AfterErrorHook, AfterErrorHookArgs, Config, PayloadRequest } from @hanzo/cms'from 
 import { randomUUID } from 'crypto'
 import { describe, it, expect, vitest } from 'vitest'
 
-import { defaults } from 'payload'
+import { defaults } from @hanzo/cms'from 
 
 import { sentryPlugin } from './index'
 
@@ -14,7 +14,7 @@ const mockSentry = {
   },
 }
 
-describe('@payloadcms/plugin-sentry - unit', () => {
+describe('@hanzo/cms-plugin-sentry - unit', () => {
   it('should run the plugin', () => {
     const plugin = sentryPlugin({ Sentry: mockSentry, enabled: true })
     const config = plugin(createConfig())

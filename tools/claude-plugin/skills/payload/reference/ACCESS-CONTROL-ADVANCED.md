@@ -9,7 +9,7 @@ Advanced access control patterns including context-aware access, time-based rest
 Control access based on user locale for internationalized content.
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export const localeSpecificAccess: Access = ({ req: { user, locale } }) => {
   // Authenticated users can access all locales
@@ -38,7 +38,7 @@ export const Posts: CollectionConfig = {
 Restrict access based on device type or user agent.
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export const mobileOnlyAccess: Access = ({ req: { headers } }) => {
   const userAgent = headers?.get('user-agent') || ''
@@ -67,7 +67,7 @@ export const MobileContent: CollectionConfig = {
 Restrict access from specific IP addresses (requires middleware/proxy headers).
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export const restrictedIpAccess = (allowedIps: string[]): Access => {
   return ({ req: { headers } }) => {
@@ -97,7 +97,7 @@ export const InternalDocs: CollectionConfig = {
 ### Today's Records Only
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export const todayOnlyAccess: Access = ({ req: { user } }) => {
   if (!user) return false
@@ -120,7 +120,7 @@ export const todayOnlyAccess: Access = ({ req: { user } }) => {
 ### Recent Records (Last N Days)
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export const recentRecordsAccess = (days: number): Access => {
   return ({ req: { user } }) => {
@@ -151,7 +151,7 @@ export const Logs: CollectionConfig = {
 ### Scheduled Content (Publish Date Range)
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export const scheduledContentAccess: Access = ({ req: { user } }) => {
   // Editors see all content
@@ -180,7 +180,7 @@ export const scheduledContentAccess: Access = ({ req: { user } }) => {
 ### Active Subscription Required
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export const activeSubscriptionAccess: Access = async ({ req: { user } }) => {
   if (!user) return false
@@ -211,7 +211,7 @@ export const PremiumContent: CollectionConfig = {
 ### Subscription Tier-Based Access
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export const tierBasedAccess = (requiredTier: string): Access => {
   const tierHierarchy = ['free', 'basic', 'pro', 'enterprise']
@@ -259,7 +259,7 @@ Reusable functions that generate access control configurations.
 Generate access control for specific roles.
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export function createRoleBasedAccess(roles: string[]): Access {
   return ({ req: { user } }) => {
@@ -290,7 +290,7 @@ export const Posts: CollectionConfig = {
 Generate organization-scoped access with optional admin bypass.
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export function createOrgScopedAccess(allowAdmin = true): Access {
   return ({ req: { user } }) => {
@@ -328,7 +328,7 @@ export const Projects: CollectionConfig = {
 Generate team-scoped access with configurable field name.
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export function createTeamBasedAccess(teamField = 'teamId'): Access {
   return ({ req: { user } }) => {
@@ -364,7 +364,7 @@ export const Tasks: CollectionConfig = {
 Generate access limited to records within specified days.
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export function createTimeLimitedAccess(daysAccess: number): Access {
   return ({ req: { user } }) => {
@@ -401,7 +401,7 @@ Complete collection configurations for common scenarios.
 ### Basic Authenticated Collection
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const BasicCollection: CollectionConfig = {
   slug: 'basic-collection',
@@ -423,7 +423,7 @@ export const BasicCollection: CollectionConfig = {
 ### Public + Authenticated Collection
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const PublicAuthCollection: CollectionConfig = {
   slug: 'posts',
@@ -465,7 +465,7 @@ export const PublicAuthCollection: CollectionConfig = {
 ### Multi-User/Self-Service Collection
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const SelfServiceCollection: CollectionConfig = {
   slug: 'users',

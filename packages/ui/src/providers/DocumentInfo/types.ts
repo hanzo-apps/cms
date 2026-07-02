@@ -10,7 +10,7 @@ import type {
   SanitizedDocumentPermissions,
   SanitizedGlobalConfig,
   TypedUser,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import React from 'react'
 
@@ -89,7 +89,7 @@ export type DocumentInfoContext = {
    * via the `useDocumentTitle` hook.
    * @example
    * ```tsx
-   * import { useDocumentTitle } from '@payloadcms/ui'
+   * import { useDocumentTitle } from '@hanzo/cms-ui'
    * const { setDocumentTitle } = useDocumentTitle()
    * ```
    */
@@ -105,7 +105,7 @@ export type DocumentInfoContext = {
    * via the `useDocumentTitle` hook.
    * @example
    * ```tsx
-   * import { useDocumentTitle } from '@payloadcms/ui'
+   * import { useDocumentTitle } from '@hanzo/cms-ui'
    * const { title } = useDocumentTitle()
    * ```
    */

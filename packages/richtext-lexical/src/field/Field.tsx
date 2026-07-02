@@ -13,10 +13,10 @@ import {
   useEffectEvent,
   useField,
   useLocale,
-} from '@payloadcms/ui'
-import { mergeFieldStyles } from '@payloadcms/ui/shared'
+} from '@hanzo/cms-ui'
+import { mergeFieldStyles } from '@hanzo/cms-ui/shared'
 import { dequal } from 'dequal/lite'
-import { type Validate } from 'payload'
+import { type Validate } from @hanzo/cms'from 
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 

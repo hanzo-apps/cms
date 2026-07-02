@@ -1,6 +1,6 @@
 'use client'
 
-import { useListQuery } from '@payloadcms/ui'
+import { useListQuery } from '@hanzo/cms-ui'
 
 export const BeforeListTable = () => {
   const { data } = useListQuery()

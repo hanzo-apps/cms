@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@payloadcms/ui'
+import { Button } from '@hanzo/cms-ui'
 import React from 'react'
 
 import './styles.css'

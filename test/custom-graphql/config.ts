@@ -1,9 +1,9 @@
-import { GraphQLJSON } from '@payloadcms/graphql/types'
+import { GraphQLJSON } from '@hanzo/cms-graphql/types'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-import { commitTransaction, initTransaction, killTransaction } from 'payload'
+import { commitTransaction, initTransaction, killTransaction } from @hanzo/cms'from 
 
 import { buildConfigWithDefaults } from '../buildConfigWithDefaults.js'
 import { devUser } from '../credentials.js'

@@ -1,6 +1,6 @@
-import type { DrizzleAdapter } from '@payloadcms/drizzle'
+import type { DrizzleAdapter } from '@hanzo/cms-drizzle'
 import type { PgTableFn } from 'drizzle-orm/pg-core'
-import type { DatabaseAdapterObj, Payload } from 'payload'
+import type { DatabaseAdapterObj, Payload } from @hanzo/cms'from 
 
 import {
   beginTransaction,
@@ -41,7 +41,7 @@ import {
   updateOne,
   updateVersion,
   upsert,
-} from '@payloadcms/drizzle'
+} from '@hanzo/cms-drizzle'
 import {
   columnToCodeConverter,
   countDistinct,
@@ -55,9 +55,9 @@ import {
   init,
   insert,
   requireDrizzleKit,
-} from '@payloadcms/drizzle/postgres'
+} from '@hanzo/cms-drizzle/postgres'
 import { pgEnum, pgSchema, pgTable } from 'drizzle-orm/pg-core'
-import { createDatabaseAdapter, defaultBeginTransaction, findMigrationDir } from 'payload'
+import { createDatabaseAdapter, defaultBeginTransaction, findMigrationDir } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { Args, VercelPostgresAdapter } from './types.js'
@@ -198,7 +198,7 @@ export function vercelPostgresAdapter(args: Args = {}): DatabaseAdapterObj<Verce
       migrateReset,
       migrateStatus,
       migrationDir,
-      packageName: '@payloadcms/db-vercel-postgres',
+      packageName: '@hanzo/cms-db-vercel-postgres',
       payload,
       queryDrafts,
       readReplicaOptions: args.readReplicas,
@@ -242,6 +242,6 @@ export type {
   GeneratedDatabaseSchema,
   VercelPostgresAdapter,
 } from './types.js'
-export type { MigrateDownArgs, MigrateUpArgs } from '@payloadcms/drizzle/postgres'
-export { geometryColumn } from '@payloadcms/drizzle/postgres'
+export type { MigrateDownArgs, MigrateUpArgs } from '@hanzo/cms-drizzle/postgres'
+export { geometryColumn } from '@hanzo/cms-drizzle/postgres'
 export { sql } from 'drizzle-orm'

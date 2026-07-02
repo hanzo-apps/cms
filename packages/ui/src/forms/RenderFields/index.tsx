@@ -1,8 +1,8 @@
 'use client'
 
-import type { SanitizedFieldPermissions } from 'payload'
+import type { SanitizedFieldPermissions } from @hanzo/cms'from 
 
-import { fieldIsHiddenOrDisabled, getFieldPaths, getFieldPermissions } from 'payload/shared'
+import { fieldIsHiddenOrDisabled, getFieldPaths, getFieldPermissions } from @hanzo/cms'from 
 import React from 'react'
 
 import type { RenderFieldsProps } from './types.js'

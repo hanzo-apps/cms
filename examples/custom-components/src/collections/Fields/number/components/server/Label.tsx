@@ -1,6 +1,6 @@
-import type { NumberFieldLabelServerComponent } from 'payload'
+import type { NumberFieldLabelServerComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomNumberFieldLabelServer: NumberFieldLabelServerComponent = ({

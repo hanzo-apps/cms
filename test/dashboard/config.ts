@@ -1,4 +1,4 @@
-import type { WidgetInstance } from 'payload'
+import type { WidgetInstance } from @hanzo/cms'from 
 
 import { fileURLToPath } from 'node:url'
 import path from 'path'

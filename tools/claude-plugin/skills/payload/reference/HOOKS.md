@@ -59,7 +59,7 @@ export const Posts: CollectionConfig = {
 ## Field Hooks
 
 ```ts
-import type { EmailField, FieldHook } from 'payload'
+import type { EmailField, FieldHook } from @hanzo/cms'from 
 
 const beforeValidateHook: FieldHook = ({ value }) => {
   return value.trim().toLowerCase()
@@ -88,7 +88,7 @@ const emailField: EmailField = {
 Share data between hooks or control hook behavior using request context:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -112,7 +112,7 @@ export const Posts: CollectionConfig = {
 ## Next.js Revalidation with Context Control
 
 ```ts
-import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
+import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from @hanzo/cms'from 
 import { revalidatePath } from 'next/cache'
 import type { Page } from '../payload-types'
 
@@ -152,7 +152,7 @@ export const revalidateDelete: CollectionAfterDeleteHook<Page> = ({ doc, req: { 
 Automatically set date when document is published:
 
 ```ts
-import type { DateField } from 'payload'
+import type { DateField } from @hanzo/cms'from 
 
 const publishedOnField: DateField = {
   name: 'publishedOn',

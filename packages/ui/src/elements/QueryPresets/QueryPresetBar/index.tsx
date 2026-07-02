@@ -1,12 +1,12 @@
-import type { QueryPreset, SanitizedCollectionPermission } from 'payload'
+import type { QueryPreset, SanitizedCollectionPermission } from @hanzo/cms'from 
 
 import { useModal } from '@faceless-ui/modal'
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   formatAdminURL,
   transformColumnsToPreferences,
   transformColumnsToSearchParams,
-} from 'payload/shared'
+} from @hanzo/cms'from 
 import React, { Fragment, useCallback, useMemo } from 'react'
 import { toast } from 'sonner'
 

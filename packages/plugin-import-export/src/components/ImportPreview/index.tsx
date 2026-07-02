@@ -1,7 +1,7 @@
 'use client'
-import type { ClientField, Column, PaginatedDocs } from 'payload'
+import type { ClientField, Column, PaginatedDocs } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   Pagination,
   PerPage,
@@ -13,9 +13,9 @@ import {
   useField,
   useFormFields,
   useTranslation,
-} from '@payloadcms/ui'
-import { formatDocTitle } from '@payloadcms/ui/shared'
-import { fieldAffectsData, getObjectDotNotation } from 'payload/shared'
+} from '@hanzo/cms-ui'
+import { formatDocTitle } from '@hanzo/cms-ui/shared'
+import { fieldAffectsData, getObjectDotNotation } from @hanzo/cms'from 
 import React, { useState, useTransition } from 'react'
 
 import type {

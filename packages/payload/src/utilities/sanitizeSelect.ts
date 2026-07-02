@@ -1,4 +1,4 @@
-import { deepMergeSimple } from '@payloadcms/translations/utilities'
+import { deepMergeSimple } from '@hanzo/cms-translations/utilities'
 
 import type { FlattenedField } from '../fields/config/types.js'
 import type { SelectIncludeType, SelectType } from '../types/index.js'

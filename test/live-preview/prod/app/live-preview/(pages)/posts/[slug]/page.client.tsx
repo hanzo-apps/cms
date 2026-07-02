@@ -1,7 +1,7 @@
 'use client'
 
-import { useLivePreview } from '@payloadcms/live-preview-react'
-import { Gutter } from '@payloadcms/ui'
+import { useLivePreview } from '@hanzo/cms-live-preview-react'
+import { Gutter } from '@hanzo/cms-ui'
 import React from 'react'
 
 import type { Post as PostType } from '../../../../../../payload-types.js'

@@ -1,10 +1,10 @@
-import type { Block } from 'payload'
+import type { Block } from @hanzo/cms'from 
 
 import {
   FixedToolbarFeature,
   InlineToolbarFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 export const Banner: Block = {
   slug: 'banner',

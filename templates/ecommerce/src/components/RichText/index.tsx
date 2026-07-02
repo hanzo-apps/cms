@@ -1,10 +1,10 @@
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
-import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
-import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import { DefaultNodeTypes, SerializedBlockNode } from '@hanzo/cms-richtext-lexical'
+import { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
 import {
   JSXConvertersFunction,
   RichText as RichTextWithoutBlocks,
-} from '@payloadcms/richtext-lexical/react'
+} from '@hanzo/cms-richtext-lexical/react'
 
 import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
 

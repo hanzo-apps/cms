@@ -1,15 +1,15 @@
 'use client'
-import type { I18nClient } from '@payloadcms/translations'
-import type { Option, SelectField, SelectFieldDiffClientComponent } from 'payload'
+import type { I18nClient } from '@hanzo/cms-translations'
+import type { Option, SelectField, SelectFieldDiffClientComponent } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   escapeDiffHTML,
   FieldDiffContainer,
   getHTMLDiffComponents,
   unescapeDiffHTML,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import React from 'react'
 
 import './index.scss'

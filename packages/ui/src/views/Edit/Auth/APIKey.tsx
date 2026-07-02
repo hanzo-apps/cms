@@ -1,8 +1,8 @@
 'use client'
-import type { PayloadRequest, TextFieldClient } from 'payload'
+import type { PayloadRequest, TextFieldClient } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
-import { text } from 'payload/shared'
+import { getTranslation } from '@hanzo/cms-translations'
+import { text } from @hanzo/cms'from 
 import React, { useEffect, useMemo, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 

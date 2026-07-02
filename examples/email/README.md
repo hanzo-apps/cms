@@ -8,7 +8,7 @@ To spin up this example locally, follow these steps:
 
 1. Run the following command to create a project from the example:
 
-- `npx create-payload-app --example email`
+- `npx @hanzo/create-cms-app --example email`
 
 2. `cp .env.example .env` to copy the example environment variables
 3. Ensure MongoDB is running and `DATABASE_URL` points to it (for example `mongodb://127.0.0.1/payload-example-email`)
@@ -18,11 +18,11 @@ To spin up this example locally, follow these steps:
 
 ## How it works
 
-Email functionality in Payload is configured using adapters. The recommended adapter for most use cases is the [@payloadcms/email-nodemailer](https://www.npmjs.com/package/@payloadcms/email-nodemailer) package.
+Email functionality in Payload is configured using adapters. The recommended adapter for most use cases is the [@hanzo/cms-email-nodemailer](https://www.npmjs.com/package/@hanzo/cms-email-nodemailer) package.
 
 To enable email, pass your adapter configuration to the `email` property in the Payload Config. This allows Payload to send auth-related emails for password resets, new user verifications, and other email needs.
 
-1. In the Payload Config file, add your email adapter to the `email` property. For example, the `@payloadcms/email-nodemailer` adapter can be configured for SMTP, SendGrid, or other supported transports. During development, if no configuration is provided, Payload will use a mock service via [ethereal.email](ethereal.email).
+1. In the Payload Config file, add your email adapter to the `email` property. For example, the `@hanzo/cms-email-nodemailer` adapter can be configured for SMTP, SendGrid, or other supported transports. During development, if no configuration is provided, Payload will use a mock service via [ethereal.email](ethereal.email).
 
 Now we can start sending email!
 

@@ -1,8 +1,8 @@
 'use client'
-import type { CollapsibleFieldDiffClientComponent } from 'payload'
+import type { CollapsibleFieldDiffClientComponent } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
-import { useTranslation } from '@payloadcms/ui'
+import { getTranslation } from '@hanzo/cms-translations'
+import { useTranslation } from '@hanzo/cms-ui'
 import React from 'react'
 
 import { useSelectedLocales } from '../../../Default/SelectedLocalesContext.js'

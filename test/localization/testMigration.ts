@@ -10,10 +10,10 @@
  *   PAYLOAD_DATABASE=mongodb tsx test/localization/testMigration.ts
  */
 
-import { sql } from '@payloadcms/db-postgres'
+import { sql } from '@hanzo/cms-db-postgres'
 import { Types } from 'mongoose'
 import path from 'path'
-import { localizeStatus } from 'payload/migrations'
+import { localizeStatus } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import { initPayloadInt } from '../__helpers/shared/initPayloadInt.js'

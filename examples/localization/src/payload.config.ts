@@ -1,11 +1,11 @@
 // storage-adapter-import-placeholder
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
-import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
-import { redirectsPlugin } from '@payloadcms/plugin-redirects'
-import { seoPlugin } from '@payloadcms/plugin-seo'
-import { searchPlugin } from '@payloadcms/plugin-search'
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
+import { payloadCloudPlugin } from '@hanzo/cms-payload-cloud'
+import { formBuilderPlugin } from '@hanzo/cms-plugin-form-builder'
+import { nestedDocsPlugin } from '@hanzo/cms-plugin-nested-docs'
+import { redirectsPlugin } from '@hanzo/cms-plugin-redirects'
+import { seoPlugin } from '@hanzo/cms-plugin-seo'
+import { searchPlugin } from '@hanzo/cms-plugin-search'
 import {
   BoldFeature,
   FixedToolbarFeature,
@@ -13,11 +13,11 @@ import {
   ItalicFeature,
   LinkFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 import sharp from 'sharp' // editor-import
-import { UnderlineFeature } from '@payloadcms/richtext-lexical'
+import { UnderlineFeature } from '@hanzo/cms-richtext-lexical'
 import path from 'path'
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import Categories from './collections/Categories'
@@ -29,7 +29,7 @@ import { seedHandler } from './endpoints/seedHandler'
 import { Footer } from './globals/Footer/config'
 import { Header } from './globals/Header/config'
 import { revalidateRedirects } from './hooks/revalidateRedirects'
-import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
+import { GenerateTitle, GenerateURL } from '@hanzo/cms-plugin-seo/types'
 import { Page, Post } from 'src/payload-types'
 
 import { searchFields } from '@/search/fieldOverrides'

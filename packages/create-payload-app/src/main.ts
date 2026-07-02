@@ -104,7 +104,7 @@ export class Main {
 
       // eslint-disable-next-line no-console
       console.log('\n')
-      p.intro(chalk.bgCyan(chalk.black(' create-payload-app ')))
+      p.intro(chalk.bgCyan(chalk.black(' @hanzo/create-cms-app ')))
       p.note("Welcome to Payload. Let's create a project!")
 
       // Detect if inside Next.js project

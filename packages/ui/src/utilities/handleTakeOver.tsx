@@ -1,4 +1,4 @@
-import type { ClientUser } from 'payload'
+import type { ClientUser } from @hanzo/cms'from 
 
 export interface HandleTakeOverParams {
   clearRouteCache?: () => void

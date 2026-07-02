@@ -1,7 +1,7 @@
 'use client'
-import type { ClientField } from 'payload'
+import type { ClientField } from @hanzo/cms'from 
 
-import { fieldAffectsData } from 'payload/shared'
+import { fieldAffectsData } from @hanzo/cms'from 
 
 export const buildPathSegments = (fields: ClientField[]): (`${string}.` | string)[] => {
   return fields.reduce((acc: (`${string}.` | string)[], field) => {

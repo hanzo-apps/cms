@@ -1,4 +1,4 @@
-import type { DefaultDocumentIDType, PaginatedDocs, Payload } from 'payload'
+import type { DefaultDocumentIDType, PaginatedDocs, Payload } from @hanzo/cms'from 
 
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -18,7 +18,7 @@ let token: string
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-describe('@payloadcms/plugin-multi-tenant', () => {
+describe('@hanzo/cms-plugin-multi-tenant', () => {
   beforeAll(async () => {
     ;({ payload, restClient } = await initPayloadInt(dirname))
 

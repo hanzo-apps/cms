@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test'
 
 import { expect } from '@playwright/test'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 
 import { goToFirstCell } from './navigateToDoc.js'
 

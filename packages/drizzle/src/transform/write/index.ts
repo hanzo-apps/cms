@@ -1,4 +1,4 @@
-import type { FlattenedField } from 'payload'
+import type { FlattenedField } from @hanzo/cms'from 
 
 import type { DrizzleAdapter } from '../../types.js'
 import type { RowToInsert } from './types.js'

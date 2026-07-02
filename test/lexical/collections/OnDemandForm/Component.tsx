@@ -1,9 +1,9 @@
 'use client'
 
-import type { DefaultNodeTypes } from '@payloadcms/richtext-lexical'
-import type { JSONFieldClientComponent } from 'payload'
+import type { DefaultNodeTypes } from '@hanzo/cms-richtext-lexical'
+import type { JSONFieldClientComponent } from @hanzo/cms'from 
 
-import { buildEditorState, RenderLexical } from '@payloadcms/richtext-lexical/client'
+import { buildEditorState, RenderLexical } from '@hanzo/cms-richtext-lexical/client'
 
 import { lexicalFullyFeaturedSlug } from '../../slugs.js'
 

@@ -1,4 +1,4 @@
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export const publishedOnly: Access = ({ req: { user } }) => {
   if (user) {

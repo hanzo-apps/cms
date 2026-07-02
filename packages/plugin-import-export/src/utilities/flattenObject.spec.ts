@@ -1,4 +1,4 @@
-import { PayloadRequest } from 'payload'
+import { PayloadRequest } from @hanzo/cms'from 
 
 import type { ExportFieldHookEntry } from '../types.js'
 

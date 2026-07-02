@@ -1,11 +1,11 @@
-import type { PostgresAdapter } from '@payloadcms/db-postgres'
-import type { DrizzleAdapter } from '@payloadcms/drizzle'
+import type { PostgresAdapter } from '@hanzo/cms-db-postgres'
+import type { DrizzleAdapter } from '@hanzo/cms-drizzle'
 
 import { rmSync } from 'fs'
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import { expect, it } from 'vitest'
 
 import { describe } from '../../__helpers/int/vitest.js'
@@ -166,7 +166,7 @@ describe('migrateToBlocksAsJSON', { db: 'drizzle' }, () => {
 
     await adapter.createMigration({
       payload,
-      file: '@payloadcms/db-postgres/blocks-as-json',
+      file: '@hanzo/cms-db-postgres/blocks-as-json',
     })
 
     process.env.PAYLOAD_DROP_DATABASE = 'false'

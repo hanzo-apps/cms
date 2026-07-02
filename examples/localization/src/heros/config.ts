@@ -1,11 +1,11 @@
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 import {
   FixedToolbarFeature,
   HeadingFeature,
   InlineToolbarFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 import { linkGroup } from '@/fields/linkGroup'
 

@@ -1,7 +1,7 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import path from 'path'
-import { getFileByPath } from 'payload'
+import { getFileByPath } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
@@ -14,7 +14,7 @@ const dirname = path.dirname(filename)
 
 let payload: Payload
 
-describe('@payloadcms/plugin-seo', () => {
+describe('@hanzo/cms-plugin-seo', () => {
   let page = null
   let mediaDoc = null
   let mediaDoc2 = null

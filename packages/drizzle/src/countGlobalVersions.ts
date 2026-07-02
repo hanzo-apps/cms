@@ -1,6 +1,6 @@
-import type { CountGlobalVersions, SanitizedGlobalConfig } from 'payload'
+import type { CountGlobalVersions, SanitizedGlobalConfig } from @hanzo/cms'from 
 
-import { buildVersionGlobalFields } from 'payload'
+import { buildVersionGlobalFields } from @hanzo/cms'from 
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from './types.js'

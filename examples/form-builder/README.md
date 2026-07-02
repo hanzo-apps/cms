@@ -8,7 +8,7 @@ The [Payload Form Builder Example](https://github.com/payloadcms/payload/tree/3.
 
 1. Run the following command to create a project from the example:
 
-- `npx create-payload-app --example form-builder`
+- `npx @hanzo/create-cms-app --example form-builder`
 
 2. `cp .env.example .env` to copy the example environment variables
 3. Ensure MongoDB is running and `DATABASE_URL` points to it (for example `mongodb://127.0.0.1/payload-example-form-builder`)

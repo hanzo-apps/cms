@@ -1,4 +1,4 @@
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',

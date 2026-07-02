@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import type { SanitizedCollectionConfig } from 'payload'
+import type { SanitizedCollectionConfig } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 
 import type { GenerateViewMetadata } from '../Root/index.js'
 

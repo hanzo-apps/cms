@@ -1,9 +1,9 @@
 'use client'
 
-import type { FormProps } from '@payloadcms/ui'
-import type { ClientCollectionConfig } from 'payload'
+import type { FormProps } from '@hanzo/cms-ui'
+import type { ClientCollectionConfig } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   Drawer,
   EditDepthProvider,
@@ -16,8 +16,8 @@ import {
   useModal,
   useServerFunctions,
   useTranslation,
-} from '@payloadcms/ui'
-import { deepCopyObject } from 'payload/shared'
+} from '@hanzo/cms-ui'
+import { deepCopyObject } from @hanzo/cms'from 
 import React, { useCallback, useEffect, useState } from 'react'
 import { Transforms } from 'slate'
 import { ReactEditor, useSlateStatic } from 'slate-react'

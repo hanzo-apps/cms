@@ -1,6 +1,6 @@
-import type { Block } from 'payload'
+import type { Block } from @hanzo/cms'from 
 
-import { HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import { HeadingFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 export const FormBlock: Block = {
   slug: 'formBlock',

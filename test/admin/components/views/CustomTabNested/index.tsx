@@ -1,6 +1,6 @@
-import type { DocumentViewServerProps } from 'payload'
+import type { DocumentViewServerProps } from @hanzo/cms'from 
 
-import { SetStepNav } from '@payloadcms/ui'
+import { SetStepNav } from '@hanzo/cms-ui'
 import { notFound } from 'next/navigation.js'
 import React, { Fragment } from 'react'
 

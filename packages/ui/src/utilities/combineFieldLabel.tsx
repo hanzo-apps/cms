@@ -1,4 +1,4 @@
-import type { ClientField } from 'payload'
+import type { ClientField } from @hanzo/cms'from 
 
 import { Fragment } from 'react'
 

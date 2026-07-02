@@ -1,7 +1,7 @@
-import type { DateFieldServerComponent } from 'payload'
+import type { DateFieldServerComponent } from @hanzo/cms'from 
 import type React from 'react'
 
-import { DateTimeField } from '@payloadcms/ui'
+import { DateTimeField } from '@hanzo/cms-ui'
 
 export const CustomDateFieldServer: DateFieldServerComponent = ({
   clientField,

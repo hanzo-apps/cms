@@ -21,7 +21,7 @@ The Edit View can be swapped out in its entirety for a Custom View, or it can be
 To swap out the entire Edit View with a [Custom View](./custom-views), use the `views.edit.default` property in your [Collection Config](../configuration/collections) or [Global Config](../configuration/globals):
 
 ```tsx
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -47,7 +47,7 @@ Here is an example of a custom Edit View:
 
 ```tsx
 import React from 'react'
-import type { DocumentViewServerProps } from 'payload'
+import type { DocumentViewServerProps } from @hanzo/cms'from 
 
 export function MyCustomServerEditView(props: DocumentViewServerProps) {
   return <div>This is a custom Edit View (Server)</div>
@@ -59,7 +59,7 @@ export function MyCustomServerEditView(props: DocumentViewServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import type { DocumentViewClientProps } from 'payload'
+import type { DocumentViewClientProps } from @hanzo/cms'from 
 
 export function MyCustomClientEditView(props: DocumentViewClientProps) {
   return <div>This is a custom Edit View (Client)</div>
@@ -83,7 +83,7 @@ In addition to swapping out the entire Edit View with a [Custom View](./custom-v
 To override Edit View components for a Collection, use the `admin.components.edit` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -119,7 +119,7 @@ The following options are available:
 To override Edit View components for Globals, use the `admin.components.elements` property in your [Global Config](../configuration/globals):
 
 ```ts
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 export const MyGlobal: GlobalConfig = {
   // ...
@@ -161,7 +161,7 @@ The `SaveButton` component allows you to render a custom Save Button in the Edit
 #### Example for Collections
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -180,7 +180,7 @@ export const Posts: CollectionConfig = {
 #### Example for Globals
 
 ```ts
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 export const Header: GlobalConfig = {
   slug: 'header',
@@ -202,8 +202,8 @@ Here's an example of a custom `SaveButton` component:
 
 ```tsx
 import React from 'react'
-import { SaveButton } from '@payloadcms/ui'
-import type { SaveButtonServerProps } from 'payload'
+import { SaveButton } from '@hanzo/cms-ui'
+import type { SaveButtonServerProps } from @hanzo/cms'from 
 
 export function MySaveButton(props: SaveButtonServerProps) {
   return <SaveButton label="Save" />
@@ -215,8 +215,8 @@ export function MySaveButton(props: SaveButtonServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import { SaveButton } from '@payloadcms/ui'
-import type { SaveButtonClientProps } from 'payload'
+import { SaveButton } from '@hanzo/cms-ui'
+import type { SaveButtonClientProps } from @hanzo/cms'from 
 
 export function MySaveButton(props: SaveButtonClientProps) {
   return <SaveButton label="Save" />
@@ -267,7 +267,7 @@ Here's an example of a custom `beforeDocumentControls` component:
 
 ```tsx
 import React from 'react'
-import type { BeforeDocumentControlsServerProps } from 'payload'
+import type { BeforeDocumentControlsServerProps } from @hanzo/cms'from 
 
 export function MyCustomDocumentControlButton(
   props: BeforeDocumentControlsServerProps,
@@ -281,7 +281,7 @@ export function MyCustomDocumentControlButton(
 ```tsx
 'use client'
 import React from 'react'
-import type { BeforeDocumentControlsClientProps } from 'payload'
+import type { BeforeDocumentControlsClientProps } from @hanzo/cms'from 
 
 export function MyCustomDocumentControlButton(
   props: BeforeDocumentControlsClientProps,
@@ -299,7 +299,7 @@ To add `editMenuItems`, use the `components.edit.editMenuItems` property in your
 #### Config Example
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -322,7 +322,7 @@ Here's an example of a custom `editMenuItems` component:
 ```tsx
 import React from 'react'
 
-import type { EditMenuItemsServerProps } from 'payload'
+import type { EditMenuItemsServerProps } from @hanzo/cms'from 
 
 export const EditMenuItems = async (props: EditMenuItemsServerProps) => {
   const href = `/custom-action?id=${props.id}`
@@ -344,9 +344,9 @@ export const EditMenuItems = async (props: EditMenuItemsServerProps) => {
 'use client'
 
 import React from 'react'
-import { PopupList } from '@payloadcms/ui'
+import { PopupList } from '@hanzo/cms-ui'
 
-import type { EditMenuItemsClientProps } from 'payload'
+import type { EditMenuItemsClientProps } from @hanzo/cms'from 
 
 export const EditMenuItems = (props: EditMenuItemsClientProps) => {
   const handleClick = () => {
@@ -387,7 +387,7 @@ The `SaveDraftButton` component allows you to render a custom Save Draft Button 
 #### Example for Collections
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -409,7 +409,7 @@ export const Posts: CollectionConfig = {
 #### Example for Globals
 
 ```ts
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 export const Header: GlobalConfig = {
   slug: 'header',
@@ -434,8 +434,8 @@ Here's an example of a custom `SaveDraftButton` component:
 
 ```tsx
 import React from 'react'
-import { SaveDraftButton } from '@payloadcms/ui'
-import type { SaveDraftButtonServerProps } from 'payload'
+import { SaveDraftButton } from '@hanzo/cms-ui'
+import type { SaveDraftButtonServerProps } from @hanzo/cms'from 
 
 export function MySaveDraftButton(props: SaveDraftButtonServerProps) {
   return <SaveDraftButton />
@@ -447,8 +447,8 @@ export function MySaveDraftButton(props: SaveDraftButtonServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import { SaveDraftButton } from '@payloadcms/ui'
-import type { SaveDraftButtonClientProps } from 'payload'
+import { SaveDraftButton } from '@hanzo/cms-ui'
+import type { SaveDraftButtonClientProps } from @hanzo/cms'from 
 
 export function MySaveDraftButton(props: SaveDraftButtonClientProps) {
   return <SaveDraftButton />
@@ -467,7 +467,7 @@ The `PublishButton` component allows you to render a custom Publish Button in th
 #### Example for Collections
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -489,7 +489,7 @@ export const Posts: CollectionConfig = {
 #### Example for Globals
 
 ```ts
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 export const Header: GlobalConfig = {
   slug: 'header',
@@ -514,8 +514,8 @@ Here's an example of a custom `PublishButton` component:
 
 ```tsx
 import React from 'react'
-import { PublishButton } from '@payloadcms/ui'
-import type { PublishButtonServerProps } from 'payload'
+import { PublishButton } from '@hanzo/cms-ui'
+import type { PublishButtonServerProps } from @hanzo/cms'from 
 
 export function MyPublishButton(props: PublishButtonServerProps) {
   return <PublishButton label="Publish" />
@@ -527,7 +527,7 @@ export function MyPublishButton(props: PublishButtonServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import { PublishButton } from '@payloadcms/ui'
+import { PublishButton } from '@hanzo/cms-ui'
 
 export function MyPublishButton() {
   return <PublishButton label="Publish" />
@@ -541,7 +541,7 @@ The `UnpublishButton` property allows you to render a custom Unpublish Button in
 To add an `UnpublishButton` component, use the `components.edit.UnpublishButton` property in your [Collection Config](../configuration/collections) or `components.elements.UnpublishButton` in your [Global Config](../configuration/globals):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -563,8 +563,8 @@ Here's an example of a custom `UnpublishButton` component:
 
 ```tsx
 import React from 'react'
-import { UnpublishButton } from '@payloadcms/ui'
-import type { UnpublishButtonServerProps } from 'payload'
+import { UnpublishButton } from '@hanzo/cms-ui'
+import type { UnpublishButtonServerProps } from @hanzo/cms'from 
 
 export function MyUnpublishButton(props: UnpublishButtonServerProps) {
   return <UnpublishButton label="Unpublish" />
@@ -576,7 +576,7 @@ export function MyUnpublishButton(props: UnpublishButtonServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import { UnpublishButton } from '@payloadcms/ui'
+import { UnpublishButton } from '@hanzo/cms-ui'
 
 export function MyUnpublishButton() {
   return <UnpublishButton label="Unpublish" />
@@ -595,7 +595,7 @@ The `PreviewButton` component allows you to render a custom Preview Button in th
 #### Example for Collections
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -615,7 +615,7 @@ export const Posts: CollectionConfig = {
 #### Example for Globals
 
 ```ts
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 export const Header: GlobalConfig = {
   slug: 'header',
@@ -638,8 +638,8 @@ Here's an example of a custom `PreviewButton` component:
 
 ```tsx
 import React from 'react'
-import { PreviewButton } from '@payloadcms/ui'
-import type { PreviewButtonServerProps } from 'payload'
+import { PreviewButton } from '@hanzo/cms-ui'
+import type { PreviewButtonServerProps } from @hanzo/cms'from 
 
 export function MyPreviewButton(props: PreviewButtonServerProps) {
   return <PreviewButton />
@@ -651,8 +651,8 @@ export function MyPreviewButton(props: PreviewButtonServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import { PreviewButton } from '@payloadcms/ui'
-import type { PreviewButtonClientProps } from 'payload'
+import { PreviewButton } from '@hanzo/cms-ui'
+import type { PreviewButtonClientProps } from @hanzo/cms'from 
 
 export function MyPreviewButton(props: PreviewButtonClientProps) {
   return <PreviewButton />
@@ -666,7 +666,7 @@ The `Description` property allows you to render a custom description of the Coll
 To add a `Description` component, use the `components.edit.Description` property in your [Collection Config](../configuration/collections) or `components.elements.Description` in your [Global Config](../configuration/globals):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -691,7 +691,7 @@ Here's an example of a custom `Description` component:
 
 ```tsx
 import React from 'react'
-import type { ViewDescriptionServerProps } from 'payload'
+import type { ViewDescriptionServerProps } from @hanzo/cms'from 
 
 export function MyDescriptionComponent(props: ViewDescriptionServerProps) {
   return <div>This is a custom description component (Server)</div>
@@ -703,7 +703,7 @@ export function MyDescriptionComponent(props: ViewDescriptionServerProps) {
 ```tsx
 'use client'
 import React from 'react'
-import type { ViewDescriptionClientProps } from 'payload'
+import type { ViewDescriptionClientProps } from @hanzo/cms'from 
 
 export function MyDescriptionComponent(props: ViewDescriptionClientProps) {
   return <div>This is a custom description component (Client)</div>
@@ -722,7 +722,7 @@ The `Status` component displays the document's draft/published state when versio
 #### Example for Collections
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -744,7 +744,7 @@ export const Posts: CollectionConfig = {
 #### Example for Globals
 
 ```ts
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 export const Header: GlobalConfig = {
   slug: 'header',
@@ -770,7 +770,7 @@ The `Upload` property allows you to render a custom file upload component in the
 To add an `Upload` component, use the `components.edit.Upload` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -791,7 +791,7 @@ export const Media: CollectionConfig = {
   **Important:** Custom upload components must integrate with Payload's form
   system to work correctly. You cannot use a simple `<input type="file" />` as
   it won't connect to Payload's upload API. Instead, use Payload's built-in
-  `<Upload>` component from `@payloadcms/ui` or properly integrate with form
+  `<Upload>` component from `@hanzo/cms-ui` or properly integrate with form
   hooks like `useDocumentInfo()`.
 </Banner>
 
@@ -804,7 +804,7 @@ import React from 'react'
 import type {
   PayloadServerReactComponent,
   SanitizedCollectionConfig,
-} from 'payload'
+} from @hanzo/cms'from 
 import { CustomUploadClient } from './MyUploadComponent.client'
 
 export const MyUploadServer: PayloadServerReactComponent<
@@ -824,7 +824,7 @@ export const MyUploadServer: PayloadServerReactComponent<
 ```tsx
 'use client'
 import React from 'react'
-import { Upload, useDocumentInfo } from '@payloadcms/ui'
+import { Upload, useDocumentInfo } from '@hanzo/cms-ui'
 
 export const CustomUploadClient = () => {
   const { collectionSlug, docConfig, initialState } = useDocumentInfo()

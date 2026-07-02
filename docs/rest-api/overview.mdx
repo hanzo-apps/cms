@@ -596,7 +596,7 @@ Each endpoint object needs to have:
 Example:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 // a collection of 'orders' with an additional route for tracking details, reachable at /api/orders/:id/tracking
 export const Orders: CollectionConfig = {
@@ -677,7 +677,7 @@ Data is not automatically appended to the request. You can read the body data by
 Or you could use our helper function that mutates the request and appends data and file if found.
 
 ```ts
-import { addDataAndFileToRequest } from 'payload'
+import { addDataAndFileToRequest } from @hanzo/cms'from 
 
 // custom endpoint example
 {
@@ -703,7 +703,7 @@ import { addDataAndFileToRequest } from 'payload'
 The locale and the fallback locale are not automatically appended to custom endpoint requests. If you would like to add them you can use this helper function.
 
 ```ts
-import { addLocalesToRequestFromData } from 'payload'
+import { addLocalesToRequestFromData } from @hanzo/cms'from 
 
 // custom endpoint example
 {
@@ -722,7 +722,7 @@ import { addLocalesToRequestFromData } from 'payload'
 By default, custom endpoints don't handle CORS headers in responses. The `headersWithCors` function checks the Payload config and sets the appropriate CORS headers in the response accordingly.
 
 ```ts
-import { headersWithCors } from 'payload'
+import { headersWithCors } from @hanzo/cms'from 
 
 // custom endpoint example
 {
@@ -814,7 +814,7 @@ This can be more efficient for large JSON payloads, as you avoid converting data
 The best, fully type-safe way to query Payload REST API is to use the SDK package, which can be installed with:
 
 ```bash
-pnpm add @payloadcms/sdk
+pnpm add @hanzo/cms-sdk
 ```
 
 Its usage is very similar to [the Local API](../local-api/overview).
@@ -827,7 +827,7 @@ Its usage is very similar to [the Local API](../local-api/overview).
 Example:
 
 ```ts
-import { PayloadSDK } from '@payloadcms/sdk'
+import { PayloadSDK } from '@hanzo/cms-sdk'
 
 const sdk = new PayloadSDK({
   baseURL: 'https://example.com/api',
@@ -837,7 +837,7 @@ const sdk = new PayloadSDK({
 For projects without a `payload-types.ts` file, or when working with multiple Payload configs, you can manually pass the types as a generic:
 
 ```ts
-import { PayloadSDK } from '@payloadcms/sdk'
+import { PayloadSDK } from '@hanzo/cms-sdk'
 import type { Config } from './payload-types'
 
 const sdk = new PayloadSDK<Config>({
@@ -1052,8 +1052,8 @@ import {
   REST_PATCH,
   REST_POST,
   REST_PUT,
-} from '@payloadcms/next/routes'
-import { PayloadSDK } from '@payloadcms/sdk'
+} from '@hanzo/cms-next/routes'
+import { PayloadSDK } from '@hanzo/cms-sdk'
 
 const api = {
   GET: REST_GET(config),

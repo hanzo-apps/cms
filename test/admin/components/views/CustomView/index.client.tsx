@@ -6,7 +6,7 @@ import {
   FormSubmit,
   PasswordField,
   useFormFields,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import React from 'react'
 
 export const ClientForm: React.FC = () => {

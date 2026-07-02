@@ -1,6 +1,6 @@
-import type { Config, GlobalConfig } from 'payload'
+import type { Config, GlobalConfig } from @hanzo/cms'from 
 
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
 

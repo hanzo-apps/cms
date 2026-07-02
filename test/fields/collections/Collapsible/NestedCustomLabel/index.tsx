@@ -1,6 +1,6 @@
 'use client'
 
-import { useRowLabel } from '@payloadcms/ui'
+import { useRowLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const NestedCustomLabel: React.FC = () => {

@@ -110,7 +110,7 @@ function findStringPosition(content: string, searchString: string, occurrence = 
   return idx + 1
 }
 
-describe('@payloadcms/typescript-plugin', () => {
+describe('@hanzo/cms-typescript-plugin', () => {
   let service: ts.LanguageService
   let content: string
 

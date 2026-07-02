@@ -1,4 +1,4 @@
-import type { Config, Field, TaskConfig } from 'payload'
+import type { Config, Field, TaskConfig } from @hanzo/cms'from 
 
 import type { Export } from './createExport.js'
 

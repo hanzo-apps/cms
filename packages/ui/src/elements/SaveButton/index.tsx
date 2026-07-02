@@ -1,6 +1,6 @@
 'use client'
 
-import type { SaveButtonClientProps } from 'payload'
+import type { SaveButtonClientProps } from @hanzo/cms'from 
 
 import React, { useRef } from 'react'
 

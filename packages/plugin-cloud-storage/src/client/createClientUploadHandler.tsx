@@ -1,8 +1,8 @@
 'use client'
 
-import type { UploadCollectionSlug } from 'payload'
+import type { UploadCollectionSlug } from @hanzo/cms'from 
 
-import { useConfig, useEffectEvent, useUploadHandlers } from '@payloadcms/ui'
+import { useConfig, useEffectEvent, useUploadHandlers } from '@hanzo/cms-ui'
 import { Fragment, type ReactNode, useEffect } from 'react'
 
 type ClientUploadHandlerProps<T extends Record<string, unknown>> = {

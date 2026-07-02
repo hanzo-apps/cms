@@ -1,6 +1,6 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
-import { PayloadSDKError } from '@payloadcms/sdk'
+import { PayloadSDKError } from '@hanzo/cms-sdk'
 import { randomUUID } from 'crypto'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -26,7 +26,7 @@ const testUserCredentials = {
   password: '123456',
 }
 
-describe('@payloadcms/sdk', () => {
+describe('@hanzo/cms-sdk', () => {
   beforeAll(async () => {
     ;({ payload, sdk } = await initPayloadInt(dirname))
 

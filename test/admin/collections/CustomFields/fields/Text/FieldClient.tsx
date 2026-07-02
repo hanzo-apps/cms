@@ -1,7 +1,7 @@
 'use client'
-import type { TextFieldClientComponent } from 'payload'
+import type { TextFieldClientComponent } from @hanzo/cms'from 
 
-import { TextField } from '@payloadcms/ui'
+import { TextField } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomClientField: TextFieldClientComponent = (props) => {

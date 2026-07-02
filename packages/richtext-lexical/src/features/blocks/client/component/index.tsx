@@ -2,7 +2,7 @@
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   Button,
   Collapsible,
@@ -22,16 +22,16 @@ import {
   useFormSubmitted,
   useServerFunctions,
   useTranslation,
-} from '@payloadcms/ui'
-import { abortAndIgnore } from '@payloadcms/ui/shared'
+} from '@hanzo/cms-ui'
+import { abortAndIgnore } from '@hanzo/cms-ui/shared'
 import { $getNodeByKey, SKIP_DOM_SELECTION_TAG } from 'lexical'
 import {
   type BlocksFieldClient,
   type ClientBlock,
   type CollapsedPreferences,
   type FormState,
-} from 'payload'
-import { deepCopyObjectSimpleWithoutReactComponents, reduceFieldsToValues } from 'payload/shared'
+} from @hanzo/cms'from 
+import { deepCopyObjectSimpleWithoutReactComponents, reduceFieldsToValues } from @hanzo/cms'from 
 import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { v4 as uuid } from 'uuid'
 

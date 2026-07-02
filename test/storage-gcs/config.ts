@@ -1,4 +1,4 @@
-import { gcsStorage } from '@payloadcms/storage-gcs'
+import { gcsStorage } from '@hanzo/cms-storage-gcs'
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'node:url'
 import path from 'path'

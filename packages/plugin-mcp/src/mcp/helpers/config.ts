@@ -151,7 +151,7 @@ export function updateDatabaseConfig(content: string, databaseConfig: DatabaseCo
     if (!content.match(mongoImportRegex)) {
       content = content.replace(
         /(import.*from.*payload.*\n)/,
-        `$1import { mongooseAdapter } from '@payloadcms/db-mongodb'\n`,
+        `$1import { mongooseAdapter } from '@hanzo/cms-db-mongodb'\n`,
       )
     }
 

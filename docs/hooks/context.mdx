@@ -28,7 +28,7 @@ To pass data between hooks, you can assign values to context in an earlier hook 
 For example:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 const Customer: CollectionConfig = {
   slug: 'customers',
@@ -66,7 +66,7 @@ Let's say you have an `afterChange` hook, and you want to do a calculation insid
 Bad example:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 const Customer: CollectionConfig = {
   slug: 'customers',
@@ -95,7 +95,7 @@ Instead of the above, we need to tell the `afterChange` hook to not run again if
 Fixed example:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 const MyCollection: CollectionConfig = {
   slug: 'slug',

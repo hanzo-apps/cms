@@ -4,12 +4,12 @@ import {
   SerializedBlockNode,
   SerializedLinkNode,
   type DefaultTypedEditorState,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 import {
   JSXConvertersFunction,
   LinkJSXConverter,
   RichText as ConvertRichText,
-} from '@payloadcms/richtext-lexical/react'
+} from '@hanzo/cms-richtext-lexical/react'
 
 import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
 

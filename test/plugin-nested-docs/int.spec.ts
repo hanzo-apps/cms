@@ -1,4 +1,4 @@
-import type { ArrayField, Payload, RelationshipField } from 'payload'
+import type { ArrayField, Payload, RelationshipField } from @hanzo/cms'from 
 
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -13,7 +13,7 @@ let payload: Payload
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-describe('@payloadcms/plugin-nested-docs', () => {
+describe('@hanzo/cms-plugin-nested-docs', () => {
   beforeAll(async () => {
     ;({ payload } = await initPayloadInt(dirname))
   })

@@ -1,4 +1,4 @@
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 import { link } from '@/fields/link'
 import { revalidateHeader } from './hooks/revalidateHeader'

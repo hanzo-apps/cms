@@ -1,6 +1,6 @@
 import type { IncomingMessage, Server, ServerResponse } from 'node:http'
 import type { AddressInfo } from 'node:net'
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import { del, list } from '@vercel/blob'
 import { upload } from '@vercel/blob/client'
@@ -28,7 +28,7 @@ let handleUploadUrl: string
 
 const serverHandlerPath = '/vercel-blob-client-upload-route'
 
-describe('@payloadcms/storage-vercel-blob clientUploads', () => {
+describe('@hanzo/cms-storage-vercel-blob clientUploads', () => {
   beforeAll(async () => {
     ;({ payload, restClient } = await initPayloadInt(dirname))
 

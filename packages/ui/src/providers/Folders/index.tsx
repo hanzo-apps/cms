@@ -1,10 +1,10 @@
 'use client'
 
-import type { ClientCollectionConfig, CollectionSlug, FolderSortKeys } from 'payload'
-import type { FolderBreadcrumb, FolderDocumentItemKey, FolderOrDocument } from 'payload/shared'
+import type { ClientCollectionConfig, CollectionSlug, FolderSortKeys } from @hanzo/cms'from 
+import type { FolderBreadcrumb, FolderDocumentItemKey, FolderOrDocument } from @hanzo/cms'from 
 
 import { useRouter, useSearchParams } from 'next/navigation.js'
-import { extractID, formatAdminURL, formatFolderOrDocumentItem } from 'payload/shared'
+import { extractID, formatAdminURL, formatFolderOrDocumentItem } from @hanzo/cms'from 
 import * as qs from 'qs-esm'
 import React from 'react'
 import { toast } from 'sonner'

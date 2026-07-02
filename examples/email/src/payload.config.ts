@@ -1,8 +1,8 @@
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
+import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 import path from 'path'
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import { Newsletter } from './collections/Newsletter'

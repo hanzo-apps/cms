@@ -1,4 +1,4 @@
-import { type SupportedLanguages } from '@payloadcms/translations'
+import { type SupportedLanguages } from '@hanzo/cms-translations'
 
 import type { SanitizedDocumentPermissions } from '../../auth/types.js'
 import type { Field, Option, TabAsField, Validate } from '../../fields/config/types.js'

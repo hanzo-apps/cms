@@ -8,12 +8,12 @@ keywords: lexical, richtext, jsx
 
 ## Richtext to JSX
 
-To convert richtext to JSX, import the `RichText` component from `@payloadcms/richtext-lexical/react` and pass the richtext content to it:
+To convert richtext to JSX, import the `RichText` component from `@hanzo/cms-richtext-lexical/react` and pass the richtext content to it:
 
 ```tsx
 import React from 'react'
-import { RichText } from '@payloadcms/richtext-lexical/react'
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import { RichText } from '@hanzo/cms-richtext-lexical/react'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
 
 export const MyComponent = ({ data }: { data: SerializedEditorState }) => {
   return <RichText data={data} />
@@ -40,14 +40,14 @@ To fix this, you need to pass the `internalDocToHref` prop to `LinkJSXConverter`
 import type {
   DefaultNodeTypes,
   SerializedLinkNode,
-} from '@payloadcms/richtext-lexical'
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+} from '@hanzo/cms-richtext-lexical'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
 
 import {
   type JSXConvertersFunction,
   LinkJSXConverter,
   RichText,
-} from '@payloadcms/richtext-lexical/react'
+} from '@hanzo/cms-richtext-lexical/react'
 import React from 'react'
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
@@ -96,13 +96,13 @@ import type {
   DefaultNodeTypes,
   SerializedBlockNode,
   SerializedInlineBlockNode,
-} from '@payloadcms/richtext-lexical'
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+} from '@hanzo/cms-richtext-lexical'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
 
 import {
   type JSXConvertersFunction,
   RichText,
-} from '@payloadcms/richtext-lexical/react'
+} from '@hanzo/cms-richtext-lexical/react'
 import React from 'react'
 
 // Extend the default node types with your custom blocks for full type safety
@@ -146,13 +146,13 @@ Example - overriding the upload node converter to use next/image:
 import type {
   DefaultNodeTypes,
   SerializedUploadNode,
-} from '@payloadcms/richtext-lexical'
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+} from '@hanzo/cms-richtext-lexical'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
 
 import {
   type JSXConvertersFunction,
   RichText,
-} from '@payloadcms/richtext-lexical/react'
+} from '@hanzo/cms-richtext-lexical/react'
 import Image from 'next/image'
 import React from 'react'
 

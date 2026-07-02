@@ -1,6 +1,6 @@
-import type { Config as PayloadConfig, PayloadRequest } from 'payload'
+import type { Config as PayloadConfig, PayloadRequest } from @hanzo/cms'from 
 
-import { dynamicImport } from 'payload'
+import { dynamicImport } from @hanzo/cms'from 
 import Stripe from 'stripe'
 
 import type { StripePluginConfig } from '../types.js'

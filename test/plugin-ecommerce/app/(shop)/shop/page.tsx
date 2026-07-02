@@ -1,6 +1,6 @@
 import configPromise, { currenciesConfig } from '@payload-config'
 import { Cart } from '@/components/Cart.js'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import React from 'react'
 import { Product } from '@/components/Product.js'
 import { CurrencySelector } from '@/components/CurrencySelector.js'

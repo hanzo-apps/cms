@@ -1,4 +1,4 @@
-import type { BeforeDocumentControlsServerProps } from 'payload'
+import type { BeforeDocumentControlsServerProps } from @hanzo/cms'from 
 
 import React from 'react'
 

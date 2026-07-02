@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/plugin-form-builder",
+  "name": "@hanzo/cms-plugin-form-builder",
   "version": "3.85.2",
   "description": "Form builder plugin for Payload CMS",
   "keywords": [
@@ -62,20 +62,20 @@
     "test": "echo \"No tests available.\""
   },
   "dependencies": {
-    "@payloadcms/ui": "workspace:*",
+    "@hanzo/cms-ui": "workspace:*",
     "escape-html": "^1.0.3"
   },
   "devDependencies": {
-    "@payloadcms/eslint-config": "workspace:*",
+    "@hanzo/cms-eslint-config": "workspace:*",
     "@types/escape-html": "^1.0.4",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "payload": "workspace:*",
+    "@hanzo/cms": "workspace:*",
     "react": "^19.0.1 || ^19.1.2 || ^19.2.1",
     "react-dom": "^19.0.1 || ^19.1.2 || ^19.2.1"
   },

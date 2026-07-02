@@ -10,7 +10,7 @@
  * Be documented in the migration guide and breaking changes doc
  */
 
-import payload from 'payload'
+import payload from @hanzo/cms'from 
 import {
   CollectionPermission,
   FieldPermissions,
@@ -20,7 +20,7 @@ import {
   Permissions,
   User,
   VerifyConfig,
-} from 'payload/auth'
+} from @hanzo/cms'from 
 import {
   Banner,
   Button,
@@ -35,7 +35,7 @@ import {
   ShimmerEffect,
   Tooltip,
   X,
-} from 'payload/components'
+} from @hanzo/cms'from 
 import {
   Access,
   AccessArgs,
@@ -74,7 +74,7 @@ import {
   SanitizedConfig,
   SanitizedLocalizationConfig,
   sanitizeFields,
-} from 'payload/config'
+} from @hanzo/cms'from 
 import {
   BaseDatabaseAdapter,
   BeginTransaction,
@@ -144,7 +144,7 @@ import {
   UpdateVersionArgs,
   validateQueryPaths,
   validateSearchParam,
-} from 'payload/database'
+} from @hanzo/cms'from 
 import {
   APIError,
   AuthenticationError,
@@ -164,8 +164,8 @@ import {
   NotFound,
   QueryError,
   ValidationError,
-} from 'payload/errors'
-import { buildPaginatedListType, GraphQL } from 'payload/graphql'
+} from @hanzo/cms'from 
+import { buildPaginatedListType, GraphQL } from @hanzo/cms'from 
 import {
   AccessArgs as AccessArgsType,
   Access as AccessType,
@@ -289,7 +289,7 @@ import {
   VersionOperations,
   Where,
   WhereField,
-} from 'payload/types'
+} from @hanzo/cms'from 
 import {
   afterReadPromise,
   afterReadTraverseFields,
@@ -313,7 +313,7 @@ import {
   toWords,
   withMergedProps,
   withNullableJSONSchemaType,
-} from 'payload/utilities'
+} from @hanzo/cms'from 
 import {
   buildVersionCollectionFields,
   buildVersionGlobalFields,
@@ -322,7 +322,7 @@ import {
   getLatestCollectionVersion,
   getLatestGlobalVersion,
   saveVersion,
-} from 'payload/versions'
+} from @hanzo/cms'from 
 
 /**
  * Plugins
@@ -334,17 +334,17 @@ import {
   MigrateUpArgs,
   MongooseAdapter,
   mongooseAdapter,
-} from '@payloadcms/db-mongodb'
+} from '@hanzo/cms-db-mongodb'
 import {
   MigrateDownArgs as MigrateDownArgsPg,
   MigrateUpArgs as MigrateUpArgsPg,
   postgresAdapter,
-} from '@payloadcms/db-postgres'
-import { handleMessage, mergeData, ready, subscribe, unsubscribe } from '@payloadcms/live-preview'
-import { useLivePreview } from '@payloadcms/live-preview-react'
-import { createKey, getStorageClient, payloadCloud } from '@payloadcms/payload-cloud'
-import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
-import { fields, getPaymentTotal } from '@payloadcms/plugin-form-builder'
+} from '@hanzo/cms-db-postgres'
+import { handleMessage, mergeData, ready, subscribe, unsubscribe } from '@hanzo/cms-live-preview'
+import { useLivePreview } from '@hanzo/cms-live-preview-react'
+import { createKey, getStorageClient, payloadCloud } from '@hanzo/cms-payload-cloud'
+import { cloudStorage } from '@hanzo/cms-plugin-cloud-storage'
+import { fields, getPaymentTotal } from '@hanzo/cms-plugin-form-builder'
 import {
   BeforeEmail,
   BlockConfig,
@@ -373,28 +373,28 @@ import {
   StateField,
   SubmissionValue,
   TextAreaField,
-} from '@payloadcms/plugin-form-builder/types'
-import nestedDocs from '@payloadcms/plugin-nested-docs'
-import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs/fields'
+} from '@hanzo/cms-plugin-form-builder/types'
+import nestedDocs from '@hanzo/cms-plugin-nested-docs'
+import { createBreadcrumbsField, createParentField } from '@hanzo/cms-plugin-nested-docs/fields'
 import {
   Breadcrumb,
   GenerateLabel,
   GenerateURL,
   PluginConfig as NestedDocsPluginConfig,
-} from '@payloadcms/plugin-nested-docs/types'
-import redirects from '@payloadcms/plugin-redirects'
-import { PluginConfig as RedirectsPluginConfig } from '@payloadcms/plugin-redirects/types'
+} from '@hanzo/cms-plugin-nested-docs/types'
+import redirects from '@hanzo/cms-plugin-redirects'
+import { PluginConfig as RedirectsPluginConfig } from '@hanzo/cms-plugin-redirects/types'
 
 // Skip plugin-sentry
 
-import search from '@payloadcms/plugin-search'
+import search from '@hanzo/cms-plugin-search'
 import {
   BeforeSync,
   DocToSync,
   SearchConfig,
   SyncWithSearch,
-} from '@payloadcms/plugin-search/types'
-import seo from '@payloadcms/plugin-seo'
+} from '@hanzo/cms-plugin-search/types'
+import seo from '@hanzo/cms-plugin-seo'
 import {
   GenerateDescription,
   GenerateImage,
@@ -402,8 +402,8 @@ import {
   Meta,
   GenerateURL as seoGenerateURL,
   PluginConfig as SeoPluginConfig,
-} from '@payloadcms/plugin-seo/types'
-import stripePlugin from '@payloadcms/plugin-stripe'
+} from '@hanzo/cms-plugin-seo/types'
+import stripePlugin from '@hanzo/cms-plugin-stripe'
 import {
   FieldSyncConfig,
   SanitizedStripeConfig,
@@ -412,7 +412,7 @@ import {
   StripeWebhookHandler,
   StripeWebhookHandlers,
   SyncConfig,
-} from '@payloadcms/plugin-stripe/types'
+} from '@hanzo/cms-plugin-stripe/types'
 import {
   $createAutoLinkNode,
   $createBlockNode,
@@ -556,14 +556,14 @@ import {
   UploadNode,
   useEditorConfigContext,
   validateUrl,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 import {
   defaultEditorLexicalConfig,
   RichTextCell,
   RichTextField,
   ToolbarButton,
   ToolbarDropdown,
-} from '@payloadcms/richtext-lexical/components'
+} from '@hanzo/cms-richtext-lexical/components'
 import {
   AdapterArguments,
   ElementButton,
@@ -578,4 +578,4 @@ import {
   slateEditor,
   TextNode,
   toggleElement,
-} from '@payloadcms/richtext-slate'
+} from '@hanzo/cms-richtext-slate'

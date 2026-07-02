@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test'
 
 import { expect, test } from '@playwright/test'
-import { mapAsync } from 'payload'
+import { mapAsync } from @hanzo/cms'from 
 import * as qs from 'qs-esm'
 
 import type { Config, Geo, Post, Virtual } from '../../payload-types.js'
@@ -40,7 +40,7 @@ import { listViewSelectAPISlug } from 'admin/collections/ListViewSelectAPI/index
 import { noTimestampsSlug } from 'admin/collections/NoTimestamps.js'
 import { devUser } from 'credentials.js'
 import path from 'path'
-import { wait } from 'payload/shared'
+import { wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../../../__helpers/shared/sdk/index.js'

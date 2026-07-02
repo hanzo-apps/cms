@@ -1,7 +1,7 @@
-import type { MigrateDownArgs, MigrateUpArgs } from '@payloadcms/db-postgres'
+import type { MigrateDownArgs, MigrateUpArgs } from '@hanzo/cms-db-postgres'
 
-import { sql } from '@payloadcms/db-postgres'
-import { getBlocksToJsonMigrator } from '@payloadcms/db-postgres/migration-utils'
+import { sql } from '@hanzo/cms-db-postgres'
+import { getBlocksToJsonMigrator } from '@hanzo/cms-db-postgres/migration-utils'
 import path from 'path'
 import { fileURLToPath } from 'url'
 

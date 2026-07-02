@@ -1,6 +1,6 @@
 'use client'
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 
 import { FieldLabel } from '../../../fields/FieldLabel/index.js'
 import { useConfig } from '../../../providers/Config/index.js'

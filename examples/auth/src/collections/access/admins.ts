@@ -1,4 +1,4 @@
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 import { checkRole } from './checkRole'
 

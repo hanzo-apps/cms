@@ -1,6 +1,6 @@
-import type { MigrateDownArgs, MigrateUpArgs } from '@payloadcms/db-postgres'
+import type { MigrateDownArgs, MigrateUpArgs } from '@hanzo/cms-db-postgres'
 
-import { sql } from '@payloadcms/db-postgres'
+import { sql } from '@hanzo/cms-db-postgres'
 
 export async function up({ payload }: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`

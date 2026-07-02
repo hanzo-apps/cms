@@ -1,7 +1,7 @@
 'use client'
-import type { JSONFieldClientComponent } from 'payload'
+import type { JSONFieldClientComponent } from @hanzo/cms'from 
 
-import { JSONField } from '@payloadcms/ui'
+import { JSONField } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomJSONFieldClient: JSONFieldClientComponent = (props) => {

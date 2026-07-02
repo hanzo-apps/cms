@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import { customersSlug } from '../shared.js'
 
@@ -30,7 +30,7 @@ export const Customers: CollectionConfig = {
           type: 'ui',
           admin: {
             components: {
-              Field: '@payloadcms/plugin-stripe/client#LinkToDoc',
+              Field: '@hanzo/cms-plugin-stripe/client#LinkToDoc',
             },
             custom: {
               isTestKey: process.env.PAYLOAD_PUBLIC_IS_STRIPE_TEST_KEY === 'true',

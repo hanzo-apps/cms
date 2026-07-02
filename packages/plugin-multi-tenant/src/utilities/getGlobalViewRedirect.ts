@@ -1,7 +1,7 @@
-import type { Payload, TypedUser, ViewTypes } from 'payload'
+import type { Payload, TypedUser, ViewTypes } from @hanzo/cms'from 
 
 import { unauthorized } from 'next/navigation.js'
-import { formatAdminURL, hasAutosaveEnabled } from 'payload/shared'
+import { formatAdminURL, hasAutosaveEnabled } from @hanzo/cms'from 
 
 import type { MultiTenantPluginConfig } from '../types.js'
 

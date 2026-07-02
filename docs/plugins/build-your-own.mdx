@@ -9,7 +9,7 @@ keywords: plugins, template, config, configuration, extensions, custom, document
 Building your own [Payload Plugin](./overview) is easy, and if you're already familiar with Payload then you'll have everything you need to get started. You can either start from scratch or use the [Plugin Template](#plugin-template) to get up and running quickly.
 
 <Banner type="success">
-  To use the template, run `npx create-payload-app@latest --template plugin`
+  To use the template, run `npx @hanzo/create-cms-app@latest --template plugin`
   directly in your terminal.
 </Banner>
 
@@ -80,7 +80,7 @@ If you're starting from scratch, you can easily setup a dev environment like thi
 ```
 mkdir dev
 cd dev
-npx create-payload-app@latest
+npx @hanzo/create-cms-app@latest
 ```
 
 If you're using the plugin template, the dev folder is built out for you and the `samplePlugin` has already been installed in `dev/payload.config.ts`.
@@ -163,7 +163,7 @@ export const seed = async (payload: Payload): Promise<void> => {
 Now that we have our environment setup and dev project ready to go - it's time to build the plugin!
 
 ```
-import type { Config } from 'payload'
+import type { Config } from @hanzo/cms'from 
 
 export const samplePlugin =
   (pluginOptions: PluginTypes) =>

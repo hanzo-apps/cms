@@ -1,4 +1,4 @@
-import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
+import { uploadthingStorage } from '@hanzo/cms-storage-uploadthing'
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'node:url'
 import path from 'path'

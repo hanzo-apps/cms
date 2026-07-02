@@ -1,4 +1,4 @@
-import type { DefaultDocumentIDType, Payload, PayloadRequest } from 'payload'
+import type { DefaultDocumentIDType, Payload, PayloadRequest } from @hanzo/cms'from 
 
 import { dequal } from 'dequal/lite'
 import { cache } from 'react'

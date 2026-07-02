@@ -6,14 +6,14 @@ desc: Payload supports SQLite through an officially supported Drizzle Database A
 keywords: SQLite, documentation, typescript, Content Management System, cms, headless, javascript, node, react, nextjs
 ---
 
-To use Payload with SQLite, install the package `@payloadcms/db-sqlite`. It leverages Drizzle ORM and `libSQL` to interact with a SQLite database that you provide.
+To use Payload with SQLite, install the package `@hanzo/cms-db-sqlite`. It leverages Drizzle ORM and `libSQL` to interact with a SQLite database that you provide.
 
 It automatically manages changes to your database for you in development mode, and exposes a full suite of migration controls for you to leverage in order to keep other database environments in sync with your schema. DDL transformations are automatically generated.
 
 To configure Payload to use SQLite, pass the `sqliteAdapter` to your Payload Config as follows:
 
 ```ts
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
 
 export default buildConfig({
   // Your config goes here
@@ -70,7 +70,7 @@ Then, you can access Drizzle as follows:
 // Import table from the generated file
 import { posts } from './payload-generated-schema'
 // To avoid installing Drizzle, you can import everything that drizzle has from our re-export path.
-import { eq, sql, and } from '@payloadcms/db-sqlite/drizzle'
+import { eq, sql, and } from '@hanzo/cms-db-sqlite/drizzle'
 
 // Drizzle's Querying API: https://orm.drizzle.team/docs/rqb
 const posts = await payload.db.drizzle.query.posts.findMany()
@@ -113,8 +113,8 @@ For more information about migrations, [click here](./migrations#when-to-run-mig
 Runs before the schema is built. You can use this hook to extend your database structure with tables that won't be managed by Payload.
 
 ```ts
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
-import { integer, sqliteTable } from '@payloadcms/db-sqlite/drizzle/sqlite-core'
+import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
+import { integer, sqliteTable } from '@hanzo/cms-db-sqlite/drizzle/sqlite-core'
 
 sqliteAdapter({
   beforeSchemaInit: [
@@ -168,7 +168,7 @@ export const countries = sqliteTable(
 You can import them into your config and append to the schema with the `beforeSchemaInit` hook like this:
 
 ```ts
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
 import { users, countries } from '../drizzle/schema'
 
 sqliteAdapter({
@@ -196,9 +196,9 @@ To extend a table, Payload exposes `extendTable` utility to the args. You can re
 The following example adds the `extra_integer_column` column and a composite index on `country` and `city` columns.
 
 ```ts
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
-import { index, integer } from '@payloadcms/db-sqlite/drizzle/sqlite-core'
-import { buildConfig } from 'payload'
+import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
+import { index, integer } from '@hanzo/cms-db-sqlite/drizzle/sqlite-core'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   collections: [
@@ -244,7 +244,7 @@ Columns and tables, added in schema hooks won't be added to the generated via `p
 If you want them to be there, you either have to edit this file manually or mutate the internal Payload "raw" SQL schema in the `beforeSchemaInit`:
 
 ```ts
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
 
 sqliteAdapter({
   beforeSchemaInit: [
@@ -290,10 +290,10 @@ sqliteAdapter({
 
 We also provide a separate adapter to connect to [Cloudflare D1](https://developers.cloudflare.com/d1/), which is a serverless SQLite database.
 
-To use it, install the package `@payloadcms/db-d1-sqlite` and configure it as follows:
+To use it, install the package `@hanzo/cms-db-d1-sqlite` and configure it as follows:
 
 ```ts
-import { sqliteD1Adapter } from '@payloadcms/db-d1-sqlite'
+import { sqliteD1Adapter } from '@hanzo/cms-db-d1-sqlite'
 
 export default buildConfig({
   // Your config goes here
@@ -325,7 +325,7 @@ You must also enable it on your D1 database in the Cloudflare dashboard. Read mo
 </Banner>
 
 ```ts
-import { sqliteD1Adapter } from '@payloadcms/db-d1-sqlite'
+import { sqliteD1Adapter } from '@hanzo/cms-db-d1-sqlite'
 
 export default buildConfig({
   collections: [],
@@ -344,7 +344,7 @@ You can then verify that they're being used by checking the logs in your Cloudfl
 You can enable Write-Ahead Logging (WAL) mode for improved performance and concurrency by passing the `wal` option to the SQLite adapter.
 
 ```ts title="Example SQLite Adapter with WAL"
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
 export default buildConfig({
   // Your config goes here
   collections: [

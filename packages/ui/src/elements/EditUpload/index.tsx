@@ -1,6 +1,6 @@
 'use client'
 
-import type { UploadEdits } from 'payload'
+import type { UploadEdits } from @hanzo/cms'from 
 
 import { useModal } from '@faceless-ui/modal'
 import React, { useRef, useState } from 'react'

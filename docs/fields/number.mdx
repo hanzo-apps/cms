@@ -18,7 +18,7 @@ The Number Field stores and validates numeric entry and supports additional nume
 To add a Number Field, set the `type` to `number` in your [Field Config](./overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyNumberField: Field = {
   // ...
@@ -59,7 +59,7 @@ _\* An asterisk denotes that a property is required._
 To customize the appearance and behavior of the Number Field in the [Admin Panel](../admin/overview), you can use the `admin` option:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyNumberField: Field = {
   // ...
@@ -81,7 +81,7 @@ The Number Field inherits all of the default admin options from the base [Field 
 ## Example
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',
@@ -106,8 +106,8 @@ export const ExampleCollection: CollectionConfig = {
 
 ```tsx
 import type React from 'react'
-import { NumberField } from '@payloadcms/ui'
-import type { NumberFieldServerComponent } from 'payload'
+import { NumberField } from '@hanzo/cms-ui'
+import type { NumberFieldServerComponent } from @hanzo/cms'from 
 
 export const CustomNumberFieldServer: NumberFieldServerComponent = ({
   clientField,
@@ -131,8 +131,8 @@ export const CustomNumberFieldServer: NumberFieldServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { NumberField } from '@payloadcms/ui'
-import type { NumberFieldClientComponent } from 'payload'
+import { NumberField } from '@hanzo/cms-ui'
+import type { NumberFieldClientComponent } from @hanzo/cms'from 
 
 export const CustomNumberFieldClient: NumberFieldClientComponent = (props) => {
   return <NumberField {...props} />
@@ -145,8 +145,8 @@ export const CustomNumberFieldClient: NumberFieldClientComponent = (props) => {
 
 ```tsx
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { NumberFieldLabelServerComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { NumberFieldLabelServerComponent } from @hanzo/cms'from 
 
 export const CustomNumberFieldLabelServer: NumberFieldLabelServerComponent = ({
   clientField,
@@ -167,8 +167,8 @@ export const CustomNumberFieldLabelServer: NumberFieldLabelServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { NumberFieldLabelClientComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { NumberFieldLabelClientComponent } from @hanzo/cms'from 
 
 export const CustomNumberFieldLabelClient: NumberFieldLabelClientComponent = ({
   field,

@@ -9,7 +9,7 @@ function init(modules: { typescript: typeof tslib }) {
 
   function create(info: tslib.server.PluginCreateInfo): tslib.LanguageService {
     const log = (msg: string) =>
-      info.project.projectService.logger.info(`[@payloadcms/typescript-plugin] ${msg}`)
+      info.project.projectService.logger.info(`[@hanzo/cms-typescript-plugin] ${msg}`)
 
     log('Plugin initializing')
 

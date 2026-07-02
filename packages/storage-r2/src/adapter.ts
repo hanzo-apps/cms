@@ -2,7 +2,7 @@ import type {
   Adapter,
   ClientUploadsConfig,
   GeneratedAdapter,
-} from '@payloadcms/plugin-cloud-storage/types'
+} from '@hanzo/cms-plugin-cloud-storage/types'
 
 import type { R2Bucket } from './types.js'
 

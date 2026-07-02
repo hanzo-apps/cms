@@ -1,5 +1,5 @@
 'use client'
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 
 import type { Action, Option, OptionGroup } from './types.js'
 

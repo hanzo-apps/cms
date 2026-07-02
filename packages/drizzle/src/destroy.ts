@@ -1,4 +1,4 @@
-import type { Destroy } from 'payload'
+import type { Destroy } from @hanzo/cms'from 
 
 import type { DrizzleAdapter } from './types.js'
 

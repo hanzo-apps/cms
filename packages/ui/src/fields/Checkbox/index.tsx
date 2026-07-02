@@ -3,9 +3,9 @@ import type {
   CheckboxFieldClientComponent,
   CheckboxFieldClientProps,
   CheckboxFieldValidation,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { rtlLanguages } from '@payloadcms/translations'
+import { rtlLanguages } from '@hanzo/cms-translations'
 import React, { useCallback, useMemo } from 'react'
 
 import type { CheckboxInputProps } from './Input.js'

@@ -1,4 +1,4 @@
-import type { AdminViewProps } from 'payload'
+import type { AdminViewProps } from @hanzo/cms'from 
 
 import React from 'react'
 

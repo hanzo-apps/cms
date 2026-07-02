@@ -1,4 +1,4 @@
-import type { GenericTranslationsObject } from '@payloadcms/translations'
+import type { GenericTranslationsObject } from '@hanzo/cms-translations'
 
 export const vi: GenericTranslationsObject = {
   $schema: './translation-schema.json',

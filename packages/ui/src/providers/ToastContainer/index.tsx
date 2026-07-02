@@ -1,5 +1,5 @@
 'use client'
-import type { ClientConfig } from 'payload'
+import type { ClientConfig } from @hanzo/cms'from 
 
 import React from 'react'
 import { Toaster } from 'sonner'

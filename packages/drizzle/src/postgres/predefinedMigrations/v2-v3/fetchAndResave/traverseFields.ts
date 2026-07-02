@@ -1,4 +1,4 @@
-import type { FlattenedField } from 'payload'
+import type { FlattenedField } from @hanzo/cms'from 
 
 type Args = {
   doc: Record<string, unknown>

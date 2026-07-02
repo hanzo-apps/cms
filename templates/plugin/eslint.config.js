@@ -1,6 +1,6 @@
 // @ts-check
 
-import payloadEsLintConfig from '@payloadcms/eslint-config'
+import payloadEsLintConfig from '@hanzo/cms-eslint-config'
 
 export const defaultESLintIgnores = [
   '**/.temp',

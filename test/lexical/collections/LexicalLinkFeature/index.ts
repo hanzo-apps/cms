@@ -1,11 +1,11 @@
-import type { CheckboxField, CollectionConfig } from 'payload'
+import type { CheckboxField, CollectionConfig } from @hanzo/cms'from 
 
 import {
   FixedToolbarFeature,
   lexicalEditor,
   LinkFeature,
   TreeViewFeature,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 import { lexicalLinkFeatureSlug } from '../../slugs.js'
 

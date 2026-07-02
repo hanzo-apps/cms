@@ -1,7 +1,7 @@
 'use client'
-import { Link, useConfig, useTranslation } from '@payloadcms/ui'
-import { formatDate } from '@payloadcms/ui/shared'
-import { formatAdminURL } from 'payload/shared'
+import { Link, useConfig, useTranslation } from '@hanzo/cms-ui'
+import { formatDate } from '@hanzo/cms-ui/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import React from 'react'
 
 export type CreatedAtCellProps = {

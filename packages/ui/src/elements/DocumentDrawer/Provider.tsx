@@ -1,4 +1,4 @@
-import type { ClientCollectionConfig, Data, FormState, TypeWithID } from 'payload'
+import type { ClientCollectionConfig, Data, FormState, TypeWithID } from @hanzo/cms'from 
 
 import { createContext, use } from 'react'
 

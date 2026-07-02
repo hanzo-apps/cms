@@ -5,7 +5,7 @@ This package provides a way to use [uploadthing](https://uploadthing.com) with P
 ## Installation
 
 ```sh
-pnpm add @payloadcms/storage-uploadthing
+pnpm add @hanzo/cms-storage-uploadthing
 ```
 
 ## Usage

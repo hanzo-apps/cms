@@ -1,7 +1,7 @@
-import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
+import { vercelPostgresAdapter } from '@hanzo/cms-db-vercel-postgres'
 import sharp from 'sharp'
 import path from 'path'
-import { buildConfig, PayloadRequest } from 'payload'
+import { buildConfig, PayloadRequest } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'
@@ -14,7 +14,7 @@ import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { vercelBlobStorage } from '@hanzo/cms-storage-vercel-blob'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)

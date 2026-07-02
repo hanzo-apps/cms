@@ -1,4 +1,4 @@
-import type { PaginatedDocs, SanitizedCollectionConfig } from 'payload'
+import type { PaginatedDocs, SanitizedCollectionConfig } from @hanzo/cms'from 
 
 import type { CompareOption } from '../Default/types.js'
 

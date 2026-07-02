@@ -7,7 +7,7 @@ import type {
   NodeKey,
   SerializedLexicalNode,
 } from 'lexical'
-import type { JsonObject } from 'payload'
+import type { JsonObject } from @hanzo/cms'from 
 import type React from 'react'
 import type { JSX } from 'react'
 

@@ -22,13 +22,13 @@ export function helpMessage(): void {
 
       {dim Inside of an existing Next.js project}
 
-      {dim $} {bold npx create-payload-app}
+      {dim $} {bold npx @hanzo/create-cms-app}
 
       {dim Create a new project from scratch}
 
-      {dim $} {bold npx create-payload-app}
-      {dim $} {bold npx create-payload-app} my-project
-      {dim $} {bold npx create-payload-app} -n my-project -t template-name
+      {dim $} {bold npx @hanzo/create-cms-app}
+      {dim $} {bold npx @hanzo/create-cms-app} my-project
+      {dim $} {bold npx @hanzo/create-cms-app} -n my-project -t template-name
 
   {bold OPTIONS}
 
@@ -100,7 +100,7 @@ ${chalk.bold('To continue:')}
 
 It is recommended to do this from your IDE if your app has existing file references.
 
-Once moved, rerun the create-payload-app command again.
+Once moved, rerun the @hanzo/create-cms-app command again.
 `
 }
 

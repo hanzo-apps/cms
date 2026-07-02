@@ -7,7 +7,7 @@ import type { Config } from './payload-types.js'
 const { beforeAll, beforeEach, describe } = test
 
 import path from 'path'
-import { wait } from 'payload/shared'
+import { wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../__helpers/shared/sdk/index.js'

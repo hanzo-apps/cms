@@ -1,4 +1,4 @@
-import type { DocumentInfoContext } from '@payloadcms/ui'
+import type { DocumentInfoContext } from '@hanzo/cms-ui'
 import type {
   CollectionConfig,
   CollectionSlug,
@@ -7,7 +7,7 @@ import type {
   GlobalSlug,
   PayloadRequest,
   UploadCollectionSlug,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export type FieldsOverride = (args: { defaultFields: Field[] }) => Field[]
 

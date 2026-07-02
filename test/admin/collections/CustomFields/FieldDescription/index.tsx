@@ -1,7 +1,7 @@
 'use client'
-import type { FieldDescriptionClientComponent } from 'payload'
+import type { FieldDescriptionClientComponent } from @hanzo/cms'from 
 
-import { useFormFields } from '@payloadcms/ui'
+import { useFormFields } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const FieldDescriptionComponent: FieldDescriptionClientComponent = ({ path }) => {

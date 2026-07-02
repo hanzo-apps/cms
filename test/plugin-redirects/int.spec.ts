@@ -1,4 +1,4 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 import { describe, beforeAll, afterAll, it, expect } from 'vitest'
 
 import path from 'path'
@@ -15,7 +15,7 @@ let page: Page
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-describe('@payloadcms/plugin-redirects', () => {
+describe('@hanzo/cms-plugin-redirects', () => {
   beforeAll(async () => {
     ;({ payload } = await initPayloadInt(dirname))
 

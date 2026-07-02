@@ -1,6 +1,6 @@
-import type { RichTextAdapter } from 'payload'
+import type { RichTextAdapter } from @hanzo/cms'from 
 
-import { traverseFields } from '@payloadcms/ui/utilities/buildFieldSchemaMap/traverseFields'
+import { traverseFields } from '@hanzo/cms-ui/utilities/buildFieldSchemaMap/traverseFields'
 
 import type { ResolvedServerFeatureMap } from '../features/typesServer.js'
 

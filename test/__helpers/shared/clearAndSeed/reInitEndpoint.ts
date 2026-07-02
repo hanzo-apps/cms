@@ -1,4 +1,4 @@
-import type { Endpoint, PayloadHandler } from 'payload'
+import type { Endpoint, PayloadHandler } from @hanzo/cms'from 
 
 import { status as httpStatus } from 'http-status'
 import * as qs from 'qs-esm'

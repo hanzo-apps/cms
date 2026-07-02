@@ -1,7 +1,7 @@
-import type { I18nClient, TFunction } from '@payloadcms/translations'
-import type { ClientCollectionConfig, ViewTypes } from 'payload'
+import type { I18nClient, TFunction } from '@hanzo/cms-translations'
+import type { ClientCollectionConfig, ViewTypes } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'
 
 import { CloseModalButton } from '../../../elements/CloseModalButton/index.js'

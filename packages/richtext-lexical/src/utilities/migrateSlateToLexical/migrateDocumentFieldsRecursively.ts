@@ -1,6 +1,6 @@
-import type { Field, FlattenedBlock, Payload } from 'payload'
+import type { Field, FlattenedBlock, Payload } from @hanzo/cms'from 
 
-import { fieldAffectsData, fieldHasSubFields, fieldIsArrayType, tabHasName } from 'payload/shared'
+import { fieldAffectsData, fieldHasSubFields, fieldIsArrayType, tabHasName } from @hanzo/cms'from 
 
 import type {
   SlateNode,

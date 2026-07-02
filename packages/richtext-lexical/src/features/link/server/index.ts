@@ -5,10 +5,10 @@ import type {
   FieldAffectingData,
   FieldSchemaMap,
   SanitizedConfig,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import escapeHTML from 'escape-html'
-import { sanitizeFields } from 'payload'
+import { sanitizeFields } from @hanzo/cms'from 
 
 import type { NodeWithHooks } from '../../typesServer.js'
 import type { ClientProps } from '../client/index.js'
@@ -144,7 +144,7 @@ export const LinkFeature = createServerFeature<
       : undefined
 
     return {
-      ClientFeature: '@payloadcms/richtext-lexical/client#LinkFeatureClient',
+      ClientFeature: '@hanzo/cms-richtext-lexical/client#LinkFeatureClient',
       clientFeatureProps: {
         defaultLinkType,
         defaultLinkURL,

@@ -3,9 +3,9 @@ import type {
   ArrayFieldClientComponent,
   ArrayFieldClientProps,
   ArrayField as ArrayFieldType,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React, { Fragment, useCallback, useId, useMemo } from 'react'
 import { toast } from 'sonner'
 

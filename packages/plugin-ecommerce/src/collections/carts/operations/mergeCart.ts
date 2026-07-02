@@ -1,4 +1,4 @@
-import type { CollectionSlug, DefaultDocumentIDType, Payload, PayloadRequest } from 'payload'
+import type { CollectionSlug, DefaultDocumentIDType, Payload, PayloadRequest } from @hanzo/cms'from 
 
 import type { CartItemData, CartOperationResult } from './types.js'
 

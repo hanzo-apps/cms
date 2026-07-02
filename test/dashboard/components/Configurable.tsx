@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-exports */
-import { type WidgetServerProps } from 'payload'
+import { type WidgetServerProps } from @hanzo/cms'from 
 
 import type { ConfigurableWidget } from '../payload-types.js'
 

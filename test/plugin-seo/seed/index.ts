@@ -1,8 +1,8 @@
-import type { Payload, PayloadRequest } from 'payload'
+import type { Payload, PayloadRequest } from @hanzo/cms'from 
 
 import { fileURLToPath } from 'node:url'
 import path from 'path'
-import { getFileByPath } from 'payload'
+import { getFileByPath } from @hanzo/cms'from 
 
 import { mediaSlug } from '../shared.js'
 const filename = fileURLToPath(import.meta.url)

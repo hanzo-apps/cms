@@ -1,4 +1,4 @@
-import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest } from 'payload'
+import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest } from @hanzo/cms'from 
 
 import fs from 'fs'
 import path from 'path'

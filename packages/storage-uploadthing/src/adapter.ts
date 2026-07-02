@@ -2,8 +2,8 @@ import type {
   Adapter,
   ClientUploadsConfig,
   GeneratedAdapter,
-} from '@payloadcms/plugin-cloud-storage/types'
-import type { Field } from 'payload'
+} from '@hanzo/cms-plugin-cloud-storage/types'
+import type { Field } from @hanzo/cms'from 
 import type { UTApi } from 'uploadthing/server'
 
 import type { ACL } from './index.js'

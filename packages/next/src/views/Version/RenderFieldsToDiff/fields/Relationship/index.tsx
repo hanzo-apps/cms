@@ -3,10 +3,10 @@ import type {
   RelationshipField,
   RelationshipFieldDiffServerComponent,
   TypeWithID,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { getTranslation, type I18nClient } from '@payloadcms/translations'
-import { FieldDiffContainer, getHTMLDiffComponents } from '@payloadcms/ui/rsc'
+import { getTranslation, type I18nClient } from '@hanzo/cms-translations'
+import { FieldDiffContainer, getHTMLDiffComponents } from '@hanzo/cms-ui/rsc'
 
 import './index.scss'
 

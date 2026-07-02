@@ -1,6 +1,6 @@
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 export const hero: Field = {
   name: 'hero',

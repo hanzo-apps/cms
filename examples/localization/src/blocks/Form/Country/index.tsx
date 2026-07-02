@@ -1,4 +1,4 @@
-import type { CountryField } from '@payloadcms/plugin-form-builder/types'
+import type { CountryField } from '@hanzo/cms-plugin-form-builder/types'
 import type { Control, FieldErrorsImpl, FieldValues } from 'react-hook-form'
 
 import { Label } from '@/components/ui/label'

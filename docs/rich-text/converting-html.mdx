@@ -15,13 +15,13 @@ There are two main approaches to convert your Lexical-based rich text to HTML:
 
 ### On-demand
 
-To convert JSON to HTML on-demand, use the `convertLexicalToHTML` function from `@payloadcms/richtext-lexical/html`. Here's an example of how to use it in a React component in your frontend:
+To convert JSON to HTML on-demand, use the `convertLexicalToHTML` function from `@hanzo/cms-richtext-lexical/html`. Here's an example of how to use it in a React component in your frontend:
 
 ```tsx
 'use client'
 
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
-import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
+import { convertLexicalToHTML } from '@hanzo/cms-richtext-lexical/html'
 
 import React from 'react'
 
@@ -34,15 +34,15 @@ export const MyComponent = ({ data }: { data: SerializedEditorState }) => {
 
 #### Dynamic Population (Advanced)
 
-By default, `convertLexicalToHTML` expects fully populated data (e.g. uploads, links, etc.). If you need to dynamically fetch and populate those nodes, use the async variant, `convertLexicalToHTMLAsync`, from `@payloadcms/richtext-lexical/html-async`. You must provide a `populate` function:
+By default, `convertLexicalToHTML` expects fully populated data (e.g. uploads, links, etc.). If you need to dynamically fetch and populate those nodes, use the async variant, `convertLexicalToHTMLAsync`, from `@hanzo/cms-richtext-lexical/html-async`. You must provide a `populate` function:
 
 ```tsx
 'use client'
 
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
 
-import { getRestPopulateFn } from '@payloadcms/richtext-lexical/client'
-import { convertLexicalToHTMLAsync } from '@payloadcms/richtext-lexical/html-async'
+import { getRestPopulateFn } from '@hanzo/cms-richtext-lexical/client'
+import { convertLexicalToHTMLAsync } from '@hanzo/cms-richtext-lexical/html-async'
 import React, { useEffect, useState } from 'react'
 
 export const MyComponent = ({ data }: { data: SerializedEditorState }) => {
@@ -68,11 +68,11 @@ export const MyComponent = ({ data }: { data: SerializedEditorState }) => {
 Using the REST populate function will send a separate request for each node. If you need to populate a large number of nodes, this may be slow. For improved performance on the server, you can use the `getPayloadPopulateFn` function:
 
 ```tsx
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
 
-import { getPayloadPopulateFn } from '@payloadcms/richtext-lexical'
-import { convertLexicalToHTMLAsync } from '@payloadcms/richtext-lexical/html-async'
-import { getPayload } from 'payload'
+import { getPayloadPopulateFn } from '@hanzo/cms-richtext-lexical'
+import { convertLexicalToHTMLAsync } from '@hanzo/cms-richtext-lexical/html-async'
+import { getPayload } from @hanzo/cms'from 
 import React from 'react'
 
 import config from '../../config.js'
@@ -106,9 +106,9 @@ The `lexicalHTMLField()` helper converts JSON to HTML and saves it in a field th
 Consider using the [on-demand HTML converter above](/docs/rich-text/converting-html#on-demand-recommended) or the [JSX converter](/docs/rich-text/converting-jsx) unless you have a good reason.
 
 ```ts
-import type { HTMLConvertersFunction } from '@payloadcms/richtext-lexical/html'
+import type { HTMLConvertersFunction } from '@hanzo/cms-richtext-lexical/html'
 import type { MyTextBlock } from '@/payload-types.js'
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import {
   BlocksFeature,
@@ -116,7 +116,7 @@ import {
   lexicalEditor,
   lexicalHTMLField,
   type SerializedBlockNode,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 const Pages: CollectionConfig = {
   slug: 'pages',
@@ -183,13 +183,13 @@ import type {
   DefaultNodeTypes,
   SerializedBlockNode,
   SerializedInlineBlockNode,
-} from '@payloadcms/richtext-lexical'
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+} from '@hanzo/cms-richtext-lexical'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
 
 import {
   convertLexicalToHTML,
   type HTMLConvertersFunction,
-} from '@payloadcms/richtext-lexical/html'
+} from '@hanzo/cms-richtext-lexical/html'
 import React from 'react'
 
 type NodeTypes =
@@ -225,7 +225,7 @@ export const MyComponent = ({ data }: { data: SerializedEditorState }) => {
 
 ## HTML to Richtext
 
-If you need to convert raw HTML into a Lexical editor state, use `convertHTMLToLexical` from `@payloadcms/richtext-lexical`, along with the [editorConfigFactory to retrieve the editor config](/docs/rich-text/converters#retrieving-the-editor-config):
+If you need to convert raw HTML into a Lexical editor state, use `convertHTMLToLexical` from `@hanzo/cms-richtext-lexical`, along with the [editorConfigFactory to retrieve the editor config](/docs/rich-text/converters#retrieving-the-editor-config):
 
 <Banner type="warning">
   **Important:** When converting HTML to Lexical, `<img>` tags are NOT automatically uploaded. This is intentional because we don't know which uploads-enabled collection to add them to, and that collection may have required fields that cannot be auto-filled. Images will be omitted from the conversion unless you provide the proper data attributes. See [Converting HTML with Images](#converting-html-with-images) for guidance on handling images.
@@ -235,7 +235,7 @@ If you need to convert raw HTML into a Lexical editor state, use `convertHTMLToL
 import {
   convertHTMLToLexical,
   editorConfigFactory,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 // Make sure you have jsdom and @types/jsdom installed
 import { JSDOM } from 'jsdom'
 
@@ -260,8 +260,8 @@ The most reliable approach is to upload images to Payload first, then reference 
 import {
   convertHTMLToLexical,
   editorConfigFactory,
-} from '@payloadcms/richtext-lexical'
-import { getPayload } from 'payload'
+} from '@hanzo/cms-richtext-lexical'
+import { getPayload } from @hanzo/cms'from 
 import { JSDOM } from 'jsdom'
 import config from '@payload-config'
 
@@ -311,8 +311,8 @@ For bulk content migration or when dealing with external image URLs, parse the H
 import {
   convertHTMLToLexical,
   editorConfigFactory,
-} from '@payloadcms/richtext-lexical'
-import { getPayload } from 'payload'
+} from '@hanzo/cms-richtext-lexical'
+import { getPayload } from @hanzo/cms'from 
 import { JSDOM } from 'jsdom'
 import config from '@payload-config'
 
@@ -381,7 +381,7 @@ const lexicalJSON = await convertHTMLWithImageUpload(
 If you already have upload IDs and want to build the Lexical JSON structure, use the `buildEditorState` helper for a type-safe, simplified approach. This helper requires less boilerplate and eliminates the need to manually construct the root node.
 
 ```ts
-import { buildEditorState } from '@payloadcms/richtext-lexical'
+import { buildEditorState } from '@hanzo/cms-richtext-lexical'
 import { v4 as uuid } from 'uuid'
 
 // Build Lexical JSON with upload nodes using the helper

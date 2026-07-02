@@ -1,4 +1,4 @@
-import type { TaskConfig } from 'payload'
+import type { TaskConfig } from @hanzo/cms'from 
 
 import path from 'path'
 import { fileURLToPath } from 'url'

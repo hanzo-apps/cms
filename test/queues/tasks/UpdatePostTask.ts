@@ -1,4 +1,4 @@
-import type { TaskConfig } from 'payload'
+import type { TaskConfig } from @hanzo/cms'from 
 
 import { updatePostStep1 } from '../runners/updatePost.js'
 

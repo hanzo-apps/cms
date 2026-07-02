@@ -47,7 +47,7 @@ To change the admin route from `/admin` to `/dashboard`:
 **1. Update your Payload Config:**
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -101,7 +101,7 @@ To move both the Payload Admin Panel and API under a custom path, you move the e
 **1. Update your Payload Config with all routes and import map settings:**
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -222,7 +222,7 @@ You may see this warning in `layout.tsx`:
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
 ```
 
-**This warning is misleading.** The file was generated during initial project setup by `create-payload-app`, but it is **never regenerated** by Payload. It is completely safe to modify this file, especially when customizing your folder structure.
+**This warning is misleading.** The file was generated during initial project setup by `@hanzo/create-cms-app`, but it is **never regenerated** by Payload. It is completely safe to modify this file, especially when customizing your folder structure.
 
 ## Editing layout.tsx Safely
 

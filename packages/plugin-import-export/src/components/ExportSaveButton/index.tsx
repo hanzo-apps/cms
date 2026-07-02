@@ -10,8 +10,8 @@ import {
   useForm,
   useFormModified,
   useTranslation,
-} from '@payloadcms/ui'
-import { formatAdminURL } from 'payload/shared'
+} from '@hanzo/cms-ui'
+import { formatAdminURL } from @hanzo/cms'from 
 import React from 'react'
 
 import type {

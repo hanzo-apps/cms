@@ -1,4 +1,4 @@
-import type { ClientField, FormState } from 'payload'
+import type { ClientField, FormState } from @hanzo/cms'from 
 
 export type Props = {
   readonly drawerSlug: string

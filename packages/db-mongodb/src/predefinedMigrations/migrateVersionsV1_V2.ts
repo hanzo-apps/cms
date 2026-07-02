@@ -1,5 +1,5 @@
 import type { ClientSession } from 'mongoose'
-import type { Payload, PayloadRequest } from 'payload'
+import type { Payload, PayloadRequest } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from '../index.js'
 

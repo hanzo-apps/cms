@@ -1,5 +1,5 @@
 'use client'
-import type { I18nClient, I18nOptions, Language } from '@payloadcms/translations'
+import type { I18nClient, I18nOptions, Language } from '@hanzo/cms-translations'
 import type {
   ClientConfig,
   LanguageOptions,
@@ -7,7 +7,7 @@ import type {
   SanitizedPermissions,
   ServerFunctionClient,
   TypedUser,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import { DndContext, pointerWithin } from '@dnd-kit/core'
 import { ModalContainer, ModalProvider } from '@faceless-ui/modal'

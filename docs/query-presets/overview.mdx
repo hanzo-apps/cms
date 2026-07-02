@@ -15,7 +15,7 @@ Within the [Admin Panel](../admin/overview), Query Presets are applied to the Li
 To enable Query Presets on a Collection, use the `enableQueryPresets` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -32,7 +32,7 @@ While not required, you may want to customize the behavior of Query Presets to s
 Settings for Query Presets are managed on the `queryPresets` property at the root of your [Payload Config](../configuration/overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -69,7 +69,7 @@ Collection-level access control applies to _all_ presets within the Query Preset
 To add Collection Access Control, use the `queryPresets.access` property in your [Payload Config](../configuration/overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -121,7 +121,7 @@ Adding custom access control rules requires:
 To do this, use the `queryPresets.constraints` property in your [Payload Config](../configuration/overview).
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -187,7 +187,7 @@ When a user lacks the permission to set a constraint, the option will either be 
 To do this, you can use the `filterConstraints` property in your [Payload Config](../configuration/overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...

@@ -1,4 +1,4 @@
-import type { Upsert } from 'payload'
+import type { Upsert } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from './index.js'
 

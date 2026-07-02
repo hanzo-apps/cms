@@ -1,4 +1,4 @@
-import type { RelationshipField, UploadField } from 'payload'
+import type { RelationshipField, UploadField } from @hanzo/cms'from 
 
 type Args = {
   field: RelationshipField | UploadField

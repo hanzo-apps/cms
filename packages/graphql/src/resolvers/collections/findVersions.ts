@@ -1,7 +1,7 @@
 import type { GraphQLResolveInfo } from 'graphql'
-import type { Collection, PaginatedDocs, Where } from 'payload'
+import type { Collection, PaginatedDocs, Where } from @hanzo/cms'from 
 
-import { findVersionsOperation, isolateObjectProperty } from 'payload'
+import { findVersionsOperation, isolateObjectProperty } from @hanzo/cms'from 
 
 import type { Context } from '../types.js'
 

@@ -1,4 +1,4 @@
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
 
 import React from 'react'
 

@@ -2,7 +2,7 @@ import { HeaderClient } from './Component.client'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import React from 'react'
 
-import { TypedLocale } from 'payload'
+import { TypedLocale } from @hanzo/cms'from 
 
 export async function Header({ locale }: { locale: TypedLocale }) {
   const header = await getCachedGlobal('header', 1, locale)()

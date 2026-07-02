@@ -1,4 +1,4 @@
-import type { FormState, UploadEdits } from 'payload'
+import type { FormState, UploadEdits } from @hanzo/cms'from 
 
 import { v4 as uuidv4 } from 'uuid'
 

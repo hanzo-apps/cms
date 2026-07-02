@@ -1,4 +1,4 @@
-import type { Field, PayloadRequest } from 'payload'
+import type { Field, PayloadRequest } from @hanzo/cms'from 
 
 type GetFieldsOptions = {
   /**
@@ -17,7 +17,7 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
       type: 'text',
       admin: {
         components: {
-          Field: '@payloadcms/plugin-import-export/rsc#CollectionField',
+          Field: '@hanzo/cms-plugin-import-export/rsc#CollectionField',
         },
       },
       defaultValue: collectionSlugs[0],
@@ -157,7 +157,7 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
       type: 'ui',
       admin: {
         components: {
-          Field: '@payloadcms/plugin-import-export/rsc#ImportPreview',
+          Field: '@hanzo/cms-plugin-import-export/rsc#ImportPreview',
         },
       },
     },

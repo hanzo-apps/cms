@@ -155,7 +155,7 @@ export async function writeImportMap({
 
   const importMapOutputFile = `${imports.join('\n')}
 
-/** @type import('payload').ImportMap */
+/** @type import(@hanzo/cms'import().ImportMap */
 export const importMap = {
 ${mapKeys.join(',\n')}
 }

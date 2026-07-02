@@ -1,8 +1,8 @@
-import type { AcceptedLanguages } from '@payloadcms/translations'
-import type { CollectionConfig, Config } from 'payload'
+import type { AcceptedLanguages } from '@hanzo/cms-translations'
+import type { CollectionConfig, Config } from @hanzo/cms'from 
 
 import chalk from 'chalk'
-import { hasAutosaveEnabled } from 'payload/shared'
+import { hasAutosaveEnabled } from @hanzo/cms'from 
 
 import type { PluginDefaultTranslationsObject } from './translations/types.js'
 import type { MultiTenantPluginConfig } from './types.js'
@@ -320,7 +320,7 @@ export const multiTenantPlugin =
           admin: {
             components: {
               Field: {
-                path: '@payloadcms/plugin-multi-tenant/client#WatchTenantCollection',
+                path: '@hanzo/cms-plugin-multi-tenant/client#WatchTenantCollection',
               },
             },
             disableBulkEdit: true,
@@ -359,7 +359,7 @@ export const multiTenantPlugin =
           collection.admin.components.edit ??= {}
           collection.admin.components.edit.editMenuItems ??= []
           collection.admin.components.edit.editMenuItems.push({
-            path: '@payloadcms/plugin-multi-tenant/client#AssignTenantFieldTrigger',
+            path: '@hanzo/cms-plugin-multi-tenant/client#AssignTenantFieldTrigger',
           })
         }
 
@@ -468,7 +468,7 @@ export const multiTenantPlugin =
         useAsTitle: tenantCollection.admin?.useAsTitle || 'id',
         userHasAccessToAllTenants,
       },
-      path: '@payloadcms/plugin-multi-tenant/rsc#TenantSelectionProvider',
+      path: '@hanzo/cms-plugin-multi-tenant/rsc#TenantSelectionProvider',
     })
 
     /**
@@ -476,7 +476,7 @@ export const multiTenantPlugin =
      */
     if (globalCollectionSlugs.length) {
       incomingConfig.admin.components.actions.push({
-        path: '@payloadcms/plugin-multi-tenant/rsc#GlobalViewRedirect',
+        path: '@hanzo/cms-plugin-multi-tenant/rsc#GlobalViewRedirect',
         serverProps: {
           globalSlugs: globalCollectionSlugs,
           tenantFieldName,
@@ -502,7 +502,7 @@ export const multiTenantPlugin =
         ],
         label: pluginConfig.tenantSelectorLabel || undefined,
       },
-      path: '@payloadcms/plugin-multi-tenant/rsc#TenantSelector',
+      path: '@hanzo/cms-plugin-multi-tenant/rsc#TenantSelector',
     })
 
     /**

@@ -1,4 +1,4 @@
-import type { CollectionBeforeChangeHook, CollectionConfig, FileData, TypeWithID } from 'payload'
+import type { CollectionBeforeChangeHook, CollectionConfig, FileData, TypeWithID } from @hanzo/cms'from 
 import type stream from 'stream'
 
 import { Upload } from '@aws-sdk/lib-storage'

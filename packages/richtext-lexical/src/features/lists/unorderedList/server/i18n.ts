@@ -1,4 +1,4 @@
-import type { GenericLanguages } from '@payloadcms/translations'
+import type { GenericLanguages } from '@hanzo/cms-translations'
 
 export const i18n: Partial<GenericLanguages> = {
   ar: {

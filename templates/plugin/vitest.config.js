@@ -1,5 +1,5 @@
 import path from 'path'
-import { loadEnv } from 'payload/node'
+import { loadEnv } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { defineConfig } from 'vitest/config'

@@ -1,8 +1,8 @@
 'use client'
-import type { Validate, ValidateOptions } from 'payload'
+import type { Validate, ValidateOptions } from @hanzo/cms'from 
 
-import { EmailField, TextField, useTranslation } from '@payloadcms/ui'
-import { email, username } from 'payload/shared'
+import { EmailField, TextField, useTranslation } from '@hanzo/cms-ui'
+import { email, username } from @hanzo/cms'from 
 import React from 'react'
 
 export type LoginFieldProps = {

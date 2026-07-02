@@ -1,4 +1,4 @@
-import type { CollectionSlug, GlobalSlug, Payload } from 'payload'
+import type { CollectionSlug, GlobalSlug, Payload } from @hanzo/cms'from 
 
 import { toSnakeCase } from 'drizzle-orm/casing'
 

@@ -2,7 +2,7 @@ import type {
   AcceptedLanguages,
   GenericLanguages,
   GenericTranslationsObject,
-} from '@payloadcms/translations'
+} from '@hanzo/cms-translations'
 
 import * as fs from 'node:fs'
 import path from 'path'
@@ -61,7 +61,7 @@ async function translate() {
         allTranslationsObject: allTranslations,
         fromTranslationsObject: translationsObject.en,
         inlineFile: i18nFilePath,
-        tsFilePrefix: `import { GenericLanguages } from '@payloadcms/translations'
+        tsFilePrefix: `import { GenericLanguages } from '@hanzo/cms-translations'
   
   export const i18n: Partial<GenericLanguages> = `,
         tsFileSuffix: ``,

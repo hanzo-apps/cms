@@ -45,7 +45,7 @@ Root Hooks are not associated with any specific Collection, Global, or Field. Th
 To add Root Hooks, use the `hooks` property in your [Payload Config](/docs/configuration/overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -68,7 +68,7 @@ The following options are available:
 The `afterError` Hook is triggered when an error occurs in the Payload application. This can be useful for logging errors to a third-party service, sending an email to the development team, logging the error to Sentry or DataDog, etc. The output can be used to transform the result object / status code.
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -138,7 +138,7 @@ Hooks are only triggered on the server and are automatically excluded from the c
 You might want to return custom error messages in the API or admin panel in your hooks, if an operation cannot be performed - e.g. if a rate limit was exceeded. For this you can leverage the `APIError` class like this:
 
 ```ts
-import { APIError, type CollectionBeforeChangeHook } from 'payload'
+import { APIError, type CollectionBeforeChangeHook } from @hanzo/cms'from 
 
 const beforeChangeHook: CollectionBeforeChangeHook = async ({ data }) => {
   ...

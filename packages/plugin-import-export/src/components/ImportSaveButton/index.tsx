@@ -1,6 +1,6 @@
 'use client'
 
-import { SaveButton, useField, useTranslation } from '@payloadcms/ui'
+import { SaveButton, useField, useTranslation } from '@hanzo/cms-ui'
 
 import type {
   PluginImportExportTranslationKeys,

@@ -6,9 +6,9 @@ desc: Payload supports Postgres through an officially supported Drizzle Database
 keywords: Postgres, documentation, typescript, Content Management System, cms, headless, javascript, node, react, nextjs
 ---
 
-To use Payload with Postgres, install the package `@payloadcms/db-postgres`. It leverages Drizzle ORM and `node-postgres` to interact with a Postgres database that you provide.
+To use Payload with Postgres, install the package `@hanzo/cms-db-postgres`. It leverages Drizzle ORM and `node-postgres` to interact with a Postgres database that you provide.
 
-Alternatively, the `@payloadcms/db-vercel-postgres` package is also available and is optimized for use with Vercel.
+Alternatively, the `@hanzo/cms-db-vercel-postgres` package is also available and is optimized for use with Vercel.
 
 It automatically manages changes to your database for you in development mode, and exposes a full suite of migration controls for you to leverage in order to keep other database environments in sync with your schema. DDL transformations are automatically generated.
 
@@ -16,10 +16,10 @@ To configure Payload to use Postgres, pass the `postgresAdapter` to your Payload
 
 ### Usage
 
-`@payloadcms/db-postgres`:
+`@hanzo/cms-db-postgres`:
 
 ```ts
-import { postgresAdapter } from '@payloadcms/db-postgres'
+import { postgresAdapter } from '@hanzo/cms-db-postgres'
 
 export default buildConfig({
   // Configure the Postgres adapter here
@@ -33,10 +33,10 @@ export default buildConfig({
 })
 ```
 
-`@payloadcms/db-vercel-postgres`:
+`@hanzo/cms-db-vercel-postgres`:
 
 ```ts
-import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
+import { vercelPostgresAdapter } from '@hanzo/cms-db-vercel-postgres'
 
 export default buildConfig({
   // Automatically uses process.env.POSTGRES_URL if no options are provided.
@@ -99,7 +99,7 @@ Then, you can access Drizzle as follows:
 ```ts
 import { posts } from './payload-generated-schema'
 // To avoid installing Drizzle, you can import everything that drizzle has from our re-export path.
-import { eq, sql, and } from '@payloadcms/db-postgres/drizzle'
+import { eq, sql, and } from '@hanzo/cms-db-postgres/drizzle'
 
 // Drizzle's Querying API: https://orm.drizzle.team/docs/rqb
 const posts = await payload.db.drizzle.query.posts.findMany()
@@ -143,12 +143,12 @@ For more information about migrations, [click here](./migrations#when-to-run-mig
 Runs before the schema is built. You can use this hook to extend your database structure with tables that won't be managed by Payload.
 
 ```ts
-import { postgresAdapter } from '@payloadcms/db-postgres'
+import { postgresAdapter } from '@hanzo/cms-db-postgres'
 import {
   integer,
   pgTable,
   serial,
-} from '@payloadcms/db-postgres/drizzle/pg-core'
+} from '@hanzo/cms-db-postgres/drizzle/pg-core'
 
 postgresAdapter({
   beforeSchemaInit: [
@@ -203,7 +203,7 @@ export const countries = pgTable(
 You can import them into your config and append to the schema with the `beforeSchemaInit` hook like this:
 
 ```ts
-import { postgresAdapter } from '@payloadcms/db-postgres'
+import { postgresAdapter } from '@hanzo/cms-db-postgres'
 import { users, countries } from '../drizzle/schema'
 
 postgresAdapter({
@@ -231,9 +231,9 @@ To extend a table, Payload exposes `extendTable` utility to the args. You can re
 The following example adds the `extra_integer_column` column and a composite index on `country` and `city` columns.
 
 ```ts
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { index, integer } from '@payloadcms/db-postgres/drizzle/pg-core'
-import { buildConfig } from 'payload'
+import { postgresAdapter } from '@hanzo/cms-db-postgres'
+import { index, integer } from '@hanzo/cms-db-postgres/drizzle/pg-core'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   collections: [
@@ -279,7 +279,7 @@ Columns and tables, added in schema hooks won't be added to the generated via `p
 If you want them to be there, you either have to edit this file manually or mutate the internal Payload "raw" SQL schema in the `beforeSchemaInit`:
 
 ```ts
-import { postgresAdapter } from '@payloadcms/db-postgres'
+import { postgresAdapter } from '@hanzo/cms-db-postgres'
 
 postgresAdapter({
   beforeSchemaInit: [

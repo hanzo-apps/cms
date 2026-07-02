@@ -1,8 +1,8 @@
 'use client'
-import type { SanitizedCollectionConfig, SanitizedGlobalConfig } from 'payload'
+import type { SanitizedCollectionConfig, SanitizedGlobalConfig } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
-import { formatAdminURL } from 'payload/shared'
+import { getTranslation } from '@hanzo/cms-translations'
+import { formatAdminURL } from @hanzo/cms'from 
 import { useEffect } from 'react'
 
 import type { StepNavItem } from '../../../elements/StepNav/index.js'

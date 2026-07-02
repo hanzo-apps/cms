@@ -4,7 +4,7 @@ import type {
   ResolvedFilterOptions,
   SanitizedCollectionConfig,
   Where,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export type WhereBuilderProps = {
   readonly collectionPluralLabel?: SanitizedCollectionConfig['labels']['plural']

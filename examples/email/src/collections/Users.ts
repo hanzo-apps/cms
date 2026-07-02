@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import { generateForgotPasswordEmail } from '../email/generateForgotPasswordEmail'
 import { generateVerificationEmail } from '../email/generateVerificationEmail'

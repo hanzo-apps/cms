@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/payload-cloud",
+  "name": "@hanzo/cms-cloud",
   "version": "3.85.2",
   "description": "The official Payload Cloud plugin",
   "homepage": "https://payloadcms.com",
@@ -46,16 +46,16 @@
     "@aws-sdk/client-s3": "^3.614.0",
     "@aws-sdk/credential-providers": "^3.614.0",
     "@aws-sdk/lib-storage": "^3.614.0",
-    "@payloadcms/email-nodemailer": "workspace:*",
+    "@hanzo/cms-email-nodemailer": "workspace:*",
     "amazon-cognito-identity-js": "^6.1.2",
     "nodemailer": "^9.0.1"
   },
   "devDependencies": {
     "@types/nodemailer": "^8.0.0",
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "publishConfig": {
     "exports": {

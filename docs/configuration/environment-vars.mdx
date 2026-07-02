@@ -30,7 +30,7 @@ DATABASE_URL=mongodb://localhost:27017/my-database
 To use Environment Variables in your Payload Config, you can access them directly from `process.env`:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   serverURL: process.env.SERVER_URL, // highlight-line
@@ -84,7 +84,7 @@ To do this, import the package as high up in your application as possible:
 import dotenv from 'dotenv'
 dotenv.config() // highlight-line
 
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   serverURL: process.env.SERVER_URL,

@@ -1,15 +1,15 @@
 'use client'
 
-import type { PublishButtonClientProps } from 'payload'
+import type { PublishButtonClientProps } from @hanzo/cms'from 
 
 import { useModal } from '@faceless-ui/modal'
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   formatAdminURL,
   hasAutosaveEnabled,
   hasLocalizeStatusEnabled,
   hasScheduledPublishEnabled,
-} from 'payload/shared'
+} from @hanzo/cms'from 
 import * as qs from 'qs-esm'
 import React, { useCallback, useEffect, useState } from 'react'
 

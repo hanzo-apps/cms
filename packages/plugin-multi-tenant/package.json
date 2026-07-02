@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/plugin-multi-tenant",
+  "name": "@hanzo/cms-plugin-multi-tenant",
   "version": "3.85.2",
   "description": "Multi Tenant plugin for Payload",
   "keywords": [
@@ -91,14 +91,14 @@
     "pack:plugin": "pnpm build && pnpm pack"
   },
   "devDependencies": {
-    "@payloadcms/eslint-config": "workspace:*",
-    "@payloadcms/translations": "workspace:*",
-    "@payloadcms/ui": "workspace:*",
-    "payload": "workspace:*"
+    "@hanzo/cms-eslint-config": "workspace:*",
+    "@hanzo/cms-translations": "workspace:*",
+    "@hanzo/cms-ui": "workspace:*",
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "@payloadcms/ui": "workspace:*",
-    "payload": "workspace:*"
+    "@hanzo/cms-ui": "workspace:*",
+    "@hanzo/cms": "workspace:*"
   },
   "publishConfig": {
     "exports": {

@@ -6,7 +6,7 @@ desc: Generates records of your documents that are extremely fast to search on.
 keywords: plugins, search, search plugin, search engine, search index, search results, search bar, search box, search field, search form, search input
 ---
 
-![https://www.npmjs.com/package/@payloadcms/plugin-search](https://img.shields.io/npm/v/@payloadcms/plugin-search)
+![https://www.npmjs.com/package/@hanzo/cms-plugin-search](https://img.shields.io/npm/v/@hanzo/cms-plugin-search)
 
 This plugin generates records of your documents that are extremely fast to search on. It does so by creating a new `search` collection that is indexed in the database then saving a static copy of each of your documents using only search-critical data. Search records are automatically created, synced, and deleted behind-the-scenes as you manage your application's documents.
 
@@ -41,7 +41,7 @@ This plugin is a great way to implement a fast, immersive search experience such
 Install the plugin using any JavaScript package manager like [pnpm](https://pnpm.io), [npm](https://npmjs.com), or [Yarn](https://yarnpkg.com):
 
 ```bash
-  pnpm add @payloadcms/plugin-search
+  pnpm add @hanzo/cms-plugin-search
 ```
 
 ## Basic Usage
@@ -49,8 +49,8 @@ Install the plugin using any JavaScript package manager like [pnpm](https://pnpm
 In the `plugins` array of your [Payload Config](https://payloadcms.com/docs/configuration/overview), call the plugin with [options](#options):
 
 ```js
-import { buildConfig } from 'payload'
-import { searchPlugin } from '@payloadcms/plugin-search'
+import { buildConfig } from @hanzo/cms'from 
+import { searchPlugin } from '@hanzo/cms-plugin-search'
 
 const config = buildConfig({
   collections: [
@@ -216,5 +216,5 @@ Collection reindexing allows you to recreate search documents from your search-e
 All types can be directly imported:
 
 ```ts
-import type { SearchConfig, BeforeSync } from '@payloadcms/plugin-search/types'
+import type { SearchConfig, BeforeSync } from '@hanzo/cms-plugin-search/types'
 ```

@@ -1,4 +1,4 @@
-import type { FieldDiffClientProps, FieldDiffServerProps, FieldTypes } from 'payload'
+import type { FieldDiffClientProps, FieldDiffServerProps, FieldTypes } from @hanzo/cms'from 
 
 import { Collapsible } from './Collapsible/index.js'
 import { DateDiffComponent } from './Date/index.js'

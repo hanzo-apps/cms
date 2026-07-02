@@ -1,8 +1,8 @@
 'use client'
 
-import type { DefaultCellComponentProps, TypedCollection } from 'payload'
+import type { DefaultCellComponentProps, TypedCollection } from @hanzo/cms'from 
 
-import { useTranslation } from '@payloadcms/ui'
+import { useTranslation } from '@hanzo/cms-ui'
 
 import type { CurrenciesConfig, Currency } from '../../types/index.js'
 

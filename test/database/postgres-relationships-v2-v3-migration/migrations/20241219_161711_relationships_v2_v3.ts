@@ -1,6 +1,6 @@
-import type { MigrateDownArgs, MigrateUpArgs } from '@payloadcms/db-postgres'
+import type { MigrateDownArgs, MigrateUpArgs } from '@hanzo/cms-db-postgres'
 
-import { migratePostgresV2toV3 } from '@payloadcms/db-postgres/migration-utils'
+import { migratePostgresV2toV3 } from '@hanzo/cms-db-postgres/migration-utils'
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await migratePostgresV2toV3({

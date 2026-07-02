@@ -18,7 +18,7 @@ The Text Field is one of the most commonly used fields. It saves a string to the
 To add a Text Field, set the `type` to `text` in your [Field Config](./overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyTextField: Field = {
   // ...
@@ -59,7 +59,7 @@ _\* An asterisk denotes that a property is required._
 To customize the appearance and behavior of the Text Field in the [Admin Panel](../admin/overview), you can use the `admin` option:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyTextField: Field = {
   // ...
@@ -81,7 +81,7 @@ The Text Field inherits all of the default admin options from the base [Field Ad
 ## Example
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',
@@ -103,8 +103,8 @@ export const ExampleCollection: CollectionConfig = {
 
 ```tsx
 import type React from 'react'
-import { TextField } from '@payloadcms/ui'
-import type { TextFieldServerComponent } from 'payload'
+import { TextField } from '@hanzo/cms-ui'
+import type { TextFieldServerComponent } from @hanzo/cms'from 
 
 export const CustomTextFieldServer: TextFieldServerComponent = ({
   clientField,
@@ -128,8 +128,8 @@ export const CustomTextFieldServer: TextFieldServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { TextField } from '@payloadcms/ui'
-import type { TextFieldClientComponent } from 'payload'
+import { TextField } from '@hanzo/cms-ui'
+import type { TextFieldClientComponent } from @hanzo/cms'from 
 
 export const CustomTextFieldClient: TextFieldClientComponent = (props) => {
   return <TextField {...props} />
@@ -142,8 +142,8 @@ export const CustomTextFieldClient: TextFieldClientComponent = (props) => {
 
 ```tsx
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { TextFieldLabelServerComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { TextFieldLabelServerComponent } from @hanzo/cms'from 
 
 export const CustomTextFieldLabelServer: TextFieldLabelServerComponent = ({
   clientField,
@@ -165,8 +165,8 @@ export const CustomTextFieldLabelServer: TextFieldLabelServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { TextFieldLabelClientComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { TextFieldLabelClientComponent } from @hanzo/cms'from 
 
 export const CustomTextFieldLabelClient: TextFieldLabelClientComponent = ({
   field,
@@ -196,8 +196,8 @@ Payload provides a built-in Slug Field so you don't have to built one from scrat
 To add a Slug Field, import the `slugField` into your field schema:
 
 ```ts
-import { slugField } from 'payload'
-import type { CollectionConfig } from 'payload'
+import { slugField } from @hanzo/cms'from 
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   // ...
@@ -229,8 +229,8 @@ The slug field exposes a few top-level config options for easy customization:
 If the above options aren't sufficient for your use case, you can use the `overrides` function to customize the slug field at a granular level. The `overrides` function receives the default fields that make up the slug field, and you can modify them to any extent you need.
 
 ```ts
-import { slugField } from 'payload'
-import type { CollectionConfig } from 'payload'
+import { slugField } from @hanzo/cms'from 
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   // ...
@@ -257,8 +257,8 @@ This functions receives the value of the `useAsSlug` field as `valueToSlugify` a
 For example, if you wanted to use the [`slugify`](https://www.npmjs.com/package/slugify) package, you could do something like this:
 
 ```ts
-import type { CollectionConfig } from 'payload'
-import { slugField } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
+import { slugField } from @hanzo/cms'from 
 import slugify from 'slugify'
 
 export const MyCollection: CollectionConfig = {

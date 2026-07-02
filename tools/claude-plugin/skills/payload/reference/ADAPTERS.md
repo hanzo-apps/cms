@@ -7,7 +7,7 @@ Complete reference for database, storage, and email adapters.
 ### MongoDB
 
 ```ts
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 
 export default buildConfig({
   db: mongooseAdapter({
@@ -19,7 +19,7 @@ export default buildConfig({
 ### Postgres
 
 ```ts
-import { postgresAdapter } from '@payloadcms/db-postgres'
+import { postgresAdapter } from '@hanzo/cms-db-postgres'
 
 export default buildConfig({
   db: postgresAdapter({
@@ -35,7 +35,7 @@ export default buildConfig({
 ### SQLite
 
 ```ts
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
 
 export default buildConfig({
   db: sqliteAdapter({
@@ -52,7 +52,7 @@ export default buildConfig({
 Payload automatically uses transactions for all-or-nothing database operations. Pass `req` to include operations in the same transaction.
 
 ```ts
-import type { CollectionAfterChangeHook } from 'payload'
+import type { CollectionAfterChangeHook } from @hanzo/cms'from 
 
 const afterChange: CollectionAfterChangeHook = async ({ req, doc }) => {
   // This will be part of the same transaction
@@ -91,7 +91,7 @@ try {
 **Critical**: When performing nested operations in hooks, always pass `req` to maintain transaction context. Failing to do so breaks atomicity and can cause partial updates.
 
 ```ts
-import type { CollectionAfterChangeHook } from 'payload'
+import type { CollectionAfterChangeHook } from @hanzo/cms'from 
 
 // ✅ CORRECT: Thread req through nested operations
 const resaveChildren: CollectionAfterChangeHook = async ({ collection, doc, req }) => {
@@ -156,17 +156,17 @@ const brokenHook: CollectionAfterChangeHook = async ({ collection, doc, req }) =
 
 Available storage adapters:
 
-- **@payloadcms/storage-s3** - AWS S3
-- **@payloadcms/storage-azure** - Azure Blob Storage
-- **@payloadcms/storage-gcs** - Google Cloud Storage
-- **@payloadcms/storage-r2** - Cloudflare R2
-- **@payloadcms/storage-vercel-blob** - Vercel Blob
-- **@payloadcms/storage-uploadthing** - Uploadthing
+- **@hanzo/cms-storage-s3** - AWS S3
+- **@hanzo/cms-storage-azure** - Azure Blob Storage
+- **@hanzo/cms-storage-gcs** - Google Cloud Storage
+- **@hanzo/cms-storage-r2** - Cloudflare R2
+- **@hanzo/cms-storage-vercel-blob** - Vercel Blob
+- **@hanzo/cms-storage-uploadthing** - Uploadthing
 
 ### AWS S3
 
 ```ts
-import { s3Storage } from '@payloadcms/storage-s3'
+import { s3Storage } from '@hanzo/cms-storage-s3'
 
 export default buildConfig({
   plugins: [
@@ -190,7 +190,7 @@ export default buildConfig({
 ### Azure Blob Storage
 
 ```ts
-import { azureStorage } from '@payloadcms/storage-azure'
+import { azureStorage } from '@hanzo/cms-storage-azure'
 
 export default buildConfig({
   plugins: [
@@ -208,7 +208,7 @@ export default buildConfig({
 ### Google Cloud Storage
 
 ```ts
-import { gcsStorage } from '@payloadcms/storage-gcs'
+import { gcsStorage } from '@hanzo/cms-storage-gcs'
 
 export default buildConfig({
   plugins: [
@@ -229,7 +229,7 @@ export default buildConfig({
 ### Cloudflare R2
 
 ```ts
-import { r2Storage } from '@payloadcms/storage-r2'
+import { r2Storage } from '@hanzo/cms-storage-r2'
 
 export default buildConfig({
   plugins: [
@@ -254,7 +254,7 @@ export default buildConfig({
 ### Vercel Blob
 
 ```ts
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { vercelBlobStorage } from '@hanzo/cms-storage-vercel-blob'
 
 export default buildConfig({
   plugins: [
@@ -271,7 +271,7 @@ export default buildConfig({
 ### Uploadthing
 
 ```ts
-import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
+import { uploadthingStorage } from '@hanzo/cms-storage-uploadthing'
 
 export default buildConfig({
   plugins: [
@@ -293,7 +293,7 @@ export default buildConfig({
 ### Nodemailer (SMTP)
 
 ```ts
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 
 export default buildConfig({
   email: nodemailerAdapter({
@@ -314,7 +314,7 @@ export default buildConfig({
 ### Resend
 
 ```ts
-import { resendAdapter } from '@payloadcms/email-resend'
+import { resendAdapter } from '@hanzo/cms-email-resend'
 
 export default buildConfig({
   email: resendAdapter({

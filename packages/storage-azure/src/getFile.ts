@@ -1,13 +1,13 @@
 import type { BlobDownloadResponseParsed, ContainerClient } from '@azure/storage-blob'
-import type { CollectionConfig, PayloadRequest } from 'payload'
+import type { CollectionConfig, PayloadRequest } from @hanzo/cms'from 
 import type { Readable } from 'stream'
 
 import { RestError } from '@azure/storage-blob'
 import {
   getFilePrefix as getDocPrefix,
   getFileKey,
-} from '@payloadcms/plugin-cloud-storage/utilities'
-import { getRangeRequestInfo } from 'payload/internal'
+} from '@hanzo/cms-plugin-cloud-storage/utilities'
+import { getRangeRequestInfo } from @hanzo/cms'from 
 
 interface GetFileArgs {
   client: ContainerClient

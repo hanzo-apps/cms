@@ -1,5 +1,5 @@
 import type { QueryOptions } from 'mongoose'
-import type { DeleteOne } from 'payload'
+import type { DeleteOne } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from './index.js'
 

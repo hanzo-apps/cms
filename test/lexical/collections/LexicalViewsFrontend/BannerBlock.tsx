@@ -1,10 +1,10 @@
 'use client'
-import type { ViewMapBlockComponentProps } from '@payloadcms/richtext-lexical'
-import type { BlockComponentContextType } from '@payloadcms/richtext-lexical/react'
+import type { ViewMapBlockComponentProps } from '@hanzo/cms-richtext-lexical'
+import type { BlockComponentContextType } from '@hanzo/cms-richtext-lexical/react'
 
-import { useLexicalEditable } from '@payloadcms/richtext-lexical/lexical/react/useLexicalEditable'
-import { RichText } from '@payloadcms/richtext-lexical/react'
-import { RenderFields } from '@payloadcms/ui'
+import { useLexicalEditable } from '@hanzo/cms-richtext-lexical/lexical/react/useLexicalEditable'
+import { RichText } from '@hanzo/cms-richtext-lexical/react'
+import { RenderFields } from '@hanzo/cms-ui'
 import React from 'react'
 
 /**

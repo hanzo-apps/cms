@@ -1,8 +1,8 @@
 'use client'
 
-import type { ClientCollectionConfig } from 'payload'
+import type { ClientCollectionConfig } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   Button,
   Modal,
@@ -13,8 +13,8 @@ import {
   useDocumentTitle,
   useModal,
   useTranslation,
-} from '@payloadcms/ui'
-import { drawerZBase, useDrawerDepth } from '@payloadcms/ui/elements/Drawer'
+} from '@hanzo/cms-ui'
+import { drawerZBase, useDrawerDepth } from '@hanzo/cms-ui/elements/Drawer'
 import React from 'react'
 
 import type {

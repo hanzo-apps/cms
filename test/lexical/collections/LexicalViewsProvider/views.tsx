@@ -1,5 +1,5 @@
 'use client'
-import type { LexicalEditorViewMap } from '@payloadcms/richtext-lexical'
+import type { LexicalEditorViewMap } from '@hanzo/cms-richtext-lexical'
 
 import { BannerBlockComponent } from '../LexicalViewsFrontend/BannerBlock.js'
 

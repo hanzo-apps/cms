@@ -4,10 +4,10 @@ import type {
   FileData,
   TypeWithID,
   UploadCollectionSlug,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { ValidationError } from 'payload'
-import { validateMimeType } from 'payload/shared'
+import { ValidationError } from @hanzo/cms'from 
+import { validateMimeType } from @hanzo/cms'from 
 
 import type {
   FormBuilderPluginConfig,

@@ -1,5 +1,5 @@
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 
 export const Page = async ({ params: paramsPromise }: { params: Promise<{ id: string }> }) => {
   const payload = await getPayload({

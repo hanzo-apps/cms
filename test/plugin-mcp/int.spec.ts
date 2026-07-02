@@ -1,4 +1,4 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import { randomUUID } from 'crypto'
 import path from 'path'
@@ -81,7 +81,7 @@ const getApiKey = async (
   return doc.apiKey as string
 }
 
-describe('@payloadcms/plugin-mcp', () => {
+describe('@hanzo/cms-plugin-mcp', () => {
   beforeAll(async () => {
     const initialized = await initPayloadInt(dirname)
     ;({ payload, restClient } = initialized)

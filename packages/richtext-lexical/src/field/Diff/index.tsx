@@ -1,12 +1,12 @@
 import type { SerializedEditorState } from 'lexical'
-import type { RichTextFieldDiffServerComponent } from 'payload'
+import type { RichTextFieldDiffServerComponent } from @hanzo/cms'from 
 
-import { FieldDiffContainer, getHTMLDiffComponents } from '@payloadcms/ui/rsc'
+import { FieldDiffContainer, getHTMLDiffComponents } from '@hanzo/cms-ui/rsc'
 
 import './index.scss'
 import '../bundled.css'
 
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import React from 'react'
 
 import type {

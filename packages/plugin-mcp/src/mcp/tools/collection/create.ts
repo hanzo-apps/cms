@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from 'payload'
+import type { PayloadRequest } from @hanzo/cms'from 
 
 import { writeFileSync } from 'fs'
 import { join } from 'path'
@@ -38,7 +38,7 @@ export const createCollection = async (
   const fieldDefinitions = fields.map(generateFieldDefinitionString).join('\n')
 
   // Generate collection file content
-  const collectionContent = `import type { CollectionConfig } from 'payload'
+  const collectionContent = `import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ${capitalizedName}: CollectionConfig = {
   slug: '${slug}',${

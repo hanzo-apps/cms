@@ -1,6 +1,6 @@
-import type { AdminViewServerProps } from 'payload'
+import type { AdminViewServerProps } from @hanzo/cms'from 
 
-import { CreateFirstUserView } from '@payloadcms/next/views'
+import { CreateFirstUserView } from '@hanzo/cms-next/views'
 import React from 'react'
 
 export async function CreateFirstUser(props: AdminViewServerProps) {

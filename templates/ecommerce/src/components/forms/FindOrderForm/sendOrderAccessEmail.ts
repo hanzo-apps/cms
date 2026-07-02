@@ -1,7 +1,7 @@
 'use server'
 
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import { getServerSideURL } from '@/utilities/getURL'
 
 type SendOrderAccessEmailArgs = {

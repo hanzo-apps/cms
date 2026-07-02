@@ -166,10 +166,10 @@ export type {
   /**
    * @deprecated
    * This export will be removed in the next major version.
-   * Use `import { Column } from 'payload'` instead.
+   * Use `import { Column } from @hanzo/cms'from ` instead.
    */
   Column,
-} from 'payload'
+} from @hanzo/cms'from 
 export { DefaultCell } from '../../elements/Table/DefaultCell/index.js'
 export { Thumbnail } from '../../elements/Thumbnail/index.js'
 export { Tooltip } from '../../elements/Tooltip/index.js'
@@ -383,46 +383,46 @@ export type {
   /**
    * @deprecated
    * This export will be removed in the next major version.
-   * Use `import type { ListViewSlots } from 'payload'` instead.
+   * Use `import type { ListViewSlots } from @hanzo/cms'from ` instead.
    */
   ListViewSlots,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export type {
   /**
    * @deprecated
    * This export will be removed in the next major version.
-   * Use `import type { ListViewClientProps } from 'payload'` instead.
+   * Use `import type { ListViewClientProps } from @hanzo/cms'from ` instead.
    */
   ListViewClientProps,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export type {
   /**
    * @deprecated
    * This export will be removed in the next major version.
-   * Use `import type { ListViewClientProps } from 'payload'` instead.
+   * Use `import type { ListViewClientProps } from @hanzo/cms'from ` instead.
    */
   ListViewClientProps as ListComponentClientProps,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export type {
   /**
    * @deprecated
    * This export will be removed in the next major version.
-   * Use `import type { ListViewServerProps } from 'payload'` instead.
+   * Use `import type { ListViewServerProps } from @hanzo/cms'from ` instead.
    */
   ListViewServerProps as ListComponentServerProps,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export type {
   /**
    * @deprecated
    * This export will be removed in the next major version.
-   * Use `import type { CollectionPreferences } from 'payload'` instead.
+   * Use `import type { CollectionPreferences } from @hanzo/cms'from ` instead.
    */
   ListPreferences,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export type { ListHeaderProps } from '../../views/List/ListHeader/index.js'
 

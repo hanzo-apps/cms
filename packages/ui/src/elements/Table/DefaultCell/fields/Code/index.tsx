@@ -1,5 +1,5 @@
 'use client'
-import type { ClientCollectionConfig, CodeFieldClient, DefaultCellComponentProps } from 'payload'
+import type { ClientCollectionConfig, CodeFieldClient, DefaultCellComponentProps } from @hanzo/cms'from 
 
 import React from 'react'
 

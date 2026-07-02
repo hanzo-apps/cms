@@ -1,5 +1,5 @@
 'use client'
-import { useField } from '@payloadcms/ui'
+import { useField } from '@hanzo/cms-ui'
 import * as React from 'react'
 
 import { collection1Slug } from '../slugs.js'

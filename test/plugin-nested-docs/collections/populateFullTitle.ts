@@ -1,4 +1,4 @@
-import type { FieldHook } from 'payload'
+import type { FieldHook } from @hanzo/cms'from 
 
 export const generateFullTitle = (breadcrumbs: Array<{ label: string }>): string | undefined => {
   if (Array.isArray(breadcrumbs)) {

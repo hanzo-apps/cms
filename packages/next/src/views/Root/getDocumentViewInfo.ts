@@ -1,4 +1,4 @@
-import type { DocumentSubViewTypes, ViewTypes } from 'payload'
+import type { DocumentSubViewTypes, ViewTypes } from @hanzo/cms'from 
 
 export function getDocumentViewInfo(segments: string[]): {
   documentSubViewType?: DocumentSubViewTypes

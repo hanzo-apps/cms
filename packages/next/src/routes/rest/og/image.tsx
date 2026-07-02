@@ -1,6 +1,6 @@
-import type { ImportMap, PayloadComponent } from 'payload'
+import type { ImportMap, PayloadComponent } from @hanzo/cms'from 
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import React from 'react'
 
 export const OGImage: React.FC<{

@@ -1,4 +1,4 @@
-import type { JsonObject } from 'payload'
+import type { JsonObject } from @hanzo/cms'from 
 
 export function generateTsObjectLiteral(obj: JsonObject): string {
   const lines: string[] = []

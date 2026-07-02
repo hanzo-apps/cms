@@ -1,5 +1,5 @@
-import type { TFunction } from '@payloadcms/translations'
-import type { Config, Field, PayloadRequest, SelectField } from 'payload'
+import type { TFunction } from '@hanzo/cms-translations'
+import type { Config, Field, PayloadRequest, SelectField } from @hanzo/cms'from 
 
 import { getFilename } from '../utilities/getFilename.js'
 import { validateLimitValue } from '../utilities/validateLimitValue.js'
@@ -28,7 +28,7 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
       type: 'select',
       admin: {
         components: {
-          Field: '@payloadcms/plugin-import-export/rsc#LocaleField',
+          Field: '@hanzo/cms-plugin-import-export/rsc#LocaleField',
         },
         width: '25%',
       },
@@ -67,7 +67,7 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
               type: 'select',
               admin: {
                 components: {
-                  Field: '@payloadcms/plugin-import-export/rsc#FormatField',
+                  Field: '@hanzo/cms-plugin-import-export/rsc#FormatField',
                 },
                 width: '33.3333%',
               },
@@ -91,7 +91,7 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
               type: 'number',
               admin: {
                 components: {
-                  Field: '@payloadcms/plugin-import-export/rsc#LimitField',
+                  Field: '@hanzo/cms-plugin-import-export/rsc#LimitField',
                 },
                 placeholder: 'No limit',
                 step: 100,
@@ -108,7 +108,7 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
               type: 'number',
               admin: {
                 components: {
-                  Field: '@payloadcms/plugin-import-export/rsc#Page',
+                  Field: '@hanzo/cms-plugin-import-export/rsc#Page',
                 },
                 condition: ({ limit }) => {
                   // Show the page field only if limit is set
@@ -130,7 +130,7 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
               type: 'text',
               admin: {
                 components: {
-                  Field: '@payloadcms/plugin-import-export/rsc#SortBy',
+                  Field: '@hanzo/cms-plugin-import-export/rsc#SortBy',
                 },
               },
               // @ts-expect-error - this is not correctly typed in plugins right now
@@ -141,7 +141,7 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
               type: 'select',
               admin: {
                 components: {
-                  Field: '@payloadcms/plugin-import-export/rsc#SortOrder',
+                  Field: '@hanzo/cms-plugin-import-export/rsc#SortOrder',
                 },
                 // Only show when `sort` has a value
                 condition: ({ sort }) => typeof sort === 'string' && sort.trim().length > 0,
@@ -201,7 +201,7 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
           type: 'radio',
           admin: {
             components: {
-              Field: '@payloadcms/plugin-import-export/rsc#SelectionToUseField',
+              Field: '@hanzo/cms-plugin-import-export/rsc#SelectionToUseField',
             },
           },
           options: [
@@ -228,7 +228,7 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
           type: 'text',
           admin: {
             components: {
-              Field: '@payloadcms/plugin-import-export/rsc#FieldsToExport',
+              Field: '@hanzo/cms-plugin-import-export/rsc#FieldsToExport',
             },
           },
           hasMany: true,
@@ -240,7 +240,7 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
           type: 'text',
           admin: {
             components: {
-              Field: '@payloadcms/plugin-import-export/rsc#CollectionField',
+              Field: '@hanzo/cms-plugin-import-export/rsc#CollectionField',
             },
           },
           defaultValue: collectionSlugs[0],
@@ -281,7 +281,7 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
       type: 'ui',
       admin: {
         components: {
-          Field: '@payloadcms/plugin-import-export/rsc#ExportPreview',
+          Field: '@hanzo/cms-plugin-import-export/rsc#ExportPreview',
         },
       },
     },

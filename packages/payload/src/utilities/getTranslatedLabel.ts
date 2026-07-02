@@ -1,4 +1,4 @@
-import { getTranslation, type I18n } from '@payloadcms/translations'
+import { getTranslation, type I18n } from '@hanzo/cms-translations'
 
 import type { LabelFunction, StaticLabel } from '../config/types.js'
 

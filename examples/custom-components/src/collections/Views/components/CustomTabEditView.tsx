@@ -1,6 +1,6 @@
-import type { ServerSideEditViewProps } from 'payload'
+import type { ServerSideEditViewProps } from @hanzo/cms'from 
 
-import { Gutter } from '@payloadcms/ui'
+import { Gutter } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomTabEditView: React.FC<ServerSideEditViewProps> = () => {

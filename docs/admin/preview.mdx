@@ -20,7 +20,7 @@ The Preview feature can also be used to achieve something known as "Draft Previe
 To add Preview, pass a function to the `admin.preview` property in any [Collection Config](../configuration/collections#admin-options) or [Global Config](../configuration/globals#admin-options):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -76,7 +76,7 @@ If you're using Next.js, you can do the following code to enter [Draft Mode](htt
 First, format your `admin.preview` function to point to a custom endpoint that you'll open on your front-end. This URL should include a few key query search params:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -108,8 +108,8 @@ Then, create an API route that verifies the preview secret, authenticates the us
 `/app/preview/route.ts`
 
 ```ts
-import type { PayloadRequest } from 'payload'
-import { getPayload } from 'payload'
+import type { PayloadRequest } from @hanzo/cms'from 
+import { getPayload } from @hanzo/cms'from 
 
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -237,7 +237,7 @@ You can also conditionally enable or disable the preview button based on the doc
 To do this, simply return `null` from the `preview` function when you want to hide the preview button:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Pages: CollectionConfig = {
   slug: 'pages',

@@ -1,9 +1,9 @@
 'use client'
 
-import type { Locale } from 'payload'
+import type { Locale } from @hanzo/cms'from 
 
 import { useSearchParams } from 'next/navigation.js'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import React, { createContext, use, useEffect, useRef, useState } from 'react'
 
 import { findLocaleFromCode } from '../../utilities/findLocaleFromCode.js'

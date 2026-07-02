@@ -1,7 +1,7 @@
-import type { CodeFieldServerComponent } from 'payload'
+import type { CodeFieldServerComponent } from @hanzo/cms'from 
 import type React from 'react'
 
-import { CodeField } from '@payloadcms/ui'
+import { CodeField } from '@hanzo/cms-ui'
 
 export const CustomCodeFieldServer: CodeFieldServerComponent = ({
   clientField,

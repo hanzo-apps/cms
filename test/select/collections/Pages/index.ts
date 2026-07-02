@@ -1,7 +1,7 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { lexicalEditor, LinkFeature } from '@hanzo/cms-richtext-lexical'
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 // The TSlug generic can be passed to have type safety for `defaultPopulate`.
 // If avoided, the `defaultPopulate` type resolves to `SelectType`.

@@ -1,8 +1,8 @@
 import type { Page } from '@playwright/test'
-import type { Config } from 'payload'
+import type { Config } from @hanzo/cms'from 
 
 import { expect } from '@playwright/test'
-import { formatAdminURL, wait } from 'payload/shared'
+import { formatAdminURL, wait } from @hanzo/cms'from 
 
 import type { AdminRoutes } from '../helpers.js'
 

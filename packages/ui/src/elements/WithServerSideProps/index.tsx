@@ -1,6 +1,6 @@
-import type { WithServerSidePropsComponent } from 'payload'
+import type { WithServerSidePropsComponent } from @hanzo/cms'from 
 
-import { isReactServerComponentOrFunction } from 'payload/shared'
+import { isReactServerComponentOrFunction } from @hanzo/cms'from 
 import React from 'react'
 
 export const WithServerSideProps: WithServerSidePropsComponent = ({

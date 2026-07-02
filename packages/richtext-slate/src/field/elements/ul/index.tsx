@@ -8,7 +8,7 @@ export const ul: RichTextCustomElement = {
     clientProps: {
       format: name,
     },
-    path: '@payloadcms/richtext-slate/client#ULElementButton',
+    path: '@hanzo/cms-richtext-slate/client#ULElementButton',
   },
-  Element: '@payloadcms/richtext-slate/client#UnorderedListElement',
+  Element: '@hanzo/cms-richtext-slate/client#UnorderedListElement',
 }

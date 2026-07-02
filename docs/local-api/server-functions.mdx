@@ -45,7 +45,7 @@ First, let's create our server function. Here are some key points for this proce
 ```ts
 'use server'
 
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import config from '@payload-config'
 
 export async function createPost(data) {
@@ -104,7 +104,7 @@ Here's how the server function would look:
 ```ts
 'use server'
 
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import config from '@payload-config'
 
 export async function updatePost(id, data) {
@@ -169,7 +169,7 @@ Here's the server function to authenticate a user:
 
 import { headers as getHeaders } from 'next/headers'
 import config from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 
 export const authenticateUser = async () => {
   const payload = await getPayload({ config })
@@ -227,7 +227,7 @@ This example demonstrates how to write a server function that creates a document
 ```ts
 'use server'
 
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import config from '@payload-config'
 
 export async function createPostWithUpload(data, upload) {
@@ -319,7 +319,7 @@ Logs in a user by verifying credentials and setting the authentication cookie. T
 #### Importing the `login` function
 
 ```ts
-import { login } from '@payloadcms/next/auth'
+import { login } from '@hanzo/cms-next/auth'
 ```
 
 The login function needs your Payload config, which cannot be imported in a client component. To work around this, create a simple server function like the one below, and call it from your client.
@@ -327,7 +327,7 @@ The login function needs your Payload config, which cannot be imported in a clie
 ```ts
 'use server'
 
-import { login } from '@payloadcms/next/auth'
+import { login } from '@hanzo/cms-next/auth'
 import config from '@payload-config'
 
 export async function loginAction({
@@ -398,7 +398,7 @@ Logs out the current user by clearing the authentication cookie and current sess
 #### Importing the `logout` function
 
 ```ts
-import { logout } from '@payloadcms/next/auth'
+import { logout } from '@hanzo/cms-next/auth'
 ```
 
 Similar to the login function, you now need to pass your Payload config to this function and this cannot be done in a client component. Use a helper server function as shown below. To ensure all sessions are cleared, set `allSessions: true` in the options, if you wish to logout but keep current sessions active, you can set this to `false` or leave it `undefined`.
@@ -406,7 +406,7 @@ Similar to the login function, you now need to pass your Payload config to this 
 ```ts
 'use server'
 
-import { logout } from '@payloadcms/next/auth'
+import { logout } from '@hanzo/cms-next/auth'
 import config from '@payload-config'
 
 export async function logoutAction() {
@@ -439,7 +439,7 @@ Refreshes the authentication token and current session for the logged-in user.
 #### Importing the `refresh` function
 
 ```ts
-import { refresh } from '@payloadcms/next/auth'
+import { refresh } from '@hanzo/cms-next/auth'
 ```
 
 As with login and logout, you need to pass your Payload config to this function. Create a helper server function like the one below. Passing the config directly to the client is not possible and will throw errors.
@@ -447,7 +447,7 @@ As with login and logout, you need to pass your Payload config to this function.
 ```ts
 'use server'
 
-import { refresh } from '@payloadcms/next/auth'
+import { refresh } from '@hanzo/cms-next/auth'
 import config from '@payload-config'
 
 export async function refreshAction() {
@@ -512,7 +512,7 @@ Using server functions helps prevent direct exposure of Local API operations to 
 Example of restricting access based on user role:
 
 ```ts
-import { UnauthorizedError } from 'payload'
+import { UnauthorizedError } from @hanzo/cms'from 
 
 export async function deletePost(postId, user) {
   if (!user || user.role !== 'admin') {

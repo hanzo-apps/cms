@@ -1,4 +1,4 @@
-import type { BasePayload } from 'payload'
+import type { BasePayload } from @hanzo/cms'from 
 
 import { devUser } from '../credentials.js'
 

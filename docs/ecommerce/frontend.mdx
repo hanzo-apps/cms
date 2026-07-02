@@ -40,10 +40,10 @@ The `EcommerceProvider` component is used to wrap your application and provide t
 Example usage:
 
 ```tsx
-import { EcommerceProvider } from '@payloadcms/plugin-ecommerce/client/react'
+import { EcommerceProvider } from '@hanzo/cms-plugin-ecommerce/client/react'
 // Import any payment adapters you want to use on the client side
-import { stripeAdapterClient } from '@payloadcms/plugin-ecommerce/payments/stripe'
-import { USD, EUR } from '@payloadcms/plugin-ecommerce'
+import { stripeAdapterClient } from '@hanzo/cms-plugin-ecommerce/payments/stripe'
+import { USD, EUR } from '@hanzo/cms-plugin-ecommerce'
 
 export const Providers = () => (
   <EcommerceProvider
@@ -119,7 +119,7 @@ The `useCart` hook is used to manage the cart state and actions. It provides met
 Example usage:
 
 ```tsx
-import { useCart } from '@payloadcms/plugin-ecommerce/client/react'
+import { useCart } from '@hanzo/cms-plugin-ecommerce/client/react'
 
 const CartComponent = () => {
   const {
@@ -151,7 +151,7 @@ The `useAddresses` hook is used to fetch and manage addresses. It provides metho
 Example usage:
 
 ```tsx
-import { useAddresses } from '@payloadcms/plugin-ecommerce/client/react'
+import { useAddresses } from '@hanzo/cms-plugin-ecommerce/client/react'
 
 const AddressesComponent = () => {
   const { addresses, createAddress, isLoading, updateAddress } = useAddresses()
@@ -176,7 +176,7 @@ The `usePayments` hook is used to manage the checkout process. It provides metho
 Example usage:
 
 ```tsx
-import { usePayments } from '@payloadcms/plugin-ecommerce/client/react'
+import { usePayments } from '@hanzo/cms-plugin-ecommerce/client/react'
 
 const CheckoutComponent = () => {
   const {
@@ -259,7 +259,7 @@ The `useCurrency` hook is used to format prices based on the selected currency. 
 `formatPrice` in particular is very helpful as all prices are stored as integers to avoid any potential issues with decimal calculations, therefore on the frontend you can use this utility to format your price accounting for the currency and decimals. Example usage:
 
 ```tsx
-import { useCurrency } from '@payloadcms/plugin-ecommerce/client/react'
+import { useCurrency } from '@hanzo/cms-plugin-ecommerce/client/react'
 
 const PriceComponent = ({ amount }) => {
   const { currenciesConfig, currency, setCurrency } = useCurrency()
@@ -282,7 +282,7 @@ The `useEcommerceConfig` hook provides access to the ecommerce configuration. Th
 Example usage:
 
 ```tsx
-import { useEcommerceConfig } from '@payloadcms/plugin-ecommerce/client/react'
+import { useEcommerceConfig } from '@hanzo/cms-plugin-ecommerce/client/react'
 
 const CustomComponent = () => {
   const { cartsSlug, customersSlug, api } = useEcommerceConfig()
@@ -301,7 +301,7 @@ The `useEcommerce` hook encompasses all of the above hooks in one. It provides a
 Example usage:
 
 ```tsx
-import { useEcommerce } from '@payloadcms/plugin-ecommerce/client/react'
+import { useEcommerce } from '@hanzo/cms-plugin-ecommerce/client/react'
 
 const EcommerceComponent = () => {
   const {
@@ -333,7 +333,7 @@ Called after a successful login to properly set up cart state. This hook handles
 - Clearing guest cart secrets (authenticated users don't need them)
 
 ```tsx
-import { useEcommerce } from '@payloadcms/plugin-ecommerce/client/react'
+import { useEcommerce } from '@hanzo/cms-plugin-ecommerce/client/react'
 
 const LoginForm = () => {
   const { onLogin } = useEcommerce()
@@ -360,7 +360,7 @@ const LoginForm = () => {
 Called during logout to clear all ecommerce session data. Currently this is just an alias for `clearSession()` but named for semantic clarity when used in logout flows and it could change in the future.
 
 ```tsx
-import { useEcommerce } from '@payloadcms/plugin-ecommerce/client/react'
+import { useEcommerce } from '@hanzo/cms-plugin-ecommerce/client/react'
 
 const LogoutButton = () => {
   const { onLogout } = useEcommerce()
@@ -389,7 +389,7 @@ Clears all ecommerce session data from state and localStorage. This includes:
 Use this when you need to reset the ecommerce state, such as during logout or when switching users.
 
 ```tsx
-import { useEcommerce } from '@payloadcms/plugin-ecommerce/client/react'
+import { useEcommerce } from '@hanzo/cms-plugin-ecommerce/client/react'
 
 const ResetButton = () => {
   const { clearSession } = useEcommerce()
@@ -415,7 +415,7 @@ When items are merged:
 - The source cart is deleted after successful merge
 
 ```tsx
-import { useEcommerce } from '@payloadcms/plugin-ecommerce/client/react'
+import { useEcommerce } from '@hanzo/cms-plugin-ecommerce/client/react'
 
 const MergeCartsButton = () => {
   const { mergeCart, isLoading } = useEcommerce()
@@ -446,7 +446,7 @@ const MergeCartsButton = () => {
 Fetches the latest cart data from the server and updates the local state. Use this when you need to ensure the cart is in sync with the server, such as after external cart modifications.
 
 ```tsx
-import { useEcommerce } from '@payloadcms/plugin-ecommerce/client/react'
+import { useEcommerce } from '@hanzo/cms-plugin-ecommerce/client/react'
 
 const RefreshCartButton = () => {
   const { refreshCart, isLoading } = useEcommerce()

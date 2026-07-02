@@ -5,11 +5,11 @@ import type {
   RichTextFieldClient,
   RichTextField as RichTextFieldType,
   ServerComponentProps,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
-import { renderField } from '@payloadcms/ui/forms/renderField'
-import { getFromImportMap } from 'payload/shared'
+import { getTranslation } from '@hanzo/cms-translations'
+import { renderField } from '@hanzo/cms-ui/forms/renderField'
+import { getFromImportMap } from @hanzo/cms'from 
 import React from 'react'
 
 import type { SanitizedServerEditorConfig } from '../lexical/config/types.js'

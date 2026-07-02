@@ -56,7 +56,7 @@ Create a client component file that exports your view maps:
 ```tsx
 // collections/Posts/views.tsx
 'use client'
-import type { LexicalEditorViewMap } from '@payloadcms/richtext-lexical'
+import type { LexicalEditorViewMap } from '@hanzo/cms-richtext-lexical'
 
 export const postViews: LexicalEditorViewMap = {
   // The 'default' view is used when the field is first loaded
@@ -125,8 +125,8 @@ In your collection config, reference the views using an [import path](/docs/cust
 
 ```ts
 // collections/Posts/index.ts
-import type { CollectionConfig } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import type { CollectionConfig } from @hanzo/cms'from 
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -340,14 +340,14 @@ For blocks and inline blocks, you can also use `Block` and `Label` as alternativ
 
 `Block` is equivalent to passing [`admin.Block`](/docs/fields/blocks#block-component) on the block definition itself — the block is still wrapped in the default Form with collapsible, edit/remove buttons, and field state. This makes it useful when you want to customize how a block looks in the editor while still rendering its fields.
 
-`useBlockComponentContext` is passed as a prop rather than imported directly from `@payloadcms/richtext-lexical/client`. This is intentional: if this view's node map is also passed to a JSX converter, importing from `/client` would pull unnecessary Lexical editor dependencies into your bundle. By passing it as a prop, it is only available (and only callable) when `isEditor` is `true`.
+`useBlockComponentContext` is passed as a prop rather than imported directly from `@hanzo/cms-richtext-lexical/client`. This is intentional: if this view's node map is also passed to a JSX converter, importing from `/client` would pull unnecessary Lexical editor dependencies into your bundle. By passing it as a prop, it is only available (and only callable) when `isEditor` is `true`.
 
 Always narrow by `props.isEditor` before calling `props.useBlockComponentContext` — without that check you will get a TypeScript error, since the prop does not exist on the JSX converter variant of the props type.
 
 <Banner type="warning">
   **Bundle size:** If your view's node map is also passed to a JSX converter, be
   mindful of what you import at the top of the file. Imports from
-  `@payloadcms/richtext-lexical/client` or `@payloadcms/ui` will be included in
+  `@hanzo/cms-richtext-lexical/client` or `@hanzo/cms-ui` will be included in
   your bundle. Use `isEditor` checks to keep editor-only code out of the JSX
   converter render path.
 </Banner>
@@ -415,7 +415,7 @@ Use the `useRichTextView` hook to access the current view:
 
 ```tsx
 'use client'
-import { useRichTextView } from '@payloadcms/richtext-lexical/client'
+import { useRichTextView } from '@hanzo/cms-richtext-lexical/client'
 
 function MyCustomComponent() {
   const { currentView, views, currentViewMap } = useRichTextView()
@@ -442,7 +442,7 @@ You can pass a view's node map to JSX converters (e.g. the `RichText` component 
 When both `converters` and `nodeMap` are provided, the node map takes precedence per-node-type. For blocks and inline blocks, converters from both sources are deep-merged, with the node map winning when both define a converter for the same block type.
 
 ```tsx
-import { RichText } from '@payloadcms/richtext-lexical/react'
+import { RichText } from '@hanzo/cms-richtext-lexical/react'
 import { postViews } from './views'
 
 export function BlogPost({ post }) {

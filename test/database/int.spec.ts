@@ -1,6 +1,6 @@
 /* eslint-disable vitest/no-conditional-expect */
-import type { MongooseAdapter } from '@payloadcms/db-mongodb'
-import type { PostgresAdapter } from '@payloadcms/db-postgres'
+import type { MongooseAdapter } from '@hanzo/cms-db-mongodb'
+import type { PostgresAdapter } from '@hanzo/cms-db-postgres'
 import type { Table } from 'drizzle-orm'
 import type {
   DataFromCollectionSlug,
@@ -8,12 +8,12 @@ import type {
   PayloadRequest,
   TypeWithID,
   ValidationError,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import {
   migrateRelationshipsV2_V3,
   migrateVersionsV1_V2,
-} from '@payloadcms/db-mongodb/migration-utils'
+} from '@hanzo/cms-db-mongodb/migration-utils'
 import { randomUUID } from 'crypto'
 import * as drizzlePg from 'drizzle-orm/pg-core'
 import * as drizzleSqlite from 'drizzle-orm/sqlite-core'
@@ -26,7 +26,7 @@ import {
   isolateObjectProperty,
   killTransaction,
   QueryError,
-} from 'payload'
+} from @hanzo/cms'from 
 import { assert } from 'ts-essentials'
 import { fileURLToPath } from 'url'
 import { afterAll, afterEach, beforeAll, beforeEach, expect } from 'vitest'

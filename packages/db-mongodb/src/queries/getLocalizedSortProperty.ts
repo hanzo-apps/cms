@@ -1,6 +1,6 @@
-import type { FlattenedField, SanitizedConfig } from 'payload'
+import type { FlattenedField, SanitizedConfig } from @hanzo/cms'from 
 
-import { fieldAffectsData, fieldIsPresentationalOnly, fieldShouldBeLocalized } from 'payload/shared'
+import { fieldAffectsData, fieldIsPresentationalOnly, fieldShouldBeLocalized } from @hanzo/cms'from 
 
 type Args = {
   config: SanitizedConfig

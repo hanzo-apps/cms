@@ -1,6 +1,6 @@
 'use client'
 
-import type { EditViewProps } from 'payload'
+import type { EditViewProps } from @hanzo/cms'from 
 
 import React from 'react'
 

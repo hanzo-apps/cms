@@ -1,4 +1,4 @@
-import type { ClientCollectionConfig, ClientGlobalConfig } from 'payload'
+import type { ClientCollectionConfig, ClientGlobalConfig } from @hanzo/cms'from 
 
 import { createContext, use, useEffect, useState } from 'react'
 

@@ -1,4 +1,4 @@
-import { Field } from 'payload'
+import { Field } from @hanzo/cms'from 
 
 export const searchFields: Field[] = [
   {

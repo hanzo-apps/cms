@@ -1,12 +1,12 @@
-import type { FlattenedField } from 'payload'
+import type { FlattenedField } from @hanzo/cms'from 
 
-import { InvalidConfiguration } from 'payload'
+import { InvalidConfiguration } from @hanzo/cms'from 
 import {
   fieldAffectsData,
   fieldIsVirtual,
   fieldShouldBeLocalized,
   optionIsObject,
-} from 'payload/shared'
+} from @hanzo/cms'from 
 import toSnakeCase from 'to-snake-case'
 
 import type {

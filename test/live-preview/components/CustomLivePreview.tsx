@@ -1,5 +1,5 @@
 'use client'
-import { LivePreviewWindow, useDocumentInfo, useLivePreviewContext } from '@payloadcms/ui'
+import { LivePreviewWindow, useDocumentInfo, useLivePreviewContext } from '@hanzo/cms-ui'
 
 import './styles.css'
 

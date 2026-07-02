@@ -1,4 +1,4 @@
-import type { GlobalSlug, PayloadTypesShape, TypedLocale } from 'payload'
+import type { GlobalSlug, PayloadTypesShape, TypedLocale } from @hanzo/cms'from 
 import type { DeepPartial } from 'ts-essentials'
 
 import type { PayloadSDK } from '../index.js'

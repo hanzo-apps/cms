@@ -1,7 +1,7 @@
 import type { ContainerClient } from '@azure/storage-blob'
 
 import { AbortController } from '@azure/abort-controller'
-import { getFileKey } from '@payloadcms/plugin-cloud-storage/utilities'
+import { getFileKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
 import fs from 'fs'
 import { Readable } from 'stream'
 

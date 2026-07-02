@@ -1,7 +1,7 @@
 'use client'
-import type { BlocksFieldClientComponent, ClientBlock } from 'payload'
+import type { BlocksFieldClientComponent, ClientBlock } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React, { Fragment, useCallback, useMemo } from 'react'
 import { toast } from 'sonner'
 

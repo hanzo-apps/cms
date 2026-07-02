@@ -1,9 +1,9 @@
-import type { Payload, SanitizedCollectionConfig } from 'payload'
+import type { Payload, SanitizedCollectionConfig } from @hanzo/cms'from 
 
 import { randomBytes, randomUUID } from 'crypto'
 import { serialize } from 'object-to-formdata'
 import path from 'path'
-import { APIError, NotFound } from 'payload'
+import { APIError, NotFound } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 

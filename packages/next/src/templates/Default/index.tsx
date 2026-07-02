@@ -5,7 +5,7 @@ import type {
   ServerProps,
   ViewTypes,
   VisibleEntities,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import {
   ActionsProvider,
@@ -13,8 +13,8 @@ import {
   BulkUploadProvider,
   EntityVisibilityProvider,
   NavToggler,
-} from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+} from '@hanzo/cms-ui'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 
 import './index.scss'
 

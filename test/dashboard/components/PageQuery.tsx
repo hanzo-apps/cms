@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-exports */
 
-import { type WidgetServerProps } from 'payload'
+import { type WidgetServerProps } from @hanzo/cms'from 
 import React from 'react'
 
 import { PageQueryButton } from './PageQueryButton.client.js'

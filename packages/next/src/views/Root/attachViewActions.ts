@@ -3,7 +3,7 @@ import type {
   EditConfig,
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export function getViewActions({
   editConfig,

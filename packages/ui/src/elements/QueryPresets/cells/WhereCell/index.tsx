@@ -1,6 +1,6 @@
-import type { DefaultCellComponentProps, Where } from 'payload'
+import type { DefaultCellComponentProps, Where } from @hanzo/cms'from 
 
-import { toWords } from 'payload/shared'
+import { toWords } from @hanzo/cms'from 
 import React from 'react'
 
 /** @todo: improve this */

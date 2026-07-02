@@ -4,7 +4,7 @@ import type {
   PayloadComponent,
   RichTextFieldClientProps,
   SanitizedConfig,
-} from 'payload'
+} from @hanzo/cms'from 
 import type { Editor } from 'slate'
 
 /**

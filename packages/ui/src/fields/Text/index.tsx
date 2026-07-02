@@ -1,5 +1,5 @@
 'use client'
-import type { TextFieldClientComponent } from 'payload'
+import type { TextFieldClientComponent } from @hanzo/cms'from 
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 

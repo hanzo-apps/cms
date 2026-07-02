@@ -10,9 +10,9 @@ import type { NextConfigType } from '../types.js'
 import { log, warning } from '../utils/log.js'
 
 export const withPayloadStatement = {
-  cjs: `const { withPayload } = require("@payloadcms/next/withPayload");`,
-  esm: `import { withPayload } from "@payloadcms/next/withPayload";`,
-  ts: `import { withPayload } from "@payloadcms/next/withPayload";`,
+  cjs: `const { withPayload } = require("@hanzo/cms-next/withPayload");`,
+  esm: `import { withPayload } from "@hanzo/cms-next/withPayload";`,
+  ts: `import { withPayload } from "@hanzo/cms-next/withPayload";`,
 }
 
 export const wrapNextConfig = async (args: {

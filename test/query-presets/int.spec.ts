@@ -1,4 +1,4 @@
-import type { Payload, User } from 'payload'
+import type { Payload, User } from @hanzo/cms'from 
 import { describe, beforeAll, afterAll, it, expect } from 'vitest'
 
 import path from 'path'

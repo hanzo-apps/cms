@@ -1,9 +1,9 @@
 import type { BrowserContext, Locator, Page } from '@playwright/test'
-import type { RequiredDataFromCollectionSlug } from 'payload'
+import type { RequiredDataFromCollectionSlug } from @hanzo/cms'from 
 
 import { expect, test } from '@playwright/test'
 import * as path from 'path'
-import { wait } from 'payload/shared'
+import { wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../__helpers/shared/sdk/index.js'

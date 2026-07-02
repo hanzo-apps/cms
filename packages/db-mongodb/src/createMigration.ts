@@ -1,14 +1,14 @@
-import type { CreateMigration, MigrationTemplateArgs } from 'payload'
+import type { CreateMigration, MigrationTemplateArgs } from @hanzo/cms'from 
 
 import fs from 'fs'
 import path from 'path'
-import { getPredefinedMigration, writeMigrationIndex } from 'payload'
+import { getPredefinedMigration, writeMigrationIndex } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 const migrationTemplate = ({ downSQL, imports, upSQL }: MigrationTemplateArgs): string => `import {
   MigrateDownArgs,
   MigrateUpArgs,
-} from '@payloadcms/db-mongodb'
+} from '@hanzo/cms-db-mongodb'
 ${imports ?? ''}
 export async function up({ payload, req, session }: MigrateUpArgs): Promise<void> {
 ${upSQL ?? `  // Migration code`}

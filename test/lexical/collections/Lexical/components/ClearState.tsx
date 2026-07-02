@@ -1,8 +1,8 @@
 'use client'
 
-import type { SerializedParagraphNode, SerializedTextNode } from '@payloadcms/richtext-lexical'
+import type { SerializedParagraphNode, SerializedTextNode } from '@hanzo/cms-richtext-lexical'
 
-import { useForm } from '@payloadcms/ui'
+import { useForm } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const ClearState = ({ fieldName }: { fieldName: string }) => {

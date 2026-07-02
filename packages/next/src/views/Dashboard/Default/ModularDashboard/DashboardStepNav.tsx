@@ -1,5 +1,5 @@
 'use client'
-import type { ClientWidget } from 'payload'
+import type { ClientWidget } from @hanzo/cms'from 
 
 import {
   Button,
@@ -9,7 +9,7 @@ import {
   ReactSelect,
   useStepNav,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import { useEffect, useId } from 'react'
 
 export function DashboardStepNav({

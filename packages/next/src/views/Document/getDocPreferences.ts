@@ -1,6 +1,6 @@
-import type { DocumentPreferences, Payload, TypedUser } from 'payload'
+import type { DocumentPreferences, Payload, TypedUser } from @hanzo/cms'from 
 
-import { sanitizeID } from '@payloadcms/ui/shared'
+import { sanitizeID } from '@hanzo/cms-ui/shared'
 
 type Args = {
   collectionSlug?: string

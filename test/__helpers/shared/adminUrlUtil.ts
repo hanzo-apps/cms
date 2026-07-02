@@ -1,5 +1,5 @@
-import type { Config } from 'payload'
-import { formatAdminURL } from 'payload/shared'
+import type { Config } from @hanzo/cms'from 
+import { formatAdminURL } from @hanzo/cms'from 
 
 // IMPORTANT: ensure that imports do not contain React components, etc. as this breaks Playwright tests
 // Instead of pointing to the bundled code, which will include React components, use direct import paths

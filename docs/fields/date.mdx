@@ -18,7 +18,7 @@ The Date Field saves a Date in the database and provides the [Admin Panel](../ad
 To add a Date Field, set the `type` to `date` in your [Field Config](./overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyDateField: Field = {
   // ...
@@ -54,7 +54,7 @@ _\* An asterisk denotes that a property is required._
 To customize the appearance and behavior of the Date Field in the [Admin Panel](../admin/overview), you can use the `admin` option:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyDateField: Field = {
   // ...
@@ -97,7 +97,7 @@ When only `pickerAppearance` is set, an equivalent format will be rendered in th
 ## Example
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',
@@ -144,8 +144,8 @@ export const ExampleCollection: CollectionConfig = {
 
 ```tsx
 import type React from 'react'
-import { DateTimeField } from '@payloadcms/ui'
-import type { DateFieldServerComponent } from 'payload'
+import { DateTimeField } from '@hanzo/cms-ui'
+import type { DateFieldServerComponent } from @hanzo/cms'from 
 
 export const CustomDateFieldServer: DateFieldServerComponent = ({
   clientField,
@@ -169,8 +169,8 @@ export const CustomDateFieldServer: DateFieldServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { DateTimeField } from '@payloadcms/ui'
-import type { DateFieldClientComponent } from 'payload'
+import { DateTimeField } from '@hanzo/cms-ui'
+import type { DateFieldClientComponent } from @hanzo/cms'from 
 
 export const CustomDateFieldClient: DateFieldClientComponent = (props) => {
   return <DateTimeField {...props} />
@@ -183,8 +183,8 @@ export const CustomDateFieldClient: DateFieldClientComponent = (props) => {
 
 ```tsx
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { DateFieldLabelServerComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { DateFieldLabelServerComponent } from @hanzo/cms'from 
 
 export const CustomDateFieldLabelServer: DateFieldLabelServerComponent = ({
   clientField,
@@ -205,8 +205,8 @@ export const CustomDateFieldLabelServer: DateFieldLabelServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { DateFieldLabelClientComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { DateFieldLabelClientComponent } from @hanzo/cms'from 
 
 export const CustomDateFieldLabelClient: DateFieldLabelClientComponent = ({
   field,

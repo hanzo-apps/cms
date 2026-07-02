@@ -1,14 +1,14 @@
-import type { LinkFields, SerializedLinkNode } from '@payloadcms/richtext-lexical'
+import type { LinkFields, SerializedLinkNode } from '@hanzo/cms-richtext-lexical'
 import type {
   SerializedElementNode,
   SerializedLexicalNode,
   SerializedTextNode,
-} from '@payloadcms/richtext-lexical/lexical'
+} from '@hanzo/cms-richtext-lexical/lexical'
 import type {
   SerializedListItemNode,
   SerializedListNode,
-} from '@payloadcms/richtext-lexical/lexical/list'
-import type { SerializedHeadingNode } from '@payloadcms/richtext-lexical/lexical/rich-text'
+} from '@hanzo/cms-richtext-lexical/lexical/list'
+import type { SerializedHeadingNode } from '@hanzo/cms-richtext-lexical/lexical/rich-text'
 import type { JSX } from 'react'
 
 import React, { Fragment } from 'react'

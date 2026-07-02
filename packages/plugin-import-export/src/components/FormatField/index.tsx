@@ -1,9 +1,9 @@
 'use client'
 
-import type { ReactSelectOption } from '@payloadcms/ui'
-import type { SelectFieldClientComponent } from 'payload'
+import type { ReactSelectOption } from '@hanzo/cms-ui'
+import type { SelectFieldClientComponent } from @hanzo/cms'from 
 
-import { FieldLabel, ReactSelect, useConfig, useField } from '@payloadcms/ui'
+import { FieldLabel, ReactSelect, useConfig, useField } from '@hanzo/cms-ui'
 import React, { useCallback, useEffect, useMemo } from 'react'
 
 const baseClass = 'field-type select'

@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const FolderPoly2: CollectionConfig = {
   slug: 'folderPoly2',

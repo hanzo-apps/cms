@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 import type { Readable } from 'stream'
 
 import type { CollectionCachingConfig, PluginOptions, StaticHandler } from './types.js'

@@ -1,11 +1,11 @@
 'use client'
 
 import type { Modifier } from '@dnd-kit/core'
-import type { ClientWidget, WidgetWidth } from 'payload'
+import type { ClientWidget, WidgetWidth } from @hanzo/cms'from 
 
 import { DndContext, DragOverlay, useDraggable, useDroppable } from '@dnd-kit/core'
 import { snapCenterToCursor } from '@dnd-kit/modifiers'
-import { ChevronIcon, Popup, PopupList, useTranslation, XIcon } from '@payloadcms/ui'
+import { ChevronIcon, Popup, PopupList, useTranslation, XIcon } from '@hanzo/cms-ui'
 import React, { useMemo, useState } from 'react'
 
 /**

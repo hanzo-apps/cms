@@ -1,4 +1,4 @@
-import type { Config } from 'payload'
+import type { Config } from @hanzo/cms'from 
 
 import path from 'path'
 import { fileURLToPath } from 'url'

@@ -1,6 +1,6 @@
-import { buildEditorState, type DefaultNodeTypes } from '@payloadcms/richtext-lexical'
+import { buildEditorState, type DefaultNodeTypes } from '@hanzo/cms-richtext-lexical'
 import path from 'path'
-import { getFileByPath, type Payload } from 'payload'
+import { getFileByPath, type Payload } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { DraftPost } from './payload-types.js'

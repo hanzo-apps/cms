@@ -1,4 +1,4 @@
-import type { Field, GroupField } from 'payload'
+import type { Field, GroupField } from @hanzo/cms'from 
 
 import deepMerge from '@/utilities/deepMerge'
 

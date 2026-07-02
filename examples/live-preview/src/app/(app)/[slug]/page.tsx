@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import React, { Fragment } from 'react'
 
 import type { Page as PageType } from '../../../payload-types'

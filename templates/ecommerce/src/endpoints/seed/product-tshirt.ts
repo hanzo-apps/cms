@@ -1,5 +1,5 @@
 import type { Category, Media, Product, VariantOption, VariantType } from '@/payload-types'
-import { RequiredDataFromCollectionSlug } from 'payload'
+import { RequiredDataFromCollectionSlug } from @hanzo/cms'from 
 
 type ProductArgs = {
   galleryImages: NonNullable<Product['gallery']>

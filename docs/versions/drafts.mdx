@@ -174,7 +174,7 @@ You can use the `read` [Access Control](../access-control/collections#read) meth
 Here is an example that utilizes the `_status` field to require a user to be logged in to retrieve drafts:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -217,7 +217,7 @@ function to allow for users to read both documents where
 Here is an example for how to write an [Access Control](../access-control/overview) function that grants access to both documents where `_status` is equal to "published" and where `_status` does not exist:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -261,7 +261,7 @@ You can use `update` [Access Control](../access-control/collections#update) to r
 Here is an example where admins can publish, but editors can only save drafts:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',

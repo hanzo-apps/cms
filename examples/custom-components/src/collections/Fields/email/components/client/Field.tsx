@@ -1,7 +1,7 @@
 'use client'
-import type { EmailFieldClientComponent } from 'payload'
+import type { EmailFieldClientComponent } from @hanzo/cms'from 
 
-import { EmailField } from '@payloadcms/ui'
+import { EmailField } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomEmailFieldClient: EmailFieldClientComponent = (props) => {

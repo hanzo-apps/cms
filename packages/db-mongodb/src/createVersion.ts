@@ -1,4 +1,4 @@
-import { buildVersionCollectionFields, type CreateVersion } from 'payload'
+import { buildVersionCollectionFields, type CreateVersion } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from './index.js'
 

@@ -1,4 +1,4 @@
-import { Banner as PayloadBanner } from '@payloadcms/ui'
+import { Banner as PayloadBanner } from '@hanzo/cms-ui'
 
 export function Banner(props: {
   children?: React.ReactNode

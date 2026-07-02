@@ -1,12 +1,12 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 import type { SuiteAPI } from 'vitest'
 
 import * as AWS from '@aws-sdk/client-s3'
-import { getFilePrefix } from '@payloadcms/plugin-cloud-storage/utilities'
+import { getFilePrefix } from '@hanzo/cms-plugin-cloud-storage/utilities'
 import fs from 'fs'
 import path from 'path'
-import { APIError } from 'payload'
-import { sanitizeFilename } from 'payload/shared'
+import { APIError } from @hanzo/cms'from 
+import { sanitizeFilename } from @hanzo/cms'from 
 import shelljs from 'shelljs'
 import { fileURLToPath } from 'url'
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest'
@@ -101,7 +101,7 @@ export function describeIfInCIOrHasLocalstack(): SuiteAPI | SuiteAPI['skip'] {
   return describe
 }
 
-describe('@payloadcms/plugin-cloud-storage', () => {
+describe('@hanzo/cms-plugin-cloud-storage', () => {
   describe('getFilePrefix', () => {
     const mockReq = {
       payload: {

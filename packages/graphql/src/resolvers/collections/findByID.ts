@@ -1,7 +1,7 @@
 import type { GraphQLResolveInfo } from 'graphql'
-import type { Collection, CollectionSlug, DataFromCollectionSlug } from 'payload'
+import type { Collection, CollectionSlug, DataFromCollectionSlug } from @hanzo/cms'from 
 
-import { findByIDOperation, isolateObjectProperty } from 'payload'
+import { findByIDOperation, isolateObjectProperty } from @hanzo/cms'from 
 
 import type { Context } from '../types.js'
 

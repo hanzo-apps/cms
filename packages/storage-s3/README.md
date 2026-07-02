@@ -2,12 +2,12 @@
 
 This package provides a simple way to use S3 with Payload.
 
-**NOTE:** This package removes the need to use `@payloadcms/plugin-cloud-storage` as was needed in Payload 2.x.
+**NOTE:** This package removes the need to use `@hanzo/cms-plugin-cloud-storage` as was needed in Payload 2.x.
 
 ## Installation
 
 ```sh
-pnpm add @payloadcms/storage-s3
+pnpm add @hanzo/cms-storage-s3
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ pnpm add @payloadcms/storage-s3
 - Configure `signedDownloads` (either globally of per-collection in `collections`) to use [presigned URLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html) for files downloading. This can improve performance for large files (like videos) while still respecting your access control. Additionally, with `signedDownloads.shouldUseSignedURL` you can specify a condition whether Payload should use a presigned URL, if you want to use this feature only for specific files.
 
 ```ts
-import { s3Storage } from '@payloadcms/storage-s3'
+import { s3Storage } from '@hanzo/cms-storage-s3'
 import { Media } from './collections/Media'
 import { MediaWithPrefix } from './collections/MediaWithPrefix'
 

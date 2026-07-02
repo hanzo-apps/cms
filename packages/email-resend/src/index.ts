@@ -1,6 +1,6 @@
-import type { EmailAdapter, SendEmailOptions } from 'payload'
+import type { EmailAdapter, SendEmailOptions } from @hanzo/cms'from 
 
-import { APIError } from 'payload'
+import { APIError } from @hanzo/cms'from 
 
 export type ResendAdapterArgs = {
   apiKey: string

@@ -1,6 +1,6 @@
-import type { Collection } from 'payload'
+import type { Collection } from @hanzo/cms'from 
 
-import { isolateObjectProperty, verifyEmailOperation } from 'payload'
+import { isolateObjectProperty, verifyEmailOperation } from @hanzo/cms'from 
 
 import type { Context } from '../types.js'
 

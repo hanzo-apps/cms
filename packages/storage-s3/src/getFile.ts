@@ -1,5 +1,5 @@
 import type * as AWS from '@aws-sdk/client-s3'
-import type { CollectionConfig, PayloadRequest } from 'payload'
+import type { CollectionConfig, PayloadRequest } from @hanzo/cms'from 
 import type { Readable } from 'stream'
 
 import { GetObjectCommand } from '@aws-sdk/client-s3'
@@ -7,8 +7,8 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import {
   getFilePrefix as getDocPrefix,
   getFileKey,
-} from '@payloadcms/plugin-cloud-storage/utilities'
-import { getRangeRequestInfo } from 'payload/internal'
+} from '@hanzo/cms-plugin-cloud-storage/utilities'
+import { getRangeRequestInfo } from @hanzo/cms'from 
 
 export type SignedDownloadsConfig =
   | {

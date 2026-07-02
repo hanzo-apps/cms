@@ -1,6 +1,6 @@
 'use client'
 
-import type { FormProps } from '@payloadcms/ui'
+import type { FormProps } from '@hanzo/cms-ui'
 
 import {
   Drawer,
@@ -13,7 +13,7 @@ import {
   useHotkey,
   useServerFunctions,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import React, { useCallback, useRef } from 'react'
 
 import type { Props } from './types.js'

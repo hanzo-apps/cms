@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/require-await */
-import type { TaskConfig } from 'payload'
+import type { TaskConfig } from @hanzo/cms'from 
 
 export const DoNothingTask: TaskConfig<'DoNothingTask'> = {
   retries: 2,

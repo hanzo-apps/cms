@@ -3,8 +3,8 @@ import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-import { ecommercePlugin, EUR, USD } from '@payloadcms/plugin-ecommerce'
-import { stripeAdapter } from '@payloadcms/plugin-ecommerce/payments/stripe'
+import { ecommercePlugin, EUR, USD } from '@hanzo/cms-plugin-ecommerce'
+import { stripeAdapter } from '@hanzo/cms-plugin-ecommerce/payments/stripe'
 
 import type { EcommercePluginConfig } from '../../packages/plugin-ecommerce/src/types.js'
 

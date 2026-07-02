@@ -1,7 +1,7 @@
 'use client'
-import { createClientUploadHandler, getFileKey } from '@payloadcms/plugin-cloud-storage/client'
+import { createClientUploadHandler, getFileKey } from '@hanzo/cms-plugin-cloud-storage/client'
 import { upload } from '@vercel/blob/client'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 
 export type VercelBlobClientUploadHandlerExtra = {
   addRandomSuffix: boolean

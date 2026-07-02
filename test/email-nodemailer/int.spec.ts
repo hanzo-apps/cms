@@ -1,7 +1,7 @@
-import type { NodemailerAdapterArgs } from '@payloadcms/email-nodemailer'
-import type { Payload } from 'payload'
+import type { NodemailerAdapterArgs } from '@hanzo/cms-email-nodemailer'
+import type { Payload } from @hanzo/cms'from 
 
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
@@ -22,7 +22,7 @@ type EmailReturnType = {
   to: string
 }
 
-describe('@payloadcms/email-nodemailer', () => {
+describe('@hanzo/cms-email-nodemailer', () => {
   beforeAll(async () => {
     process.env.SKIP_ON_INIT = 'true'
     ;({ payload } = await initPayloadInt(dirname))

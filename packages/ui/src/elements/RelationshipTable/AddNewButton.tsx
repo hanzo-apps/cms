@@ -1,8 +1,8 @@
 'use client'
-import type { I18nClient } from '@payloadcms/translations'
-import type { ClientCollectionConfig, SanitizedPermissions } from 'payload'
+import type { I18nClient } from '@hanzo/cms-translations'
+import type { ClientCollectionConfig, SanitizedPermissions } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 
 import type { Props as ButtonProps } from '../../elements/Button/types.js'
 

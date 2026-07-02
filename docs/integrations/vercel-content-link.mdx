@@ -25,17 +25,17 @@ For full details on how the encoding and decoding algorithm works, check out [`@
 
 ## Getting Started
 
-Setting up Payload with Vercel Content Link is easy. First, install the `@payloadcms/plugin-csm` plugin into your project. This plugin requires an API key to install, [contact our sales team](https://payloadcms.com/for-enterprise) if you don't already have one.
+Setting up Payload with Vercel Content Link is easy. First, install the `@hanzo/cms-plugin-csm` plugin into your project. This plugin requires an API key to install, [contact our sales team](https://payloadcms.com/for-enterprise) if you don't already have one.
 
 ```bash
-npm i @payloadcms/plugin-csm
+npm i @hanzo/cms-plugin-csm
 ```
 
 Then in the `plugins` array of your Payload Config, call the plugin and enable any collections that require Content Source Maps.
 
 ```ts
-import { buildConfig } from 'payload/config'
-import contentSourceMaps from '@payloadcms/plugin-csm'
+import { buildConfig } from @hanzo/cms'from 
+import contentSourceMaps from '@hanzo/cms-plugin-csm'
 
 const config = buildConfig({
   collections: [

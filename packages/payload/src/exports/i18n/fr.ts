@@ -1,1 +1,1 @@
-export { fr } from '@payloadcms/translations/languages/fr'
+export { fr } from '@hanzo/cms-translations/languages/fr'

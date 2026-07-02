@@ -1,8 +1,8 @@
 'use client'
 
-import type { ClientCollectionConfig, ClientGlobalConfig, SanitizedCollectionConfig } from 'payload'
+import type { ClientCollectionConfig, ClientGlobalConfig, SanitizedCollectionConfig } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   Button,
   ConfirmationModal,
@@ -12,10 +12,10 @@ import {
   useModal,
   useRouteTransition,
   useTranslation,
-} from '@payloadcms/ui'
-import { requests } from '@payloadcms/ui/shared'
+} from '@hanzo/cms-ui'
+import { requests } from '@hanzo/cms-ui/shared'
 import { useRouter } from 'next/navigation.js'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 
 import './index.scss'
 

@@ -30,7 +30,7 @@ One of the coolest things about widgets is that each plugin can define its own. 
 Define widgets in your Payload config using the `admin.dashboard.widgets` property:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   admin: {
@@ -74,7 +74,7 @@ export default buildConfig({
 Widgets are React Server Components that receive `WidgetServerProps`:
 
 ```tsx
-import type { WidgetServerProps } from 'payload'
+import type { WidgetServerProps } from @hanzo/cms'from 
 
 export default async function UserStatsWidget({ req }: WidgetServerProps) {
   const { payload } = req
@@ -137,7 +137,7 @@ The `defaultLayout` function receives the request object and should return an ar
 If your widget has `fields`, you can type `widgetData` with generated widget types:
 
 ```tsx
-import type { WidgetServerProps } from 'payload'
+import type { WidgetServerProps } from @hanzo/cms'from 
 
 import type { SalesSummaryWidget } from '../payload-types'
 

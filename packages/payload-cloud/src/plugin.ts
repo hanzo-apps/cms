@@ -1,4 +1,4 @@
-import type { Config, Payload } from 'payload'
+import type { Config, Payload } from @hanzo/cms'from 
 
 import type { PluginOptions } from './types.js'
 

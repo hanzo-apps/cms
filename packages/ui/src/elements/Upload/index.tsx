@@ -1,8 +1,8 @@
 'use client'
-import type { FormState, SanitizedCollectionConfig, UploadEdits } from 'payload'
+import type { FormState, SanitizedCollectionConfig, UploadEdits } from @hanzo/cms'from 
 
 import { useModal } from '@faceless-ui/modal'
-import { formatAdminURL, isImage } from 'payload/shared'
+import { formatAdminURL, isImage } from @hanzo/cms'from 
 import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 

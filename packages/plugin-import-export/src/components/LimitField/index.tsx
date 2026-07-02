@@ -1,8 +1,8 @@
 'use client'
 
-import type { NumberFieldClientComponent } from 'payload'
+import type { NumberFieldClientComponent } from @hanzo/cms'from 
 
-import { NumberField, useDocumentInfo, useField, useListQuery } from '@payloadcms/ui'
+import { NumberField, useDocumentInfo, useField, useListQuery } from '@hanzo/cms-ui'
 import React, { useEffect, useRef } from 'react'
 
 export const LimitField: NumberFieldClientComponent = (props) => {

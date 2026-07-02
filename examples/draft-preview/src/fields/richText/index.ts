@@ -1,7 +1,7 @@
-import type { RichTextElement, RichTextLeaf } from '@payloadcms/richtext-slate'
-import type { RichTextField } from 'payload'
+import type { RichTextElement, RichTextLeaf } from '@hanzo/cms-richtext-slate'
+import type { RichTextField } from @hanzo/cms'from 
 
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 import deepMerge from '../../utilities/deepMerge'
 import link from '../link'

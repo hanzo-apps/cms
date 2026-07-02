@@ -3,7 +3,7 @@ import type { Page } from '@playwright/test'
 import { expect, test } from '@playwright/test'
 import { openDocDrawer } from '__helpers/e2e/toggleDocDrawer.js'
 import path from 'path'
-import { wait } from 'payload/shared'
+import { wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../../../__helpers/shared/sdk/index.js'

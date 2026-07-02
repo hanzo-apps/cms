@@ -1,4 +1,4 @@
-import type { FindOneArgs, SanitizedCollectionConfig, TypeWithID } from 'payload'
+import type { FindOneArgs, SanitizedCollectionConfig, TypeWithID } from @hanzo/cms'from 
 
 import toSnakeCase from 'to-snake-case'
 

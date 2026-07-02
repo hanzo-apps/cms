@@ -1,7 +1,7 @@
 import type { CompilerOptions } from 'typescript'
 
 import * as CommentJson from 'comment-json'
-import { initNext } from 'create-payload-app/commands'
+import { initNext } from '@hanzo/create-cms-app/commands'
 import execa from 'execa'
 import fs from 'fs'
 import fse from 'fs-extra'
@@ -27,10 +27,10 @@ const nextCreateCommands: Record<NextCmdKey, string> = {
   noSrcDirCanary: `pnpm create next-app@latest . ${commonNextCreateParams} --no-src-dir`,
 }
 
-describe('create-payload-app', () => {
+describe('@hanzo/create-cms-app', () => {
   beforeAll(() => {
     // Runs copyfiles copy app/(payload) -> dist/app/(payload)
-    shelljs.exec('pnpm build:create-payload-app')
+    shelljs.exec('pnpm build:@hanzo/create-cms-app')
   })
 
   describe.each(commandKeys)(`--init-next with %s`, (nextCmdKey) => {
@@ -80,7 +80,7 @@ describe('create-payload-app', () => {
         dbType: 'mongodb',
         packageManager: 'pnpm',
         projectDir,
-        useDistFiles: true, // create-payload-app/dist/template
+        useDistFiles: true, // @hanzo/create-cms-app/dist/template
       })
 
       // Will fail because we detect top-level layout.tsx file
@@ -104,7 +104,7 @@ describe('create-payload-app', () => {
         dbType: 'mongodb',
         packageManager: 'pnpm',
         projectDir,
-        useDistFiles: true, // create-payload-app/dist/app/(payload)
+        useDistFiles: true, // @hanzo/create-cms-app/dist/app/(payload)
       })
 
       assertAndExpectToBeTrue(result.success) // Narrowing for TS
@@ -138,9 +138,9 @@ describe('create-payload-app', () => {
         dependencies: Record<string, string>
       }
       expect(packageJson.dependencies).toMatchObject({
-        '@payloadcms/db-mongodb': expect.any(String),
-        '@payloadcms/next': expect.any(String),
-        '@payloadcms/richtext-lexical': expect.any(String),
+        '@hanzo/cms-db-mongodb': expect.any(String),
+        '@hanzo/cms-next': expect.any(String),
+        '@hanzo/cms-richtext-lexical': expect.any(String),
         payload: expect.any(String),
       })
     })
@@ -183,7 +183,7 @@ describe('create-payload-app', () => {
 
       // Configure payload config to use postgres (mimics main.ts flow)
       const { configurePayloadConfig: configureFromLib } = await import(
-        '../../packages/create-payload-app/src/lib/configure-payload-config.js'
+        '../../packages/@hanzo/create-cms-app/src/lib/configure-payload-config.js'
       )
       await configureFromLib({
         dbType: 'postgres',
@@ -198,19 +198,19 @@ describe('create-payload-app', () => {
       )
       const configContent = fs.readFileSync(payloadConfig, 'utf-8')
       expect(configContent).toContain('postgresAdapter')
-      expect(configContent).toContain('@payloadcms/db-postgres')
+      expect(configContent).toContain('@hanzo/cms-db-postgres')
 
       // Postgres dependencies should be installed
       const packageJson = fse.readJsonSync(path.resolve(projectDir, 'package.json')) as {
         dependencies: Record<string, string>
       }
       expect(packageJson.dependencies).toMatchObject({
-        '@payloadcms/db-postgres': expect.any(String),
-        '@payloadcms/next': expect.any(String),
-        '@payloadcms/richtext-lexical': expect.any(String),
+        '@hanzo/cms-db-postgres': expect.any(String),
+        '@hanzo/cms-next': expect.any(String),
+        '@hanzo/cms-richtext-lexical': expect.any(String),
         payload: expect.any(String),
       })
-      expect(packageJson.dependencies['@payloadcms/db-mongodb']).toBeUndefined()
+      expect(packageJson.dependencies['@hanzo/cms-db-mongodb']).toBeUndefined()
     })
   })
 
@@ -289,11 +289,11 @@ describe('create-payload-app', () => {
       const packageJson = fse.readJsonSync(path.resolve(projectDir, 'package.json')) as {
         dependencies: Record<string, string>
       }
-      expect(packageJson.dependencies['@payloadcms/db-mongodb']).toBeDefined()
+      expect(packageJson.dependencies['@hanzo/cms-db-mongodb']).toBeDefined()
 
       // Now replace with postgres using AST (simulates manual adapter replacement)
       const { configurePayloadConfig } = await import(
-        '../../packages/create-payload-app/src/lib/ast/payload-config.js'
+        '../../packages/@hanzo/create-cms-app/src/lib/ast/payload-config.js'
       )
       const payloadConfig = path.resolve(
         projectDir,
@@ -309,9 +309,9 @@ describe('create-payload-app', () => {
       // Verify config file was updated
       const configContent = fs.readFileSync(payloadConfig, 'utf-8')
       expect(configContent).toContain('postgresAdapter')
-      expect(configContent).toContain('@payloadcms/db-postgres')
+      expect(configContent).toContain('@hanzo/cms-db-postgres')
       expect(configContent).not.toContain('mongooseAdapter')
-      expect(configContent).not.toContain('@payloadcms/db-mongodb')
+      expect(configContent).not.toContain('@hanzo/cms-db-mongodb')
     })
   })
 })

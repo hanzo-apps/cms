@@ -1,4 +1,4 @@
-import type { KVAdapter, KVAdapterResult, KVStoreValue } from 'payload'
+import type { KVAdapter, KVAdapterResult, KVStoreValue } from @hanzo/cms'from 
 
 import { Redis } from 'ioredis'
 

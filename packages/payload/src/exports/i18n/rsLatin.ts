@@ -1,1 +1,1 @@
-export { rsLatin } from '@payloadcms/translations/languages/rsLatin'
+export { rsLatin } from '@hanzo/cms-translations/languages/rsLatin'

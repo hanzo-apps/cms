@@ -8,7 +8,7 @@ keywords: email, overview, config, configuration, documentation, Content Managem
 
 ## Introduction
 
-Payload has a few email adapters that can be imported to enable email functionality. The [@payloadcms/email-nodemailer](https://www.npmjs.com/package/@payloadcms/email-nodemailer) package will be the package most will want to install. This package provides an easy way to use [Nodemailer](https://nodemailer.com) for email and won't get in your way for those already familiar.
+Payload has a few email adapters that can be imported to enable email functionality. The [@hanzo/cms-email-nodemailer](https://www.npmjs.com/package/@hanzo/cms-email-nodemailer) package will be the package most will want to install. This package provides an easy way to use [Nodemailer](https://nodemailer.com) for email and won't get in your way for those already familiar.
 
 The email adapter should be passed into the `email` property of the Payload Config. This will allow Payload to send [auth-related emails](../authentication/email) for things like password resets, new user verification, and any other email sending needs you may have.
 
@@ -31,8 +31,8 @@ An email adapter will require at least the following fields:
 
 | Name       | Package                                                                                    | Description                                                                                                                                                                                     |
 | ---------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Nodemailer | [@payloadcms/email-nodemailer](https://www.npmjs.com/package/@payloadcms/email-nodemailer) | Use any [Nodemailer transport](https://nodemailer.com/transports), including SMTP, Resend, SendGrid, and more. This was provided by default in Payload 2.x. This is the easiest migration path. |
-| Resend     | [@payloadcms/email-resend](https://www.npmjs.com/package/@payloadcms/email-resend)         | Resend email via their REST API. This is preferred for serverless platforms such as Vercel because it is much more lightweight than the nodemailer adapter.                                     |
+| Nodemailer | [@hanzo/cms-email-nodemailer](https://www.npmjs.com/package/@hanzo/cms-email-nodemailer) | Use any [Nodemailer transport](https://nodemailer.com/transports), including SMTP, Resend, SendGrid, and more. This was provided by default in Payload 2.x. This is the easiest migration path. |
+| Resend     | [@hanzo/cms-email-resend](https://www.npmjs.com/package/@hanzo/cms-email-resend)         | Resend email via their REST API. This is preferred for serverless platforms such as Vercel because it is much more lightweight than the nodemailer adapter.                                     |
 
 ## Nodemailer Configuration
 
@@ -48,8 +48,8 @@ Simple Mail Transfer Protocol (SMTP) options can be passed in using the `transpo
 **Example email options using SMTP:**
 
 ```ts
-import { buildConfig } from 'payload'
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import { buildConfig } from @hanzo/cms'from 
+import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 
 export default buildConfig({
   email: nodemailerAdapter({
@@ -71,8 +71,8 @@ export default buildConfig({
 **Example email options using nodemailer.createTransport:**
 
 ```ts
-import { buildConfig } from 'payload'
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import { buildConfig } from @hanzo/cms'from 
+import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 import nodemailer from 'nodemailer'
 
 export default buildConfig({
@@ -97,8 +97,8 @@ export default buildConfig({
 You also have the ability to bring your own nodemailer transport. This is an example of using the SendGrid nodemailer transport.
 
 ```ts
-import { buildConfig } from 'payload'
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import { buildConfig } from @hanzo/cms'from 
+import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 import nodemailerSendgrid from 'nodemailer-sendgrid'
 
 export default buildConfig({
@@ -117,7 +117,7 @@ During development, if you pass nothing to `nodemailerAdapter`, it will use the 
 This will log the ethereal.email details to console on startup.
 
 ```ts
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 
 export default buildConfig({
   email: nodemailerAdapter(),
@@ -133,8 +133,8 @@ The Resend adapter requires an API key to be passed in the options. This can be 
 | apiKey | The API key for the Resend service. |
 
 ```ts
-import { buildConfig } from 'payload'
-import { resendAdapter } from '@payloadcms/email-resend'
+import { buildConfig } from @hanzo/cms'from 
+import { resendAdapter } from '@hanzo/cms-email-resend'
 
 export default buildConfig({
   email: resendAdapter({
@@ -162,7 +162,7 @@ const email = await payload.sendEmail({
 
 **Nodemailer adapter (SMTP/SendGrid/etc.)**
 
-Works with `@payloadcms/email-nodemailer` and any Nodemailer transport.
+Works with `@hanzo/cms-email-nodemailer` and any Nodemailer transport.
 
 ```ts
 await payload.sendEmail({
@@ -190,7 +190,7 @@ Anything supported by Nodemailer’s attachments—streams, Buffers, URLs, conte
 
 ### Resend adapter
 
-Works with @payloadcms/email-resend.
+Works with @hanzo/cms-email-resend.
 
 For attachments from remote URLs
 

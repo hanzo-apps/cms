@@ -1,5 +1,5 @@
 import type { GraphQLFieldConfig } from 'graphql'
-import type { Field, GraphQLInfo, SanitizedConfig } from 'payload'
+import type { Field, GraphQLInfo, SanitizedConfig } from @hanzo/cms'from 
 
 import { GraphQLObjectType } from 'graphql'
 

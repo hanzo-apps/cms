@@ -1,6 +1,6 @@
 'use client'
 
-import { useField, useFormFields, useFormSubmitted } from '@payloadcms/ui'
+import { useField, useFormFields, useFormSubmitted } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomError: React.FC<any> = (props) => {

@@ -1,9 +1,9 @@
 'use client'
-import type { SanitizedConfig } from 'payload'
+import type { SanitizedConfig } from @hanzo/cms'from 
 
-import { Button } from '@payloadcms/ui'
+import { Button } from '@hanzo/cms-ui'
 import { useParams, usePathname, useSearchParams } from 'next/navigation.js'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import React from 'react'
 
 export const DocumentTabLink: React.FC<{

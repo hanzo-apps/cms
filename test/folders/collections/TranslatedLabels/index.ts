@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const TranslatedLabels: CollectionConfig = {
   slug: 'translated-labels',

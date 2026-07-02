@@ -1,6 +1,6 @@
 'use client'
 
-import { ShimmerEffect } from '@payloadcms/ui'
+import { ShimmerEffect } from '@hanzo/cms-ui'
 
 import '../index.scss'
 

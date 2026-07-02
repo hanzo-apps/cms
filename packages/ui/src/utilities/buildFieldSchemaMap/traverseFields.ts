@@ -1,8 +1,8 @@
-import type { I18n } from '@payloadcms/translations'
-import type { Field, FieldSchemaMap, SanitizedConfig, TabAsField } from 'payload'
+import type { I18n } from '@hanzo/cms-translations'
+import type { Field, FieldSchemaMap, SanitizedConfig, TabAsField } from @hanzo/cms'from 
 
-import { MissingEditorProp } from 'payload'
-import { fieldAffectsData, getFieldPaths, tabHasName } from 'payload/shared'
+import { MissingEditorProp } from @hanzo/cms'from 
+import { fieldAffectsData, getFieldPaths, tabHasName } from @hanzo/cms'from 
 
 type Args = {
   config: SanitizedConfig

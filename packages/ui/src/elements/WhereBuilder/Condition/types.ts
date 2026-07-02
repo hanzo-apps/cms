@@ -1,4 +1,4 @@
-import type { Operator, Where } from 'payload'
+import type { Operator, Where } from @hanzo/cms'from 
 
 import type { Action, ReducedField } from '../types.js'
 

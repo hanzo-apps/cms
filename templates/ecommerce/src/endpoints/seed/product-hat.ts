@@ -1,6 +1,6 @@
 import type { Category, Product, VariantOption, VariantType } from '@/payload-types'
 import type { Media } from '@/payload-types'
-import { RequiredDataFromCollectionSlug } from 'payload'
+import { RequiredDataFromCollectionSlug } from @hanzo/cms'from 
 
 type ProductArgs = {
   galleryImage: Media

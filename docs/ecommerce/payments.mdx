@@ -34,9 +34,9 @@ We recommend at least `18.5.0` to ensure compatibility with the plugin.
 Then, in your `plugins` array of your [Payload Config](https://payloadcms.com/docs/configuration/overview), call the plugin with:
 
 ```ts
-import { ecommercePlugin } from '@payloadcms/plugin-ecommerce'
-import { stripeAdapter } from '@payloadcms/plugin-ecommerce/payments/stripe'
-import { buildConfig } from 'payload'
+import { ecommercePlugin } from '@hanzo/cms-plugin-ecommerce'
+import { stripeAdapter } from '@hanzo/cms-plugin-ecommerce/payments/stripe'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // Payload config...
@@ -84,9 +84,9 @@ You can also add your own webhooks to handle [events from Stripe](https://docs.s
 You can add a webhook like so:
 
 ```ts
-import { ecommercePlugin } from '@payloadcms/plugin-ecommerce'
-import { stripeAdapter } from '@payloadcms/plugin-ecommerce/payments/stripe'
-import { buildConfig } from 'payload'
+import { ecommercePlugin } from '@hanzo/cms-plugin-ecommerce'
+import { stripeAdapter } from '@hanzo/cms-plugin-ecommerce/payments/stripe'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // Payload config...
@@ -163,8 +163,8 @@ stripe trigger payment_intent.succeeded
 The most straightforward way to use Stripe on the frontend is with the `EcommerceProvider` component and the `stripeAdapterClient` function. Wrap your application in the provider and pass in the Stripe adapter with your publishable key:
 
 ```ts
-import { EcommerceProvider } from '@payloadcms/plugin-ecommerce/client/react'
-import { stripeAdapterClient } from '@payloadcms/plugin-ecommerce/payments/stripe'
+import { EcommerceProvider } from '@hanzo/cms-plugin-ecommerce/client/react'
+import { stripeAdapterClient } from '@hanzo/cms-plugin-ecommerce/payments/stripe'
 
 <EcommerceProvider
   paymentMethods={[
@@ -234,7 +234,7 @@ A heavily simplified example of implementing `initiatePayment` could look like:
 import {
   PaymentAdapter,
   PaymentAdapterArgs,
-} from '@payloadcms/plugin-ecommerce'
+} from '@hanzo/cms-plugin-ecommerce'
 import Stripe from 'stripe'
 
 export const initiatePayment: NonNullable<PaymentAdapter>['initiatePayment'] =
@@ -328,7 +328,7 @@ A heavily simplified example of implementing `confirmOrder` could look like:
 import {
   PaymentAdapter,
   PaymentAdapterArgs,
-} from '@payloadcms/plugin-ecommerce'
+} from '@hanzo/cms-plugin-ecommerce'
 import Stripe from 'stripe'
 
 export const confirmOrder: NonNullable<PaymentAdapter>['confirmOrder'] =

@@ -1,4 +1,4 @@
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import config from '../../src/payload.config.js'
 
 export const testUser = {

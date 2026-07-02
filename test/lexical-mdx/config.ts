@@ -1,4 +1,4 @@
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 import * as fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'path'

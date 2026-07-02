@@ -1,7 +1,7 @@
 'use client'
-import type { BlocksFieldClient, DefaultCellComponentProps } from 'payload'
+import type { BlocksFieldClient, DefaultCellComponentProps } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'
 
 import { useConfig } from '../../../../../providers/Config/index.js'

@@ -1,4 +1,4 @@
-import { Gutter } from '@payloadcms/ui'
+import { Gutter } from '@hanzo/cms-ui'
 
 import React, { Fragment } from 'react'
 

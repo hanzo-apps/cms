@@ -5,7 +5,7 @@ import { getConfig } from './getConfig.js'
 
 const config = getConfig()
 
-import { postgresAdapter } from '@payloadcms/db-postgres'
+import { postgresAdapter } from '@hanzo/cms-db-postgres'
 
 export const databaseAdapter = postgresAdapter({
   pool: {

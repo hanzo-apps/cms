@@ -1,10 +1,10 @@
-import type { AdminViewServerProps, DocumentViewServerPropsOnly } from 'payload'
+import type { AdminViewServerProps, DocumentViewServerPropsOnly } from @hanzo/cms'from 
 
-import { DocumentInfoProvider, EditDepthProvider, HydrateAuthProvider } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { buildFormState } from '@payloadcms/ui/utilities/buildFormState'
+import { DocumentInfoProvider, EditDepthProvider, HydrateAuthProvider } from '@hanzo/cms-ui'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
+import { buildFormState } from '@hanzo/cms-ui/utilities/buildFormState'
 import { notFound } from 'next/navigation.js'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import React from 'react'
 
 import { DocumentHeader } from '../../elements/DocumentHeader/index.js'

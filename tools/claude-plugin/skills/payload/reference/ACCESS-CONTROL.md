@@ -49,7 +49,7 @@ User makes request
 ### Basic Patterns
 
 ```ts
-import type { CollectionConfig, Access } from 'payload'
+import type { CollectionConfig, Access } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -96,7 +96,7 @@ export const Posts: CollectionConfig = {
 Payload does NOT provide a roles system by default. The following is a commonly accepted pattern for implementing role-based access control in auth collections:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -133,7 +133,7 @@ export const Users: CollectionConfig = {
 **Using Roles in Access Control:**
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 // Check for specific role
 export const adminOnly: Access = ({ req: { user } }) => {
@@ -158,7 +158,7 @@ export const hasMinimumRole: Access = ({ req: { user } }, minRole: string) => {
 ### Reusable Access Functions
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 // Anyone (public)
 export const anyone: Access = () => true
@@ -204,7 +204,7 @@ export const Posts: CollectionConfig = {
 ### Row-Level Security with Complex Queries
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 // Organization-scoped access
 export const organizationScoped: Access = ({ req: { user } }) => {
@@ -247,7 +247,7 @@ export const teamMemberAccess: Access = ({ req: { user } }) => {
 ### Header-Based Access (API Keys)
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 export const apiKeyAccess: Access = ({ req }) => {
   const apiKey = req.headers.get('x-api-key')
@@ -278,7 +278,7 @@ Field access does NOT support query constraints - only boolean returns.
 ### Basic Field Access
 
 ```ts
-import type { NumberField, FieldAccess } from 'payload'
+import type { NumberField, FieldAccess } from @hanzo/cms'from 
 
 const salaryReadAccess: FieldAccess = ({ req: { user }, doc }) => {
   // Self can read own salary
@@ -305,7 +305,7 @@ const salaryField: NumberField = {
 ### Sibling Data Access
 
 ```ts
-import type { ArrayField, FieldAccess } from 'payload'
+import type { ArrayField, FieldAccess } from @hanzo/cms'from 
 
 const contentReadAccess: FieldAccess = ({ req: { user }, siblingData }) => {
   // Authenticated users see all
@@ -337,7 +337,7 @@ const arrayField: ArrayField = {
 ### Nested Field Access
 
 ```ts
-import type { GroupField, FieldAccess } from 'payload'
+import type { GroupField, FieldAccess } from @hanzo/cms'from 
 
 const internalOnlyAccess: FieldAccess = ({ req: { user } }) => {
   return user?.roles?.includes('admin') || user?.roles?.includes('internal')
@@ -360,7 +360,7 @@ const groupField: GroupField = {
 ### Hiding Admin Fields
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -387,7 +387,7 @@ export const Users: CollectionConfig = {
 ## Global Access Control
 
 ```ts
-import type { GlobalConfig, Access } from 'payload'
+import type { GlobalConfig, Access } from @hanzo/cms'from 
 
 const adminOnly: Access = ({ req: { user } }) => {
   return user?.roles?.includes('admin')
@@ -410,7 +410,7 @@ export const SiteSettings: GlobalConfig = {
 ## Multi-Tenant Access Control
 
 ```ts
-import type { Access, CollectionConfig } from 'payload'
+import type { Access, CollectionConfig } from @hanzo/cms'from 
 
 // Add tenant field to user type
 interface User {
@@ -474,7 +474,7 @@ export const Posts: CollectionConfig = {
 ### Self or Admin Pattern
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -502,7 +502,7 @@ export const Users: CollectionConfig = {
 ### Restrict Self-Updates
 
 ```ts
-import type { CollectionConfig, FieldAccess } from 'payload'
+import type { CollectionConfig, FieldAccess } from @hanzo/cms'from 
 
 const preventSelfRoleChange: FieldAccess = ({ req: { user }, id }) => {
   // Admins can change anyone's roles
@@ -532,7 +532,7 @@ export const Users: CollectionConfig = {
 ## Cross-Collection Validation
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 
 // Check if user is a project member before allowing access
 export const projectMemberAccess: Access = async ({ req, id }) => {

@@ -1,6 +1,6 @@
-import type { ArrayField, Block, TextFieldSingleValidation } from 'payload'
+import type { ArrayField, Block, TextFieldSingleValidation } from @hanzo/cms'from 
 
-import { BlocksFeature, FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import { BlocksFeature, FixedToolbarFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 import { textFieldsSlug } from '../../slugs.js'
 

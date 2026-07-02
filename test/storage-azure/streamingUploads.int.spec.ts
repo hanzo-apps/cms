@@ -1,5 +1,5 @@
 import type { ContainerClient } from '@azure/storage-blob'
-import type { CollectionSlug, Payload } from 'payload'
+import type { CollectionSlug, Payload } from @hanzo/cms'from 
 
 import { BlobServiceClient } from '@azure/storage-blob'
 import { readFile } from 'node:fs/promises'
@@ -18,7 +18,7 @@ const dirname = path.dirname(filename)
 let restClient: NextRESTClient
 let payload: Payload
 
-describe('@payloadcms/storage-azure streamingUploads', () => {
+describe('@hanzo/cms-storage-azure streamingUploads', () => {
   let TEST_CONTAINER: string
   let client: ContainerClient
 

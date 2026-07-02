@@ -11,7 +11,7 @@ Collection Hooks are [Hooks](./overview) that run on Documents within a specific
 To add Hooks to a Collection, use the `hooks` property in your [Collection Config](../configuration/collections):
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const CollectionWithHooks: CollectionConfig = {
   // ...
@@ -32,7 +32,7 @@ export const CollectionWithHooks: CollectionConfig = {
 All Collection Hooks accept an array of [synchronous or asynchronous functions](./overview#async-vs-synchronous). Each Collection Hook receives specific arguments based on its own type, and has the ability to modify specific outputs.
 
 ```ts
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig } from @hanzo/cms'from ;
 
 export const CollectionWithHooks: CollectionConfig = {
   // ...
@@ -68,7 +68,7 @@ export const CollectionWithHooks: CollectionConfig = {
 The `beforeOperation` hook can be used to modify the arguments that operations accept or execute side-effects that run before an operation begins.
 
 ```ts
-import type { CollectionBeforeOperationHook } from 'payload'
+import type { CollectionBeforeOperationHook } from @hanzo/cms'from 
 
 const beforeOperationHook: CollectionBeforeOperationHook = async ({
   args,
@@ -99,7 +99,7 @@ Please do note that this does not run before client-side validation. If you rend
 3. `validate` runs on the server
 
 ```ts
-import type { CollectionBeforeValidateHook } from 'payload'
+import type { CollectionBeforeValidateHook } from @hanzo/cms'from 
 import type { Post } from '@/payload-types'
 
 const beforeValidateHook: CollectionBeforeValidateHook<Post> = async ({
@@ -136,7 +136,7 @@ The following arguments are provided to the `beforeValidate` hook:
 Immediately before validation, beforeChange hooks will run during create and update operations. At this stage, the data should be treated as unvalidated user input. There is no guarantee that required fields exist or that fields are in the correct format. As such, using this data for side effects requires manual validation. You can optionally modify the shape of the data to be saved.
 
 ```ts
-import type { CollectionBeforeChangeHook } from 'payload'
+import type { CollectionBeforeChangeHook } from @hanzo/cms'from 
 
 export const requireTitleOnUpdate: CollectionBeforeChangeHook = async ({
   data, // Partial<T> — changed fields only
@@ -182,7 +182,7 @@ The following arguments are provided to the `beforeChange` hook:
 After a document is created or updated, the `afterChange` hook runs. This hook is helpful to recalculate statistics such as total sales within a global, syncing user profile changes to a CRM, and more.
 
 ```ts
-import type { CollectionAfterChangeHook } from 'payload'
+import type { CollectionAfterChangeHook } from @hanzo/cms'from 
 import type { Post } from '@/payload-types'
 
 const afterChangeHook: CollectionAfterChangeHook<Post> = async ({
@@ -210,7 +210,7 @@ The following arguments are provided to the `afterChange` hook:
 Runs before `find` and `findByID` operations are transformed for output by `afterRead`. This hook fires before hidden fields are removed and before localized fields are flattened into the requested locale. Using this Hook will provide you with all locales and all hidden fields via the `doc` argument.
 
 ```ts
-import type { CollectionBeforeReadHook } from 'payload'
+import type { CollectionBeforeReadHook } from @hanzo/cms'from 
 import type { Post } from '@/payload-types'
 
 const beforeReadHook: CollectionBeforeReadHook<Post> = async ({
@@ -235,7 +235,7 @@ The following arguments are provided to the `beforeRead` hook:
 Runs as the last step before documents are returned. Flattens locales, hides protected fields, and removes fields that users do not have access to.
 
 ```ts
-import type { CollectionAfterReadHook } from 'payload'
+import type { CollectionAfterReadHook } from @hanzo/cms'from 
 import type { Post } from '@/payload-types'
 
 const afterReadHook: CollectionAfterReadHook<Post> = async ({
@@ -260,7 +260,7 @@ The following arguments are provided to the `afterRead` hook:
 Runs before the `delete` operation. Returned values are discarded.
 
 ```ts
-import type { CollectionBeforeDeleteHook } from 'payload';
+import type { CollectionBeforeDeleteHook } from @hanzo/cms'from ;
 
 const beforeDeleteHook: CollectionBeforeDeleteHook = async ({
   req,
@@ -282,7 +282,7 @@ The following arguments are provided to the `beforeDelete` hook:
 Runs immediately after the `delete` operation removes records from the database. Returned values are discarded.
 
 ```ts
-import type { CollectionAfterDeleteHook } from 'payload';
+import type { CollectionAfterDeleteHook } from @hanzo/cms'from ;
 
 const afterDeleteHook: CollectionAfterDeleteHook = async ({
   req,
@@ -306,7 +306,7 @@ The following arguments are provided to the `afterDelete` hook:
 The `afterOperation` hook can be used to modify the result of operations or execute side-effects that run after an operation has completed.
 
 ```ts
-import type { CollectionAfterOperationHook } from 'payload'
+import type { CollectionAfterOperationHook } from @hanzo/cms'from 
 
 const afterOperationHook: CollectionAfterOperationHook = async ({ result }) => {
   return result
@@ -328,7 +328,7 @@ The following arguments are provided to the `afterOperation` hook:
 The `afterError` Hook is triggered when an error occurs in the Payload application. This can be useful for logging errors to a third-party service, sending an email to the development team, logging the error to Sentry or DataDog, etc. The output can be used to transform the result object / status code.
 
 ```ts
-import type { CollectionAfterErrorHook } from 'payload';
+import type { CollectionAfterErrorHook } from @hanzo/cms'from ;
 
 const afterErrorHook: CollectionAfterErrorHook = async ({
   req,
@@ -353,7 +353,7 @@ The following arguments are provided to the `afterError` Hook:
 For [Auth-enabled Collections](../authentication/overview), this hook runs during `login` operations where a user with the provided credentials exist, but before a token is generated and added to the response. You can optionally modify the user that is returned, or throw an error in order to deny the login operation.
 
 ```ts
-import type { CollectionBeforeLoginHook } from 'payload'
+import type { CollectionBeforeLoginHook } from @hanzo/cms'from 
 
 const beforeLoginHook: CollectionBeforeLoginHook = async ({ user }) => {
   return user
@@ -374,7 +374,7 @@ The following arguments are provided to the `beforeLogin` hook:
 For [Auth-enabled Collections](../authentication/overview), this hook runs after successful `login` operations. You can optionally modify the user that is returned.
 
 ```ts
-import type { CollectionAfterLoginHook } from 'payload';
+import type { CollectionAfterLoginHook } from @hanzo/cms'from ;
 
 const afterLoginHook: CollectionAfterLoginHook = async ({
   user,
@@ -397,7 +397,7 @@ The following arguments are provided to the `afterLogin` hook:
 For [Auth-enabled Collections](../authentication/overview), this hook runs after `logout` operations.
 
 ```ts
-import type { CollectionAfterLogoutHook } from 'payload';
+import type { CollectionAfterLogoutHook } from @hanzo/cms'from ;
 
 const afterLogoutHook: CollectionAfterLogoutHook = async ({
   req,
@@ -417,7 +417,7 @@ The following arguments are provided to the `afterLogout` hook:
 For [Auth-enabled Collections](../authentication/overview), this hook runs after `me` operations.
 
 ```ts
-import type { CollectionAfterMeHook } from 'payload';
+import type { CollectionAfterMeHook } from @hanzo/cms'from ;
 
 const afterMeHook: CollectionAfterMeHook = async ({
   req,
@@ -439,7 +439,7 @@ The following arguments are provided to the `afterMe` hook:
 For [Auth-enabled Collections](../authentication/overview), this hook runs after `refresh` operations.
 
 ```ts
-import type { CollectionAfterRefreshHook } from 'payload';
+import type { CollectionAfterRefreshHook } from @hanzo/cms'from ;
 
 const afterRefreshHook: CollectionAfterRefreshHook = async ({
   token,
@@ -461,7 +461,7 @@ The following arguments are provided to the `afterRefresh` hook:
 For [Auth-enabled Collections](../authentication/overview), this hook runs after successful `forgotPassword` operations. Returned values are discarded.
 
 ```ts
-import type { CollectionAfterForgotPasswordHook } from 'payload'
+import type { CollectionAfterForgotPasswordHook } from @hanzo/cms'from 
 
 const afterForgotPasswordHook: CollectionAfterForgotPasswordHook = async ({
   args,
@@ -483,7 +483,7 @@ The following arguments are provided to the `afterForgotPassword` hook:
 For [Auth-enabled Collections](../authentication/overview), this hook allows you to optionally replace the default behavior of the `refresh` operation with your own. If you optionally return a value from your hook, the operation will not perform its own logic and continue.
 
 ```ts
-import type { CollectionRefreshHook } from 'payload'
+import type { CollectionRefreshHook } from @hanzo/cms'from 
 
 const myRefreshHook: CollectionRefreshHook = async ({
   args,
@@ -503,7 +503,7 @@ The following arguments are provided to the `afterRefresh` hook:
 For [Auth-enabled Collections](../authentication/overview), this hook allows you to optionally replace the default behavior of the `me` operation with your own. If you optionally return a value from your hook, the operation will not perform its own logic and continue.
 
 ```ts
-import type { CollectionMeHook } from 'payload'
+import type { CollectionMeHook } from @hanzo/cms'from 
 
 const meHook: CollectionMeHook = async ({
   args,
@@ -540,13 +540,13 @@ import type {
   CollectionAfterForgotPasswordHook,
   CollectionRefreshHook,
   CollectionMeHook,
-} from 'payload'
+} from @hanzo/cms'from 
 ```
 
 You can also pass a generic type to each hook for strongly-typed `doc`, `previousDoc`, and `data` properties:
 
 ```ts
-import type { CollectionAfterChangeHook } from 'payload'
+import type { CollectionAfterChangeHook } from @hanzo/cms'from 
 import type { Post } from '@/payload-types'
 
 const afterChangeHook: CollectionAfterChangeHook<Post> = async ({

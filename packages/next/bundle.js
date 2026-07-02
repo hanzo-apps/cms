@@ -16,7 +16,7 @@ async function build() {
     format: 'esm',
     outfile: `${directoryArg}/index.js`,
     splitting: false,
-    external: ['@payloadcms/ui', 'payload', '@payloadcms/translations', '@payloadcms/graphql'],
+    external: ['@hanzo/cms-ui', 'payload', '@hanzo/cms-translations', '@hanzo/cms-graphql'],
     minify: true,
     metafile: true,
     tsconfig: path.resolve(dirname, './tsconfig.json'),

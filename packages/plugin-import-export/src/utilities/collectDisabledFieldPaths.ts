@@ -1,7 +1,7 @@
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
-import { traverseFields } from 'payload'
-import { fieldAffectsData } from 'payload/shared'
+import { traverseFields } from @hanzo/cms'from 
+import { fieldAffectsData } from @hanzo/cms'from 
 
 /**
  * Recursively traverses a Payload field schema to collect all field paths

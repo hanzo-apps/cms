@@ -1,4 +1,4 @@
-import type { CollectionConfig, Config } from 'payload'
+import type { CollectionConfig, Config } from @hanzo/cms'from 
 
 import { fileURLToPath } from 'node:url'
 import path from 'path'

@@ -1,9 +1,9 @@
 'use client'
-import type { CollapsibleProps } from '@payloadcms/ui/elements/Collapsible'
-import type { ClientField, FormState } from 'payload'
+import type { CollapsibleProps } from '@hanzo/cms-ui/elements/Collapsible'
+import type { ClientField, FormState } from @hanzo/cms'from 
 
 import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
-import { RenderFields, useFormSubmitted } from '@payloadcms/ui'
+import { RenderFields, useFormSubmitted } from '@hanzo/cms-ui'
 import React, { createContext, useMemo } from 'react'
 
 export type BlockCollapsibleProps = {

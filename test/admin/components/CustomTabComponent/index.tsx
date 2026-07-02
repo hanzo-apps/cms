@@ -1,4 +1,4 @@
-import type { DocumentTabServerProps } from 'payload'
+import type { DocumentTabServerProps } from @hanzo/cms'from 
 
 import React from 'react'
 

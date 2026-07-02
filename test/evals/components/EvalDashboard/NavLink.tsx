@@ -1,8 +1,8 @@
 'use client'
 
-import type { PayloadClientReactComponent, SanitizedConfig } from 'payload'
+import type { PayloadClientReactComponent, SanitizedConfig } from @hanzo/cms'from 
 
-import { useConfig } from '@payloadcms/ui'
+import { useConfig } from '@hanzo/cms-ui'
 import LinkImport from 'next/link.js'
 import React, { useState } from 'react'
 

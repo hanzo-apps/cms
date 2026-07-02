@@ -1,11 +1,11 @@
-import type { Block } from 'payload'
+import type { Block } from @hanzo/cms'from 
 
 import {
   FixedToolbarFeature,
   HeadingFeature,
   InlineToolbarFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 export const Archive: Block = {
   slug: 'archive',

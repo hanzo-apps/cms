@@ -10,7 +10,7 @@ To facilitate the localization process, this example uses the next-intl library.
 
 1. Run the following command to create a project from the example:
 
-- `npx create-payload-app --example localization`
+- `npx @hanzo/create-cms-app --example localization`
 
 2. `cp .env.example .env` (copy the .env.example file to .env)
 3. Ensure MongoDB is running and `DATABASE_URL` points to it (for example `mongodb://127.0.0.1/payload-example-localization`)

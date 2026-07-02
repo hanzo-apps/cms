@@ -1,7 +1,7 @@
-import type { NumberFieldServerComponent } from 'payload'
+import type { NumberFieldServerComponent } from @hanzo/cms'from 
 import type React from 'react'
 
-import { NumberField } from '@payloadcms/ui'
+import { NumberField } from '@hanzo/cms-ui'
 
 export const CustomNumberFieldServer: NumberFieldServerComponent = ({
   clientField,

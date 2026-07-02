@@ -1,8 +1,8 @@
 'use client'
 
-import type { FormField, UIField } from 'payload'
+import type { FormField, UIField } from @hanzo/cms'from 
 
-import { useAllFormFields, useForm, useTranslation } from '@payloadcms/ui'
+import { useAllFormFields, useForm, useTranslation } from '@hanzo/cms-ui'
 import React, { useCallback, useEffect, useState } from 'react'
 
 import type { PluginSEOTranslationKeys, PluginSEOTranslations } from '../../translations/index.js'

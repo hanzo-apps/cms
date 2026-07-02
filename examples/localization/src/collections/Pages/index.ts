@@ -1,4 +1,4 @@
-import type { CollectionConfig, TypedLocale } from 'payload'
+import type { CollectionConfig, TypedLocale } from @hanzo/cms'from 
 
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
@@ -19,7 +19,7 @@ import {
   MetaTitleField,
   OverviewField,
   PreviewField,
-} from '@payloadcms/plugin-seo/fields'
+} from '@hanzo/cms-plugin-seo/fields'
 export const Pages: CollectionConfig = {
   slug: 'pages',
   access: {

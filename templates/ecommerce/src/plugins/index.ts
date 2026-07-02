@@ -1,11 +1,11 @@
-import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
-import { seoPlugin } from '@payloadcms/plugin-seo'
-import { Plugin } from 'payload'
-import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
-import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
-import { ecommercePlugin } from '@payloadcms/plugin-ecommerce'
+import { formBuilderPlugin } from '@hanzo/cms-plugin-form-builder'
+import { seoPlugin } from '@hanzo/cms-plugin-seo'
+import { Plugin } from @hanzo/cms'from 
+import { GenerateTitle, GenerateURL } from '@hanzo/cms-plugin-seo/types'
+import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
+import { ecommercePlugin } from '@hanzo/cms-plugin-ecommerce'
 
-import { stripeAdapter } from '@payloadcms/plugin-ecommerce/payments/stripe'
+import { stripeAdapter } from '@hanzo/cms-plugin-ecommerce/payments/stripe'
 
 import { Page, Product } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'

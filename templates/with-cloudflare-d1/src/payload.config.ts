@@ -1,12 +1,12 @@
 import fs from 'fs'
 import path from 'path'
-import { sqliteD1Adapter } from '@payloadcms/db-d1-sqlite'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { buildConfig } from 'payload'
+import { sqliteD1Adapter } from '@hanzo/cms-db-d1-sqlite'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
+import { buildConfig } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { CloudflareContext, getCloudflareContext } from '@opennextjs/cloudflare'
 import { GetPlatformProxyOptions } from 'wrangler'
-import { r2Storage } from '@payloadcms/storage-r2'
+import { r2Storage } from '@hanzo/cms-storage-r2'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'

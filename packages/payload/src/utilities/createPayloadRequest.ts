@@ -1,4 +1,4 @@
-import { initI18n } from '@payloadcms/translations'
+import { initI18n } from '@hanzo/cms-translations'
 import * as qs from 'qs-esm'
 
 import type { SanitizedConfig } from '../config/types.js'

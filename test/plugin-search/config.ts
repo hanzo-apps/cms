@@ -2,7 +2,7 @@ import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-import { searchPlugin } from '@payloadcms/plugin-search'
+import { searchPlugin } from '@hanzo/cms-plugin-search'
 import { randomUUID } from 'node:crypto'
 
 import type { Config } from './payload-types.js'

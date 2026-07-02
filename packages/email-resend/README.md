@@ -5,7 +5,7 @@ This adapter allows you to send emails using the [Resend](https://resend.com) RE
 ## Installation
 
 ```sh
-pnpm add @payloadcms/email-resend
+pnpm add @hanzo/cms-email-resend
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ pnpm add @payloadcms/email-resend
 
 ```ts
 // payload.config.js
-import { resendAdapter } from '@payloadcms/email-resend'
+import { resendAdapter } from '@hanzo/cms-email-resend'
 
 export default buildConfig({
   email: resendAdapter({

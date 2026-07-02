@@ -1,5 +1,5 @@
 'use client'
-import type { ClientField, FormState, SanitizedFieldPermissions } from 'payload'
+import type { ClientField, FormState, SanitizedFieldPermissions } from @hanzo/cms'from 
 
 import React, { useState } from 'react'
 

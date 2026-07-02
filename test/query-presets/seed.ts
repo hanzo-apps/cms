@@ -1,4 +1,4 @@
-import type { Payload, QueryPreset } from 'payload'
+import type { Payload, QueryPreset } from @hanzo/cms'from 
 
 import { devUser as devCredentials, regularUser as regularCredentials } from '../credentials.js'
 import { executePromises } from '../__helpers/shared/executePromises.js'

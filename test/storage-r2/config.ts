@@ -2,7 +2,7 @@ import type { CloudflareContext } from '@opennextjs/cloudflare'
 import type { GetPlatformProxyOptions } from 'wrangler'
 
 import { getCloudflareContext } from '@opennextjs/cloudflare'
-import { r2Storage } from '@payloadcms/storage-r2'
+import { r2Storage } from '@hanzo/cms-storage-r2'
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'node:url'
 import path from 'path'

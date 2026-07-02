@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import richText from '../../fields/richText'
 import { loggedIn } from './access/loggedIn'

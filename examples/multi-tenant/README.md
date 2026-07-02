@@ -8,7 +8,7 @@ To spin up this example locally, follow these steps:
 
 1. Run the following command to create a project from the example:
 
-- `npx create-payload-app --example multi-tenant`
+- `npx @hanzo/create-cms-app --example multi-tenant`
 
 2. `cp .env.example .env` to copy the example environment variables
 

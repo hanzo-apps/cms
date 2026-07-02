@@ -1,6 +1,6 @@
-import type { DateFieldLabelServerComponent } from 'payload'
+import type { DateFieldLabelServerComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomDateFieldLabelServer: DateFieldLabelServerComponent = ({

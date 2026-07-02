@@ -11,12 +11,12 @@ keywords: lexical, richtext, markdown, md, mdx
 If you have access to the Payload Config and the [lexical editor config](/docs/rich-text/converters#retrieving-the-editor-config), you can convert the lexical editor state to Markdown with the following:
 
 ```ts
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
 
 import {
   convertLexicalToMarkdown,
   editorConfigFactory,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 // Your richtext data here
 const data: SerializedEditorState = {}
@@ -32,14 +32,14 @@ const markdown = convertLexicalToMarkdown({
 ### Example - outputting Markdown from the Collection
 
 ```ts
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
-import type { CollectionConfig, RichTextField } from 'payload'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
+import type { CollectionConfig, RichTextField } from @hanzo/cms'from 
 
 import {
   convertLexicalToMarkdown,
   editorConfigFactory,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 const Pages: CollectionConfig = {
   slug: 'pages',
@@ -99,7 +99,7 @@ If you have access to the Payload Config and the [lexical editor config](/docs/r
 import {
   convertMarkdownToLexical,
   editorConfigFactory,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 const lexicalJSON = convertMarkdownToLexical({
   editorConfig: await editorConfigFactory.default({
@@ -153,15 +153,15 @@ This block:
 />
 
 ```ts
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
-import type { Block, CollectionConfig, RichTextField } from 'payload'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
+import type { Block, CollectionConfig, RichTextField } from @hanzo/cms'from 
 
 import {
   BlocksFeature,
   convertLexicalToMarkdown,
   editorConfigFactory,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 const BannerBlock: Block = {
   slug: 'Banner',

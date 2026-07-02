@@ -1,4 +1,4 @@
-import type { ColumnPreference } from 'payload'
+import type { ColumnPreference } from @hanzo/cms'from 
 
 export function isColumnActive({
   accessor,

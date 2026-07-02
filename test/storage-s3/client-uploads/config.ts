@@ -1,4 +1,4 @@
-import { s3Storage } from '@payloadcms/storage-s3'
+import { s3Storage } from '@hanzo/cms-storage-s3'
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'node:url'
 import path from 'path'

@@ -1,4 +1,4 @@
-import type { GenericLanguages, GenericTranslationsObject } from '@payloadcms/translations'
+import type { GenericLanguages, GenericTranslationsObject } from '@hanzo/cms-translations'
 import type { JSONSchema4 } from 'json-schema'
 import type { SerializedEditorState, SerializedLexicalNode } from 'lexical'
 
@@ -10,7 +10,7 @@ import {
   checkDependencies,
   deepMergeSimple,
   withNullableJSONSchemaType,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import type { FeatureProviderServer, ResolvedServerFeatureMap } from './features/typesServer.js'
 import type { SanitizedServerEditorConfig } from './lexical/config/types.js'
@@ -96,12 +96,12 @@ export function lexicalEditor(args?: LexicalEditorProps): LexicalRichTextAdapter
     config.i18n.translations = deepMergeSimple(config.i18n.translations, featureI18n)
 
     return {
-      CellComponent: '@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell',
-      DiffComponent: '@payloadcms/richtext-lexical/rsc#LexicalDiffComponent',
+      CellComponent: '@hanzo/cms-richtext-lexical/rsc#RscEntryLexicalCell',
+      DiffComponent: '@hanzo/cms-richtext-lexical/rsc#LexicalDiffComponent',
       editorConfig: finalSanitizedEditorConfig,
       features,
       FieldComponent: {
-        path: '@payloadcms/richtext-lexical/rsc#RscEntryLexicalField',
+        path: '@hanzo/cms-richtext-lexical/rsc#RscEntryLexicalField',
         serverProps: {
           admin: args?.admin,
           views: args?.views,

@@ -2,7 +2,7 @@ import type {
   SanitizedCollectionPermission,
   SanitizedDocumentPermissions,
   SanitizedGlobalPermission,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export const hasSavePermission = (args: {
   /*

@@ -13,4 +13,4 @@ export {
   QueryPresetsWhereCell,
   QueryPresetsWhereField,
   SlugField,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'

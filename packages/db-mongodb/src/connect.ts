@@ -1,8 +1,8 @@
 import type { ConnectOptions } from 'mongoose'
-import type { Connect, Migration } from 'payload'
+import type { Connect, Migration } from @hanzo/cms'from 
 
 import mongoose from 'mongoose'
-import { defaultBeginTransaction } from 'payload'
+import { defaultBeginTransaction } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from './index.js'
 

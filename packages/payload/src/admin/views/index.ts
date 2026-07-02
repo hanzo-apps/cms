@@ -1,4 +1,4 @@
-import type { ClientTranslationsObject } from '@payloadcms/translations'
+import type { ClientTranslationsObject } from '@hanzo/cms-translations'
 
 import type { SanitizedPermissions } from '../../auth/index.js'
 import type { ImportMap } from '../../bin/generateImportMap/index.js'

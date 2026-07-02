@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test'
 
 import { expect } from '@playwright/test'
-import { wait } from 'payload/shared'
+import { wait } from @hanzo/cms'from 
 
 import { openArrayRowActions } from './openArrayRowActions.js'
 

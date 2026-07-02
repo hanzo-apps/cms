@@ -1,11 +1,11 @@
 'use client'
 
-import type { ClientCollectionConfig, Column, OrderableEndpointBody } from 'payload'
+import type { ClientCollectionConfig, Column, OrderableEndpointBody } from @hanzo/cms'from 
 
 import './index.scss'
 
 import { DragOverlay } from '@dnd-kit/core'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 

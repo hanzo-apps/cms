@@ -1,7 +1,7 @@
 import type { Product, CarouselBlock as CarouselBlockProps } from '@/payload-types'
 
 import configPromise from '@payload-config'
-import { DefaultDocumentIDType, getPayload } from 'payload'
+import { DefaultDocumentIDType, getPayload } from @hanzo/cms'from 
 import React from 'react'
 
 import { CarouselClient } from './Component.client'

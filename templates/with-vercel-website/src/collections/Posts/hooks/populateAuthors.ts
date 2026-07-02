@@ -1,4 +1,4 @@
-import type { CollectionAfterReadHook } from 'payload'
+import type { CollectionAfterReadHook } from @hanzo/cms'from 
 import { User } from 'src/payload-types'
 
 // The `user` collection has access control locked so that users are not publicly accessible

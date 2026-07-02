@@ -1,6 +1,6 @@
-import type { Field, ServerFunction, WidgetServerProps } from 'payload'
+import type { Field, ServerFunction, WidgetServerProps } from @hanzo/cms'from 
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import React from 'react'
 
 import { extractLocaleData } from '../utils/localeUtils.js'

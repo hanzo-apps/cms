@@ -15,7 +15,7 @@ Collections are the primary way to structure recurring data in your application,
 To define a Collection Config, use the `collections` property in your [Payload Config](./overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -38,7 +38,7 @@ It's often best practice to write your Collections in separate files and then im
 Here is what a simple Collection Config might look like:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -113,7 +113,7 @@ Orderable can also be added to [joins fields](../fields/join).
 If you need to generate order keys programmatically (e.g., when creating documents via the Local API with a specific order), you can import the utilities directly:
 
 ```ts
-import { generateKeyBetween, generateNKeysBetween } from 'payload/shared'
+import { generateKeyBetween, generateNKeysBetween } from @hanzo/cms'from 
 
 // Generate a key between two existing keys (or null for start/end)
 const newKey = generateKeyBetween('a0', 'a1')
@@ -137,7 +137,7 @@ The behavior of Collections within the [Admin Panel](../admin/overview) can be f
 To configure Admin Options for Collections, use the `admin` property in your Collection Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -187,7 +187,7 @@ Collections can set their own [Custom Components](../custom-components/overview)
 To override Collection Components, use the `admin.components` property in your Collection Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -218,7 +218,7 @@ The following options are available:
 Custom components within the Edit View are configured under `admin.components.edit`:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -270,7 +270,7 @@ All Collections receive their own List View which displays a paginated list of d
 To configure pagination options, use the `admin.pagination` property in your Collection Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   // ...
@@ -299,7 +299,7 @@ In the List View, there is a "search" box that allows you to quickly find a docu
 To define which fields should be searched, use the `admin.listSearchableFields` property in your Collection Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   // ...
@@ -323,7 +323,7 @@ When `true`, the List View will use the [Select API](../queries/select) to query
 To enable this, set `enableListViewSelectAPI: true` in your Collection Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   // ...
@@ -346,7 +346,7 @@ Enabling this feature may cause unexpected behavior in some cases, however, such
 For example, if your component relies on a "title" field, this field will no longer be populated if the column is inactive:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   // ...
@@ -383,7 +383,7 @@ The `formatDocURL` function allows you to customize how document links are gener
 To define a custom document URL formatter, use the `admin.formatDocURL` property in your Collection Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   // ...
@@ -466,5 +466,5 @@ You can import types from Payload to help make writing your Collection configs e
 The `CollectionConfig` type represents a raw Collection Config in its full form, where only the bare minimum properties are marked as required. The `SanitizedCollectionConfig` type represents a Collection Config after it has been fully sanitized. Generally, this is only used internally by Payload.
 
 ```ts
-import type { CollectionConfig, SanitizedCollectionConfig } from 'payload'
+import type { CollectionConfig, SanitizedCollectionConfig } from @hanzo/cms'from 
 ```

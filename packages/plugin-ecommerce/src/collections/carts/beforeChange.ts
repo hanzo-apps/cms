@@ -1,4 +1,4 @@
-import type { CollectionBeforeChangeHook } from 'payload'
+import type { CollectionBeforeChangeHook } from @hanzo/cms'from 
 
 import crypto from 'crypto'
 

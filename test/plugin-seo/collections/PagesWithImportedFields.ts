@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import {
   MetaDescriptionField,
@@ -6,7 +6,7 @@ import {
   MetaTitleField,
   OverviewField,
   PreviewField,
-} from '@payloadcms/plugin-seo/fields'
+} from '@hanzo/cms-plugin-seo/fields'
 
 import { pagesWithImportedFieldsSlug } from '../shared.js'
 

@@ -1,6 +1,6 @@
-import type { CollectionConfig, Config, Field, SelectField } from 'payload'
+import type { CollectionConfig, Config, Field, SelectField } from @hanzo/cms'from 
 
-import { deepMergeSimple } from 'payload/shared'
+import { deepMergeSimple } from @hanzo/cms'from 
 
 import type { RedirectsPluginConfig } from './types.js'
 

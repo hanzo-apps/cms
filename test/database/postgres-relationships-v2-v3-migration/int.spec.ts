@@ -1,5 +1,5 @@
 import path from 'path'
-import { buildConfig, getPayload } from 'payload'
+import { buildConfig, getPayload } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { describe, expect, it } from 'vitest'
 

@@ -1,7 +1,7 @@
 'use client'
-import type { ClientField, Data, FormState, JsonObject } from 'payload'
+import type { ClientField, Data, FormState, JsonObject } from @hanzo/cms'from 
 
-import { Drawer, EditDepthProvider, useModal } from '@payloadcms/ui'
+import { Drawer, EditDepthProvider, useModal } from '@hanzo/cms-ui'
 import React from 'react'
 
 import { DrawerContent } from './DrawerContent.js'

@@ -1,6 +1,6 @@
 'use client'
 
-import { useRowLabel, useTranslation } from '@payloadcms/ui'
+import { useRowLabel, useTranslation } from '@hanzo/cms-ui'
 import { useMemo } from 'react'
 
 import type { CurrenciesConfig } from '../../types/index.js'

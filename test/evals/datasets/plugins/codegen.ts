@@ -5,7 +5,7 @@ export const pluginsCodegenDataset: CodegenEvalCase[] = [
     input:
       'Implement the withTimestamps plugin so that it adds a "publishedAt" date field to every collection in the config.',
     expected:
-      'withTimestamps maps over config.collections spreading each collection with a new date field named publishedAt appended to the fields array; imports Config and/or Plugin from "payload"',
+      'withTimestamps maps over config.collections spreading each collection with a new date field named publishedAt appended to the fields array; imports Config and/or Plugin from @hanzo/cms"from ',
     category: 'plugins',
     fixturePath: 'plugins/codegen/with-timestamps',
   },

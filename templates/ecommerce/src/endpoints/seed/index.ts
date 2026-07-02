@@ -1,4 +1,4 @@
-import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest, File } from 'payload'
+import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest, File } from @hanzo/cms'from 
 
 import { contactFormData } from './contact-form'
 import { contactPageData } from './contact-page'

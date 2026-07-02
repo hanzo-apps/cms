@@ -1,7 +1,7 @@
-import type { AcceptedLanguages } from '@payloadcms/translations'
-import type { Config, Endpoint } from 'payload'
+import type { AcceptedLanguages } from '@hanzo/cms-translations'
+import type { Config, Endpoint } from @hanzo/cms'from 
 
-import { deepMergeSimple } from 'payload/shared'
+import { deepMergeSimple } from @hanzo/cms'from 
 
 import type { PluginDefaultTranslationsObject } from './translations/types.js'
 import type { EcommercePluginConfig, SanitizedEcommercePluginConfig } from './types/index.js'

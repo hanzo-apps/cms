@@ -1,8 +1,8 @@
 'use client'
 
-import type { SelectFieldClientProps, SelectFieldValidation } from 'payload'
+import type { SelectFieldClientProps, SelectFieldValidation } from @hanzo/cms'from 
 
-import { SelectField, useForm } from '@payloadcms/ui'
+import { SelectField, useForm } from '@hanzo/cms-ui'
 import React, { useEffect, useState } from 'react'
 
 import type { SelectFieldOption } from '../../types.js'

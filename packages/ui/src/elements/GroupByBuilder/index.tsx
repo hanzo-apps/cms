@@ -1,5 +1,5 @@
 'use client'
-import type { ClientField, Field, SanitizedCollectionConfig } from 'payload'
+import type { ClientField, Field, SanitizedCollectionConfig } from @hanzo/cms'from 
 
 import './index.scss'
 

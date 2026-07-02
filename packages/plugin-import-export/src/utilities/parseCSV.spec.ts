@@ -1,4 +1,4 @@
-import { PayloadRequest } from 'payload'
+import { PayloadRequest } from @hanzo/cms'from 
 
 import { parseCSV } from './parseCSV.js'
 import { describe, it, expect, vi } from 'vitest'

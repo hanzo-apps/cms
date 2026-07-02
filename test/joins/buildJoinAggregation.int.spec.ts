@@ -1,10 +1,10 @@
 import type mongoose from 'mongoose'
 // @ts-ignore
-import type { SanitizedCollectionConfig } from 'payload'
+import type { SanitizedCollectionConfig } from @hanzo/cms'from 
 
 // @ts-ignore
-import { type MongooseAdapter } from '@payloadcms/db-mongodb'
-import { buildConfig, buildVersionCollectionFields, getPayload } from 'payload'
+import { type MongooseAdapter } from '@hanzo/cms-db-mongodb'
+import { buildConfig, buildVersionCollectionFields, getPayload } from @hanzo/cms'from 
 import { expect, it } from 'vitest'
 
 import { buildJoinAggregation } from '../../packages/db-mongodb/src/utilities/buildJoinAggregation.js'

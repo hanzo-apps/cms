@@ -1,4 +1,4 @@
-import type { SelectFieldClient } from 'payload'
+import type { SelectFieldClient } from @hanzo/cms'from 
 
 export type Props = {
   id: string

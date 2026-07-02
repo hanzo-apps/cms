@@ -23,8 +23,8 @@ export const addFolderFieldToCollection = ({
           allowCreate: false,
           allowEdit: false,
           components: {
-            Cell: '@payloadcms/next/rsc#FolderTableCell',
-            Field: '@payloadcms/next/rsc#FolderField',
+            Cell: '@hanzo/cms-next/rsc#FolderTableCell',
+            Field: '@hanzo/cms-next/rsc#FolderField',
           },
         },
       },

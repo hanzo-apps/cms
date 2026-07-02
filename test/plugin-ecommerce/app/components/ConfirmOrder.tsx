@@ -1,6 +1,6 @@
 'use client'
 
-import { useCart, usePayments } from '@payloadcms/plugin-ecommerce/react'
+import { useCart, usePayments } from '@hanzo/cms-plugin-ecommerce/react'
 import React, { useEffect, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation.js'
 

@@ -6,7 +6,7 @@ import type {
   Sort,
   TypedLocale,
   Where,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import type { PayloadSDK } from '../index.js'
 import type {

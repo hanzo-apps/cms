@@ -1,5 +1,5 @@
 'use client'
-import type { DocumentEvent } from 'payload'
+import type { DocumentEvent } from @hanzo/cms'from 
 
 import React, { createContext, use, useState } from 'react'
 

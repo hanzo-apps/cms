@@ -7,7 +7,7 @@
  */
 import fs from 'fs'
 import path from 'path'
-import { migrateCLI } from 'payload'
+import { migrateCLI } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterEach, beforeEach, expect } from 'vitest'
 
@@ -67,23 +67,23 @@ describe('migrations CLI', () => {
   })
 
   it(
-    'should create migration from @payloadcms/db-* adapter predefinedMigrations folder',
+    'should create migration from @hanzo/cms-db-* adapter predefinedMigrations folder',
     { db: 'mongo' },
     async () => {
-      // Tests: Path 1 in getPredefinedMigration.ts - @payloadcms/db-* prefix handling
+      // Tests: Path 1 in getPredefinedMigration.ts - @hanzo/cms-db-* prefix handling
       // These load directly from adapter's predefinedMigrations folder WITHOUT package.json exports
-      // Example: pnpm payload migrate:create --file @payloadcms/db-mongodb/__testing__
+      // Example: pnpm payload migrate:create --file @hanzo/cms-db-mongodb/__testing__
 
       const config = await configPromise
 
       // Use the CLI interface directly, simulating:
-      // pnpm payload migrate:create --file @payloadcms/db-mongodb/__testing__
+      // pnpm payload migrate:create --file @hanzo/cms-db-mongodb/__testing__
       await migrateCLI({
         config,
         migrationDir,
         parsedArgs: {
           _: ['migrate:create'],
-          file: '@payloadcms/db-mongodb/__testing__',
+          file: '@hanzo/cms-db-mongodb/__testing__',
           forceAcceptWarning: true,
         },
       })
@@ -98,14 +98,14 @@ describe('migrations CLI', () => {
 
       // Verify the migration contains the predefined content from the package export
       expect(migrationContent).toContain(
-        'Test predefined migration from @payloadcms/db-mongodb/__testing__',
+        'Test predefined migration from @hanzo/cms-db-mongodb/__testing__',
       )
     },
   )
 
   it('should create migration from package.json export (non-db package)', async () => {
     // Tests: Path 2 in getPredefinedMigration.ts - module specifier via package.json exports
-    // Packages WITHOUT @payloadcms/db-* prefix MUST use package.json exports
+    // Packages WITHOUT @hanzo/cms-db-* prefix MUST use package.json exports
     // Example: pnpm payload migrate:create --file payload/__testing__/predefinedMigration
 
     const config = await configPromise

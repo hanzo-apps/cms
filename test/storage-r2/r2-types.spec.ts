@@ -1,4 +1,4 @@
-import type { R2StorageOptions } from '@payloadcms/storage-r2'
+import type { R2StorageOptions } from '@hanzo/cms-storage-r2'
 
 /// <reference types="@cloudflare/workers-types/2023-07-01" />
 import { describe, expect, test } from 'tstyche'

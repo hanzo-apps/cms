@@ -1,4 +1,4 @@
-import type { RequiredDataFromCollection } from 'payload/types'
+import type { RequiredDataFromCollection } from @hanzo/cms'from 
 
 import type { CollapsibleField } from '../../payload-types.js'
 

@@ -1,6 +1,6 @@
 import type { Storage } from '@google-cloud/storage'
 
-import { getFileKey } from '@payloadcms/plugin-cloud-storage/utilities'
+import { getFileKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
 
 interface DeleteFileArgs {
   bucket: string

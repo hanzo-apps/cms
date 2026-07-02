@@ -1,5 +1,5 @@
 import { BlobServiceClient } from '@azure/storage-blob'
-import { azureStorage } from '@payloadcms/storage-azure'
+import { azureStorage } from '@hanzo/cms-storage-azure'
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'node:url'
 import path from 'path'

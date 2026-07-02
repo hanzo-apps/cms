@@ -1,8 +1,8 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { buildConfig } from 'payload'
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
+import { buildConfig } from @hanzo/cms'from 
 
 const Users: CollectionConfig = {
   slug: 'users',

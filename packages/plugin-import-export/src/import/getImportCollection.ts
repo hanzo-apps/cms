@@ -1,6 +1,6 @@
-import type { CollectionAfterChangeHook, CollectionConfig } from 'payload'
+import type { CollectionAfterChangeHook, CollectionConfig } from @hanzo/cms'from 
 
-import { FileRetrievalError } from 'payload'
+import { FileRetrievalError } from @hanzo/cms'from 
 
 import type { ImportConfig, ImportExportPluginConfig } from '../types.js'
 import type { ImportTaskInput } from './getCreateImportCollectionTask.js'
@@ -36,7 +36,7 @@ export const getImportCollection = ({
     admin: {
       components: {
         edit: {
-          SaveButton: '@payloadcms/plugin-import-export/rsc#ImportSaveButton',
+          SaveButton: '@hanzo/cms-plugin-import-export/rsc#ImportSaveButton',
         },
       },
       custom: {

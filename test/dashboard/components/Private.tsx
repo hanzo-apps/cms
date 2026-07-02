@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-exports */
 'use client'
 
-import type { WidgetServerProps } from 'payload'
+import type { WidgetServerProps } from @hanzo/cms'from 
 
 export default function Private({ widgetSlug }: WidgetServerProps) {
   return (

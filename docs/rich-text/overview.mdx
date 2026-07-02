@@ -23,14 +23,14 @@ and toolbars (whether inline or fixed) to inserting any component or subfield yo
 To use the rich text editor, first you need to install it:
 
 ```bash
-pnpm install @payloadcms/richtext-lexical
+pnpm install @hanzo/cms-richtext-lexical
 ```
 
 Once you have it installed, you can pass it to your top-level Payload Config as follows:
 
 ```ts
-import { buildConfig } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { buildConfig } from @hanzo/cms'from 
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 export default buildConfig({
   collections: [
@@ -44,8 +44,8 @@ export default buildConfig({
 You can also override Lexical settings on a field-by-field basis as follows:
 
 ```ts
-import type { CollectionConfig } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import type { CollectionConfig } from @hanzo/cms'from 
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -80,7 +80,7 @@ import {
   LinkFeature,
   UploadFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 import { Banner } from '../blocks/Banner'
 import { CallToAction } from '../blocks/CallToAction'
 
@@ -148,7 +148,7 @@ You can find more information about creating your own feature in our [building c
 
 ## TypeScript
 
-Every single piece of saved data is 100% fully typed within lexical. It provides a type for every single node, which can be imported from `@payloadcms/richtext-lexical` - each type is prefixed with `Serialized`, e.g., `SerializedUploadNode`.
+Every single piece of saved data is 100% fully typed within lexical. It provides a type for every single node, which can be imported from `@hanzo/cms-richtext-lexical` - each type is prefixed with `Serialized`, e.g., `SerializedUploadNode`.
 
 To fully type the entire editor JSON, you can use our `TypedEditorState` helper type, which accepts a union of all possible node types as a generic. We don't provide a type that already contains all possible node types because they depend on which features you have enabled in your editor. Here is an example:
 
@@ -167,7 +167,7 @@ import type {
   SerializedUploadNode,
   TypedEditorState,
   SerializedHeadingNode,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 const editorState: TypedEditorState<
   | SerializedAutoLinkNode
@@ -217,7 +217,7 @@ const editorState: TypedEditorState<
 Alternatively, you can use the `DefaultTypedEditorState` type, which includes all types for all nodes included in the `defaultFeatures`:
 
 ```ts
-import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
+import type { DefaultTypedEditorState } from '@hanzo/cms-richtext-lexical'
 
 const editorState: DefaultTypedEditorState = {
   root: {
@@ -259,7 +259,7 @@ DefaultTypedEditorState<SerializedBlockNode | YourCustomSerializedNode>
 
 This is a type-safe representation of the editor state. If you look at the auto suggestions of a node's `type` property, you will see all the possible node types you can use.
 
-Make sure to only use types exported from `@payloadcms/richtext-lexical`, not from the lexical core packages. We only have control over the types we export and can make sure they're correct, even though the lexical core may export types with identical names.
+Make sure to only use types exported from `@hanzo/cms-richtext-lexical`, not from the lexical core packages. We only have control over the types we export and can make sure they're correct, even though the lexical core may export types with identical names.
 
 ### Automatic type generation
 
@@ -314,7 +314,7 @@ You can customize the placeholder (the text that appears in the editor when it's
 Views let you define shared rendering logic for Lexical nodes that works in both the admin panel and JSX converters. You can define multiple named views (like `default`, `preview`, `debug`) and switch between them using the built-in view selector, then pass the same node maps to JSX converters for consistent rendering outside the editor.
 
 ```ts
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 export const Posts = {
   slug: 'posts',
@@ -342,7 +342,7 @@ If needed, you can reset the field value to `null` programmatically - for exampl
 This also applies to fields like `text` and `textArea`, which could be stored as either `null` or an empty value in the database. Since the empty value for richText is a JSON object, checking for emptiness is a bit more involved - so Payload provides a utility for it:
 
 ```ts
-import { hasText } from '@payloadcms/richtext-lexical/shared'
+import { hasText } from '@hanzo/cms-richtext-lexical/shared'
 
 hasText(richtextData)
 ```

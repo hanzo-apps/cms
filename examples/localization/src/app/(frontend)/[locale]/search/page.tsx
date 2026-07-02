@@ -2,13 +2,13 @@ import type { Metadata } from 'next/types'
 
 import { CollectionArchive } from '@/components/CollectionArchive'
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import React from 'react'
 import { Post } from '@/payload-types'
 import { Search } from '@/search/Component'
 import PageClient from './page.client'
 import { getTranslations } from 'next-intl/server'
-import { TypedLocale } from 'payload'
+import { TypedLocale } from @hanzo/cms'from 
 
 type Args = {
   searchParams: Promise<{

@@ -1,6 +1,6 @@
-import type { Payload, SanitizedConfig } from 'payload'
+import type { Payload, SanitizedConfig } from @hanzo/cms'from 
 
-import { initI18n } from '@payloadcms/translations'
+import { initI18n } from '@hanzo/cms-translations'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'

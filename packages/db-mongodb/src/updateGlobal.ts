@@ -1,5 +1,5 @@
 import type { QueryOptions } from 'mongoose'
-import type { UpdateGlobal } from 'payload'
+import type { UpdateGlobal } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from './index.js'
 

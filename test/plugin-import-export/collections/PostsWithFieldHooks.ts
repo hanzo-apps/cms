@@ -1,8 +1,8 @@
 import type {
   FieldBeforeExportHook,
   FieldBeforeImportHook,
-} from '@payloadcms/plugin-import-export/types'
-import type { CollectionConfig } from 'payload'
+} from '@hanzo/cms-plugin-import-export/types'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import { postsWithFieldHooksSlug } from '../shared.js'
 

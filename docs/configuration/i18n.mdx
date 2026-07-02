@@ -10,16 +10,16 @@ The [Admin Panel](../admin/overview) is translated in over [30 languages and cou
 
 By default, Payload comes preinstalled with English, but you can easily load other languages into your own application. Languages are automatically detected based on the request. If no language is detected, or if the user's language is not yet supported by your application, English will be chosen.
 
-To add I18n to your project, you first need to install the `@payloadcms/translations` package:
+To add I18n to your project, you first need to install the `@hanzo/cms-translations` package:
 
 ```bash
-pnpm install @payloadcms/translations
+pnpm install @hanzo/cms-translations
 ```
 
 Once installed, it can be configured using the `i18n` key in your [Payload Config](./overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -41,7 +41,7 @@ export default buildConfig({
 You can easily customize and override any of the i18n settings that Payload provides by default. Payload will use your custom options and merge them in with its own.
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -63,14 +63,14 @@ The following options are available:
 
 ## Adding Languages
 
-You can easily add new languages to your Payload app by providing the translations for the new language. Payload maintains a number of built-in translations that can be imported from `@payloadcms/translations`, but you can also provide your own [Custom Translations](#custom-translations) to support any language.
+You can easily add new languages to your Payload app by providing the translations for the new language. Payload maintains a number of built-in translations that can be imported from `@hanzo/cms-translations`, but you can also provide your own [Custom Translations](#custom-translations) to support any language.
 
 To add a new language, use the `i18n.supportedLanguages` key in your [Payload Config](./overview):
 
 ```ts
-import { buildConfig } from 'payload'
-import { en } from '@payloadcms/translations/languages/en'
-import { de } from '@payloadcms/translations/languages/de'
+import { buildConfig } from @hanzo/cms'from 
+import { en } from '@hanzo/cms-translations/languages/en'
+import { de } from '@hanzo/cms-translations/languages/de'
 
 export default buildConfig({
   // ...
@@ -94,7 +94,7 @@ You can customize Payload's built-in translations either by extending existing l
 To add Custom Translations, use the `i18n.translations` key in your [Payload Config](./overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   //...
@@ -125,7 +125,7 @@ While Payload's built-in features come fully translated, you may also want to tr
 To do this, provide the translations wherever applicable, keyed to the language code:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -195,8 +195,8 @@ In this example we show how to extend English, but you can do the same for any l
 ```ts
 // <rootDir>/custom-translations.ts
 
-import { enTranslations } from '@payloadcms/translations/languages/en'
-import type { NestedKeysStripped } from '@payloadcms/translations'
+import { enTranslations } from '@hanzo/cms-translations/languages/en'
+import type { NestedKeysStripped } from '@hanzo/cms-translations'
 
 export const customTranslations = {
   en: {
@@ -220,7 +220,7 @@ Import the shared translations object into our Payload config so they are availa
 ```ts
 // <rootDir>/payload.config.ts
 
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 import { customTranslations } from './custom-translations'
 
@@ -240,7 +240,7 @@ Import the shared translation types to use in your [Custom Component](../custom-
 
 'use client'
 import type React from 'react'
-import { useTranslation } from '@payloadcms/ui'
+import { useTranslation } from '@hanzo/cms-ui'
 
 import type {
   CustomTranslationsObject,
@@ -262,8 +262,8 @@ Additionally, Payload exposes the `t` function in various places, for example in
 ```ts
 // <rootDir>/fields/myField.ts
 
-import type { TFunction } from '@payloadcms/translations'
-import type { Field } from 'payload'
+import type { TFunction } from '@hanzo/cms-translations'
+import type { Field } from @hanzo/cms'from 
 
 import { CustomTranslationsKeys } from '../custom-translations'
 

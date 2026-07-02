@@ -1,7 +1,7 @@
 'use client'
-import type { NumberFieldLabelClientComponent } from 'payload'
+import type { NumberFieldLabelClientComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomNumberFieldLabelClient: NumberFieldLabelClientComponent = ({ field, path }) => {

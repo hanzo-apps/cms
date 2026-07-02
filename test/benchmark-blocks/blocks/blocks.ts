@@ -1,4 +1,4 @@
-import type { Block, BlocksField, BlockSlug } from 'payload'
+import type { Block, BlocksField, BlockSlug } from @hanzo/cms'from 
 
 export const generateBlocks = (
   blockCount: number,

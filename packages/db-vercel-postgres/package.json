@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/db-vercel-postgres",
+  "name": "@hanzo/cms-db-vercel-postgres",
   "version": "3.85.2",
   "description": "Vercel Postgres adapter for Payload",
   "homepage": "https://payloadcms.com",
@@ -74,7 +74,7 @@
     "renamePredefinedMigrations": "node --no-deprecation --import @swc-node/register/esm-register ./scripts/renamePredefinedMigrations.ts"
   },
   "dependencies": {
-    "@payloadcms/drizzle": "workspace:*",
+    "@hanzo/cms-drizzle": "workspace:*",
     "@vercel/postgres": "^0.10.0",
     "console-table-printer": "2.12.1",
     "drizzle-kit": "0.31.7",
@@ -86,14 +86,14 @@
   },
   "devDependencies": {
     "@hyrious/esbuild-plugin-commonjs": "0.2.6",
-    "@payloadcms/eslint-config": "workspace:*",
+    "@hanzo/cms-eslint-config": "workspace:*",
     "@types/pg": "8.20.0",
     "@types/to-snake-case": "1.0.0",
     "esbuild": "0.27.1",
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "publishConfig": {
     "exports": {

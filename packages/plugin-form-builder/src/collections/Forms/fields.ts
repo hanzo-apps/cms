@@ -1,4 +1,4 @@
-import type { Block, Field, UploadCollectionSlug } from 'payload'
+import type { Block, Field, UploadCollectionSlug } from @hanzo/cms'from 
 
 import type { PaymentFieldConfig } from '../../types.js'
 
@@ -597,7 +597,7 @@ const Payment = (fieldConfig: PaymentFieldConfig): Block => {
             type: 'text',
             admin: {
               components: {
-                Field: '@payloadcms/plugin-form-builder/client#DynamicFieldSelector',
+                Field: '@hanzo/cms-plugin-form-builder/client#DynamicFieldSelector',
               },
             },
           },
@@ -677,7 +677,7 @@ const Payment = (fieldConfig: PaymentFieldConfig): Block => {
             type: 'text',
             admin: {
               components: {
-                Field: '@payloadcms/plugin-form-builder/client#DynamicPriceSelector',
+                Field: '@hanzo/cms-plugin-form-builder/client#DynamicPriceSelector',
               },
             },
             label: 'Value',

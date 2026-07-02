@@ -1,5 +1,5 @@
 'use client'
-import { ChevronIcon, Popup, PopupList } from '@payloadcms/ui'
+import { ChevronIcon, Popup, PopupList } from '@hanzo/cms-ui'
 import React from 'react'
 
 import { useRichTextView } from './RichTextViewProvider.js'

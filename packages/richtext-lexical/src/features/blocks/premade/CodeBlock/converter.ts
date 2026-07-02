@@ -1,4 +1,4 @@
-import type { BlockJSX } from 'payload'
+import type { BlockJSX } from @hanzo/cms'from 
 
 /**
  * @internal

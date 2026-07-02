@@ -6,7 +6,7 @@
  * and re-run `payload generate:db-schema` to regenerate this file.
  */
 
-import type {} from '@payloadcms/db-postgres'
+import type {} from '@hanzo/cms-db-postgres'
 import {
   pgTable,
   index,
@@ -19,8 +19,8 @@ import {
   varchar,
   jsonb,
   numeric,
-} from '@payloadcms/db-postgres/drizzle/pg-core'
-import { sql, relations } from '@payloadcms/db-postgres/drizzle'
+} from '@hanzo/cms-db-postgres/drizzle/pg-core'
+import { sql, relations } from '@hanzo/cms-db-postgres/drizzle'
 
 export const media = pgTable(
   'media',
@@ -400,7 +400,7 @@ type DatabaseSchema = {
   relations_payload_migrations: typeof relations_payload_migrations
 }
 
-declare module '@payloadcms/db-postgres' {
+declare module '@hanzo/cms-db-postgres' {
   export interface GeneratedDatabaseSchema {
     schema: DatabaseSchema
   }

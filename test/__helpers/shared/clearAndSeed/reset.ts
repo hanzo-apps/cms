@@ -1,5 +1,5 @@
-import type { DrizzleAdapter } from '@payloadcms/drizzle/types'
-import type { Payload } from 'payload'
+import type { DrizzleAdapter } from '@hanzo/cms-drizzle/types'
+import type { Payload } from @hanzo/cms'from 
 
 import { isMongoose } from '../isMongoose.js'
 

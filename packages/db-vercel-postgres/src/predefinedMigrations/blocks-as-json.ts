@@ -1,7 +1,7 @@
-import type { DynamicMigrationTemplate } from 'payload'
+import type { DynamicMigrationTemplate } from @hanzo/cms'from 
 
-import { buildDynamicPredefinedBlocksToJsonMigration } from '@payloadcms/drizzle'
+import { buildDynamicPredefinedBlocksToJsonMigration } from '@hanzo/cms-drizzle'
 
 export const dynamic: DynamicMigrationTemplate = buildDynamicPredefinedBlocksToJsonMigration({
-  packageName: '@payloadcms/db-vercel-postgres',
+  packageName: '@hanzo/cms-db-vercel-postgres',
 })

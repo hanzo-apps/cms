@@ -1,11 +1,11 @@
-import type { I18n } from '@payloadcms/translations'
+import type { I18n } from '@hanzo/cms-translations'
 import type {
   PaginatedDocs,
   SanitizedCollectionConfig,
   SanitizedConfig,
   SanitizedGlobalConfig,
   TypedUser,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export type DefaultVersionsViewProps = {
   canAccessAdmin: boolean

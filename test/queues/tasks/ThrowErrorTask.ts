@@ -1,4 +1,4 @@
-import type { TaskConfig } from 'payload'
+import type { TaskConfig } from @hanzo/cms'from 
 
 export const ThrowErrorTask: TaskConfig<'ThrowError'> = {
   retries: 0,

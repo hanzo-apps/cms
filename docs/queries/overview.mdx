@@ -19,7 +19,7 @@ Each of these APIs share the same underlying querying language, and fully suppor
 To query your Documents, you can send any number of [Operators](#operators) through your request:
 
 ```ts
-import type { Where } from 'payload'
+import type { Where } from @hanzo/cms'from 
 
 const query: Where = {
   color: {
@@ -70,7 +70,7 @@ In addition to defining simple queries, you can join multiple queries together u
 To join queries, use the `and` or `or` keys in your query object:
 
 ```ts
-import type { Where } from 'payload'
+import type { Where } from @hanzo/cms'from 
 
 const query: Where = {
   or: [
@@ -106,7 +106,7 @@ Written in plain English, if the above query were passed to a `find` operation, 
 When working with nested properties, which can happen when using relational fields, it is possible to use the dot notation to access the nested property. For example, when working with a `Song` collection that has an `artists` field which is related to an `Artists` collection using the `name: 'artists'`. You can access a property within the collection `Artists` like so:
 
 ```js
-import type { Where } from 'payload'
+import type { Where } from @hanzo/cms'from 
 
 const query: Where = {
   'artists.featured': {
@@ -125,7 +125,7 @@ Writing queries in Payload is simple and consistent across all APIs, with only m
 The [Local API](../local-api/overview) supports the `find` operation that accepts a raw query object:
 
 ```ts
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 const getPosts = async (payload: Payload) => {
   const posts = await payload.find({
@@ -168,7 +168,7 @@ For this reason, we recommend to use the extremely helpful and ubiquitous [`qs-e
 
 ```ts
 import { stringify } from 'qs-esm'
-import type { Where } from 'payload'
+import type { Where } from @hanzo/cms'from 
 
 const query: Where = {
   color: {

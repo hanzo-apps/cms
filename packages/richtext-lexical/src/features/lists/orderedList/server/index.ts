@@ -10,7 +10,7 @@ import { i18n } from './i18n.js'
 export const OrderedListFeature = createServerFeature({
   feature: ({ featureProviderMap }) => {
     return {
-      ClientFeature: '@payloadcms/richtext-lexical/client#OrderedListFeatureClient',
+      ClientFeature: '@hanzo/cms-richtext-lexical/client#OrderedListFeatureClient',
       i18n,
       markdownTransformers: [ORDERED_LIST],
       nodes: shouldRegisterListBaseNodes('ordered', featureProviderMap)

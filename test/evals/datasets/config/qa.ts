@@ -4,7 +4,7 @@ export const configQADataset: EvalCase[] = [
   {
     input:
       'What function do you call to create a Payload config, and what package does it come from?',
-    expected: 'buildConfig, imported from "payload"',
+    expected: 'buildConfig, imported from @hanzo/cms"from ',
     category: 'config',
   },
   {

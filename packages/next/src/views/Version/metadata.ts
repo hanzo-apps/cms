@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import type { MetaConfig } from 'payload'
+import type { MetaConfig } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
-import { formatDate } from '@payloadcms/ui/shared'
+import { getTranslation } from '@hanzo/cms-translations'
+import { formatDate } from '@hanzo/cms-ui/shared'
 
 import type { GenerateEditViewMetadata } from '../Document/getMetaBySegment.js'
 

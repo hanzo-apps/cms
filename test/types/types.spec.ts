@@ -13,7 +13,7 @@ import type {
   TypeWithID,
   TypeWithVersion,
   Where,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import {
   buildEditorState,
@@ -24,9 +24,9 @@ import {
   type SerializedHeadingNode,
   type SerializedTextNode,
   type TypedEditorState,
-} from '@payloadcms/richtext-lexical'
-import { PayloadSDK } from '@payloadcms/sdk'
-import payload from 'payload'
+} from '@hanzo/cms-richtext-lexical'
+import { PayloadSDK } from '@hanzo/cms-sdk'
+import payload from @hanzo/cms'from 
 import { describe, expect, test } from 'tstyche'
 
 import type {

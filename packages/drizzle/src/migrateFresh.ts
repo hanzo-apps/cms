@@ -4,7 +4,7 @@ import {
   initTransaction,
   killTransaction,
   readMigrationFiles,
-} from 'payload'
+} from @hanzo/cms'from 
 import prompts from 'prompts'
 
 import type { DrizzleAdapter } from './types.js'

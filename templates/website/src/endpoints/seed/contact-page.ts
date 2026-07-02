@@ -1,5 +1,5 @@
 import type { Form } from '@/payload-types'
-import { RequiredDataFromCollectionSlug } from 'payload'
+import { RequiredDataFromCollectionSlug } from @hanzo/cms'from 
 
 type ContactArgs = {
   contactForm: Form

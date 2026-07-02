@@ -1,5 +1,5 @@
 'use client'
-import { UnpublishButton, useDocumentInfo } from '@payloadcms/ui'
+import { UnpublishButton, useDocumentInfo } from '@hanzo/cms-ui'
 import * as React from 'react'
 
 import classes from './index.module.scss'

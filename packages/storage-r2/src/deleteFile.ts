@@ -1,4 +1,4 @@
-import { getFileKey } from '@payloadcms/plugin-cloud-storage/utilities'
+import { getFileKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
 
 import type { R2Bucket } from './types.js'
 

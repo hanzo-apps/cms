@@ -1,19 +1,19 @@
 'use client'
-import type { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import type { DefaultNodeTypes, SerializedBlockNode } from '@hanzo/cms-richtext-lexical'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
 
-import { getRestPopulateFn } from '@payloadcms/richtext-lexical/client'
+import { getRestPopulateFn } from '@hanzo/cms-richtext-lexical/client'
 import {
   convertLexicalToHTML,
   type HTMLConvertersFunction,
-} from '@payloadcms/richtext-lexical/html'
+} from '@hanzo/cms-richtext-lexical/html'
 import {
   convertLexicalToHTMLAsync,
   type HTMLConvertersFunctionAsync,
-} from '@payloadcms/richtext-lexical/html-async'
-import { type JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
-import { useConfig, useDocumentInfo, usePayloadAPI } from '@payloadcms/ui'
-import { formatAdminURL } from 'payload/shared'
+} from '@hanzo/cms-richtext-lexical/html-async'
+import { type JSXConvertersFunction, RichText } from '@hanzo/cms-richtext-lexical/react'
+import { useConfig, useDocumentInfo, usePayloadAPI } from '@hanzo/cms-ui'
+import { formatAdminURL } from @hanzo/cms'from 
 import React, { useEffect, useMemo, useState } from 'react'
 
 const jsxConverters: JSXConvertersFunction<DefaultNodeTypes | SerializedBlockNode<any>> = ({

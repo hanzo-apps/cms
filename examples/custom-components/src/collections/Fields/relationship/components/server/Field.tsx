@@ -1,7 +1,7 @@
-import type { RelationshipFieldServerComponent } from 'payload'
+import type { RelationshipFieldServerComponent } from @hanzo/cms'from 
 import type React from 'react'
 
-import { RelationshipField } from '@payloadcms/ui'
+import { RelationshipField } from '@hanzo/cms-ui'
 
 export const CustomRelationshipFieldServer: RelationshipFieldServerComponent = ({
   clientField,

@@ -1,6 +1,6 @@
 'use client'
 
-import { LogOutIcon, useConfig } from '@payloadcms/ui'
+import { LogOutIcon, useConfig } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const Logout: React.FC = () => {

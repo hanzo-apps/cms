@@ -18,7 +18,7 @@ The Checkbox Field saves a boolean in the database.
 To add a Checkbox Field, set the `type` to `checkbox` in your [Field Config](./overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyCheckboxField: Field = {
   // ...
@@ -53,7 +53,7 @@ _\* An asterisk denotes that a property is required._
 Here is an example of a Checkbox Field in a Collection:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',
@@ -76,8 +76,8 @@ export const ExampleCollection: CollectionConfig = {
 
 ```tsx
 import type React from 'react'
-import { CheckboxField } from '@payloadcms/ui'
-import type { CheckboxFieldServerComponent } from 'payload'
+import { CheckboxField } from '@hanzo/cms-ui'
+import type { CheckboxFieldServerComponent } from @hanzo/cms'from 
 
 export const CustomCheckboxFieldServer: CheckboxFieldServerComponent = ({
   clientField,
@@ -101,8 +101,8 @@ export const CustomCheckboxFieldServer: CheckboxFieldServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { CheckboxField } from '@payloadcms/ui'
-import type { CheckboxFieldClientComponent } from 'payload'
+import { CheckboxField } from '@hanzo/cms-ui'
+import type { CheckboxFieldClientComponent } from @hanzo/cms'from 
 
 export const CustomCheckboxFieldClient: CheckboxFieldClientComponent = (
   props,
@@ -117,8 +117,8 @@ export const CustomCheckboxFieldClient: CheckboxFieldClientComponent = (
 
 ```tsx
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { CheckboxFieldLabelServerComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { CheckboxFieldLabelServerComponent } from @hanzo/cms'from 
 
 export const CustomCheckboxFieldLabelServer: CheckboxFieldLabelServerComponent =
   ({ clientField, path }) => {
@@ -137,8 +137,8 @@ export const CustomCheckboxFieldLabelServer: CheckboxFieldLabelServerComponent =
 ```tsx
 'use client'
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { CheckboxFieldLabelClientComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { CheckboxFieldLabelClientComponent } from @hanzo/cms'from 
 
 export const CustomCheckboxFieldLabelClient: CheckboxFieldLabelClientComponent =
   ({ label, path, required }) => {

@@ -5,7 +5,7 @@ Complete reference for all Payload field types with examples.
 ## Text Field
 
 ```ts
-import type { TextField } from 'payload'
+import type { TextField } from @hanzo/cms'from 
 
 const textField: TextField = {
   name: 'title',
@@ -31,8 +31,8 @@ const textField: TextField = {
 Built-in helper for auto-generating slugs:
 
 ```ts
-import { slugField } from 'payload'
-import type { CollectionConfig } from 'payload'
+import { slugField } from @hanzo/cms'from 
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -56,9 +56,9 @@ export const Pages: CollectionConfig = {
 ## Rich Text (Lexical)
 
 ```ts
-import type { RichTextField } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { HeadingFeature, LinkFeature } from '@payloadcms/richtext-lexical'
+import type { RichTextField } from @hanzo/cms'from 
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
+import { HeadingFeature, LinkFeature } from '@hanzo/cms-richtext-lexical'
 
 const richTextField: RichTextField = {
   name: 'content',
@@ -95,7 +95,7 @@ import {
   UnderlineFeature,
   UnorderedListFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 // Global editor config with full features
 export default buildConfig({
@@ -157,7 +157,7 @@ const richTextWithToolbars: RichTextField = {
 ## Relationship
 
 ```ts
-import type { RelationshipField } from 'payload'
+import type { RelationshipField } from @hanzo/cms'from 
 
 // Single relationship
 const singleRelationship: RelationshipField = {
@@ -191,7 +191,7 @@ const polymorphicRelationship: PolymorphicRelationshipField = {
 ## Array
 
 ```ts
-import type { ArrayField } from 'payload'
+import type { ArrayField } from @hanzo/cms'from 
 
 const arrayField: ArrayField = {
   name: 'slides',
@@ -223,7 +223,7 @@ const arrayField: ArrayField = {
 ## Blocks
 
 ```ts
-import type { BlocksField, Block } from 'payload'
+import type { BlocksField, Block } from @hanzo/cms'from 
 
 const HeroBlock: Block = {
   slug: 'hero',
@@ -262,7 +262,7 @@ const blocksField: BlocksField = {
 ## Select
 
 ```ts
-import type { SelectField } from 'payload'
+import type { SelectField } from @hanzo/cms'from 
 
 const selectField: SelectField = {
   name: 'status',
@@ -287,7 +287,7 @@ const multiSelectField: SelectField = {
 ## Upload
 
 ```ts
-import type { UploadField } from 'payload'
+import type { UploadField } from @hanzo/cms'from 
 
 const uploadField: UploadField = {
   name: 'featuredImage',
@@ -305,7 +305,7 @@ const uploadField: UploadField = {
 Point fields store geographic coordinates with automatic 2dsphere indexing for geospatial queries.
 
 ```ts
-import type { PointField } from 'payload'
+import type { PointField } from @hanzo/cms'from 
 
 const locationField: PointField = {
   name: 'location',
@@ -375,7 +375,7 @@ const intersecting = await payload.find({
 Join fields create reverse relationships, allowing you to access related documents from the "other side" of a relationship.
 
 ```ts
-import type { JoinField } from 'payload'
+import type { JoinField } from @hanzo/cms'from 
 
 // From Users collection - show user's orders
 const ordersJoinField: JoinField = {
@@ -405,7 +405,7 @@ const cartJoinField: JoinField = {
 ## Virtual Fields
 
 ```ts
-import type { TextField } from 'payload'
+import type { TextField } from @hanzo/cms'from 
 
 // Computed from siblings
 const computedVirtualField: TextField = {
@@ -428,7 +428,7 @@ const pathVirtualField: TextField = {
 ## Conditional Fields
 
 ```ts
-import type { UploadField, CheckboxField } from 'payload'
+import type { UploadField, CheckboxField } from @hanzo/cms'from 
 
 // Simple boolean condition
 const enableFeatureField: CheckboxField = {
@@ -468,7 +468,7 @@ const mediaField: UploadField = {
 Radio fields present options as radio buttons for single selection.
 
 ```ts
-import type { RadioField } from 'payload'
+import type { RadioField } from @hanzo/cms'from 
 
 const radioField: RadioField = {
   name: 'priority',
@@ -490,7 +490,7 @@ const radioField: RadioField = {
 Row fields arrange fields horizontally in the admin panel (presentational only).
 
 ```ts
-import type { RowField } from 'payload'
+import type { RowField } from @hanzo/cms'from 
 
 const rowField: RowField = {
   type: 'row',
@@ -514,7 +514,7 @@ const rowField: RowField = {
 Collapsible fields group fields in an expandable/collapsible section.
 
 ```ts
-import type { CollapsibleField } from 'payload'
+import type { CollapsibleField } from @hanzo/cms'from 
 
 const collapsibleField: CollapsibleField = {
   label: ({ data }) => data?.title || 'Advanced Options',
@@ -534,7 +534,7 @@ const collapsibleField: CollapsibleField = {
 UI fields allow fully custom React components in the admin (no data stored).
 
 ```ts
-import type { UIField } from 'payload'
+import type { UIField } from @hanzo/cms'from 
 
 const uiField: UIField = {
   name: 'customMessage',
@@ -551,7 +551,7 @@ const uiField: UIField = {
 ## Tabs & Groups
 
 ```ts
-import type { TabsField, GroupField } from 'payload'
+import type { TabsField, GroupField } from @hanzo/cms'from 
 
 // Tabs
 const tabsField: TabsField = {
@@ -590,7 +590,7 @@ const groupField: GroupField = {
 Create composable field patterns that can be customized with overrides.
 
 ```ts
-import type { Field, GroupField } from 'payload'
+import type { Field, GroupField } from @hanzo/cms'from 
 
 // Utility for deep merging
 const deepMerge = <T>(target: T, source: Partial<T>): T => {
@@ -726,7 +726,7 @@ Type guards for runtime field type checking and safe type narrowing.
 | `valueIsValueWithRelation`  | Value is polymorphic relationship                           | Handle polymorphic relationships         |
 
 ```ts
-import { fieldAffectsData, fieldHasSubFields, fieldIsArrayType } from 'payload'
+import { fieldAffectsData, fieldHasSubFields, fieldIsArrayType } from @hanzo/cms'from 
 
 function processField(field: Field) {
   if (fieldAffectsData(field)) {

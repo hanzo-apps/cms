@@ -15,7 +15,7 @@ Fields can be endlessly customized in their appearance and behavior without affe
 To configure fields, use the `fields` property in your [Collection](../configuration/collections) or [Global](../configuration/globals) config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Page: CollectionConfig = {
   // ...
@@ -33,7 +33,7 @@ Payload provides a wide variety of built-in Field Types, each with its own uniqu
 To configure fields, use the `fields` property in your [Collection](../configuration/collections) or [Global](../configuration/globals) config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Page: CollectionConfig = {
   slug: 'pages',
@@ -264,7 +264,7 @@ All fields require at least the `type` property. This matches the field to its c
 To set a field's type, use the `type` property in your Field Config:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyField: Field = {
   type: 'text', // highlight-line
@@ -284,7 +284,7 @@ All [Data Fields](#data-fields) require a `name` property. This is the key that 
 To set a field's name, use the `name` property in your Field Config:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyField: Field = {
   type: 'text',
@@ -320,7 +320,7 @@ In addition to being able to define [Hooks](../hooks/overview) on a document-lev
 To define Field-level Hooks, use the `hooks` property in your Field Config:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyField: Field = {
   type: 'text',
@@ -342,7 +342,7 @@ In addition to being able to define [Access Control](../access-control/overview)
 To define Field-level Access Control, use the `access` property in your Field Config:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyField: Field = {
   type: 'text',
@@ -364,7 +364,7 @@ Fields can be optionally prefilled with initial values. This is used in both the
 To set a field's default value, use the `defaultValue` property in your Field Config:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyField: Field = {
   type: 'text',
@@ -384,7 +384,7 @@ Functions can be written to make use of the following argument properties:
 Here is an example of a `defaultValue` function:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 const translation: {
   en: 'Written by'
@@ -413,7 +413,7 @@ Fields are automatically validated based on their [Field Type](#field-types) and
 To set a custom field validation function, use the `validate` property in your Field Config:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyField: Field = {
   type: 'text',
@@ -436,7 +436,7 @@ The following arguments are provided to the `validate` function:
 The `ctx` argument contains full document data, sibling field data, the current operation, and other useful information such as currently authenticated user:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyField: Field = {
   type: 'text',
@@ -465,7 +465,7 @@ The following additional properties are provided in the `ctx` object:
 You can return localized error messages by utilizing the translation function provided in the `req` object:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyField: Field = {
   type: 'text',
@@ -484,7 +484,7 @@ When using custom validation functions, Payload will use yours in place of the d
 To reuse default field validations, call them from within your custom validation function:
 
 ```ts
-import { text } from 'payload/shared'
+import { text } from @hanzo/cms'from 
 
 const field: Field = {
   name: 'notBad',
@@ -517,7 +517,7 @@ import {
   text,
   textarea,
   upload,
-} from 'payload/shared'
+} from @hanzo/cms'from 
 ```
 
 #### Validation Performance
@@ -529,7 +529,7 @@ If you need to perform expensive validations, such as querying the database, con
 To write asynchronous validation functions, use the `async` keyword to define your function:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Orders: CollectionConfig = {
   slug: 'orders',
@@ -570,7 +570,7 @@ All [Collections](../configuration/collections) automatically generate their own
 To define a custom ID field, add a top-level field with the `name` property set to `id`:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -595,7 +595,7 @@ export const MyCollection: CollectionConfig = {
 You can customize the appearance and behavior of fields within the [Admin Panel](../admin/overview) through the `admin` property of any Field Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const CollectionConfig: CollectionConfig = {
   // ...
@@ -645,7 +645,7 @@ A description can be configured in three ways:
 To add a Custom Description to a field, use the `admin.description` property in your Field Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollectionConfig: CollectionConfig = {
   // ...
@@ -675,7 +675,7 @@ Custom Descriptions can also be defined as a function. Description Functions are
 To add a Description Function to a field, set the `admin.description` property to a _function_ in your Field Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollectionConfig: CollectionConfig = {
   // ...
@@ -765,7 +765,7 @@ Within the [Admin Panel](../admin/overview), fields are represented in three dis
 To swap in Field Components with your own, use the `admin.components` property in your Field Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const CollectionConfig: CollectionConfig = {
   // ...
@@ -805,7 +805,7 @@ The Field Component is the actual form field rendered in the Edit View. This is 
 To swap in your own Field Component, use the `admin.components.Field` property in your Field Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const CollectionConfig: CollectionConfig = {
   // ...
@@ -866,11 +866,11 @@ In addition to the above props, all Server Components will also receive the foll
 
 When swapping out the `Field` component, you are responsible for sending and receiving the field's `value` from the form itself.
 
-To do so, import the [`useField`](../admin/react-hooks#usefield) hook from `@payloadcms/ui` and use it to manage the field's value:
+To do so, import the [`useField`](../admin/react-hooks#usefield) hook from `@hanzo/cms-ui` and use it to manage the field's value:
 
 ```tsx
 'use client'
-import { useField } from '@payloadcms/ui'
+import { useField } from '@hanzo/cms-ui'
 
 export const CustomTextField: React.FC = () => {
   const { value, setValue } = useField() // highlight-line
@@ -896,7 +896,7 @@ import type {
   TextFieldClientProps,
   TextFieldServerProps,
   // ...and so on for each Field Type
-} from 'payload'
+} from @hanzo/cms'from 
 ```
 
 See each individual Field Type for exact type imports.
@@ -908,7 +908,7 @@ The Cell Component is rendered in the table of the List View. It represents the 
 To swap in your own Cell Component, use the `admin.components.Cell` property in your Field Config:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const myField: Field = {
   name: 'myField',
@@ -925,7 +925,7 @@ export const myField: Field = {
 
 ```ts
 'use client'
-import type { DefaultCellComponentProps } from 'payload'
+import type { DefaultCellComponentProps } from @hanzo/cms'from 
 
 export const MyCustomCellComponent: React.FC<DefaultCellComponentProps> = ({
   cellData,
@@ -993,7 +993,7 @@ All Custom Filter Components receive the following props:
 To swap in your own Filter Component, use the `admin.components.Filter` property in your Field Config:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const myField: Field = {
   name: 'myField',
@@ -1017,7 +1017,7 @@ The Label Component is rendered anywhere a field needs to be represented by a la
 To swap in your own Label Component, use the `admin.components.Label` property in your Field Config:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const myField: Field = {
   name: 'myField',
@@ -1043,7 +1043,7 @@ import type {
   TextFieldLabelServerComponent,
   TextFieldLabelClientComponent,
   // ...and so on for each Field Type
-} from 'payload'
+} from @hanzo/cms'from 
 ```
 
 #### Description
@@ -1053,7 +1053,7 @@ Alternatively to the [Description Property](#field-descriptions), you can also u
 To add a Description Component to a field, use the `admin.components.Description` property in your Field Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollectionConfig: CollectionConfig = {
   // ...
@@ -1085,7 +1085,7 @@ import type {
   TextFieldDescriptionServerComponent,
   TextFieldDescriptionClientComponent,
   // And so on for each Field Type
-} from 'payload'
+} from @hanzo/cms'from 
 ```
 
 #### Error
@@ -1095,7 +1095,7 @@ The Error Component is rendered when a field fails validation. It is typically d
 To swap in your own Error Component, use the `admin.components.Error` property in your Field Config:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const myField: Field = {
   name: 'myField',
@@ -1121,7 +1121,7 @@ import type {
   TextFieldErrorServerComponent,
   TextFieldErrorClientComponent,
   // And so on for each Field Type
-} from 'payload'
+} from @hanzo/cms'from 
 ```
 
 #### Diff
@@ -1131,7 +1131,7 @@ The Diff Component is rendered in the Version Diff view. It will only be visible
 To swap in your own Diff Component, use the `admin.components.Diff` property in your Field Config:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const myField: Field = {
   name: 'myField',
@@ -1157,7 +1157,7 @@ import type {
   TextFieldDiffServerComponent,
   TextFieldDiffClientComponent,
   // And so on for each Field Type
-} from 'payload'
+} from @hanzo/cms'from 
 ```
 
 #### afterInput and beforeInput
@@ -1167,7 +1167,7 @@ With these properties you can add multiple components _before_ and _after_ the i
 To add components before and after the input element, use the `admin.components.beforeInput` and `admin.components.afterInput` properties in your Field Config:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MyCollectionConfig: CollectionConfig = {
   // ...
@@ -1198,5 +1198,5 @@ For details on how to build Custom Components, see [Building Custom Components](
 You can import the Payload `Field` type as well as other common types from the `payload` package. [More details](../typescript/overview).
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 ```

@@ -1,6 +1,6 @@
-import type { CollectionConfig, TextField } from 'payload'
+import type { CollectionConfig, TextField } from @hanzo/cms'from 
 
-import { slugField } from 'payload'
+import { slugField } from @hanzo/cms'from 
 
 import { slugFieldSlug } from './shared.js'
 

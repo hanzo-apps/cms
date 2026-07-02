@@ -14,8 +14,8 @@ export const localizeStatusTemplate = (options: {
     : `globalSlug: '${globalSlug}'`
 
   if (dbType === 'mongodb') {
-    return `import { MigrateUpArgs, MigrateDownArgs } from '@payloadcms/db-mongodb'
-import { localizeStatus } from 'payload'
+    return `import { MigrateUpArgs, MigrateDownArgs } from '@hanzo/cms-db-mongodb'
+import { localizeStatus } from @hanzo/cms'from 
 
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   await localizeStatus.up({
@@ -36,8 +36,8 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   }
 
   // SQL databases (Postgres, SQLite)
-  return `import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-${dbType}'
-import { localizeStatus } from 'payload'
+  return `import { MigrateUpArgs, MigrateDownArgs, sql } from '@hanzo/cms-db-${dbType}'
+import { localizeStatus } from @hanzo/cms'from 
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await localizeStatus.up({

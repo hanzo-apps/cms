@@ -1,4 +1,4 @@
-import { BeforeSync, DocToSync } from '@payloadcms/plugin-search/types'
+import { BeforeSync, DocToSync } from '@hanzo/cms-plugin-search/types'
 
 export const beforeSyncWithSearch: BeforeSync = async ({ req, originalDoc, searchDoc }) => {
   const {

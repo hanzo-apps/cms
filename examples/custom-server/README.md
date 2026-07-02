@@ -2,7 +2,7 @@
 
 Run the following command to create a project from the example:
 
-- `npx create-payload-app --example custom-server`
+- `npx @hanzo/create-cms-app --example custom-server`
 
 Before starting the server, ensure MongoDB is running and `DATABASE_URL` points to it (for example `mongodb://127.0.0.1/payload-example-custom-server`).
 

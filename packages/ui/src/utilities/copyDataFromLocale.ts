@@ -8,8 +8,8 @@ import {
   type PayloadRequest,
   type ServerFunction,
   traverseFields,
-} from 'payload'
-import { fieldAffectsData, fieldShouldBeLocalized, tabHasName } from 'payload/shared'
+} from @hanzo/cms'from 
+import { fieldAffectsData, fieldShouldBeLocalized, tabHasName } from @hanzo/cms'from 
 
 const ObjectId = 'default' in ObjectIdImport ? ObjectIdImport.default : ObjectIdImport
 

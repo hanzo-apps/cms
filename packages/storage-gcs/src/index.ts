@@ -3,12 +3,12 @@ import type {
   ClientUploadsConfig,
   PluginOptions as CloudStoragePluginOptions,
   CollectionOptions,
-} from '@payloadcms/plugin-cloud-storage/types'
-import type { Config, Plugin, UploadCollectionSlug } from 'payload'
+} from '@hanzo/cms-plugin-cloud-storage/types'
+import type { Config, Plugin, UploadCollectionSlug } from @hanzo/cms'from 
 
 import { Storage } from '@google-cloud/storage'
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
-import { initClientUploads } from '@payloadcms/plugin-cloud-storage/utilities'
+import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'
+import { initClientUploads } from '@hanzo/cms-plugin-cloud-storage/utilities'
 
 import { createGcsAdapter } from './adapter.js'
 import { getGenerateSignedURLHandler } from './generateSignedURL.js'
@@ -104,7 +104,7 @@ export const gcsStorage: GcsStoragePlugin =
     const isPluginDisabled = gcsStorageOptions.enabled === false
 
     initClientUploads({
-      clientHandler: '@payloadcms/storage-gcs/client#GcsClientUploadHandler',
+      clientHandler: '@hanzo/cms-storage-gcs/client#GcsClientUploadHandler',
       collections: gcsStorageOptions.collections,
       config: incomingConfig,
       enabled: !isPluginDisabled && Boolean(gcsStorageOptions.clientUploads),

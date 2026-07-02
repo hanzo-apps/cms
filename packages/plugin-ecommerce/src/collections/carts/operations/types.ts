@@ -1,4 +1,4 @@
-import type { DefaultDocumentIDType, Payload, PayloadRequest } from 'payload'
+import type { DefaultDocumentIDType, Payload, PayloadRequest } from @hanzo/cms'from 
 
 /**
  * Represents an item in the cart with populated or ID references.

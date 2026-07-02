@@ -1,4 +1,4 @@
-import type { AfterChangeHook } from 'payload/dist/collections/config/types'
+import type { AfterChangeHook } from @hanzo/cms'from 
 
 export const loginAfterCreate: AfterChangeHook = async ({
   doc,

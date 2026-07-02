@@ -1,8 +1,8 @@
 'use client'
 
-import type { SelectFieldClientComponent } from 'payload'
+import type { SelectFieldClientComponent } from @hanzo/cms'from 
 
-import { FieldLabel, ReactSelect, useDocumentInfo, useField, useListQuery } from '@payloadcms/ui'
+import { FieldLabel, ReactSelect, useDocumentInfo, useField, useListQuery } from '@hanzo/cms-ui'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 import { applySortOrder, normalizeQueryParam, stripSortDash } from '../../utilities/sortHelpers.js'

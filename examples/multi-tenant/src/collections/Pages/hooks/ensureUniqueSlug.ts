@@ -1,6 +1,6 @@
-import type { FieldHook, Where } from 'payload'
+import type { FieldHook, Where } from @hanzo/cms'from 
 
-import { ValidationError } from 'payload'
+import { ValidationError } from @hanzo/cms'from 
 
 import { getUserTenantIDs } from '../../../utilities/getUserTenantIDs'
 import { extractID } from '@/utilities/extractID'

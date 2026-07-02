@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import { createAccess } from './access/create'
 import { readAccess } from './access/read'
@@ -7,7 +7,7 @@ import { externalUsersLogin } from './endpoints/externalUsersLogin'
 import { ensureUniqueUsername } from './hooks/ensureUniqueUsername'
 import { isSuperAdmin } from '@/access/isSuperAdmin'
 import { setCookieBasedOnDomain } from './hooks/setCookieBasedOnDomain'
-import { tenantsArrayField } from '@payloadcms/plugin-multi-tenant/fields'
+import { tenantsArrayField } from '@hanzo/cms-plugin-multi-tenant/fields'
 
 const defaultTenantArrayField = tenantsArrayField({
   tenantsArrayFieldName: 'tenants',

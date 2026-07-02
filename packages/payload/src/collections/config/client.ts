@@ -1,4 +1,4 @@
-import type { I18nClient, TFunction } from '@payloadcms/translations'
+import type { I18nClient, TFunction } from '@hanzo/cms-translations'
 
 import type { StaticDescription } from '../../admin/types.js'
 import type { ImportMap } from '../../bin/generateImportMap/index.js'

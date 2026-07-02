@@ -1,5 +1,5 @@
 'use client'
-import type { JSONFieldClientComponent, Where } from 'payload'
+import type { JSONFieldClientComponent, Where } from @hanzo/cms'from 
 
 import React from 'react'
 

@@ -1,10 +1,10 @@
-import type { S3StorageOptions } from '@payloadcms/storage-s3'
-import type { Plugin } from 'payload'
+import type { S3StorageOptions } from '@hanzo/cms-storage-s3'
+import type { Plugin } from @hanzo/cms'from 
 
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
-import { azureStorage } from '@payloadcms/storage-azure'
-import { gcsStorage } from '@payloadcms/storage-gcs'
-import { s3Storage } from '@payloadcms/storage-s3'
+import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'
+import { azureStorage } from '@hanzo/cms-storage-azure'
+import { gcsStorage } from '@hanzo/cms-storage-gcs'
+import { s3Storage } from '@hanzo/cms-storage-s3'
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'node:url'
 import path from 'path'

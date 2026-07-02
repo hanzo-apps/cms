@@ -1,4 +1,4 @@
-import type { UIField } from 'payload'
+import type { UIField } from @hanzo/cms'from 
 
 import React from 'react'
 

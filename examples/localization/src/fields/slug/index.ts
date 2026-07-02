@@ -1,4 +1,4 @@
-import type { CheckboxField, TextField } from 'payload'
+import type { CheckboxField, TextField } from @hanzo/cms'from 
 
 import { formatSlugHook } from './formatSlug'
 

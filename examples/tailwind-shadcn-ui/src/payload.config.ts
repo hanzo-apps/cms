@@ -1,7 +1,7 @@
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 import path from 'path'
-import { buildConfig } from 'payload/config'
+import { buildConfig } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import { Posts } from './collections/Posts'

@@ -1,7 +1,7 @@
 'use client'
-import type { ArrayFieldClient, DefaultCellComponentProps } from 'payload'
+import type { ArrayFieldClient, DefaultCellComponentProps } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'
 
 import { useTranslation } from '../../../../../providers/Translation/index.js'

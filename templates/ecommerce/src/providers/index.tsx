@@ -1,6 +1,6 @@
 import { AuthProvider } from '@/providers/Auth'
-import { EcommerceProvider } from '@payloadcms/plugin-ecommerce/client/react'
-import { stripeAdapterClient } from '@payloadcms/plugin-ecommerce/payments/stripe'
+import { EcommerceProvider } from '@hanzo/cms-plugin-ecommerce/client/react'
+import { stripeAdapterClient } from '@hanzo/cms-plugin-ecommerce/payments/stripe'
 import React from 'react'
 
 import { HeaderThemeProvider } from './HeaderTheme'

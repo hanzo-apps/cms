@@ -1,4 +1,4 @@
-import type { JoinQuery, PopulateType, SanitizedConfig, SelectType, Where } from 'payload'
+import type { JoinQuery, PopulateType, SanitizedConfig, SelectType, Where } from @hanzo/cms'from 
 import type { ParsedQs } from 'qs-esm'
 
 import {
@@ -8,7 +8,7 @@ import {
   REST_PATCH as createPATCH,
   REST_POST as createPOST,
   REST_PUT as createPUT,
-} from '@payloadcms/next/routes'
+} from '@hanzo/cms-next/routes'
 import * as qs from 'qs-esm'
 
 import { devUser } from '../../credentials.js'

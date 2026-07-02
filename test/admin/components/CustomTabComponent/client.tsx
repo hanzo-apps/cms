@@ -1,8 +1,8 @@
 'use client'
 
-import type { DocumentTabClientProps } from 'payload'
+import type { DocumentTabClientProps } from @hanzo/cms'from 
 
-import { useConfig } from '@payloadcms/ui'
+import { useConfig } from '@hanzo/cms-ui'
 import LinkImport from 'next/link.js'
 import { useParams } from 'next/navigation.js'
 import React from 'react'

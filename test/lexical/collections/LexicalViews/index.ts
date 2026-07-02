@@ -1,11 +1,11 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import {
   BlocksFeature,
   type DefaultNodeTypes,
   lexicalEditor,
   type SerializedBlockNode,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 import type { ViewsTestBlock } from '../../payload-types.js'
 

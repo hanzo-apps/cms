@@ -2,7 +2,7 @@ import { createServerFeature } from '../../../../utilities/createServerFeature.j
 
 export const InlineToolbarFeature = createServerFeature({
   feature: {
-    ClientFeature: '@payloadcms/richtext-lexical/client#InlineToolbarFeatureClient',
+    ClientFeature: '@hanzo/cms-richtext-lexical/client#InlineToolbarFeatureClient',
   },
   key: 'toolbarInline',
 })

@@ -5,10 +5,10 @@ import type {
   FieldPaths,
   RichTextFieldClient,
   ServerComponentProps,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { createClientFields } from 'payload'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
+import { createClientFields } from @hanzo/cms'from 
 import React from 'react'
 
 import type { AdapterArguments, RichTextCustomElement, RichTextCustomLeaf } from '../types.js'

@@ -1,5 +1,5 @@
 'use server'
-import { logout } from '@payloadcms/next/auth'
+import { logout } from '@hanzo/cms-next/auth'
 
 import config from '../config.js'
 

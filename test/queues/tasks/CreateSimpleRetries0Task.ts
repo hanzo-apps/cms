@@ -1,4 +1,4 @@
-import type { TaskConfig } from 'payload'
+import type { TaskConfig } from @hanzo/cms'from 
 
 export const CreateSimpleRetries0Task: TaskConfig<'CreateSimpleRetries0'> = {
   slug: 'CreateSimpleRetries0',

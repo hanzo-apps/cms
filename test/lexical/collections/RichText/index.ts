@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import {
   BlocksFeature,
@@ -8,8 +8,8 @@ import {
   LinkFeature,
   TreeViewFeature,
   UploadFeature,
-} from '@payloadcms/richtext-lexical'
-import { slateEditor } from '@payloadcms/richtext-slate'
+} from '@hanzo/cms-richtext-lexical'
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 import { richTextFieldsSlug } from '../../slugs.js'
 import { RelationshipBlock, SelectFieldBlock, TextBlock, UploadAndRichTextBlock } from './blocks.js'

@@ -1,11 +1,11 @@
 'use client'
 
-import type { SanitizedCollectionConfig } from 'payload'
+import type { SanitizedCollectionConfig } from @hanzo/cms'from 
 
 import { useModal } from '@faceless-ui/modal'
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import { useRouter } from 'next/navigation.js'
-import { formatAdminURL, hasDraftsEnabled } from 'payload/shared'
+import { formatAdminURL, hasDraftsEnabled } from @hanzo/cms'from 
 import * as qs from 'qs-esm'
 import React, { useCallback, useMemo } from 'react'
 import { toast } from 'sonner'

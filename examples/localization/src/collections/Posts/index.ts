@@ -1,4 +1,4 @@
-import type { CollectionConfig, TypedLocale } from 'payload'
+import type { CollectionConfig, TypedLocale } from @hanzo/cms'from 
 
 import {
   BlocksFeature,
@@ -7,7 +7,7 @@ import {
   HorizontalRuleFeature,
   InlineToolbarFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
@@ -24,7 +24,7 @@ import {
   MetaTitleField,
   OverviewField,
   PreviewField,
-} from '@payloadcms/plugin-seo/fields'
+} from '@hanzo/cms-plugin-seo/fields'
 import { slugField } from '@/fields/slug'
 
 export const Posts: CollectionConfig = {

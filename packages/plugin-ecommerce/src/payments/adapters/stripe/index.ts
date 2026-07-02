@@ -1,4 +1,4 @@
-import type { Field, GroupField, PayloadRequest } from 'payload'
+import type { Field, GroupField, PayloadRequest } from @hanzo/cms'from 
 import type { Stripe } from 'stripe'
 
 import type {

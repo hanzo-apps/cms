@@ -1,4 +1,4 @@
-import type { PayloadRequest, TypedUser } from 'payload'
+import type { PayloadRequest, TypedUser } from @hanzo/cms'from 
 
 type Args = {
   collectionSlug?: string

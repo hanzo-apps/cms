@@ -1,4 +1,4 @@
-import { APIError, type CollectionConfig } from 'payload'
+import { APIError, type CollectionConfig } from @hanzo/cms'from 
 
 import { mediaWithThrowingHookSlug } from '../shared.js'
 

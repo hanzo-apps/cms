@@ -1,8 +1,8 @@
-import type { WidgetServerProps } from 'payload'
+import type { WidgetServerProps } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
-import { EntityType, getAccessResults } from 'payload'
-import { formatAdminURL } from 'payload/shared'
+import { getTranslation } from '@hanzo/cms-translations'
+import { EntityType, getAccessResults } from @hanzo/cms'from 
+import { formatAdminURL } from @hanzo/cms'from 
 import React from 'react'
 
 import { Button } from '../../elements/Button/index.js'

@@ -8,14 +8,14 @@ Official Postgres adapter for [Payload](https://payloadcms.com).
 ## Installation
 
 ```bash
-npm install @payloadcms/db-postgres
+npm install @hanzo/cms-db-postgres
 ```
 
 ## Usage
 
 ```ts
-import { buildConfig } from 'payload'
-import { postgresAdapter } from '@payloadcms/db-postgres'
+import { buildConfig } from @hanzo/cms'from 
+import { postgresAdapter } from '@hanzo/cms-db-postgres'
 
 export default buildConfig({
   db: postgresAdapter({

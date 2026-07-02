@@ -1,4 +1,4 @@
-import type { PayloadServerReactComponent, SanitizedCollectionConfig } from 'payload'
+import type { PayloadServerReactComponent, SanitizedCollectionConfig } from @hanzo/cms'from 
 
 import React from 'react'
 

@@ -1,7 +1,7 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import path from 'path'
-import { wait } from 'payload/shared'
+import { wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
@@ -18,7 +18,7 @@ let token: string
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-describe('@payloadcms/plugin-search', () => {
+describe('@hanzo/cms-plugin-search', () => {
   beforeAll(async () => {
     ;({ payload, restClient } = await initPayloadInt(dirname))
 

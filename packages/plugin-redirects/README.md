@@ -12,7 +12,7 @@ A plugin for [Payload](https://github.com/payloadcms/payload) to easily manage y
 ## Installation
 
 ```bash
-pnpm add @payloadcms/plugin-redirects
+pnpm add @hanzo/cms-plugin-redirects
 ```
 
 ## Basic Usage
@@ -20,8 +20,8 @@ pnpm add @payloadcms/plugin-redirects
 In your [Payload Config](https://payloadcms.com/docs/configuration/overview), add the plugin:
 
 ```ts
-import { buildConfig } from 'payload'
-import { redirectsPlugin } from '@payloadcms/plugin-redirects'
+import { buildConfig } from @hanzo/cms'from 
+import { redirectsPlugin } from '@hanzo/cms-plugin-redirects'
 
 export default buildConfig({
   plugins: [
@@ -46,8 +46,8 @@ export default buildConfig({
 ### Advanced Example
 
 ```ts
-import { buildConfig } from 'payload'
-import { redirectsPlugin } from '@payloadcms/plugin-redirects'
+import { buildConfig } from @hanzo/cms'from 
+import { redirectsPlugin } from '@hanzo/cms-plugin-redirects'
 
 export default buildConfig({
   plugins: [
@@ -85,8 +85,8 @@ export default buildConfig({
 The plugin automatically includes translations for English, French, and Spanish. If you want to customize existing translations or add new languages, you can override them in your config:
 
 ```ts
-import { buildConfig } from 'payload'
-import { redirectsPlugin } from '@payloadcms/plugin-redirects'
+import { buildConfig } from @hanzo/cms'from 
+import { redirectsPlugin } from '@hanzo/cms-plugin-redirects'
 
 export default buildConfig({
   i18n: {

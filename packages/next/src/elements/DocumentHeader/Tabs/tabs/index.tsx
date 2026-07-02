@@ -1,4 +1,4 @@
-import type { DocumentTabConfig, SanitizedCollectionConfig, SanitizedGlobalConfig } from 'payload'
+import type { DocumentTabConfig, SanitizedCollectionConfig, SanitizedGlobalConfig } from @hanzo/cms'from 
 
 import { VersionsPill } from './VersionsPill/index.js'
 

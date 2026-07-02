@@ -1,6 +1,6 @@
 import { renderPlaygroundPage } from 'graphql-playground-html'
-import { createPayloadRequest, type SanitizedConfig } from 'payload'
-import { formatAdminURL } from 'payload/shared'
+import { createPayloadRequest, type SanitizedConfig } from @hanzo/cms'from 
+import { formatAdminURL } from @hanzo/cms'from 
 
 export const GET = (config: Promise<SanitizedConfig>) => async (request: Request) => {
   const req = await createPayloadRequest({

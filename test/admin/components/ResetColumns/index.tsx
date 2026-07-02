@@ -1,6 +1,6 @@
 'use client'
 
-import { Pill, useTableColumns } from '@payloadcms/ui'
+import { Pill, useTableColumns } from '@hanzo/cms-ui'
 
 function ResetDefaultColumnsButton() {
   const { resetColumnsState } = useTableColumns()

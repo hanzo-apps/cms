@@ -1,4 +1,4 @@
-import { withPayload } from '@payloadcms/next/withPayload'
+import { withPayload } from '@hanzo/cms-next/withPayload'
 import type { NextConfig } from 'next'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
   // Temporarily required on Windows until Next.js fixes Turbopack Sass resolution.
   // See: https://github.com/vercel/next.js/issues/86431
   sassOptions: {
-    loadPaths: ['./node_modules/@payloadcms/ui/dist/scss/'],
+    loadPaths: ['./node_modules/@hanzo/cms-ui/dist/scss/'],
   },
   images: {
     localPatterns: [

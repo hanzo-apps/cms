@@ -1,4 +1,4 @@
-import type { CollectionAfterDeleteHook, CollectionConfig, FileData, TypeWithID } from 'payload'
+import type { CollectionAfterDeleteHook, CollectionConfig, FileData, TypeWithID } from @hanzo/cms'from 
 
 import type { GeneratedAdapter, TypeWithPrefix } from '../types.js'
 

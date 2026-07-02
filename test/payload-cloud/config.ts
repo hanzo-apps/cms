@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
+import { payloadCloudPlugin } from '@hanzo/cms-payload-cloud'
 import dotenv from 'dotenv'
 import path from 'path'
 

@@ -1,7 +1,7 @@
-import type { AcceptedLanguages, GenericTranslationsObject } from '@payloadcms/translations'
+import type { AcceptedLanguages, GenericTranslationsObject } from '@hanzo/cms-translations'
 
-import { translations } from '@payloadcms/plugin-multi-tenant/translations/languages/all'
-import { enTranslations } from '@payloadcms/plugin-multi-tenant/translations/languages/en'
+import { translations } from '@hanzo/cms-plugin-multi-tenant/translations/languages/all'
+import { enTranslations } from '@hanzo/cms-plugin-multi-tenant/translations/languages/en'
 import path from 'path'
 import { fileURLToPath } from 'url'
 

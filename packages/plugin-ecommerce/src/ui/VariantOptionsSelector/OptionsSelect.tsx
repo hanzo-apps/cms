@@ -1,8 +1,8 @@
 'use client'
 
-import type { SelectFieldClient } from 'payload'
+import type { SelectFieldClient } from @hanzo/cms'from 
 
-import { FieldLabel, ReactSelect, useField, useForm } from '@payloadcms/ui'
+import { FieldLabel, ReactSelect, useField, useForm } from '@hanzo/cms-ui'
 import { useCallback, useId, useMemo } from 'react'
 
 type Props = {

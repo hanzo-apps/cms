@@ -1,4 +1,4 @@
-import type { I18nClient } from '@payloadcms/translations'
+import type { I18nClient } from '@hanzo/cms-translations'
 import type {
   ClientComponentProps,
   ClientField,
@@ -16,14 +16,14 @@ import type {
   ServerComponentProps,
   StaticLabel,
   ViewTypes,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import {
   fieldIsHiddenOrDisabled,
   fieldIsID,
   fieldIsPresentationalOnly,
   flattenTopLevelFields,
-} from 'payload/shared'
+} from @hanzo/cms'from 
 import React from 'react'
 
 import type { SortColumnProps } from '../../../elements/SortColumn/index.js'

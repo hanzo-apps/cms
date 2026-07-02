@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/storage-azure",
+  "name": "@hanzo/cms-storage-azure",
   "version": "3.85.2",
   "description": "Payload storage adapter for Azure Blob Storage",
   "homepage": "https://payloadcms.com",
@@ -49,13 +49,13 @@
   "dependencies": {
     "@azure/abort-controller": "^1.1.0",
     "@azure/storage-blob": "^12.11.0",
-    "@payloadcms/plugin-cloud-storage": "workspace:*"
+    "@hanzo/cms-plugin-cloud-storage": "workspace:*"
   },
   "devDependencies": {
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"

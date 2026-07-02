@@ -1,5 +1,5 @@
 'use client'
-import type { DateFieldDiffClientComponent } from 'payload'
+import type { DateFieldDiffClientComponent } from @hanzo/cms'from 
 
 import {
   escapeDiffHTML,
@@ -8,8 +8,8 @@ import {
   unescapeDiffHTML,
   useConfig,
   useTranslation,
-} from '@payloadcms/ui'
-import { formatDate } from '@payloadcms/ui/shared'
+} from '@hanzo/cms-ui'
+import { formatDate } from '@hanzo/cms-ui/shared'
 import React from 'react'
 
 import './index.scss'

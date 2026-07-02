@@ -1,6 +1,6 @@
 import type * as AWS from '@aws-sdk/client-s3'
 
-import { getFileKey } from '@payloadcms/plugin-cloud-storage/utilities'
+import { getFileKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
 
 interface DeleteArgs {
   bucket: string

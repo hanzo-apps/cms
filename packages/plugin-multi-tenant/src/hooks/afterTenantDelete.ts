@@ -3,9 +3,9 @@ import type {
   CollectionConfig,
   JsonObject,
   PaginatedDocs,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { generateCookie, mergeHeaders } from 'payload'
+import { generateCookie, mergeHeaders } from @hanzo/cms'from 
 
 import type { UserWithTenantsField } from '../types.js'
 

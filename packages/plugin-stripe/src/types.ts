@@ -1,4 +1,4 @@
-import type { CollectionSlug, Payload, Config as PayloadConfig, PayloadRequest } from 'payload'
+import type { CollectionSlug, Payload, Config as PayloadConfig, PayloadRequest } from @hanzo/cms'from 
 import type Stripe from 'stripe'
 
 export type StripeWebhookHandler<T = any> = (args: {

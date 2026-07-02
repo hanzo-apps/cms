@@ -1,6 +1,6 @@
 'use client'
 
-import { Drawer, DrawerToggler, TextField, Upload, useDocumentInfo } from '@payloadcms/ui'
+import { Drawer, DrawerToggler, TextField, Upload, useDocumentInfo } from '@hanzo/cms-ui'
 import React from 'react'
 
 const customDrawerSlug = 'custom-upload-drawer'

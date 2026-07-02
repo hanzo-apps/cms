@@ -64,7 +64,7 @@ export const SlateToLexicalFeature = createServerFeature<
     props.converters = converters
 
     return {
-      ClientFeature: '@payloadcms/richtext-lexical/client#SlateToLexicalFeatureClient',
+      ClientFeature: '@hanzo/cms-richtext-lexical/client#SlateToLexicalFeatureClient',
       hooks: props.disableHooks
         ? undefined
         : {

@@ -1,6 +1,6 @@
-import type { SanitizedConfig } from 'payload'
+import type { SanitizedConfig } from @hanzo/cms'from 
 
-import { generateSchema } from '@payloadcms/graphql/utilities'
+import { generateSchema } from '@hanzo/cms-graphql/utilities'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'

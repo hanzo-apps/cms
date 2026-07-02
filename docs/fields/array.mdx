@@ -24,7 +24,7 @@ Arrays are useful for many different types of content from simple to complex, su
 To create an Array Field, set the `type` to `array` in your [Field Config](./overview):
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyArrayField: Field = {
   // ...
@@ -79,7 +79,7 @@ _\* An asterisk denotes that a property is required._
 To customize the appearance and behavior of the Array Field in the [Admin Panel](../admin/overview), you can use the `admin` option:
 
 ```ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const MyArrayField: Field = {
   // ...
@@ -103,7 +103,7 @@ The Array Field inherits all of the default admin options from the base [Field A
 In this example, we have an Array Field called `slider` that contains a set of fields for a simple image slider. Each row in the array has a `title`, `image`, and `caption`. We also customize the row label to display the title if it exists, or a default label if it doesn't.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ExampleCollection: CollectionConfig = {
   slug: 'example-collection',
@@ -149,8 +149,8 @@ export const ExampleCollection: CollectionConfig = {
 
 ```tsx
 import type React from 'react'
-import { ArrayField } from '@payloadcms/ui'
-import type { ArrayFieldServerComponent } from 'payload'
+import { ArrayField } from '@hanzo/cms-ui'
+import type { ArrayFieldServerComponent } from @hanzo/cms'from 
 
 export const CustomArrayFieldServer: ArrayFieldServerComponent = ({
   clientField,
@@ -174,8 +174,8 @@ export const CustomArrayFieldServer: ArrayFieldServerComponent = ({
 ```tsx
 'use client'
 import React from 'react'
-import { ArrayField } from '@payloadcms/ui'
-import type { ArrayFieldClientComponent } from 'payload'
+import { ArrayField } from '@hanzo/cms-ui'
+import type { ArrayFieldClientComponent } from @hanzo/cms'from 
 
 export const CustomArrayFieldClient: ArrayFieldClientComponent = (props) => {
   return <ArrayField {...props} />
@@ -188,8 +188,8 @@ export const CustomArrayFieldClient: ArrayFieldClientComponent = (props) => {
 
 ```tsx
 import React from 'react'
-import { FieldLabel } from '@payloadcms/ui'
-import type { ArrayFieldLabelServerComponent } from 'payload'
+import { FieldLabel } from '@hanzo/cms-ui'
+import type { ArrayFieldLabelServerComponent } from @hanzo/cms'from 
 
 export const CustomArrayFieldLabelServer: ArrayFieldLabelServerComponent = ({
   clientField,
@@ -209,9 +209,9 @@ export const CustomArrayFieldLabelServer: ArrayFieldLabelServerComponent = ({
 
 ```tsx
 'use client'
-import type { ArrayFieldLabelClientComponent } from 'payload'
+import type { ArrayFieldLabelClientComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomArrayFieldLabelClient: ArrayFieldLabelClientComponent = ({
@@ -233,7 +233,7 @@ export const CustomArrayFieldLabelClient: ArrayFieldLabelClientComponent = ({
 ```tsx
 'use client'
 
-import { useRowLabel } from '@payloadcms/ui'
+import { useRowLabel } from '@hanzo/cms-ui'
 
 export const ArrayRowLabel = () => {
   const { data, rowNumber } = useRowLabel<{ title?: string }>()

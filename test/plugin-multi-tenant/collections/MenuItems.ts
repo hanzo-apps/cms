@@ -1,7 +1,7 @@
-import type { Access, CollectionConfig, Where } from 'payload'
+import type { Access, CollectionConfig, Where } from @hanzo/cms'from 
 
-import { getUserTenantIDs } from '@payloadcms/plugin-multi-tenant/utilities'
-import { BlocksFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import { getUserTenantIDs } from '@hanzo/cms-plugin-multi-tenant/utilities'
+import { BlocksFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 import { menuItemsSlug, notTenantedSlug, relationshipsSlug } from '../shared.js'
 

@@ -1,6 +1,6 @@
-import type { BlocksField, CollectionConfig } from 'payload'
+import type { BlocksField, CollectionConfig } from @hanzo/cms'from 
 
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 import { blockFieldsSlug, textFieldsSlug } from '../../slugs.js'
 import { getBlocksFieldSeedData } from './shared.js'

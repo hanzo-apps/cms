@@ -1,6 +1,6 @@
-import type { SelectFieldServerProps } from 'payload'
+import type { SelectFieldServerProps } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 
 import { ErrorBox } from './ErrorBox.js'
 import './index.css'

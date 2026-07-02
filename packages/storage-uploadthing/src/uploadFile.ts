@@ -1,6 +1,6 @@
 import type { UTApi } from 'uploadthing/server'
 
-import { APIError } from 'payload'
+import { APIError } from @hanzo/cms'from 
 import { UTFile } from 'uploadthing/server'
 
 import type { ACL } from './index.js'

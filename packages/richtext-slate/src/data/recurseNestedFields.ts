@@ -1,6 +1,6 @@
-import type { Field, FlattenedBlock, PayloadRequest, PopulateType } from 'payload'
+import type { Field, FlattenedBlock, PayloadRequest, PopulateType } from @hanzo/cms'from 
 
-import { fieldAffectsData, fieldHasSubFields, fieldIsArrayType, tabHasName } from 'payload/shared'
+import { fieldAffectsData, fieldHasSubFields, fieldIsArrayType, tabHasName } from @hanzo/cms'from 
 
 import { populate } from './populate.js'
 import { recurseRichText } from './richTextRelationshipPromise.js'

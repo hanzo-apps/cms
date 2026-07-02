@@ -1,7 +1,7 @@
 'use client'
-import type { TextFieldClientComponent } from 'payload'
+import type { TextFieldClientComponent } from @hanzo/cms'from 
 
-import { useField } from '@payloadcms/ui'
+import { useField } from '@hanzo/cms-ui'
 
 export const RenderTracker: TextFieldClientComponent = ({ path }) => {
   useField({ path })

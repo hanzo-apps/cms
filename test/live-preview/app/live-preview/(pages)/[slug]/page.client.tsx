@@ -1,6 +1,6 @@
 'use client'
 
-import { useLivePreview } from '@payloadcms/live-preview-react'
+import { useLivePreview } from '@hanzo/cms-live-preview-react'
 import React from 'react'
 
 import type { Page as PageType } from '../../../../payload-types.js'

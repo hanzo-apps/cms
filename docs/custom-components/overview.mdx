@@ -35,7 +35,7 @@ As Payload compiles the Admin Panel, it checks your config for Custom Components
 To add a Custom Component, point to its file path in your Payload Config:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -66,7 +66,7 @@ Components using named exports are identified either by appending `#` followed b
 **Both default exports and named exports are fully supported.** Choose the pattern that works best for your codebase.
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)
@@ -110,7 +110,7 @@ Button: {
 While Custom Components are usually defined as a string, you can also pass in an object with additional options:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -171,7 +171,7 @@ The import map is **never regenerated** during:
 Using the `config.admin.importMap.importMapFile` property, you can override the location of the import map. This is useful if you want to place the import map in a different location, or if you want to use a custom file name.
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)
@@ -200,7 +200,7 @@ If needed, custom items can be appended onto the Import Map. This is mostly only
 To add a custom import to the Import Map, use the `admin.dependencies` property in your [Payload Config](../configuration/overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -232,7 +232,7 @@ Here is an example:
 
 ```tsx
 import React from 'react'
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 async function MyServerComponent({
   payload, // highlight-line
@@ -270,7 +270,7 @@ Each Custom Component receives the following props by default:
 It is also possible to pass custom props to your Custom Components. To do this, you can use either the `clientProps` or `serverProps` properties depending on whether your prop is [serializable](https://react.dev/reference/rsc/use-client#serializable-types), and whether your component is a Server or Client Component.
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -294,7 +294,7 @@ Here is how your component might receive this prop:
 
 ```tsx
 import React from 'react'
-import { Link } from '@payloadcms/ui'
+import { Link } from '@hanzo/cms-ui'
 
 export function MyComponent({ myCustomProp }: { myCustomProp: string }) {
   return <Link href="/admin/logout">{myCustomProp}</Link>
@@ -350,7 +350,7 @@ For this reason, Payload creates a Client Config and passes it into the Config P
 ```tsx
 'use client'
 import React from 'react'
-import { useConfig } from '@payloadcms/ui'
+import { useConfig } from '@hanzo/cms-ui'
 
 export function MyClientComponent() {
   // highlight-start
@@ -373,7 +373,7 @@ Within Server Components, this prop is named `field`:
 
 ```tsx
 import React from 'react'
-import type { TextFieldServerComponent } from 'payload'
+import type { TextFieldServerComponent } from @hanzo/cms'from 
 
 export const MyClientFieldComponent: TextFieldServerComponent = ({
   field: { name },
@@ -387,7 +387,7 @@ Within Client Components, this prop is named `clientField` because its non-seria
 ```tsx
 'use client'
 import React from 'react'
-import type { TextFieldClientComponent } from 'payload'
+import type { TextFieldClientComponent } from @hanzo/cms'from 
 
 export const MyClientFieldComponent: TextFieldClientComponent = ({
   clientField: { name },
@@ -400,13 +400,13 @@ export const MyClientFieldComponent: TextFieldClientComponent = ({
 
 All Custom Components can support language translations to be consistent with Payload's [I18n](../configuration/i18n). This will allow your Custom Components to display the correct language based on the user's preferences.
 
-To do this, first add your translation resources to the [I18n Config](../configuration/i18n). Then from any Server Component, you can translate resources using the `getTranslation` function from `@payloadcms/translations`.
+To do this, first add your translation resources to the [I18n Config](../configuration/i18n). Then from any Server Component, you can translate resources using the `getTranslation` function from `@hanzo/cms-translations`.
 
 All Server Components automatically receive the `i18n` object as a prop by default:
 
 ```tsx
 import React from 'react'
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 
 export default async function MyServerComponent({ i18n }) {
   const translatedTitle = getTranslation(myTranslation, i18n) // highlight-line
@@ -415,12 +415,12 @@ export default async function MyServerComponent({ i18n }) {
 }
 ```
 
-The best way to do this within a Client Component is to import the `useTranslation` hook from `@payloadcms/ui`:
+The best way to do this within a Client Component is to import the `useTranslation` hook from `@hanzo/cms-ui`:
 
 ```tsx
 'use client'
 import React from 'react'
-import { useTranslation } from '@payloadcms/ui'
+import { useTranslation } from '@hanzo/cms-ui'
 
 export function MyClientComponent() {
   const { t, i18n } = useTranslation() // highlight-line
@@ -460,12 +460,12 @@ export default async function MyServerComponent({ payload, locale }) {
 }
 ```
 
-The best way to do this within a Client Component is to import the `useLocale` hook from `@payloadcms/ui`:
+The best way to do this within a Client Component is to import the `useLocale` hook from `@hanzo/cms-ui`:
 
 ```tsx
 'use client'
 import React from 'react'
-import { useLocale } from '@payloadcms/ui'
+import { useLocale } from '@hanzo/cms-ui'
 
 function Greeting() {
   const locale = useLocale() // highlight-line
@@ -491,7 +491,7 @@ To make it easier to [build your Custom Components](#building-custom-components)
 ```tsx
 'use client'
 import React from 'react'
-import { useDocumentInfo } from '@payloadcms/ui'
+import { useDocumentInfo } from '@hanzo/cms-ui'
 
 export function MyClientComponent() {
   const { slug } = useDocumentInfo() // highlight-line
@@ -530,7 +530,7 @@ Then to colorize your Custom Component's background, for example, you can use th
 Payload also exports its [SCSS](https://sass-lang.com) library for reuse which includes mixins, etc. To use this, simply import it as follows into your `.scss` file:
 
 ```scss
-@import '~@payloadcms/ui/scss';
+@import '~@hanzo/cms-ui/scss';
 
 .my-component {
   @include mid-break {
@@ -584,7 +584,7 @@ To do this, use the [`useFormFields`](../admin/react-hooks) hook instead of `use
 
 ```ts
 'use client'
-import { useFormFields } from '@payloadcms/ui'
+import { useFormFields } from '@hanzo/cms-ui'
 
 const MyComponent: TextFieldClientComponent = ({ path }) => {
   const value = useFormFields(([fields, dispatch]) => fields[path])
@@ -596,10 +596,10 @@ const MyComponent: TextFieldClientComponent = ({ path }) => {
 
 When building Custom Components it's important to be mindful of your bundle sizes sent to the client which are primarily affected by your imports. Generally speaking you can import third party packages as needed though it's best to avoid large packages that bloat your bundle size.
 
-The most common issue is importing from our `@payloadcms/ui` package in the wrong context. So here are the simple rules to follow:
+The most common issue is importing from our `@hanzo/cms-ui` package in the wrong context. So here are the simple rules to follow:
 
-- In the **admin panel UI** you always want to import everything from `@payloadcms/ui` to ensure there's no package mismatch issues.
-- In the **frontend application** you must always import components and utilities from `@payloadcms/ui/path/to` for example `import { Button } from '@payloadcms/ui/elements/Button'` to ensure tree shaking is effective and your bundle sizes are minimized otherwise it will include the entire library with your frontend code and greatly bloat your bundle size.
+- In the **admin panel UI** you always want to import everything from `@hanzo/cms-ui` to ensure there's no package mismatch issues.
+- In the **frontend application** you must always import components and utilities from `@hanzo/cms-ui/path/to` for example `import { Button } from '@hanzo/cms-ui/elements/Button'` to ensure tree shaking is effective and your bundle sizes are minimized otherwise it will include the entire library with your frontend code and greatly bloat your bundle size.
 
 <Banner type="success">
   See the [Performance](../performance/overview) documentation for more tips and

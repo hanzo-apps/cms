@@ -15,7 +15,7 @@ export const BoldFeature = createServerFeature({
     }
 
     return {
-      ClientFeature: '@payloadcms/richtext-lexical/client#BoldFeatureClient',
+      ClientFeature: '@hanzo/cms-richtext-lexical/client#BoldFeatureClient',
       markdownTransformers,
     }
   },

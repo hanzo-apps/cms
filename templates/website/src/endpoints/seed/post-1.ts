@@ -1,5 +1,5 @@
 import type { Media, User } from '@/payload-types'
-import { RequiredDataFromCollectionSlug } from 'payload'
+import { RequiredDataFromCollectionSlug } from @hanzo/cms'from 
 
 export type PostArgs = {
   heroImage: Media

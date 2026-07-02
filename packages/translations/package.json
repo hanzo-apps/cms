@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/translations",
+  "name": "@hanzo/cms-translations",
   "version": "3.85.2",
   "homepage": "https://payloadcms.com",
   "repository": {
@@ -58,7 +58,7 @@
     "date-fns": "4.1.0"
   },
   "devDependencies": {
-    "@payloadcms/eslint-config": "workspace:*",
+    "@hanzo/cms-eslint-config": "workspace:*",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "dotenv": "16.4.7",

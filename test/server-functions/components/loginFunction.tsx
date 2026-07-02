@@ -1,5 +1,5 @@
 'use server'
-import { login } from '@payloadcms/next/auth'
+import { login } from '@hanzo/cms-next/auth'
 
 import config from '../config.js'
 

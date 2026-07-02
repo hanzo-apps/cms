@@ -1,7 +1,7 @@
-import type { AdminViewProps } from 'payload'
+import type { AdminViewProps } from @hanzo/cms'from 
 
-import { MinimalTemplate } from '@payloadcms/next/templates'
-import { Gutter } from '@payloadcms/ui'
+import { MinimalTemplate } from '@hanzo/cms-next/templates'
+import { Gutter } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomMinimalRootView: React.FC<AdminViewProps> = () => {

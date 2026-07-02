@@ -1,5 +1,5 @@
 'use client'
-import type { RelationshipFieldClientComponent, ValueWithRelation } from 'payload'
+import type { RelationshipFieldClientComponent, ValueWithRelation } from @hanzo/cms'from 
 
 import React, { useCallback, useMemo } from 'react'
 

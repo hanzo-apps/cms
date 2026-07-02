@@ -11,7 +11,7 @@ import { runAxeScan } from '__helpers/e2e/runAxeScan.js'
 import { openDocDrawer } from '__helpers/e2e/toggleDocDrawer.js'
 import { waitForAutoSaveToRunAndComplete } from '__helpers/e2e/waitForAutoSaveToRunAndComplete.js'
 import path from 'path'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../__helpers/shared/sdk/index.js'

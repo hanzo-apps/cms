@@ -1,11 +1,11 @@
-import type { LexicalInlineBlockServerProps } from '@payloadcms/richtext-lexical'
+import type { LexicalInlineBlockServerProps } from '@hanzo/cms-richtext-lexical'
 
 import {
   InlineBlockContainer,
   InlineBlockEditButton,
   InlineBlockLabel,
   InlineBlockRemoveButton,
-} from '@payloadcms/richtext-lexical/client'
+} from '@hanzo/cms-richtext-lexical/client'
 import React from 'react'
 
 export const BlockComponent: React.FC<LexicalInlineBlockServerProps> = () => {

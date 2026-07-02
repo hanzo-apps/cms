@@ -6,7 +6,7 @@ desc: Integrate Sentry error tracking into your Payload application
 keywords: plugins, sentry, error, tracking, monitoring, logging, bug, reporting, performance
 ---
 
-![https://www.npmjs.com/package/@payloadcms/plugin-sentry](https://img.shields.io/npm/v/@payloadcms/plugin-sentry)
+![https://www.npmjs.com/package/@hanzo/cms-plugin-sentry](https://img.shields.io/npm/v/@hanzo/cms-plugin-sentry)
 
 This plugin allows you to integrate [Sentry](https://sentry.io/) seamlessly with your [Payload](https://github.com/payloadcms/payload) application.
 
@@ -46,7 +46,7 @@ This multi-faceted software offers a range of features that will help you manage
 Install the plugin using any JavaScript package manager like [pnpm](https://pnpm.io), [npm](https://npmjs.com), or [Yarn](https://yarnpkg.com):
 
 ```bash
-  pnpm add @payloadcms/plugin-sentry
+  pnpm add @hanzo/cms-plugin-sentry
 ```
 
 ## Sentry for Next.js setup
@@ -66,8 +66,8 @@ Or the [Manual Setup](https://docs.sentry.io/platforms/javascript/guides/nextjs/
 In the `plugins` array of your [Payload Config](https://payloadcms.com/docs/configuration/overview), call the plugin and pass in your Sentry DSN as an option.
 
 ```ts
-import { buildConfig } from 'payload'
-import { sentryPlugin } from '@payloadcms/plugin-sentry'
+import { buildConfig } from @hanzo/cms'from 
+import { sentryPlugin } from '@hanzo/cms-plugin-sentry'
 import { Pages, Media } from './collections'
 
 import * as Sentry from '@sentry/nextjs'
@@ -86,9 +86,9 @@ If you want Sentry to capture Postgres query performance traces, you need to inj
 
 ```ts
 import * as Sentry from '@sentry/nextjs'
-import { buildConfig } from 'payload'
-import { sentryPlugin } from '@payloadcms/plugin-sentry'
-import { postgresAdapter } from '@payloadcms/db-postgres'
+import { buildConfig } from @hanzo/cms'from 
+import { sentryPlugin } from '@hanzo/cms-plugin-sentry'
+import { postgresAdapter } from '@hanzo/cms-db-postgres'
 import pg from 'pg'
 
 export default buildConfig({
@@ -128,8 +128,8 @@ export default buildConfig({
 Configure any of these options by passing them to the plugin:
 
 ```ts
-import { buildConfig } from 'payload'
-import { sentryPlugin } from '@payloadcms/plugin-sentry'
+import { buildConfig } from @hanzo/cms'from 
+import { sentryPlugin } from '@hanzo/cms-plugin-sentry'
 
 import * as Sentry from '@sentry/nextjs'
 
@@ -164,5 +164,5 @@ export default config
 All types can be directly imported:
 
 ```ts
-import { PluginOptions } from '@payloadcms/plugin-sentry'
+import { PluginOptions } from '@hanzo/cms-plugin-sentry'
 ```

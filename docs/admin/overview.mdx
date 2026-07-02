@@ -87,7 +87,7 @@ All auto-generated files will contain the following comments at the top of each 
 All root-level options for the Admin Panel are defined in your [Payload Config](../configuration/overview) under the `admin` property:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -131,7 +131,7 @@ The following options are available:
 To specify which Collection to allow to login to the Admin Panel, pass the `admin.user` key equal to the slug of any auth-enabled Collection:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -177,7 +177,7 @@ Root-level routes are those that are not behind the `/admin` path, such as the [
 To customize root-level routes, use the `routes` property in your [Payload Config](../configuration/overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -217,7 +217,7 @@ This change, however, also requires a change to your [Project Structure](#projec
 For example, if you set `routes.admin` to `/`:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -239,7 +239,7 @@ app
 
 <Banner type="warning">
   **Note:** If you set Root-level Routes _before_ auto-generating the Admin
-  Panel via `create-payload-app`, your [Project Structure](#project-structure)
+  Panel via `@hanzo/create-cms-app`, your [Project Structure](#project-structure)
   will already be set up correctly.
 </Banner>
 
@@ -256,7 +256,7 @@ Admin-level routes are those behind the `/admin` path. These are the routes that
 To customize admin-level routes, use the `admin.routes` property in your [Payload Config](../configuration/overview):
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -319,7 +319,7 @@ We validate the supported timezones array by checking the value against the list
 For example:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -350,7 +350,7 @@ const config = buildConfig({
 For `supportedTimezones` we also support using a function that is given the defaultTimezones list. This allows you to easily extend the default list of timezones rather than replacing it completely.
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -383,7 +383,7 @@ In some situations you may want the displayed date and time to match exactly wha
 Using a UTC timezone means that an editor inputing for example '1pm' will always see '1pm' and the stored value will be '13:00:00Z'.
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...

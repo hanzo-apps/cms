@@ -17,9 +17,9 @@ payload migrate:create localize_status
 **PostgreSQL / SQLite:**
 
 ```typescript
-import type { MigrateDownArgs, MigrateUpArgs } from '@payloadcms/db-postgres'
-import { sql } from '@payloadcms/db-postgres'
-import { localizeStatus } from 'payload/migrations'
+import type { MigrateDownArgs, MigrateUpArgs } from '@hanzo/cms-db-postgres'
+import { sql } from '@hanzo/cms-db-postgres'
+import { localizeStatus } from @hanzo/cms'from 
 
 export async function up({ db, payload }: MigrateUpArgs): Promise<void> {
   await localizeStatus.up({
@@ -43,8 +43,8 @@ export async function down({ db, payload }: MigrateDownArgs): Promise<void> {
 **MongoDB:**
 
 ```typescript
-import type { MigrateDownArgs, MigrateUpArgs } from '@payloadcms/db-mongodb'
-import { localizeStatus } from 'payload/migrations'
+import type { MigrateDownArgs, MigrateUpArgs } from '@hanzo/cms-db-mongodb'
+import { localizeStatus } from @hanzo/cms'from 
 
 export async function up({ payload }: MigrateUpArgs): Promise<void> {
   await localizeStatus.up({

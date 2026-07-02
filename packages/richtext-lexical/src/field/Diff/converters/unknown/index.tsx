@@ -1,7 +1,7 @@
 import type { LexicalNode } from 'lexical'
-import type { PayloadRequest } from 'payload'
+import type { PayloadRequest } from @hanzo/cms'from 
 
-import { type I18nClient } from '@payloadcms/translations'
+import { type I18nClient } from '@hanzo/cms-translations'
 
 import './index.scss'
 

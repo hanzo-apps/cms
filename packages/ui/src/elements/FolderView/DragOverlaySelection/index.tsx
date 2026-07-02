@@ -1,5 +1,5 @@
 import type { Modifier } from '@dnd-kit/core'
-import type { FolderOrDocument } from 'payload/shared'
+import type { FolderOrDocument } from @hanzo/cms'from 
 
 import { DragOverlay } from '@dnd-kit/core'
 import { getEventCoordinates } from '@dnd-kit/utilities'

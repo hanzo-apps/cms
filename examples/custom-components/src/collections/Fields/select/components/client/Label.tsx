@@ -1,7 +1,7 @@
 'use client'
-import type { SelectFieldLabelClientComponent } from 'payload'
+import type { SelectFieldLabelClientComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomSelectFieldLabelClient: SelectFieldLabelClientComponent = ({ field, path }) => {

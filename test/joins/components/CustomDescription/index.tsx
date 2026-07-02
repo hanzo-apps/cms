@@ -1,5 +1,5 @@
 'use client'
-import type { FieldDescriptionClientComponent } from 'payload'
+import type { FieldDescriptionClientComponent } from @hanzo/cms'from 
 
 import React from 'react'
 

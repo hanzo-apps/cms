@@ -18,10 +18,10 @@ import type {
   UpdateGlobalVersionArgs,
   UpdateOneArgs,
   UpdateVersionArgs,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import mongoose from 'mongoose'
-import { createDatabaseAdapter, defaultBeginTransaction, findMigrationDir } from 'payload'
+import { createDatabaseAdapter, defaultBeginTransaction, findMigrationDir } from @hanzo/cms'from 
 
 import type {
   CollectionModel,
@@ -331,7 +331,7 @@ export function mongooseAdapter({
       init,
       migrateFresh,
       migrationDir,
-      packageName: '@payloadcms/db-mongodb',
+      packageName: '@hanzo/cms-db-mongodb',
       payload,
       prodMigrations,
       queryDrafts,

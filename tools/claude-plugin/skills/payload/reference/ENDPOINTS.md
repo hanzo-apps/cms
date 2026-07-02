@@ -38,7 +38,7 @@ Custom REST API endpoints extend Payload's auto-generated CRUD operations with c
 Custom endpoints are **not authenticated by default**. Check `req.user` to enforce authentication.
 
 ```ts
-import { APIError } from 'payload'
+import { APIError } from @hanzo/cms'from 
 
 export const authenticatedEndpoint = {
   path: '/protected',
@@ -128,7 +128,7 @@ export const createEndpoint = {
 **Option 2: Using helper (handles JSON + files)**
 
 ```ts
-import { addDataAndFileToRequest } from 'payload'
+import { addDataAndFileToRequest } from @hanzo/cms'from 
 
 export const uploadEndpoint = {
   path: '/upload',
@@ -155,7 +155,7 @@ export const uploadEndpoint = {
 Use `headersWithCors` helper to apply config CORS settings.
 
 ```ts
-import { headersWithCors } from 'payload'
+import { headersWithCors } from @hanzo/cms'from 
 
 export const corsEndpoint = {
   path: '/public-data',
@@ -178,7 +178,7 @@ export const corsEndpoint = {
 Throw `APIError` with status codes for proper error responses.
 
 ```ts
-import { APIError } from 'payload'
+import { APIError } from @hanzo/cms'from 
 
 export const validateEndpoint = {
   path: '/validate',
@@ -231,7 +231,7 @@ export const searchEndpoint = {
 Parses request body and attaches to `req.data` and `req.file`.
 
 ```ts
-import { addDataAndFileToRequest } from 'payload'
+import { addDataAndFileToRequest } from @hanzo/cms'from 
 
 export const endpoint = {
   path: '/process',
@@ -259,7 +259,7 @@ export const endpoint = {
 Extracts locale from request data and validates against config.
 
 ```ts
-import { addLocalesToRequestFromData } from 'payload'
+import { addLocalesToRequestFromData } from @hanzo/cms'from 
 
 export const endpoint = {
   path: '/translate',
@@ -285,7 +285,7 @@ export const endpoint = {
 Applies CORS headers from Payload config.
 
 ```ts
-import { headersWithCors } from 'payload'
+import { headersWithCors } from @hanzo/cms'from 
 
 export const endpoint = {
   path: '/data',
@@ -312,7 +312,7 @@ export const endpoint = {
 From `examples/multi-tenant`:
 
 ```ts
-import { APIError, generatePayloadCookie, headersWithCors } from 'payload'
+import { APIError, generatePayloadCookie, headersWithCors } from @hanzo/cms'from 
 
 export const externalUsersLogin = {
   path: '/login-external',
@@ -403,7 +403,7 @@ export const webhookEndpoint = {
 From `packages/plugin-import-export`:
 
 ```ts
-import { addDataAndFileToRequest } from 'payload'
+import { addDataAndFileToRequest } from @hanzo/cms'from 
 
 export const previewEndpoint = {
   path: '/preview',
@@ -473,7 +473,7 @@ export const reindexEndpoint = (pluginConfig) => ({
 Mounted at `/api/{collection-slug}/{path}`.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Orders: CollectionConfig = {
   slug: 'orders',
@@ -499,7 +499,7 @@ export const Orders: CollectionConfig = {
 Mounted at `/api/globals/{global-slug}/{path}`.
 
 ```ts
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
 export const Settings: GlobalConfig = {
   slug: 'settings',

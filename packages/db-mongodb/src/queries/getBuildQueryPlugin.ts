@@ -1,6 +1,6 @@
-import type { FlattenedField, Payload, Where } from 'payload'
+import type { FlattenedField, Payload, Where } from @hanzo/cms'from 
 
-import { APIError } from 'payload'
+import { APIError } from @hanzo/cms'from 
 
 import { parseParams } from './parseParams.js'
 

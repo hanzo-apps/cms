@@ -5,9 +5,9 @@
  * - each tab has a different label in each language. Needs to be a LOCALIZED label, not a single label for all languages. Only then can it be reproduced
  */
 
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from @hanzo/cms'from 
 
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 const initializedEditor = lexicalEditor()
 

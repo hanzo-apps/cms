@@ -2,9 +2,9 @@ import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-import { sentryPlugin } from '@payloadcms/plugin-sentry'
+import { sentryPlugin } from '@hanzo/cms-plugin-sentry'
 import * as Sentry from '@sentry/nextjs'
-import { APIError } from 'payload'
+import { APIError } from @hanzo/cms'from 
 
 import { buildConfigWithDefaults } from '../buildConfigWithDefaults.js'
 import { devUser } from '../credentials.js'

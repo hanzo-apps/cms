@@ -1,5 +1,5 @@
-import type { PayloadRequest } from 'payload'
-import { getPayload } from 'payload'
+import type { PayloadRequest } from @hanzo/cms'from 
+import { getPayload } from @hanzo/cms'from 
 
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'

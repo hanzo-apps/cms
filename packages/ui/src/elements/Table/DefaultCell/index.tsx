@@ -1,8 +1,8 @@
 'use client'
-import type { DefaultCellComponentProps, UploadFieldClient } from 'payload'
+import type { DefaultCellComponentProps, UploadFieldClient } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
-import { fieldAffectsData, fieldIsID } from 'payload/shared'
+import { getTranslation } from '@hanzo/cms-translations'
+import { fieldAffectsData, fieldIsID } from @hanzo/cms'from 
 import React from 'react' // TODO: abstract this out to support all routers
 
 import { useConfig } from '../../../providers/Config/index.js'

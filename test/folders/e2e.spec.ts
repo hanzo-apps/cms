@@ -2,7 +2,7 @@ import type { Page } from '@playwright/test'
 
 import { expect, test } from '@playwright/test'
 import * as path from 'path'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import { applyBrowseByFolderTypeFilter } from '../__helpers/e2e/folders/applyBrowseByFolderTypeFilter.js'

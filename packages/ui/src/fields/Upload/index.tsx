@@ -1,6 +1,6 @@
 'use client'
 
-import type { UploadFieldClientProps, ValueWithRelation } from 'payload'
+import type { UploadFieldClientProps, ValueWithRelation } from @hanzo/cms'from 
 
 import React, { useMemo } from 'react'
 

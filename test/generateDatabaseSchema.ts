@@ -1,6 +1,6 @@
 import path from 'path'
-import { getPayload, type SanitizedConfig } from 'payload'
-import { loadEnv } from 'payload/node'
+import { getPayload, type SanitizedConfig } from @hanzo/cms'from 
+import { loadEnv } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import { setTestEnvPaths } from './__helpers/shared/setTestEnvPaths.js'

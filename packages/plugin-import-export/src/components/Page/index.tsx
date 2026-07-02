@@ -1,8 +1,8 @@
 'use client'
 
-import type { NumberFieldClientComponent } from 'payload'
+import type { NumberFieldClientComponent } from @hanzo/cms'from 
 
-import { NumberField, useField } from '@payloadcms/ui'
+import { NumberField, useField } from '@hanzo/cms-ui'
 import React, { useEffect } from 'react'
 
 import './index.scss'

@@ -1,6 +1,6 @@
-import type { PayloadRequest } from 'payload'
+import type { PayloadRequest } from @hanzo/cms'from 
 
-import { ValidationError } from 'payload'
+import { ValidationError } from @hanzo/cms'from 
 
 import type { DrizzleAdapter } from '../types.js'
 

@@ -1,6 +1,6 @@
-import type { CollectionAfterDeleteHook, CollectionConfig } from 'payload'
+import type { CollectionAfterDeleteHook, CollectionConfig } from @hanzo/cms'from 
 
-import { APIError } from 'payload'
+import { APIError } from @hanzo/cms'from 
 import Stripe from 'stripe'
 
 import type { StripePluginConfig } from '../types.js'

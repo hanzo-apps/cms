@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Address } from '@/payload-types'
-import { useAddresses } from '@payloadcms/plugin-ecommerce/client/react'
+import { useAddresses } from '@hanzo/cms-plugin-ecommerce/client/react'
 import { useState } from 'react'
 
 type Props = {

@@ -1,7 +1,7 @@
 import type { Config } from 'src/payload-types'
 
 import { unstable_cache } from 'next/cache'
-import { type DataFromGlobalSlug, getPayload } from 'payload'
+import { type DataFromGlobalSlug, getPayload } from @hanzo/cms'from 
 
 import configPromise from '../payload.config'
 

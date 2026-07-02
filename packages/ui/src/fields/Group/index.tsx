@@ -1,9 +1,9 @@
 'use client'
 
-import type { GroupFieldClientComponent } from 'payload'
+import type { GroupFieldClientComponent } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
-import { groupHasName } from 'payload/shared'
+import { getTranslation } from '@hanzo/cms-translations'
+import { groupHasName } from @hanzo/cms'from 
 import React, { useMemo } from 'react'
 
 import { useCollapsible } from '../../elements/Collapsible/provider.js'

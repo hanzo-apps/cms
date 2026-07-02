@@ -1,8 +1,8 @@
 'use server'
 
-import type { AuthCollectionSlug, LoginResult, MaybePromise, SanitizedConfig } from 'payload'
+import type { AuthCollectionSlug, LoginResult, MaybePromise, SanitizedConfig } from @hanzo/cms'from 
 
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 
 import { setPayloadAuthCookie } from '../utilities/setPayloadAuthCookie.js'
 

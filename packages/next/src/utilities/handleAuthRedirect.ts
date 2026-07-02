@@ -1,6 +1,6 @@
-import type { TypedUser } from 'payload'
+import type { TypedUser } from @hanzo/cms'from 
 
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import * as qs from 'qs-esm'
 
 type Args = {

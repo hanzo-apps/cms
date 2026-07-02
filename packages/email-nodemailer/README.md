@@ -9,7 +9,7 @@ It abstracts all of the email functionality that was in Payload by default in 2.
 ## Installation
 
 ```sh
-pnpm add @payloadcms/email-nodemailer nodemailer
+pnpm add @hanzo/cms-email-nodemailer nodemailer
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ pnpm add @payloadcms/email-nodemailer nodemailer
 ### Using nodemailer.createTransport
 
 ```ts
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 import nodemailer from 'nodemailer'
 
 export default buildConfig({
@@ -40,7 +40,7 @@ export default buildConfig({
 ### Using transportOptions
 
 ```ts
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 
 export default buildConfig({
   email: nodemailerAdapter({
@@ -64,7 +64,7 @@ During development, if you pass nothing to `nodemailerAdapter`, it will use the 
 This will log the ethereal.email details to console on startup.
 
 ```ts
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 
 export default buildConfig({
   email: nodemailerAdapter(), // This will be the old ethereal.email functionality

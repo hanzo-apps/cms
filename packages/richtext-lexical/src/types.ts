@@ -19,7 +19,7 @@ import type {
   SanitizedConfig,
   ServerFieldBase,
   StaticLabel,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import type { BlockComponentContextType } from './features/blocks/client/component/BlockContent.js'
 export type { BlockComponentContextType }
@@ -203,7 +203,7 @@ export type ViewMapBlockEditorProps<TNode extends SerializedBlockNode> = {
   /**
    * Hook to access block UI components (BlockCollapsible, EditButton, etc.).
    * Call this inside your component to get the context values.
-   * Passed as a prop so you don't need to import from @payloadcms/richtext-lexical/client.
+   * Passed as a prop so you don't need to import from @hanzo/cms-richtext-lexical/client.
    */
   useBlockComponentContext: () => BlockComponentContextType
 } & SharedViewMapBlockEditorProps<TNode>

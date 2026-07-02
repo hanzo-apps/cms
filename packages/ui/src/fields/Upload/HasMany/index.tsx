@@ -1,5 +1,5 @@
 'use client'
-import type { JsonObject } from 'payload'
+import type { JsonObject } from @hanzo/cms'from 
 
 import React from 'react'
 
@@ -11,7 +11,7 @@ import { UploadCard } from '../UploadCard/index.js'
 
 const baseClass = 'upload upload--has-many'
 
-import { getBestFitFromSizes, isImage } from 'payload/shared'
+import { getBestFitFromSizes, isImage } from @hanzo/cms'from 
 
 import './index.scss'
 

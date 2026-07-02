@@ -8,10 +8,10 @@ import {
   useAuth,
   useConfig,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import { useRouter } from 'next/navigation.js'
-import { type FormState } from 'payload'
-import { formatAdminURL } from 'payload/shared'
+import { type FormState } from @hanzo/cms'from 
+import { formatAdminURL } from @hanzo/cms'from 
 import React from 'react'
 
 type Args = {

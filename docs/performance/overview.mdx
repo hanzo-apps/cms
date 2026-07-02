@@ -65,7 +65,7 @@ For example, if you have a block that is used in multiple fields, you can define
 To do this, use the `blockReferences` option in your blocks field:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 const config = buildConfig({
   // ...
@@ -118,7 +118,7 @@ Ensure that you do not instantiate Payload unnecessarily. Instead, Payload provi
 To do this, use the `getPayload` function to get the cached instance of Payload:
 
 ```ts
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import config from '@payload-config'
 
 const myFunction = async () => {
@@ -179,18 +179,18 @@ await payload.db.updateOne({
 
 ### Avoid bundling the entire UI library in your front-end
 
-If your front-end imports from `@payloadcms/ui`, ensure that you do not bundle the entire package as this can significantly increase your bundle size.
+If your front-end imports from `@hanzo/cms-ui`, ensure that you do not bundle the entire package as this can significantly increase your bundle size.
 
 To do this, import using the full path to the specific component you need:
 
 ```ts
-import { Button } from '@payloadcms/ui/elements/Button'
+import { Button } from '@hanzo/cms-ui/elements/Button'
 ```
 
-Custom components within the Admin Panel, however, do not have this same restriction and can import directly from `@payloadcms/ui`:
+Custom components within the Admin Panel, however, do not have this same restriction and can import directly from `@hanzo/cms-ui`:
 
 ```ts
-import { Button } from '@payloadcms/ui'
+import { Button } from '@hanzo/cms-ui'
 ```
 
 <Banner type="success">
@@ -221,7 +221,7 @@ In Next.js 15, add `--turbo` to your dev script to significantly speed up your l
 ### Only bundle server packages in production
 
 <Banner type="warning">
-  **Note:** This is enabled by default in `create-payload-app` since v3.28.0. If
+  **Note:** This is enabled by default in `@hanzo/create-cms-app` since v3.28.0. If
   you created your app after this version, you don't need to do anything.
 </Banner>
 

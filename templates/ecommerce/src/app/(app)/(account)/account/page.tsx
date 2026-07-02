@@ -8,7 +8,7 @@ import configPromise from '@payload-config'
 import { AccountForm } from '@/components/forms/AccountForm'
 import { Order } from '@/payload-types'
 import { OrderItem } from '@/components/OrderItem'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import { redirect } from 'next/navigation'
 
 export default async function AccountPage() {

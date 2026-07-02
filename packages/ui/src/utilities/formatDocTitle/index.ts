@@ -1,12 +1,12 @@
-import type { I18n } from '@payloadcms/translations'
+import type { I18n } from '@hanzo/cms-translations'
 import type {
   ClientCollectionConfig,
   ClientGlobalConfig,
   SanitizedConfig,
   TypeWithID,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 
 import { formatDate } from './formatDateTitle.js'
 import { formatLexicalDocTitle, isSerializedLexicalEditor } from './formatLexicalDocTitle.js'

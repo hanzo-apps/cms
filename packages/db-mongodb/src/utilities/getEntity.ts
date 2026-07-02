@@ -1,6 +1,6 @@
-import type { Collection, SanitizedCollectionConfig, SanitizedGlobalConfig } from 'payload'
+import type { Collection, SanitizedCollectionConfig, SanitizedGlobalConfig } from @hanzo/cms'from 
 
-import { APIError } from 'payload'
+import { APIError } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from '../index.js'
 import type { CollectionModel, GlobalModel } from '../types.js'

@@ -1,8 +1,8 @@
 import type { SerializedEditorState } from 'lexical'
-import type { Field, FlattenedBlock, Payload } from 'payload'
+import type { Field, FlattenedBlock, Payload } from @hanzo/cms'from 
 
 import { createHeadlessEditor } from '@lexical/headless'
-import { fieldAffectsData, fieldHasSubFields, fieldIsArrayType, tabHasName } from 'payload/shared'
+import { fieldAffectsData, fieldHasSubFields, fieldIsArrayType, tabHasName } from @hanzo/cms'from 
 
 import type { LexicalRichTextAdapter } from '../../types.js'
 

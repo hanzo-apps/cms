@@ -1,8 +1,8 @@
-import type { PostgresAdapter } from '@payloadcms/db-postgres/types'
-import type { SQLiteAdapter } from '@payloadcms/db-sqlite/types'
+import type { PostgresAdapter } from '@hanzo/cms-db-postgres/types'
+import type { SQLiteAdapter } from '@hanzo/cms-db-sqlite/types'
 import type { PgTable } from 'drizzle-orm/pg-core'
 import type { SQLiteTable } from 'drizzle-orm/sqlite-core'
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import { sql } from 'drizzle-orm'
 

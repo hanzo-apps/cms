@@ -1,5 +1,5 @@
-import type { DrizzleAdapter, Operators } from '@payloadcms/drizzle'
-import type { DatabaseAdapterObj, Payload } from 'payload'
+import type { DrizzleAdapter, Operators } from '@hanzo/cms-drizzle'
+import type { DatabaseAdapterObj, Payload } from @hanzo/cms'from 
 
 import {
   beginTransaction,
@@ -38,7 +38,7 @@ import {
   updateMany,
   updateOne,
   updateVersion,
-} from '@payloadcms/drizzle'
+} from '@hanzo/cms-drizzle'
 import {
   columnToCodeConverter,
   convertPathToJSONTraversal,
@@ -50,9 +50,9 @@ import {
   init,
   insert,
   requireDrizzleKit,
-} from '@payloadcms/drizzle/sqlite'
+} from '@hanzo/cms-drizzle/sqlite'
 import { like, notLike } from 'drizzle-orm'
-import { createDatabaseAdapter, defaultBeginTransaction, findMigrationDir } from 'payload'
+import { createDatabaseAdapter, defaultBeginTransaction, findMigrationDir } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { Args, SQLiteD1Adapter } from './types.js'
@@ -190,7 +190,7 @@ export function sqliteD1Adapter(args: Args): DatabaseAdapterObj<SQLiteD1Adapter>
       migrateReset,
       migrateStatus,
       migrationDir,
-      packageName: '@payloadcms/db-d1-sqlite',
+      packageName: '@hanzo/cms-db-d1-sqlite',
       payload,
       queryDrafts,
       rejectInitializing,

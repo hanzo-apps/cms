@@ -1,6 +1,6 @@
-import type { ServerEditorConfig } from '@payloadcms/richtext-lexical'
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
-import type { Block, BlockSlug, CollectionConfig } from 'payload'
+import type { ServerEditorConfig } from '@hanzo/cms-richtext-lexical'
+import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
+import type { Block, BlockSlug, CollectionConfig } from @hanzo/cms'from 
 
 import {
   BlocksFeature,
@@ -14,9 +14,9 @@ import {
   sanitizeServerEditorConfig,
   TreeViewFeature,
   UploadFeature,
-} from '@payloadcms/richtext-lexical'
-import { createHeadlessEditor } from '@payloadcms/richtext-lexical/lexical/headless'
-import { $convertToMarkdownString } from '@payloadcms/richtext-lexical/lexical/markdown'
+} from '@hanzo/cms-richtext-lexical'
+import { createHeadlessEditor } from '@hanzo/cms-richtext-lexical/lexical/headless'
+import { $convertToMarkdownString } from '@hanzo/cms-richtext-lexical/lexical/markdown'
 
 import { lexicalFieldsSlug } from '../../slugs.js'
 import {

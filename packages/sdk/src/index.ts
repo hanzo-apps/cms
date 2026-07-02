@@ -9,7 +9,7 @@ import type {
   PayloadTypesShape,
   SelectType,
   TypeWithVersion,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export { PayloadSDKError } from './errors/PayloadSDKError.js'
 
@@ -83,10 +83,10 @@ type Args = {
    * The function always receives `path` as the first parameter and `RequestInit` as the second.
    * @example For testing without needing an HTTP server:
    * ```typescript
-   * import type { GeneratedTypes, SanitizedConfig } from 'payload';
+   * import type { GeneratedTypes, SanitizedConfig } from @hanzo/cms'from ;
    * import config from '@payload-config';
-   * import { REST_DELETE, REST_GET, REST_PATCH, REST_POST, REST_PUT } from '@payloadcms/next/routes';
-   * import { PayloadSDK } from '@payloadcms/sdk';
+   * import { REST_DELETE, REST_GET, REST_PATCH, REST_POST, REST_PUT } from '@hanzo/cms-next/routes';
+   * import { PayloadSDK } from '@hanzo/cms-sdk';
    *
    * export type TypedPayloadSDK = PayloadSDK<GeneratedTypes>;
    *

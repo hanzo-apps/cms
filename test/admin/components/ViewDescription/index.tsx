@@ -1,8 +1,8 @@
 'use client'
 
-import type { ViewDescriptionClientProps } from 'payload'
+import type { ViewDescriptionClientProps } from @hanzo/cms'from 
 
-import { ViewDescription as DefaultViewDescription } from '@payloadcms/ui'
+import { ViewDescription as DefaultViewDescription } from '@hanzo/cms-ui'
 import React from 'react'
 
 import { Banner } from '../Banner/index.js'

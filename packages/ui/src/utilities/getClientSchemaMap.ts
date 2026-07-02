@@ -1,5 +1,5 @@
-import type { I18n, I18nClient } from '@payloadcms/translations'
-import type { ClientConfig, ClientFieldSchemaMap, FieldSchemaMap, Payload } from 'payload'
+import type { I18n, I18nClient } from '@hanzo/cms-translations'
+import type { ClientConfig, ClientFieldSchemaMap, FieldSchemaMap, Payload } from @hanzo/cms'from 
 
 import { cache } from 'react'
 

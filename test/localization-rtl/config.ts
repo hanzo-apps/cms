@@ -2,10 +2,10 @@ import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-import { ar } from '@payloadcms/translations/languages/ar'
-import { de } from '@payloadcms/translations/languages/de'
-import { en } from '@payloadcms/translations/languages/en'
-import { es } from '@payloadcms/translations/languages/es'
+import { ar } from '@hanzo/cms-translations/languages/ar'
+import { de } from '@hanzo/cms-translations/languages/de'
+import { en } from '@hanzo/cms-translations/languages/en'
+import { es } from '@hanzo/cms-translations/languages/es'
 
 import { buildConfigWithDefaults } from '../buildConfigWithDefaults.js'
 import { devUser } from '../credentials.js'

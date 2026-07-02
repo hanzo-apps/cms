@@ -1,10 +1,10 @@
 'use client'
 const baseClass = 'render-field-diffs'
-import type { VersionField } from 'payload'
+import type { VersionField } from @hanzo/cms'from 
 
 import './index.scss'
 
-import { ShimmerEffect } from '@payloadcms/ui'
+import { ShimmerEffect } from '@hanzo/cms-ui'
 import React, { Fragment, useEffect } from 'react'
 
 export const RenderVersionFieldsToDiff = ({

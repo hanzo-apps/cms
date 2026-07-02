@@ -4,7 +4,7 @@ export const localApiCollectionsQADataset: EvalCase[] = [
   {
     input: 'What are the two ways to access the Payload Local API, and when would you use each?',
     expected:
-      'Via req.payload inside hooks, access control functions, and other Payload callbacks where req is available; or via getPayload({ config }) imported from "payload" for use in server-side contexts like Next.js route handlers or React Server Components where req is not available',
+      'Via req.payload inside hooks, access control functions, and other Payload callbacks where req is available; or via getPayload({ config }) imported from @hanzo/cms"from  for use in server-side contexts like Next.js route handlers or React Server Components where req is not available',
     category: 'local-api',
   },
   {

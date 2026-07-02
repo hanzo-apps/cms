@@ -8,14 +8,14 @@ Official SQLite adapter for [Payload](https://payloadcms.com).
 ## Installation
 
 ```bash
-npm install @payloadcms/db-sqlite
+npm install @hanzo/cms-db-sqlite
 ```
 
 ## Usage
 
 ```ts
-import { buildConfig } from 'payload/config'
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { buildConfig } from @hanzo/cms'from 
+import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
 
 export default buildConfig({
   db: sqliteAdapter({

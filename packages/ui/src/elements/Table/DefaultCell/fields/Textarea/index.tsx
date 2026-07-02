@@ -1,5 +1,5 @@
 'use client'
-import type { DefaultCellComponentProps, TextareaFieldClient } from 'payload'
+import type { DefaultCellComponentProps, TextareaFieldClient } from @hanzo/cms'from 
 
 import React from 'react'
 

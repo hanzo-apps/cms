@@ -1,6 +1,6 @@
-import type { WorkflowConfig } from 'payload'
+import type { WorkflowConfig } from @hanzo/cms'from 
 
-import { wait } from 'payload/shared'
+import { wait } from @hanzo/cms'from 
 
 /**
  * A workflow that includes the queue name in the concurrency key,

@@ -38,7 +38,7 @@ At the top of your Payload Config you can define all the options to manage Graph
 Everything that can be done to a Collection via the REST or Local API can be done with GraphQL (outside of uploading files, which is REST-only). If you have a collection as follows:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const PublicUser: CollectionConfig = {
   slug: 'public-users',
@@ -78,7 +78,7 @@ export const PublicUser: CollectionConfig = {
 Globals are also fully supported. For example:
 
 ```ts
-import type { GlobalConfig } from 'payload';
+import type { GlobalConfig } from @hanzo/cms'from ;
 
 const Header: GlobalConfig = {
   slug: 'header',
@@ -139,8 +139,8 @@ see a ton of detail about how GraphQL operates within Payload.
 You can add custom validation rules to your GraphQL API by defining a `validationRules` function in your Payload Config. This function should return an array of [Validation Rules](https://graphql.org/graphql-js/validation/#validation-rules) that will be applied to all incoming queries and mutations.
 
 ```ts
-import { GraphQL } from '@payloadcms/graphql/types'
-import { buildConfig } from 'payload'
+import { GraphQL } from '@hanzo/cms-graphql/types'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...

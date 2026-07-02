@@ -187,7 +187,7 @@ export type ScheduleConfig = {
 The following example demonstrates scheduling a Job to enqueue every day at midnight:
 
 ```ts
-import type { TaskConfig } from 'payload'
+import type { TaskConfig } from @hanzo/cms'from 
 
 export const SendDigestEmail: TaskConfig<'SendDigestEmail'> = {
   slug: 'SendDigestEmail',
@@ -258,7 +258,7 @@ Here's how the scheduling process operates in detail:
 You may want more control over concurrency or dynamically set Job inputs at scheduling time. For instance, allowing multiple overlapping Jobs to be scheduled, even if a previously scheduled job has not completed yet, or preparing dynamic data to pass to your Job handler:
 
 ```ts
-import { countRunnableOrActiveJobsForQueue } from 'payload'
+import { countRunnableOrActiveJobsForQueue } from @hanzo/cms'from 
 
 schedule: [
   {
@@ -517,7 +517,7 @@ jobs: {
 If you have a custom `beforeSchedule` hook, make sure it properly checks for existing jobs:
 
 ```ts
-import { countRunnableOrActiveJobsForQueue } from 'payload'
+import { countRunnableOrActiveJobsForQueue } from @hanzo/cms'from 
 
 hooks: {
   beforeSchedule: async ({ queueable, req }) => {

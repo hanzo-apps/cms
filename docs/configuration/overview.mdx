@@ -13,7 +13,7 @@ Everything from your [Database](../database/overview) choice to the appearance o
 The Payload Config is a `payload.config.ts` file typically located in the root of your project:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // Your config goes here
@@ -34,8 +34,8 @@ To author your Payload Config, first determine which [Database](../database/over
 Here is one of the simplest possible Payload configs:
 
 ```ts
-import { buildConfig } from 'payload'
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { buildConfig } from @hanzo/cms'from 
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET,
@@ -117,7 +117,7 @@ Payload exposes a variety of TypeScript settings that you can leverage. These se
 To customize the TypeScript settings, use the `typescript` property in your Payload Config:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -225,7 +225,7 @@ Cross-origin resource sharing (CORS) can be configured with either a whitelist a
 Here's an example showing how to allow incoming requests from any domain:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -238,7 +238,7 @@ export default buildConfig({
 Here's an example showing how to append a new header (`x-custom-header`) in `Access-Control-Allow-Headers`:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // ...
@@ -258,7 +258,7 @@ You can import types from Payload to help make writing your config easier and ty
 The `Config` type represents a raw Payload Config in its full form. Only the bare minimum properties are marked as required. The `SanitizedConfig` type represents a Payload Config after it has been fully sanitized. Generally, this is only used internally by Payload.
 
 ```ts
-import type { Config, SanitizedConfig } from 'payload'
+import type { Config, SanitizedConfig } from @hanzo/cms'from 
 ```
 
 ## Server vs. Client
@@ -288,7 +288,7 @@ The `logger` option accepts one of three forms:
 Pass a `{ options, destination? }` object to configure the logger. `options` accepts standard [Pino logger options](https://getpino.io/#/docs/api?id=options) such as `level` and `name`. An optional `destination` stream can be supplied as a second argument.
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   // highlight-start
@@ -304,7 +304,7 @@ export default buildConfig({
 To write logs to a file, pass a destination stream:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 import { pino } from 'pino'
 
 export default buildConfig({
@@ -330,7 +330,7 @@ export default buildConfig({
 Pass a fully configured Pino logger instance. This is the recommended approach when you need custom transports, formatters, or `pino-pretty` in development:
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 import { pino } from 'pino'
 import pinoPretty from 'pino-pretty'
 
@@ -359,9 +359,9 @@ Example for `pnpm payload seed`:
 Step 1: create `seed.ts` file in the same folder with `payload.config.ts` with:
 
 ```ts
-import type { SanitizedConfig } from 'payload'
+import type { SanitizedConfig } from @hanzo/cms'from 
 
-import payload from 'payload'
+import payload from @hanzo/cms'from 
 
 // Script must define a "script" function export that accepts the sanitized config
 export const script = async (config: SanitizedConfig) => {

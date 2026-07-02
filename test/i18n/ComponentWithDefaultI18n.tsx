@@ -1,5 +1,5 @@
 'use client'
-import { useTranslation } from '@payloadcms/ui'
+import { useTranslation } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const ComponentWithDefaultI18n = () => {

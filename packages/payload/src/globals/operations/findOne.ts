@@ -1,4 +1,4 @@
-import { ar } from '@payloadcms/translations/languages/ar'
+import { ar } from '@hanzo/cms-translations/languages/ar'
 
 import type { FindOptions } from '../../collections/operations/local/find.js'
 import type { AccessResult } from '../../config/types.js'

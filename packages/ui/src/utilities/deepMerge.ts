@@ -5,7 +5,7 @@
  *
  * obj2 takes precedence over obj1 - thus if obj2 has a key that obj1 also has, obj2's value will be used.
  *
- * NOTE: This must remain a 1:1 copy of `deepMergeSimple` in `@payloadcms/translations/utilities`.
+ * NOTE: This must remain a 1:1 copy of `deepMergeSimple` in `@hanzo/cms-translations/utilities`.
  *
  * @param obj1 base object
  * @param obj2 object to merge "into" obj1

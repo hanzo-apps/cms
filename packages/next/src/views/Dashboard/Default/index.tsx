@@ -1,8 +1,8 @@
-import type { groupNavItems } from '@payloadcms/ui/shared'
-import type { AdminViewServerPropsOnly, ClientUser, Locale, ServerProps } from 'payload'
+import type { groupNavItems } from '@hanzo/cms-ui/shared'
+import type { AdminViewServerPropsOnly, ClientUser, Locale, ServerProps } from @hanzo/cms'from 
 
-import { Gutter } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { Gutter } from '@hanzo/cms-ui'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import React from 'react'
 
 import { ModularDashboard } from './ModularDashboard/index.js'

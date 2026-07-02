@@ -1,6 +1,6 @@
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { buildConfig } from 'payload'
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   collections: [],

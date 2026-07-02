@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/plugin-ecommerce",
+  "name": "@hanzo/cms-plugin-ecommerce",
   "version": "3.85.2",
   "description": "Ecommerce plugin for Payload",
   "keywords": [
@@ -83,22 +83,22 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@payloadcms/translations": "workspace:*",
-    "@payloadcms/ui": "workspace:*",
+    "@hanzo/cms-translations": "workspace:*",
+    "@hanzo/cms-ui": "workspace:*",
     "qs-esm": "8.0.1"
   },
   "devDependencies": {
-    "@payloadcms/eslint-config": "workspace:*",
-    "@payloadcms/next": "workspace:*",
-    "@payloadcms/translations": "workspace:*",
+    "@hanzo/cms-eslint-config": "workspace:*",
+    "@hanzo/cms-next": "workspace:*",
+    "@hanzo/cms-translations": "workspace:*",
     "@types/json-schema": "7.0.15",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "payload": "workspace:*",
+    "@hanzo/cms": "workspace:*",
     "stripe": "18.3.0"
   },
   "peerDependencies": {
-    "payload": "workspace:*",
+    "@hanzo/cms": "workspace:*",
     "react": "^19.0.1 || ^19.1.2 || ^19.2.1",
     "react-dom": "^19.0.1 || ^19.1.2 || ^19.2.1"
   },

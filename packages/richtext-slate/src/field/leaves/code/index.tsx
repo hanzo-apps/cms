@@ -2,6 +2,6 @@ import type { RichTextCustomLeaf } from '../../../types.js'
 
 export const code: RichTextCustomLeaf = {
   name: 'code',
-  Button: '@payloadcms/richtext-slate/client#CodeLeafButton',
-  Leaf: '@payloadcms/richtext-slate/client#CodeLeaf',
+  Button: '@hanzo/cms-richtext-slate/client#CodeLeafButton',
+  Leaf: '@hanzo/cms-richtext-slate/client#CodeLeaf',
 }

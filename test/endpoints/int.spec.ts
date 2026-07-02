@@ -1,5 +1,5 @@
 import path from 'path'
-import { type Payload } from 'payload'
+import { type Payload } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 

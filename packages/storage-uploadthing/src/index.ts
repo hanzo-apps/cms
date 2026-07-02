@@ -2,13 +2,13 @@ import type {
   ClientUploadsAccess,
   PluginOptions as CloudStoragePluginOptions,
   CollectionOptions,
-} from '@payloadcms/plugin-cloud-storage/types'
-import type { Config, Plugin, UploadCollectionSlug } from 'payload'
+} from '@hanzo/cms-plugin-cloud-storage/types'
+import type { Config, Plugin, UploadCollectionSlug } from @hanzo/cms'from 
 import type { createUploadthing } from 'uploadthing/server'
 import type { UTApiOptions } from 'uploadthing/types'
 
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
-import { initClientUploads } from '@payloadcms/plugin-cloud-storage/utilities'
+import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'
+import { initClientUploads } from '@hanzo/cms-plugin-cloud-storage/utilities'
 import { UTApi } from 'uploadthing/server'
 
 import { createUploadthingAdapter } from './adapter.js'
@@ -74,7 +74,7 @@ export const uploadthingStorage: UploadthingPlugin =
     const isPluginDisabled = uploadthingStorageOptions.enabled === false
 
     initClientUploads({
-      clientHandler: '@payloadcms/storage-uploadthing/client#UploadthingClientUploadHandler',
+      clientHandler: '@hanzo/cms-storage-uploadthing/client#UploadthingClientUploadHandler',
       collections: uploadthingStorageOptions.collections,
       config: incomingConfig,
       enabled: !isPluginDisabled && Boolean(uploadthingStorageOptions.clientUploads),

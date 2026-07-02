@@ -1,11 +1,11 @@
-import type { PayloadRequest, RelationshipField, TypeWithID } from 'payload'
+import type { PayloadRequest, RelationshipField, TypeWithID } from @hanzo/cms'from 
 
 import {
   fieldAffectsData,
   fieldIsPresentationalOnly,
   fieldShouldBeLocalized,
   flattenTopLevelFields,
-} from 'payload/shared'
+} from @hanzo/cms'from 
 
 import type { RelationshipValue } from './index.js'
 

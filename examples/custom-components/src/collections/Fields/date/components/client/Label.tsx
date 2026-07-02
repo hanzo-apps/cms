@@ -1,7 +1,7 @@
 'use client'
-import type { DateFieldLabelClientComponent } from 'payload'
+import type { DateFieldLabelClientComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomDateFieldLabelClient: DateFieldLabelClientComponent = ({ field, path }) => {

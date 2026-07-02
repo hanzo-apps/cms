@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import { type PayloadHandler, type TypedUser, UnauthorizedError, type Where } from 'payload'
+import { type PayloadHandler, type TypedUser, UnauthorizedError, type Where } from @hanzo/cms'from 
 
 import type { MCPAccessSettings, MCPPluginConfig } from '../types.js'
 

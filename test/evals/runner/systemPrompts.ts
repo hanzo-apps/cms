@@ -10,8 +10,8 @@ const SKILL_CONTEXT = fs.readFileSync(skillPath, 'utf-8')
 const CODEGEN_RULES = `Rules:
 - Output ONLY the full TypeScript file content — no prose, no markdown code fences, no explanation
 - Preserve all existing imports, collections, fields, and settings unless the task requires changing them
-- This is Payload CMS v3. Always import types from "payload" — never from "payload/types" (that is the old v2 path)
-- Use correct Payload types: CollectionConfig, Plugin, Config from "payload"
+- This is Payload CMS v3. Always import types from @hanzo/cms"from  — never from @hanzo/cms"from  (that is the old v2 path)
+- Use correct Payload types: CollectionConfig, Plugin, Config from @hanzo/cms"from 
 - Field types: text, textarea, number, checkbox, select, relationship, richText, array, group, blocks, date, email, upload
 - Access control functions receive ({ req }) and return boolean or Promise<boolean>
 - Hooks live in a hooks object with arrays: beforeChange, afterRead, beforeDelete, etc.

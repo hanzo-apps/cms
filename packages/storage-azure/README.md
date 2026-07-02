@@ -2,12 +2,12 @@
 
 This package provides a simple way to use [Azure Blob Storage](https://azure.microsoft.com/en-us/products/storage/blobs) with Payload.
 
-**NOTE:** This package removes the need to use `@payloadcms/plugin-cloud-storage` as was needed in Payload 2.x.
+**NOTE:** This package removes the need to use `@hanzo/cms-plugin-cloud-storage` as was needed in Payload 2.x.
 
 ## Installation
 
 ```sh
-pnpm add @payloadcms/storage-azure
+pnpm add @hanzo/cms-storage-azure
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ pnpm add @payloadcms/storage-azure
 - When deploying to Vercel, server uploads are limited with 4.5MB. Set `clientUploads` to `true` to do uploads directly on the client. You must allow CORS PUT method to your website.
 
 ```ts
-import { azureStorage } from '@payloadcms/storage-azure'
+import { azureStorage } from '@hanzo/cms-storage-azure'
 import { Media } from './collections/Media'
 import { MediaWithPrefix } from './collections/MediaWithPrefix'
 

@@ -2,13 +2,13 @@ import type {
   ClientUploadsConfig,
   PluginOptions as CloudStoragePluginOptions,
   CollectionOptions,
-} from '@payloadcms/plugin-cloud-storage/types'
+} from '@hanzo/cms-plugin-cloud-storage/types'
 import type { NodeHttpHandlerOptions } from '@smithy/node-http-handler'
-import type { Config, Plugin, UploadCollectionSlug } from 'payload'
+import type { Config, Plugin, UploadCollectionSlug } from @hanzo/cms'from 
 
 import * as AWS from '@aws-sdk/client-s3'
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
-import { initClientUploads } from '@payloadcms/plugin-cloud-storage/utilities'
+import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'
+import { initClientUploads } from '@hanzo/cms-plugin-cloud-storage/utilities'
 
 import type { SignedDownloadsConfig } from './getFile.js'
 
@@ -143,7 +143,7 @@ export const s3Storage: S3StoragePlugin =
     const isPluginDisabled = s3StorageOptions.enabled === false
 
     initClientUploads({
-      clientHandler: '@payloadcms/storage-s3/client#S3ClientUploadHandler',
+      clientHandler: '@hanzo/cms-storage-s3/client#S3ClientUploadHandler',
       collections: s3StorageOptions.collections,
       config: incomingConfig,
       enabled: !isPluginDisabled && Boolean(s3StorageOptions.clientUploads),

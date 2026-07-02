@@ -2,11 +2,11 @@ import type {
   ClientUploadsConfig,
   PluginOptions as CloudStoragePluginOptions,
   CollectionOptions,
-} from '@payloadcms/plugin-cloud-storage/types'
-import type { Config, Plugin, UploadCollectionSlug } from 'payload'
+} from '@hanzo/cms-plugin-cloud-storage/types'
+import type { Config, Plugin, UploadCollectionSlug } from @hanzo/cms'from 
 
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
-import { initClientUploads } from '@payloadcms/plugin-cloud-storage/utilities'
+import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'
+import { initClientUploads } from '@hanzo/cms-plugin-cloud-storage/utilities'
 
 import type { VercelBlobClientUploadHandlerExtra } from './client/VercelBlobClientUploadHandler.js'
 
@@ -128,7 +128,7 @@ export const vercelBlobStorage: VercelBlobStoragePlugin =
       VercelBlobClientUploadHandlerExtra,
       VercelBlobStorageOptions['collections'][string]
     >({
-      clientHandler: '@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler',
+      clientHandler: '@hanzo/cms-storage-vercel-blob/client#VercelBlobClientUploadHandler',
       collections: options.collections,
       config: incomingConfig,
       enabled: !isPluginDisabled && Boolean(options.clientUploads),

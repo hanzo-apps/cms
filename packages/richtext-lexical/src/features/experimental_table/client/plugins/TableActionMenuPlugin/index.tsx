@@ -27,7 +27,7 @@ import {
   TableCellNode,
 } from '@lexical/table'
 import { mergeRegister } from '@lexical/utils'
-import { useScrollInfo } from '@payloadcms/ui'
+import { useScrollInfo } from '@hanzo/cms-ui'
 import {
   $getSelection,
   $isElementNode,

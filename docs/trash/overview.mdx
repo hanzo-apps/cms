@@ -15,7 +15,7 @@ Soft delete is a safer way to manage content lifecycle, giving editors a chance 
 To enable soft deleting for a collection, set the `trash` property to `true`:
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -198,7 +198,7 @@ This pattern is similar to how `publish` access control works with `data._status
 #### Example: Allow All Users to Trash, Only Admins to Permanently Delete
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -234,7 +234,7 @@ export const Posts: CollectionConfig = {
 #### Example: Only Admins Can Delete (Both Trash and Permanent)
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const SensitiveData: CollectionConfig = {
   slug: 'sensitive-data',

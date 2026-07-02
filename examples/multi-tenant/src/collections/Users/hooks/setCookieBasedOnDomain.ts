@@ -1,6 +1,6 @@
-import type { CollectionAfterLoginHook } from 'payload'
+import type { CollectionAfterLoginHook } from @hanzo/cms'from 
 
-import { mergeHeaders, generateCookie, getCookieExpiration } from 'payload'
+import { mergeHeaders, generateCookie, getCookieExpiration } from @hanzo/cms'from 
 
 export const setCookieBasedOnDomain: CollectionAfterLoginHook = async ({ req, user }) => {
   const relatedOrg = await req.payload.find({

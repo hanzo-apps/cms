@@ -1,6 +1,6 @@
 'use client'
 
-import { useField } from '@payloadcms/ui'
+import { useField } from '@hanzo/cms-ui'
 
 export function AfterField() {
   const { setValue } = useField({ path: 'customJSON' })

@@ -29,7 +29,7 @@ All Payload APIs support the pagination controls below. With them, you can creat
 To specify pagination controls in the [Local API](../local-api/overview), you can use the `limit`, `page`, and `pagination` options in your query:
 
 ```ts
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 const getPosts = async (payload: Payload) => {
   const posts = await payload.find({
@@ -143,7 +143,7 @@ For `find` operations within the Local API, you can disable pagination to retrie
 To do this, set `pagination: false` in your query:
 
 ```ts
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 const getPost = async (payload: Payload) => {
   const posts = await payload.find({

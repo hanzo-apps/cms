@@ -1,7 +1,7 @@
-import type { SanitizedConfig } from 'payload'
+import type { SanitizedConfig } from @hanzo/cms'from 
 
 import { writeFileSync } from 'fs'
-import payload from 'payload'
+import payload from @hanzo/cms'from 
 
 import { testFilePath } from './testFilePath.js'
 

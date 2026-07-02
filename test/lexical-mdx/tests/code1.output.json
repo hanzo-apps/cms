@@ -9,7 +9,7 @@
           "fields": {
             "blockType": "Code",
             "language": "ts",
-            "code": "import { buildConfig } from 'payload'\nimport { lexicalEditor } from '@payloadcms/richtext-lexical'\n\nexport default buildConfig({\n  collections: [\n    // your collections here\n  ],\n  // Pass the Lexical editor to the root config\n  editor: lexicalEditor({}),\n})",
+            "code": "import { buildConfig } from @hanzo/cms'from \nimport { lexicalEditor } from '@hanzo/cms-richtext-lexical'\n\nexport default buildConfig({\n  collections: [\n    // your collections here\n  ],\n  // Pass the Lexical editor to the root config\n  editor: lexicalEditor({}),\n})",
             "id": "6774559ba09e004452672523"
           }
         }

@@ -1,7 +1,7 @@
 import type * as AWS from '@aws-sdk/client-s3'
 
 import { Upload } from '@aws-sdk/lib-storage'
-import { getFileKey } from '@payloadcms/plugin-cloud-storage/utilities'
+import { getFileKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
 import fs from 'fs'
 
 interface UploadArgs {

@@ -3,8 +3,8 @@ import type {
   LexicalRichTextAdapter,
   SanitizedServerEditorConfig,
   SerializedBlockNode,
-} from '@payloadcms/richtext-lexical'
-import type { RichTextField, SanitizedConfig } from 'payload'
+} from '@hanzo/cms-richtext-lexical'
+import type { RichTextField, SanitizedConfig } from @hanzo/cms'from 
 import type { MarkOptional } from 'ts-essentials'
 
 import { writeFileSync } from 'fs'

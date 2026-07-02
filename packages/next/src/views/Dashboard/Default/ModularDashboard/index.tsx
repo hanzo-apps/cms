@@ -1,7 +1,7 @@
-import type { TFunction } from '@payloadcms/translations'
-import type { ClientWidget, Field, WidgetServerProps } from 'payload'
+import type { TFunction } from '@hanzo/cms-translations'
+import type { ClientWidget, Field, WidgetServerProps } from @hanzo/cms'from 
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import React from 'react'
 
 import type { DashboardViewServerProps } from '../index.js'

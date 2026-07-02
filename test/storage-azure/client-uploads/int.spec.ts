@@ -1,5 +1,5 @@
 import type { ContainerClient } from '@azure/storage-blob'
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import { BlobServiceClient } from '@azure/storage-blob'
 import { readFile } from 'node:fs/promises'
@@ -21,7 +21,7 @@ let restClient: NextRESTClient
 let containerClient: ContainerClient
 let TEST_CONTAINER: string
 
-describe('@payloadcms/storage-azure clientUploads', () => {
+describe('@hanzo/cms-storage-azure clientUploads', () => {
   const clearContainer = async () => {
     for await (const blob of containerClient.listBlobsFlat()) {
       await containerClient.deleteBlob(blob.name)

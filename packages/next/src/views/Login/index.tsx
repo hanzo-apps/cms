@@ -1,8 +1,8 @@
-import type { AdminViewServerProps, ServerProps } from 'payload'
+import type { AdminViewServerProps, ServerProps } from @hanzo/cms'from 
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import { redirect } from 'next/navigation.js'
-import { getSafeRedirect } from 'payload/shared'
+import { getSafeRedirect } from @hanzo/cms'from 
 import React, { Fragment } from 'react'
 
 import { Logo } from '../../elements/Logo/index.js'

@@ -3,9 +3,9 @@ import type {
   PayloadRequest,
   SanitizedCollectionPermission,
   SanitizedGlobalPermission,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { docAccessOperation, isolateObjectProperty } from 'payload'
+import { docAccessOperation, isolateObjectProperty } from @hanzo/cms'from 
 
 import type { Context } from '../types.js'
 

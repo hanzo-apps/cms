@@ -1,4 +1,4 @@
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
+import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)

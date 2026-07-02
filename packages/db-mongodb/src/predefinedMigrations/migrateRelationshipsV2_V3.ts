@@ -1,7 +1,7 @@
 import type { ClientSession, Model } from 'mongoose'
-import type { Field, PayloadRequest } from 'payload'
+import type { Field, PayloadRequest } from @hanzo/cms'from 
 
-import { buildVersionCollectionFields, buildVersionGlobalFields } from 'payload'
+import { buildVersionCollectionFields, buildVersionGlobalFields } from @hanzo/cms'from 
 
 import type { MongooseAdapter } from '../index.js'
 

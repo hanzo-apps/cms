@@ -1,4 +1,4 @@
-import type { CollectionSlug, Payload } from 'payload'
+import type { CollectionSlug, Payload } from @hanzo/cms'from 
 
 import * as AWS from '@aws-sdk/client-s3'
 import { expect } from 'vitest'

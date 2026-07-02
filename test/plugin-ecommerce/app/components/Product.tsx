@@ -1,6 +1,6 @@
 'use client'
 import { Product as ProductType } from '@payload-types'
-import { useCart, useCurrency } from '@payloadcms/plugin-ecommerce/react'
+import { useCart, useCurrency } from '@hanzo/cms-plugin-ecommerce/react'
 import React from 'react'
 
 type Props = {

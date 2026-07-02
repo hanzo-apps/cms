@@ -1,14 +1,14 @@
-import type { SerializedLinkNode, SerializedUploadNode } from '@payloadcms/richtext-lexical'
+import type { SerializedLinkNode, SerializedUploadNode } from '@hanzo/cms-richtext-lexical'
 import type {
   SerializedEditorState,
   SerializedParagraphNode,
   SerializedTextNode,
-} from '@payloadcms/richtext-lexical/lexical'
+} from '@hanzo/cms-richtext-lexical/lexical'
 import type { BrowserContext, Locator, Page } from '@playwright/test'
 
 import { expect, test } from '@playwright/test'
 import path from 'path'
-import { wait } from 'payload/shared'
+import { wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../../../../../__helpers/shared/sdk/index.js'

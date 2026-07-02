@@ -1,8 +1,8 @@
 'use client'
 
 import { useModal } from '@faceless-ui/modal'
-import { getTranslation } from '@payloadcms/translations'
-import { reduceFieldsToValues } from 'payload/shared'
+import { getTranslation } from '@hanzo/cms-translations'
+import { reduceFieldsToValues } from @hanzo/cms'from 
 import React from 'react'
 
 import { useAuth } from '../../../providers/Auth/index.js'

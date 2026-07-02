@@ -1,6 +1,6 @@
-import type { Block } from 'payload'
+import type { Block } from @hanzo/cms'from 
 
-import { fieldSchemasToFormState } from '@payloadcms/ui/forms/fieldSchemasToFormState'
+import { fieldSchemasToFormState } from '@hanzo/cms-ui/forms/fieldSchemasToFormState'
 
 import type { NodeValidation } from '../../typesServer.js'
 import type { BlockFields, SerializedBlockNode } from './nodes/BlocksNode.js'

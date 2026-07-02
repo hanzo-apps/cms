@@ -1,4 +1,4 @@
-import type { Config, TextField } from 'payload'
+import type { Config, TextField } from @hanzo/cms'from 
 
 import { randomUUID } from 'crypto'
 import { fileURLToPath } from 'node:url'

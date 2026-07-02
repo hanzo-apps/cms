@@ -1,7 +1,7 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import path from 'path'
-import { ValidationError } from 'payload'
+import { ValidationError } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest'
 
@@ -28,7 +28,7 @@ let payload: Payload
 let restClient: NextRESTClient
 let form: Form
 
-describe('@payloadcms/plugin-form-builder', () => {
+describe('@hanzo/cms-plugin-form-builder', () => {
   beforeAll(async () => {
     ;({ payload, restClient } = await initPayloadInt(dirname))
 
@@ -1960,7 +1960,7 @@ describe('@payloadcms/plugin-form-builder', () => {
         }
 
         const mockReq = { payload, files: {} } as unknown as Parameters<
-          import('payload').CollectionBeforeChangeHook
+          import(@hanzo/cms'import().CollectionBeforeChangeHook
         >[0]['req']
 
         await expect(

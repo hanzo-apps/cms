@@ -25,7 +25,7 @@ Technically, both of these options will work for third-party integrations but th
 To enable API keys on a collection, set the `useAPIKey` auth option to `true`. From there, a new interface will appear in the [Admin Panel](../admin/overview) for each document within the collection that allows you to generate an API key for each user in the Collection.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ThirdPartyAccess: CollectionConfig = {
   slug: 'third-party-access',
@@ -71,7 +71,7 @@ Payload ensures that the same, uniform [Access Control](../access-control/overvi
 If you want to use API keys as the only authentication method for a collection, you can disable the default local strategy by setting `disableLocalStrategy` to `true` on the collection's `auth` property. This will disable the ability to authenticate with email and password, and will only allow for authentication via API key.
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const ThirdPartyAccess: CollectionConfig = {
   slug: 'third-party-access',

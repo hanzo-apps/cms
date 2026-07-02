@@ -1,6 +1,6 @@
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { buildConfig } from 'payload'
+import { postgresAdapter } from '@hanzo/cms-db-postgres'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   collections: [],

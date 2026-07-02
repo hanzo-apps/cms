@@ -1,6 +1,6 @@
 'use client'
 
-import type { HiddenFieldProps } from 'payload'
+import type { HiddenFieldProps } from @hanzo/cms'from 
 
 import React, { useEffect } from 'react'
 

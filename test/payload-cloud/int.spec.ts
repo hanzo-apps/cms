@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { type Payload } from 'payload'
+import { type Payload } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { promisify } from 'util'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
@@ -18,7 +18,7 @@ let payload: Payload
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-describe('@payloadcms/payload--cloud', () => {
+describe('@hanzo/cms-payload--cloud', () => {
   beforeAll(async () => {
     ;({ payload, restClient } = await initPayloadInt(dirname))
   })

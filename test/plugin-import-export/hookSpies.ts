@@ -3,7 +3,7 @@ import type {
   ExportBeforeHook,
   ImportAfterHook,
   ImportBeforeHook,
-} from '@payloadcms/plugin-import-export'
+} from '@hanzo/cms-plugin-import-export'
 
 import type { postsWithHooksSlug } from './shared.js'
 

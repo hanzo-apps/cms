@@ -7,7 +7,7 @@ import { addListFilter } from '__helpers/e2e/filters/index.js'
 import { upsertPreferences } from '__helpers/e2e/preferences.js'
 import { runAxeScan } from '__helpers/e2e/runAxeScan.js'
 import path from 'path'
-import { wait } from 'payload/shared'
+import { wait } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../../../__helpers/shared/sdk/index.js'

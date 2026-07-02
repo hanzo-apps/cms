@@ -1,4 +1,4 @@
-import type { Block } from 'payload'
+import type { Block } from @hanzo/cms'from 
 
 export const Carousel: Block = {
   slug: 'carousel',

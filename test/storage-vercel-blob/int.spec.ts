@@ -1,4 +1,4 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import dotenv from 'dotenv'
 import path from 'path'
@@ -26,7 +26,7 @@ dotenv.config({ path: path.resolve(dirname, '../plugin-cloud-storage/.env.emulat
 let payload: Payload
 let restClient: NextRESTClient
 
-describe('@payloadcms/storage-vercel-blob', () => {
+describe('@hanzo/cms-storage-vercel-blob', () => {
   beforeAll(async () => {
     ;({ payload, restClient } = await initPayloadInt(dirname))
 

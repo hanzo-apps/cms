@@ -1,4 +1,4 @@
-import type { GlobalSlug, PayloadTypesShape, SelectType, TypedLocale } from 'payload'
+import type { GlobalSlug, PayloadTypesShape, SelectType, TypedLocale } from @hanzo/cms'from 
 
 import type { PayloadSDK } from '../index.js'
 import type { PopulateType, SelectFromGlobalSlug, TransformGlobalWithSelect } from '../types.js'

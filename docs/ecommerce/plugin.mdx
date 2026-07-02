@@ -11,8 +11,8 @@ keywords: plugins, ecommerce, stripe, plugin, payload, cms, shop, payments
 In the `plugins` array of your [Payload Config](https://payloadcms.com/docs/configuration/overview), call the plugin with:
 
 ```ts
-import { buildConfig } from 'payload'
-import { ecommercePlugin } from '@payloadcms/plugin-ecommerce'
+import { buildConfig } from @hanzo/cms'from 
+import { ecommercePlugin } from '@hanzo/cms-plugin-ecommerce'
 
 const config = buildConfig({
   collections: [
@@ -239,7 +239,7 @@ The `supportedCountries` option is an array of country codes in [ISO 3166-1 alph
 You can import the default list of countries from the plugin:
 
 ```ts
-import { defaultCountries } from '@payloadcms/plugin-ecommerce/client/react'
+import { defaultCountries } from '@hanzo/cms-plugin-ecommerce/client/react'
 ```
 
 ## Carts
@@ -388,9 +388,9 @@ This example shows how to allow the same product to appear as separate cart item
 First, add a `fulfillment` field to cart items using `cartsCollectionOverride`:
 
 ```ts
-import type { CollectionConfig } from 'payload'
-import type { CartItemMatcher } from '@payloadcms/plugin-ecommerce'
-import { ecommercePlugin } from '@payloadcms/plugin-ecommerce'
+import type { CollectionConfig } from @hanzo/cms'from 
+import type { CartItemMatcher } from '@hanzo/cms-plugin-ecommerce'
+import { ecommercePlugin } from '@hanzo/cms-plugin-ecommerce'
 
 /**
  * Custom cart item matcher that includes fulfillment option.
@@ -481,7 +481,7 @@ import {
   defaultCartItemMatcher,
   type CartItemMatcher,
   type CartItemMatcherArgs,
-} from '@payloadcms/plugin-ecommerce'
+} from '@hanzo/cms-plugin-ecommerce'
 
 const customMatcher: CartItemMatcher = (args) => {
   // First check the default criteria (product + variant)
@@ -502,7 +502,7 @@ import {
   removeItem,
   updateItem,
   clearCart,
-} from '@payloadcms/plugin-ecommerce'
+} from '@hanzo/cms-plugin-ecommerce'
 
 // Add item to cart
 const result = await addItem({
@@ -571,8 +571,8 @@ type Currency = {
 For example, to support JYP in addition to USD:
 
 ```ts
-import { ecommercePlugin } from '@payloadcms/plugin-ecommerce'
-import { USD } from '@payloadcms/plugin-ecommerce'
+import { ecommercePlugin } from '@hanzo/cms-plugin-ecommerce'
+import { USD } from '@hanzo/cms-plugin-ecommerce'
 
 ecommercePlugin({
   currencies: {
@@ -601,7 +601,7 @@ We currently support the following currencies out of the box:
 You can import these from the plugin:
 
 ```ts
-import { EUR } from '@payloadcms/plugin-ecommerce'
+import { EUR } from '@hanzo/cms-plugin-ecommerce'
 ```
 
 <Banner type="info">
@@ -702,7 +702,7 @@ pnpm add stripe
 | `appInfo`        | `object`           | The application info to pass to Stripe. See [docs](https://stripe.com/docs/api/app_info).                                                                                            |
 
 ```ts
-import { stripeAdapter } from '@payloadcms/plugin-ecommerce/payments/stripe'
+import { stripeAdapter } from '@hanzo/cms-plugin-ecommerce/payments/stripe'
 
 stripeAdapter({
   secretKey: process.env.STRIPE_SECRET_KEY!,
@@ -730,7 +730,7 @@ stripeAdapter({
 On the client side, you can use the `publishableKey` to initialize Stripe and handle payments. The client side version of the adapter only requires the `label` and `publishableKey` arguments. Never expose the `secretKey` or `webhookSecret` keys on the client side.
 
 ```ts
-import { stripeAdapterClient } from '@payloadcms/plugin-ecommerce/payments/stripe'
+import { stripeAdapterClient } from '@hanzo/cms-plugin-ecommerce/payments/stripe'
 
 <EcommerceProvider
   paymentMethods={[
@@ -940,10 +940,10 @@ The plugin includes translations for admin UI labels and messages under the `plu
 Import the plugin translations and add them to your Payload config:
 
 ```ts
-import { buildConfig } from 'payload'
-import { ecommercePlugin } from '@payloadcms/plugin-ecommerce'
-import { en } from '@payloadcms/translations/languages/en'
-import { enTranslations as ecommerceEn } from '@payloadcms/plugin-ecommerce/translations/languages/en'
+import { buildConfig } from @hanzo/cms'from 
+import { ecommercePlugin } from '@hanzo/cms-plugin-ecommerce'
+import { en } from '@hanzo/cms-translations/languages/en'
+import { enTranslations as ecommerceEn } from '@hanzo/cms-plugin-ecommerce/translations/languages/en'
 
 export default buildConfig({
   // ...
@@ -966,10 +966,10 @@ export default buildConfig({
 You can override specific translation strings by providing your own values under the `plugin-ecommerce` namespace:
 
 ```ts
-import { buildConfig } from 'payload'
-import { ecommercePlugin } from '@payloadcms/plugin-ecommerce'
-import { en } from '@payloadcms/translations/languages/en'
-import { enTranslations as ecommerceEn } from '@payloadcms/plugin-ecommerce/translations/languages/en'
+import { buildConfig } from @hanzo/cms'from 
+import { ecommercePlugin } from '@hanzo/cms-plugin-ecommerce'
+import { en } from '@hanzo/cms-translations/languages/en'
+import { enTranslations as ecommerceEn } from '@hanzo/cms-plugin-ecommerce/translations/languages/en'
 
 export default buildConfig({
   // ...

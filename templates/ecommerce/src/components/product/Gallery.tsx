@@ -8,7 +8,7 @@ import { useSearchParams } from 'next/navigation'
 import React, { useEffect } from 'react'
 
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel'
-import { DefaultDocumentIDType } from 'payload'
+import { DefaultDocumentIDType } from @hanzo/cms'from 
 
 type Props = {
   gallery: NonNullable<Product['gallery']>

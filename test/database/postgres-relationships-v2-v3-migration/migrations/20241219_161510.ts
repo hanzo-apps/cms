@@ -1,4 +1,4 @@
-import type { MigrateDownArgs, MigrateUpArgs } from '@payloadcms/db-postgres'
+import type { MigrateDownArgs, MigrateUpArgs } from '@hanzo/cms-db-postgres'
 
 export async function up({ payload }: MigrateUpArgs): Promise<void> {
   // Migration code

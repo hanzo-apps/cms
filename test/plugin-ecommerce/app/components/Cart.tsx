@@ -1,6 +1,6 @@
 'use client'
 
-import { useCart, useCurrency } from '@payloadcms/plugin-ecommerce/react'
+import { useCart, useCurrency } from '@hanzo/cms-plugin-ecommerce/react'
 
 export const Cart = () => {
   const { cart, incrementItem, decrementItem, removeItem, subTotal, clearCart } = useCart()

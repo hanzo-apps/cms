@@ -6,7 +6,7 @@ import type {
   ClientGlobalConfig,
   CollectionSlug,
   GlobalSlug,
-} from 'payload'
+} from @hanzo/cms'from 
 
 import React, { createContext, use, useCallback, useEffect, useMemo } from 'react'
 

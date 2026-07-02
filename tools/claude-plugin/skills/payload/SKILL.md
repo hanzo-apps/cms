@@ -42,7 +42,7 @@ Payload is a Next.js native CMS with TypeScript-first architecture, providing ad
 ## Quick Start
 
 ```bash
-npx create-payload-app@latest my-app
+npx @hanzo/create-cms-app@latest my-app
 cd my-app
 pnpm dev
 ```
@@ -50,9 +50,9 @@ pnpm dev
 ### Minimal Config
 
 ```ts
-import { buildConfig } from 'payload'
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { buildConfig } from @hanzo/cms'from 
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -83,7 +83,7 @@ export default buildConfig({
 ### Basic Collection
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -148,7 +148,7 @@ For all hook patterns, see [HOOKS.md](reference/HOOKS.md). For access control, s
 ### Access Control with Type Safety
 
 ```ts
-import type { Access } from 'payload'
+import type { Access } from @hanzo/cms'from 
 import type { User } from '@/payload-types'
 
 // Type-safe access control
@@ -207,7 +207,7 @@ For all query operators and REST/GraphQL examples, see [QUERIES.md](reference/QU
 
 ```ts
 // In API routes (Next.js)
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import config from '@payload-config'
 
 export async function GET() {
@@ -221,7 +221,7 @@ export async function GET() {
 }
 
 // In Server Components
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import config from '@payload-config'
 
 export default async function Page() {

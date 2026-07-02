@@ -1,5 +1,5 @@
 'use client'
-import type { FieldPaths } from 'payload'
+import type { FieldPaths } from @hanzo/cms'from 
 import type { MarkOptional } from 'ts-essentials'
 
 import React from 'react'

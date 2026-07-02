@@ -1,4 +1,4 @@
-import type { SelectField } from 'payload'
+import type { SelectField } from @hanzo/cms'from 
 
 import type { CurrenciesConfig } from '../types/index.js'
 

@@ -1,4 +1,4 @@
-import type { ClientComponentProps, ClientField, SanitizedFieldPermissions } from 'payload'
+import type { ClientComponentProps, ClientField, SanitizedFieldPermissions } from @hanzo/cms'from 
 
 export type RenderFieldsProps = {
   readonly className?: string

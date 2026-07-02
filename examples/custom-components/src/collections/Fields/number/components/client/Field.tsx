@@ -1,7 +1,7 @@
 'use client'
-import type { NumberFieldClientComponent } from 'payload'
+import type { NumberFieldClientComponent } from @hanzo/cms'from 
 
-import { NumberField } from '@payloadcms/ui'
+import { NumberField } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomNumberFieldClient: NumberFieldClientComponent = (props) => {

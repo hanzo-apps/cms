@@ -4,7 +4,7 @@ import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import React, { Fragment, JSX } from 'react'
 import { CMSLink } from '@/components/Link'
-import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
+import { DefaultNodeTypes, SerializedBlockNode } from '@hanzo/cms-richtext-lexical'
 import type { BannerBlock as BannerBlockProps } from '@/payload-types'
 
 import {

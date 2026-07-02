@@ -1,4 +1,4 @@
-import type { GenerateURL } from '@payloadcms/plugin-cloud-storage/types'
+import type { GenerateURL } from '@hanzo/cms-plugin-cloud-storage/types'
 
 import path from 'path'
 

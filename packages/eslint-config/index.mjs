@@ -3,7 +3,7 @@ import tseslint from 'typescript-eslint'
 import perfectionist from 'eslint-plugin-perfectionist'
 import { configs as regexpPluginConfigs } from 'eslint-plugin-regexp'
 import eslintConfigPrettier from 'eslint-config-prettier/flat'
-import payloadPlugin from '@payloadcms/eslint-plugin'
+import payloadPlugin from '@hanzo/cms-eslint-plugin'
 import reactExtends from './configs/react/index.mjs'
 import globals from 'globals'
 import importX from 'eslint-plugin-import-x'
@@ -169,7 +169,7 @@ export const rootEslintConfig = [
             '../translations/scripts/translateNewKeys/run.ts',
             '../translations/scripts/translateNewKeys/sortKeys.ts',
             '../translations/scripts/translateNewKeys/translateText.ts',
-            '../create-payload-app/bin/cli.js',
+            '../@hanzo/create-cms-app/bin/cli.js',
           ],
         },
         tsconfigRootDir: import.meta.dirname,

@@ -1,4 +1,4 @@
-import type { StaticDescription, StaticLabel } from 'payload'
+import type { StaticDescription, StaticLabel } from @hanzo/cms'from 
 import type { ChangeEvent, JSX } from 'react'
 import type React from 'react'
 

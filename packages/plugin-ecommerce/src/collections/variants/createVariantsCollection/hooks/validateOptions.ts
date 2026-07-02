@@ -1,4 +1,4 @@
-import type { Validate } from 'payload'
+import type { Validate } from @hanzo/cms'from 
 
 type Props = {
   productsCollectionSlug?: string

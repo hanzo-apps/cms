@@ -1,4 +1,4 @@
-import type { Field, SanitizedConfig, TypedUser } from 'payload'
+import type { Field, SanitizedConfig, TypedUser } from @hanzo/cms'from 
 
 export const getBaseFields = (config: SanitizedConfig): Field[] => [
   {

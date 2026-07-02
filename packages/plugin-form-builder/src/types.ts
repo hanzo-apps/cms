@@ -5,7 +5,7 @@ import type {
   Field,
   TypeWithID,
   UploadCollectionSlug,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export interface BlockConfig {
   block: Block

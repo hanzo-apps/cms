@@ -1,6 +1,6 @@
-import type { TextFieldServerComponent } from 'payload'
+import type { TextFieldServerComponent } from @hanzo/cms'from 
 
-import { TextField } from '@payloadcms/ui'
+import { TextField } from '@hanzo/cms-ui'
 
 export const CustomTextField: TextFieldServerComponent = ({ clientField, path }) => {
   return (

@@ -1,6 +1,6 @@
-import type { Block, Field } from 'payload'
+import type { Block, Field } from @hanzo/cms'from 
 
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 
 import { invertBackground } from '../../fields/invertBackground.js'
 import link from '../../fields/link.js'

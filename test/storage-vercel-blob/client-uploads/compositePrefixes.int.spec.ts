@@ -1,6 +1,6 @@
 import type { IncomingMessage, Server, ServerResponse } from 'node:http'
 import type { AddressInfo } from 'node:net'
-import type { Document, Payload } from 'payload'
+import type { Document, Payload } from @hanzo/cms'from 
 
 import { del, list } from '@vercel/blob'
 import { upload } from '@vercel/blob/client'
@@ -29,7 +29,7 @@ let handleUploadUrl: string
 const createdDocIDs: Array<number | string> = []
 const serverHandlerPath = '/vercel-blob-client-upload-route'
 
-describe('@payloadcms/storage-vercel-blob clientUploads (composite prefixes)', () => {
+describe('@hanzo/cms-storage-vercel-blob clientUploads (composite prefixes)', () => {
   beforeAll(async () => {
     ;({ payload, restClient } = await initPayloadInt(
       dirname,

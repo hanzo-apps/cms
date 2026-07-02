@@ -1,6 +1,6 @@
 'use client'
 
-import type { SelectFieldClientComponent } from 'payload'
+import type { SelectFieldClientComponent } from @hanzo/cms'from 
 import type { ReactNode } from 'react'
 
 import {
@@ -10,7 +10,7 @@ import {
   useDocumentInfo,
   useField,
   useListQuery,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import React, { useEffect } from 'react'
 
 import { useImportExport } from '../ImportExportProvider/index.js'

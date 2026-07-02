@@ -7,9 +7,9 @@ import type {
   FlattenedBlocksField,
   UIFieldClientProps,
   UIFieldServerProps,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { fieldsToJSONSchema, flattenAllFields, sanitizeFields } from 'payload'
+import { fieldsToJSONSchema, flattenAllFields, sanitizeFields } from @hanzo/cms'from 
 
 import { applyBaseFilterToFields } from '../../../utilities/applyBaseFilterToFields.js'
 import { createServerFeature } from '../../../utilities/createServerFeature.js'
@@ -86,7 +86,7 @@ export const BlocksFeature = createServerFeature<BlocksFeatureProps, BlocksFeatu
     }
 
     return {
-      ClientFeature: '@payloadcms/richtext-lexical/client#BlocksFeatureClient',
+      ClientFeature: '@hanzo/cms-richtext-lexical/client#BlocksFeatureClient',
       generatedTypes: {
         modifyOutputSchema: ({
           collectionIDFieldTypes,

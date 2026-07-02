@@ -1,6 +1,6 @@
 'use client'
 
-import type { ClientWidget, FormState } from 'payload'
+import type { ClientWidget, FormState } from @hanzo/cms'from 
 
 import {
   Drawer,
@@ -13,8 +13,8 @@ import {
   useModal,
   useServerFunctions,
   useTranslation,
-} from '@payloadcms/ui'
-import { abortAndIgnore } from '@payloadcms/ui/shared'
+} from '@hanzo/cms-ui'
+import { abortAndIgnore } from '@hanzo/cms-ui/shared'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 

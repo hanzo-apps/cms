@@ -6,22 +6,22 @@ This repository contains the officially supported Payload Cloud Storage plugin. 
 
 | Service              | Package                                                                                                           |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Vercel Blob          | [`@payloadcms/storage-vercel-blob`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-vercel-blob) |
-| AWS S3               | [`@payloadcms/storage-s3`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-s3)                   |
-| Azure                | [`@payloadcms/storage-azure`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-azure)             |
-| Google Cloud Storage | [`@payloadcms/storage-gcs`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-gcs)                 |
+| Vercel Blob          | [`@hanzo/cms-storage-vercel-blob`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-vercel-blob) |
+| AWS S3               | [`@hanzo/cms-storage-s3`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-s3)                   |
+| Azure                | [`@hanzo/cms-storage-azure`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-azure)             |
+| Google Cloud Storage | [`@hanzo/cms-storage-gcs`](https://github.com/payloadcms/payload/tree/3.x/packages/storage-gcs)                 |
 
-This package is now best used for implementing custom storage solutions or third-party storage services that do not have `@payloadcms/storage-*` packages.
+This package is now best used for implementing custom storage solutions or third-party storage services that do not have `@hanzo/cms-storage-*` packages.
 
 ## Installation
 
-`pnpm add @payloadcms/plugin-cloud-storage`
+`pnpm add @hanzo/cms-plugin-cloud-storage`
 
 ## Usage
 
 ```ts
-import { buildConfig } from 'payload'
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
+import { buildConfig } from @hanzo/cms'from 
+import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'
 
 export default buildConfig({
   plugins: [

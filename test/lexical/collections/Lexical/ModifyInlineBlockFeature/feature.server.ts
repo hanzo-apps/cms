@@ -1,4 +1,4 @@
-import { createServerFeature } from '@payloadcms/richtext-lexical'
+import { createServerFeature } from '@hanzo/cms-richtext-lexical'
 
 export const ModifyInlineBlockFeature = createServerFeature({
   key: 'ModifyInlineBlockFeature',

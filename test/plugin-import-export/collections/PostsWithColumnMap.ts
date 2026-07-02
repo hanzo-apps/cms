@@ -1,5 +1,5 @@
-import type { FieldBeforeExportHook } from '@payloadcms/plugin-import-export/types'
-import type { CollectionConfig } from 'payload'
+import type { FieldBeforeExportHook } from '@hanzo/cms-plugin-import-export/types'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 import { postsWithColumnMapSlug } from '../shared.js'
 

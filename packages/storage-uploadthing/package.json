@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/storage-uploadthing",
+  "name": "@hanzo/cms-storage-uploadthing",
   "version": "3.85.2",
   "description": "Payload storage adapter for uploadthing",
   "homepage": "https://payloadcms.com",
@@ -47,14 +47,14 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@payloadcms/plugin-cloud-storage": "workspace:*",
+    "@hanzo/cms-plugin-cloud-storage": "workspace:*",
     "uploadthing": "7.3.0"
   },
   "devDependencies": {
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "payload": "workspace:*"
+    "@hanzo/cms": "workspace:*"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"

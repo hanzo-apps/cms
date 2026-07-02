@@ -8,7 +8,7 @@ import type {
   DefaultTranslationKeys,
   NestedKeysStripped,
   TFunction,
-} from '@payloadcms/translations'
+} from '@hanzo/cms-translations'
 
 import { fileURLToPath } from 'node:url'
 const filename = fileURLToPath(import.meta.url)

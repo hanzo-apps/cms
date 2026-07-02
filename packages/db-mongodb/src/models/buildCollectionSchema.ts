@@ -1,5 +1,5 @@
 import type { PaginateOptions, Schema } from 'mongoose'
-import type { Payload, SanitizedCollectionConfig } from 'payload'
+import type { Payload, SanitizedCollectionConfig } from @hanzo/cms'from 
 
 import paginate from 'mongoose-paginate-v2'
 

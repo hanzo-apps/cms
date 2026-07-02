@@ -1,4 +1,4 @@
-import type { GenericTranslationsObject } from '@payloadcms/translations'
+import type { GenericTranslationsObject } from '@hanzo/cms-translations'
 
 /**
  * Returns keys which are present in baseObj but not in targetObj

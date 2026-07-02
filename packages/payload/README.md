@@ -44,10 +44,10 @@ Payload is the first-ever Next.js native CMS that can install directly in your e
 Before beginning to work with Payload, make sure you have all of the [required software](https://payloadcms.com/docs/getting-started/installation).
 
 ```text
-pnpx create-payload-app@latest
+pnpx @hanzo/create-cms-app@latest
 ```
 
-**If you're new to Payload, you should start with the website template** (`pnpx create-payload-app@latest -t website`). It shows how to do _everything_ - including custom Rich Text blocks, on-demand revalidation, live preview, and more. It comes with a frontend built with Tailwind all in one `/app` folder.
+**If you're new to Payload, you should start with the website template** (`pnpx @hanzo/create-cms-app@latest -t website`). It shows how to do _everything_ - including custom Rich Text blocks, on-demand revalidation, live preview, and more. It comes with a frontend built with Tailwind all in one `/app` folder.
 
 ## One-click deployment options
 
@@ -116,10 +116,10 @@ If you want to add contributions to this repository, please follow the instructi
 
 The [Examples Directory](./examples) is a great resource for learning how to setup Payload in a variety of different ways, but you can also find great examples in our blog and throughout our social media.
 
-If you'd like to run the examples, you can use `create-payload-app` to create a project from one:
+If you'd like to run the examples, you can use `@hanzo/create-cms-app` to create a project from one:
 
 ```sh
-npx create-payload-app --example example_name
+npx @hanzo/create-cms-app --example example_name
 ```
 
 You can see more examples at:

@@ -2,13 +2,13 @@ import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-import type { GenerateDescription, GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
-import type { Field } from 'payload'
+import type { GenerateDescription, GenerateTitle, GenerateURL } from '@hanzo/cms-plugin-seo/types'
+import type { Field } from @hanzo/cms'from 
 import type { Page } from 'plugin-seo/payload-types.js'
 
-import { seoPlugin } from '@payloadcms/plugin-seo'
-import { en } from '@payloadcms/translations/languages/en'
-import { es } from '@payloadcms/translations/languages/es'
+import { seoPlugin } from '@hanzo/cms-plugin-seo'
+import { en } from '@hanzo/cms-translations/languages/en'
+import { es } from '@hanzo/cms-translations/languages/es'
 
 import { buildConfigWithDefaults } from '../buildConfigWithDefaults.js'
 import { devUser } from '../credentials.js'

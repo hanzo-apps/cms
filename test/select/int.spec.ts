@@ -1,8 +1,8 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import { randomUUID } from 'crypto'
 import path from 'path'
-import { deepCopyObject } from 'payload'
+import { deepCopyObject } from @hanzo/cms'from 
 import { assert } from 'ts-essentials'
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'

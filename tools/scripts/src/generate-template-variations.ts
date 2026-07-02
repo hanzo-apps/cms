@@ -9,13 +9,13 @@
  *       There is no way currently to have lint-staged ignore the templates directory.
  */
 
-import type { DbType, StorageAdapterType } from 'create-payload-app/types'
+import type { DbType, StorageAdapterType } from '@hanzo/create-cms-app/types'
 
 import { PROJECT_ROOT, TEMPLATES_DIR } from '@tools/constants'
 import chalk from 'chalk'
 import { execSync } from 'child_process'
-import { configurePayloadConfig } from 'create-payload-app/lib/configure-payload-config.js'
-import { copyRecursiveSync } from 'create-payload-app/utils/copy-recursive-sync.js'
+import { configurePayloadConfig } from '@hanzo/create-cms-app/lib/configure-payload-config.js'
+import { copyRecursiveSync } from '@hanzo/create-cms-app/utils/copy-recursive-sync.js'
 import minimist from 'minimist'
 import * as fs from 'node:fs/promises'
 import path from 'path'
@@ -157,7 +157,7 @@ async function main() {
       skipConfig: true, // Do not copy the payload.config.ts file from the base template
       skipReadme: true, // Do not copy the README.md file from the base template
       storage: 'localDisk',
-      // The blank template is used as a base for create-payload-app functionality,
+      // The blank template is used as a base for @hanzo/create-cms-app functionality,
       // so we do not configure the payload.config.ts file, which leaves the placeholder comments.
       configureConfig: false,
       workspace: true,
@@ -170,7 +170,7 @@ async function main() {
       sharp: true,
       skipConfig: true, // Do not copy the payload.config.ts file from the base template
       storage: 'localDisk',
-      // The blank template is used as a base for create-payload-app functionality,
+      // The blank template is used as a base for @hanzo/create-cms-app functionality,
       // so we do not configure the payload.config.ts file, which leaves the placeholder comments.
       configureConfig: false,
       base: 'none',
@@ -185,7 +185,7 @@ async function main() {
       sharp: true,
       skipConfig: true, // Do not copy the payload.config.ts file from the base template
       storage: 'localDisk',
-      // The blank template is used as a base for create-payload-app functionality,
+      // The blank template is used as a base for @hanzo/create-cms-app functionality,
       // so we do not configure the payload.config.ts file, which leaves the placeholder comments.
       configureConfig: false,
       base: 'none',
@@ -200,7 +200,7 @@ async function main() {
       sharp: false,
       skipConfig: true, // Do not copy the payload.config.ts file from the base template
       storage: 'r2Storage',
-      // The blank template is used as a base for create-payload-app functionality,
+      // The blank template is used as a base for @hanzo/create-cms-app functionality,
       // so we do not configure the payload.config.ts file, which leaves the placeholder comments.
       configureConfig: false,
       base: 'none',
@@ -526,7 +526,7 @@ function execSyncSafe(command: string, options?: Parameters<typeof execSync>[1])
   }
 }
 
-const DO_NOT_BUMP = ['@payloadcms/eslint-config', '@payloadcms/eslint-plugin']
+const DO_NOT_BUMP = ['@hanzo/cms-eslint-config', '@hanzo/cms-eslint-plugin']
 async function bumpPackageJson({
   templateDir,
   latestVersion,

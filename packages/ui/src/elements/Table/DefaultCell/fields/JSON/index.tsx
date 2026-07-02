@@ -1,5 +1,5 @@
 'use client'
-import type { DefaultCellComponentProps, JSONFieldClient } from 'payload'
+import type { DefaultCellComponentProps, JSONFieldClient } from @hanzo/cms'from 
 
 import React from 'react'
 

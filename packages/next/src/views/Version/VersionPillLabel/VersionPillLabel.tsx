@@ -1,9 +1,9 @@
 'use client'
 
-import type { TypeWithVersion } from 'payload'
+import type { TypeWithVersion } from @hanzo/cms'from 
 
-import { Pill, useConfig, useLocale, useTranslation } from '@payloadcms/ui'
-import { formatDate } from '@payloadcms/ui/shared'
+import { Pill, useConfig, useLocale, useTranslation } from '@hanzo/cms-ui'
+import { formatDate } from '@hanzo/cms-ui/shared'
 import React from 'react'
 
 import './index.scss'

@@ -1,4 +1,4 @@
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 
 import { readFileSync } from 'fs'
 import path from 'path'
@@ -38,7 +38,7 @@ const signedURLBody = (
     mimeType,
   })
 
-describe('@payloadcms/storage-s3 clientUploads', () => {
+describe('@hanzo/cms-storage-s3 clientUploads', () => {
   beforeAll(async () => {
     ;({ payload, restClient } = await initPayloadInt(dirname))
 

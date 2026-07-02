@@ -1,7 +1,7 @@
 'use client'
-import type { CheckboxFieldLabelClientComponent } from 'payload'
+import type { CheckboxFieldLabelClientComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomCheckboxFieldLabelClient: CheckboxFieldLabelClientComponent = ({

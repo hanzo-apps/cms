@@ -80,7 +80,7 @@ async function runLicenseCheck(
     distributed: 'No' | 'Yes'
   }[] = []
   Object.entries(a).forEach(([key, value]) => {
-    if (key.startsWith('@payloadcms/')) {
+    if (key.startsWith('@hanzo/cms')) {
       return
     }
     results.push({

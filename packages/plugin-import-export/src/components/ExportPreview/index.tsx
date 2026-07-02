@@ -1,7 +1,7 @@
 'use client'
-import type { ClientField, Column, PaginatedDocs, Where } from 'payload'
+import type { ClientField, Column, PaginatedDocs, Where } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   CodeEditorLazy,
   Pagination,
@@ -13,7 +13,7 @@ import {
   useDocumentInfo,
   useFormFields,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import React, { useEffect, useRef, useState, useTransition } from 'react'
 
 import type {

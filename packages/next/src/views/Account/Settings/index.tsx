@@ -1,7 +1,7 @@
-import type { I18n } from '@payloadcms/translations'
-import type { BasePayload, Config, LanguageOptions, TypedUser } from 'payload'
+import type { I18n } from '@hanzo/cms-translations'
+import type { BasePayload, Config, LanguageOptions, TypedUser } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 import { ResetPreferences } from '../ResetPreferences/index.js'

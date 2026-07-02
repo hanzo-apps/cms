@@ -1,8 +1,8 @@
-import type { AdminViewServerProps } from 'payload'
+import type { AdminViewServerProps } from @hanzo/cms'from 
 
-import { HydrateAuthProvider, SetStepNav } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { getGlobalData, getNavGroups } from '@payloadcms/ui/shared'
+import { HydrateAuthProvider, SetStepNav } from '@hanzo/cms-ui'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
+import { getGlobalData, getNavGroups } from '@hanzo/cms-ui/shared'
 import React, { Fragment } from 'react'
 
 import type { DashboardViewClientProps, DashboardViewServerPropsOnly } from './Default/index.js'

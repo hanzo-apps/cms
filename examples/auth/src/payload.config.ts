@@ -1,8 +1,8 @@
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
+import { slateEditor } from '@hanzo/cms-richtext-slate'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 import { Users } from './collections/Users'
 const filename = fileURLToPath(import.meta.url)

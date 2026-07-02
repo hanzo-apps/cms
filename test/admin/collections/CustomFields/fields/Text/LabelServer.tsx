@@ -1,4 +1,4 @@
-import type { TextFieldLabelServerComponent } from 'payload'
+import type { TextFieldLabelServerComponent } from @hanzo/cms'from 
 
 import React from 'react'
 

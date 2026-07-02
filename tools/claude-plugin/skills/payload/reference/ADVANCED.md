@@ -41,7 +41,7 @@ await payload.forgotPassword({
 ### Custom Strategy
 
 ```ts
-import type { CollectionConfig, Strategy } from 'payload'
+import type { CollectionConfig, Strategy } from @hanzo/cms'from 
 
 const customStrategy: Strategy = {
   name: 'custom',
@@ -66,7 +66,7 @@ export const Users: CollectionConfig = {
 ### API Keys
 
 ```ts
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const APIKeys: CollectionConfig = {
   slug: 'api-keys',
@@ -85,8 +85,8 @@ Offload long-running or scheduled tasks to background workers.
 ### Tasks
 
 ```ts
-import { buildConfig } from 'payload'
-import type { TaskConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
+import type { TaskConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   jobs: {
@@ -161,8 +161,8 @@ Add custom REST API routes to collections, globals, or root config. See [ENDPOIN
 ### Root Endpoints
 
 ```ts
-import { buildConfig } from 'payload'
-import type { Endpoint } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
+import type { Endpoint } from @hanzo/cms'from 
 
 const helloEndpoint: Endpoint = {
   path: '/hello',
@@ -192,7 +192,7 @@ export default buildConfig({
 ### Collection Endpoints
 
 ```ts
-import type { CollectionConfig, Endpoint } from 'payload'
+import type { CollectionConfig, Endpoint } from @hanzo/cms'from 
 
 const featuredEndpoint: Endpoint = {
   path: '/featured',
@@ -222,8 +222,8 @@ export const Posts: CollectionConfig = {
 
 ```tsx
 'use client'
-import { useField } from '@payloadcms/ui'
-import type { TextFieldClientComponent } from 'payload'
+import { useField } from '@hanzo/cms-ui'
+import type { TextFieldClientComponent } from @hanzo/cms'from 
 
 export const CustomField: TextFieldClientComponent = () => {
   const { value, setValue } = useField()
@@ -236,7 +236,7 @@ export const CustomField: TextFieldClientComponent = () => {
 
 ```tsx
 'use client'
-import { DefaultTemplate } from '@payloadcms/next/templates'
+import { DefaultTemplate } from '@hanzo/cms-next/templates'
 
 export const CustomView = () => {
   return (
@@ -251,7 +251,7 @@ export const CustomView = () => {
 ### Admin Config
 
 ```ts
-import { buildConfig } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
 
 export default buildConfig({
   admin: {
@@ -275,24 +275,24 @@ export default buildConfig({
 
 ### Available Plugins
 
-- **@payloadcms/plugin-seo** - SEO fields with meta title/description, Open Graph, preview generation
-- **@payloadcms/plugin-redirects** - Manage URL redirects (301/302) for Next.js apps
-- **@payloadcms/plugin-nested-docs** - Hierarchical document structures with breadcrumbs
-- **@payloadcms/plugin-form-builder** - Dynamic form builder with submissions and validation
-- **@payloadcms/plugin-search** - Full-text search integration (Algolia support)
-- **@payloadcms/plugin-stripe** - Stripe payments, subscriptions, webhooks
-- **@payloadcms/plugin-ecommerce** - Complete ecommerce solution (products, variants, carts, orders)
-- **@payloadcms/plugin-import-export** - Import/export data via CSV
-- **@payloadcms/plugin-multi-tenant** - Multi-tenancy with tenant isolation
-- **@payloadcms/plugin-sentry** - Sentry error tracking integration
-- **@payloadcms/plugin-mcp** - Model Context Protocol for AI integrations
+- **@hanzo/cms-plugin-seo** - SEO fields with meta title/description, Open Graph, preview generation
+- **@hanzo/cms-plugin-redirects** - Manage URL redirects (301/302) for Next.js apps
+- **@hanzo/cms-plugin-nested-docs** - Hierarchical document structures with breadcrumbs
+- **@hanzo/cms-plugin-form-builder** - Dynamic form builder with submissions and validation
+- **@hanzo/cms-plugin-search** - Full-text search integration (Algolia support)
+- **@hanzo/cms-plugin-stripe** - Stripe payments, subscriptions, webhooks
+- **@hanzo/cms-plugin-ecommerce** - Complete ecommerce solution (products, variants, carts, orders)
+- **@hanzo/cms-plugin-import-export** - Import/export data via CSV
+- **@hanzo/cms-plugin-multi-tenant** - Multi-tenancy with tenant isolation
+- **@hanzo/cms-plugin-sentry** - Sentry error tracking integration
+- **@hanzo/cms-plugin-mcp** - Model Context Protocol for AI integrations
 
 ### Using Plugins
 
 ```ts
-import { buildConfig } from 'payload'
-import { seoPlugin } from '@payloadcms/plugin-seo'
-import { redirectsPlugin } from '@payloadcms/plugin-redirects'
+import { buildConfig } from @hanzo/cms'from 
+import { seoPlugin } from '@hanzo/cms-plugin-seo'
+import { redirectsPlugin } from '@hanzo/cms-plugin-redirects'
 
 export default buildConfig({
   plugins: [
@@ -311,7 +311,7 @@ export default buildConfig({
 ### Creating Plugins
 
 ```ts
-import type { Config } from 'payload'
+import type { Config } from @hanzo/cms'from 
 
 interface PluginOptions {
   enabled?: boolean
@@ -338,8 +338,8 @@ export const myPlugin =
 ## Localization
 
 ```ts
-import { buildConfig } from 'payload'
-import type { Field, Payload } from 'payload'
+import { buildConfig } from @hanzo/cms'from 
+import type { Field, Payload } from @hanzo/cms'from 
 
 export default buildConfig({
   localization: {

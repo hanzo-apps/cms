@@ -1,6 +1,6 @@
 // src/components/SelectPostsButton.tsx
 'use client'
-import { Button, type UseListDrawer, useListDrawer } from '@payloadcms/ui'
+import { Button, type UseListDrawer, useListDrawer } from '@hanzo/cms-ui'
 import { useMemo } from 'react'
 
 type UseListDrawerArgs = Parameters<UseListDrawer>[0]

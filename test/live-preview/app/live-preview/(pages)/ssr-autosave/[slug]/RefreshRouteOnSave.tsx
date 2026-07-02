@@ -1,6 +1,6 @@
 'use client'
 
-import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react'
+import { RefreshRouteOnSave as PayloadLivePreview } from '@hanzo/cms-live-preview-react'
 import { useRouter } from 'next/navigation.js'
 import React from 'react'
 

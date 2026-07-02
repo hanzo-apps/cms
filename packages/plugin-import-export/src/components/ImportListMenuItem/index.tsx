@@ -1,13 +1,13 @@
 'use client'
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   PopupList,
   Translation,
   useConfig,
   useDocumentDrawer,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@hanzo/cms-ui'
 import React, { useEffect } from 'react'
 
 import type {

@@ -1,6 +1,6 @@
-import type { CustomComponent, PayloadServerReactComponent } from 'payload'
+import type { CustomComponent, PayloadServerReactComponent } from @hanzo/cms'from 
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import React from 'react'
 
 import { Banner } from '../Banner/index.js'

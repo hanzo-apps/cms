@@ -8,14 +8,14 @@ Lexical Rich Text Editor for [Payload](https://payloadcms.com).
 ## Installation
 
 ```bash
-npm install @payloadcms/richtext-lexical
+npm install @hanzo/cms-richtext-lexical
 ```
 
 ## Usage
 
 ```ts
-import { buildConfig } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { buildConfig } from @hanzo/cms'from 
+import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 
 export default buildConfig({
   editor: lexicalEditor({}),

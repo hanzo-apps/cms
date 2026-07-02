@@ -1,7 +1,7 @@
-import type { CollectionPopulationRequestHandler } from '@payloadcms/live-preview'
+import type { CollectionPopulationRequestHandler } from '@hanzo/cms-live-preview'
 import type { Ref } from 'vue'
 
-import { ready, subscribe, unsubscribe } from '@payloadcms/live-preview'
+import { ready, subscribe, unsubscribe } from '@hanzo/cms-live-preview'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 /**

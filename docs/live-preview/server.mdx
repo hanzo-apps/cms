@@ -29,10 +29,10 @@ If your front-end application is built with [React](#react), you can use the `Re
 
 If your front-end application is built with server-side [React](https://react.dev) like [Next.js App Router](https://nextjs.org/docs/app), you can use the `RefreshRouteOnSave` component that Payload provides.
 
-First, install the `@payloadcms/live-preview-react` package:
+First, install the `@hanzo/cms-live-preview-react` package:
 
 ```bash
-npm install @payloadcms/live-preview-react
+npm install @hanzo/cms-live-preview-react
 ```
 
 Then, render the `RefreshRouteOnSave` component anywhere in your `page.tsx`. Here's an example:
@@ -41,7 +41,7 @@ Then, render the `RefreshRouteOnSave` component anywhere in your `page.tsx`. Her
 
 ```tsx
 import { RefreshRouteOnSave } from './RefreshRouteOnSave.tsx'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import config from '../payload.config'
 
 export default async function Page() {
@@ -67,7 +67,7 @@ export default async function Page() {
 
 ```tsx
 'use client'
-import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react'
+import { RefreshRouteOnSave as PayloadLivePreview } from '@hanzo/cms-live-preview-react'
 import { useRouter } from 'next/navigation.js'
 import React from 'react'
 
@@ -87,10 +87,10 @@ export const RefreshRouteOnSave: React.FC = () => {
 
 No matter what front-end framework you are using, you can build your own component using the same underlying tooling that Payload provides.
 
-First, install the base `@payloadcms/live-preview` package:
+First, install the base `@hanzo/cms-live-preview` package:
 
 ```bash
-npm install @payloadcms/live-preview
+npm install @hanzo/cms-live-preview
 ```
 
 This package provides the following functions:
@@ -103,7 +103,7 @@ This package provides the following functions:
 With these functions, you can build your own hook using your front-end framework of choice:
 
 ```tsx
-import { ready, isDocumentEvent } from '@payloadcms/live-preview'
+import { ready, isDocumentEvent } from '@hanzo/cms-live-preview'
 
 // To build your own component:
 // 1. Listen for document-level `window.postMessage` events sent from the Admin Panel
@@ -119,7 +119,7 @@ Here is an example of what the same `RefreshRouteOnSave` React component from ab
 
 import type React from 'react'
 
-import { isDocumentEvent, ready } from '@payloadcms/live-preview'
+import { isDocumentEvent, ready } from '@hanzo/cms-live-preview'
 import { useCallback, useEffect, useRef } from 'react'
 
 export const RefreshRouteOnSave: React.FC<{

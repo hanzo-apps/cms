@@ -1,9 +1,9 @@
-import type { CollectionSlug, Payload } from 'payload'
+import type { CollectionSlug, Payload } from @hanzo/cms'from 
 
 import fs from 'fs'
 import path from 'path'
-import { getFileByPath } from 'payload'
-import { extractID } from 'payload/shared'
+import { getFileByPath } from @hanzo/cms'from 
+import { extractID } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
@@ -24,7 +24,7 @@ let restrictedUser: any
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-describe('@payloadcms/plugin-import-export', () => {
+describe('@hanzo/cms-plugin-import-export', () => {
   beforeAll(async () => {
     ;({ payload, restClient } = await initPayloadInt(dirname))
     user = await payload.login({

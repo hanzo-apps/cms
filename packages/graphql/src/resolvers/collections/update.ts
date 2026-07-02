@@ -1,6 +1,6 @@
-import type { Collection, CollectionSlug, DataFromCollectionSlug, PayloadRequest } from 'payload'
+import type { Collection, CollectionSlug, DataFromCollectionSlug, PayloadRequest } from @hanzo/cms'from 
 
-import { isolateObjectProperty, updateByIDOperation } from 'payload'
+import { isolateObjectProperty, updateByIDOperation } from @hanzo/cms'from 
 
 import type { Context } from '../types.js'
 

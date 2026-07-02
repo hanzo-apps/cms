@@ -4,12 +4,12 @@ import type {
   AcceptedLanguages,
   GenericLanguages,
   GenericTranslationsObject,
-} from '@payloadcms/translations'
+} from '@hanzo/cms-translations'
 
-import { acceptedLanguages } from '@payloadcms/translations'
+import { acceptedLanguages } from '@hanzo/cms-translations'
 import fs from 'fs'
 import path from 'path'
-import { deepMergeSimple } from 'payload/shared'
+import { deepMergeSimple } from @hanzo/cms'from 
 import { format } from 'prettier'
 
 import { applyEslintFixes } from './applyEslintFixes.js'

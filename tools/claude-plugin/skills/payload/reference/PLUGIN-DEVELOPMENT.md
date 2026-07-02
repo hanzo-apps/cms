@@ -7,7 +7,7 @@ Complete guide to creating Payload CMS plugins with TypeScript patterns, package
 Plugins are functions that receive configuration options and return a function that transforms the Payload config:
 
 ```ts
-import type { Config, Plugin } from 'payload'
+import type { Config, Plugin } from @hanzo/cms'from 
 
 interface MyPluginConfig {
   enabled?: boolean
@@ -136,13 +136,13 @@ plugin-<name>/
     "prepublishOnly": "npm run clean && npm run build"
   },
   "dependencies": {
-    "@payloadcms/translations": "^3.0.0",
-    "@payloadcms/ui": "^3.0.0"
+    "@hanzo/cms-translations": "^3.0.0",
+    "@hanzo/cms-ui": "^3.0.0"
   },
   "devDependencies": {
-    "@payloadcms/db-mongodb": "^3.0.0",
-    "@payloadcms/next": "^3.0.0",
-    "@payloadcms/richtext-lexical": "^3.0.0",
+    "@hanzo/cms-db-mongodb": "^3.0.0",
+    "@hanzo/cms-next": "^3.0.0",
+    "@hanzo/cms-richtext-lexical": "^3.0.0",
     "@playwright/test": "^1.40.0",
     "@swc/cli": "^0.1.62",
     "@swc/core": "^1.3.0",
@@ -180,7 +180,7 @@ plugin-<name>/
 ### Adding Fields to Collections
 
 ```ts
-import type { Config, Plugin, Field } from 'payload'
+import type { Config, Plugin, Field } from @hanzo/cms'from 
 
 export const seoPlugin =
   (options: { collections?: string[] }): Plugin =>
@@ -214,7 +214,7 @@ export const seoPlugin =
 ### Adding New Collections
 
 ```ts
-import type { Config, Plugin, CollectionConfig } from 'payload'
+import type { Config, Plugin, CollectionConfig } from @hanzo/cms'from 
 
 export const redirectsPlugin =
   (options: { overrides?: Partial<CollectionConfig> }): Plugin =>
@@ -239,7 +239,7 @@ export const redirectsPlugin =
 ### Adding Hooks
 
 ```ts
-import type { Config, Plugin, CollectionAfterChangeHook } from 'payload'
+import type { Config, Plugin, CollectionAfterChangeHook } from @hanzo/cms'from 
 
 const resaveChildrenHook: CollectionAfterChangeHook = async ({ doc, req, operation }) => {
   if (operation === 'update') {
@@ -284,7 +284,7 @@ export const nestedDocsPlugin =
 Add endpoints at the root config level (accessible at `/api/<path>`):
 
 ```ts
-import type { Config, Plugin, Endpoint } from 'payload'
+import type { Config, Plugin, Endpoint } from @hanzo/cms'from 
 
 export const seoPlugin =
   (options: { generateTitle?: (doc: any) => string }): Plugin =>
@@ -329,7 +329,7 @@ const webhookEndpoint: Endpoint = {
 ### Field Overrides with Defaults
 
 ```ts
-import type { Config, Plugin, Field } from 'payload'
+import type { Config, Plugin, Field } from @hanzo/cms'from 
 
 type FieldsOverride = (args: { defaultFields: Field[] }) => Field[]
 
@@ -369,7 +369,7 @@ export const myPlugin =
 ### Tabs UI Pattern
 
 ```ts
-import type { Config, Plugin, TabsField, GroupField } from 'payload'
+import type { Config, Plugin, TabsField, GroupField } from @hanzo/cms'from 
 
 export const seoPlugin =
   (options: { tabbedUI?: boolean }): Plugin =>
@@ -431,7 +431,7 @@ export const seoPlugin =
 Allow users to disable plugin without removing it (important for database schema consistency):
 
 ```ts
-import type { Config, Plugin } from 'payload'
+import type { Config, Plugin } from @hanzo/cms'from 
 
 interface PluginConfig {
   disabled?: boolean
@@ -488,7 +488,7 @@ export const myPlugin =
 Add custom UI components to the admin panel:
 
 ```ts
-import type { Config, Plugin } from 'payload'
+import type { Config, Plugin } from @hanzo/cms'from 
 
 export const myPlugin =
   (options: PluginConfig): Plugin =>
@@ -514,9 +514,9 @@ export const myPlugin =
 ```tsx
 // src/components/BeforeDashboardClient.tsx
 'use client'
-import { useConfig } from '@payloadcms/ui'
+import { useConfig } from '@hanzo/cms-ui'
 import { useEffect, useState } from 'react'
-import { formatAdminURL } from 'payload/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 
 export const BeforeDashboardClient = () => {
   const { config } = useConfig()
@@ -564,7 +564,7 @@ export const translations = {
 }
 
 // src/plugin.ts
-import { deepMergeSimple } from 'payload/shared'
+import { deepMergeSimple } from @hanzo/cms'from 
 import { translations } from './translations/index.js'
 
 export const myPlugin =
@@ -616,7 +616,7 @@ export const myPlugin =
 ### Plugin Config Types
 
 ```ts
-import type { CollectionSlug, GlobalSlug, Field, CollectionConfig } from 'payload'
+import type { CollectionSlug, GlobalSlug, Field, CollectionConfig } from @hanzo/cms'from 
 
 export type FieldsOverride = (args: { defaultFields: Field[] }) => Field[]
 
@@ -651,7 +651,7 @@ export interface MyPluginConfig {
 export type { MyPluginConfig, FieldsOverride } from '../types.js'
 
 // Usage
-import type { MyPluginConfig } from '@payloadcms/plugin-example/types'
+import type { MyPluginConfig } from '@hanzo/cms-plugin-example/types'
 ```
 
 ## Client Components
@@ -661,8 +661,8 @@ import type { MyPluginConfig } from '@payloadcms/plugin-example/types'
 ```tsx
 // src/fields/CustomField/Component.tsx
 'use client'
-import { useField } from '@payloadcms/ui'
-import type { TextFieldClientComponent } from 'payload'
+import { useField } from '@hanzo/cms-ui'
+import type { TextFieldClientComponent } from @hanzo/cms'from 
 
 export const CustomFieldComponent: TextFieldClientComponent = ({ field, path }) => {
   const { value, setValue } = useField<string>({ path })
@@ -678,7 +678,7 @@ export const CustomFieldComponent: TextFieldClientComponent = ({ field, path }) 
 
 ```ts
 // src/fields/CustomField/index.ts
-import type { Field } from 'payload'
+import type { Field } from @hanzo/cms'from 
 
 export const CustomField = (overrides?: Partial<Field>): Field => ({
   name: 'customField',
@@ -751,7 +751,7 @@ hooks: {
 Use Payload's exported types:
 
 ```ts
-import type { Config, Plugin, CollectionConfig, Field, CollectionSlug, GlobalSlug } from 'payload'
+import type { Config, Plugin, CollectionConfig, Field, CollectionSlug, GlobalSlug } from @hanzo/cms'from 
 ```
 
 ### Field Path Imports
@@ -1309,8 +1309,8 @@ PAYLOAD_SECRET=your-secret-here
 2. Configure `dev/payload.config.ts`:
 
 ```ts
-import { buildConfig } from 'payload'
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { buildConfig } from @hanzo/cms'from 
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 import { myPlugin } from '../src/index.js'
 
 export default buildConfig({
@@ -1341,9 +1341,9 @@ npm run dev  # Starts Next.js on http://localhost:3000
 Create `dev/int.spec.ts`:
 
 ```ts
-import type { Payload } from 'payload'
+import type { Payload } from @hanzo/cms'from 
 import config from '@payload-config'
-import { createPayloadRequest, getPayload } from 'payload'
+import { createPayloadRequest, getPayload } from @hanzo/cms'from 
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 import { customEndpointHandler } from '../src/endpoints/handler.js'
 

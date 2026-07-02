@@ -1,4 +1,4 @@
-import type { ArrayField, RelationshipField } from 'payload'
+import type { ArrayField, RelationshipField } from @hanzo/cms'from 
 
 import { defaults } from '../../defaults.js'
 

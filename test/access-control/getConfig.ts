@@ -2,9 +2,9 @@ import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-import type { Config, FieldAccess } from 'payload'
+import type { Config, FieldAccess } from @hanzo/cms'from 
 
-import { buildEditorState, type DefaultNodeTypes } from '@payloadcms/richtext-lexical'
+import { buildEditorState, type DefaultNodeTypes } from '@hanzo/cms-richtext-lexical'
 
 import type { User } from './payload-types.js'
 

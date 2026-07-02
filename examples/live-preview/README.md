@@ -8,7 +8,7 @@ The [Payload Live Preview Example](https://github.com/payloadcms/payload/tree/3.
 
 1. Run the following command to create a project from the example:
 
-- `npx create-payload-app --example live-preview`
+- `npx @hanzo/create-cms-app --example live-preview`
 
 2. `cp .env.example .env` to copy the example environment variables
 3. Ensure MongoDB is running and `DATABASE_URL` points to it (for example `mongodb://127.0.0.1/payload-example-live-preview`)
@@ -86,10 +86,10 @@ If your server-side front-end application is built with [React](#react), you can
 
 If your front-end application is built with server-side [React](https://react.dev), i.e. [Next.js App Router](https://nextjs.org/docs/app), you can use the `RefreshRouteOnSave` component that Payload provides and thread it your framework's refresh function.
 
-First, install the `@payloadcms/live-preview-react` package:
+First, install the `@hanzo/cms-live-preview-react` package:
 
 ```bash
-npm install @payloadcms/live-preview-react
+npm install @hanzo/cms-live-preview-react
 ```
 
 Then, render `RefreshRouteOnSave` anywhere in your `page.tsx`. Here's an example:
@@ -98,7 +98,7 @@ Then, render `RefreshRouteOnSave` anywhere in your `page.tsx`. Here's an example
 
 ```tsx
 import { RefreshRouteOnSave } from './RefreshRouteOnSave.tsx'
-import { getPayload } from 'payload'
+import { getPayload } from @hanzo/cms'from 
 import config from '../payload.config'
 
 export default async function Page() {
@@ -122,7 +122,7 @@ export default async function Page() {
 
 ```tsx
 'use client'
-import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react'
+import { RefreshRouteOnSave as PayloadLivePreview } from '@hanzo/cms-live-preview-react'
 import { useRouter } from 'next/navigation.js'
 import React from 'react'
 
@@ -142,17 +142,17 @@ For more details on how to setup server-side Live Preview, see the [server-side 
 
 If your front-end application is built with client-side React such as Next.js Pages Router, React Router, etc., use the [`useLivePreview`](#react) React hook that Payload provides.
 
-First, install the `@payloadcms/live-preview-react` package:
+First, install the `@hanzo/cms-live-preview-react` package:
 
 ```bash
-npm install @payloadcms/live-preview-react
+npm install @hanzo/cms-live-preview-react
 ```
 
 Then, use the `useLivePreview` hook in your React component:
 
 ```tsx
 'use client'
-import { useLivePreview } from '@payloadcms/live-preview-react'
+import { useLivePreview } from '@hanzo/cms-live-preview-react'
 import { Page as PageType } from '@/payload-types'
 
 // Fetch the page in a server component, pass it to the client component, then thread it through the hook
@@ -177,16 +177,16 @@ export const PageClient: React.FC<{
 
 In the future, all other major frameworks like Vue, Svelte, etc will be officially supported. If you are using any of these framework today, you can still integrate with Live Preview yourself using the tooling that Payload provides.
 
-First, install the `@payloadcms/live-preview` package:
+First, install the `@hanzo/cms-live-preview` package:
 
 ```bash
-npm install @payloadcms/live-preview
+npm install @hanzo/cms-live-preview
 ```
 
 Then, build your own hook:
 
 ```tsx
-import { subscribe, unsubscribe } from '@payloadcms/live-preview'
+import { subscribe, unsubscribe } from '@hanzo/cms-live-preview'
 
 // Build your own hook to subscribe to the live preview events
 // This function will handle everything for you like

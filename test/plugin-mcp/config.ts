@@ -1,7 +1,7 @@
 import { ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js'
-import { mcpPlugin } from '@payloadcms/plugin-mcp'
+import { mcpPlugin } from '@hanzo/cms-plugin-mcp'
 import path from 'path'
-import { definePlugin } from 'payload'
+import { definePlugin } from @hanzo/cms'from 
 import { fileURLToPath } from 'url'
 import { z } from 'zod'
 
@@ -73,7 +73,7 @@ export default buildConfigWithDefaults({
       order: 1,
       slug: 'before-mcp',
       plugin: ({ config, plugins }) => {
-        const mcp = plugins['@payloadcms/plugin-mcp']
+        const mcp = plugins['@hanzo/cms-plugin-mcp']
         if (mcp?.options) {
           const opts = mcp.options
           opts.mcp ??= {}
@@ -410,7 +410,7 @@ export default buildConfigWithDefaults({
       order: 1,
       slug: 'after-mcp',
       plugin: ({ config, plugins }) => {
-        const mcp = plugins['@payloadcms/plugin-mcp']
+        const mcp = plugins['@hanzo/cms-plugin-mcp']
         if (mcp?.options) {
           const opts = mcp.options
           opts.mcp ??= {}

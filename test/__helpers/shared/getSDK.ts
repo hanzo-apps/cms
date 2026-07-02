@@ -1,7 +1,7 @@
-import type { GeneratedTypes, SanitizedConfig } from 'payload'
+import type { GeneratedTypes, SanitizedConfig } from @hanzo/cms'from 
 
-import { REST_DELETE, REST_GET, REST_PATCH, REST_POST, REST_PUT } from '@payloadcms/next/routes'
-import { PayloadSDK } from '@payloadcms/sdk'
+import { REST_DELETE, REST_GET, REST_PATCH, REST_POST, REST_PUT } from '@hanzo/cms-next/routes'
+import { PayloadSDK } from '@hanzo/cms-sdk'
 
 export type TypedPayloadSDK = PayloadSDK<GeneratedTypes>
 

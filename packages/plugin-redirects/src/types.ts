@@ -1,4 +1,4 @@
-import type { CollectionConfig, Field, SelectField } from 'payload'
+import type { CollectionConfig, Field, SelectField } from @hanzo/cms'from 
 
 import type { redirectTypes } from './redirectTypes.js'
 export type FieldsOverride = (args: { defaultFields: Field[] }) => Field[]

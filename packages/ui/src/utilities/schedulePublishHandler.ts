@@ -1,4 +1,4 @@
-import { canAccessAdmin, type SchedulePublishTaskInput, type ServerFunction } from 'payload'
+import { canAccessAdmin, type SchedulePublishTaskInput, type ServerFunction } from @hanzo/cms'from 
 
 export type SchedulePublishHandlerArgs = {
   date?: Date

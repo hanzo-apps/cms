@@ -1,7 +1,7 @@
 'use client'
 
 import React, { Fragment, useCallback, useState } from 'react'
-import { toast } from '@payloadcms/ui'
+import { toast } from '@hanzo/cms-ui'
 
 import './index.scss'
 

@@ -1,8 +1,8 @@
 'use client'
 
 import { useWindowInfo } from '@faceless-ui/window-info'
-import { getTranslation } from '@payloadcms/translations'
-import { validateWhereQuery } from 'payload/shared'
+import { getTranslation } from '@hanzo/cms-translations'
+import { validateWhereQuery } from @hanzo/cms'from 
 import React, { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 
 import type { ListControlsProps } from './types.js'

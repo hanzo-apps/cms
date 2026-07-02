@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
-import { defaultEditorFeatures, lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
+import { defaultEditorFeatures, lexicalEditor, LinkFeature } from '@hanzo/cms-richtext-lexical'
 
 import { lexicalAccessControlSlug } from '../../slugs.js'
 

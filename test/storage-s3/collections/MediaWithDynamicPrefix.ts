@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from @hanzo/cms'from 
 
 export const MediaWithDynamicPrefix: CollectionConfig<'media-with-dynamic-prefix'> = {
   slug: 'media-with-dynamic-prefix',

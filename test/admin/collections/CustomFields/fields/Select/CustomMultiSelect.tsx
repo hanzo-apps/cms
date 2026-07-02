@@ -1,8 +1,8 @@
 'use client'
 
-import type { Option, SelectFieldClientComponent } from 'payload'
+import type { Option, SelectFieldClientComponent } from @hanzo/cms'from 
 
-import { SelectField, useField } from '@payloadcms/ui'
+import { SelectField, useField } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomMultiSelect: SelectFieldClientComponent = (props) => {

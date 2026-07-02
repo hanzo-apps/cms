@@ -1,5 +1,5 @@
 'use client'
-import { useNav } from '@payloadcms/ui'
+import { useNav } from '@hanzo/cms-ui'
 import React from 'react'
 
 import './index.scss'

@@ -2,7 +2,7 @@ import {
   buildEditorState,
   type DefaultNodeTypes,
   type SerializedInlineBlockNode,
-} from '@payloadcms/richtext-lexical'
+} from '@hanzo/cms-richtext-lexical'
 import { expect, type Page, test } from '@playwright/test'
 import { lexicalFullyFeaturedSlug } from 'lexical/slugs.js'
 import path from 'path'

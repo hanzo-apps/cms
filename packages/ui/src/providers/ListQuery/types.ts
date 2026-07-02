@@ -5,7 +5,7 @@ import type {
   PaginatedDocs,
   Sort,
   Where,
-} from 'payload'
+} from @hanzo/cms'from 
 
 type ContextHandlers = {
   handlePageChange?: (page: number) => Promise<void>

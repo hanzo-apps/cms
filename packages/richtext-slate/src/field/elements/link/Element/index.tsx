@@ -1,7 +1,7 @@
 'use client'
-import type { FormState } from 'payload'
+import type { FormState } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 import {
   Button,
   Popup,
@@ -13,8 +13,8 @@ import {
   useModal,
   useServerFunctions,
   useTranslation,
-} from '@payloadcms/ui'
-import { deepCopyObject, reduceFieldsToValues } from 'payload/shared'
+} from '@hanzo/cms-ui'
+import { deepCopyObject, reduceFieldsToValues } from @hanzo/cms'from 
 import { useCallback, useEffect, useState } from 'react'
 import { Editor, Node, Transforms } from 'slate'
 import { ReactEditor, useSlate } from 'slate-react'

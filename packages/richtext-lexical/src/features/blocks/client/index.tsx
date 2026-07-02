@@ -1,9 +1,9 @@
 'use client'
 
-import type { I18nClient } from '@payloadcms/translations'
-import type { BlocksFieldClient, ClientBlock } from 'payload'
+import type { I18nClient } from '@hanzo/cms-translations'
+import type { BlocksFieldClient, ClientBlock } from @hanzo/cms'from 
 
-import { getTranslation } from '@payloadcms/translations'
+import { getTranslation } from '@hanzo/cms-translations'
 
 import type {
   SlashMenuGroup,

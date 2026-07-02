@@ -8,14 +8,14 @@ Official MongoDB adapter for [Payload](https://payloadcms.com).
 ## Installation
 
 ```bash
-npm install @payloadcms/db-mongodb
+npm install @hanzo/cms-db-mongodb
 ```
 
 ## Usage
 
 ```ts
-import { buildConfig } from 'payload'
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { buildConfig } from @hanzo/cms'from 
+import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 
 export default buildConfig({
   db: mongooseAdapter({

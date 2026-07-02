@@ -1,11 +1,11 @@
-import type { DrizzleAdapter } from '@payloadcms/drizzle'
+import type { DrizzleAdapter } from '@hanzo/cms-drizzle'
 import type {
   BasePostgresAdapter,
   GenericEnum,
   MigrateDownArgs,
   MigrateUpArgs,
   PostgresSchemaHook,
-} from '@payloadcms/drizzle/postgres'
+} from '@hanzo/cms-drizzle/postgres'
 import type { DrizzleConfig } from 'drizzle-orm'
 import type { NodePgDatabase } from 'drizzle-orm/node-postgres'
 import type { PgSchema, PgTableFn, PgTransactionConfig, PgWithReplicas } from 'drizzle-orm/pg-core'
@@ -118,7 +118,7 @@ declare module 'payload' {
     initializing: Promise<void>
     localesSuffix?: string
     logger: DrizzleConfig['logger']
-    /** Optionally inject your own node-postgres. This is required if you wish to instrument the driver with @payloadcms/plugin-sentry. */
+    /** Optionally inject your own node-postgres. This is required if you wish to instrument the driver with @hanzo/cms-plugin-sentry. */
     pg?: PgDependency
     pgSchema?: { table: PgTableFn } | PgSchema
     pool: Pool

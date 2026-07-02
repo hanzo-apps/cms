@@ -6,7 +6,7 @@ import type {
   Operation,
   PayloadRequest,
   SanitizedConfig,
-} from 'payload'
+} from @hanzo/cms'from 
 
 export const getLivePreviewConfig = ({
   collectionConfig,

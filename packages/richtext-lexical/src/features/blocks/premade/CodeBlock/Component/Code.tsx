@@ -1,8 +1,8 @@
 'use client'
 
-import type { CodeFieldClient, CodeFieldClientProps } from 'payload'
+import type { CodeFieldClient, CodeFieldClientProps } from @hanzo/cms'from 
 
-import { CodeField, useFormFields } from '@payloadcms/ui'
+import { CodeField, useFormFields } from '@hanzo/cms-ui'
 import React, { useId, useMemo } from 'react'
 
 import { defaultLanguages } from './defaultLanguages.js'

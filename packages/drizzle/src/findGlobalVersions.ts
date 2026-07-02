@@ -1,6 +1,6 @@
-import type { FindGlobalVersions, SanitizedGlobalConfig } from 'payload'
+import type { FindGlobalVersions, SanitizedGlobalConfig } from @hanzo/cms'from 
 
-import { buildVersionGlobalFields } from 'payload'
+import { buildVersionGlobalFields } from @hanzo/cms'from 
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from './types.js'

@@ -1,5 +1,5 @@
 'use client'
-import { Hamburger, useNav } from '@payloadcms/ui'
+import { Hamburger, useNav } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const NavHamburger: React.FC = () => {

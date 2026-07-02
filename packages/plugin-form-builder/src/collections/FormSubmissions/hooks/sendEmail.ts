@@ -1,4 +1,4 @@
-import type { CollectionAfterChangeHook } from 'payload'
+import type { CollectionAfterChangeHook } from @hanzo/cms'from 
 
 import type { Email, FormattedEmail, FormBuilderPluginConfig } from '../../../types.js'
 

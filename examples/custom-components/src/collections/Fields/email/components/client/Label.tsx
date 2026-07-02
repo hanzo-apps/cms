@@ -1,7 +1,7 @@
 'use client'
-import type { EmailFieldLabelClientComponent } from 'payload'
+import type { EmailFieldLabelClientComponent } from @hanzo/cms'from 
 
-import { FieldLabel } from '@payloadcms/ui'
+import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
 
 export const CustomEmailFieldLabelClient: EmailFieldLabelClientComponent = ({ field, path }) => {

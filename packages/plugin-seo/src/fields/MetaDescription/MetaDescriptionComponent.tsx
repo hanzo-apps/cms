@@ -1,7 +1,7 @@
 'use client'
 
-import type { FieldType } from '@payloadcms/ui'
-import type { TextareaFieldClientProps } from 'payload'
+import type { FieldType } from '@hanzo/cms-ui'
+import type { TextareaFieldClientProps } from @hanzo/cms'from 
 
 import {
   FieldLabel,
@@ -13,9 +13,9 @@ import {
   useForm,
   useLocale,
   useTranslation,
-} from '@payloadcms/ui'
-import { reduceToSerializableFields } from '@payloadcms/ui/shared'
-import { formatAdminURL } from 'payload/shared'
+} from '@hanzo/cms-ui'
+import { reduceToSerializableFields } from '@hanzo/cms-ui/shared'
+import { formatAdminURL } from @hanzo/cms'from 
 import React, { useCallback } from 'react'
 
 import type { PluginSEOTranslationKeys, PluginSEOTranslations } from '../../translations/index.js'

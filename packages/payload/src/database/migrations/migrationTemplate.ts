@@ -2,7 +2,7 @@ export const migrationTemplate = `
 import {
   MigrateUpArgs,
   MigrateDownArgs,
-} from "@payloadcms/db-mongodb";
+} from "@hanzo/cms-db-mongodb";
 
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   // Migration code

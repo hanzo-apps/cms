@@ -3,9 +3,9 @@ import type {
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
   SanitizedPermissions,
-} from 'payload'
+} from @hanzo/cms'from 
 
-import { Gutter, RenderTitle } from '@payloadcms/ui'
+import { Gutter, RenderTitle } from '@hanzo/cms-ui'
 import React from 'react'
 
 import { DocumentTabs } from './Tabs/index.js'

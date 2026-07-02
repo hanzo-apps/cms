@@ -32,42 +32,42 @@ All breaking changes are listed below. If you encounter changes that are not exp
 
 ## Installation
 
-Payload 3.0 requires a set of auto-generated files that you will need to bring into your existing project. The easiest way of acquiring these is by initializing a new project via `create-payload-app`, then replace the provided Payload Config with your own.
+Payload 3.0 requires a set of auto-generated files that you will need to bring into your existing project. The easiest way of acquiring these is by initializing a new project via `@hanzo/create-cms-app`, then replace the provided Payload Config with your own.
 
 ```bash
-  npx create-payload-app
+  npx @hanzo/create-cms-app
 ```
 
 For more details, see the [Documentation](https://payloadcms.com/docs/getting-started/installation).
 
 1. **Install new dependencies of Payload, Next.js and React**:
 
-   Refer to the package.json file made in the create-payload-app, including peerDependencies, devDependencies, and dependencies. The core package and plugins require all versions to be synced. Previously, on 2.x it was possible to be running the latest version of Payload 2.x with an older version of db-mongodb for example. This is no longer the case.
+   Refer to the package.json file made in the @hanzo/create-cms-app, including peerDependencies, devDependencies, and dependencies. The core package and plugins require all versions to be synced. Previously, on 2.x it was possible to be running the latest version of Payload 2.x with an older version of db-mongodb for example. This is no longer the case.
 
    ```bash
-     pnpm i next react react-dom payload @payloadcms/ui @payloadcms/next
+     pnpm i next react react-dom payload @hanzo/cms-ui @hanzo/cms-next
    ```
 
    Also install the other @payloadcms packages specific to the plugins and adapters you are using. Depending on your project, these may include:
 
-   - @payloadcms/db-mongodb
-   - @payloadcms/db-postgres
-   - @payloadcms/richtext-slate
-   - @payloadcms/richtext-lexical
-   - @payloadcms/plugin-form-builder
-   - @payloadcms/plugin-nested-docs
-   - @payloadcms/plugin-redirects
-   - @payloadcms/plugin-relationship
-   - @payloadcms/plugin-search
-   - @payloadcms/plugin-sentry
-   - @payloadcms/plugin-seo
-   - @payloadcms/plugin-stripe
-   - @payloadcms/plugin-cloud-storage - Read [More](#@payloadcms/plugin-cloud-storage).
+   - @hanzo/cms-db-mongodb
+   - @hanzo/cms-db-postgres
+   - @hanzo/cms-richtext-slate
+   - @hanzo/cms-richtext-lexical
+   - @hanzo/cms-plugin-form-builder
+   - @hanzo/cms-plugin-nested-docs
+   - @hanzo/cms-plugin-redirects
+   - @hanzo/cms-plugin-relationship
+   - @hanzo/cms-plugin-search
+   - @hanzo/cms-plugin-sentry
+   - @hanzo/cms-plugin-seo
+   - @hanzo/cms-plugin-stripe
+   - @hanzo/cms-plugin-cloud-storage - Read [More](#@hanzo/cms-plugin-cloud-storage).
 
 1. Uninstall deprecated packages:
 
    ```bash
-   pnpm remove express nodemon @payloadcms/bundler-webpack @payloadcms/bundler-vite
+   pnpm remove express nodemon @hanzo/cms-bundler-webpack @hanzo/cms-bundler-vite
    ```
 
 1. Database Adapter Migrations
@@ -82,19 +82,19 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
    Uninstall the old package:
 
    ```bash
-   pnpm remove @payloadcms/plugin-cloud
+   pnpm remove @hanzo/cms-plugin-cloud
    ```
 
    Install the new package:
 
    ```bash
-   pnpm i @payloadcms/payload-cloud
+   pnpm i @hanzo/cms-payload-cloud
    ```
 
    ```diff
    // payload.config.ts
-   - import { payloadCloud } from '@payloadcms/plugin-cloud'
-   + import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
+   - import { payloadCloud } from '@hanzo/cms-plugin-cloud'
+   + import { payloadCloudPlugin } from '@hanzo/cms-payload-cloud'
 
    buildConfig({
      // ...
@@ -128,7 +128,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
     ```diff
     // payload.config.ts
-    - import { webpackBundler } from '@payloadcms/bundler-webpack'
+    - import { webpackBundler } from '@hanzo/cms-bundler-webpack'
 
     buildConfig({
       // ...
@@ -139,7 +139,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
     })
     ```
 
-    This also means that the `@payloadcms/bundler-webpack` and `@payloadcms/bundler-vite` packages have been deprecated. You can completely uninstall those from your project by removing them from your `package.json` file and re-running your package manager’s installation process, i.e. `pnpm i`.
+    This also means that the `@hanzo/cms-bundler-webpack` and `@hanzo/cms-bundler-vite` packages have been deprecated. You can completely uninstall those from your project by removing them from your `package.json` file and re-running your package manager’s installation process, i.e. `pnpm i`.
 
 1.  Add the `secret` property to your Payload Config. This used to be set in the `payload.init()` function of your `server.ts` file. Instead, move it to `payload.config.ts`:
 
@@ -235,7 +235,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
     ```diff
     // collections/Posts.ts
-    import type { CollectionConfig } from 'payload'
+    import type { CollectionConfig } from @hanzo/cms'from 
 
     export const PostsCollection: CollectionConfig = {
       slug: 'posts',
@@ -269,7 +269,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
     ```diff
     // collections/Media.ts
-    import type { CollectionConfig } from 'payload'
+    import type { CollectionConfig } from @hanzo/cms'from 
     import path from 'path'
     + import { fileURLToPath } from 'url'
 
@@ -289,7 +289,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
     ```diff
     // collections/Media.ts
-    import type { CollectionConfig } from 'payload'
+    import type { CollectionConfig } from @hanzo/cms'from 
 
     export const MediaCollection: CollectionConfig = {
       slug: 'media',
@@ -303,7 +303,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
     ```diff
     // payload.config.ts
-    import { buildConfig } from 'payload'
+    import { buildConfig } from @hanzo/cms'from 
 
     const config = buildConfig({
       // ...
@@ -323,7 +323,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
     ```diff
     // payload.config.ts
-    import { buildConfig } from 'payload'
+    import { buildConfig } from @hanzo/cms'from 
 
     const config = buildConfig({
       // ...
@@ -344,7 +344,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
     ```diff
     // payload.config.ts
-    import { buildConfig } from 'payload'
+    import { buildConfig } from @hanzo/cms'from 
 
     export default buildConfig({
       // ...
@@ -363,7 +363,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
     ```diff
     // payload.config.ts
-    import { buildConfig } from 'payload'
+    import { buildConfig } from @hanzo/cms'from 
 
     const config = buildConfig({
       // ...
@@ -382,7 +382,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
     ```diff
     // payload.config.ts
-    import { buildConfig } from 'payload'
+    import { buildConfig } from @hanzo/cms'from 
 
     export default buildConfig({
       custom: {
@@ -400,7 +400,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
     ```diff
     // payload.config.ts
-    import { buildConfig } from 'payload'
+    import { buildConfig } from @hanzo/cms'from 
 
     export default buildConfig({
       hooks: {
@@ -426,11 +426,11 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
 ## Custom Components
 
-1. All Payload React components have been moved from the `payload` package to `@payloadcms/ui`. If you were previously importing components into your app from the `payload` package, for example to create Custom Components, you will need to change your import paths:
+1. All Payload React components have been moved from the `payload` package to `@hanzo/cms-ui`. If you were previously importing components into your app from the `payload` package, for example to create Custom Components, you will need to change your import paths:
 
    ```diff
-   - import { TextField, useField, etc. } from 'payload'
-   + import { TextField, useField, etc. } from '@payloadcms/ui'
+   - import { TextField, useField, etc. } from @hanzo/cms'from 
+   + import { TextField, useField, etc. } from '@hanzo/cms-ui'
    ```
 
    _Note: for brevity, not *all* modules are listed here_
@@ -438,7 +438,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 1. All Custom Components are now defined as _file paths_ instead of direct imports. If you are using Custom Components in your Payload Config, remove the imported module and point to the file's path instead:
 
    ```diff
-   import { buildConfig } from 'payload'
+   import { buildConfig } from @hanzo/cms'from 
    - import { MyComponent } from './src/components/Logout'
 
    const config = buildConfig({
@@ -482,7 +482,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    // collections/Posts.ts
-   import type { CollectionConfig } from 'payload'
+   import type { CollectionConfig } from @hanzo/cms'from 
    - import { MyCustomDescription } from '../components/MyCustomDescription'
 
    export const PostsCollection: CollectionConfig = {
@@ -502,7 +502,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    // globals/Site.ts
-   import type { GlobalConfig } from 'payload'
+   import type { GlobalConfig } from @hanzo/cms'from 
    - import { MyCustomDescription } from '../components/MyCustomDescription'
 
    export const SiteGlobal: GlobalConfig = {
@@ -522,7 +522,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    // fields/MyField.ts
-   import type { FieldConfig } from 'payload'
+   import type { FieldConfig } from @hanzo/cms'from 
    - import { MyCustomDescription } from '../components/MyCustomDescription'
 
    export const MyField: FieldConfig = {
@@ -540,7 +540,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    // file: Collection.tsx
-   import type { CollectionConfig } from 'payload'
+   import type { CollectionConfig } from @hanzo/cms'from 
    - import { MyCustomRowLabel } from './components/MyCustomRowLabel.tsx'
 
    export const MyCollection: CollectionConfig = {
@@ -579,7 +579,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
    ```diff
    // file: payload.config.ts
 
-   import { buildConfig } from 'payload'
+   import { buildConfig } from @hanzo/cms'from 
 
    export default buildConfig({
    admin: {
@@ -595,7 +595,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
    ```diff
    // file: Collection.tsx
 
-   import type { CollectionConfig } from 'payload'
+   import type { CollectionConfig } from @hanzo/cms'from 
 
    export const MyCollection: CollectionConfig = {
      slug: 'my-collection',
@@ -616,7 +616,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    // file: Collection.tsx
-   import type { CollectionConfig } from 'payload'
+   import type { CollectionConfig } from @hanzo/cms'from 
    - import { MyCustomView } from './components/MyCustomView.tsx'
 
    export const MyCollection: CollectionConfig = {
@@ -636,7 +636,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    // file: Collection.tsx
-   import type { CollectionConfig } from 'payload'
+   import type { CollectionConfig } from @hanzo/cms'from 
    - import { MyCustomRootView } from './components/MyCustomRootView.tsx'
 
    export const MyCollection: CollectionConfig = {
@@ -658,7 +658,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    // collections/Posts.ts
-   import type { CollectionConfig } from 'payload'
+   import type { CollectionConfig } from @hanzo/cms'from 
 
    export const PostsCollection: CollectionConfig = {
      slug: 'posts',
@@ -688,7 +688,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    // collections/Posts.ts
-   import type { CollectionConfig } from 'payload'
+   import type { CollectionConfig } from @hanzo/cms'from 
 
    export const PostsCollection: CollectionConfig = {
      slug: 'posts',
@@ -716,7 +716,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
    ```diff
    'use client'
    - import { Trans } from "react-i18n"
-   + import { Translation } from "@payloadcms/ui"
+   + import { Translation } from "@hanzo/cms-ui"
 
    // Example string to translate:
    // "loggedInChangePassword": "To change your password, go to your <0>account</0> and edit your password there."
@@ -744,7 +744,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    // collections/Posts.ts
-   import type { CollectionConfig } from 'payload'
+   import type { CollectionConfig } from @hanzo/cms'from 
 
    export const PostsCollection: CollectionConfig = {
      slug: 'posts',
@@ -780,9 +780,9 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    // collections/Posts.ts
-   import type { CollectionConfig } from 'payload'
-   + import { addDataAndFileToRequest } from '@payloadcms/next/utilities'
-   + import { addLocalesToRequest } from '@payloadcms/next/utilities'
+   import type { CollectionConfig } from @hanzo/cms'from 
+   + import { addDataAndFileToRequest } from '@hanzo/cms-next/utilities'
+   + import { addLocalesToRequest } from '@hanzo/cms-next/utilities'
 
    export const PostsCollection: CollectionConfig = {
      slug: 'posts',
@@ -821,8 +821,8 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    'use client'
-   - import { useTitle } from 'payload'
-   + import { useDocumentInfo } from '@payloadcms/ui'
+   - import { useTitle } from @hanzo/cms'from 
+   + import { useDocumentInfo } from '@hanzo/cms-ui'
 
    export const MyComponent = () => {
    - const title = useTitle()
@@ -836,7 +836,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    'use client'
-   import { useDocumentInfo } from '@payloadcms/ui'
+   import { useDocumentInfo } from '@hanzo/cms-ui'
 
    export const MyComponent = () => {
      const {
@@ -854,8 +854,8 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    'use client'
-   - import { useConfig } from 'payload'
-   + import { useConfig } from '@payloadcms/ui'
+   - import { useConfig } from @hanzo/cms'from 
+   + import { useConfig } from '@hanzo/cms-ui'
 
    export const MyComponent = () => {
    - const config = useConfig() // used to be a 'SanitizedConfig'
@@ -871,7 +871,7 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    'use client'
-   import { useCollapsible } from '@payloadcms/ui'
+   import { useCollapsible } from '@hanzo/cms-ui'
 
    export const MyComponent = () => {
    - const { collapsed, withinCollapsible } = useCollapsible()
@@ -883,8 +883,8 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 
    ```diff
    'use client'
-   - import { useTranslation } from 'payload'
-   + import { useTranslation } from '@payloadcms/ui'
+   - import { useTranslation } from @hanzo/cms'from 
+   + import { useTranslation } from '@hanzo/cms-ui'
 
    export const MyComponent = () => {
    - const { i18n, t } = useTranslation('general')
@@ -900,26 +900,26 @@ For more details, see the [Documentation](https://payloadcms.com/docs/getting-st
 1. The `Fields` type was renamed to `FormState` for improved semantics. If you were previously importing this type in your own application, simply change the import name:
 
    ```diff
-   - import type { Fields } from 'payload'
-   + import type { FormState } from 'payload'
+   - import type { Fields } from @hanzo/cms'from 
+   + import type { FormState } from @hanzo/cms'from 
    ```
 
 1. The `BlockField` and related types have been renamed to `BlocksField` for semantic accuracy.
 
    ```diff
-   - import type { BlockField, BlockFieldProps } from 'payload'
-   + import type { BlocksField, BlocksFieldProps } from 'payload'
+   - import type { BlockField, BlockFieldProps } from @hanzo/cms'from 
+   + import type { BlocksField, BlocksFieldProps } from @hanzo/cms'from 
    ```
 
 ## Email Adapters
 
 Email functionality has been abstracted out into email adapters.
 
-- All existing nodemailer functionality was abstracted into the `@payloadcms/email-nodemailer` package
+- All existing nodemailer functionality was abstracted into the `@hanzo/cms-email-nodemailer` package
 - No longer configured with ethereal.email by default.
 - Ability to pass email into the `init` function has been removed.
 - Warning will be given on startup if email not configured. Any `sendEmail` call will simply log the To address and subject.
-- A Resend adapter is now also available via the `@payloadcms/email-resend` package.
+- A Resend adapter is now also available via the `@hanzo/cms-email-resend` package.
 
 ### If you used the default email configuration in 2.0 (nodemailer):
 
@@ -947,7 +947,7 @@ export default buildConfig({
 
 // Using new nodemailer adapter package
 
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 
 export default buildConfig({
   email: nodemailerAdapter() // This will be the old ethereal.email functionality
@@ -980,20 +980,20 @@ export default buildConfig({
 1. _All_ plugins have been standardized to use _named exports_ (as opposed to default exports). Most also have a suffix of `Plugin` to make it clear what is being imported.
 
    ```diff
-   - import seo from '@payloadcms/plugin-seo'
-   + import { seoPlugin } from '@payloadcms/plugin-seo'
+   - import seo from '@hanzo/cms-plugin-seo'
+   + import { seoPlugin } from '@hanzo/cms-plugin-seo'
 
-   - import stripePlugin from '@payloadcms/plugin-stripe'
-   + import { stripePlugin } from '@payloadcms/plugin-stripe'
+   - import stripePlugin from '@hanzo/cms-plugin-stripe'
+   + import { stripePlugin } from '@hanzo/cms-plugin-stripe'
 
    // and so on for every plugin
    ```
 
-## `@payloadcms/plugin-cloud-storage`
+## `@hanzo/cms-plugin-cloud-storage`
 
-- The adapters that are exported from `@payloadcms/plugin-cloud-storage` (ie. `@payloadcms/plugin-cloud-storage/s3`) package have been removed.
+- The adapters that are exported from `@hanzo/cms-plugin-cloud-storage` (ie. `@hanzo/cms-plugin-cloud-storage/s3`) package have been removed.
 - New _standalone_ packages have been created for each of the existing adapters. Please see the documentation for the one that you use.
-- `@payloadcms/plugin-cloud-storage` is still fully supported but should only to be used if you are providing a custom adapter that does not have a dedicated package.
+- `@hanzo/cms-plugin-cloud-storage` is still fully supported but should only to be used if you are providing a custom adapter that does not have a dedicated package.
 - If you have created a custom adapter, the type must now provide a `name` property.
 
 | Service              | Package                                                                      |
@@ -1006,8 +1006,8 @@ export default buildConfig({
 ```tsx
 // ❌ Before (required peer dependencies depending on adapter)
 
-import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
-import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
+import { cloudStorage } from '@hanzo/cms-plugin-cloud-storage'
+import { s3Adapter } from '@hanzo/cms-plugin-cloud-storage/s3'
 
 plugins: [
     cloudStorage({
@@ -1030,7 +1030,7 @@ plugins: [
 
  // ✅ After
 
- import { s3Storage } from '@payloadcms/storage-s3'
+ import { s3Storage } from '@hanzo/cms-storage-s3'
 
  plugins: [
     s3Storage({
@@ -1049,14 +1049,14 @@ plugins: [
   ],
 ```
 
-## `@payloadcms/plugin-form-builder`
+## `@hanzo/cms-plugin-form-builder`
 
 1. Field overrides for form and form submission collections now accept a function with a `defaultFields` inside the args instead of an array of config
 
    ```diff
    // payload.config.ts
-   import { buildConfig } from 'payload'
-   import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
+   import { buildConfig } from @hanzo/cms'from 
+   import { formBuilderPlugin } from '@hanzo/cms-plugin-form-builder'
 
    const config = buildConfig({
      // ...
@@ -1080,14 +1080,14 @@ plugins: [
    })
    ```
 
-## `@payloadcms/plugin-redirects`
+## `@hanzo/cms-plugin-redirects`
 
 1. Field overrides for the redirects collection now accepts a function with a `defaultFields` inside the args instead of an array of config
 
    ```diff
    // payload.config.ts
-   import { buildConfig } from 'payload'
-   import { redirectsPlugin } from '@payloadcms/plugin-redirects'
+   import { buildConfig } from @hanzo/cms'from 
+   import { redirectsPlugin } from '@hanzo/cms-plugin-redirects'
 
    const config = buildConfig({
      // ...
@@ -1111,9 +1111,9 @@ plugins: [
    })
    ```
 
-## `@payloadcms/richtext-lexical`
+## `@hanzo/cms-richtext-lexical`
 
-If you have custom features for `@payloadcms/richtext-lexical` you will need to migrate your code to the new API. Read more about the new API in the [documentation](https://payloadcms.com/docs/rich-text/building-custom-features).
+If you have custom features for `@hanzo/cms-richtext-lexical` you will need to migrate your code to the new API. Read more about the new API in the [documentation](https://payloadcms.com/docs/rich-text/building-custom-features).
 
 ## Reserved Field names
 

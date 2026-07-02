@@ -1,6 +1,6 @@
-import type { PayloadRequest } from 'payload'
+import type { PayloadRequest } from @hanzo/cms'from 
 
-import { addDataAndFileToRequest, Forbidden } from 'payload'
+import { addDataAndFileToRequest, Forbidden } from @hanzo/cms'from 
 
 import type { StripePluginConfig } from '../types.js'
 
