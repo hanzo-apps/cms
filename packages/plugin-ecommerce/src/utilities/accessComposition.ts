@@ -1,6 +1,6 @@
-import type { Access, Where } from @hanzo/cms'from 
+import type { Access, Where } from '@hanzo/cms'
 
-import { combineWhereConstraints } from @hanzo/cms'from 
+import { combineWhereConstraints } from '@hanzo/cms/shared'
 
 /**
  * Combines multiple access functions with OR logic.

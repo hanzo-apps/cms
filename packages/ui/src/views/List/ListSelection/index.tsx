@@ -1,5 +1,5 @@
 'use client'
-import type { ClientCollectionConfig, ViewTypes, Where } from @hanzo/cms'from 
+import type { ClientCollectionConfig, ViewTypes, Where } from '@hanzo/cms'
 
 import React, { Fragment, useCallback } from 'react'
 

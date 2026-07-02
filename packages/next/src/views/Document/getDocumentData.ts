@@ -6,7 +6,7 @@ import {
   type PayloadRequest,
   type TypedUser,
   type TypeWithID,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 type Args = {
   collectionSlug?: string

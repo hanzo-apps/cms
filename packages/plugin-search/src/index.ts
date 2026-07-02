@@ -1,4 +1,4 @@
-import type { CollectionAfterChangeHook, Config } from @hanzo/cms'from 
+import type { CollectionAfterChangeHook, Config } from '@hanzo/cms'
 
 import type { SanitizedSearchPluginConfig, SearchPluginConfig } from './types.js'
 

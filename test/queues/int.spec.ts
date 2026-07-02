@@ -7,8 +7,8 @@ import {
   type JobTaskStatus,
   type Payload,
   type TypedUser,
-} from @hanzo/cms'from 
-import { wait } from @hanzo/cms'from 
+} from '@hanzo/cms'
+import { wait } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 

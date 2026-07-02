@@ -1,4 +1,4 @@
-import type { ArrayField, Block, TextFieldSingleValidation } from @hanzo/cms'from 
+import type { ArrayField, Block, TextFieldSingleValidation } from '@hanzo/cms'
 
 import { BlocksFeature, FixedToolbarFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
 

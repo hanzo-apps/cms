@@ -1,4 +1,4 @@
-import type { ArrayFieldServerComponent } from @hanzo/cms'from 
+import type { ArrayFieldServerComponent } from '@hanzo/cms'
 import type React from 'react'
 
 import { ArrayField } from '@hanzo/cms-ui'

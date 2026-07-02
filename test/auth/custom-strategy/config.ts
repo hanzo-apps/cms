@@ -4,7 +4,7 @@ import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-import type { AuthStrategyFunction } from @hanzo/cms'from 
+import type { AuthStrategyFunction } from '@hanzo/cms'
 
 import { buildConfigWithDefaults } from '../../buildConfigWithDefaults.js'
 import { usersSlug } from './shared.js'

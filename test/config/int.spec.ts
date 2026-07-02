@@ -1,7 +1,7 @@
 import { execSync } from 'child_process'
 import { existsSync, readFileSync, rmSync } from 'fs'
 import path from 'path'
-import { type BlocksField, getPayload, type Payload } from @hanzo/cms'from 
+import { type BlocksField, getPayload, type Payload } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 

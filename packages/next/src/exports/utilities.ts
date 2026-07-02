@@ -10,12 +10,12 @@ import {
   headersWithCors as _headersWithCors,
   mergeHeaders as _mergeHeaders,
   sanitizeLocales as _sanitizeLocales,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 /**
  * Use:
  * ```ts
- * import { mergeHeaders } from @hanzo/cms'from 
+ * import { mergeHeaders } from '@hanzo/cms'
  * ```
  * @deprecated
  */
@@ -25,7 +25,7 @@ export const mergeHeaders = _mergeHeaders
  * @deprecated
  * Use:
  * ```ts
- * import { headersWithCors } from @hanzo/cms'from 
+ * import { headersWithCors } from '@hanzo/cms'
  * ```
  */
 export const headersWithCors = _headersWithCors
@@ -34,7 +34,7 @@ export const headersWithCors = _headersWithCors
  * @deprecated
  * Use:
  * ```ts
- * import { createPayloadRequest } from @hanzo/cms'from 
+ * import { createPayloadRequest } from '@hanzo/cms'
  * ```
  */
 export const createPayloadRequest = _createPayloadRequest
@@ -43,7 +43,7 @@ export const createPayloadRequest = _createPayloadRequest
  * @deprecated
  * Use:
  * ```ts
- * import { addDataAndFileToRequest } from @hanzo/cms'from 
+ * import { addDataAndFileToRequest } from '@hanzo/cms'
  * ```
  */
 export const addDataAndFileToRequest = _addDataAndFileToRequest
@@ -52,7 +52,7 @@ export const addDataAndFileToRequest = _addDataAndFileToRequest
  * @deprecated
  * Use:
  * ```ts
- * import { sanitizeLocales } from @hanzo/cms'from 
+ * import { sanitizeLocales } from '@hanzo/cms'
  * ```
  */
 export const sanitizeLocales = _sanitizeLocales
@@ -61,7 +61,7 @@ export const sanitizeLocales = _sanitizeLocales
  * @deprecated
  * Use:
  * ```ts
- * import { addLocalesToRequestFromData } from @hanzo/cms'from 
+ * import { addLocalesToRequestFromData } from '@hanzo/cms'
  * ```
  */
 export const addLocalesToRequestFromData = _addLocalesToRequestFromData

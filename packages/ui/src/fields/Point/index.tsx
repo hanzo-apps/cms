@@ -1,5 +1,5 @@
 'use client'
-import type { PointFieldClientComponent, PointFieldValidation } from @hanzo/cms'from 
+import type { PointFieldClientComponent, PointFieldValidation } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React, { useCallback, useMemo } from 'react'

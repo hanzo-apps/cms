@@ -1,6 +1,6 @@
-import type { AdminViewServerProps } from @hanzo/cms'from 
+import type { AdminViewServerProps } from '@hanzo/cms'
 
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { Logo } from '../../elements/Logo/index.js'

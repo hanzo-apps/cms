@@ -1,4 +1,4 @@
-import type { FieldState, Validate } from @hanzo/cms'from 
+import type { FieldState, Validate } from '@hanzo/cms'
 
 export type Options = {
   disableFormData?: boolean

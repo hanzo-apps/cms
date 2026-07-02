@@ -1,4 +1,4 @@
-import type { Create } from @hanzo/cms'from 
+import type { Create } from '@hanzo/cms'
 
 import toSnakeCase from 'to-snake-case'
 

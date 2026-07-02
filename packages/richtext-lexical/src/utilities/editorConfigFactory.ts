@@ -1,5 +1,5 @@
 import type { EditorConfig as LexicalEditorConfig } from 'lexical'
-import type { RichTextAdapterProvider, RichTextField, SanitizedConfig } from @hanzo/cms'from 
+import type { RichTextAdapterProvider, RichTextField, SanitizedConfig } from '@hanzo/cms'
 
 import type { FeatureProviderServer, ResolvedServerFeatureMap } from '../features/typesServer.js'
 import type { SanitizedServerEditorConfig } from '../lexical/config/types.js'

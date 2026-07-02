@@ -1,7 +1,7 @@
 import { CallToAction } from '@/blocks/CallToAction/config'
 import { Content } from '@/blocks/Content/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
-import { slugField } from @hanzo/cms'from 
+import { slugField } from '@hanzo/cms'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { CollectionOverride } from '@hanzo/cms-plugin-ecommerce/types'
 import {
@@ -18,7 +18,7 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@hanzo/cms-richtext-lexical'
-import { DefaultDocumentIDType, Where } from @hanzo/cms'from 
+import { DefaultDocumentIDType, Where } from '@hanzo/cms'
 
 export const ProductsCollection: CollectionOverride = ({ defaultCollection }) => ({
   ...defaultCollection,

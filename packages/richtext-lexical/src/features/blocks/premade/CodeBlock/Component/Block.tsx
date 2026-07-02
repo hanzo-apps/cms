@@ -1,6 +1,6 @@
 'use client'
 import type { ComboboxEntry } from '@hanzo/cms-ui'
-import type {} from @hanzo/cms'from 
+import type {} from '@hanzo/cms'
 
 import './index.scss'
 

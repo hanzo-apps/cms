@@ -1,12 +1,12 @@
 import type { Post, ArchiveBlock as ArchiveBlockProps } from '@/payload-types'
 
 import configPromise from '@payload-config'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import React from 'react'
 import RichText from '@/components/RichText'
 
 import { CollectionArchive } from '@/components/CollectionArchive'
-import { TypedLocale } from @hanzo/cms'from 
+import { TypedLocale } from '@hanzo/cms'
 
 export const ArchiveBlock: React.FC<
   ArchiveBlockProps & {

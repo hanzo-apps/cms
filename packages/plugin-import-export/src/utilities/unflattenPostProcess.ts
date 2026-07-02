@@ -1,4 +1,4 @@
-import type { FlattenedField } from @hanzo/cms'from 
+import type { FlattenedField } from '@hanzo/cms'
 
 import { getBlockFlattenedFields, getNestedFlattenedFields } from './flattenedFields.js'
 import { isPlainObject } from './isPlainObject.js'

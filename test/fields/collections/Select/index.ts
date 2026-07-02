@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { selectFieldsSlug } from '../../slugs.js'
 import { CustomJSXLabel } from './CustomJSXLabel.js'

@@ -1,5 +1,5 @@
 'use client'
-import type { JSONFieldLabelClientComponent } from @hanzo/cms'from 
+import type { JSONFieldLabelClientComponent } from '@hanzo/cms'
 
 import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'

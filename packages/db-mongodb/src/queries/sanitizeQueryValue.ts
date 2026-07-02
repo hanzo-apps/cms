@@ -5,11 +5,11 @@ import type {
   Operator,
   Payload,
   RelationshipField,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { Types } from 'mongoose'
-import { createArrayFromCommaDelineated, escapeRegExp } from @hanzo/cms'from 
-import { fieldShouldBeLocalized } from @hanzo/cms'from 
+import { createArrayFromCommaDelineated, escapeRegExp } from '@hanzo/cms'
+import { fieldShouldBeLocalized } from '@hanzo/cms/shared'
 
 type SanitizeQueryValueArgs = {
   field: FlattenedField

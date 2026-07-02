@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import type { Access, AccessArgs, Where } from @hanzo/cms'from 
+import type { Access, AccessArgs, Where } from '@hanzo/cms'
 
 import { accessAND, conditional, accessOR } from './accessComposition'
 

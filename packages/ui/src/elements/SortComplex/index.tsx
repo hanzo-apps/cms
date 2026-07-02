@@ -1,11 +1,11 @@
 'use client'
-import type { OptionObject, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { OptionObject, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 // TODO: abstract the `next/navigation` dependency out from this component
 import { usePathname, useRouter, useSearchParams } from 'next/navigation.js'
-import { sortableFieldTypes } from @hanzo/cms'from 
-import { fieldAffectsData } from @hanzo/cms'from 
+import { sortableFieldTypes } from '@hanzo/cms'
+import { fieldAffectsData } from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React, { useEffect, useState } from 'react'
 

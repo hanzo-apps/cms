@@ -3,7 +3,7 @@ import type {
   CollectionBeforeOperationHook,
   CollectionConfig,
   Config,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import type { ExportConfig, ImportExportPluginConfig, Limit } from '../types.js'
 import type { Export } from './createExport.js'

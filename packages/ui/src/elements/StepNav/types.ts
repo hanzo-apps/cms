@@ -1,4 +1,4 @@
-import type { LabelFunction, StaticLabel } from @hanzo/cms'from 
+import type { LabelFunction, StaticLabel } from '@hanzo/cms'
 import type React from 'react'
 
 export type StepNavItem = {

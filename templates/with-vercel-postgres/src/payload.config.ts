@@ -1,7 +1,7 @@
 import { vercelPostgresAdapter } from '@hanzo/cms-db-vercel-postgres'
 import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 import path from 'path'
-import { buildConfig } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'

@@ -1,4 +1,4 @@
-import type { TextareaField } from @hanzo/cms'from 
+import type { TextareaField } from '@hanzo/cms'
 
 interface FieldFunctionProps {
   /**

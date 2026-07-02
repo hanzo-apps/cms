@@ -1,4 +1,4 @@
-import type { ServerComponentProps } from @hanzo/cms'from 
+import type { ServerComponentProps } from '@hanzo/cms'
 
 import styles from './BeforeDashboardServer.module.css'
 

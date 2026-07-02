@@ -1,7 +1,7 @@
 import type { Product, ArchiveBlock as ArchiveBlockProps } from '@/payload-types'
 
 import configPromise from '@payload-config'
-import { DefaultDocumentIDType, getPayload } from @hanzo/cms'from 
+import { DefaultDocumentIDType, getPayload } from '@hanzo/cms'
 import React from 'react'
 import { RichText } from '@/components/RichText'
 

@@ -1,6 +1,6 @@
-import type { Config, Field, GroupField, TabsField } from @hanzo/cms'from 
+import type { Config, Field, GroupField, TabsField } from '@hanzo/cms'
 
-import { deepMergeSimple } from @hanzo/cms'from 
+import { deepMergeSimple } from '@hanzo/cms/shared'
 
 import type {
   GenerateDescription,

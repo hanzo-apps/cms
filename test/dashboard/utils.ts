@@ -1,6 +1,6 @@
 /* eslint-disable perfectionist/sort-classes */
 
-import type { WidgetWidth } from @hanzo/cms'from 
+import type { WidgetWidth } from '@hanzo/cms'
 
 import { expect, type Page } from '@playwright/test'
 

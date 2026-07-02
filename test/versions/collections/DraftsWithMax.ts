@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { draftWithMaxCollectionSlug } from '../slugs.js'
 

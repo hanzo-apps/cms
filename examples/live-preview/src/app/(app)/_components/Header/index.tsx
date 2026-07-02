@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import React from 'react'
 
 import config from '../../../../payload.config'

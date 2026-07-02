@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 export const Autosave: CollectionConfig = {
   slug: 'autosave',

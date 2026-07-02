@@ -1,4 +1,4 @@
-import { buildVersionCollectionFields, type CreateVersion } from @hanzo/cms'from 
+import { buildVersionCollectionFields, type CreateVersion } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 

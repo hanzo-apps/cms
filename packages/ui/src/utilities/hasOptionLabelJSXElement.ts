@@ -1,4 +1,4 @@
-import type { DefaultCellComponentProps } from @hanzo/cms'from 
+import type { DefaultCellComponentProps } from '@hanzo/cms'
 
 import { isValidReactElement } from './isValidReactElement.js'
 

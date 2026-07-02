@@ -5,10 +5,10 @@ import type {
   FieldAffectingData,
   FieldSchemaMap,
   SanitizedConfig,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import escapeHTML from 'escape-html'
-import { sanitizeFields } from @hanzo/cms'from 
+import { sanitizeFields } from '@hanzo/cms'
 
 import type { NodeWithHooks } from '../../typesServer.js'
 import type { ClientProps } from '../client/index.js'

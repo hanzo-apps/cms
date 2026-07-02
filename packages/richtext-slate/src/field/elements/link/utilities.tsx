@@ -1,4 +1,4 @@
-import type { Field, SanitizedConfig } from @hanzo/cms'from 
+import type { Field, SanitizedConfig } from '@hanzo/cms'
 import type { Editor } from 'slate'
 
 import { Element, Range, Transforms } from 'slate'

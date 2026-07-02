@@ -5,7 +5,7 @@ import type {
   FormState,
   LoginWithUsernameOptions,
   SanitizedDocumentPermissions,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import {
   ConfirmPasswordField,
@@ -20,7 +20,7 @@ import {
   useTranslation,
 } from '@hanzo/cms-ui'
 import { abortAndIgnore, handleAbortRef } from '@hanzo/cms-ui/shared'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useEffect } from 'react'
 
 export const CreateFirstUserClient: React.FC<{

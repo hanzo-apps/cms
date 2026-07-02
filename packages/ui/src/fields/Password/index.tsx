@@ -1,7 +1,7 @@
 'use client'
-import type { PasswordFieldValidation, PayloadRequest } from @hanzo/cms'from 
+import type { PasswordFieldValidation, PayloadRequest } from '@hanzo/cms'
 
-import { password } from @hanzo/cms'from 
+import { password } from '@hanzo/cms/shared'
 import React, { useCallback, useMemo } from 'react'
 
 import type { PasswordFieldProps } from './types.js'

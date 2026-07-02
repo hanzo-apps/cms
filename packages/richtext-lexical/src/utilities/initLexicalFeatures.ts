@@ -1,7 +1,7 @@
 import type { I18nClient } from '@hanzo/cms-translations'
 
-import { type ClientFieldSchemaMap, type FieldSchemaMap, type Payload } from @hanzo/cms'from 
-import { getFromImportMap } from @hanzo/cms'from 
+import { type ClientFieldSchemaMap, type FieldSchemaMap, type Payload } from '@hanzo/cms'
+import { getFromImportMap } from '@hanzo/cms/shared'
 
 import type {
   BaseClientFeatureProps,

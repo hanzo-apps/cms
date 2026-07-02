@@ -1,4 +1,4 @@
-import type { RichTextField, Validate } from @hanzo/cms'from 
+import type { RichTextField, Validate } from '@hanzo/cms'
 
 import type { AdapterArguments } from '../types.js'
 

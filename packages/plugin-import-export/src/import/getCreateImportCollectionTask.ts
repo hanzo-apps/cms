@@ -1,6 +1,6 @@
-import type { Config, TaskConfig } from @hanzo/cms'from 
+import type { Config, TaskConfig } from '@hanzo/cms'
 
-import { FileRetrievalError } from @hanzo/cms'from 
+import { FileRetrievalError } from '@hanzo/cms'
 
 import { getFileFromDoc } from '../utilities/getFileFromDoc.js'
 import { createImport } from './createImport.js'

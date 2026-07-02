@@ -1,4 +1,4 @@
-import type { TextareaFieldServerComponent } from @hanzo/cms'from 
+import type { TextareaFieldServerComponent } from '@hanzo/cms'
 import type React from 'react'
 
 import { TextareaField } from '@hanzo/cms-ui'

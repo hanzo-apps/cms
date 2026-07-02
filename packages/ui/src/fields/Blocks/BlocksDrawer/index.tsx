@@ -1,5 +1,5 @@
 'use client'
-import type { ClientBlock, Labels } from @hanzo/cms'from 
+import type { ClientBlock, Labels } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'

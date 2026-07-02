@@ -1,4 +1,4 @@
-import type { Block, Field } from @hanzo/cms'from 
+import type { Block, Field } from '@hanzo/cms'
 
 import { slateEditor } from '@hanzo/cms-richtext-slate'
 

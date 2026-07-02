@@ -1,6 +1,6 @@
-import type { SanitizedConfig } from @hanzo/cms'from 
+import type { SanitizedConfig } from '@hanzo/cms'
 
-import { accessOperation, isolateObjectProperty } from @hanzo/cms'from 
+import { accessOperation, isolateObjectProperty } from '@hanzo/cms'
 
 import type { Context } from '../types.js'
 

@@ -1,6 +1,6 @@
 'use client'
 
-import type { SlugFieldClientProps } from @hanzo/cms'from 
+import type { SlugFieldClientProps } from '@hanzo/cms'
 
 import React, { useCallback, useState } from 'react'
 

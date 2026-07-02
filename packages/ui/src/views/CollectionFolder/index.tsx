@@ -1,12 +1,12 @@
 'use client'
 
 import type { DragEndEvent } from '@dnd-kit/core'
-import type { FolderListViewClientProps } from @hanzo/cms'from 
+import type { FolderListViewClientProps } from '@hanzo/cms'
 
 import { useDndMonitor } from '@dnd-kit/core'
 import { getTranslation } from '@hanzo/cms-translations'
 import { useRouter } from 'next/navigation.js'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { Fragment } from 'react'
 
 import { DefaultListViewTabs } from '../../elements/DefaultListViewTabs/index.js'

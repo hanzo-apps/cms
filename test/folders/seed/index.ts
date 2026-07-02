@@ -1,4 +1,4 @@
-import type { Config, Payload } from @hanzo/cms'from 
+import type { Config, Payload } from '@hanzo/cms'
 
 import type { FolderInterface, Post } from '../payload-types.js'
 

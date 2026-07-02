@@ -1,4 +1,4 @@
-import type { GeneratedTypes, SanitizedConfig } from @hanzo/cms'from 
+import type { GeneratedTypes, SanitizedConfig } from '@hanzo/cms'
 
 import { REST_DELETE, REST_GET, REST_PATCH, REST_POST, REST_PUT } from '@hanzo/cms-next/routes'
 import { PayloadSDK } from '@hanzo/cms-sdk'

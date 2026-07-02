@@ -1,5 +1,5 @@
 'use client'
-import type { GenericDescriptionProps } from @hanzo/cms'from 
+import type { GenericDescriptionProps } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'

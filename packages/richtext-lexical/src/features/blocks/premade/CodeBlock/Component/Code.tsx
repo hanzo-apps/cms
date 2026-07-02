@@ -1,6 +1,6 @@
 'use client'
 
-import type { CodeFieldClient, CodeFieldClientProps } from @hanzo/cms'from 
+import type { CodeFieldClient, CodeFieldClientProps } from '@hanzo/cms'
 
 import { CodeField, useFormFields } from '@hanzo/cms-ui'
 import React, { useId, useMemo } from 'react'

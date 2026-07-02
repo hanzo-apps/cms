@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms/types'
 
 import { admins } from './access/admins'
 import { adminsAndUser } from './access/adminsAndUser'

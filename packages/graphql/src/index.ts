@@ -1,5 +1,5 @@
 import type { OperationArgs } from 'graphql-http'
-import type { GraphQLInfo, SanitizedConfig } from @hanzo/cms'from 
+import type { GraphQLInfo, SanitizedConfig } from '@hanzo/cms'
 
 import * as GraphQL from 'graphql'
 

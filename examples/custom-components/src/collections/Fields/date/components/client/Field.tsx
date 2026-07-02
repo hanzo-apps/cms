@@ -1,5 +1,5 @@
 'use client'
-import type { DateFieldClientComponent } from @hanzo/cms'from 
+import type { DateFieldClientComponent } from '@hanzo/cms'
 
 import { DateTimeField } from '@hanzo/cms-ui'
 import React from 'react'

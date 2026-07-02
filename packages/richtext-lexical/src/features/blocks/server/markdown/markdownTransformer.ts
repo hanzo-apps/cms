@@ -1,5 +1,5 @@
 import type { ElementNode, SerializedLexicalNode } from 'lexical'
-import type { Block } from @hanzo/cms'from 
+import type { Block } from '@hanzo/cms'
 
 import { $parseSerializedNode } from 'lexical'
 

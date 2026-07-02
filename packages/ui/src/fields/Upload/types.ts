@@ -1,4 +1,4 @@
-import type { PaginatedDocs, ValueWithRelation } from @hanzo/cms'from 
+import type { PaginatedDocs, ValueWithRelation } from '@hanzo/cms'
 
 export type ValueAsDataWithRelation = {
   relationTo: string

@@ -1,4 +1,4 @@
-import type { Permissions } from @hanzo/cms'from 
+import type { Permissions } from '@hanzo/cms/auth'
 
 import type { User } from '../../../../payload-types'
 

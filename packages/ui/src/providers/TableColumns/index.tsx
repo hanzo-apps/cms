@@ -1,6 +1,6 @@
 'use client'
-import { type Column } from @hanzo/cms'from 
-import { transformColumnsToSearchParams } from @hanzo/cms'from 
+import { type Column } from '@hanzo/cms'
+import { transformColumnsToSearchParams } from '@hanzo/cms/shared'
 import React, { startTransition, useCallback, useRef } from 'react'
 
 import type { ITableColumns, TableColumnsProviderProps } from './types.js'

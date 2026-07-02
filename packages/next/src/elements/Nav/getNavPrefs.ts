@@ -1,6 +1,6 @@
-import type { NavPreferences, PayloadRequest } from @hanzo/cms'from 
+import type { NavPreferences, PayloadRequest } from '@hanzo/cms'
 
-import { PREFERENCE_KEYS } from @hanzo/cms'from 
+import { PREFERENCE_KEYS } from '@hanzo/cms/shared'
 import { cache } from 'react'
 
 export const getNavPrefs = cache(async (req: PayloadRequest): Promise<NavPreferences> => {

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import React from 'react'
 import { FindOrderForm } from '@/components/forms/FindOrderForm'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import { headers as getHeaders } from 'next/headers.js'
 import configPromise from '@payload-config'
 

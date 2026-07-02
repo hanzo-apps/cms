@@ -1,7 +1,7 @@
 import type { DBQueryConfig } from 'drizzle-orm'
-import type { FlattenedField, JoinQuery, SelectType } from @hanzo/cms'from 
+import type { FlattenedField, JoinQuery, SelectType } from '@hanzo/cms'
 
-import { getSelectMode } from @hanzo/cms'from 
+import { getSelectMode } from '@hanzo/cms/shared'
 
 import type { BuildQueryJoinAliases, DrizzleAdapter } from '../types.js'
 

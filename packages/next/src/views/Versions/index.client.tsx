@@ -1,5 +1,5 @@
 'use client'
-import type { Column, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { Column, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import {
   LoadingOverlayToggle,

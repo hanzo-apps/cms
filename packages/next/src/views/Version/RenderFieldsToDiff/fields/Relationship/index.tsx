@@ -3,7 +3,7 @@ import type {
   RelationshipField,
   RelationshipFieldDiffServerComponent,
   TypeWithID,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { getTranslation, type I18nClient } from '@hanzo/cms-translations'
 import { FieldDiffContainer, getHTMLDiffComponents } from '@hanzo/cms-ui/rsc'

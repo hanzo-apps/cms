@@ -1,5 +1,5 @@
 'use client'
-import type { LivePreviewConfig, LivePreviewURLType } from @hanzo/cms'from 
+import type { LivePreviewConfig, LivePreviewURLType } from '@hanzo/cms'
 import type { Dispatch } from 'react'
 import type React from 'react'
 

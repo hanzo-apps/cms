@@ -1,4 +1,4 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 import { describe, afterEach, beforeEach, it, expect, vitest, Mock } from 'vitest'
 
 import { resendAdapter } from './index.js'

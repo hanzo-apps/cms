@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { sqliteD1Adapter } from '@hanzo/cms-db-d1-sqlite'
 import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
-import { buildConfig } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 import { CloudflareContext, getCloudflareContext } from '@opennextjs/cloudflare'
 import { GetPlatformProxyOptions } from 'wrangler'

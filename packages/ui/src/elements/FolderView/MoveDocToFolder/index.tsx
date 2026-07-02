@@ -2,7 +2,7 @@
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'
-import { type FolderOrDocument, formatAdminURL } from @hanzo/cms'from 
+import { type FolderOrDocument, formatAdminURL } from '@hanzo/cms/shared'
 import React, { useId } from 'react'
 import { toast } from 'sonner'
 

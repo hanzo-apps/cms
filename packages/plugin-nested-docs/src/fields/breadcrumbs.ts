@@ -1,4 +1,4 @@
-import type { ArrayField, Field } from @hanzo/cms'from 
+import type { ArrayField, Field } from '@hanzo/cms'
 
 export const createBreadcrumbsField = (
   relationTo: string,

@@ -1,11 +1,11 @@
 import type { AcceptedLanguages } from '@hanzo/cms-translations'
-import type { ImportMap, LanguageOptions, SanitizedConfig, ServerFunctionClient } from @hanzo/cms'from 
+import type { ImportMap, LanguageOptions, SanitizedConfig, ServerFunctionClient } from '@hanzo/cms'
 
 import { rtlLanguages } from '@hanzo/cms-translations'
 import { ProgressBar, RootProvider } from '@hanzo/cms-ui'
 import { getClientConfig } from '@hanzo/cms-ui/utilities/getClientConfig'
 import { cookies as nextCookies } from 'next/headers.js'
-import { applyLocaleFiltering } from @hanzo/cms'from 
+import { applyLocaleFiltering } from '@hanzo/cms/shared'
 import React, { Suspense } from 'react'
 
 import { getNavPrefs } from '../../elements/Nav/getNavPrefs.js'

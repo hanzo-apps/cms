@@ -3,7 +3,7 @@
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'
 import { useRouter } from 'next/navigation.js'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useCallback } from 'react'
 import { toast } from 'sonner'
 

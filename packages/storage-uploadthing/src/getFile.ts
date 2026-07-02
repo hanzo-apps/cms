@@ -1,7 +1,7 @@
-import type { PayloadRequest, Where } from @hanzo/cms'from 
+import type { PayloadRequest, Where } from '@hanzo/cms'
 import type { UTApi } from 'uploadthing/server'
 
-import { getRangeRequestInfo } from @hanzo/cms'from 
+import { getRangeRequestInfo } from '@hanzo/cms/internal'
 
 import { getKeyFromFilename } from './utilities.js'
 

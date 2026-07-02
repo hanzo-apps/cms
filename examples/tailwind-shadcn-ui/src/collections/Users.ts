@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms/types'
 
 export const Users: CollectionConfig = {
   slug: 'users',

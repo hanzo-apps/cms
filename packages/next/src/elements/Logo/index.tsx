@@ -1,4 +1,4 @@
-import type { ServerProps } from @hanzo/cms'from 
+import type { ServerProps } from '@hanzo/cms'
 import type React from 'react'
 
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'

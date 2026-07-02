@@ -13,7 +13,7 @@ import type {
   TypeWithID,
   TypeWithVersion,
   Where,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import {
   buildEditorState,
@@ -26,7 +26,7 @@ import {
   type TypedEditorState,
 } from '@hanzo/cms-richtext-lexical'
 import { PayloadSDK } from '@hanzo/cms-sdk'
-import payload from @hanzo/cms'from 
+import payload from '@hanzo/cms'
 import { describe, expect, test } from 'tstyche'
 
 import type {

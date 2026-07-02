@@ -10,11 +10,11 @@ import type {
   SelectType,
   ViewTypes,
   Where,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { renderTable } from '@hanzo/cms-ui/rsc'
 import { formatDate } from '@hanzo/cms-ui/shared'
-import { flattenAllFields } from @hanzo/cms'from 
+import { flattenAllFields } from '@hanzo/cms'
 
 import { createSerializableValue } from './createSerializableValue.js'
 import { extractRelationshipDisplayValue } from './extractRelationshipDisplayValue.js'

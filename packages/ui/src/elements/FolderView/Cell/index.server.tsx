@@ -1,4 +1,4 @@
-import type { DefaultServerCellComponentProps } from @hanzo/cms'from 
+import type { DefaultServerCellComponentProps } from '@hanzo/cms'
 
 import React from 'react'
 

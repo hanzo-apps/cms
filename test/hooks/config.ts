@@ -2,9 +2,9 @@ import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-import type { SanitizedConfig } from @hanzo/cms'from 
+import type { SanitizedConfig } from '@hanzo/cms'
 
-import { APIError } from @hanzo/cms'from 
+import { APIError } from '@hanzo/cms'
 
 import { buildConfigWithDefaults } from '../buildConfigWithDefaults.js'
 import { AfterOperationCollection } from './collections/AfterOperation/index.js'

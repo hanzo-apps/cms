@@ -1,6 +1,6 @@
 import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
-import { buildConfig } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
 
 export default buildConfig({
   collections: [],

@@ -1,5 +1,5 @@
 import type { S3StorageOptions } from '@hanzo/cms-storage-s3'
-import type { Plugin } from @hanzo/cms'from 
+import type { Plugin } from '@hanzo/cms'
 
 import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'
 import { azureStorage } from '@hanzo/cms-storage-azure'

@@ -1,6 +1,6 @@
 import type { Page } from '@playwright/test'
 
-import { wait } from @hanzo/cms'from 
+import { wait } from '@hanzo/cms/shared'
 
 export async function openDocDrawer({
   page,

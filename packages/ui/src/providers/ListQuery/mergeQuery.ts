@@ -1,4 +1,4 @@
-import type { ListQuery } from @hanzo/cms'from 
+import type { ListQuery } from '@hanzo/cms'
 
 export const mergeQuery = (
   currentQuery: ListQuery,

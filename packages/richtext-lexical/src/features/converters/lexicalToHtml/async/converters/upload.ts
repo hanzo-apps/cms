@@ -1,4 +1,4 @@
-import type { FileData, FileSizeImproved, TypeWithID } from @hanzo/cms'from 
+import type { FileData, FileSizeImproved, TypeWithID } from '@hanzo/cms'
 
 import escapeHTML from 'escape-html'
 

@@ -3,7 +3,7 @@ import type {
   PasswordFieldValidation,
   StaticDescription,
   TextFieldClient,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 import type { ChangeEvent, CSSProperties } from 'react'
 import type React from 'react'
 import type { MarkOptional } from 'ts-essentials'

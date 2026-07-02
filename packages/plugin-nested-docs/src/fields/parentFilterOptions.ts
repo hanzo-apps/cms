@@ -1,4 +1,4 @@
-import type { FilterOptions } from @hanzo/cms'from 
+import type { FilterOptions } from '@hanzo/cms'
 
 export const parentFilterOptions: (breadcrumbsFieldSlug?: string) => FilterOptions =
   (breadcrumbsFieldSlug = 'breadcrumbs') =>

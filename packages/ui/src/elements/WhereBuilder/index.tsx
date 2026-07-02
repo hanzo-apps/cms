@@ -1,9 +1,9 @@
 'use client'
-import type { Operator } from @hanzo/cms'from 
+import type { Operator } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import { dequal } from 'dequal/lite'
-import { transformWhereQuery, validateWhereQuery } from @hanzo/cms'from 
+import { transformWhereQuery, validateWhereQuery } from '@hanzo/cms/shared'
 import React, { useMemo } from 'react'
 
 import type { AddCondition, RemoveCondition, UpdateCondition, WhereBuilderProps } from './types.js'

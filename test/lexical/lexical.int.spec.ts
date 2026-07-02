@@ -2,7 +2,7 @@ import type {
   SerializedEditorState,
   SerializedParagraphNode,
 } from '@hanzo/cms-richtext-lexical/lexical'
-import type { PaginatedDocs, Payload } from @hanzo/cms'from 
+import type { PaginatedDocs, Payload } from '@hanzo/cms'
 
 import {
   buildEditorState,
@@ -13,7 +13,7 @@ import {
   type SerializedUploadNode,
 } from '@hanzo/cms-richtext-lexical'
 import path from 'path'
-import { sanitizeUrl } from @hanzo/cms'from 
+import { sanitizeUrl } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 import { beforeAll, beforeEach, describe, expect, it as vitestIt } from 'vitest'
 

@@ -1,4 +1,4 @@
-import type { CollectionSlug, Config } from @hanzo/cms'from 
+import type { CollectionSlug, Config } from '@hanzo/cms'
 
 import { customEndpointHandler } from './endpoints/customEndpointHandler.js'
 

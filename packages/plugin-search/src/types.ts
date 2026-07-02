@@ -7,7 +7,7 @@ import type {
   Payload,
   PayloadRequest,
   StaticLabel,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export type DocToSync = {
   [key: string]: any

@@ -1,7 +1,7 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import path from 'path'
-import { ValidationError } from @hanzo/cms'from 
+import { ValidationError } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest'
 
@@ -1960,7 +1960,7 @@ describe('@hanzo/cms-plugin-form-builder', () => {
         }
 
         const mockReq = { payload, files: {} } as unknown as Parameters<
-          import(@hanzo/cms'import().CollectionBeforeChangeHook
+          import('@hanzo/cms'import().CollectionBeforeChangeHook
         >[0]['req']
 
         await expect(

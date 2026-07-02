@@ -2,8 +2,8 @@ import {
   buildVersionCollectionFields,
   buildVersionCompoundIndexes,
   buildVersionGlobalFields,
-} from @hanzo/cms'from 
-import { hasDraftsEnabled } from @hanzo/cms'from 
+} from '@hanzo/cms'
+import { hasDraftsEnabled } from '@hanzo/cms/shared'
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter, RawIndex, SetColumnID } from '../types.js'

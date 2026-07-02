@@ -7,7 +7,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import open from 'open'
-import { loadEnv } from @hanzo/cms'from 
+import { loadEnv } from '@hanzo/cms/node'
 import { parse } from 'url'
 
 import { getNextRootDir } from './__helpers/shared/getNextRootDir.js'

@@ -1,6 +1,6 @@
 'use client'
 
-import type { TypeWithVersion } from @hanzo/cms'from 
+import type { TypeWithVersion } from '@hanzo/cms'
 
 import { Pill, useConfig, useLocale, useTranslation } from '@hanzo/cms-ui'
 import { formatDate } from '@hanzo/cms-ui/shared'

@@ -1,5 +1,5 @@
 'use client'
-import type { GroupFieldClientComponent } from @hanzo/cms'from 
+import type { GroupFieldClientComponent } from '@hanzo/cms'
 
 import { RichTextViewProvider } from '@hanzo/cms-richtext-lexical/client'
 import { GroupField } from '@hanzo/cms-ui'

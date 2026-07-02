@@ -7,7 +7,7 @@
 import type { ColumnBuilderBase } from 'drizzle-orm'
 
 import { Table } from 'drizzle-orm'
-import { APIError } from @hanzo/cms'from 
+import { APIError } from '@hanzo/cms'
 
 const { Symbol: DrizzleSymbol } = Table as unknown as {
   Symbol: {

@@ -4,7 +4,7 @@ import React from 'react'
 
 import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 import { CMSLink } from '@/components/Link'
-import { TypedLocale } from @hanzo/cms'from 
+import { TypedLocale } from '@hanzo/cms'
 
 export async function Footer({ locale }: { locale: TypedLocale }) {
   const footer = await getCachedGlobal('footer', 1, locale)()

@@ -1,6 +1,6 @@
 'use client'
 
-import type { OptionObject } from @hanzo/cms'from 
+import type { OptionObject } from '@hanzo/cms'
 import type React from 'react'
 
 import { useMemo } from 'react'

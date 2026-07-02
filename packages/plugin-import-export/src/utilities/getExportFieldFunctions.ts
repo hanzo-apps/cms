@@ -1,4 +1,4 @@
-import type { FlattenedField } from @hanzo/cms'from 
+import type { FlattenedField } from '@hanzo/cms'
 
 import type { ExportFieldHookEntry, FieldBeforeExportHook } from '../types.js'
 

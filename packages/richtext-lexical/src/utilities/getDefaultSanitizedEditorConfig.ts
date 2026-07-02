@@ -1,4 +1,4 @@
-import type { SanitizedConfig } from @hanzo/cms'from 
+import type { SanitizedConfig } from '@hanzo/cms'
 
 import { type SanitizedServerEditorConfig } from '../index.js'
 import { defaultEditorConfig } from '../lexical/config/server/default.js'

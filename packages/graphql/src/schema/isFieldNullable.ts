@@ -1,6 +1,6 @@
-import type { FieldAffectingData } from @hanzo/cms'from 
+import type { FieldAffectingData } from '@hanzo/cms'
 
-import { fieldAffectsData } from @hanzo/cms'from 
+import { fieldAffectsData } from '@hanzo/cms/shared'
 
 export const isFieldNullable = ({
   field,

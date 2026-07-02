@@ -1,6 +1,6 @@
 'use client'
 
-import type { FolderOrDocument } from @hanzo/cms'from 
+import type { FolderOrDocument } from '@hanzo/cms/shared'
 
 import React from 'react'
 

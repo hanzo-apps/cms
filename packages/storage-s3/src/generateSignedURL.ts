@@ -1,10 +1,10 @@
 import type { ClientUploadsAccess } from '@hanzo/cms-plugin-cloud-storage/types'
-import type { PayloadHandler } from @hanzo/cms'from 
+import type { PayloadHandler } from '@hanzo/cms'
 
 import * as AWS from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { resolveSignedURLKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
-import { APIError, Forbidden } from @hanzo/cms'from 
+import { APIError, Forbidden } from '@hanzo/cms'
 
 import type { S3StorageOptions } from './index.js'
 

@@ -1,4 +1,4 @@
-import type { Block } from @hanzo/cms'from 
+import type { Block } from '@hanzo/cms'
 
 import { fieldSchemasToFormState } from '@hanzo/cms-ui/forms/fieldSchemasToFormState'
 

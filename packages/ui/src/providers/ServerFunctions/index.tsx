@@ -12,8 +12,8 @@ import type {
   ServerFunction,
   ServerFunctionClient,
   SlugifyServerFunctionArgs,
-} from @hanzo/cms'from 
-import type { Slugify } from @hanzo/cms'from 
+} from '@hanzo/cms'
+import type { Slugify } from '@hanzo/cms/shared'
 
 import React, { createContext, useCallback } from 'react'
 

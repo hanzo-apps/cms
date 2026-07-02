@@ -1,4 +1,4 @@
-import type { CollectionSlug, Payload } from @hanzo/cms'from 
+import type { CollectionSlug, Payload } from '@hanzo/cms'
 
 import path from 'path'
 import * as qs from 'qs-esm'

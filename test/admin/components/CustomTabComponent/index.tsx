@@ -1,4 +1,4 @@
-import type { DocumentTabServerProps } from @hanzo/cms'from 
+import type { DocumentTabServerProps } from '@hanzo/cms'
 
 import React from 'react'
 

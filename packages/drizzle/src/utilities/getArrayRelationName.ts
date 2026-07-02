@@ -1,4 +1,4 @@
-import type { ArrayField } from @hanzo/cms'from 
+import type { ArrayField } from '@hanzo/cms'
 
 export const getArrayRelationName = ({
   field,

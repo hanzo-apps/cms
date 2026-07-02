@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation.js'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useCallback } from 'react'
 
 import type { OnCancel } from '../ConfirmationModal/index.js'

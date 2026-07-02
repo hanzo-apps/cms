@@ -2,7 +2,7 @@ import type { SerializedLexicalNode } from 'lexical'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import { Link } from '@hanzo/cms-ui'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React from 'react'
 
 import type { LexicalRichTextCellProps } from '../types.js'

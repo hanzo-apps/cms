@@ -1,4 +1,4 @@
-import { CollectionSlug, TypedLocale } from @hanzo/cms'from 
+import { CollectionSlug, TypedLocale } from '@hanzo/cms'
 
 const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
   posts: '/posts',

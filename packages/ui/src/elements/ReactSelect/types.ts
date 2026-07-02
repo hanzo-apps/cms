@@ -1,4 +1,4 @@
-import type { LabelFunction } from @hanzo/cms'from 
+import type { LabelFunction } from '@hanzo/cms'
 import type { CommonProps, GroupBase, Props as ReactSelectStateManagerProps } from 'react-select'
 
 import type { DocumentDrawerProps } from '../DocumentDrawer/types.js'

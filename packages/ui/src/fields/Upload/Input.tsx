@@ -10,11 +10,11 @@ import type {
   UploadFieldClient,
   UploadField as UploadFieldType,
   ValueWithRelation,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 import type { MarkOptional } from 'ts-essentials'
 
 import { useModal } from '@faceless-ui/modal'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React, { useCallback, useEffect, useMemo } from 'react'
 

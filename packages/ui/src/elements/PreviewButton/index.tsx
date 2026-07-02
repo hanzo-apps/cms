@@ -1,5 +1,5 @@
 'use client'
-import type { PreviewButtonClientProps } from @hanzo/cms'from 
+import type { PreviewButtonClientProps } from '@hanzo/cms'
 
 import React from 'react'
 

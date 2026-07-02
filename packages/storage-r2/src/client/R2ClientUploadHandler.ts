@@ -1,7 +1,7 @@
 'use client'
 
 import { createClientUploadHandler, getFileKey } from '@hanzo/cms-plugin-cloud-storage/client'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 
 import type {
   R2MultipartUpload,

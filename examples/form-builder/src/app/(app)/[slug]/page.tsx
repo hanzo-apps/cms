@@ -1,6 +1,6 @@
 import config from '../../../payload.config'
 import { notFound } from 'next/navigation'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import React from 'react'
 
 import type { Page as PageType } from '../../../payload-types'

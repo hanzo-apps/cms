@@ -1,5 +1,5 @@
 'use client'
-import type { ClientCollectionConfig, Data, FormState, JsonObject } from @hanzo/cms'from 
+import type { ClientCollectionConfig, Data, FormState, JsonObject } from '@hanzo/cms'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext.js'
 import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
@@ -14,7 +14,7 @@ import {
   useTranslation,
 } from '@hanzo/cms-ui'
 import { $getNodeByKey, type ElementFormatType } from 'lexical'
-import { formatAdminURL, isImage } from @hanzo/cms'from 
+import { formatAdminURL, isImage } from '@hanzo/cms/shared'
 import React, { useCallback, useId, useReducer, useRef, useState } from 'react'
 
 import type { BaseClientFeatureProps } from '../../../typesClient.js'

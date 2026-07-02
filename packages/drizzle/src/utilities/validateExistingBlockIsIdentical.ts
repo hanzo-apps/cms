@@ -1,11 +1,11 @@
-import type { Block, Field, FlattenedBlock } from @hanzo/cms'from 
+import type { Block, Field, FlattenedBlock } from '@hanzo/cms'
 
 import {
   fieldAffectsData,
   fieldHasSubFields,
   fieldShouldBeLocalized,
   tabHasName,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/shared'
 
 import type { RawTable } from '../types.js'
 

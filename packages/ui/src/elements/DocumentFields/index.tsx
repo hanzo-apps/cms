@@ -1,7 +1,7 @@
 'use client'
-import type { ClientField, SanitizedDocumentPermissions } from @hanzo/cms'from 
+import type { ClientField, SanitizedDocumentPermissions } from '@hanzo/cms'
 
-import { fieldIsSidebar } from @hanzo/cms'from 
+import { fieldIsSidebar } from '@hanzo/cms/shared'
 import React, { useMemo } from 'react'
 
 import { RenderFields } from '../../forms/RenderFields/index.js'

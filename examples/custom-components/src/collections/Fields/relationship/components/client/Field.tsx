@@ -1,5 +1,5 @@
 'use client'
-import type { RelationshipFieldClientComponent } from @hanzo/cms'from 
+import type { RelationshipFieldClientComponent } from '@hanzo/cms'
 
 import { RelationshipField } from '@hanzo/cms-ui'
 import React from 'react'

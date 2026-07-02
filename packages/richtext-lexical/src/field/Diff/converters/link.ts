@@ -1,6 +1,6 @@
 import { createHash } from 'crypto'
 import escapeHTML from 'escape-html'
-import { sanitizeUrl } from @hanzo/cms'from 
+import { sanitizeUrl } from '@hanzo/cms/shared'
 
 import type {
   HTMLConvertersAsync,

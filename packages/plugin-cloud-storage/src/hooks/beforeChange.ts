@@ -1,4 +1,4 @@
-import type { CollectionConfig, FieldHook, ImageSize } from @hanzo/cms'from 
+import type { CollectionConfig, FieldHook, ImageSize } from '@hanzo/cms'
 
 import type { GeneratedAdapter, GenerateFileURL } from '../types.js'
 

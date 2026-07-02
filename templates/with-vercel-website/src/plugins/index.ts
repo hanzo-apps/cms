@@ -3,7 +3,7 @@ import { nestedDocsPlugin } from '@hanzo/cms-plugin-nested-docs'
 import { redirectsPlugin } from '@hanzo/cms-plugin-redirects'
 import { seoPlugin } from '@hanzo/cms-plugin-seo'
 import { searchPlugin } from '@hanzo/cms-plugin-search'
-import { Plugin } from @hanzo/cms'from 
+import { Plugin } from '@hanzo/cms'
 import { revalidateRedirects } from '@/hooks/revalidateRedirects'
 import { GenerateTitle, GenerateURL } from '@hanzo/cms-plugin-seo/types'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'

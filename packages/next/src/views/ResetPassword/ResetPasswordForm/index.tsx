@@ -10,8 +10,8 @@ import {
   useTranslation,
 } from '@hanzo/cms-ui'
 import { useRouter } from 'next/navigation.js'
-import { type FormState } from @hanzo/cms'from 
-import { formatAdminURL } from @hanzo/cms'from 
+import { type FormState } from '@hanzo/cms'
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React from 'react'
 
 type Args = {

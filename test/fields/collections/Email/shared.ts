@@ -1,4 +1,4 @@
-import type { RequiredDataFromCollection } from @hanzo/cms'from 
+import type { RequiredDataFromCollection } from '@hanzo/cms/types'
 
 import type { EmailField } from '../../payload-types.js'
 

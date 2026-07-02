@@ -1,4 +1,4 @@
-import type { PayloadRequest } from @hanzo/cms'from 
+import type { PayloadRequest } from '@hanzo/cms'
 
 /**
  * Creates a modified request object with the cart secret injected into context.

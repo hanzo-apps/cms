@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import type { Transporter } from 'nodemailer'
 import type SMTPConnection from 'nodemailer/lib/smtp-connection'
-import type { EmailAdapter } from @hanzo/cms'from 
+import type { EmailAdapter } from '@hanzo/cms'
 
 import nodemailer from 'nodemailer'
-import { InvalidConfiguration } from @hanzo/cms'from 
+import { InvalidConfiguration } from '@hanzo/cms'
 
 export type NodemailerAdapterArgs = {
   defaultFromAddress: string

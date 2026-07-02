@@ -2,7 +2,7 @@
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'
-import { reduceFieldsToValues } from @hanzo/cms'from 
+import { reduceFieldsToValues } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { useAuth } from '../../../providers/Auth/index.js'

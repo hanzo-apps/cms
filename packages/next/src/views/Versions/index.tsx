@@ -1,7 +1,7 @@
 import { Gutter, ListQueryProvider, SetDocumentStepNav } from '@hanzo/cms-ui'
 import { notFound } from 'next/navigation.js'
-import { type DocumentViewServerProps, type PaginatedDocs, type Where } from @hanzo/cms'from 
-import { formatAdminURL, hasDraftsEnabled, isNumber } from @hanzo/cms'from 
+import { type DocumentViewServerProps, type PaginatedDocs, type Where } from '@hanzo/cms'
+import { formatAdminURL, hasDraftsEnabled, isNumber } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { fetchLatestVersion, fetchVersions } from '../Version/fetchVersions.js'

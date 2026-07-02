@@ -1,4 +1,4 @@
-import type { RelationshipFieldValidation, SingleRelationshipField } from @hanzo/cms'from 
+import type { RelationshipFieldValidation, SingleRelationshipField } from '@hanzo/cms'
 
 import type { RootTenantFieldConfigOverrides } from '../../types.js'
 

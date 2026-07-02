@@ -4,9 +4,9 @@ import type {
   ClientConfig,
   ColumnPreference,
   SanitizedPermissions,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
-import { fieldAffectsData, flattenTopLevelFields } from @hanzo/cms'from 
+import { fieldAffectsData, flattenTopLevelFields } from '@hanzo/cms/shared'
 
 import { filterFieldsWithPermissions } from '../providers/TableColumns/buildColumnState/filterFieldsWithPermissions.js'
 import { getInitialColumns } from '../providers/TableColumns/getInitialColumns.js'

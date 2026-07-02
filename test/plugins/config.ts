@@ -1,8 +1,8 @@
-import type { Config } from @hanzo/cms'from 
+import type { Config } from '@hanzo/cms'
 
 import { fileURLToPath } from 'node:url'
 import path from 'path'
-import { definePlugin } from @hanzo/cms'from 
+import { definePlugin } from '@hanzo/cms'
 
 import { buildConfigWithDefaults } from '../buildConfigWithDefaults.js'
 import { devUser } from '../credentials.js'

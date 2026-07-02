@@ -1,4 +1,4 @@
-import type { ServerFunctionClient } from @hanzo/cms'from 
+import type { ServerFunctionClient } from '@hanzo/cms'
 
 import '@hanzo/cms-next/css'
 /* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */

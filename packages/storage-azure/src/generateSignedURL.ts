@@ -1,10 +1,10 @@
 import type { ContainerClient, StorageSharedKeyCredential } from '@azure/storage-blob'
 import type { ClientUploadsAccess } from '@hanzo/cms-plugin-cloud-storage/types'
-import type { PayloadHandler } from @hanzo/cms'from 
+import type { PayloadHandler } from '@hanzo/cms'
 
 import { BlobSASPermissions, generateBlobSASQueryParameters } from '@azure/storage-blob'
 import { resolveSignedURLKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
-import { APIError, Forbidden } from @hanzo/cms'from 
+import { APIError, Forbidden } from '@hanzo/cms'
 
 import type { AzureStorageOptions } from './index.js'
 

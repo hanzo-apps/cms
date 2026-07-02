@@ -1,12 +1,12 @@
 'use client'
 
 import type { DragEndEvent } from '@dnd-kit/core'
-import type { FolderListViewClientProps } from @hanzo/cms'from 
+import type { FolderListViewClientProps } from '@hanzo/cms'
 
 import { useDndMonitor } from '@dnd-kit/core'
 import { getTranslation } from '@hanzo/cms-translations'
 import { useRouter } from 'next/navigation.js'
-import { PREFERENCE_KEYS } from @hanzo/cms'from 
+import { PREFERENCE_KEYS } from '@hanzo/cms/shared'
 import React, { Fragment } from 'react'
 
 import { DroppableBreadcrumb } from '../../elements/FolderView/Breadcrumbs/index.js'

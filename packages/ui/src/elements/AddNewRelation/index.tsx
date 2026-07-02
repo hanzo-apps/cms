@@ -1,8 +1,8 @@
 'use client'
-import type { ClientCollectionConfig } from @hanzo/cms'from 
+import type { ClientCollectionConfig } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
-import { hasAutosaveEnabled } from @hanzo/cms'from 
+import { hasAutosaveEnabled } from '@hanzo/cms/shared'
 import React, { Fragment, useCallback, useEffect, useState } from 'react'
 
 import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider.js'

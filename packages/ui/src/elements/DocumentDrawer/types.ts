@@ -1,4 +1,4 @@
-import type { Data, DefaultDocumentIDType, FormState, Operation } from @hanzo/cms'from 
+import type { Data, DefaultDocumentIDType, FormState, Operation } from '@hanzo/cms'
 import type React from 'react'
 import type { HTMLAttributes } from 'react'
 

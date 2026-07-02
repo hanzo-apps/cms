@@ -1,5 +1,5 @@
 'use client'
-import type { FormState } from @hanzo/cms'from 
+import type { FormState } from '@hanzo/cms'
 
 type Result = {
   remainingFields: FormState

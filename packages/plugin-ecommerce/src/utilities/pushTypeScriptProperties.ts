@@ -1,6 +1,6 @@
 import type { I18n } from '@hanzo/cms-translations'
 import type { JSONSchema4 } from 'json-schema'
-import type { SanitizedConfig } from @hanzo/cms'from 
+import type { SanitizedConfig } from '@hanzo/cms'
 
 import type { CollectionSlugMap, SanitizedEcommercePluginConfig } from '../types/index.js'
 

@@ -1,6 +1,6 @@
-import type { RelationshipField, UploadField } from @hanzo/cms'from 
+import type { RelationshipField, UploadField } from '@hanzo/cms'
 
-import { valueIsValueWithRelation } from @hanzo/cms'from 
+import { valueIsValueWithRelation } from '@hanzo/cms/shared'
 
 type Args = {
   baseRow: Record<string, unknown>

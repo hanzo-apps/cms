@@ -16,7 +16,7 @@ import {
 } from '@hanzo/cms-ui'
 import { mergeFieldStyles } from '@hanzo/cms-ui/shared'
 import { dequal } from 'dequal/lite'
-import { type Validate } from @hanzo/cms'from 
+import { type Validate } from '@hanzo/cms'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 

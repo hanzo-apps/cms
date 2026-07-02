@@ -189,7 +189,7 @@ describe('Lexical Fully Featured', () => {
 
     // Does not contain payload types. However, since this is JavaScript and not TypeScript, there should be no errors.
     await codeBlock.locator('.monaco-editor .view-line').first().click()
-    await page.keyboard.type("import { APIError } from @hanzo/cms'from ")
+    await page.keyboard.type("import { APIError } from '@hanzo/cms'")
     await expect(codeBlock.locator('.monaco-editor .view-overlays .squiggly-error')).toHaveCount(0)
   })
 
@@ -208,7 +208,7 @@ describe('Lexical Fully Featured', () => {
 
     // Ensure it does not contain payload types
     await codeBlock.locator('.monaco-editor .view-line').first().click()
-    await page.keyboard.type("import { APIError } from @hanzo/cms'from ")
+    await page.keyboard.type("import { APIError } from '@hanzo/cms'")
     await expect(codeBlock.locator('.monaco-editor .view-overlays .squiggly-error')).toHaveCount(0)
   })
 
@@ -227,11 +227,11 @@ describe('Lexical Fully Featured', () => {
 
     // Ensure it contains payload types
     await codeBlock.locator('.monaco-editor .view-line').first().click()
-    await page.keyboard.type("import { APIError } from @hanzo/cms'from ")
+    await page.keyboard.type("import { APIError } from '@hanzo/cms'")
     await expect(codeBlock.locator('.monaco-editor .view-overlays .squiggly-error')).toHaveCount(0)
 
     await page.keyboard.press('Enter')
-    await page.keyboard.type("import { DoesNotExist } from @hanzo/cms'from ")
+    await page.keyboard.type("import { DoesNotExist } from '@hanzo/cms'")
     await expect(codeBlock.locator('.monaco-editor .view-overlays .squiggly-error')).toHaveCount(1)
   })
 

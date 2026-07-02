@@ -1,6 +1,6 @@
-import type { PayloadRequest } from @hanzo/cms'from 
+import type { PayloadRequest } from '@hanzo/cms'
 
-import { APIError } from @hanzo/cms'from 
+import { APIError } from '@hanzo/cms'
 
 export type ParseJSONArgs = {
   data: Buffer | string

@@ -1,5 +1,5 @@
 'use client'
-import type { TextFieldClientProps } from @hanzo/cms'from 
+import type { TextFieldClientProps } from '@hanzo/cms'
 
 import { DatePicker, FieldLabel, useField } from '@hanzo/cms-ui'
 import { type FunctionComponent, useEffect, useRef } from 'react'

@@ -7,7 +7,7 @@
  */
 import fs from 'fs'
 import path from 'path'
-import { migrateCLI } from @hanzo/cms'from 
+import { migrateCLI } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 import { afterEach, beforeEach, expect } from 'vitest'
 

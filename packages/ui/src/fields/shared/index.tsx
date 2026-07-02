@@ -1,5 +1,5 @@
 'use client'
-import type { Locale, SanitizedLocalizationConfig } from @hanzo/cms'from 
+import type { Locale, SanitizedLocalizationConfig } from '@hanzo/cms'
 
 export const fieldBaseClass = 'field-type'
 

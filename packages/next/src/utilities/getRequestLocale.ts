@@ -1,4 +1,4 @@
-import type { Locale, PayloadRequest } from @hanzo/cms'from 
+import type { Locale, PayloadRequest } from '@hanzo/cms'
 
 import { upsertPreferences } from '@hanzo/cms-ui/rsc'
 import { findLocaleFromCode } from '@hanzo/cms-ui/shared'

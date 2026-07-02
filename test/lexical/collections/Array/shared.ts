@@ -1,4 +1,4 @@
-import type { RequiredDataFromCollection } from @hanzo/cms'from 
+import type { RequiredDataFromCollection } from '@hanzo/cms/types'
 
 import type { ArrayField } from '../../payload-types.js'
 

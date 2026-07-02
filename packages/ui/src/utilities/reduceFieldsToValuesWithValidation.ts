@@ -1,6 +1,6 @@
-import type { Data, FormState } from @hanzo/cms'from 
+import type { Data, FormState } from '@hanzo/cms'
 
-import { unflatten as flatleyUnflatten } from @hanzo/cms'from 
+import { unflatten as flatleyUnflatten } from '@hanzo/cms/shared'
 
 type ReturnType = {
   data: Data

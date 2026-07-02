@@ -1,4 +1,4 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import { PayloadSDKError } from '@hanzo/cms-sdk'
 import { randomUUID } from 'crypto'

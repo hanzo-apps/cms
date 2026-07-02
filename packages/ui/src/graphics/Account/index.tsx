@@ -1,6 +1,6 @@
 'use client'
 import { usePathname } from 'next/navigation.js'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { useAuth } from '../../providers/Auth/index.js'

@@ -2,11 +2,11 @@ import { Metadata } from 'next'
 // import PageTemplate from './[slug]/page'
 
 import configPromise from '@payload-config'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
 import { generateMeta } from '@/utilities/generateMeta'
-import { TypedLocale } from @hanzo/cms'from 
+import { TypedLocale } from '@hanzo/cms'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import { homeStatic } from '@/endpoints/seed/home-static'
 import type { Page as PageType } from '@/payload-types'

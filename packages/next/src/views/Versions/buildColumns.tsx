@@ -5,10 +5,10 @@ import type {
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
   TypeWithVersion,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { SortColumn } from '@hanzo/cms-ui'
-import { hasDraftsEnabled } from @hanzo/cms'from 
+import { hasDraftsEnabled } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { AutosaveCell } from './cells/AutosaveCell/index.js'

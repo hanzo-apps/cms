@@ -2,7 +2,7 @@
 
 import { useModal } from '@faceless-ui/modal'
 import { useWindowInfo } from '@faceless-ui/window-info'
-import { isImage } from @hanzo/cms'from 
+import { isImage } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { SelectInput } from '../../../fields/Select/Input.js'

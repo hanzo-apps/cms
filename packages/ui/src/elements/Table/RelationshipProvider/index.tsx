@@ -1,7 +1,7 @@
 'use client'
-import type { SelectType, TypeWithID } from @hanzo/cms'from 
+import type { SelectType, TypeWithID } from '@hanzo/cms'
 
-import { appendUploadSelectFields, formatAdminURL } from @hanzo/cms'from 
+import { appendUploadSelectFields, formatAdminURL } from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React, { createContext, use, useCallback, useEffect, useReducer, useRef } from 'react'
 

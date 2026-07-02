@@ -1,4 +1,4 @@
-import type { JSONFieldServerComponent } from @hanzo/cms'from 
+import type { JSONFieldServerComponent } from '@hanzo/cms'
 import type React from 'react'
 
 import { JSONField } from '@hanzo/cms-ui'

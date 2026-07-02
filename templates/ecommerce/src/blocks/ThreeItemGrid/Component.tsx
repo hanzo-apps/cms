@@ -3,7 +3,7 @@ import type { Media, Product, ThreeItemGridBlock as ThreeItemGridBlockProps } fr
 import { GridTileImage } from '@/components/Grid/tile'
 import Link from 'next/link'
 import React from 'react'
-import type { DefaultDocumentIDType } from @hanzo/cms'from 
+import type { DefaultDocumentIDType } from '@hanzo/cms'
 
 type Props = { item: Product; priority?: boolean; size: 'full' | 'half' }
 

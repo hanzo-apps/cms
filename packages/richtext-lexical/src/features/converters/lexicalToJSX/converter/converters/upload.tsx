@@ -1,4 +1,4 @@
-import type { FileData, FileSizeImproved, TypeWithID } from @hanzo/cms'from 
+import type { FileData, FileSizeImproved, TypeWithID } from '@hanzo/cms'
 
 import type { SerializedUploadNode } from '../../../../../nodeTypes.js'
 import type { UploadDataImproved } from '../../../../upload/server/nodes/UploadNode.js'

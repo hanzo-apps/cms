@@ -4,7 +4,7 @@ import type {
   SanitizedGlobalConfig,
   SanitizedPermissions,
   StaticLabel,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 

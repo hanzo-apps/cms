@@ -1,5 +1,5 @@
 'use client'
-import type { TextFieldClientComponent } from @hanzo/cms'from 
+import type { TextFieldClientComponent } from '@hanzo/cms'
 
 import { TextField, withCondition } from '@hanzo/cms-ui'
 import React from 'react'

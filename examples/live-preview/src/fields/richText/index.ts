@@ -1,5 +1,5 @@
 import type { RichTextElement, RichTextLeaf } from '@hanzo/cms-richtext-slate'
-import type { RichTextField } from @hanzo/cms'from 
+import type { RichTextField } from '@hanzo/cms'
 
 import { slateEditor } from '@hanzo/cms-richtext-slate'
 

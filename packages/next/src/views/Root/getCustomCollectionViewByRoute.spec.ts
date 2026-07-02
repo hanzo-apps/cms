@@ -1,4 +1,4 @@
-import type { AdminViewConfig, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { AdminViewConfig, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import { describe, expect, it } from 'vitest'
 

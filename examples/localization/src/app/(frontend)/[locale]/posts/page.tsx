@@ -4,10 +4,10 @@ import { CollectionArchive } from '@/components/CollectionArchive'
 import { PageRange } from '@/components/PageRange'
 import { Pagination } from '@/components/Pagination'
 import configPromise from '@payload-config'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import React from 'react'
 import PageClient from './page.client'
-import { TypedLocale } from @hanzo/cms'from 
+import { TypedLocale } from '@hanzo/cms'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 export const revalidate = 600

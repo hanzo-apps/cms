@@ -1,4 +1,4 @@
-import { RequiredDataFromCollectionSlug } from @hanzo/cms'from 
+import { RequiredDataFromCollectionSlug } from '@hanzo/cms'
 
 export const contactFormData: () => RequiredDataFromCollectionSlug<'forms'> = () => {
   return {

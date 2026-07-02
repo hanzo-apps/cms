@@ -1,5 +1,5 @@
-import type { CollectionConfig } from @hanzo/cms'from 
-import { sanitizeUserDataForEmail } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
+import { sanitizeUserDataForEmail } from '@hanzo/cms/shared'
 
 import { generateEmailHTML } from '../email/generateEmailHTML'
 

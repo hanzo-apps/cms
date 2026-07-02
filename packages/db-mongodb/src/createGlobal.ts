@@ -1,6 +1,6 @@
 import type { CreateOptions } from 'mongoose'
 
-import { type CreateGlobal } from @hanzo/cms'from 
+import { type CreateGlobal } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 

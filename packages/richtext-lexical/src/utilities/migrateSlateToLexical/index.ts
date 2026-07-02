@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import type { CollectionConfig, Field, GlobalConfig, Payload } from @hanzo/cms'from 
+import type { CollectionConfig, Field, GlobalConfig, Payload } from '@hanzo/cms'
 
 import { migrateDocumentFieldsRecursively } from './migrateDocumentFieldsRecursively.js'
 

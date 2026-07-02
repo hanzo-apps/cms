@@ -1,7 +1,7 @@
 'use client'
-import type { DateFieldClient, DefaultCellComponentProps } from @hanzo/cms'from 
+import type { DateFieldClient, DefaultCellComponentProps } from '@hanzo/cms'
 
-import { getObjectDotNotation } from @hanzo/cms'from 
+import { getObjectDotNotation } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { useConfig } from '../../../../../providers/Config/index.js'

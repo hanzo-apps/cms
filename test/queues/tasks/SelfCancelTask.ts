@@ -1,4 +1,4 @@
-import { JobCancelledError, type TaskConfig } from @hanzo/cms'from 
+import { JobCancelledError, type TaskConfig } from '@hanzo/cms'
 
 export const SelfCancelTask: TaskConfig<'SelfCancel'> = {
   slug: 'SelfCancel',

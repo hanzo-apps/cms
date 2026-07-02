@@ -1,5 +1,5 @@
 'use client'
-import type { ClientCollectionConfig, Where } from @hanzo/cms'from 
+import type { ClientCollectionConfig, Where } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
 import React, { useState } from 'react'

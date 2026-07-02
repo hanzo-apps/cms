@@ -1,10 +1,10 @@
 'use client'
 
-import type { ListViewClientProps } from @hanzo/cms'from 
+import type { ListViewClientProps } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import { useRouter } from 'next/navigation.js'
-import { formatAdminURL, formatFilesize } from @hanzo/cms'from 
+import { formatAdminURL, formatFilesize } from '@hanzo/cms/shared'
 import React, { Fragment, useEffect } from 'react'
 
 import { useBulkUpload } from '../../elements/BulkUpload/index.js'

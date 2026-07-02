@@ -1,5 +1,5 @@
 import type { TFunction } from '@hanzo/cms-translations'
-import type { Config, Field, PayloadRequest, SelectField } from @hanzo/cms'from 
+import type { Config, Field, PayloadRequest, SelectField } from '@hanzo/cms'
 
 import { getFilename } from '../utilities/getFilename.js'
 import { validateLimitValue } from '../utilities/validateLimitValue.js'

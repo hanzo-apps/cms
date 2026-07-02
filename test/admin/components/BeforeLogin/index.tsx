@@ -1,6 +1,6 @@
 'use client'
 
-import type { PayloadClientReactComponent, SanitizedConfig } from @hanzo/cms'from 
+import type { PayloadClientReactComponent, SanitizedConfig } from '@hanzo/cms'
 
 import { useTranslation } from '@hanzo/cms-ui'
 import React from 'react'

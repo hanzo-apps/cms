@@ -1,6 +1,6 @@
 'use client'
 
-import type { FormStateWithoutComponents } from @hanzo/cms'from 
+import type { FormStateWithoutComponents } from '@hanzo/cms'
 
 import { type FC, useCallback } from 'react'
 import { toast } from 'sonner'

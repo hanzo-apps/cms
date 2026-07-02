@@ -1,7 +1,7 @@
 import type { TransactionOptions } from 'mongodb'
-import type { BeginTransaction } from @hanzo/cms'from 
+import type { BeginTransaction } from '@hanzo/cms'
 
-import { APIError } from @hanzo/cms'from 
+import { APIError } from '@hanzo/cms'
 import { v4 as uuid } from 'uuid'
 
 import type { MongooseAdapter } from '../index.js'

@@ -7,7 +7,7 @@ import { addArrayRow, duplicateArrayRow, removeArrayRow } from '__helpers/e2e/fi
 import { scrollEntirePage } from '__helpers/e2e/scrollEntirePage.js'
 import { toggleBlockOrArrayRow } from '__helpers/e2e/toggleCollapsible.js'
 import path from 'path'
-import { wait } from @hanzo/cms'from 
+import { wait } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../../../__helpers/shared/sdk/index.js'

@@ -1,4 +1,4 @@
-import type { CollectionSlug, PayloadRequest, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { CollectionSlug, PayloadRequest, SanitizedCollectionConfig } from '@hanzo/cms'
 
 export type Breadcrumb = {
   doc: string

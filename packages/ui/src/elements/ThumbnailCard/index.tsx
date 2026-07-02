@@ -1,5 +1,5 @@
 'use client'
-import type { ClientCollectionConfig, TypeWithID } from @hanzo/cms'from 
+import type { ClientCollectionConfig, TypeWithID } from '@hanzo/cms'
 
 import React from 'react'
 

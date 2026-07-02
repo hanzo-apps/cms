@@ -1,5 +1,5 @@
 import type { PaginateOptions } from 'mongoose'
-import type { Init, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { Init, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import mongoose from 'mongoose'
 import paginate from 'mongoose-paginate-v2'
@@ -7,7 +7,7 @@ import {
   buildVersionCollectionFields,
   buildVersionCompoundIndexes,
   buildVersionGlobalFields,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 import type { CollectionModel, GlobalModel } from './types.js'

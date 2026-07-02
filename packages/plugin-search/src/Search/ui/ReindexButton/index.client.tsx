@@ -11,7 +11,7 @@ import {
   useTranslation,
 } from '@hanzo/cms-ui'
 import { useRouter } from 'next/navigation.js'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useCallback, useMemo, useState } from 'react'
 
 import type { ReindexButtonProps } from './types.js'

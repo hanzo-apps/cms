@@ -1,6 +1,6 @@
 'use client'
 import type { CollapsibleProps } from '@hanzo/cms-ui/elements/Collapsible'
-import type { ClientField, FormState } from @hanzo/cms'from 
+import type { ClientField, FormState } from '@hanzo/cms'
 
 import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
 import { RenderFields, useFormSubmitted } from '@hanzo/cms-ui'

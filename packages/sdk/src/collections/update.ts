@@ -5,7 +5,7 @@ import type {
   TypedLocale,
   UploadCollectionSlug,
   Where,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 import type { DeepPartial } from 'ts-essentials'
 
 import type { PayloadSDK } from '../index.js'

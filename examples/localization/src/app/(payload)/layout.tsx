@@ -4,7 +4,7 @@ import configPromise from '@payload-config'
 import '@hanzo/cms-next/css'
 import React from 'react'
 import { handleServerFunctions, RootLayout } from '@hanzo/cms-next/layouts'
-import type { ServerFunctionClient } from @hanzo/cms'from 
+import type { ServerFunctionClient } from '@hanzo/cms'
 import config from '@payload-config'
 
 import './custom.scss'

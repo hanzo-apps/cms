@@ -1,4 +1,4 @@
-import type { ValueWithRelation } from @hanzo/cms'from 
+import type { ValueWithRelation } from '@hanzo/cms'
 
 export type Props = {
   readonly Button?: React.ReactNode

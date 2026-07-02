@@ -1,5 +1,5 @@
 'use client'
-import type { Data, FileSizes, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { Data, FileSizes, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import React from 'react'
 

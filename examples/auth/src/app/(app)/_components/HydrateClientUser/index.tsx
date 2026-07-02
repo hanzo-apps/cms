@@ -1,7 +1,7 @@
 'use client'
 
-import type { Permissions } from @hanzo/cms'from 
-import type { PayloadRequest } from @hanzo/cms'from 
+import type { Permissions } from '@hanzo/cms/auth'
+import type { PayloadRequest } from '@hanzo/cms/types'
 
 import { useEffect } from 'react'
 

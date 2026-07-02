@@ -5,7 +5,7 @@ import type {
   PayloadTypesShape,
   SelectType,
   TypedLocale,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import type { PayloadSDK } from '../index.js'
 import type {

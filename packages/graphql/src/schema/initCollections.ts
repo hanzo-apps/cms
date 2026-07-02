@@ -4,7 +4,7 @@ import type {
   GraphQLInfo,
   SanitizedCollectionConfig,
   SanitizedConfig,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import {
   GraphQLBoolean,
@@ -13,8 +13,8 @@ import {
   GraphQLObjectType,
   GraphQLString,
 } from 'graphql'
-import { buildVersionCollectionFields, flattenTopLevelFields, formatNames, toWords } from @hanzo/cms'from 
-import { fieldAffectsData, getLoginOptions } from @hanzo/cms'from 
+import { buildVersionCollectionFields, flattenTopLevelFields, formatNames, toWords } from '@hanzo/cms'
+import { fieldAffectsData, getLoginOptions } from '@hanzo/cms/shared'
 
 import type { ObjectTypeConfig } from './buildObjectType.js'
 

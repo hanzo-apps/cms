@@ -1,4 +1,4 @@
-import type { EmailFieldServerComponent } from @hanzo/cms'from 
+import type { EmailFieldServerComponent } from '@hanzo/cms'
 import type React from 'react'
 
 import { EmailField } from '@hanzo/cms-ui'

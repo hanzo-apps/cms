@@ -1,7 +1,7 @@
-import type { Collection, Endpoint } from @hanzo/cms'from 
+import type { Collection, Endpoint } from '@hanzo/cms'
 
 import { headersWithCors } from '@hanzo/cms-next/utilities'
-import { APIError, generatePayloadCookie } from @hanzo/cms'from 
+import { APIError, generatePayloadCookie } from '@hanzo/cms'
 
 // A custom endpoint that can be reached by POST request
 // at: /api/users/external-users/login

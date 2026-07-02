@@ -17,14 +17,14 @@ import {
   type SanitizedFieldPermissions,
   type SanitizedFieldsPermissions,
   type VersionField,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 import {
   fieldIsID,
   fieldShouldBeLocalized,
   getFieldPaths,
   getUniqueListBy,
   tabHasName,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/shared'
 
 import { diffComponents } from './fields/index.js'
 

@@ -1,5 +1,5 @@
 'use client'
-import type { RenderedField } from @hanzo/cms'from 
+import type { RenderedField } from '@hanzo/cms'
 
 import { createContext, use } from 'react'
 import {

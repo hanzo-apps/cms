@@ -1,9 +1,9 @@
 import type { RenderDocumentServerFunction } from '@hanzo/cms-ui'
-import type { DocumentPreferences, VisibleEntities } from @hanzo/cms'from 
+import type { DocumentPreferences, VisibleEntities } from '@hanzo/cms'
 
 import { getClientConfig } from '@hanzo/cms-ui/utilities/getClientConfig'
-import { canAccessAdmin, isEntityHidden } from @hanzo/cms'from 
-import { applyLocaleFiltering } from @hanzo/cms'from 
+import { canAccessAdmin, isEntityHidden } from '@hanzo/cms'
+import { applyLocaleFiltering } from '@hanzo/cms/shared'
 
 import { renderDocument } from './index.js'
 

@@ -1,6 +1,6 @@
 import type { Page } from '@playwright/test'
 
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 
 import type { AdminUrlUtil } from '../shared/adminUrlUtil.js'
 

@@ -2,7 +2,7 @@ import type { Page } from '@playwright/test'
 
 import { expect, test } from '@playwright/test'
 import path from 'path'
-import { wait } from @hanzo/cms'from 
+import { wait } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 
 import { login } from '../__helpers/e2e/auth/login.js'

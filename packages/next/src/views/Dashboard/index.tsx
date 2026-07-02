@@ -1,4 +1,4 @@
-import type { AdminViewServerProps } from @hanzo/cms'from 
+import type { AdminViewServerProps } from '@hanzo/cms'
 
 import { HydrateAuthProvider, SetStepNav } from '@hanzo/cms-ui'
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'

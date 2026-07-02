@@ -1,6 +1,6 @@
-import type { Block, CollectionConfig, Config, Field } from @hanzo/cms'from 
+import type { Block, CollectionConfig, Config, Field } from '@hanzo/cms'
 
-import { deepMergeWithSourceArrays } from @hanzo/cms'from 
+import { deepMergeWithSourceArrays } from '@hanzo/cms'
 
 import type { FormBuilderPluginConfig } from '../../types.js'
 

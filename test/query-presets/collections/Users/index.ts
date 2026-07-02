@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { roles } from '../../fields/roles.js'
 import { usersSlug } from '../../slugs.js'

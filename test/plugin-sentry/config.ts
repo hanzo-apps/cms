@@ -4,7 +4,7 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 import { sentryPlugin } from '@hanzo/cms-plugin-sentry'
 import * as Sentry from '@sentry/nextjs'
-import { APIError } from @hanzo/cms'from 
+import { APIError } from '@hanzo/cms'
 
 import { buildConfigWithDefaults } from '../buildConfigWithDefaults.js'
 import { devUser } from '../credentials.js'

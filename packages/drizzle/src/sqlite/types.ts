@@ -10,7 +10,7 @@ import type {
   SQLiteTransactionConfig,
 } from 'drizzle-orm/sqlite-core'
 import type { SQLiteRaw } from 'drizzle-orm/sqlite-core/query-builders/raw'
-import type { Payload, PayloadRequest } from @hanzo/cms'from 
+import type { Payload, PayloadRequest } from '@hanzo/cms'
 
 import type { Operators } from '../queries/operatorMap.js'
 import type { BuildQueryJoinAliases, DrizzleAdapter } from '../types.js'

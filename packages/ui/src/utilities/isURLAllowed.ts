@@ -1,4 +1,4 @@
-import type { AllowList } from @hanzo/cms'from 
+import type { AllowList } from '@hanzo/cms'
 
 export const isURLAllowed = (url: string, allowList: AllowList): boolean => {
   try {

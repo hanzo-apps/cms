@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { createBreadcrumbsField, createParentField } from '@hanzo/cms-plugin-nested-docs'
 

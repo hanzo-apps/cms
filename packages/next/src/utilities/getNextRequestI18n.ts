@@ -2,7 +2,7 @@ import type { ClientTranslationsObject, I18nClient } from '@hanzo/cms-translatio
 
 import { initI18n } from '@hanzo/cms-translations'
 import { cookies, headers } from 'next/headers.js'
-import { getRequestLanguage, type SanitizedConfig } from @hanzo/cms'from 
+import { getRequestLanguage, type SanitizedConfig } from '@hanzo/cms'
 
 /**
  * In the context of Next.js, this function initializes the i18n object for the current request.

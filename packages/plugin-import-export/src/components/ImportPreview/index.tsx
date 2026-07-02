@@ -1,5 +1,5 @@
 'use client'
-import type { ClientField, Column, PaginatedDocs } from @hanzo/cms'from 
+import type { ClientField, Column, PaginatedDocs } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import {
@@ -15,7 +15,7 @@ import {
   useTranslation,
 } from '@hanzo/cms-ui'
 import { formatDocTitle } from '@hanzo/cms-ui/shared'
-import { fieldAffectsData, getObjectDotNotation } from @hanzo/cms'from 
+import { fieldAffectsData, getObjectDotNotation } from '@hanzo/cms/shared'
 import React, { useState, useTransition } from 'react'
 
 import type {

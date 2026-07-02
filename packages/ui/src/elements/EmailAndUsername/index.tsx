@@ -1,9 +1,9 @@
 'use client'
 
 import type { TFunction } from '@hanzo/cms-translations'
-import type { LoginWithUsernameOptions, SanitizedFieldPermissions } from @hanzo/cms'from 
+import type { LoginWithUsernameOptions, SanitizedFieldPermissions } from '@hanzo/cms'
 
-import { email, getFieldPermissions, username } from @hanzo/cms'from 
+import { email, getFieldPermissions, username } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { EmailField } from '../../fields/Email/index.js'

@@ -24,7 +24,7 @@ import type {
   TextareaField,
   TextField,
   UploadField,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import {
   GraphQLBoolean,
@@ -36,8 +36,8 @@ import {
   GraphQLNonNull,
   GraphQLString,
 } from 'graphql'
-import { flattenTopLevelFields, toWords } from @hanzo/cms'from 
-import { fieldAffectsData, optionIsObject, tabHasName } from @hanzo/cms'from 
+import { flattenTopLevelFields, toWords } from '@hanzo/cms'
+import { fieldAffectsData, optionIsObject, tabHasName } from '@hanzo/cms/shared'
 
 import { GraphQLJSON } from '../packages/graphql-type-json/index.js'
 import { combineParentName } from '../utilities/combineParentName.js'

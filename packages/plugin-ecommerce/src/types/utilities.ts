@@ -1,4 +1,4 @@
-import type { DefaultDocumentIDType, GeneratedTypes } from @hanzo/cms'from 
+import type { DefaultDocumentIDType, GeneratedTypes } from '@hanzo/cms'
 
 /**
  * THIS FILE IS EXTREMELY SENSITIVE PLEASE BE CAREFUL AS THERE IS EVIL AT PLAY

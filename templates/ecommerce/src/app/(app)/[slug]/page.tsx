@@ -4,7 +4,7 @@ import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import configPromise from '@payload-config'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import { draftMode } from 'next/headers'
 import { homeStaticData } from '@/endpoints/seed/home-static'
 import React from 'react'

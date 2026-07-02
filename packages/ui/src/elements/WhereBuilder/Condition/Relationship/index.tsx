@@ -1,7 +1,7 @@
 'use client'
-import type { PaginatedDocs, Where } from @hanzo/cms'from 
+import type { PaginatedDocs, Where } from '@hanzo/cms'
 
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React, { useCallback, useEffect, useReducer, useState } from 'react'
 

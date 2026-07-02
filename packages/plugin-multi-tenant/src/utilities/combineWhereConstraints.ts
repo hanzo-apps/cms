@@ -1,4 +1,4 @@
-import type { Where } from @hanzo/cms'from 
+import type { Where } from '@hanzo/cms'
 
 export function combineWhereConstraints(constraints: Array<Where>): Where {
   if (constraints.length === 0) {

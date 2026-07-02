@@ -5,7 +5,7 @@ import React from 'react'
 
 const Link = 'default' in LinkImport ? LinkImport.default : LinkImport
 
-import type { AdminViewServerProps } from @hanzo/cms'from 
+import type { AdminViewServerProps } from '@hanzo/cms'
 
 import { Button, SetStepNav } from '@hanzo/cms-ui'
 

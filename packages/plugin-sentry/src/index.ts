@@ -1,5 +1,5 @@
 import type { ScopeContext } from '@sentry/types'
-import type { APIError, Config } from @hanzo/cms'from 
+import type { APIError, Config } from '@hanzo/cms'
 
 import type { PluginOptions } from './types.js'
 

@@ -1,5 +1,5 @@
 'use client'
-import type { RichTextField } from @hanzo/cms'from 
+import type { RichTextField } from '@hanzo/cms'
 
 import {
   FieldContext,

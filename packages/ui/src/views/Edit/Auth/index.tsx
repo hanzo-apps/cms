@@ -1,8 +1,8 @@
 'use client'
 
-import type { SanitizedFieldPermissions } from @hanzo/cms'from 
+import type { SanitizedFieldPermissions } from '@hanzo/cms'
 
-import { formatAdminURL, getFieldPermissions } from @hanzo/cms'from 
+import { formatAdminURL, getFieldPermissions } from '@hanzo/cms/shared'
 import React, { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
 import { toast } from 'sonner'
 

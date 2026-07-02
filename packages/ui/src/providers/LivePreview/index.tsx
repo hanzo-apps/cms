@@ -1,5 +1,5 @@
 'use client'
-import type { CollectionPreferences, LivePreviewConfig, LivePreviewURLType } from @hanzo/cms'from 
+import type { CollectionPreferences, LivePreviewConfig, LivePreviewURLType } from '@hanzo/cms'
 
 import { DndContext } from '@dnd-kit/core'
 import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'

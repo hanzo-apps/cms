@@ -1,4 +1,4 @@
-import type { RadioField, SelectField } from @hanzo/cms'from 
+import type { RadioField, SelectField } from '@hanzo/cms'
 
 import { formatName } from './formatName.js'
 

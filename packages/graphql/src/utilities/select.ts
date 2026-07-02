@@ -1,5 +1,5 @@
 import type { GraphQLObjectType, GraphQLResolveInfo, SelectionSetNode } from 'graphql'
-import type { FieldBase, JoinField, RelationshipField, TypedCollectionSelect } from @hanzo/cms'from 
+import type { FieldBase, JoinField, RelationshipField, TypedCollectionSelect } from '@hanzo/cms'
 
 import { getNamedType, isInterfaceType, isObjectType, isUnionType, Kind } from 'graphql'
 

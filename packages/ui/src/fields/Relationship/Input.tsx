@@ -5,10 +5,10 @@ import type {
   PaginatedDocs,
   ValueWithRelation,
   Where,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { dequal } from 'dequal/lite'
-import { formatAdminURL, wordBoundariesRegex } from @hanzo/cms'from 
+import { formatAdminURL, wordBoundariesRegex } from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React, { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react'
 

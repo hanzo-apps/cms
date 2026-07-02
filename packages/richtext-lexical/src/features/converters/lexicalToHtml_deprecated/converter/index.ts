@@ -1,7 +1,7 @@
 import type { SerializedEditorState, SerializedLexicalNode } from 'lexical'
-import type { Payload, PayloadRequest } from @hanzo/cms'from 
+import type { Payload, PayloadRequest } from '@hanzo/cms'
 
-import { createLocalReq } from @hanzo/cms'from 
+import { createLocalReq } from '@hanzo/cms'
 
 import type { HTMLConverter, SerializedLexicalNodeWithParent } from './types.js'
 

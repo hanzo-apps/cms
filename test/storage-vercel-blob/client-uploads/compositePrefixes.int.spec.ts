@@ -1,6 +1,6 @@
 import type { IncomingMessage, Server, ServerResponse } from 'node:http'
 import type { AddressInfo } from 'node:net'
-import type { Document, Payload } from @hanzo/cms'from 
+import type { Document, Payload } from '@hanzo/cms'
 
 import { del, list } from '@vercel/blob'
 import { upload } from '@vercel/blob/client'

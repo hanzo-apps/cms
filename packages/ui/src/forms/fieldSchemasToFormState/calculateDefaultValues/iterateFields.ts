@@ -6,7 +6,7 @@ import type {
   SelectType,
   TabAsField,
   TypedUser,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { defaultValuePromise } from './promise.js'
 

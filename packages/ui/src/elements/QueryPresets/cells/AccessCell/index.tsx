@@ -1,7 +1,7 @@
-import type { DefaultCellComponentProps } from @hanzo/cms'from 
+import type { DefaultCellComponentProps } from '@hanzo/cms'
 import type { JSX } from 'react'
 
-import { toWords } from @hanzo/cms'from 
+import { toWords } from '@hanzo/cms/shared'
 import React, { Fragment } from 'react'
 
 export const QueryPresetsAccessCell: React.FC<DefaultCellComponentProps> = ({ cellData }) => {

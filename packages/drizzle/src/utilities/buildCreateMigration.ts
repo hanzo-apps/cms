@@ -1,9 +1,9 @@
 import type { DrizzleSnapshotJSON } from 'drizzle-kit/api'
-import type { CreateMigration, Payload } from @hanzo/cms'from 
+import type { CreateMigration, Payload } from '@hanzo/cms'
 
 import fs from 'fs'
 import path from 'path'
-import { getPredefinedMigration, writeMigrationIndex } from @hanzo/cms'from 
+import { getPredefinedMigration, writeMigrationIndex } from '@hanzo/cms'
 import prompts from 'prompts'
 
 import type { DrizzleAdapter } from '../types.js'

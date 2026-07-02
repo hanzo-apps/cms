@@ -13,7 +13,7 @@
 import { sql } from '@hanzo/cms-db-postgres'
 import { Types } from 'mongoose'
 import path from 'path'
-import { localizeStatus } from @hanzo/cms'from 
+import { localizeStatus } from '@hanzo/cms/migrations'
 import { fileURLToPath } from 'url'
 
 import { initPayloadInt } from '../__helpers/shared/initPayloadInt.js'

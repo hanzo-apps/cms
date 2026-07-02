@@ -8,7 +8,7 @@ import type {
   EditViewComponent,
   PayloadComponent,
   RenderDocumentVersionsProperties,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import {
   DocumentInfoProvider,
@@ -21,8 +21,8 @@ import { handleLivePreview, handlePreview } from '@hanzo/cms-ui/rsc'
 import { isEditing as getIsEditing } from '@hanzo/cms-ui/shared'
 import { buildFormState } from '@hanzo/cms-ui/utilities/buildFormState'
 import { notFound, redirect } from 'next/navigation.js'
-import { isolateObjectProperty, logError } from @hanzo/cms'from 
-import { formatAdminURL, hasAutosaveEnabled, hasDraftsEnabled } from @hanzo/cms'from 
+import { isolateObjectProperty, logError } from '@hanzo/cms'
+import { formatAdminURL, hasAutosaveEnabled, hasDraftsEnabled } from '@hanzo/cms/shared'
 import React from 'react'
 
 import type { GenerateEditViewMetadata } from './getMetaBySegment.js'

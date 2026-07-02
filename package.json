@@ -253,7 +253,6 @@
       "@sentry/cli",
       "@swc/core",
       "@vercel/git-hooks",
-      "better-sqlite3",
       "bufferutil",
       "esbuild",
       "mongodb-memory-server",

@@ -1,4 +1,4 @@
-import { FlattenedField, PayloadRequest } from @hanzo/cms'from 
+import { FlattenedField, PayloadRequest } from '@hanzo/cms'
 
 import type { FromCSVFunction, ToCSVFunction } from '../types.js'
 

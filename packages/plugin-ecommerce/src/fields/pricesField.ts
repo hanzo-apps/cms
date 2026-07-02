@@ -1,4 +1,4 @@
-import type { GroupField } from @hanzo/cms'from 
+import type { GroupField } from '@hanzo/cms'
 
 import type { CurrenciesConfig } from '../types/index.js'
 

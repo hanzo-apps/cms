@@ -1,4 +1,4 @@
-import type { Slugify } from @hanzo/cms'from 
+import type { Slugify } from '@hanzo/cms/shared'
 
 import {
   flattenAllFields,
@@ -6,8 +6,8 @@ import {
   type ServerFunction,
   type SlugifyServerFunctionArgs,
   UnauthorizedError,
-} from @hanzo/cms'from 
-import { slugify as defaultSlugify } from @hanzo/cms'from 
+} from '@hanzo/cms'
+import { slugify as defaultSlugify } from '@hanzo/cms/shared'
 
 /**
  * This server function is directly related to the {@link https://payloadcms.com/docs/fields/text#slug-field | Slug Field}.

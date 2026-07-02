@@ -3,7 +3,7 @@ import type {
   CollectionSlug,
   DataFromCollectionSlug,
   PayloadRequest,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 /**
  * Function to dynamically determine the limit based on request context

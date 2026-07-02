@@ -1,4 +1,4 @@
-import type { UIField } from @hanzo/cms'from 
+import type { UIField } from '@hanzo/cms'
 
 interface FieldFunctionProps {
   descriptionOverrides?: {

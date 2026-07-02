@@ -1,6 +1,6 @@
-import type { ColumnPreference, DefaultCellComponentProps } from @hanzo/cms'from 
+import type { ColumnPreference, DefaultCellComponentProps } from '@hanzo/cms'
 
-import { toWords, transformColumnsToSearchParams } from @hanzo/cms'from 
+import { toWords, transformColumnsToSearchParams } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { Pill } from '../../../Pill/index.js'

@@ -1,6 +1,6 @@
 'use client'
 
-import type { SelectFieldClientProps, SelectFieldValidation } from @hanzo/cms'from 
+import type { SelectFieldClientProps, SelectFieldValidation } from '@hanzo/cms'
 
 import { SelectField, useForm } from '@hanzo/cms-ui'
 import React, { useEffect, useState } from 'react'

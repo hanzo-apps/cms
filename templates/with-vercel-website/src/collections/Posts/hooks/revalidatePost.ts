@@ -1,4 +1,4 @@
-import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from @hanzo/cms'from 
+import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from '@hanzo/cms'
 
 import { revalidatePath, revalidateTag } from 'next/cache'
 

@@ -1,4 +1,4 @@
-import type { Config } from @hanzo/cms'from 
+import type { Config } from '@hanzo/cms'
 
 import { applicationEndpoint, customCorsEndpoint, rootEndpoint } from '../shared.js'
 

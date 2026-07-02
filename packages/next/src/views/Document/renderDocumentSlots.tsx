@@ -17,11 +17,11 @@ import type {
   UnpublishButtonServerPropsOnly,
   ViewDescriptionClientProps,
   ViewDescriptionServerPropsOnly,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { ViewDescription } from '@hanzo/cms-ui'
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
-import { hasDraftsEnabled } from @hanzo/cms'from 
+import { hasDraftsEnabled } from '@hanzo/cms/shared'
 
 import { getDocumentPermissions } from './getDocumentPermissions.js'
 

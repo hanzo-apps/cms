@@ -1,6 +1,6 @@
 import type { DeleteOptions } from 'mongodb'
 
-import { type DeleteMany } from @hanzo/cms'from 
+import { type DeleteMany } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 

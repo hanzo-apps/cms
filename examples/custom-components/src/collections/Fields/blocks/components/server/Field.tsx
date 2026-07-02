@@ -1,4 +1,4 @@
-import type { BlocksFieldServerComponent } from @hanzo/cms'from 
+import type { BlocksFieldServerComponent } from '@hanzo/cms'
 import type React from 'react'
 
 import { BlocksField } from '@hanzo/cms-ui'

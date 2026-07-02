@@ -5,11 +5,11 @@ import type {
   Payload,
   PayloadRequest,
   RequiredDataFromCollectionSlug,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import path from 'path'
-import { createLocalReq, Forbidden } from @hanzo/cms'from 
-import { getEntityPermissions } from @hanzo/cms'from 
+import { createLocalReq, Forbidden } from '@hanzo/cms'
+import { getEntityPermissions } from '@hanzo/cms/internal'
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vitest } from 'vitest'
 

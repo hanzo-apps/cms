@@ -1,4 +1,4 @@
-import type { TypedUser, User } from @hanzo/cms'from 
+import type { TypedUser, User } from '@hanzo/cms'
 
 import type { PayloadTestSDK } from '../shared/sdk/index.js'
 import type { GeneratedTypes } from '../shared/sdk/types.js'

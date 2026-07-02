@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { tabsFieldsSlug } from '../../slugs.js'
 import { getBlocksField } from '../Blocks/index.js'

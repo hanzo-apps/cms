@@ -3,7 +3,7 @@ import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 import type { BeforeEmail } from '@hanzo/cms-plugin-form-builder/types'
-import type { Block, CollectionConfig, Field } from @hanzo/cms'from 
+import type { Block, CollectionConfig, Field } from '@hanzo/cms'
 
 //import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 import { formBuilderPlugin, fields as formFields } from '@hanzo/cms-plugin-form-builder'

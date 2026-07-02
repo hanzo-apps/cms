@@ -1,5 +1,5 @@
 import type { TFunction } from '@hanzo/cms-translations'
-import type { ClientBlock, ClientField, FormStateWithoutComponents } from @hanzo/cms'from 
+import type { ClientBlock, ClientField, FormStateWithoutComponents } from '@hanzo/cms'
 
 export type ClipboardCopyBlocksSchema = {
   schemaBlocks: ClientBlock[]

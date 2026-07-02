@@ -1,4 +1,4 @@
-import type { FieldWithPathClient } from @hanzo/cms'from 
+import type { FieldWithPathClient } from '@hanzo/cms'
 
 export const filterOutUploadFields = (fields: FieldWithPathClient[]): FieldWithPathClient[] => {
   // List of reserved upload field names

@@ -3,7 +3,7 @@ import type {
   FilterOptionsResult,
   ListQuery,
   SanitizedCollectionConfig,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 import type React from 'react'
 import type { HTMLAttributes } from 'react'
 

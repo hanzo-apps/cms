@@ -19,7 +19,7 @@ import type {
   SanitizedConfig,
   ServerFieldBase,
   StaticLabel,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import type { BlockComponentContextType } from './features/blocks/client/component/BlockContent.js'
 export type { BlockComponentContextType }

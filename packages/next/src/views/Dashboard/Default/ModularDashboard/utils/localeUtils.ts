@@ -1,6 +1,6 @@
-import type { ClientField, Field } from @hanzo/cms'from 
+import type { ClientField, Field } from '@hanzo/cms'
 
-import { fieldAffectsData, fieldHasSubFields, tabHasName } from @hanzo/cms'from 
+import { fieldAffectsData, fieldHasSubFields, tabHasName } from '@hanzo/cms/shared'
 
 type AnyField = ClientField | Field
 

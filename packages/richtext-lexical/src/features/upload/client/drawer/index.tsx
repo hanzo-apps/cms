@@ -1,7 +1,7 @@
 'use client'
 import type { ListDrawerProps } from '@hanzo/cms-ui'
 import type { LexicalEditor } from 'lexical'
-import type { UploadCollectionSlug } from @hanzo/cms'from 
+import type { UploadCollectionSlug } from '@hanzo/cms'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext.js'
 import { toast } from '@hanzo/cms-ui'

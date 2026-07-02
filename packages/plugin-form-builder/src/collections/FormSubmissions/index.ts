@@ -1,4 +1,4 @@
-import type { CollectionBeforeChangeHook, CollectionConfig, Field } from @hanzo/cms'from 
+import type { CollectionBeforeChangeHook, CollectionConfig, Field } from '@hanzo/cms'
 
 import type { FormBuilderPluginConfig } from '../../types.js'
 

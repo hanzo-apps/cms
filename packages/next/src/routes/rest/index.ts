@@ -1,5 +1,5 @@
-import { handleEndpoints, type SanitizedConfig } from @hanzo/cms'from 
-import { formatAdminURL } from @hanzo/cms'from 
+import { handleEndpoints, type SanitizedConfig } from '@hanzo/cms'
+import { formatAdminURL } from '@hanzo/cms/shared'
 
 import { generateOGImage } from './og/index.js'
 

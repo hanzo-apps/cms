@@ -1,7 +1,7 @@
 'use client'
-import type { SanitizedCollectionConfig, StaticLabel } from @hanzo/cms'from 
+import type { SanitizedCollectionConfig, StaticLabel } from '@hanzo/cms'
 
-import { fieldIsHiddenOrDisabled, fieldIsID } from @hanzo/cms'from 
+import { fieldIsHiddenOrDisabled, fieldIsID } from '@hanzo/cms/shared'
 import React, { useId, useMemo } from 'react'
 
 import { FieldLabel } from '../../fields/FieldLabel/index.js'

@@ -4,7 +4,7 @@ import {
   type FieldState,
   type ServerFunction,
   UnauthorizedError,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { getClientConfig } from '../../../utilities/getClientConfig.js'
 import { getClientSchemaMap } from '../../../utilities/getClientSchemaMap.js'

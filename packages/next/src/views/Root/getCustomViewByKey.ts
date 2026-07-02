@@ -1,4 +1,4 @@
-import type { AdminViewServerProps, PayloadComponent, SanitizedConfig } from @hanzo/cms'from 
+import type { AdminViewServerProps, PayloadComponent, SanitizedConfig } from '@hanzo/cms'
 
 import type { ViewFromConfig } from './getRouteData.js'
 

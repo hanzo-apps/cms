@@ -1,4 +1,4 @@
-import type { ClientCollectionConfig, ClientConfig } from @hanzo/cms'from 
+import type { ClientCollectionConfig, ClientConfig } from '@hanzo/cms'
 
 // Helper function to extract display value from relationship
 export const extractRelationshipDisplayValue = (

@@ -3,7 +3,7 @@ import type {
   PluginOptions as CloudStoragePluginOptions,
   CollectionOptions,
 } from '@hanzo/cms-plugin-cloud-storage/types'
-import type { Config, Plugin, UploadCollectionSlug } from @hanzo/cms'from 
+import type { Config, Plugin, UploadCollectionSlug } from '@hanzo/cms'
 
 import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'
 import { initClientUploads } from '@hanzo/cms-plugin-cloud-storage/utilities'

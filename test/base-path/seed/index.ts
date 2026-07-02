@@ -1,4 +1,4 @@
-import type { Config } from @hanzo/cms'from 
+import type { Config } from '@hanzo/cms'
 
 import { devUser } from '../../credentials.js'
 

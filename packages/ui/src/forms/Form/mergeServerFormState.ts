@@ -1,5 +1,5 @@
 'use client'
-import type { FormState } from @hanzo/cms'from 
+import type { FormState } from '@hanzo/cms'
 
 import { dequal } from 'dequal/lite' // lite: no need for Map and Set support
 

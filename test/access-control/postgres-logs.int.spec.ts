@@ -1,9 +1,9 @@
-import type { CollectionPermission, Payload, PayloadRequest } from @hanzo/cms'from 
+import type { CollectionPermission, Payload, PayloadRequest } from '@hanzo/cms'
 
 import assert from 'assert'
 import path from 'path'
-import { createLocalReq } from @hanzo/cms'from 
-import { getEntityPermissions } from @hanzo/cms'from 
+import { createLocalReq } from '@hanzo/cms'
+import { getEntityPermissions } from '@hanzo/cms/internal'
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, describe, expect, it, vitest } from 'vitest'
 

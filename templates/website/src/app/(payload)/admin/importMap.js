@@ -28,7 +28,7 @@ import { default as default_1a7510af427896d367a49dbf838d2de6 } from '@/component
 import { default as default_8a7ab0eb7ab5c511aba12e68480bfe5e } from '@/components/BeforeLogin'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@hanzo/cms-next/rsc'
 
-/** @type import(@hanzo/cms'import().ImportMap */
+/** @type import('@hanzo/cms'import().ImportMap */
 export const importMap = {
   '@hanzo/cms-richtext-lexical/rsc#RscEntryLexicalCell':
     RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,

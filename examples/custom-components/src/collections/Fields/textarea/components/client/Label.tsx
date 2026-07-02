@@ -1,5 +1,5 @@
 'use client'
-import type { TextareaFieldLabelClientComponent } from @hanzo/cms'from 
+import type { TextareaFieldLabelClientComponent } from '@hanzo/cms'
 
 import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'

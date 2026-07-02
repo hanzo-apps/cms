@@ -1,4 +1,4 @@
-import { ValidationError } from @hanzo/cms'from 
+import { ValidationError } from '@hanzo/cms'
 import { describe, expect, it } from 'vitest'
 
 import type { DrizzleAdapter } from '../types.js'

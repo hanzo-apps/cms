@@ -1,4 +1,4 @@
-import type { SelectIncludeType } from @hanzo/cms'from 
+import type { SelectIncludeType } from '@hanzo/cms'
 
 /**
  * Takes an input of array of string paths in dot notation and returns a select object.

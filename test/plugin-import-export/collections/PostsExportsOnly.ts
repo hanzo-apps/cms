@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { devUser } from '../../credentials.js'
 import { postsExportsOnlySlug } from '../shared.js'

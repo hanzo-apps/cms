@@ -5,7 +5,7 @@ import type {
   FolderListViewServerPropsOnly,
   FolderSortKeys,
   ListQuery,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { DefaultCollectionFolderView, HydrateAuthProvider } from '@hanzo/cms-ui'
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'

@@ -1,5 +1,5 @@
 'use client'
-import type { FormState } from @hanzo/cms'from 
+import type { FormState } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import {
@@ -14,7 +14,7 @@ import {
   useServerFunctions,
   useTranslation,
 } from '@hanzo/cms-ui'
-import { deepCopyObject, reduceFieldsToValues } from @hanzo/cms'from 
+import { deepCopyObject, reduceFieldsToValues } from '@hanzo/cms/shared'
 import { useCallback, useEffect, useState } from 'react'
 import { Editor, Node, Transforms } from 'slate'
 import { ReactEditor, useSlate } from 'slate-react'

@@ -5,7 +5,7 @@ import type {
   SelectType,
   TypedLocale,
   TypeWithVersion,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import type { PayloadSDK } from '../index.js'
 import type { DataFromGlobalSlug, PopulateType } from '../types.js'

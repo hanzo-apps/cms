@@ -1,10 +1,10 @@
-import type { AdminViewServerProps, DocumentViewServerPropsOnly } from @hanzo/cms'from 
+import type { AdminViewServerProps, DocumentViewServerPropsOnly } from '@hanzo/cms'
 
 import { DocumentInfoProvider, EditDepthProvider, HydrateAuthProvider } from '@hanzo/cms-ui'
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import { buildFormState } from '@hanzo/cms-ui/utilities/buildFormState'
 import { notFound } from 'next/navigation.js'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { DocumentHeader } from '../../elements/DocumentHeader/index.js'

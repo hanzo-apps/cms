@@ -1,4 +1,4 @@
-import type { GlobalConfig } from @hanzo/cms'from 
+import type { GlobalConfig } from '@hanzo/cms'
 
 import { group2GlobalSlug } from '../slugs.js'
 

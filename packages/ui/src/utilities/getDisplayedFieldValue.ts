@@ -1,5 +1,5 @@
 import type { I18nClient } from '@hanzo/cms-translations'
-import type { ClientField } from @hanzo/cms'from 
+import type { ClientField } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 

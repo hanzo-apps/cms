@@ -1,6 +1,6 @@
 'use client'
 
-import type { Where } from @hanzo/cms'from 
+import type { Where } from '@hanzo/cms'
 
 import {
   RadioGroupField,

@@ -45,7 +45,6 @@
     "@hanzo/cms-email-resend": "workspace:*",
     "@hanzo/cms-eslint-config": "workspace:*",
     "@hanzo/cms-eslint-plugin": "workspace:*",
-    "@hanzo/cms-figma": "latest",
     "@hanzo/cms-graphql": "workspace:*",
     "@hanzo/cms-kv-redis": "workspace:*",
     "@hanzo/cms-live-preview": "workspace:*",

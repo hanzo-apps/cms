@@ -1,7 +1,7 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import path from 'path'
-import { APIError } from @hanzo/cms'from 
+import { APIError } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 
 import { bulkUploadsHookErrorSlug } from '../../shared.js'

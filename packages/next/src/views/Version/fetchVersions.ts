@@ -7,7 +7,7 @@ import {
   type TypedUser,
   type TypeWithVersion,
   type Where,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export const fetchVersion = async <TVersionData extends object = object>({
   id,

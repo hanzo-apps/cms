@@ -1,4 +1,4 @@
-import type { TaskConfig } from @hanzo/cms'from 
+import type { TaskConfig } from '@hanzo/cms'
 
 export const CreateSimpleTask: TaskConfig<'CreateSimple'> = {
   retries: 3,

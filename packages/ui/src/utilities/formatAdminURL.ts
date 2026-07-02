@@ -1,2 +1,2 @@
 /** Will read the `routes.admin` config and appropriately handle `"/"` admin paths */
-export { formatAdminURL } from @hanzo/cms'from 
+export { formatAdminURL } from '@hanzo/cms/shared'

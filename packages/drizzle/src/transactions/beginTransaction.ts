@@ -1,4 +1,4 @@
-import type { BeginTransaction } from @hanzo/cms'from 
+import type { BeginTransaction } from '@hanzo/cms'
 
 import { v4 as uuid } from 'uuid'
 

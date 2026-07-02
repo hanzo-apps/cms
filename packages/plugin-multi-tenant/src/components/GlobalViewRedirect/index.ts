@@ -1,4 +1,4 @@
-import type { CollectionSlug, ServerProps, ViewTypes } from @hanzo/cms'from 
+import type { CollectionSlug, ServerProps, ViewTypes } from '@hanzo/cms'
 
 import { headers as getHeaders } from 'next/headers.js'
 import { redirect } from 'next/navigation.js'

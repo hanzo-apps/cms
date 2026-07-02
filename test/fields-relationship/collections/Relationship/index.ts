@@ -1,4 +1,4 @@
-import type { CollectionConfig, FilterOptionsProps } from @hanzo/cms'from 
+import type { CollectionConfig, FilterOptionsProps } from '@hanzo/cms'
 
 import type { FieldsRelationship } from '../../payload-types.js'
 

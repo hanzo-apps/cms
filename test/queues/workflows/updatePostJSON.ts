@@ -1,4 +1,4 @@
-import type { WorkflowConfig } from @hanzo/cms'from 
+import type { WorkflowConfig } from '@hanzo/cms'
 
 export const updatePostJSONWorkflow: WorkflowConfig<'updatePostJSONWorkflow'> = {
   slug: 'updatePostJSONWorkflow',

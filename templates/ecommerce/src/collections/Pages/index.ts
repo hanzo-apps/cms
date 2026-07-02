@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { Banner } from '@/blocks/Banner/config'
 import { Carousel } from '@/blocks/Carousel/config'
@@ -11,7 +11,7 @@ import { Content } from '@/blocks/Content/config'
 import { FormBlock } from '@/blocks/Form/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
 import { hero } from '@/fields/hero'
-import { slugField } from @hanzo/cms'from 
+import { slugField } from '@hanzo/cms'
 import { adminOrPublishedStatus } from '@/access/adminOrPublishedStatus'
 import {
   MetaDescriptionField,

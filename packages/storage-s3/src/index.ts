@@ -4,7 +4,7 @@ import type {
   CollectionOptions,
 } from '@hanzo/cms-plugin-cloud-storage/types'
 import type { NodeHttpHandlerOptions } from '@smithy/node-http-handler'
-import type { Config, Plugin, UploadCollectionSlug } from @hanzo/cms'from 
+import type { Config, Plugin, UploadCollectionSlug } from '@hanzo/cms'
 
 import * as AWS from '@aws-sdk/client-s3'
 import { cloudStoragePlugin } from '@hanzo/cms-plugin-cloud-storage'

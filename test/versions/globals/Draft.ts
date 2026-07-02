@@ -1,4 +1,4 @@
-import type { GlobalConfig } from @hanzo/cms'from 
+import type { GlobalConfig } from '@hanzo/cms'
 
 import { draftGlobalSlug } from '../slugs.js'
 

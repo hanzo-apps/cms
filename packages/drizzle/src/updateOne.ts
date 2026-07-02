@@ -1,5 +1,5 @@
 import type { LibSQLDatabase } from 'drizzle-orm/libsql'
-import type { UpdateOne } from @hanzo/cms'from 
+import type { UpdateOne } from '@hanzo/cms'
 
 import toSnakeCase from 'to-snake-case'
 

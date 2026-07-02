@@ -1,9 +1,9 @@
 'use client'
 
-import type { Data, ViewTypes } from @hanzo/cms'from 
-import type { FolderOrDocument } from @hanzo/cms'from 
+import type { Data, ViewTypes } from '@hanzo/cms'
+import type { FolderOrDocument } from '@hanzo/cms/shared'
 
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useEffect } from 'react'
 
 // eslint-disable-next-line payload/no-imports-from-exports-dir

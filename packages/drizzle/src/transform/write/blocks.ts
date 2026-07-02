@@ -1,6 +1,6 @@
-import type { FlattenedBlock, FlattenedBlocksField } from @hanzo/cms'from 
+import type { FlattenedBlock, FlattenedBlocksField } from '@hanzo/cms'
 
-import { fieldShouldBeLocalized } from @hanzo/cms'from 
+import { fieldShouldBeLocalized } from '@hanzo/cms/shared'
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from '../../types.js'

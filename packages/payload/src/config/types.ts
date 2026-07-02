@@ -1288,7 +1288,7 @@ export type Config = {
    * Pass in a KV adapter for use on this project.
    * @default `DatabaseKVAdapter` from:
    * ```ts
-   * import { createDatabaseKVAdapter } from @hanzo/cms'from 
+   * import { createDatabaseKVAdapter } from '@hanzo/cms'
    * createDatabaseKVAdapter()
    * ```
    */

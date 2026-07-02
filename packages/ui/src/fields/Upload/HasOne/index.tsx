@@ -1,8 +1,8 @@
 'use client'
 
-import type { JsonObject } from @hanzo/cms'from 
+import type { JsonObject } from '@hanzo/cms'
 
-import { getBestFitFromSizes, isImage } from @hanzo/cms'from 
+import { getBestFitFromSizes, isImage } from '@hanzo/cms/shared'
 import React from 'react'
 
 import type { ReloadDoc } from '../types.js'

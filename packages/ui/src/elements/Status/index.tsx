@@ -1,6 +1,6 @@
 'use client'
 import { useModal } from '@faceless-ui/modal'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useCallback } from 'react'
 import { toast } from 'sonner'
 

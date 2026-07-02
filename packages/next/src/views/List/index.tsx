@@ -10,7 +10,7 @@ import type {
   PayloadComponent,
   QueryPreset,
   SanitizedCollectionPermission,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { DefaultListView, HydrateAuthProvider, ListQueryProvider } from '@hanzo/cms-ui'
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
@@ -24,7 +24,7 @@ import {
   mergeListSearchAndWhere,
   transformColumnsToPreferences,
   transformColumnsToSearchParams,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/shared'
 import React, { Fragment } from 'react'
 
 import { getDocumentPermissions } from '../Document/getDocumentPermissions.js'

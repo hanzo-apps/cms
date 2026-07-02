@@ -1,5 +1,5 @@
 'use client'
-import type { OptionObject, RadioFieldClientProps } from @hanzo/cms'from 
+import type { OptionObject, RadioFieldClientProps } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'

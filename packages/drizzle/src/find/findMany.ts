@@ -1,4 +1,4 @@
-import type { FindArgs, FlattenedField, TypeWithID } from @hanzo/cms'from 
+import type { FindArgs, FlattenedField, TypeWithID } from '@hanzo/cms'
 
 import { asc, desc, inArray, max, min } from 'drizzle-orm'
 

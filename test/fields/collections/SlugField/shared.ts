@@ -1,4 +1,4 @@
-import type { RequiredDataFromCollection } from @hanzo/cms'from 
+import type { RequiredDataFromCollection } from '@hanzo/cms'
 
 import type { SlugField } from '../../payload-types.js'
 

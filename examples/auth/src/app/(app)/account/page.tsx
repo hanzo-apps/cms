@@ -1,7 +1,7 @@
 import { headers as getHeaders } from 'next/headers.js'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import React, { Fragment } from 'react'
 
 import config from '../../../payload.config'

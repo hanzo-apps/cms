@@ -1,7 +1,7 @@
 'use client'
 
 import type { EditorConfig as LexicalEditorConfig } from 'lexical'
-import type { RichTextFieldClient } from @hanzo/cms'from 
+import type { RichTextFieldClient } from '@hanzo/cms'
 
 import { ShimmerEffect, useConfig } from '@hanzo/cms-ui'
 import React, { lazy, Suspense, useEffect, useState } from 'react'

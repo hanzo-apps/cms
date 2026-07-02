@@ -1,4 +1,4 @@
-import type { RequiredDataFromCollectionSlug } from @hanzo/cms'from 
+import type { RequiredDataFromCollectionSlug } from '@hanzo/cms'
 import type { Media } from '@/payload-types'
 
 type HomeArgs = {

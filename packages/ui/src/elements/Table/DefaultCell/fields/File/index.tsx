@@ -4,9 +4,9 @@ import type {
   DefaultCellComponentProps,
   TextFieldClient,
   UploadFieldClient,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
-import { getBestFitFromSizes, isImage } from @hanzo/cms'from 
+import { getBestFitFromSizes, isImage } from '@hanzo/cms/shared'
 import React from 'react'
 
 import './index.scss'

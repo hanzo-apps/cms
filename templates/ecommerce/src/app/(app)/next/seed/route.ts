@@ -1,4 +1,4 @@
-import { createLocalReq, getPayload } from @hanzo/cms'from 
+import { createLocalReq, getPayload } from '@hanzo/cms'
 import { seed } from '@/endpoints/seed'
 import config from '@payload-config'
 import { headers } from 'next/headers'

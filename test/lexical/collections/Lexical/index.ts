@@ -1,6 +1,6 @@
 import type { ServerEditorConfig } from '@hanzo/cms-richtext-lexical'
 import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
-import type { Block, BlockSlug, CollectionConfig } from @hanzo/cms'from 
+import type { Block, BlockSlug, CollectionConfig } from '@hanzo/cms'
 
 import {
   BlocksFeature,

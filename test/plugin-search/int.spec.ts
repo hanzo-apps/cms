@@ -1,7 +1,7 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import path from 'path'
-import { wait } from @hanzo/cms'from 
+import { wait } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 

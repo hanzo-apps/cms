@@ -1,6 +1,6 @@
 'use client'
 
-import type { DocumentViewClientProps } from @hanzo/cms'from 
+import type { DocumentViewClientProps } from '@hanzo/cms'
 
 import { DefaultEditView } from '@hanzo/cms-ui'
 import React from 'react'

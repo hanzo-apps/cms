@@ -4,14 +4,14 @@ import type {
   SanitizedCollectionPermission,
   SanitizedGlobalPermission,
   TypeWithVersion,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { formatDate } from '@hanzo/cms-ui/shared'
 import { getClientConfig } from '@hanzo/cms-ui/utilities/getClientConfig'
 import { getClientSchemaMap } from '@hanzo/cms-ui/utilities/getClientSchemaMap'
 import { getSchemaMap } from '@hanzo/cms-ui/utilities/getSchemaMap'
 import { notFound } from 'next/navigation.js'
-import { hasDraftsEnabled } from @hanzo/cms'from 
+import { hasDraftsEnabled } from '@hanzo/cms/shared'
 import React from 'react'
 
 import type { CompareOption } from './Default/types.js'

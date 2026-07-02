@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import type { Icon } from 'next/dist/lib/metadata/types/metadata-types.js'
-import type { MetaConfig } from @hanzo/cms'from 
+import type { MetaConfig } from '@hanzo/cms'
 
 import { payloadFaviconDark, payloadFaviconLight, staticOGImage } from '@hanzo/cms-ui/assets'
 import * as qs from 'qs-esm'

@@ -7,7 +7,7 @@ import type {
   SanitizedPermissions,
   ServerFunctionClient,
   TypedUser,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { DndContext, pointerWithin } from '@dnd-kit/core'
 import { ModalContainer, ModalProvider } from '@faceless-ui/modal'

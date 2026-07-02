@@ -1,7 +1,7 @@
 'use client'
-import type { DefaultDocumentIDType, TypedUser } from @hanzo/cms'from 
+import type { DefaultDocumentIDType, TypedUser } from '@hanzo/cms'
 
-import { deepMergeSimple, formatAdminURL } from @hanzo/cms'from 
+import { deepMergeSimple, formatAdminURL } from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React, { createContext, use, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 

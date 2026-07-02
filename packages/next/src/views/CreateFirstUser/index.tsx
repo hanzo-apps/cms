@@ -2,7 +2,7 @@ import type {
   AdminViewServerProps,
   SanitizedDocumentPermissions,
   SanitizedFieldsPermissions,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { buildFormState } from '@hanzo/cms-ui/utilities/buildFormState'
 import React from 'react'

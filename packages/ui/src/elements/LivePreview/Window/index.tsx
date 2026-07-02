@@ -1,8 +1,8 @@
 'use client'
 
-import type { EditViewProps } from @hanzo/cms'from 
+import type { EditViewProps } from '@hanzo/cms'
 
-import { reduceFieldsToValues } from @hanzo/cms'from 
+import { reduceFieldsToValues } from '@hanzo/cms/shared'
 import React, { useEffect } from 'react'
 
 import { useAllFormFields } from '../../../forms/Form/context.js'

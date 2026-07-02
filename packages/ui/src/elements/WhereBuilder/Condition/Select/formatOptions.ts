@@ -1,4 +1,4 @@
-import type { Option, OptionObject } from @hanzo/cms'from 
+import type { Option, OptionObject } from '@hanzo/cms'
 
 /**
  * Formats an array of options for use in a select input.

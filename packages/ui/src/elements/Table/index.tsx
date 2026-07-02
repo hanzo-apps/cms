@@ -1,6 +1,6 @@
 'use client'
 
-import type { Column } from @hanzo/cms'from 
+import type { Column } from '@hanzo/cms'
 
 import React from 'react'
 

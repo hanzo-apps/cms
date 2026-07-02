@@ -1,6 +1,6 @@
 'use client'
 import React, { useCallback, useEffect } from 'react'
-import { TextFieldClientProps } from @hanzo/cms'from 
+import { TextFieldClientProps } from '@hanzo/cms'
 
 import { useField, Button, TextInput, FieldLabel, useFormFields, useForm } from '@hanzo/cms-ui'
 

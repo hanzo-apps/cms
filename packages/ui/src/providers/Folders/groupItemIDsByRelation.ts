@@ -1,4 +1,4 @@
-import type { FolderOrDocument } from @hanzo/cms'from 
+import type { FolderOrDocument } from '@hanzo/cms/shared'
 
 export function groupItemIDsByRelation(items: FolderOrDocument[]) {
   return items.reduce(

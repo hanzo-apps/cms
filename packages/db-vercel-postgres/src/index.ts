@@ -1,6 +1,6 @@
 import type { DrizzleAdapter } from '@hanzo/cms-drizzle'
 import type { PgTableFn } from 'drizzle-orm/pg-core'
-import type { DatabaseAdapterObj, Payload } from @hanzo/cms'from 
+import type { DatabaseAdapterObj, Payload } from '@hanzo/cms'
 
 import {
   beginTransaction,
@@ -57,7 +57,7 @@ import {
   requireDrizzleKit,
 } from '@hanzo/cms-drizzle/postgres'
 import { pgEnum, pgSchema, pgTable } from 'drizzle-orm/pg-core'
-import { createDatabaseAdapter, defaultBeginTransaction, findMigrationDir } from @hanzo/cms'from 
+import { createDatabaseAdapter, defaultBeginTransaction, findMigrationDir } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 
 import type { Args, VercelPostgresAdapter } from './types.js'

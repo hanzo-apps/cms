@@ -1,4 +1,4 @@
-import type { FileData, PayloadRequest, TypeWithID } from @hanzo/cms'from 
+import type { FileData, PayloadRequest, TypeWithID } from '@hanzo/cms'
 
 import { type I18nClient } from '@hanzo/cms-translations'
 import { File } from '@hanzo/cms-ui/rsc'
@@ -6,7 +6,7 @@ import { createHash } from 'crypto'
 
 import './index.scss'
 
-import { formatFilesize } from @hanzo/cms'from 
+import { formatFilesize } from '@hanzo/cms/shared'
 import React from 'react'
 
 import type { HTMLConvertersAsync } from '../../../../features/converters/lexicalToHtml/async/types.js'

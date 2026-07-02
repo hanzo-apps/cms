@@ -1,4 +1,4 @@
-import type { TypeWithID, Where, WhereField } from @hanzo/cms'from 
+import type { TypeWithID, Where, WhereField } from '@hanzo/cms'
 import type { DeepPartial, MarkOptional } from 'ts-essentials'
 
 type CollectionDoc = {

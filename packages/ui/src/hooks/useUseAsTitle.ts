@@ -1,7 +1,7 @@
 'use client'
-import type { ClientCollectionConfig, ClientField } from @hanzo/cms'from 
+import type { ClientCollectionConfig, ClientField } from '@hanzo/cms'
 
-import { flattenTopLevelFields } from @hanzo/cms'from 
+import { flattenTopLevelFields } from '@hanzo/cms/shared'
 
 import { useTranslation } from '../providers/Translation/index.js'
 

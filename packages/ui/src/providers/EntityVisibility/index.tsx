@@ -1,5 +1,5 @@
 'use client'
-import type { SanitizedCollectionConfig, SanitizedGlobalConfig, VisibleEntities } from @hanzo/cms'from 
+import type { SanitizedCollectionConfig, SanitizedGlobalConfig, VisibleEntities } from '@hanzo/cms'
 
 import React, { createContext, use, useCallback } from 'react'
 

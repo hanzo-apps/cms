@@ -1,8 +1,8 @@
-import type { CollectionConfig, PayloadRequest } from @hanzo/cms'from 
+import type { CollectionConfig, PayloadRequest } from '@hanzo/cms'
 
 import { getFilePrefix as getDocPrefix } from '@hanzo/cms-plugin-cloud-storage/utilities'
 import { BlobNotFoundError, head } from '@vercel/blob'
-import { getRangeRequestInfo } from @hanzo/cms'from 
+import { getRangeRequestInfo } from '@hanzo/cms/internal'
 
 import { generateURL } from './generateURL.js'
 

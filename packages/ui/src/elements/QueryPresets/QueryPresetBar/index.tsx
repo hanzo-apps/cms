@@ -1,4 +1,4 @@
-import type { QueryPreset, SanitizedCollectionPermission } from @hanzo/cms'from 
+import type { QueryPreset, SanitizedCollectionPermission } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'
@@ -6,7 +6,7 @@ import {
   formatAdminURL,
   transformColumnsToPreferences,
   transformColumnsToSearchParams,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/shared'
 import React, { Fragment, useCallback, useMemo } from 'react'
 import { toast } from 'sonner'
 

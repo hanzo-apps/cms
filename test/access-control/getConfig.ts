@@ -2,7 +2,7 @@ import { fileURLToPath } from 'node:url'
 import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-import type { Config, FieldAccess } from @hanzo/cms'from 
+import type { Config, FieldAccess } from '@hanzo/cms'
 
 import { buildEditorState, type DefaultNodeTypes } from '@hanzo/cms-richtext-lexical'
 

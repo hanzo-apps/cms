@@ -1,6 +1,6 @@
-import type { PaginatedDocs, SendEmailOptions } from @hanzo/cms'from 
+import type { PaginatedDocs, SendEmailOptions } from '@hanzo/cms'
 
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 
 import type {
   CreateArgs,

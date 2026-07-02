@@ -1,5 +1,5 @@
 'use client'
-import type { FormState } from @hanzo/cms'from 
+import type { FormState } from '@hanzo/cms'
 
 /**
  * By default, if an array field is empty, it will be included in the form state with a value of 0.

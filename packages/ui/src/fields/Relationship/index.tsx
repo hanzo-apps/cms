@@ -1,5 +1,5 @@
 'use client'
-import type { RelationshipFieldClientComponent, ValueWithRelation } from @hanzo/cms'from 
+import type { RelationshipFieldClientComponent, ValueWithRelation } from '@hanzo/cms'
 
 import React, { useCallback, useMemo } from 'react'
 

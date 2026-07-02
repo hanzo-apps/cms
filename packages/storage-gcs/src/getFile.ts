@@ -1,12 +1,12 @@
 import type { Storage } from '@google-cloud/storage'
-import type { CollectionConfig, PayloadRequest } from @hanzo/cms'from 
+import type { CollectionConfig, PayloadRequest } from '@hanzo/cms'
 
 import { ApiError } from '@google-cloud/storage'
 import {
   getFilePrefix as getDocPrefix,
   getFileKey,
 } from '@hanzo/cms-plugin-cloud-storage/utilities'
-import { getRangeRequestInfo } from @hanzo/cms'from 
+import { getRangeRequestInfo } from '@hanzo/cms/internal'
 
 interface GetFileArgs {
   bucket: string

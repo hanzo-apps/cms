@@ -3,7 +3,7 @@ import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 import type { GenerateDescription, GenerateTitle, GenerateURL } from '@hanzo/cms-plugin-seo/types'
-import type { Field } from @hanzo/cms'from 
+import type { Field } from '@hanzo/cms'
 import type { Page } from 'plugin-seo/payload-types.js'
 
 import { seoPlugin } from '@hanzo/cms-plugin-seo'

@@ -1,6 +1,6 @@
 import { getUserTenantIDs } from '@/utilities/getUserTenantIDs'
 import { isSuperAdmin } from '../../../access/isSuperAdmin'
-import { Access } from @hanzo/cms'from 
+import { Access } from '@hanzo/cms'
 
 /**
  * Tenant admins and super admins can will be allowed access

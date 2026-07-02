@@ -1,4 +1,4 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import { executePromises } from '../__helpers/shared/executePromises.js'
 import { devUser, regularUser } from '../credentials.js'

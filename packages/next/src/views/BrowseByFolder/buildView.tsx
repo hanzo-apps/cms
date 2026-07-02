@@ -5,14 +5,14 @@ import type {
   FolderListViewServerPropsOnly,
   FolderSortKeys,
   ListQuery,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { DefaultBrowseByFolderView, HydrateAuthProvider } from '@hanzo/cms-ui'
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import { getFolderResultsComponentAndData, upsertPreferences } from '@hanzo/cms-ui/rsc'
 import { formatAdminURL } from '@hanzo/cms-ui/shared'
 import { redirect } from 'next/navigation.js'
-import { PREFERENCE_KEYS } from @hanzo/cms'from 
+import { PREFERENCE_KEYS } from '@hanzo/cms/shared'
 import React from 'react'
 
 export type BuildFolderViewArgs = {

@@ -1,6 +1,6 @@
-import type { DBIdentifierName } from @hanzo/cms'from 
+import type { DBIdentifierName } from '@hanzo/cms'
 
-import { APIError } from @hanzo/cms'from 
+import { APIError } from '@hanzo/cms'
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from './types.js'

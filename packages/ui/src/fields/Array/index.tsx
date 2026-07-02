@@ -3,7 +3,7 @@ import type {
   ArrayFieldClientComponent,
   ArrayFieldClientProps,
   ArrayField as ArrayFieldType,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React, { Fragment, useCallback, useId, useMemo } from 'react'

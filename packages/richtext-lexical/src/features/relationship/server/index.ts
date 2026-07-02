@@ -1,4 +1,4 @@
-import type { CollectionSlug } from @hanzo/cms'from 
+import type { CollectionSlug } from '@hanzo/cms'
 
 import { populate } from '../../../populateGraphQL/populate.js'
 import { createServerFeature } from '../../../utilities/createServerFeature.js'

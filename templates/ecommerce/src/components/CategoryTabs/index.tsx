@@ -1,5 +1,5 @@
 import configPromise from '@payload-config'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import clsx from 'clsx'
 import React, { Suspense } from 'react'
 

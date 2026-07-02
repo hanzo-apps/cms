@@ -1,4 +1,4 @@
-import type { TypeWithID } from @hanzo/cms'from 
+import type { TypeWithID } from '@hanzo/cms'
 
 import type { Documents } from './index.js'
 

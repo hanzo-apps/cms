@@ -1,6 +1,6 @@
-import type { DefaultCellComponentProps } from @hanzo/cms'from 
+import type { DefaultCellComponentProps } from '@hanzo/cms'
 
-import { toWords } from @hanzo/cms'from 
+import { toWords } from '@hanzo/cms/shared'
 import React, { useMemo } from 'react'
 
 import { useAuth } from '../../../../providers/Auth/index.js'

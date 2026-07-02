@@ -1,5 +1,5 @@
 import type { ContainerClient } from '@azure/storage-blob'
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import { BlobServiceClient } from '@azure/storage-blob'
 import { readFile } from 'node:fs/promises'

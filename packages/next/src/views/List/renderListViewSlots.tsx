@@ -14,7 +14,7 @@ import type {
   StaticDescription,
   ViewDescriptionClientProps,
   ViewDescriptionServerPropsOnly,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { Banner } from '@hanzo/cms-ui/elements/Banner'
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'

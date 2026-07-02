@@ -4,7 +4,7 @@ import type {
   PopulateType,
   RichTextAdapter,
   RichTextField,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import type { AdapterArguments } from '../types.js'
 

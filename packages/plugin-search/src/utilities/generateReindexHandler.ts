@@ -1,4 +1,4 @@
-import type { PayloadHandler, Where } from @hanzo/cms'from 
+import type { PayloadHandler, Where } from '@hanzo/cms'
 
 import {
   addLocalesToRequestFromData,
@@ -7,7 +7,7 @@ import {
   headersWithCors,
   initTransaction,
   killTransaction,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import type { SanitizedSearchPluginConfig } from '../types.js'
 

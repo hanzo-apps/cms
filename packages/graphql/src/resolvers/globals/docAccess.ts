@@ -3,9 +3,9 @@ import type {
   SanitizedCollectionPermission,
   SanitizedGlobalConfig,
   SanitizedGlobalPermission,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
-import { docAccessOperationGlobal, isolateObjectProperty } from @hanzo/cms'from 
+import { docAccessOperationGlobal, isolateObjectProperty } from '@hanzo/cms'
 
 import type { Context } from '../types.js'
 

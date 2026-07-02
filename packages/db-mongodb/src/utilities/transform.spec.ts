@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { flattenAllFields, type Field, type SanitizedConfig } from @hanzo/cms'from 
+import { flattenAllFields, type Field, type SanitizedConfig } from '@hanzo/cms'
 import { Types } from 'mongoose'
 
 import { transform } from './transform.js'

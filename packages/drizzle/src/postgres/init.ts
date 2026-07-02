@@ -1,4 +1,4 @@
-import type { Init } from @hanzo/cms'from 
+import type { Init } from '@hanzo/cms'
 
 import type { BasePostgresAdapter } from './types.js'
 

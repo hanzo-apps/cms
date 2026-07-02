@@ -1,4 +1,4 @@
-import type { RequiredDataFromCollectionSlug } from @hanzo/cms'from 
+import type { RequiredDataFromCollectionSlug } from '@hanzo/cms'
 
 // Used for pre-seeded content so that the homepage is not empty
 export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {

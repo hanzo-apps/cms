@@ -1,8 +1,8 @@
 import type { PostgresAdapter } from '@hanzo/cms-db-postgres'
-import type { DatabaseAdapterObj } from @hanzo/cms'from 
+import type { DatabaseAdapterObj } from '@hanzo/cms'
 
 import path from 'path'
-import { buildConfig } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))

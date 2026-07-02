@@ -1,6 +1,6 @@
 'use client'
 
-import type { UploadCollectionSlug } from @hanzo/cms'from 
+import type { UploadCollectionSlug } from '@hanzo/cms'
 
 import { useConfig, useEffectEvent, useUploadHandlers } from '@hanzo/cms-ui'
 import { Fragment, type ReactNode, useEffect } from 'react'

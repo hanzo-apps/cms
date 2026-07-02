@@ -2,7 +2,7 @@
 
 import { useWindowInfo } from '@faceless-ui/window-info'
 import { getTranslation } from '@hanzo/cms-translations'
-import { validateWhereQuery } from @hanzo/cms'from 
+import { validateWhereQuery } from '@hanzo/cms/shared'
 import React, { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 
 import type { ListControlsProps } from './types.js'

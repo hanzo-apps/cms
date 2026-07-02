@@ -1,6 +1,6 @@
 import { describe, beforeAll, it, expect } from 'vitest'
-import type { Config, SanitizedConfig } from @hanzo/cms'from 
-import { flattenAllFields, sanitizeConfig } from @hanzo/cms'from 
+import type { Config, SanitizedConfig } from '@hanzo/cms'
+import { flattenAllFields, sanitizeConfig } from '@hanzo/cms'
 
 import { getLocalizedSortProperty } from './getLocalizedSortProperty.js'
 

@@ -1,10 +1,10 @@
 'use client'
-import type { ClientCollectionConfig } from @hanzo/cms'from 
+import type { ClientCollectionConfig } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'
 import { useRouter, useSearchParams } from 'next/navigation.js'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React from 'react'
 import { toast } from 'sonner'

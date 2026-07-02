@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-exports */
 'use client'
 
-import { type WidgetServerProps } from @hanzo/cms'from 
+import { type WidgetServerProps } from '@hanzo/cms'
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
 import type { RevenueWidget } from '../payload-types.js'

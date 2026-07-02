@@ -1,6 +1,6 @@
 'use client'
 // TODO: abstract the `next/navigation` dependency out from this component
-import type { ClientCollectionConfig, ClientGlobalConfig } from @hanzo/cms'from 
+import type { ClientCollectionConfig, ClientGlobalConfig } from '@hanzo/cms'
 
 import { dequal } from 'dequal/lite'
 import {
@@ -8,7 +8,7 @@ import {
   getAutosaveInterval,
   hasDraftValidationEnabled,
   reduceFieldsToValues,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React, { useDeferredValue, useEffect, useRef, useState } from 'react'
 

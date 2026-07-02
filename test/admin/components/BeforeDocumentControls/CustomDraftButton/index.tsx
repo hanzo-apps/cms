@@ -1,4 +1,4 @@
-import type { BeforeDocumentControlsServerProps } from @hanzo/cms'from 
+import type { BeforeDocumentControlsServerProps } from '@hanzo/cms'
 
 import React from 'react'
 

@@ -1,6 +1,6 @@
 import type { AggregateOptions, QueryOptions } from 'mongoose'
 
-import { type FindOne } from @hanzo/cms'from 
+import { type FindOne } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 

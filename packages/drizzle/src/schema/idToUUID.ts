@@ -1,4 +1,4 @@
-import type { FlattenedField } from @hanzo/cms'from 
+import type { FlattenedField } from '@hanzo/cms'
 
 export const idToUUID = (fields: FlattenedField[]): FlattenedField[] =>
   fields.map((field) => {

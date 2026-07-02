@@ -1,4 +1,4 @@
-import type { AdminViewServerProps } from @hanzo/cms'from 
+import type { AdminViewServerProps } from '@hanzo/cms'
 
 import LinkImport from 'next/link.js'
 import React from 'react'

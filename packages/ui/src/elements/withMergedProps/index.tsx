@@ -1,4 +1,4 @@
-import { isReactServerComponentOrFunction, serverProps } from @hanzo/cms'from 
+import { isReactServerComponentOrFunction, serverProps } from '@hanzo/cms/shared'
 import React from 'react'
 
 /**

@@ -1,4 +1,4 @@
-import type { ClientCollectionConfig } from @hanzo/cms'from 
+import type { ClientCollectionConfig } from '@hanzo/cms'
 
 import React from 'react'
 

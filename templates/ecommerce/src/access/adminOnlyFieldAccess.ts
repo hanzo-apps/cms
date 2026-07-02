@@ -1,4 +1,4 @@
-import type { FieldAccess } from @hanzo/cms'from 
+import type { FieldAccess } from '@hanzo/cms'
 
 import { checkRole } from '@/access/utilities'
 

@@ -1,6 +1,6 @@
 'use client'
 
-import type { GenericErrorProps } from @hanzo/cms'from 
+import type { GenericErrorProps } from '@hanzo/cms'
 
 import React from 'react'
 

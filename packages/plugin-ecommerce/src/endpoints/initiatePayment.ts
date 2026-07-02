@@ -1,4 +1,4 @@
-import { addDataAndFileToRequest, type DefaultDocumentIDType, type Endpoint } from @hanzo/cms'from 
+import { addDataAndFileToRequest, type DefaultDocumentIDType, type Endpoint } from '@hanzo/cms'
 
 import type {
   CurrenciesConfig,

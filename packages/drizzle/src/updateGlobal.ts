@@ -1,4 +1,4 @@
-import type { UpdateGlobalArgs } from @hanzo/cms'from 
+import type { UpdateGlobalArgs } from '@hanzo/cms'
 
 import toSnakeCase from 'to-snake-case'
 

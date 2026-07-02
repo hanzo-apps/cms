@@ -1,6 +1,6 @@
-import type { ImportMap, PayloadComponent } from @hanzo/cms'from 
+import type { ImportMap, PayloadComponent } from '@hanzo/cms'
 
-import { getFromImportMap, isPlainObject, isReactServerComponentOrFunction } from @hanzo/cms'from 
+import { getFromImportMap, isPlainObject, isReactServerComponentOrFunction } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { removeUndefined } from '../../utilities/removeUndefined.js'

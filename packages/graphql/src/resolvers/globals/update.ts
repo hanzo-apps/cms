@@ -4,10 +4,10 @@ import type {
   PayloadRequest,
   SanitizedGlobalConfig,
   SelectType,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 import type { DeepPartial } from 'ts-essentials'
 
-import { isolateObjectProperty, updateOperationGlobal } from @hanzo/cms'from 
+import { isolateObjectProperty, updateOperationGlobal } from '@hanzo/cms'
 
 import type { Context } from '../types.js'
 

@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url'
 import path from 'path'
-import { buildConfig } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
 
 import './payload-types.js'
 const filename = fileURLToPath(import.meta.url)

@@ -2,10 +2,10 @@ import { GraphQLBoolean, GraphQLInt, GraphQLNonNull, GraphQLString } from 'graph
 import pluralize from 'pluralize'
 const { singular } = pluralize
 
-import type { Field, GraphQLInfo, SanitizedConfig, SanitizedGlobalConfig } from @hanzo/cms'from 
+import type { Field, GraphQLInfo, SanitizedConfig, SanitizedGlobalConfig } from '@hanzo/cms'
 
-import { buildVersionGlobalFields, toWords } from @hanzo/cms'from 
-import { hasDraftsEnabled } from @hanzo/cms'from 
+import { buildVersionGlobalFields, toWords } from '@hanzo/cms'
+import { hasDraftsEnabled } from '@hanzo/cms/shared'
 
 import { docAccessResolver } from '../resolvers/globals/docAccess.js'
 import { findOne } from '../resolvers/globals/findOne.js'

@@ -1,4 +1,4 @@
-import type { Block, BlockSlug, CollectionConfig } from @hanzo/cms'from 
+import type { Block, BlockSlug, CollectionConfig } from '@hanzo/cms'
 
 import { BlocksFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
 

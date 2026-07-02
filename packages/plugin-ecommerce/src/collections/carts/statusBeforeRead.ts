@@ -1,4 +1,4 @@
-import type { FieldHook } from @hanzo/cms'from 
+import type { FieldHook } from '@hanzo/cms'
 
 export const statusBeforeRead: FieldHook = ({ data }) => {
   if (data?.purchasedAt) {

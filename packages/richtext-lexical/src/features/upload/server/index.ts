@@ -7,9 +7,9 @@ import type {
   Payload,
   TypeWithID,
   UploadCollectionSlug,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
-import { sanitizeFields } from @hanzo/cms'from 
+import { sanitizeFields } from '@hanzo/cms'
 
 import type { UploadFeaturePropsClient } from '../client/index.js'
 

@@ -13,7 +13,7 @@ import {
 } from '@hanzo/cms-richtext-lexical/html-async'
 import { type JSXConvertersFunction, RichText } from '@hanzo/cms-richtext-lexical/react'
 import { useConfig, useDocumentInfo, usePayloadAPI } from '@hanzo/cms-ui'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useEffect, useMemo, useState } from 'react'
 
 const jsxConverters: JSXConvertersFunction<DefaultNodeTypes | SerializedBlockNode<any>> = ({

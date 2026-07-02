@@ -1,5 +1,5 @@
 'use client'
-import type { PointFieldClientComponent } from @hanzo/cms'from 
+import type { PointFieldClientComponent } from '@hanzo/cms'
 
 import { PointField } from '@hanzo/cms-ui'
 import React from 'react'

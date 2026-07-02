@@ -1,11 +1,11 @@
 'use client'
 
 import type { I18nClient } from '@hanzo/cms-translations'
-import type { ClientConfig } from @hanzo/cms'from 
+import type { ClientConfig } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'
-import { setsAreEqual } from @hanzo/cms'from 
+import { setsAreEqual } from '@hanzo/cms/shared'
 import React, { useCallback, useMemo, useState } from 'react'
 
 import { CheckboxInput } from '../../../fields/Checkbox/index.js'

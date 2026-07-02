@@ -1,12 +1,12 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 import type { SuiteAPI } from 'vitest'
 
 import * as AWS from '@aws-sdk/client-s3'
 import { getFilePrefix } from '@hanzo/cms-plugin-cloud-storage/utilities'
 import fs from 'fs'
 import path from 'path'
-import { APIError } from @hanzo/cms'from 
-import { sanitizeFilename } from @hanzo/cms'from 
+import { APIError } from '@hanzo/cms'
+import { sanitizeFilename } from '@hanzo/cms/shared'
 import shelljs from 'shelljs'
 import { fileURLToPath } from 'url'
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest'

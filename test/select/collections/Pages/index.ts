@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { lexicalEditor, LinkFeature } from '@hanzo/cms-richtext-lexical'
 import { slateEditor } from '@hanzo/cms-richtext-slate'

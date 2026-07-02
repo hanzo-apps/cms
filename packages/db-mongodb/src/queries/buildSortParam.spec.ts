@@ -1,7 +1,7 @@
-import type { Config, SanitizedConfig } from @hanzo/cms'from 
+import type { Config, SanitizedConfig } from '@hanzo/cms'
 import { describe, beforeAll, it, expect } from 'vitest'
 
-import { sanitizeConfig } from @hanzo/cms'from 
+import { sanitizeConfig } from '@hanzo/cms'
 
 import { buildSortParam } from './buildSortParam.js'
 import { MongooseAdapter } from '../index.js'

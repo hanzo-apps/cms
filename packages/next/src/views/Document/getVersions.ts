@@ -7,8 +7,8 @@ import {
   type SanitizedDocumentPermissions,
   type SanitizedGlobalConfig,
   type TypedUser,
-} from @hanzo/cms'from 
-import { hasAutosaveEnabled, hasDraftsEnabled } from @hanzo/cms'from 
+} from '@hanzo/cms'
+import { hasAutosaveEnabled, hasDraftsEnabled } from '@hanzo/cms/shared'
 
 type Args = {
   collectionConfig?: SanitizedCollectionConfig

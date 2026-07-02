@@ -1,7 +1,7 @@
-import type { Auth } from @hanzo/cms'from 
+import type { Auth } from '@hanzo/cms'
 
 import { cookies as getCookies } from 'next/headers.js'
-import { generatePayloadCookie } from @hanzo/cms'from 
+import { generatePayloadCookie } from '@hanzo/cms'
 
 type SetPayloadAuthCookieArgs = {
   authConfig: Auth

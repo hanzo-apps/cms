@@ -1,5 +1,5 @@
 import type { SQL, Table } from 'drizzle-orm'
-import type { FlattenedField, Sort } from @hanzo/cms'from 
+import type { FlattenedField, Sort } from '@hanzo/cms'
 
 import { asc, desc } from 'drizzle-orm'
 

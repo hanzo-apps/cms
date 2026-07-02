@@ -1,4 +1,4 @@
-import type { Count, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { Count, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import toSnakeCase from 'to-snake-case'
 

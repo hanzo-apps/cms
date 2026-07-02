@@ -1,7 +1,7 @@
 import path from 'path'
 import { describe, beforeAll, afterAll, afterEach, beforeEach, it, expect } from 'vitest'
-import { _internal_jobSystemGlobals, _internal_resetJobSystemGlobals, type Payload } from @hanzo/cms'from 
-import { wait } from @hanzo/cms'from 
+import { _internal_jobSystemGlobals, _internal_resetJobSystemGlobals, type Payload } from '@hanzo/cms'
+import { wait } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 
 import type { NextRESTClient } from '../__helpers/shared/NextRESTClient.js'

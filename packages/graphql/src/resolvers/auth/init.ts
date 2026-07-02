@@ -1,4 +1,4 @@
-import { initOperation, isolateObjectProperty } from @hanzo/cms'from 
+import { initOperation, isolateObjectProperty } from '@hanzo/cms'
 
 import type { Context } from '../types.js'
 

@@ -1,4 +1,4 @@
-import type { Access, CollectionConfig, Where } from @hanzo/cms'from 
+import type { Access, CollectionConfig, Where } from '@hanzo/cms'
 
 import { tenantsSlug } from '../shared.js'
 

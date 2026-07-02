@@ -1,4 +1,4 @@
-import type { CollectionBeforeChangeHook } from @hanzo/cms'from 
+import type { CollectionBeforeChangeHook } from '@hanzo/cms'
 
 export const populatePublishedAt: CollectionBeforeChangeHook = ({ data, operation, req }) => {
   if (operation === 'create' || operation === 'update') {

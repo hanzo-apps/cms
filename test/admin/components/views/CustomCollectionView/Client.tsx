@@ -1,5 +1,5 @@
 'use client'
-import type { AdminViewClientProps } from @hanzo/cms'from 
+import type { AdminViewClientProps } from '@hanzo/cms'
 
 import { useConfig } from '@hanzo/cms-ui'
 import React from 'react'

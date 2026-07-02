@@ -100,7 +100,7 @@ type PayloadRequestData = {
    * use either:
    *  1. `const data = await req.json()`
    *
-   *  2. import { addDataAndFileToRequest } from @hanzo/cms'from 
+   *  2. import { addDataAndFileToRequest } from '@hanzo/cms'
    *    `await addDataAndFileToRequest(req)`
    *
    * You should not expect this object to be the document data. It is the request data.

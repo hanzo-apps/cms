@@ -1,6 +1,6 @@
 'use client'
 
-import type { ClientCollectionConfig, ClientGlobalConfig, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { ClientCollectionConfig, ClientGlobalConfig, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import {
@@ -15,7 +15,7 @@ import {
 } from '@hanzo/cms-ui'
 import { requests } from '@hanzo/cms-ui/shared'
 import { useRouter } from 'next/navigation.js'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 
 import './index.scss'
 

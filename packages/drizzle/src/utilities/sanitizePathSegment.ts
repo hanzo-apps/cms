@@ -1,4 +1,4 @@
-import { APIError } from @hanzo/cms'from 
+import { APIError } from '@hanzo/cms'
 
 /**
  * Validates that a path segment contains only allowed characters (word characters: [a-zA-Z0-9_]).

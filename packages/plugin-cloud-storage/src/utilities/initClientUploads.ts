@@ -1,4 +1,4 @@
-import type { Config, PayloadHandler } from @hanzo/cms'from 
+import type { Config, PayloadHandler } from '@hanzo/cms'
 
 export const initClientUploads = <ExtraProps extends Record<string, unknown>, T>({
   clientHandler,

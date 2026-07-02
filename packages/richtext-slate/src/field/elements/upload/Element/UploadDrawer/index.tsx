@@ -1,7 +1,7 @@
 'use client'
 
 import type { FormProps } from '@hanzo/cms-ui'
-import type { ClientCollectionConfig } from @hanzo/cms'from 
+import type { ClientCollectionConfig } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import {
@@ -17,7 +17,7 @@ import {
   useServerFunctions,
   useTranslation,
 } from '@hanzo/cms-ui'
-import { deepCopyObject } from @hanzo/cms'from 
+import { deepCopyObject } from '@hanzo/cms/shared'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Transforms } from 'slate'
 import { ReactEditor, useSlateStatic } from 'slate-react'

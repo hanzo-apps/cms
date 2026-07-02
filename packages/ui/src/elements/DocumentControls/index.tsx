@@ -5,10 +5,10 @@ import type {
   SanitizedCollectionConfig,
   SanitizedCollectionPermission,
   SanitizedGlobalPermission,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
-import { formatAdminURL, hasAutosaveEnabled, hasDraftsEnabled } from @hanzo/cms'from 
+import { formatAdminURL, hasAutosaveEnabled, hasDraftsEnabled } from '@hanzo/cms/shared'
 import React, { Fragment, useEffect } from 'react'
 
 import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider.js'

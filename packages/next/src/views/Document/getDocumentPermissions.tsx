@@ -4,14 +4,14 @@ import type {
   SanitizedCollectionConfig,
   SanitizedDocumentPermissions,
   SanitizedGlobalConfig,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import {
   hasSavePermission as getHasSavePermission,
   isEditing as getIsEditing,
 } from '@hanzo/cms-ui/shared'
-import { docAccessOperation, docAccessOperationGlobal, logError } from @hanzo/cms'from 
-import { hasDraftsEnabled } from @hanzo/cms'from 
+import { docAccessOperation, docAccessOperationGlobal, logError } from '@hanzo/cms'
+import { hasDraftsEnabled } from '@hanzo/cms/shared'
 
 export const getDocumentPermissions = async (args: {
   collectionConfig?: SanitizedCollectionConfig

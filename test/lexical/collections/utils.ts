@@ -3,7 +3,7 @@ import type { Locator, Page } from '@playwright/test'
 import { expect } from '@playwright/test'
 import fs from 'fs'
 import path from 'path'
-import { wait } from @hanzo/cms'from 
+import { wait } from '@hanzo/cms/shared'
 
 export type PasteMode = 'blob' | 'html'
 

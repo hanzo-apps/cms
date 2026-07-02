@@ -1,4 +1,4 @@
-import type { Config, SanitizedConfig } from @hanzo/cms'from 
+import type { Config, SanitizedConfig } from '@hanzo/cms'
 
 import {
   AlignFeature,
@@ -25,10 +25,10 @@ import {
   UploadFeature,
 } from '@hanzo/cms-richtext-lexical'
 // import { slateEditor } from '@hanzo/cms-richtext-slate'
-import { buildConfig } from @hanzo/cms'from 
-import { de } from @hanzo/cms'from 
-import { en } from @hanzo/cms'from 
-import { es } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
+import { de } from '@hanzo/cms/i18n/de'
+import { en } from '@hanzo/cms/i18n/en'
+import { es } from '@hanzo/cms/i18n/es'
 import sharp from 'sharp'
 
 import { reInitEndpoint } from './__helpers/shared/clearAndSeed/reInitEndpoint.js'

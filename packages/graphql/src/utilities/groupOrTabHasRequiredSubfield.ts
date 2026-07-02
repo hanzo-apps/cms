@@ -1,6 +1,6 @@
-import type { Field, Tab } from @hanzo/cms'from 
+import type { Field, Tab } from '@hanzo/cms'
 
-import { fieldAffectsData } from @hanzo/cms'from 
+import { fieldAffectsData } from '@hanzo/cms/shared'
 
 export const groupOrTabHasRequiredSubfield = (entity: Field | Tab): boolean => {
   if ('type' in entity && entity.type === 'group') {

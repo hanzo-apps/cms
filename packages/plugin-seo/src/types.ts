@@ -7,7 +7,7 @@ import type {
   GlobalSlug,
   PayloadRequest,
   UploadCollectionSlug,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export type FieldsOverride = (args: { defaultFields: Field[] }) => Field[]
 

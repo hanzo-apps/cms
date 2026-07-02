@@ -1,5 +1,5 @@
 'use client'
-import { formatFilesize } from @hanzo/cms'from 
+import { formatFilesize } from '@hanzo/cms/shared'
 import React from 'react'
 
 export type FileMetaProps = {

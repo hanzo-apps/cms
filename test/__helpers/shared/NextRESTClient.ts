@@ -1,4 +1,4 @@
-import type { JoinQuery, PopulateType, SanitizedConfig, SelectType, Where } from @hanzo/cms'from 
+import type { JoinQuery, PopulateType, SanitizedConfig, SelectType, Where } from '@hanzo/cms'
 import type { ParsedQs } from 'qs-esm'
 
 import {

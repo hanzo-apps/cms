@@ -1,6 +1,6 @@
 'use client'
 import type { ReactSelectOption } from '@hanzo/cms-ui'
-import type { ViewTypes } from @hanzo/cms'from 
+import type { ViewTypes } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import { ConfirmationModal, SelectInput, useModal, useTranslation } from '@hanzo/cms-ui'

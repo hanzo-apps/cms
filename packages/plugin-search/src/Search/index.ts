@@ -1,4 +1,4 @@
-import type { CollectionConfig, Field } from @hanzo/cms'from 
+import type { CollectionConfig, Field } from '@hanzo/cms'
 
 import type { SanitizedSearchPluginConfig } from '../types.js'
 import type { ReindexButtonServerProps } from './ui/ReindexButton/types.js'

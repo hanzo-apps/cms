@@ -1,8 +1,8 @@
-import type { AfterErrorHook, AfterErrorHookArgs, Config, PayloadRequest } from @hanzo/cms'from 
+import type { AfterErrorHook, AfterErrorHookArgs, Config, PayloadRequest } from '@hanzo/cms'
 import { randomUUID } from 'crypto'
 import { describe, it, expect, vitest } from 'vitest'
 
-import { defaults } from @hanzo/cms'from 
+import { defaults } from '@hanzo/cms'
 
 import { sentryPlugin } from './index'
 

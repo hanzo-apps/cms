@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { DebugJsxConverterFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
 

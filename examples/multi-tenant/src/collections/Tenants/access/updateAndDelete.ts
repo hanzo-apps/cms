@@ -1,6 +1,6 @@
 import { isSuperAdmin } from '@/access/isSuperAdmin'
 import { getUserTenantIDs } from '@/utilities/getUserTenantIDs'
-import { Access } from @hanzo/cms'from 
+import { Access } from '@hanzo/cms'
 
 export const updateAndDeleteAccess: Access = ({ req }) => {
   if (!req.user) {

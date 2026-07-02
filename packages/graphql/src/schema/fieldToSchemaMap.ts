@@ -26,7 +26,7 @@ import type {
   TextareaField,
   TextField,
   UploadField,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import {
   GraphQLBoolean,
@@ -40,8 +40,8 @@ import {
   GraphQLUnionType,
 } from 'graphql'
 import { DateTimeResolver, EmailAddressResolver } from 'graphql-scalars'
-import { combineQueries, createDataloaderCacheKey, MissingEditorProp, toWords } from @hanzo/cms'from 
-import { fieldAffectsData, tabHasName } from @hanzo/cms'from 
+import { combineQueries, createDataloaderCacheKey, MissingEditorProp, toWords } from '@hanzo/cms'
+import { fieldAffectsData, tabHasName } from '@hanzo/cms/shared'
 
 import type { Context } from '../resolvers/types.js'
 

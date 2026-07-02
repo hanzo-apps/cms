@@ -1,4 +1,4 @@
-import type { CollectionConfig, Field } from @hanzo/cms'from 
+import type { CollectionConfig, Field } from '@hanzo/cms'
 
 import { disabledSlug } from '../../shared.js'
 

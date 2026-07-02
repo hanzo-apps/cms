@@ -7,8 +7,8 @@ import {
   type ListQuery,
   type PaginatedDocs,
   type Where,
-} from @hanzo/cms'from 
-import { hoistQueryParamsToAnd, transformColumnsToPreferences } from @hanzo/cms'from 
+} from '@hanzo/cms'
+import { hoistQueryParamsToAnd, transformColumnsToPreferences } from '@hanzo/cms/shared'
 import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 
 import type { DocumentDrawerProps } from '../DocumentDrawer/types.js'

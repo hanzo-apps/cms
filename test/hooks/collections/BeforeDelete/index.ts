@@ -1,4 +1,4 @@
-import { APIError, type CollectionConfig } from @hanzo/cms'from 
+import { APIError, type CollectionConfig } from '@hanzo/cms'
 
 export const BeforeDeleteCollection: CollectionConfig = {
   slug: 'before-delete-hooks',

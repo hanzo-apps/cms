@@ -1,4 +1,4 @@
-import type { Config, GlobalConfig } from @hanzo/cms'from 
+import type { Config, GlobalConfig } from '@hanzo/cms'
 
 import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 import { fileURLToPath } from 'node:url'

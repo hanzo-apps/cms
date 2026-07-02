@@ -6,12 +6,12 @@ import type {
   NumberField,
   RelationshipField,
   TextField,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { and, eq, getTableName, like, or, sql } from 'drizzle-orm'
 import { type PgTableWithColumns } from 'drizzle-orm/pg-core'
-import { APIError, getFieldByPath } from @hanzo/cms'from 
-import { fieldShouldBeLocalized, tabHasName } from @hanzo/cms'from 
+import { APIError, getFieldByPath } from '@hanzo/cms'
+import { fieldShouldBeLocalized, tabHasName } from '@hanzo/cms/shared'
 import toSnakeCase from 'to-snake-case'
 import { validate as uuidValidate } from 'uuid'
 

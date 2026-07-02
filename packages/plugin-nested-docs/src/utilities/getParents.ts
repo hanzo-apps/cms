@@ -1,4 +1,4 @@
-import type { CollectionConfig, Document, PayloadRequest } from @hanzo/cms'from 
+import type { CollectionConfig, Document, PayloadRequest } from '@hanzo/cms'
 
 import type { NestedDocsPluginConfig } from '../types.js'
 

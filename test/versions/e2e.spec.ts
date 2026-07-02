@@ -23,7 +23,7 @@
  */
 
 import type { BrowserContext, Dialog, Page } from '@playwright/test'
-import type { TypeWithID } from @hanzo/cms'from 
+import type { TypeWithID } from '@hanzo/cms'
 
 import { expect, test } from '@playwright/test'
 import { checkFocusIndicators } from '__helpers/e2e/checkFocusIndicators.js'
@@ -31,7 +31,7 @@ import { runAxeScan } from '__helpers/e2e/runAxeScan.js'
 import { postsCollectionSlug } from 'admin/slugs.js'
 import mongoose from 'mongoose'
 import path from 'path'
-import { formatAdminURL, wait } from @hanzo/cms'from 
+import { formatAdminURL, wait } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../__helpers/shared/sdk/index.js'

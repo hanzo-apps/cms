@@ -1,7 +1,7 @@
 import type { SupportedLanguages } from '@hanzo/cms-translations'
-import type { ClientConfig, CreateClientConfigArgs } from @hanzo/cms'from 
+import type { ClientConfig, CreateClientConfigArgs } from '@hanzo/cms'
 
-import { createClientConfig, createUnauthenticatedClientConfig } from @hanzo/cms'from 
+import { createClientConfig, createUnauthenticatedClientConfig } from '@hanzo/cms'
 import { cache } from 'react'
 
 type CachedClientConfigs = Record<keyof SupportedLanguages, ClientConfig>

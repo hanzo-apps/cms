@@ -1,6 +1,6 @@
 'use client'
 
-import type { SelectFieldClientComponent } from @hanzo/cms'from 
+import type { SelectFieldClientComponent } from '@hanzo/cms'
 import type { ReactNode } from 'react'
 
 import {

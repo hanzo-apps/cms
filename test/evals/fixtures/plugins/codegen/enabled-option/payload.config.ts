@@ -1,6 +1,6 @@
-import type { Config, Plugin } from @hanzo/cms'from 
+import type { Config, Plugin } from '@hanzo/cms'
 
-import { buildConfig } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
 
 type WithFeatureOptions = {
   enabled: boolean

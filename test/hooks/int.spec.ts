@@ -1,7 +1,7 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import path from 'path'
-import { AuthenticationError } from @hanzo/cms'from 
+import { AuthenticationError } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 

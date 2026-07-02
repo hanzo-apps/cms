@@ -23,7 +23,7 @@ import type {
   TypedFallbackLocale,
   ValidateOptions,
   ValidationFieldError,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import type { ServerEditorConfig } from '../lexical/config/types.js'
 import type { Transformer } from '../packages/@lexical/markdown/index.js'

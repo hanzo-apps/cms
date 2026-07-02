@@ -1,6 +1,6 @@
-import type { DefaultCellComponentProps, Where } from @hanzo/cms'from 
+import type { DefaultCellComponentProps, Where } from '@hanzo/cms'
 
-import { toWords } from @hanzo/cms'from 
+import { toWords } from '@hanzo/cms/shared'
 import React from 'react'
 
 /** @todo: improve this */

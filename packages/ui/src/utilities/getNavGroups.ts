@@ -1,4 +1,4 @@
-import type { SanitizedConfig, SanitizedPermissions, VisibleEntities } from @hanzo/cms'from 
+import type { SanitizedConfig, SanitizedPermissions, VisibleEntities } from '@hanzo/cms'
 
 import { type I18nClient } from '@hanzo/cms-translations'
 

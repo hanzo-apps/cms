@@ -1,5 +1,5 @@
 'use client'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { LogOutIcon } from '../../icons/LogOut/index.js'

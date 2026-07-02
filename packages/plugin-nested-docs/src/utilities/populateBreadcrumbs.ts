@@ -1,4 +1,4 @@
-import type { Data, Document, PayloadRequest, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { Data, Document, PayloadRequest, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import type { GenerateLabel, GenerateURL } from '../types.js'
 

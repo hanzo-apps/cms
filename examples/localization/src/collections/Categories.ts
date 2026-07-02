@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'

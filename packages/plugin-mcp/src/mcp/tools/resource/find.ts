@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest, SelectType, TypedUser } from @hanzo/cms'from 
+import type { PayloadRequest, SelectType, TypedUser } from '@hanzo/cms'
 
 import type { MCPPluginConfig } from '../../../types.js'
 

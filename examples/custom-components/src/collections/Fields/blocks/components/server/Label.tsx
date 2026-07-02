@@ -1,4 +1,4 @@
-import type { BlocksFieldLabelServerComponent } from @hanzo/cms'from 
+import type { BlocksFieldLabelServerComponent } from '@hanzo/cms'
 
 import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'

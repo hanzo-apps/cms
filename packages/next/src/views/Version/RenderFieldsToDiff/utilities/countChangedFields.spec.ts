@@ -1,4 +1,4 @@
-import type { ClientField } from @hanzo/cms'from 
+import type { ClientField } from '@hanzo/cms'
 import { describe, it, expect } from 'vitest'
 
 import { countChangedFields, countChangedFieldsInRows } from './countChangedFields.js'

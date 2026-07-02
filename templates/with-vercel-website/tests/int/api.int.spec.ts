@@ -1,4 +1,4 @@
-import { getPayload, Payload } from @hanzo/cms'from 
+import { getPayload, Payload } from '@hanzo/cms'
 import config from '@/payload.config'
 
 import { describe, it, beforeAll, expect } from 'vitest'

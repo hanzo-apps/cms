@@ -1,6 +1,6 @@
 'use client'
 
-import type { Data, TextFieldClientComponent } from @hanzo/cms'from 
+import type { Data, TextFieldClientComponent } from '@hanzo/cms'
 
 import { TextField, useLocale, useWatchForm } from '@hanzo/cms-ui'
 import React, { useEffect, useState } from 'react'

@@ -1,4 +1,4 @@
-import type { RelationshipFieldServerProps } from @hanzo/cms'from 
+import type { RelationshipFieldServerProps } from '@hanzo/cms'
 
 // eslint-disable-next-line payload/no-imports-from-exports-dir
 import { MoveDocToFolder } from '../../../exports/client/index.js'

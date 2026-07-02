@@ -1,4 +1,4 @@
-import type { ArrayField, Payload, RelationshipField } from @hanzo/cms'from 
+import type { ArrayField, Payload, RelationshipField } from '@hanzo/cms'
 
 import path from 'path'
 import { fileURLToPath } from 'url'

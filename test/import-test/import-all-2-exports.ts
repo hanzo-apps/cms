@@ -10,7 +10,7 @@
  * Be documented in the migration guide and breaking changes doc
  */
 
-import payload from @hanzo/cms'from 
+import payload from '@hanzo/cms'
 import {
   CollectionPermission,
   FieldPermissions,
@@ -20,7 +20,7 @@ import {
   Permissions,
   User,
   VerifyConfig,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/auth'
 import {
   Banner,
   Button,
@@ -35,7 +35,7 @@ import {
   ShimmerEffect,
   Tooltip,
   X,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/components'
 import {
   Access,
   AccessArgs,
@@ -74,7 +74,7 @@ import {
   SanitizedConfig,
   SanitizedLocalizationConfig,
   sanitizeFields,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/config'
 import {
   BaseDatabaseAdapter,
   BeginTransaction,
@@ -144,7 +144,7 @@ import {
   UpdateVersionArgs,
   validateQueryPaths,
   validateSearchParam,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/database'
 import {
   APIError,
   AuthenticationError,
@@ -164,8 +164,8 @@ import {
   NotFound,
   QueryError,
   ValidationError,
-} from @hanzo/cms'from 
-import { buildPaginatedListType, GraphQL } from @hanzo/cms'from 
+} from '@hanzo/cms/errors'
+import { buildPaginatedListType, GraphQL } from '@hanzo/cms/graphql'
 import {
   AccessArgs as AccessArgsType,
   Access as AccessType,
@@ -289,7 +289,7 @@ import {
   VersionOperations,
   Where,
   WhereField,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/types'
 import {
   afterReadPromise,
   afterReadTraverseFields,
@@ -313,7 +313,7 @@ import {
   toWords,
   withMergedProps,
   withNullableJSONSchemaType,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/utilities'
 import {
   buildVersionCollectionFields,
   buildVersionGlobalFields,
@@ -322,7 +322,7 @@ import {
   getLatestCollectionVersion,
   getLatestGlobalVersion,
   saveVersion,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/versions'
 
 /**
  * Plugins

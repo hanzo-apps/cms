@@ -1,4 +1,4 @@
-import type { Block } from @hanzo/cms'from 
+import type { Block } from '@hanzo/cms'
 
 export const Code: Block = {
   slug: 'code',

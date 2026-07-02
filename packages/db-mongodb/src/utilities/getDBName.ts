@@ -1,4 +1,4 @@
-import { APIError, type DBIdentifierName } from @hanzo/cms'from 
+import { APIError, type DBIdentifierName } from '@hanzo/cms'
 
 type Args = {
   config: {

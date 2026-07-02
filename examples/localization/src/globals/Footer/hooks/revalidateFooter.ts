@@ -1,4 +1,4 @@
-import type { GlobalAfterChangeHook } from @hanzo/cms'from 
+import type { GlobalAfterChangeHook } from '@hanzo/cms'
 
 import { revalidateTag } from 'next/cache'
 

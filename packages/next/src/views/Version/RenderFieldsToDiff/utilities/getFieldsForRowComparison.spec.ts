@@ -1,4 +1,4 @@
-import type { ArrayFieldClient, BlocksFieldClient, ClientField } from @hanzo/cms'from 
+import type { ArrayFieldClient, BlocksFieldClient, ClientField } from '@hanzo/cms'
 import { describe, it, expect } from 'vitest'
 
 import { getFieldsForRowComparison } from './getFieldsForRowComparison'

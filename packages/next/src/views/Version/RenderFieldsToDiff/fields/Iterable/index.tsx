@@ -1,13 +1,13 @@
 'use client'
 
-import type { FieldDiffClientProps } from @hanzo/cms'from 
+import type { FieldDiffClientProps } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import { useConfig, useTranslation } from '@hanzo/cms-ui'
 
 import './index.scss'
 
-import { fieldIsArrayType, fieldIsBlockType } from @hanzo/cms'from 
+import { fieldIsArrayType, fieldIsBlockType } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { useSelectedLocales } from '../../../Default/SelectedLocalesContext.js'

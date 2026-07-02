@@ -1,7 +1,7 @@
 import type { CountOptions } from 'mongodb'
-import type { CountGlobalVersions } from @hanzo/cms'from 
+import type { CountGlobalVersions } from '@hanzo/cms'
 
-import { buildVersionGlobalFields, flattenWhereToOperators } from @hanzo/cms'from 
+import { buildVersionGlobalFields, flattenWhereToOperators } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 

@@ -1,4 +1,4 @@
-import type { PayloadRequest, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { PayloadRequest, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import type { Breadcrumb, GenerateLabel, GenerateURL } from '../types.js'
 

@@ -1,8 +1,8 @@
-import type { AdminViewServerProps } from @hanzo/cms'from 
+import type { AdminViewServerProps } from '@hanzo/cms'
 
 import { Button, Link } from '@hanzo/cms-ui'
 import { Translation } from '@hanzo/cms-ui/shared'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { Fragment } from 'react'
 
 import { FormHeader } from '../../elements/FormHeader/index.js'

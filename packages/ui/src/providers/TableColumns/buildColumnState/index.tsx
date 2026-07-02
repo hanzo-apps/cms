@@ -16,14 +16,14 @@ import type {
   ServerComponentProps,
   StaticLabel,
   ViewTypes,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import {
   fieldIsHiddenOrDisabled,
   fieldIsID,
   fieldIsPresentationalOnly,
   flattenTopLevelFields,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/shared'
 import React from 'react'
 
 import type { SortColumnProps } from '../../../elements/SortColumn/index.js'

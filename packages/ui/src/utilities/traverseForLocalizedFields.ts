@@ -1,4 +1,4 @@
-import type { ClientField, Field } from @hanzo/cms'from 
+import type { ClientField, Field } from '@hanzo/cms'
 
 export const traverseForLocalizedFields = (fields: ClientField[] | Field[]): boolean => {
   for (const field of fields) {

@@ -1,4 +1,4 @@
-import type { Access } from @hanzo/cms'from 
+import type { Access } from '@hanzo/cms'
 
 import { getUserTenantIDs } from '../../../utilities/getUserTenantIDs'
 import { isSuperAdmin } from '@/access/isSuperAdmin'

@@ -12,7 +12,7 @@ import {
 import { scrollEntirePage } from '__helpers/e2e/scrollEntirePage.js'
 import { toggleBlockOrArrayRow } from '__helpers/e2e/toggleCollapsible.js'
 import path from 'path'
-import { wait } from @hanzo/cms'from 
+import { wait } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 
 import { assertNetworkRequests } from '../../../__helpers/e2e/assertNetworkRequests.js'

@@ -10,7 +10,7 @@ import type {
   SanitizedDocumentPermissions,
   SanitizedGlobalConfig,
   TypedUser,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import React from 'react'
 

@@ -13,8 +13,8 @@ import {
   type SelectMode,
   type SelectType,
   type Where,
-} from @hanzo/cms'from 
-import { fieldIsVirtual, fieldShouldBeLocalized, hasDraftsEnabled } from @hanzo/cms'from 
+} from '@hanzo/cms'
+import { fieldIsVirtual, fieldShouldBeLocalized, hasDraftsEnabled } from '@hanzo/cms/shared'
 import toSnakeCase from 'to-snake-case'
 
 import type { BuildQueryJoinAliases, DrizzleAdapter } from '../types.js'

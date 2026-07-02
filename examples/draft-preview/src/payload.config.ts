@@ -2,7 +2,7 @@ import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 import { slateEditor } from '@hanzo/cms-richtext-slate'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
-import { buildConfig } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
 
 import { Pages } from './collections/Pages'
 import { Users } from './collections/Users'

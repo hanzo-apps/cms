@@ -16,7 +16,7 @@ import {
 
 import { titles } from './constants'
 import { Button } from '@/components/ui/button'
-import { deepMergeSimple } from @hanzo/cms'from 
+import { deepMergeSimple } from '@hanzo/cms/shared'
 import { FormError } from '@/components/forms/FormError'
 import { FormItem } from '@/components/forms/FormItem'
 

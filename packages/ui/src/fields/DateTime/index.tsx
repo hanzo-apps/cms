@@ -1,5 +1,5 @@
 'use client'
-import type { DateFieldClientComponent, DateFieldValidation } from @hanzo/cms'from 
+import type { DateFieldClientComponent, DateFieldValidation } from '@hanzo/cms'
 
 import { TZDateMini as TZDate } from '@date-fns/tz/date/mini'
 import { getTranslation } from '@hanzo/cms-translations'

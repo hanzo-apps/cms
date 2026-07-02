@@ -4,7 +4,7 @@ import type {
   ResolvedFilterOptions,
   SanitizedCollectionPermission,
   Where,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export type ListControlsProps = {
   readonly beforeActions?: React.ReactNode[]

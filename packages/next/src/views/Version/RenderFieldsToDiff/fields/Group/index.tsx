@@ -1,5 +1,5 @@
 'use client'
-import type { GroupFieldDiffClientComponent } from @hanzo/cms'from 
+import type { GroupFieldDiffClientComponent } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 

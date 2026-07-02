@@ -2,7 +2,7 @@
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
 import config from '@payload-config'
 import '@hanzo/cms-next/css'
-import type { ServerFunctionClient } from @hanzo/cms'from 
+import type { ServerFunctionClient } from '@hanzo/cms'
 import { handleServerFunctions, RootLayout } from '@hanzo/cms-next/layouts'
 import React from 'react'
 

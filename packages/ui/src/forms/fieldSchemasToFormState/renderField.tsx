@@ -4,11 +4,11 @@ import type {
   FieldPaths,
   FlattenedBlock,
   ServerComponentProps,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
-import { createClientField, MissingEditorProp } from @hanzo/cms'from 
-import { fieldIsHiddenOrDisabled } from @hanzo/cms'from 
+import { createClientField, MissingEditorProp } from '@hanzo/cms'
+import { fieldIsHiddenOrDisabled } from '@hanzo/cms/shared'
 
 import type { RenderFieldMethod } from './types.js'
 

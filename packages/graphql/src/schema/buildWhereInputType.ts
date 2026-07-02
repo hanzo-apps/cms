@@ -1,8 +1,8 @@
-import type { Field, FieldAffectingData } from @hanzo/cms'from 
+import type { Field, FieldAffectingData } from '@hanzo/cms'
 
 import { GraphQLInputObjectType, GraphQLList } from 'graphql'
-import { flattenTopLevelFields } from @hanzo/cms'from 
-import { fieldAffectsData, fieldHasSubFields, fieldIsPresentationalOnly } from @hanzo/cms'from 
+import { flattenTopLevelFields } from '@hanzo/cms'
+import { fieldAffectsData, fieldHasSubFields, fieldIsPresentationalOnly } from '@hanzo/cms/shared'
 
 import { formatName } from '../utilities/formatName.js'
 import { fieldToSchemaMap } from './fieldToWhereInputSchemaMap.js'

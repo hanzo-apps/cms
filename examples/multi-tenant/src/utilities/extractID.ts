@@ -1,5 +1,5 @@
 import { Config } from '@/payload-types'
-import type { CollectionSlug } from @hanzo/cms'from 
+import type { CollectionSlug } from '@hanzo/cms'
 
 export const extractID = <T extends Config['collections'][CollectionSlug]>(
   objectOrID: T | T['id'],

@@ -6,11 +6,11 @@ import React from 'react'
 const Link = 'default' in LinkImport ? LinkImport.default : LinkImport
 
 // In your projects, you can import as follows:
-// import { MinimalTemplate } from @hanzo/cms'from ;
-// import { Button } from @hanzo/cms'from ;
-// import { useConfig } from @hanzo/cms'from ;
+// import { MinimalTemplate } from '@hanzo/cms/components/templates';
+// import { Button } from '@hanzo/cms/components/elements';
+// import { useConfig } from '@hanzo/cms/components/utilities';
 
-import type { AdminViewServerProps } from @hanzo/cms'from 
+import type { AdminViewServerProps } from '@hanzo/cms'
 
 import { MinimalTemplate } from '@hanzo/cms-next/templates'
 import { Button } from '@hanzo/cms-ui'

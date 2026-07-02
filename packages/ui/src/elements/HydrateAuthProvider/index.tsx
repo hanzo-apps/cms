@@ -1,6 +1,6 @@
 'use client'
 
-import type { SanitizedPermissions } from @hanzo/cms'from 
+import type { SanitizedPermissions } from '@hanzo/cms'
 
 import { useEffect } from 'react'
 

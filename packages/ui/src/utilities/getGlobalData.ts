@@ -1,4 +1,4 @@
-import type { ClientUser, PayloadRequest, TypedUser } from @hanzo/cms'from 
+import type { ClientUser, PayloadRequest, TypedUser } from '@hanzo/cms'
 
 const globalLockDurationDefault = 300
 

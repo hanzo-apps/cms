@@ -1,4 +1,4 @@
-import type { ClientField, ColumnPreference, Field } from @hanzo/cms'from 
+import type { ClientField, ColumnPreference, Field } from '@hanzo/cms'
 
 function getAccessor(field) {
   return field.accessor ?? ('name' in field ? field.name : undefined)

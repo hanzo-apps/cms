@@ -1,4 +1,4 @@
-import type { RelationshipFieldLabelServerComponent } from @hanzo/cms'from 
+import type { RelationshipFieldLabelServerComponent } from '@hanzo/cms'
 
 import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'

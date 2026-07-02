@@ -9,7 +9,7 @@ import type {
   RelationshipField,
   SingleRelationshipField,
   TypedUser,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export type MultiTenantPluginConfig<ConfigTypes = unknown> = {
   /**

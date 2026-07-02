@@ -8,7 +8,7 @@ import type {
   StaticDescription,
   StaticLabel,
   ValueWithRelation,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export type Option = {
   allowEdit: boolean

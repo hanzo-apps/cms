@@ -1,6 +1,6 @@
-import type { QueryDrafts, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { QueryDrafts, SanitizedCollectionConfig } from '@hanzo/cms'
 
-import { buildVersionCollectionFields, combineQueries } from @hanzo/cms'from 
+import { buildVersionCollectionFields, combineQueries } from '@hanzo/cms'
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from './types.js'

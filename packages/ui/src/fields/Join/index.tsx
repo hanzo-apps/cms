@@ -7,10 +7,10 @@ import type {
   JoinFieldClientComponent,
   PaginatedDocs,
   Where,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import ObjectIdImport from 'bson-objectid'
-import { fieldAffectsData, flattenTopLevelFields } from @hanzo/cms'from 
+import { fieldAffectsData, flattenTopLevelFields } from '@hanzo/cms/shared'
 import React, { useMemo } from 'react'
 
 import { RelationshipTable } from '../../elements/RelationshipTable/index.js'

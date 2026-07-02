@@ -1,5 +1,5 @@
 'use client'
-import type { ValueWithRelation } from @hanzo/cms'from 
+import type { ValueWithRelation } from '@hanzo/cms'
 
 import type { Option } from '../../elements/ReactSelect/types.js'
 import type { OptionGroup } from './types.js'

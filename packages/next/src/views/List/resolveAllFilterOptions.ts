@@ -1,4 +1,4 @@
-import type { Field, PayloadRequest, ResolvedFilterOptions } from @hanzo/cms'from 
+import type { Field, PayloadRequest, ResolvedFilterOptions } from '@hanzo/cms'
 
 import { resolveFilterOptions } from '@hanzo/cms-ui/rsc'
 import {
@@ -6,7 +6,7 @@ import {
   fieldHasSubFields,
   fieldIsHiddenOrDisabled,
   tabHasName,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/shared'
 
 export const resolveAllFilterOptions = async ({
   fields,

@@ -1,5 +1,5 @@
 'use client'
-import type { JSONFieldClientComponent, JsonObject } from @hanzo/cms'from 
+import type { JSONFieldClientComponent, JsonObject } from '@hanzo/cms'
 
 import { type OnMount } from '@monaco-editor/react'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'

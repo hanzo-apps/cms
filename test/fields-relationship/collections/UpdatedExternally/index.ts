@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { collection1Slug, collection2Slug, relationUpdatedExternallySlug } from '../../slugs.js'
 

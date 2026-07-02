@@ -1,7 +1,7 @@
 'use client'
 
 import { getTranslation } from '@hanzo/cms-translations'
-import { extractID } from @hanzo/cms'from 
+import { extractID } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { DocumentIcon } from '../../../icons/Document/index.js'

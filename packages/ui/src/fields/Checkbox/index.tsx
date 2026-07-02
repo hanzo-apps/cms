@@ -3,7 +3,7 @@ import type {
   CheckboxFieldClientComponent,
   CheckboxFieldClientProps,
   CheckboxFieldValidation,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { rtlLanguages } from '@hanzo/cms-translations'
 import React, { useCallback, useMemo } from 'react'

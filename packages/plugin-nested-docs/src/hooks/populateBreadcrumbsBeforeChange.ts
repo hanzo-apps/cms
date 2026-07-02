@@ -1,4 +1,4 @@
-import type { CollectionBeforeChangeHook } from @hanzo/cms'from 
+import type { CollectionBeforeChangeHook } from '@hanzo/cms'
 
 import type { NestedDocsPluginConfig } from '../types.js'
 

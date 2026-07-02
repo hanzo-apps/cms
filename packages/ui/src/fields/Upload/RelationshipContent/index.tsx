@@ -1,9 +1,9 @@
 'use client'
 
-import type { TypeWithID } from @hanzo/cms'from 
+import type { TypeWithID } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
-import { formatFilesize } from @hanzo/cms'from 
+import { formatFilesize } from '@hanzo/cms/shared'
 import React from 'react'
 
 import type { ReloadDoc } from '../types.js'

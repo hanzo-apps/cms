@@ -5,7 +5,7 @@ import type {
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
   SanitizedPermissions,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 import type React from 'react'
 
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'

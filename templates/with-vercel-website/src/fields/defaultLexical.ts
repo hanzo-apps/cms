@@ -1,4 +1,4 @@
-import type { TextFieldSingleValidation } from @hanzo/cms'from 
+import type { TextFieldSingleValidation } from '@hanzo/cms'
 import {
   BoldFeature,
   ItalicFeature,

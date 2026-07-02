@@ -1,4 +1,4 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 import type { SuiteAPI } from 'vitest'
 
 import * as AWS from '@aws-sdk/client-s3'

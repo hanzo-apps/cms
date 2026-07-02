@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import {
   BlocksFeature,
@@ -25,7 +25,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@hanzo/cms-plugin-seo/fields'
-import { slugField } from @hanzo/cms'from 
+import { slugField } from '@hanzo/cms'
 
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',

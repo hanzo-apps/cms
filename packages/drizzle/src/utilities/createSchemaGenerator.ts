@@ -1,4 +1,4 @@
-import type { GenerateSchema } from @hanzo/cms'from 
+import type { GenerateSchema } from '@hanzo/cms'
 
 import { existsSync } from 'fs'
 import { writeFile } from 'fs/promises'

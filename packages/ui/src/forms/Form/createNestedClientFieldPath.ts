@@ -1,7 +1,7 @@
 'use client'
-import type { ClientField } from @hanzo/cms'from 
+import type { ClientField } from '@hanzo/cms'
 
-import { fieldAffectsData } from @hanzo/cms'from 
+import { fieldAffectsData } from '@hanzo/cms/shared'
 
 export const createNestedClientFieldPath = (parentPath: string, field: ClientField): string => {
   if (parentPath) {

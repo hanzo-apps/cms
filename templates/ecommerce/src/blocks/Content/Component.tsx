@@ -1,7 +1,7 @@
 import { cn } from '@/utilities/cn'
 import React from 'react'
 import { RichText } from '@/components/RichText'
-import type { DefaultDocumentIDType } from @hanzo/cms'from 
+import type { DefaultDocumentIDType } from '@hanzo/cms'
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 
 import { CMSLink } from '../../components/Link'

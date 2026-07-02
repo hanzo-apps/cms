@@ -1,4 +1,4 @@
-import { type PayloadHandler, commitTransaction, initTransaction } from @hanzo/cms'from 
+import { type PayloadHandler, commitTransaction, initTransaction } from '@hanzo/cms'
 
 import { seed as seedScript } from '@/endpoints/seed'
 

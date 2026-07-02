@@ -1,6 +1,6 @@
 'use client'
 
-import type { SelectType, Where } from @hanzo/cms'from 
+import type { SelectType, Where } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'
@@ -10,7 +10,7 @@ import {
   formatAdminURL,
   mergeListSearchAndWhere,
   unflatten,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { CopyToClipboard, Link, useConfig, useField } from '@hanzo/cms-ui'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React from 'react'
 
 export const LinkToDocClient: React.FC = () => {

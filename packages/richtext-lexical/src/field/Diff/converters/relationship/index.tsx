@@ -1,10 +1,10 @@
-import type { FileData, PayloadRequest, TypeWithID } from @hanzo/cms'from 
+import type { FileData, PayloadRequest, TypeWithID } from '@hanzo/cms'
 
 import { getTranslation, type I18nClient } from '@hanzo/cms-translations'
 
 import './index.scss'
 
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 
 import type { HTMLConvertersAsync } from '../../../../features/converters/lexicalToHtml/async/types.js'
 import type { SerializedRelationshipNode } from '../../../../nodeTypes.js'

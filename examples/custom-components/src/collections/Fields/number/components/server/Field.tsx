@@ -1,4 +1,4 @@
-import type { NumberFieldServerComponent } from @hanzo/cms'from 
+import type { NumberFieldServerComponent } from '@hanzo/cms'
 import type React from 'react'
 
 import { NumberField } from '@hanzo/cms-ui'

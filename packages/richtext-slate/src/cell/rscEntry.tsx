@@ -1,8 +1,8 @@
-import type { DefaultServerCellComponentProps, Payload } from @hanzo/cms'from 
+import type { DefaultServerCellComponentProps, Payload } from '@hanzo/cms'
 
 import { getTranslation, type I18nClient } from '@hanzo/cms-translations'
 import { Link } from '@hanzo/cms-ui'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React from 'react'
 
 /**

@@ -1,6 +1,6 @@
 'use client'
 
-import type { ClientCollectionConfig, CollectionSlug } from @hanzo/cms'from 
+import type { ClientCollectionConfig, CollectionSlug } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'

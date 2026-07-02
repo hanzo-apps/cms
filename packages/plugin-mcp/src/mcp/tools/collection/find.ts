@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from @hanzo/cms'from 
+import type { PayloadRequest } from '@hanzo/cms'
 
 import { readdirSync, readFileSync, statSync } from 'fs'
 import { extname, join } from 'path'

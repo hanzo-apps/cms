@@ -1,5 +1,5 @@
 'use client'
-import type { FormState } from @hanzo/cms'from 
+import type { FormState } from '@hanzo/cms'
 
 import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
 import {
@@ -12,7 +12,7 @@ import {
   useTranslation,
 } from '@hanzo/cms-ui'
 import { abortAndIgnore } from '@hanzo/cms-ui/shared'
-import { deepCopyObjectSimpleWithoutReactComponents } from @hanzo/cms'from 
+import { deepCopyObjectSimpleWithoutReactComponents } from '@hanzo/cms/shared'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 

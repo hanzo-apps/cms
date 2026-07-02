@@ -1,5 +1,5 @@
 'use client'
-import type { OptionLabel } from @hanzo/cms'from 
+import type { OptionLabel } from '@hanzo/cms'
 import type { ValueContainerProps } from 'react-select'
 
 import { getTranslation } from '@hanzo/cms-translations'

@@ -1,7 +1,7 @@
 'use client'
-import type { RadioFieldClientComponent, RadioFieldClientProps } from @hanzo/cms'from 
+import type { RadioFieldClientComponent, RadioFieldClientProps } from '@hanzo/cms'
 
-import { optionIsObject } from @hanzo/cms'from 
+import { optionIsObject } from '@hanzo/cms/shared'
 import React, { useCallback, useMemo } from 'react'
 
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'

@@ -1,6 +1,6 @@
 'use client'
 
-import type { StaticDescription, StaticLabel } from @hanzo/cms'from 
+import type { StaticDescription, StaticLabel } from '@hanzo/cms'
 
 import { FieldDescription, FieldLabel, useField, useFormFields } from '@hanzo/cms-ui'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'

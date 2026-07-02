@@ -1,6 +1,6 @@
-import type { SanitizedConfig } from @hanzo/cms'from 
+import type { SanitizedConfig } from '@hanzo/cms'
 
-import { fieldIsVirtual } from @hanzo/cms'from 
+import { fieldIsVirtual } from '@hanzo/cms/shared'
 
 /**
  * Returns the names of all top-level virtual fields for a given collection slug.

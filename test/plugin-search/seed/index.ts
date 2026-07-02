@@ -1,4 +1,4 @@
-import type { Payload, PayloadRequest } from @hanzo/cms'from 
+import type { Payload, PayloadRequest } from '@hanzo/cms'
 
 export const seed = async (payload: Payload): Promise<boolean> => {
   payload.logger.info('Seeding data...')

@@ -1,6 +1,6 @@
 'use client'
 
-import type { ClientConfig, RichTextFieldClient } from @hanzo/cms'from 
+import type { ClientConfig, RichTextFieldClient } from '@hanzo/cms'
 
 import type {
   ClientFeatureProviderMap,

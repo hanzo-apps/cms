@@ -1,5 +1,5 @@
 import type { GraphQLError, GraphQLFormattedError } from 'graphql'
-import type { APIError, Payload, PayloadRequest, SanitizedConfig } from @hanzo/cms'from 
+import type { APIError, Payload, PayloadRequest, SanitizedConfig } from '@hanzo/cms'
 
 import { configToSchema } from '@hanzo/cms-graphql'
 import { createHandler } from 'graphql-http/lib/use/fetch'
@@ -11,7 +11,7 @@ import {
   headersWithCors,
   logError,
   mergeHeaders,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 const handleError = async ({
   err,

@@ -1,5 +1,5 @@
 import type { SerializedEditorState } from 'lexical'
-import type { RichTextAdapter } from @hanzo/cms'from 
+import type { RichTextAdapter } from '@hanzo/cms'
 
 import type { PopulationPromise } from '../features/typesServer.js'
 import type { AdapterProps } from '../types.js'

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import type { EditConfig, SanitizedCollectionConfig, SanitizedGlobalConfig } from @hanzo/cms'from 
+import type { EditConfig, SanitizedCollectionConfig, SanitizedGlobalConfig } from '@hanzo/cms'
 
 import type { GenerateViewMetadata } from '../Root/index.js'
 

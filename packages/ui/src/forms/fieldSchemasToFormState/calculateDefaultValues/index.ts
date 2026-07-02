@@ -5,7 +5,7 @@ import type {
   SelectMode,
   SelectType,
   TypedUser,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { iterateFields } from './iterateFields.js'
 

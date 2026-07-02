@@ -1,4 +1,4 @@
-import { definePlugin } from @hanzo/cms'from 
+import { definePlugin } from '@hanzo/cms'
 
 import type { MCPAccessSettings, MCPPluginConfig } from './types.js'
 

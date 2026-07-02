@@ -5,7 +5,7 @@ import type {
   TabsFieldClient,
   TabsFieldDiffClientComponent,
   VersionTab,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import { useTranslation } from '@hanzo/cms-ui'

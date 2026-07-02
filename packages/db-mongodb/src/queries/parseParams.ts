@@ -1,8 +1,8 @@
 import type { FilterQuery } from 'mongoose'
-import type { FlattenedField, Operator, Payload, Where } from @hanzo/cms'from 
+import type { FlattenedField, Operator, Payload, Where } from '@hanzo/cms'
 
-import { deepMergeWithCombinedArrays } from @hanzo/cms'from 
-import { validOperatorSet } from @hanzo/cms'from 
+import { deepMergeWithCombinedArrays } from '@hanzo/cms'
+import { validOperatorSet } from '@hanzo/cms/shared'
 
 import { buildAndOrConditions } from './buildAndOrConditions.js'
 import { buildSearchParam } from './buildSearchParams.js'

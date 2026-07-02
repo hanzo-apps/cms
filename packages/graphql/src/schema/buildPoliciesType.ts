@@ -5,10 +5,10 @@ import type {
   SanitizedCollectionConfig,
   SanitizedConfig,
   SanitizedGlobalConfig,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { GraphQLBoolean, GraphQLNonNull, GraphQLObjectType } from 'graphql'
-import { toWords } from @hanzo/cms'from 
+import { toWords } from '@hanzo/cms'
 
 import { GraphQLJSONObject } from '../packages/graphql-type-json/index.js'
 import { formatName } from '../utilities/formatName.js'

@@ -1,6 +1,6 @@
 import { headers as getHeaders } from 'next/headers.js'
 import Image from 'next/image'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import React from 'react'
 import { fileURLToPath } from 'url'
 

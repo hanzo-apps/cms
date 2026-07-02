@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken'
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import configPromise from '@payload-config'
-import { CollectionSlug, TypedLocale } from @hanzo/cms'from 
+import { CollectionSlug, TypedLocale } from '@hanzo/cms'
 
 const payloadToken = 'payload-token'
 

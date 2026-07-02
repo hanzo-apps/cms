@@ -1,4 +1,4 @@
-import type { PayloadRequest } from @hanzo/cms'from 
+import type { PayloadRequest } from '@hanzo/cms'
 
 import type { Limit } from '../types.js'
 

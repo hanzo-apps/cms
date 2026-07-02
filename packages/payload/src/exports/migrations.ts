@@ -5,7 +5,7 @@
  *
  * @example
  * ```ts
- * import { localizeStatus } from @hanzo/cms'from 
+ * import { localizeStatus } from '@hanzo/cms/migrations'
  *
  * export async function up({ payload }) {
  *   await localizeStatus.up({

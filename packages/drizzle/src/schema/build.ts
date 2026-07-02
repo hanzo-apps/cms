@@ -1,6 +1,6 @@
-import type { FlattenedField, SanitizedCompoundIndex } from @hanzo/cms'from 
+import type { FlattenedField, SanitizedCompoundIndex } from '@hanzo/cms'
 
-import { InvalidConfiguration } from @hanzo/cms'from 
+import { InvalidConfiguration } from '@hanzo/cms'
 import toSnakeCase from 'to-snake-case'
 
 import type {

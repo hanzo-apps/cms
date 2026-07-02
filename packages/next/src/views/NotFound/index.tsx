@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import type { AdminViewServerProps, ImportMap, SanitizedConfig } from @hanzo/cms'from 
+import type { AdminViewServerProps, ImportMap, SanitizedConfig } from '@hanzo/cms'
 
 import { getVisibleEntities } from '@hanzo/cms-ui/shared'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React from 'react'
 

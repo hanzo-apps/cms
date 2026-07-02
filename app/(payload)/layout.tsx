@@ -1,7 +1,7 @@
 /* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
 // import '@hanzo/cms-ui/styles.css' // Uncomment this line if `@hanzo/cms-ui` in `tsconfig.json` points to `/ui/dist` instead of `/ui/src`
-import type { ServerFunctionClient } from @hanzo/cms'from 
+import type { ServerFunctionClient } from '@hanzo/cms'
 
 import config from '@payload-config'
 import { handleServerFunctions, RootLayout } from '@hanzo/cms-next/layouts'

@@ -1,4 +1,4 @@
-import type { Upsert } from @hanzo/cms'from 
+import type { Upsert } from '@hanzo/cms'
 
 import type { DrizzleAdapter } from './types.js'
 

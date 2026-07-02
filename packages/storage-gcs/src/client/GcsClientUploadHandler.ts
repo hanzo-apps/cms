@@ -1,6 +1,6 @@
 'use client'
 import { createClientUploadHandler } from '@hanzo/cms-plugin-cloud-storage/client'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 
 export const GcsClientUploadHandler = createClientUploadHandler({
   handler: async ({

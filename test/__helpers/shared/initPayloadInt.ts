@@ -1,8 +1,8 @@
 import type { PayloadSDK } from '@hanzo/cms-sdk'
-import type { GeneratedTypes, Payload, SanitizedConfig } from @hanzo/cms'from 
+import type { GeneratedTypes, Payload, SanitizedConfig } from '@hanzo/cms'
 
 import path from 'path'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 
 import { runInit } from '../../runInit.js'
 import { getSDK } from './getSDK.js'

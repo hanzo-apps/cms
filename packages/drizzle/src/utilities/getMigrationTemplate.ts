@@ -1,4 +1,4 @@
-import type { MigrationTemplateArgs } from @hanzo/cms'from 
+import type { MigrationTemplateArgs } from '@hanzo/cms'
 
 export const indent = (text: string) =>
   text

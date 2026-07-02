@@ -1,3 +1,3 @@
-import type { SanitizedConfig } from @hanzo/cms'from 
+import type { SanitizedConfig } from '@hanzo/cms'
 
 export default {} as Promise<SanitizedConfig>

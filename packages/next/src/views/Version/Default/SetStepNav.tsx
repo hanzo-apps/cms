@@ -1,11 +1,11 @@
 'use client'
 
-import type { ClientCollectionConfig, ClientGlobalConfig } from @hanzo/cms'from 
+import type { ClientCollectionConfig, ClientGlobalConfig } from '@hanzo/cms'
 import type React from 'react'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import { useConfig, useDocumentTitle, useLocale, useStepNav, useTranslation } from '@hanzo/cms-ui'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import { useEffect } from 'react'
 
 export const SetStepNav: React.FC<{

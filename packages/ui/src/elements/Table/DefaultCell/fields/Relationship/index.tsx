@@ -4,7 +4,7 @@ import type {
   JoinFieldClient,
   RelationshipFieldClient,
   UploadFieldClient,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React, { useEffect, useMemo, useState } from 'react'

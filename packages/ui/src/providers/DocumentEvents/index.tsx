@@ -1,5 +1,5 @@
 'use client'
-import type { DocumentEvent } from @hanzo/cms'from 
+import type { DocumentEvent } from '@hanzo/cms'
 
 import React, { createContext, use, useState } from 'react'
 

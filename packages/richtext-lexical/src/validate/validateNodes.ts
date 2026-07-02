@@ -1,5 +1,5 @@
 import type { SerializedEditorState, SerializedLexicalNode } from 'lexical'
-import type { RichTextField, ValidateOptions } from @hanzo/cms'from 
+import type { RichTextField, ValidateOptions } from '@hanzo/cms'
 
 import type { NodeValidation } from '../features/typesServer.js'
 

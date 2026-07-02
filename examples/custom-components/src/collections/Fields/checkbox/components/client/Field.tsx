@@ -1,5 +1,5 @@
 'use client'
-import type { CheckboxFieldClientComponent } from @hanzo/cms'from 
+import type { CheckboxFieldClientComponent } from '@hanzo/cms'
 
 import { CheckboxField } from '@hanzo/cms-ui'
 import React from 'react'

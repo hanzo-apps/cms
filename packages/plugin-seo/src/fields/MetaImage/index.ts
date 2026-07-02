@@ -1,4 +1,4 @@
-import type { UploadField } from @hanzo/cms'from 
+import type { UploadField } from '@hanzo/cms'
 
 interface FieldFunctionProps {
   /**

@@ -1,5 +1,5 @@
 import type { groupNavItems } from '@hanzo/cms-ui/shared'
-import type { AdminViewServerPropsOnly, ClientUser, Locale, ServerProps } from @hanzo/cms'from 
+import type { AdminViewServerPropsOnly, ClientUser, Locale, ServerProps } from '@hanzo/cms'
 
 import { Gutter } from '@hanzo/cms-ui'
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'

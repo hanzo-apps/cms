@@ -1,7 +1,7 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import config from '@payload-config'
-import { createPayloadRequest, getPayload } from @hanzo/cms'from 
+import { createPayloadRequest, getPayload } from '@hanzo/cms'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { customEndpointHandler } from '../src/endpoints/customEndpointHandler.js'

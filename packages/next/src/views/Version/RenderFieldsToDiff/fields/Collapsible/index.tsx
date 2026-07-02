@@ -1,5 +1,5 @@
 'use client'
-import type { CollapsibleFieldDiffClientComponent } from @hanzo/cms'from 
+import type { CollapsibleFieldDiffClientComponent } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import { useTranslation } from '@hanzo/cms-ui'

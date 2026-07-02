@@ -1,13 +1,13 @@
 import fs from 'fs'
 import { spawn } from 'node:child_process'
 import path from 'path'
-import { generateTypes } from @hanzo/cms'from 
+import { generateTypes } from '@hanzo/cms/node'
 
 import { setTestEnvPaths } from './__helpers/shared/setTestEnvPaths.js'
 
 const [testConfigDir] = process.argv.slice(2)
 
-import type { SanitizedConfig } from @hanzo/cms'from 
+import type { SanitizedConfig } from '@hanzo/cms'
 
 import { fileURLToPath } from 'url'
 

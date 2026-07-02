@@ -1,4 +1,4 @@
-import type { SelectFieldServerComponent } from @hanzo/cms'from 
+import type { SelectFieldServerComponent } from '@hanzo/cms'
 import type React from 'react'
 
 import { SelectField } from '@hanzo/cms-ui'

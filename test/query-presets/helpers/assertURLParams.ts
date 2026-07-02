@@ -1,10 +1,10 @@
 import type { Page } from '@playwright/test'
-import type { ColumnPreference, Where } from @hanzo/cms'from 
+import type { ColumnPreference, Where } from '@hanzo/cms'
 
-// import { transformColumnsToSearchParams, transformWhereQuery } from @hanzo/cms'from 
+// import { transformColumnsToSearchParams, transformWhereQuery } from '@hanzo/cms/shared'
 // import * as qs from 'qs-esm'
 
-import { transformColumnsToSearchParams } from @hanzo/cms'from 
+import { transformColumnsToSearchParams } from '@hanzo/cms/shared'
 
 export async function assertURLParams({
   page,

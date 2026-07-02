@@ -1,7 +1,7 @@
-import type { DeleteVersions, FlattenedField, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { DeleteVersions, FlattenedField, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import { inArray } from 'drizzle-orm'
-import { APIError, buildVersionCollectionFields, buildVersionGlobalFields } from @hanzo/cms'from 
+import { APIError, buildVersionCollectionFields, buildVersionGlobalFields } from '@hanzo/cms'
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from './types.js'

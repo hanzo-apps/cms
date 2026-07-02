@@ -1,4 +1,4 @@
-import type { Init } from @hanzo/cms'from 
+import type { Init } from '@hanzo/cms'
 
 import type { DrizzleAdapter } from '../types.js'
 import type { BaseSQLiteAdapter } from './types.js'

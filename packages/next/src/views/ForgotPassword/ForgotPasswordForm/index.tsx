@@ -1,10 +1,10 @@
 'use client'
 
 import type { FormProps } from '@hanzo/cms-ui'
-import type { FormState, PayloadRequest } from @hanzo/cms'from 
+import type { FormState, PayloadRequest } from '@hanzo/cms'
 
 import { EmailField, Form, FormSubmit, TextField, useConfig, useTranslation } from '@hanzo/cms-ui'
-import { email, formatAdminURL, text } from @hanzo/cms'from 
+import { email, formatAdminURL, text } from '@hanzo/cms/shared'
 import React, { useState } from 'react'
 
 import { FormHeader } from '../../../elements/FormHeader/index.js'

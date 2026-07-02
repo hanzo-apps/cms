@@ -10,7 +10,7 @@ import {
   checkDependencies,
   deepMergeSimple,
   withNullableJSONSchemaType,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import type { FeatureProviderServer, ResolvedServerFeatureMap } from './features/typesServer.js'
 import type { SanitizedServerEditorConfig } from './lexical/config/types.js'

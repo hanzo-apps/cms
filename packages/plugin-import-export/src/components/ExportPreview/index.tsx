@@ -1,5 +1,5 @@
 'use client'
-import type { ClientField, Column, PaginatedDocs, Where } from @hanzo/cms'from 
+import type { ClientField, Column, PaginatedDocs, Where } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import {

@@ -4,7 +4,7 @@ import type {
   ClientGlobalConfig,
   SanitizedConfig,
   TypeWithID,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 

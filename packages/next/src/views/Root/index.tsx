@@ -8,14 +8,14 @@ import type {
   SanitizedCollectionConfig,
   SanitizedConfig,
   SanitizedGlobalConfig,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { PageConfigProvider } from '@hanzo/cms-ui'
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import { getVisibleEntities } from '@hanzo/cms-ui/shared'
 import { getClientConfig } from '@hanzo/cms-ui/utilities/getClientConfig'
 import { notFound, redirect } from 'next/navigation.js'
-import { applyLocaleFiltering, formatAdminURL } from @hanzo/cms'from 
+import { applyLocaleFiltering, formatAdminURL } from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React from 'react'
 

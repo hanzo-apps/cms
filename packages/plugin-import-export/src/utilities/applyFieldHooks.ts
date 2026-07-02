@@ -1,4 +1,4 @@
-import type { FlattenedField, PayloadRequest } from @hanzo/cms'from 
+import type { FlattenedField, PayloadRequest } from '@hanzo/cms'
 
 import type {
   ExportFieldHookEntry,

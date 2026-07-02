@@ -1,6 +1,6 @@
-import type { CollectionSlug, Endpoint } from @hanzo/cms'from 
+import type { CollectionSlug, Endpoint } from '@hanzo/cms'
 
-import { addDataAndFileToRequest } from @hanzo/cms'from 
+import { addDataAndFileToRequest } from '@hanzo/cms'
 
 import { removeItem } from '../operations/removeItem.js'
 

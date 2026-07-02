@@ -1,5 +1,5 @@
 import type { NodemailerAdapterArgs } from '@hanzo/cms-email-nodemailer'
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 import path from 'path'

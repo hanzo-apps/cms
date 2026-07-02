@@ -1,10 +1,10 @@
 import type { SQL, Table } from 'drizzle-orm'
-import type { FlattenedField, Operator, Sort, Where } from @hanzo/cms'from 
+import type { FlattenedField, Operator, Sort, Where } from '@hanzo/cms'
 
 import { and, getTableName, isNotNull, isNull, ne, notInArray, or, sql } from 'drizzle-orm'
 import { PgUUID } from 'drizzle-orm/pg-core'
-import { APIError, QueryError } from @hanzo/cms'from 
-import { validOperatorSet } from @hanzo/cms'from 
+import { APIError, QueryError } from '@hanzo/cms'
+import { validOperatorSet } from '@hanzo/cms/shared'
 
 import type { DrizzleAdapter, GenericColumn } from '../types.js'
 import type { BuildQueryJoinAliases } from './buildQuery.js'

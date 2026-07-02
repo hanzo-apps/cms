@@ -1,5 +1,5 @@
 import type { DraggableSyntheticListeners } from '@dnd-kit/core'
-import type { Column } from @hanzo/cms'from 
+import type { Column } from '@hanzo/cms'
 import type { HTMLAttributes, Ref } from 'react'
 
 export type Props = {

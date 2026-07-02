@@ -1,4 +1,4 @@
-import type { Plugin, SingleRelationshipField } from @hanzo/cms'from 
+import type { Plugin, SingleRelationshipField } from '@hanzo/cms'
 
 import type { NestedDocsPluginConfig } from './types.js'
 

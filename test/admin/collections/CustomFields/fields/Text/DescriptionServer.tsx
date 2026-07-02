@@ -1,4 +1,4 @@
-import type { TextFieldDescriptionServerComponent } from @hanzo/cms'from 
+import type { TextFieldDescriptionServerComponent } from '@hanzo/cms'
 
 import React from 'react'
 

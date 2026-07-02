@@ -1,5 +1,5 @@
 import type { SerializedEditorState } from 'lexical'
-import type { Field } from @hanzo/cms'from 
+import type { Field } from '@hanzo/cms'
 
 import type { SanitizedServerEditorConfig } from '../../../../lexical/config/types.js'
 import type { LexicalRichTextAdapter, LexicalRichTextField } from '../../../../types.js'

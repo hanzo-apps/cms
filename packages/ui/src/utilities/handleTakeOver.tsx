@@ -1,4 +1,4 @@
-import type { ClientUser } from @hanzo/cms'from 
+import type { ClientUser } from '@hanzo/cms'
 
 export interface HandleTakeOverParams {
   clearRouteCache?: () => void

@@ -1,4 +1,4 @@
-import type { CollectionSlug, Field, FieldAffectingData, SanitizedConfig } from @hanzo/cms'from 
+import type { CollectionSlug, Field, FieldAffectingData, SanitizedConfig } from '@hanzo/cms'
 
 import { getBaseFields } from './baseFields.js'
 

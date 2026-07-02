@@ -1,4 +1,4 @@
-import type { EmailAdapter, SendEmailOptions } from @hanzo/cms'from 
+import type { EmailAdapter, SendEmailOptions } from '@hanzo/cms'
 
 /**
  * Logs all emails to stdout

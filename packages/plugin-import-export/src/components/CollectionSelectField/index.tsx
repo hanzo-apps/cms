@@ -1,6 +1,6 @@
 'use client'
 import type { ReactSelectOption } from '@hanzo/cms-ui'
-import type { TextFieldClientProps } from @hanzo/cms'from 
+import type { TextFieldClientProps } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import {

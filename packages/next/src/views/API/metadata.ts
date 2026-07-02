@@ -1,4 +1,4 @@
-import type { MetaConfig } from @hanzo/cms'from 
+import type { MetaConfig } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 

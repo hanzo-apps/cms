@@ -1,4 +1,4 @@
-import type { AdminViewServerProps } from @hanzo/cms'from 
+import type { AdminViewServerProps } from '@hanzo/cms'
 
 import { MinimalTemplate } from '@hanzo/cms-next/templates'
 import React from 'react'

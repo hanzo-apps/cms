@@ -1,5 +1,5 @@
 import type { I18n } from '@hanzo/cms-translations'
-import type { BasePayload, Config, LanguageOptions, TypedUser } from @hanzo/cms'from 
+import type { BasePayload, Config, LanguageOptions, TypedUser } from '@hanzo/cms'
 
 import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'

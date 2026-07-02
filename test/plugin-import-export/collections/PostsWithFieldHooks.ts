@@ -2,7 +2,7 @@ import type {
   FieldBeforeExportHook,
   FieldBeforeImportHook,
 } from '@hanzo/cms-plugin-import-export/types'
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { postsWithFieldHooksSlug } from '../shared.js'
 

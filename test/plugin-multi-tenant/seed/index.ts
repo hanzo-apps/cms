@@ -1,4 +1,4 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import { credentials } from '../credentials.js'
 import { menuItemsSlug, menuSlug, tenantsSlug, usersSlug } from '../shared.js'

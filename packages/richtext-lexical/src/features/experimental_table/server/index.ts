@@ -4,10 +4,10 @@ import type {
   SerializedTableRowNode as _SerializedTableRowNode,
 } from '@lexical/table'
 import type { SerializedLexicalNode } from 'lexical'
-import type { Config, Field, FieldSchemaMap } from @hanzo/cms'from 
+import type { Config, Field, FieldSchemaMap } from '@hanzo/cms'
 
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
-import { sanitizeFields } from @hanzo/cms'from 
+import { sanitizeFields } from '@hanzo/cms'
 
 import type { StronglyTypedElementNode } from '../../../nodeTypes.js'
 

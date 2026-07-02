@@ -1,6 +1,6 @@
-import type { Config, RichTextAdapterProvider } from @hanzo/cms'from 
+import type { Config, RichTextAdapterProvider } from '@hanzo/cms'
 
-import { sanitizeFields, withNullableJSONSchemaType } from @hanzo/cms'from 
+import { sanitizeFields, withNullableJSONSchemaType } from '@hanzo/cms'
 
 import type { AdapterArguments } from './types.js'
 

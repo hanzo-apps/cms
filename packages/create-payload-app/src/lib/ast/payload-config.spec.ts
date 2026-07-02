@@ -15,7 +15,7 @@ describe('detectPayloadConfigStructure', () => {
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 
 export default buildConfig({
   db: mongooseAdapter({ url: '' }),
@@ -44,7 +44,7 @@ export default buildConfig({
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 
 const config = buildConfig({
   db: mongooseAdapter({ url: '' })
@@ -63,7 +63,7 @@ export default config`,
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
-      `import { buildConfig as createConfig } from @hanzo/cms'from 
+      `import { buildConfig as createConfig } from '@hanzo/cms'
 import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 
 export default createConfig({
@@ -83,7 +83,7 @@ export default createConfig({
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 
 const helper = buildConfig({ collections: [] })
 
@@ -102,7 +102,7 @@ export default buildConfig({
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
-      `import { buildConfig, CollectionConfig } from @hanzo/cms'from 
+      `import { buildConfig, CollectionConfig } from '@hanzo/cms'
 
 export default buildConfig({
   collections: [],
@@ -132,7 +132,7 @@ describe('addDatabaseAdapter', () => {
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 
 export default buildConfig({
   collections: []
@@ -161,7 +161,7 @@ export default buildConfig({
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 
 export default buildConfig({
@@ -190,7 +190,7 @@ describe('addStorageAdapter', () => {
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 
 export default buildConfig({
   plugins: []
@@ -210,7 +210,7 @@ export default buildConfig({
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 
 export default buildConfig({
   collections: []
@@ -229,7 +229,7 @@ export default buildConfig({
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 
 export default buildConfig({
   plugins: [
@@ -252,7 +252,7 @@ describe('removeSharp', () => {
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 import sharp from 'sharp'
 
 export default buildConfig({
@@ -275,7 +275,7 @@ export default buildConfig({
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 
 export default buildConfig({
   collections: []
@@ -304,7 +304,7 @@ describe('configurePayloadConfig', () => {
     const filePath = path.join(tempDir, 'payload.config.ts')
     fs.writeFileSync(
       filePath,
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 
 export default buildConfig({
   collections: []
@@ -329,7 +329,7 @@ export default buildConfig({
     const filePath = path.join(tempDir, 'payload.config.ts')
     fs.writeFileSync(
       filePath,
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 
 export default buildConfig({
   collections: []
@@ -352,7 +352,7 @@ export default buildConfig({
     const filePath = path.join(tempDir, 'payload.config.ts')
     fs.writeFileSync(
       filePath,
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 import sharp from 'sharp'
 import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 
@@ -407,7 +407,7 @@ export default buildConfig({
     const filePath = path.join(tempDir, 'payload.config.ts')
     fs.writeFileSync(
       filePath,
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 
 export default buildConfig({

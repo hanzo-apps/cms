@@ -1,5 +1,5 @@
 import { PreviewSearchParams } from '@/app/(frontend)/next/preview/route'
-import { PayloadRequest, CollectionSlug } from @hanzo/cms'from 
+import { PayloadRequest, CollectionSlug } from '@hanzo/cms'
 
 const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
   posts: '/posts',

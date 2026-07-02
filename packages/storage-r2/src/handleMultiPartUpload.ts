@@ -1,8 +1,8 @@
 import type { ClientUploadsAccess } from '@hanzo/cms-plugin-cloud-storage/types'
-import type { PayloadHandler } from @hanzo/cms'from 
+import type { PayloadHandler } from '@hanzo/cms'
 
 import { resolveSignedURLKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
-import { APIError, Forbidden } from @hanzo/cms'from 
+import { APIError, Forbidden } from '@hanzo/cms'
 
 import type { R2StorageOptions } from './index.js'
 import type { R2Bucket, R2StorageMultipartUploadHandlerParams } from './types.js'

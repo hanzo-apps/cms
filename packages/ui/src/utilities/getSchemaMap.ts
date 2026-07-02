@@ -1,5 +1,5 @@
 import type { I18n, I18nClient } from '@hanzo/cms-translations'
-import type { FieldSchemaMap, SanitizedConfig } from @hanzo/cms'from 
+import type { FieldSchemaMap, SanitizedConfig } from '@hanzo/cms'
 
 import { cache } from 'react'
 

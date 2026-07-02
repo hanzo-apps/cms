@@ -2,8 +2,8 @@ import { expect, test } from '@playwright/test'
 import { addListFilter } from '__helpers/e2e/filters/index.js'
 import { reInitializeDB } from '__helpers/shared/clearAndSeed/reInitializeDB.js'
 import * as path from 'path'
-import { mapAsync, type RequiredDataFromCollectionSlug } from @hanzo/cms'from 
-import { wait } from @hanzo/cms'from 
+import { mapAsync, type RequiredDataFromCollectionSlug } from '@hanzo/cms'
+import { wait } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../__helpers/shared/sdk/index.js'

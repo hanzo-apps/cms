@@ -5,7 +5,7 @@ import type {
   RelationshipFieldClient,
   ResolvedFilterOptions,
   UploadFieldClient,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import type { DefaultFilterProps } from '../types.js'
 

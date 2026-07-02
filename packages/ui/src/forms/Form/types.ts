@@ -6,7 +6,7 @@ import type {
   Row,
   TypedUser,
   ValidationFieldError,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 import type React from 'react'
 import type { Dispatch } from 'react'
 

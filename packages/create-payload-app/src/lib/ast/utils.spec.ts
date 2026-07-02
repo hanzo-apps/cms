@@ -14,7 +14,7 @@ describe('findImportDeclaration', () => {
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'test.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 import { mongooseAdapter } from '@hanzo/cms-db-mongodb'`,
     )
 
@@ -28,7 +28,7 @@ import { mongooseAdapter } from '@hanzo/cms-db-mongodb'`,
 describe('addImportDeclaration', () => {
   it('adds new import when not present', () => {
     const project = new Project({ useInMemoryFileSystem: true })
-    const sourceFile = project.createSourceFile('test.ts', `import { buildConfig } from @hanzo/cms'from `)
+    const sourceFile = project.createSourceFile('test.ts', `import { buildConfig } from '@hanzo/cms'`)
 
     const result = addImportDeclaration({
       sourceFile,
@@ -61,7 +61,7 @@ describe('addImportDeclaration', () => {
 
   it('adds named import to existing module import', () => {
     const project = new Project({ useInMemoryFileSystem: true })
-    const sourceFile = project.createSourceFile('test.ts', `import { buildConfig } from @hanzo/cms'from `)
+    const sourceFile = project.createSourceFile('test.ts', `import { buildConfig } from '@hanzo/cms'`)
 
     const result = addImportDeclaration({
       sourceFile,
@@ -82,7 +82,7 @@ describe('removeImportDeclaration', () => {
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'test.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 import sharp from 'sharp'`,
     )
 
@@ -96,7 +96,7 @@ import sharp from 'sharp'`,
 
   it('returns undefined removedIndex when import not found', () => {
     const project = new Project({ useInMemoryFileSystem: true })
-    const sourceFile = project.createSourceFile('test.ts', `import { buildConfig } from @hanzo/cms'from `)
+    const sourceFile = project.createSourceFile('test.ts', `import { buildConfig } from '@hanzo/cms'`)
 
     const result = removeImportDeclaration({ sourceFile, moduleSpecifier: 'sharp' })
 
@@ -134,7 +134,7 @@ describe('removeNamedImports', () => {
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'test.ts',
-      `import { buildConfig } from @hanzo/cms'from 
+      `import { buildConfig } from '@hanzo/cms'
 import { mongooseAdapter } from '@hanzo/cms-db-mongodb'`,
     )
 

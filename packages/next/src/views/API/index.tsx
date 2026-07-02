@@ -1,4 +1,4 @@
-import type { DocumentViewServerProps } from @hanzo/cms'from 
+import type { DocumentViewServerProps } from '@hanzo/cms'
 
 import React from 'react'
 

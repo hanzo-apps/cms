@@ -1,10 +1,10 @@
 'use client'
 import type { I18nClient } from '@hanzo/cms-translations'
-import type { ClientBlock, ClientWidget, Labels } from @hanzo/cms'from 
+import type { ClientBlock, ClientWidget, Labels } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'
-import { toWords } from @hanzo/cms'from 
+import { toWords } from '@hanzo/cms/shared'
 import React, { useEffect, useMemo, useState } from 'react'
 
 import { DefaultBlockImage } from '../../graphics/DefaultBlockImage/index.js'

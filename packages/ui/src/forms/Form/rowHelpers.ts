@@ -1,5 +1,5 @@
 'use client'
-import type { Row } from @hanzo/cms'from 
+import type { Row } from '@hanzo/cms'
 
 export const extractRowsAndCollapsedIDs = ({
   collapsed,

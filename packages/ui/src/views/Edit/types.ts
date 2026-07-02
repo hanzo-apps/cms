@@ -1,4 +1,4 @@
-import type { SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { SanitizedCollectionConfig } from '@hanzo/cms'
 
 export type IndexProps = {
   collection: SanitizedCollectionConfig

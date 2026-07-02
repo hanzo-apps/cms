@@ -1,4 +1,4 @@
-import type { ArrayField, BlocksField, CollapsedPreferences, Row } from @hanzo/cms'from 
+import type { ArrayField, BlocksField, CollapsedPreferences, Row } from '@hanzo/cms'
 
 export function isRowCollapsed({
   collapsedPrefs,

@@ -1,7 +1,7 @@
 'use client'
 import { useWindowInfo } from '@faceless-ui/window-info'
 import { usePathname } from 'next/navigation.js'
-import { PREFERENCE_KEYS } from @hanzo/cms'from 
+import { PREFERENCE_KEYS } from '@hanzo/cms/shared'
 import React, { useEffect, useRef } from 'react'
 
 import { usePreferences } from '../../providers/Preferences/index.js'

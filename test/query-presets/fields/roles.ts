@@ -1,4 +1,4 @@
-import type { Field } from @hanzo/cms'from 
+import type { Field } from '@hanzo/cms'
 
 export const roles: Field = {
   name: 'roles',

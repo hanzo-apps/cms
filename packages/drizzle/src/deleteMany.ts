@@ -1,4 +1,4 @@
-import type { DeleteMany } from @hanzo/cms'from 
+import type { DeleteMany } from '@hanzo/cms'
 
 import { inArray } from 'drizzle-orm'
 import toSnakeCase from 'to-snake-case'

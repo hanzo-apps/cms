@@ -1,4 +1,4 @@
-import type { FlattenedField, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { FlattenedField, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import { describe, expect, it } from 'vitest'
 

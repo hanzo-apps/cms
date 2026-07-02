@@ -1,4 +1,4 @@
-import type { CollectionConfig, Field } from @hanzo/cms'from 
+import type { CollectionConfig, Field } from '@hanzo/cms'
 
 import type { AccessConfig, CurrenciesConfig, PaymentAdapter } from '../../types/index.js'
 

@@ -7,10 +7,10 @@ import type {
   SelectType,
   TabAsField,
   TypedUser,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
-import { getBlockSelect, getDefaultValue, stripUnselectedFields } from @hanzo/cms'from 
-import { fieldAffectsData, tabHasName } from @hanzo/cms'from 
+import { getBlockSelect, getDefaultValue, stripUnselectedFields } from '@hanzo/cms'
+import { fieldAffectsData, tabHasName } from '@hanzo/cms/shared'
 
 import { iterateFields } from './iterateFields.js'
 

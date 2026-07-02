@@ -1,4 +1,4 @@
-import type { RichTextAdapter } from @hanzo/cms'from 
+import type { RichTextAdapter } from '@hanzo/cms'
 
 import { traverseFields } from '@hanzo/cms-ui/utilities/buildFieldSchemaMap/traverseFields'
 

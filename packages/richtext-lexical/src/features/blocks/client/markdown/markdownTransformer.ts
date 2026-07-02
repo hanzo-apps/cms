@@ -1,4 +1,4 @@
-import type { ClientBlock } from @hanzo/cms'from 
+import type { ClientBlock } from '@hanzo/cms'
 
 import {
   $parseSerializedNode,

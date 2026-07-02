@@ -1,4 +1,4 @@
-import type { CollapsibleField } from @hanzo/cms'from 
+import type { CollapsibleField } from '@hanzo/cms'
 import type React from 'react'
 
 export const getCustomLabel = ({

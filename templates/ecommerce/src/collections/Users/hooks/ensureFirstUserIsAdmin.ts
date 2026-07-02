@@ -1,4 +1,4 @@
-import type { FieldHook } from @hanzo/cms'from 
+import type { FieldHook } from '@hanzo/cms'
 
 import type { User } from '@/payload-types'
 

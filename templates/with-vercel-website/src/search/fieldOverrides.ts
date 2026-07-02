@@ -1,4 +1,4 @@
-import { Field } from @hanzo/cms'from 
+import { Field } from '@hanzo/cms'
 
 export const searchFields: Field[] = [
   {

@@ -1,5 +1,5 @@
 'use client'
-import type { ArrayFieldClientComponent } from @hanzo/cms'from 
+import type { ArrayFieldClientComponent } from '@hanzo/cms'
 
 import { ArrayField } from '@hanzo/cms-ui'
 

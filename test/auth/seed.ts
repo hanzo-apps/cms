@@ -1,4 +1,4 @@
-import type { Config } from @hanzo/cms'from 
+import type { Config } from '@hanzo/cms'
 
 import { v4 as uuid } from 'uuid'
 

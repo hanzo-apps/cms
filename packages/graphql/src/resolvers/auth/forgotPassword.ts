@@ -1,6 +1,6 @@
-import type { Collection } from @hanzo/cms'from 
+import type { Collection } from '@hanzo/cms'
 
-import { forgotPasswordOperation, isolateObjectProperty } from @hanzo/cms'from 
+import { forgotPasswordOperation, isolateObjectProperty } from '@hanzo/cms'
 
 import type { Context } from '../types.js'
 

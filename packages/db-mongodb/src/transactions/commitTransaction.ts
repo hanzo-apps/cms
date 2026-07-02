@@ -1,4 +1,4 @@
-import type { CommitTransaction } from @hanzo/cms'from 
+import type { CommitTransaction } from '@hanzo/cms'
 
 import type { MongooseAdapter } from '../index.js'
 

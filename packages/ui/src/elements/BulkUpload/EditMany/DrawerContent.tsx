@@ -1,10 +1,10 @@
 'use client'
 
-import type { ClientCollectionConfig, SelectType } from @hanzo/cms'from 
+import type { ClientCollectionConfig, SelectType } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'
-import { unflatten } from @hanzo/cms'from 
+import { unflatten } from '@hanzo/cms/shared'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import type { FormProps } from '../../../forms/Form/index.js'

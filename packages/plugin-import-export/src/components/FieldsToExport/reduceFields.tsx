@@ -1,6 +1,6 @@
-import type { ClientField } from @hanzo/cms'from 
+import type { ClientField } from '@hanzo/cms'
 
-import { fieldAffectsData, fieldHasSubFields } from @hanzo/cms'from 
+import { fieldAffectsData, fieldHasSubFields } from '@hanzo/cms/shared'
 import React, { Fragment } from 'react'
 
 const createNestedClientFieldPath = (parentPath: string, field: ClientField): string => {

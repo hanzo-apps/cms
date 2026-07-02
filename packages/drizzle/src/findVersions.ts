@@ -1,6 +1,6 @@
-import type { FindVersions, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { FindVersions, SanitizedCollectionConfig } from '@hanzo/cms'
 
-import { buildVersionCollectionFields } from @hanzo/cms'from 
+import { buildVersionCollectionFields } from '@hanzo/cms'
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from './types.js'

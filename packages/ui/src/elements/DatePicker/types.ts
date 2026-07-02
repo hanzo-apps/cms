@@ -1,4 +1,4 @@
-import type { DayPickerProps, SharedProps, TimePickerProps } from @hanzo/cms'from 
+import type { DayPickerProps, SharedProps, TimePickerProps } from '@hanzo/cms'
 
 export type Props = {
   id?: string

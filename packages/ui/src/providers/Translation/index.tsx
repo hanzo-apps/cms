@@ -9,7 +9,7 @@ import type {
   TFunction,
 } from '@hanzo/cms-translations'
 import type { Locale } from 'date-fns'
-import type { LanguageOptions } from @hanzo/cms'from 
+import type { LanguageOptions } from '@hanzo/cms'
 
 import { importDateFNSLocale, t } from '@hanzo/cms-translations'
 import { enUS } from 'date-fns/locale/en-US'

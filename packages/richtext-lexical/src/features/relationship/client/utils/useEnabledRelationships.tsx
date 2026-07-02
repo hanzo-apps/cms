@@ -1,5 +1,5 @@
 'use client'
-import type { ClientCollectionConfig, CollectionSlug } from @hanzo/cms'from 
+import type { ClientCollectionConfig, CollectionSlug } from '@hanzo/cms'
 
 import { useConfig, useEntityVisibility } from '@hanzo/cms-ui'
 import * as React from 'react'

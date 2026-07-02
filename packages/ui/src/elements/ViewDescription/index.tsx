@@ -1,5 +1,5 @@
 'use client'
-import type { DescriptionFunction, StaticDescription, ViewDescriptionClientProps } from @hanzo/cms'from 
+import type { DescriptionFunction, StaticDescription, ViewDescriptionClientProps } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'

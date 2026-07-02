@@ -1,6 +1,6 @@
 'use client'
 
-import type { FolderBreadcrumb } from @hanzo/cms'from 
+import type { FolderBreadcrumb } from '@hanzo/cms/shared'
 
 import { useDroppable } from '@dnd-kit/core'
 import React from 'react'

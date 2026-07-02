@@ -17,10 +17,10 @@ import type {
   SelectType,
   TabAsField,
   Validate,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import ObjectIdImport from 'bson-objectid'
-import { getBlockSelect, stripUnselectedFields, validateBlocksFilterOptions } from @hanzo/cms'from 
+import { getBlockSelect, stripUnselectedFields, validateBlocksFilterOptions } from '@hanzo/cms'
 import {
   deepCopyObjectSimple,
   fieldAffectsData,
@@ -29,7 +29,7 @@ import {
   fieldIsID,
   fieldIsLocalized,
   tabHasName,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/shared'
 
 import type { RenderFieldMethod } from './types.js'
 

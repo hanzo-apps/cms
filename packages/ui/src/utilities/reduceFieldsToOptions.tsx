@@ -1,9 +1,9 @@
 'use client'
 import type { ClientTranslationKeys, I18nClient } from '@hanzo/cms-translations'
-import type { ClientField, SanitizedFieldPermissions, SanitizedFieldsPermissions } from @hanzo/cms'from 
+import type { ClientField, SanitizedFieldPermissions, SanitizedFieldsPermissions } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
-import { fieldAffectsData, fieldIsHiddenOrDisabled, fieldIsID, tabHasName } from @hanzo/cms'from 
+import { fieldAffectsData, fieldIsHiddenOrDisabled, fieldIsID, tabHasName } from '@hanzo/cms/shared'
 
 import type { ReducedField } from '../elements/WhereBuilder/types.js'
 

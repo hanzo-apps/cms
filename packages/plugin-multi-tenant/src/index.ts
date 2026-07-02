@@ -1,8 +1,8 @@
 import type { AcceptedLanguages } from '@hanzo/cms-translations'
-import type { CollectionConfig, Config } from @hanzo/cms'from 
+import type { CollectionConfig, Config } from '@hanzo/cms'
 
 import chalk from 'chalk'
-import { hasAutosaveEnabled } from @hanzo/cms'from 
+import { hasAutosaveEnabled } from '@hanzo/cms/shared'
 
 import type { PluginDefaultTranslationsObject } from './translations/types.js'
 import type { MultiTenantPluginConfig } from './types.js'

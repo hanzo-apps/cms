@@ -1,5 +1,5 @@
 'use client'
-import type { DefaultCellComponentProps } from @hanzo/cms'from 
+import type { DefaultCellComponentProps } from '@hanzo/cms'
 
 import React from 'react'
 

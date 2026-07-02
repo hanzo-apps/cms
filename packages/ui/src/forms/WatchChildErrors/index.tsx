@@ -1,5 +1,5 @@
 'use client'
-import type { ClientField } from @hanzo/cms'from 
+import type { ClientField } from '@hanzo/cms'
 import type React from 'react'
 
 import { useThrottledEffect } from '../../hooks/useThrottledEffect.js'

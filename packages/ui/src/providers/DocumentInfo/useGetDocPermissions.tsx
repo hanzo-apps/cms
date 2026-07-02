@@ -1,6 +1,6 @@
-import type { Data, SanitizedDocumentPermissions, SanitizedPermissions } from @hanzo/cms'from 
+import type { Data, SanitizedDocumentPermissions, SanitizedPermissions } from '@hanzo/cms'
 
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React from 'react'
 

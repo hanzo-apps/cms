@@ -4,7 +4,7 @@ import type {
   ResolvedFilterOptions,
   SelectFieldClient,
   TextFieldClient,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import React from 'react'
 

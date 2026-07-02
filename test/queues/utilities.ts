@@ -3,7 +3,7 @@ import {
   countRunnableOrActiveJobsForQueue,
   createLocalReq,
   type Payload,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export async function waitUntilAutorunIsDone({
   payload,

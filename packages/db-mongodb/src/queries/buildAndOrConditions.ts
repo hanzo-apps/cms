@@ -1,4 +1,4 @@
-import type { FlattenedField, Payload, Where } from @hanzo/cms'from 
+import type { FlattenedField, Payload, Where } from '@hanzo/cms'
 
 import { parseParams } from './parseParams.js'
 

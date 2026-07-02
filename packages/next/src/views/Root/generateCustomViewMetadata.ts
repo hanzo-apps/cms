@@ -5,7 +5,7 @@ import type {
   SanitizedCollectionConfig,
   SanitizedConfig,
   SanitizedGlobalConfig,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { generateMetadata } from '../../utilities/meta.js'
 

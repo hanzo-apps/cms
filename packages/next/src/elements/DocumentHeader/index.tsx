@@ -3,7 +3,7 @@ import type {
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
   SanitizedPermissions,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { Gutter, RenderTitle } from '@hanzo/cms-ui'
 import React from 'react'

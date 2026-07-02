@@ -1,5 +1,5 @@
 'use client'
-import type { LabelFunction, OptionObject, StaticDescription, StaticLabel } from @hanzo/cms'from 
+import type { LabelFunction, OptionObject, StaticDescription, StaticLabel } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'

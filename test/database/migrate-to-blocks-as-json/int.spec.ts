@@ -5,7 +5,7 @@ import { rmSync } from 'fs'
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import { expect, it } from 'vitest'
 
 import { describe } from '../../__helpers/int/vitest.js'

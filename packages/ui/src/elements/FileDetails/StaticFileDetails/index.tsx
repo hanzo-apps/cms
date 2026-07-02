@@ -9,7 +9,7 @@ import './index.scss'
 
 const baseClass = 'file-details'
 
-import type { Data, FileSizes, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { Data, FileSizes, SanitizedCollectionConfig } from '@hanzo/cms'
 
 export type StaticFileDetailsProps = {
   customUploadActions?: React.ReactNode[]

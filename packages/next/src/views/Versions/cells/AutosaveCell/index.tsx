@@ -1,5 +1,5 @@
 'use client'
-import type { TypeWithVersion } from @hanzo/cms'from 
+import type { TypeWithVersion } from '@hanzo/cms'
 
 import { Pill, useTranslation } from '@hanzo/cms-ui'
 import React from 'react'

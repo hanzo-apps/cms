@@ -1,4 +1,4 @@
-import type { Field } from @hanzo/cms'from 
+import type { Field } from '@hanzo/cms'
 
 import { pagesSlug, postsSlug } from '../shared.js'
 import deepMerge from '../utilities/deepMerge.js'

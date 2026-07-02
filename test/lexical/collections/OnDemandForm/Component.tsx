@@ -1,7 +1,7 @@
 'use client'
 
 import type { DefaultNodeTypes } from '@hanzo/cms-richtext-lexical'
-import type { JSONFieldClientComponent } from @hanzo/cms'from 
+import type { JSONFieldClientComponent } from '@hanzo/cms'
 
 import { buildEditorState, RenderLexical } from '@hanzo/cms-richtext-lexical/client'
 

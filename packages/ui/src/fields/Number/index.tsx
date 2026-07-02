@@ -1,8 +1,8 @@
 'use client'
-import type { NumberFieldClientComponent, NumberFieldClientProps } from @hanzo/cms'from 
+import type { NumberFieldClientComponent, NumberFieldClientProps } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
-import { isNumber } from @hanzo/cms'from 
+import { isNumber } from '@hanzo/cms/shared'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import type { Option } from '../../elements/ReactSelect/types.js'

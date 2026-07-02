@@ -1,8 +1,8 @@
 import type { ObjMap } from 'graphql/jsutils/ObjMap.js'
 import type { GraphQLFieldConfig, GraphQLFieldResolver } from 'graphql/type/definition.js'
-import type { PayloadRequest } from @hanzo/cms'from 
+import type { PayloadRequest } from '@hanzo/cms'
 
-import { isolateObjectProperty } from @hanzo/cms'from 
+import { isolateObjectProperty } from '@hanzo/cms'
 
 type PayloadContext = { req: PayloadRequest }
 

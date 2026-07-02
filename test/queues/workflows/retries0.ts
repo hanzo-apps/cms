@@ -1,4 +1,4 @@
-import type { WorkflowConfig } from @hanzo/cms'from 
+import type { WorkflowConfig } from '@hanzo/cms'
 
 export const retries0Workflow: WorkflowConfig<'workflowRetries0'> = {
   slug: 'workflowRetries0',

@@ -1,4 +1,4 @@
-import type { DynamicMigrationTemplate } from @hanzo/cms'from 
+import type { DynamicMigrationTemplate } from '@hanzo/cms'
 
 import { buildDynamicPredefinedBlocksToJsonMigration } from '@hanzo/cms-drizzle'
 

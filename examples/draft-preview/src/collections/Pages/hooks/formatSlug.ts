@@ -1,4 +1,4 @@
-import type { FieldHook } from @hanzo/cms'from 
+import type { FieldHook } from '@hanzo/cms'
 
 const format = (val: string): string =>
   val

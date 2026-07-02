@@ -1,8 +1,8 @@
 'use client'
-import type { DefaultCellComponentProps, OptionObject, SelectFieldClient } from @hanzo/cms'from 
+import type { DefaultCellComponentProps, OptionObject, SelectFieldClient } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
-import { optionsAreObjects } from @hanzo/cms'from 
+import { optionsAreObjects } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { useTranslation } from '../../../../../providers/Translation/index.js'

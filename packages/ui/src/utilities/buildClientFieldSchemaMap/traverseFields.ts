@@ -7,10 +7,10 @@ import type {
   FieldSchemaMap,
   Payload,
   TabAsFieldClient,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
-import { createClientBlocks, createClientFields } from @hanzo/cms'from 
-import { fieldAffectsData, getFieldPaths, tabHasName } from @hanzo/cms'from 
+import { createClientBlocks, createClientFields } from '@hanzo/cms'
+import { fieldAffectsData, getFieldPaths, tabHasName } from '@hanzo/cms/shared'
 
 type Args = {
   clientSchemaMap: ClientFieldSchemaMap

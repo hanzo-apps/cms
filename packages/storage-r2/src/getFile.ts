@@ -1,10 +1,10 @@
-import type { CollectionConfig, PayloadRequest } from @hanzo/cms'from 
+import type { CollectionConfig, PayloadRequest } from '@hanzo/cms'
 
 import {
   getFilePrefix as getDocPrefix,
   getFileKey,
 } from '@hanzo/cms-plugin-cloud-storage/utilities'
-import { getRangeRequestInfo } from @hanzo/cms'from 
+import { getRangeRequestInfo } from '@hanzo/cms/internal'
 
 import type { R2Bucket } from './types.js'
 

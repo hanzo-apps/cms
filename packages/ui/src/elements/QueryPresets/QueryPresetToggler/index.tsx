@@ -1,5 +1,5 @@
 'use client'
-import type { QueryPreset } from @hanzo/cms'from 
+import type { QueryPreset } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 

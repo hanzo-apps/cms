@@ -5,7 +5,7 @@ import './index.scss'
 
 const baseClass = 'thumbnail'
 
-import type { SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { SanitizedCollectionConfig } from '@hanzo/cms'
 
 import { File } from '../../graphics/File/index.js'
 import { appendCacheTag } from '../../utilities/appendCacheTag.js'

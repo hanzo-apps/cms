@@ -1,5 +1,5 @@
 'use client'
-import type { ClientWidget } from @hanzo/cms'from 
+import type { ClientWidget } from '@hanzo/cms'
 
 import {
   Button,

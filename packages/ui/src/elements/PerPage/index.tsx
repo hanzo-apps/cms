@@ -1,6 +1,6 @@
 'use client'
 // TODO: abstract the `next/navigation` dependency out from this component
-import { collectionDefaults, isNumber } from @hanzo/cms'from 
+import { collectionDefaults, isNumber } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { ChevronIcon } from '../../icons/Chevron/index.js'

@@ -11,7 +11,7 @@ import type { SerializedEditorState } from '@hanzo/cms-richtext-lexical/lexical'
 import { buildInitialFormState } from './buildInitialFormState'
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
-import { DefaultDocumentIDType } from @hanzo/cms'from 
+import { DefaultDocumentIDType } from '@hanzo/cms'
 
 export type Value = unknown
 

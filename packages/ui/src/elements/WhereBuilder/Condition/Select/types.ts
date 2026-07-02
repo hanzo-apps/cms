@@ -1,4 +1,4 @@
-import type { LabelFunction, Option, SelectFieldClient } from @hanzo/cms'from 
+import type { LabelFunction, Option, SelectFieldClient } from '@hanzo/cms'
 
 import type { DefaultFilterProps } from '../types.js'
 

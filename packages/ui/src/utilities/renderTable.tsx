@@ -14,10 +14,10 @@ import type {
   SanitizedCollectionConfig,
   SanitizedFieldsPermissions,
   ViewTypes,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { getTranslation, type I18nClient } from '@hanzo/cms-translations'
-import { fieldAffectsData, fieldIsHiddenOrDisabled } from @hanzo/cms'from 
+import { fieldAffectsData, fieldIsHiddenOrDisabled } from '@hanzo/cms/shared'
 import React from 'react'
 
 import type { BuildColumnStateArgs } from '../providers/TableColumns/buildColumnState/index.js'

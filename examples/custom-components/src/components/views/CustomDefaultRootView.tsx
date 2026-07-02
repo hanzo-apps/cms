@@ -1,4 +1,4 @@
-import type { AdminViewProps } from @hanzo/cms'from 
+import type { AdminViewProps } from '@hanzo/cms'
 
 import { DefaultTemplate } from '@hanzo/cms-next/templates'
 import { Gutter } from '@hanzo/cms-ui'

@@ -1,4 +1,4 @@
-import type { Config } from @hanzo/cms'from 
+import type { Config } from '@hanzo/cms'
 
 import { multiTenantPlugin } from '@hanzo/cms-plugin-multi-tenant'
 import { getTenantFromCookie } from '@hanzo/cms-plugin-multi-tenant/utilities'

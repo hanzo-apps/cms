@@ -1,5 +1,5 @@
 import { fieldSchemasToFormState } from '@hanzo/cms-ui/forms/fieldSchemasToFormState'
-import { isValidID } from @hanzo/cms'from 
+import { isValidID } from '@hanzo/cms'
 
 import type { NodeValidation } from '../../typesServer.js'
 import type { UploadFeatureProps } from './index.js'

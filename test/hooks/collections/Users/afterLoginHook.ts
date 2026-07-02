@@ -1,4 +1,4 @@
-import type { CollectionAfterLoginHook } from @hanzo/cms'from 
+import type { CollectionAfterLoginHook } from '@hanzo/cms'
 
 export const afterLoginHook: CollectionAfterLoginHook = async ({ req, user }) => {
   return req.payload.update({

@@ -18,7 +18,7 @@ import { useSearchParams } from 'next/navigation.js'
 
 import './index.scss'
 
-import { formatAdminURL, hasDraftsEnabled } from @hanzo/cms'from 
+import { formatAdminURL, hasDraftsEnabled } from '@hanzo/cms/shared'
 import * as React from 'react'
 
 import { LocaleSelector } from './LocaleSelector/index.js'

@@ -1,4 +1,4 @@
-import type { GlobalConfig } from @hanzo/cms'from 
+import type { GlobalConfig } from '@hanzo/cms'
 
 import { customTabComponent, overriddenDefaultRouteTabLabel } from '../shared.js'
 import { customGlobalViews2GlobalSlug } from '../slugs.js'

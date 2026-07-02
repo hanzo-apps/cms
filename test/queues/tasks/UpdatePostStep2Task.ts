@@ -1,4 +1,4 @@
-import type { TaskConfig } from @hanzo/cms'from 
+import type { TaskConfig } from '@hanzo/cms'
 
 import { updatePostStep2 } from '../runners/updatePost.js'
 

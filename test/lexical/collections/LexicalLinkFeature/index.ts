@@ -1,4 +1,4 @@
-import type { CheckboxField, CollectionConfig } from @hanzo/cms'from 
+import type { CheckboxField, CollectionConfig } from '@hanzo/cms'
 
 import {
   FixedToolbarFeature,

@@ -1,11 +1,11 @@
 'use client'
 
-import type { CollectionSlug, Document } from @hanzo/cms'from 
-import type { FolderBreadcrumb, FolderOrDocument } from @hanzo/cms'from 
+import type { CollectionSlug, Document } from '@hanzo/cms'
+import type { FolderBreadcrumb, FolderOrDocument } from '@hanzo/cms/shared'
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'
-import { extractID } from @hanzo/cms'from 
+import { extractID } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { useAuth } from '../../../../providers/Auth/index.js'

@@ -1,6 +1,6 @@
 import type { I18nClient } from '@hanzo/cms-translations'
 import type { Metadata } from 'next'
-import type { SanitizedConfig } from @hanzo/cms'from 
+import type { SanitizedConfig } from '@hanzo/cms'
 
 import { generateMetadata } from '../../utilities/meta.js'
 

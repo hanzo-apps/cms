@@ -1,5 +1,5 @@
 'use client'
-import type { CodeFieldClientComponent } from @hanzo/cms'from 
+import type { CodeFieldClientComponent } from '@hanzo/cms'
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 

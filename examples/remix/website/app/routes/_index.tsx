@@ -1,6 +1,6 @@
 import type { ActionFunctionArgs, MetaFunction } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
-import { getPayload, PaginatedDocs } from @hanzo/cms'from 
+import { getPayload, PaginatedDocs } from '@hanzo/cms'
 import { config, Post } from 'payload-app'
 
 export const meta: MetaFunction = () => {

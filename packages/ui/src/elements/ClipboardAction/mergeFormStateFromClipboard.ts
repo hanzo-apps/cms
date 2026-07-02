@@ -1,4 +1,4 @@
-import type { FieldState, FormState } from @hanzo/cms'from 
+import type { FieldState, FormState } from '@hanzo/cms'
 
 import ObjectIdImport from 'bson-objectid'
 

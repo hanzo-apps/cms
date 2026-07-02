@@ -6,7 +6,7 @@ import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
 import { getTranslation } from '@hanzo/cms-translations'
 import { Button, useConfig, usePayloadAPI, useTranslation } from '@hanzo/cms-ui'
 import { $getNodeByKey } from 'lexical'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useCallback, useReducer, useRef, useState } from 'react'
 
 import type { RelationshipData } from '../../server/nodes/RelationshipNode.js'

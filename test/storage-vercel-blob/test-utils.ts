@@ -1,4 +1,4 @@
-import type { CollectionSlug, Payload } from @hanzo/cms'from 
+import type { CollectionSlug, Payload } from '@hanzo/cms'
 
 import { del, list } from '@vercel/blob'
 import { expect } from 'vitest'

@@ -1,5 +1,5 @@
 import type { TFunction } from '@hanzo/cms-translations'
-import type { ClientWidget, Field, WidgetServerProps } from @hanzo/cms'from 
+import type { ClientWidget, Field, WidgetServerProps } from '@hanzo/cms'
 
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import React from 'react'

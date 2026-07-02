@@ -1,6 +1,6 @@
-import type { Block, Field, SanitizedConfig, TypedUser } from @hanzo/cms'from 
+import type { Block, Field, SanitizedConfig, TypedUser } from '@hanzo/cms'
 
-import { combineWhereConstraints } from @hanzo/cms'from 
+import { combineWhereConstraints } from '@hanzo/cms/shared'
 
 /**
  * Recursively applies baseFilter from collection config to relationship fields

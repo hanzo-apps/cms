@@ -1,9 +1,9 @@
-import type { Where } from @hanzo/cms'from 
+import type { Where } from '@hanzo/cms'
 
 import configPromise from '@payload-config'
 import { headers as getHeaders } from 'next/headers'
 import { notFound, redirect } from 'next/navigation'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 import React from 'react'
 
 import { RenderPage } from '../../../../components/RenderPage'

@@ -1,5 +1,5 @@
 import type { QueryOptions, UpdateQuery } from 'mongoose'
-import type { Job, UpdateJobs, Where } from @hanzo/cms'from 
+import type { Job, UpdateJobs, Where } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 

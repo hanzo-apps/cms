@@ -1,4 +1,4 @@
-import type { ListQuery, Where } from @hanzo/cms'from 
+import type { ListQuery, Where } from '@hanzo/cms'
 
 /**
  * Sanitize empty strings from the query, e.g. `?preset=`

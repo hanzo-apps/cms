@@ -17,7 +17,7 @@ import {
 import sharp from 'sharp' // editor-import
 import { UnderlineFeature } from '@hanzo/cms-richtext-lexical'
 import path from 'path'
-import { buildConfig } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 
 import Categories from './collections/Categories'

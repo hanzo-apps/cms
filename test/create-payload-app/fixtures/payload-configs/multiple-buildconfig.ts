@@ -1,5 +1,5 @@
 import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
-import { buildConfig } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
 
 // This is a helper config (not the main one)
 const helperConfig = buildConfig({

@@ -1,7 +1,7 @@
 import type { PipelineStage } from 'mongoose'
-import type { FindDistinct, FlattenedField } from @hanzo/cms'from 
+import type { FindDistinct, FlattenedField } from '@hanzo/cms'
 
-import { getFieldByPath } from @hanzo/cms'from 
+import { getFieldByPath } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 

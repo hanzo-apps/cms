@@ -1,5 +1,5 @@
 import type { QueryOptions, UpdateQuery } from 'mongoose'
-import type { UpdateOne } from @hanzo/cms'from 
+import type { UpdateOne } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 

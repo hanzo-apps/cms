@@ -9,11 +9,11 @@ import type {
   SanitizedConfig,
   TraverseFieldsCallback,
   UploadField,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { Types } from 'mongoose'
-import { flattenAllFields, traverseFields } from @hanzo/cms'from 
-import { fieldAffectsData, fieldShouldBeLocalized } from @hanzo/cms'from 
+import { flattenAllFields, traverseFields } from '@hanzo/cms'
+import { fieldAffectsData, fieldShouldBeLocalized } from '@hanzo/cms/shared'
 
 import type { MongooseAdapter } from '../index.js'
 

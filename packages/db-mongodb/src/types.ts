@@ -27,7 +27,7 @@ import type {
   TextareaField,
   TextField,
   UploadField,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import type { BuildQueryArgs } from './queries/getBuildQueryPlugin.js'
 

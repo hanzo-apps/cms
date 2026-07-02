@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test'
 
 import { expect, test } from '@playwright/test'
-import { wait } from @hanzo/cms'from 
+import { wait } from '@hanzo/cms/shared'
 
 import type { Config, Post } from '../../payload-types.js'
 

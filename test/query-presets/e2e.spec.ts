@@ -5,7 +5,7 @@ import { addGroupBy, clearGroupBy } from '__helpers/e2e/groupBy/index.js'
 import { openNav } from '__helpers/e2e/toggleNav.js'
 import { reInitializeDB } from '__helpers/shared/clearAndSeed/reInitializeDB.js'
 import * as path from 'path'
-import { wait } from @hanzo/cms'from 
+import { wait } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../__helpers/shared/sdk/index.js'

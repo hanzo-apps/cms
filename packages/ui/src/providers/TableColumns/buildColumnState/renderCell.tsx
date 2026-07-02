@@ -8,10 +8,10 @@ import type {
   Payload,
   PayloadRequest,
   ViewTypes,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
-import { MissingEditorProp } from @hanzo/cms'from 
-import { formatAdminURL } from @hanzo/cms'from 
+import { MissingEditorProp } from '@hanzo/cms'
+import { formatAdminURL } from '@hanzo/cms/shared'
 
 import { RenderCustomComponent } from '../../../elements/RenderCustomComponent/index.js'
 import { RenderServerComponent } from '../../../elements/RenderServerComponent/index.js'

@@ -1,4 +1,4 @@
-import type { Block, Field, UploadCollectionSlug } from @hanzo/cms'from 
+import type { Block, Field, UploadCollectionSlug } from '@hanzo/cms'
 
 import type { PaymentFieldConfig } from '../../types.js'
 

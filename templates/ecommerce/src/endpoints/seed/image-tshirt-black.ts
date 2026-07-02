@@ -1,4 +1,4 @@
-import { RequiredDataFromCollectionSlug } from @hanzo/cms'from 
+import { RequiredDataFromCollectionSlug } from '@hanzo/cms'
 
 export const imageTshirtBlackData: RequiredDataFromCollectionSlug<'media'> = {
   alt: 'Black tshirt with the Payload logo on the front',

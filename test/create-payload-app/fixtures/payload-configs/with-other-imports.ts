@@ -1,8 +1,8 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
-import { buildConfig } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
 
 const Users: CollectionConfig = {
   slug: 'users',

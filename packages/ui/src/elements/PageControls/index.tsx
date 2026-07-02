@@ -1,7 +1,7 @@
 'use client'
-import type { ClientCollectionConfig, PaginatedDocs } from @hanzo/cms'from 
+import type { ClientCollectionConfig, PaginatedDocs } from '@hanzo/cms'
 
-import { isNumber } from @hanzo/cms'from 
+import { isNumber } from '@hanzo/cms/shared'
 import React, { Fragment } from 'react'
 
 import type { IListQueryContext } from '../../providers/ListQuery/types.js'

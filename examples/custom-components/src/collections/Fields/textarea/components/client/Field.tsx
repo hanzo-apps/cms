@@ -1,5 +1,5 @@
 'use client'
-import type { TextareaFieldClientComponent } from @hanzo/cms'from 
+import type { TextareaFieldClientComponent } from '@hanzo/cms'
 
 import { TextareaField } from '@hanzo/cms-ui'
 import React from 'react'

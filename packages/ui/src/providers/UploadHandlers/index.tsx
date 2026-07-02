@@ -1,5 +1,5 @@
 'use client'
-import type { UploadCollectionSlug } from @hanzo/cms'from 
+import type { UploadCollectionSlug } from '@hanzo/cms'
 
 import React, { useState } from 'react'
 

@@ -1,6 +1,6 @@
 'use client'
 
-import type { FolderOrDocument } from @hanzo/cms'from 
+import type { FolderOrDocument } from '@hanzo/cms/shared'
 
 import { useDroppable } from '@dnd-kit/core'
 import { getTranslation } from '@hanzo/cms-translations'

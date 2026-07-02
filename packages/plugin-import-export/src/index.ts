@@ -1,6 +1,6 @@
-import type { Config } from @hanzo/cms'from 
+import type { Config } from '@hanzo/cms'
 
-import { deepMergeSimple } from @hanzo/cms'from 
+import { deepMergeSimple } from '@hanzo/cms'
 
 import type { PluginDefaultTranslationsObject } from './translations/types.js'
 import type {

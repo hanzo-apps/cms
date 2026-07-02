@@ -29,7 +29,7 @@ import { default as default_8a7ab0eb7ab5c511aba12e68480bfe5e } from '@/component
 import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@hanzo/cms-storage-vercel-blob/client'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@hanzo/cms-next/rsc'
 
-/** @type import(@hanzo/cms'import().ImportMap */
+/** @type import('@hanzo/cms'import().ImportMap */
 export const importMap = {
   '@hanzo/cms-richtext-lexical/rsc#RscEntryLexicalCell':
     RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,

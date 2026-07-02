@@ -1,6 +1,6 @@
-import type { FlattenedArrayField } from @hanzo/cms'from 
+import type { FlattenedArrayField } from '@hanzo/cms'
 
-import { fieldShouldBeLocalized } from @hanzo/cms'from 
+import { fieldShouldBeLocalized } from '@hanzo/cms/shared'
 
 import type { DrizzleAdapter } from '../../types.js'
 import type {

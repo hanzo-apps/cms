@@ -1,4 +1,4 @@
-import type { CollectionConfig, PayloadRequest } from @hanzo/cms'from 
+import type { CollectionConfig, PayloadRequest } from '@hanzo/cms'
 
 export const contextHooksSlug = 'context-hooks'
 const ContextHooks: CollectionConfig = {

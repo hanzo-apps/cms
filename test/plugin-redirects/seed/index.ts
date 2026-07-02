@@ -1,4 +1,4 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import type { PayloadRequest } from '../../../packages/payload/types.js'
 

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { PaginatedDocs, TypedUser, Where } from @hanzo/cms'from 
+import type { PaginatedDocs, TypedUser, Where } from '@hanzo/cms'
 
 import * as qs from 'qs-esm'
 

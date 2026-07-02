@@ -1,8 +1,8 @@
 'use client'
-import type { ClientField } from @hanzo/cms'from 
+import type { ClientField } from '@hanzo/cms'
 
 import { ChevronIcon, FieldDiffLabel, useConfig, useTranslation } from '@hanzo/cms-ui'
-import { fieldIsArrayType, fieldIsBlockType } from @hanzo/cms'from 
+import { fieldIsArrayType, fieldIsBlockType } from '@hanzo/cms/shared'
 import React, { useState } from 'react'
 
 import './index.scss'

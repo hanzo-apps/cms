@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test'
 
 import { expect } from '@playwright/test'
-import { wait } from @hanzo/cms'from 
+import { wait } from '@hanzo/cms/shared'
 import { POLL_TOPASS_TIMEOUT } from 'playwright.config.js'
 
 import { closeAllToasts } from './helpers.js'

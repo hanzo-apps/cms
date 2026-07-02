@@ -1,6 +1,6 @@
-import type { DeleteVersions, FlattenedField } from @hanzo/cms'from 
+import type { DeleteVersions, FlattenedField } from '@hanzo/cms'
 
-import { APIError, buildVersionCollectionFields, buildVersionGlobalFields } from @hanzo/cms'from 
+import { APIError, buildVersionCollectionFields, buildVersionGlobalFields } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 import type { CollectionModel } from './types.js'

@@ -1,7 +1,7 @@
 'use client'
 
 import type { I18nClient } from '@hanzo/cms-translations'
-import type { BlocksFieldClient, ClientBlock } from @hanzo/cms'from 
+import type { BlocksFieldClient, ClientBlock } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 

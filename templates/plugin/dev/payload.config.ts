@@ -2,7 +2,7 @@ import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 import { MongoMemoryReplSet } from 'mongodb-memory-server'
 import path from 'path'
-import { buildConfig } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
 import { myPlugin } from 'plugin-package-name-placeholder'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'

@@ -1,5 +1,5 @@
 import type { User } from '@/payload-types'
-import type { Access, Where } from @hanzo/cms'from 
+import type { Access, Where } from '@hanzo/cms'
 import { getTenantFromCookie } from '@hanzo/cms-plugin-multi-tenant/utilities'
 
 import { isSuperAdmin } from '../../../access/isSuperAdmin'

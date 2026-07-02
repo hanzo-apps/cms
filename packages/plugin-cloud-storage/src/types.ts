@@ -6,7 +6,7 @@ import type {
   PayloadRequest,
   TypeWithID,
   UploadCollectionSlug,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export interface File {
   buffer: Buffer

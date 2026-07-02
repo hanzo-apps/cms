@@ -1,6 +1,6 @@
 import path from 'path'
-import { _internal_jobSystemGlobals, _internal_resetJobSystemGlobals, type Payload } from @hanzo/cms'from 
-import { wait } from @hanzo/cms'from 
+import { _internal_jobSystemGlobals, _internal_resetJobSystemGlobals, type Payload } from '@hanzo/cms'
+import { wait } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 

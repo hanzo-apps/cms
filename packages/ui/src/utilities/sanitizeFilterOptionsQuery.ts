@@ -1,4 +1,4 @@
-import type { Where } from @hanzo/cms'from 
+import type { Where } from '@hanzo/cms'
 
 export const sanitizeFilterOptionsQuery = (query: Where): Where => {
   for (const key in query) {

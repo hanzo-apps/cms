@@ -1,4 +1,4 @@
-import { FlattenedField } from @hanzo/cms'from 
+import { FlattenedField } from '@hanzo/cms'
 
 import { describe, expect, it } from 'vitest'
 

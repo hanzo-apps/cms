@@ -1,4 +1,4 @@
-import type { DocumentPreferences, Payload, TypedUser } from @hanzo/cms'from 
+import type { DocumentPreferences, Payload, TypedUser } from '@hanzo/cms'
 
 import { sanitizeID } from '@hanzo/cms-ui/shared'
 

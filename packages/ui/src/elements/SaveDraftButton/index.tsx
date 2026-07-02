@@ -1,8 +1,8 @@
 'use client'
 
-import type { SaveDraftButtonClientProps } from @hanzo/cms'from 
+import type { SaveDraftButtonClientProps } from '@hanzo/cms'
 
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useCallback, useRef } from 'react'
 
 import { useForm, useFormModified } from '../../forms/Form/context.js'

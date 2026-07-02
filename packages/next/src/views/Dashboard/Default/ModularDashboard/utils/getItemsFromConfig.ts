@@ -1,4 +1,4 @@
-import type { DashboardConfig, PayloadRequest, Widget, WidgetInstance } from @hanzo/cms'from 
+import type { DashboardConfig, PayloadRequest, Widget, WidgetInstance } from '@hanzo/cms'
 
 import type { WidgetItem } from '../index.client.js'
 

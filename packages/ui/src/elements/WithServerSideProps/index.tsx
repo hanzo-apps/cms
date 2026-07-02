@@ -1,6 +1,6 @@
-import type { WithServerSidePropsComponent } from @hanzo/cms'from 
+import type { WithServerSidePropsComponent } from '@hanzo/cms'
 
-import { isReactServerComponentOrFunction } from @hanzo/cms'from 
+import { isReactServerComponentOrFunction } from '@hanzo/cms/shared'
 import React from 'react'
 
 export const WithServerSideProps: WithServerSidePropsComponent = ({

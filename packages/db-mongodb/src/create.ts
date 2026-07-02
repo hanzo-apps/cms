@@ -1,4 +1,4 @@
-import type { Create } from @hanzo/cms'from 
+import type { Create } from '@hanzo/cms'
 
 import { type CreateOptions, Types } from 'mongoose'
 

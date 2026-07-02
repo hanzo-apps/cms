@@ -1,5 +1,5 @@
 'use client'
-import type { ClientBlock, ClientField, Labels, Row, SanitizedFieldPermissions } from @hanzo/cms'from 
+import type { ClientBlock, ClientField, Labels, Row, SanitizedFieldPermissions } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'

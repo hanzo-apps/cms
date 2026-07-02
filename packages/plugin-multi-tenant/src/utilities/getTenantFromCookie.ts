@@ -1,5 +1,5 @@
-import { parseCookies } from @hanzo/cms'from 
-import { isNumber } from @hanzo/cms'from 
+import { parseCookies } from '@hanzo/cms'
+import { isNumber } from '@hanzo/cms/shared'
 
 /**
  * A function that takes request headers and an idType and returns the current tenant ID from the cookie

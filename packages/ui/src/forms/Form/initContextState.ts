@@ -1,5 +1,5 @@
 'use client'
-import type { Data, FormField, FormState } from @hanzo/cms'from 
+import type { Data, FormField, FormState } from '@hanzo/cms'
 
 import type {
   Context,

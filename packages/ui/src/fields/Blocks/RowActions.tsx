@@ -1,5 +1,5 @@
 'use client'
-import type { ClientBlock, ClientField, Labels } from @hanzo/cms'from 
+import type { ClientBlock, ClientField, Labels } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
 import React from 'react'

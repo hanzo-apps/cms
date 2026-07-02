@@ -1,9 +1,9 @@
 import type { FilterQuery } from 'mongoose'
-import type { FlattenedField, Operator, PathToQuery, Payload } from @hanzo/cms'from 
+import type { FlattenedField, Operator, PathToQuery, Payload } from '@hanzo/cms'
 
 import { Types } from 'mongoose'
-import { APIError, escapeRegExp, getFieldByPath, getLocalizedPaths } from @hanzo/cms'from 
-import { validOperatorSet } from @hanzo/cms'from 
+import { APIError, escapeRegExp, getFieldByPath, getLocalizedPaths } from '@hanzo/cms'
+import { validOperatorSet } from '@hanzo/cms/shared'
 
 import type { MongooseAdapter } from '../index.js'
 import type { OperatorMapKey } from './operatorMap.js'

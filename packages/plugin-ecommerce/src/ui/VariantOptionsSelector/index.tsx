@@ -1,4 +1,4 @@
-import type { SelectFieldServerProps } from @hanzo/cms'from 
+import type { SelectFieldServerProps } from '@hanzo/cms'
 
 import { FieldLabel } from '@hanzo/cms-ui'
 

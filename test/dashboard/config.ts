@@ -1,4 +1,4 @@
-import type { WidgetInstance } from @hanzo/cms'from 
+import type { WidgetInstance } from '@hanzo/cms'
 
 import { fileURLToPath } from 'node:url'
 import path from 'path'

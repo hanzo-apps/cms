@@ -1,4 +1,4 @@
-import type { ServerProps } from @hanzo/cms'from 
+import type { ServerProps } from '@hanzo/cms'
 
 import React, { Fragment } from 'react'
 

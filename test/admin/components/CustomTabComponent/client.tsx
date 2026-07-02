@@ -1,6 +1,6 @@
 'use client'
 
-import type { DocumentTabClientProps } from @hanzo/cms'from 
+import type { DocumentTabClientProps } from '@hanzo/cms'
 
 import { useConfig } from '@hanzo/cms-ui'
 import LinkImport from 'next/link.js'

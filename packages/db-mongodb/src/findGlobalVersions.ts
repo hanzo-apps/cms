@@ -1,7 +1,7 @@
 import type { PaginateOptions, QueryOptions } from 'mongoose'
-import type { FindGlobalVersions } from @hanzo/cms'from 
+import type { FindGlobalVersions } from '@hanzo/cms'
 
-import { APIError, buildVersionGlobalFields, flattenWhereToOperators } from @hanzo/cms'from 
+import { APIError, buildVersionGlobalFields, flattenWhereToOperators } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 

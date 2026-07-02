@@ -8,7 +8,7 @@ import type {
   PayloadRequest,
   TypeWithID,
   ValidationError,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import {
   migrateRelationshipsV2_V3,
@@ -26,7 +26,7 @@ import {
   isolateObjectProperty,
   killTransaction,
   QueryError,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 import { assert } from 'ts-essentials'
 import { fileURLToPath } from 'url'
 import { afterAll, afterEach, beforeAll, beforeEach, expect } from 'vitest'

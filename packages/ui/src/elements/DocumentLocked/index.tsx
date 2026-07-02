@@ -1,5 +1,5 @@
 'use client'
-import type { ClientUser } from @hanzo/cms'from 
+import type { ClientUser } from '@hanzo/cms'
 
 import React, { useEffect } from 'react'
 

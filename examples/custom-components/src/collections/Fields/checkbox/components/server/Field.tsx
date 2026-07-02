@@ -1,4 +1,4 @@
-import type { CheckboxFieldServerComponent } from @hanzo/cms'from 
+import type { CheckboxFieldServerComponent } from '@hanzo/cms'
 import type React from 'react'
 
 import { CheckboxField } from '@hanzo/cms-ui'

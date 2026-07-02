@@ -1,6 +1,6 @@
-import type { BeforeLoginHook, CollectionConfig, Payload } from @hanzo/cms'from 
+import type { BeforeLoginHook, CollectionConfig, Payload } from '@hanzo/cms'
 
-import { AuthenticationError } from @hanzo/cms'from 
+import { AuthenticationError } from '@hanzo/cms'
 
 import { devUser, regularUser } from '../../../credentials.js'
 import { afterLoginHook } from './afterLoginHook.js'

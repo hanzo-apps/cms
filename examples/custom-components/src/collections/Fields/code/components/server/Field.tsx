@@ -1,4 +1,4 @@
-import type { CodeFieldServerComponent } from @hanzo/cms'from 
+import type { CodeFieldServerComponent } from '@hanzo/cms'
 import type React from 'react'
 
 import { CodeField } from '@hanzo/cms-ui'

@@ -1,6 +1,6 @@
 'use client'
 
-import type { SelectFieldClientComponent } from @hanzo/cms'from 
+import type { SelectFieldClientComponent } from '@hanzo/cms'
 
 import { SelectField, useDocumentInfo, useField, useLocale } from '@hanzo/cms-ui'
 import React, { useEffect, useRef } from 'react'

@@ -1,6 +1,6 @@
 'use client'
 
-import type { DefaultCellComponentProps, TypedCollection } from @hanzo/cms'from 
+import type { DefaultCellComponentProps, TypedCollection } from '@hanzo/cms'
 
 import { useTranslation } from '@hanzo/cms-ui'
 

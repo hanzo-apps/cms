@@ -1,6 +1,6 @@
 'use client'
 
-import type { FormState } from @hanzo/cms'from 
+import type { FormState } from '@hanzo/cms'
 
 import {
   useDocumentInfo,
@@ -9,7 +9,7 @@ import {
   useServerFunctions,
   useTranslation,
 } from '@hanzo/cms-ui'
-import { reduceFieldsToValues } from @hanzo/cms'from 
+import { reduceFieldsToValues } from '@hanzo/cms/shared'
 import React, { Fragment, useState } from 'react'
 import { Editor, Range, Transforms } from 'slate'
 import { ReactEditor, useSlate } from 'slate-react'

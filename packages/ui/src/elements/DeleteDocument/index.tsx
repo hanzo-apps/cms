@@ -1,10 +1,10 @@
 'use client'
-import type { SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { SanitizedCollectionConfig } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'
 import { useRouter } from 'next/navigation.js'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { Fragment, useCallback, useState } from 'react'
 import { toast } from 'sonner'
 

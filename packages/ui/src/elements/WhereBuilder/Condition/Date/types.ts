@@ -1,4 +1,4 @@
-import type { DateFieldClient } from @hanzo/cms'from 
+import type { DateFieldClient } from '@hanzo/cms'
 
 import type { DefaultFilterProps } from '../types.js'
 

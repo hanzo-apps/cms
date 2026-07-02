@@ -1,4 +1,4 @@
-import type { Block, BlocksField, BlockSlug } from @hanzo/cms'from 
+import type { Block, BlocksField, BlockSlug } from '@hanzo/cms'
 
 export const generateBlocks = (
   blockCount: number,

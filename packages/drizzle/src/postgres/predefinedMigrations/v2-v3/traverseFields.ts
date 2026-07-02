@@ -1,4 +1,4 @@
-import type { FlattenedField, Payload } from @hanzo/cms'from 
+import type { FlattenedField, Payload } from '@hanzo/cms'
 
 import toSnakeCase from 'to-snake-case'
 

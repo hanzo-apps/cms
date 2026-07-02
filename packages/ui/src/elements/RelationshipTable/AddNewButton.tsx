@@ -1,6 +1,6 @@
 'use client'
 import type { I18nClient } from '@hanzo/cms-translations'
-import type { ClientCollectionConfig, SanitizedPermissions } from @hanzo/cms'from 
+import type { ClientCollectionConfig, SanitizedPermissions } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 

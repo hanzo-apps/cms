@@ -1,4 +1,4 @@
-import type { ServerSideEditViewProps } from @hanzo/cms'from 
+import type { ServerSideEditViewProps } from '@hanzo/cms'
 
 import { Gutter } from '@hanzo/cms-ui'
 import React from 'react'

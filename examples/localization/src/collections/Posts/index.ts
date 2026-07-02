@@ -1,4 +1,4 @@
-import type { CollectionConfig, TypedLocale } from @hanzo/cms'from 
+import type { CollectionConfig, TypedLocale } from '@hanzo/cms'
 
 import {
   BlocksFeature,

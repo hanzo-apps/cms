@@ -1,4 +1,4 @@
-import type { RelationshipFieldServerComponent } from @hanzo/cms'from 
+import type { RelationshipFieldServerComponent } from '@hanzo/cms'
 import type React from 'react'
 
 import { RelationshipField } from '@hanzo/cms-ui'

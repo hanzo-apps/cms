@@ -1,4 +1,4 @@
-import type { ClientField } from @hanzo/cms'from 
+import type { ClientField } from '@hanzo/cms'
 
 export const mergeFieldStyles = (
   field: ClientField | Omit<ClientField, 'type'>,

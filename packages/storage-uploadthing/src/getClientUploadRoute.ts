@@ -4,7 +4,7 @@ import {
   type PayloadHandler,
   type PayloadRequest,
   type UploadCollectionSlug,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 type Args = {
   access?: (args: {

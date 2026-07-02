@@ -1,4 +1,4 @@
-import type { CollectionSlug, GlobalSlug } from @hanzo/cms'from 
+import type { CollectionSlug, GlobalSlug } from '@hanzo/cms'
 
 export const collectionSlugs: {
   [key: string]: CollectionSlug

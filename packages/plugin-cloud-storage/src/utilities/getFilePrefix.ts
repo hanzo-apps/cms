@@ -1,4 +1,4 @@
-import type { CollectionConfig, PayloadRequest, UploadConfig } from @hanzo/cms'from 
+import type { CollectionConfig, PayloadRequest, UploadConfig } from '@hanzo/cms'
 
 import { sanitizePrefix } from './sanitizePrefix.js'
 

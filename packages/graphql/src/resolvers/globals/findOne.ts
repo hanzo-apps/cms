@@ -1,7 +1,7 @@
 import type { GraphQLResolveInfo } from 'graphql'
-import type { Document, SanitizedGlobalConfig } from @hanzo/cms'from 
+import type { Document, SanitizedGlobalConfig } from '@hanzo/cms'
 
-import { findOneOperation, isolateObjectProperty } from @hanzo/cms'from 
+import { findOneOperation, isolateObjectProperty } from '@hanzo/cms'
 
 import type { Context } from '../types.js'
 

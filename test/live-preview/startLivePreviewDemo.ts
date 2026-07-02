@@ -1,5 +1,5 @@
 import type { ChildProcessWithoutNullStreams } from 'child_process'
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import { spawn } from 'child_process'
 import path from 'path'

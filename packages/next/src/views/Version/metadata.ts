@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import type { MetaConfig } from @hanzo/cms'from 
+import type { MetaConfig } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import { formatDate } from '@hanzo/cms-ui/shared'

@@ -1,5 +1,5 @@
 'use client'
-import type { EditViewProps } from @hanzo/cms'from 
+import type { EditViewProps } from '@hanzo/cms'
 
 import { useDraggable } from '@dnd-kit/core'
 import React from 'react'

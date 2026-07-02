@@ -1,4 +1,4 @@
-import type { CollectionSlug, PayloadTypesShape, TypedLocale } from @hanzo/cms'from 
+import type { CollectionSlug, PayloadTypesShape, TypedLocale } from '@hanzo/cms'
 
 import type { PayloadSDK } from '../index.js'
 import type { DataFromCollectionSlug, PopulateType } from '../types.js'

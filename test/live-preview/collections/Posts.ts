@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { Archive } from '../blocks/ArchiveBlock/index.js'
 import { CallToAction } from '../blocks/CallToAction/index.js'

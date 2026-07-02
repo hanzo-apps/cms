@@ -1,5 +1,5 @@
 import type { SerializedEditorState } from 'lexical'
-import type { Field } from @hanzo/cms'from 
+import type { Field } from '@hanzo/cms'
 
 import type { HTMLConvertersAsync, HTMLConvertersFunctionAsync } from '../types.js'
 

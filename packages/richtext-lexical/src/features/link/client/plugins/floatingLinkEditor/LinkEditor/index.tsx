@@ -1,6 +1,6 @@
 'use client'
 import type { ElementNode, LexicalNode } from 'lexical'
-import type { Data, FormState } from @hanzo/cms'from 
+import type { Data, FormState } from '@hanzo/cms'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext.js'
 import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
@@ -27,7 +27,7 @@ import {
   KEY_ESCAPE_COMMAND,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 import type { LinkNode } from '../../../../nodes/LinkNode.js'

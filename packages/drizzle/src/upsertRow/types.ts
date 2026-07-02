@@ -1,5 +1,5 @@
 import type { SQL } from 'drizzle-orm'
-import type { FlattenedField, JoinQuery, PayloadRequest, SelectType } from @hanzo/cms'from 
+import type { FlattenedField, JoinQuery, PayloadRequest, SelectType } from '@hanzo/cms'
 
 import type { DrizzleAdapter, DrizzleTransaction, GenericColumn } from '../types.js'
 

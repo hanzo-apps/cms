@@ -1,12 +1,12 @@
-import type { JoinQuery, SanitizedJoins, Where } from @hanzo/cms'from 
+import type { JoinQuery, SanitizedJoins, Where } from '@hanzo/cms'
 
 import {
   appendVersionToQueryKey,
   buildVersionCollectionFields,
   combineQueries,
   getQueryDraftsSort,
-} from @hanzo/cms'from 
-import { fieldShouldBeLocalized } from @hanzo/cms'from 
+} from '@hanzo/cms'
+import { fieldShouldBeLocalized } from '@hanzo/cms/shared'
 
 import type { MongooseAdapter } from '../index.js'
 

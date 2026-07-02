@@ -1,5 +1,5 @@
 import AlertBox from '@/components/AlertBox'
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms/types'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',

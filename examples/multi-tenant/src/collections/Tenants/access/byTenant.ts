@@ -1,4 +1,4 @@
-import type { Access } from @hanzo/cms'from 
+import type { Access } from '@hanzo/cms'
 
 import { isSuperAdmin } from '../../../access/isSuperAdmin'
 

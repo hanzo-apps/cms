@@ -1,4 +1,4 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -22,10 +22,10 @@ import {
   usersSlug,
 } from './slugs.js'
 
-// import type { Payload } from @hanzo/cms'from 
+// import type { Payload } from '@hanzo/cms'
 
 import { buildEditorState, type DefaultNodeTypes } from '@hanzo/cms-richtext-lexical'
-import { getFileByPath } from @hanzo/cms'from 
+import { getFileByPath } from '@hanzo/cms'
 
 import type { LexicalViewsNodes } from './collections/LexicalViews/index.js'
 import type { LexicalViewsFrontendNodes } from './collections/LexicalViewsFrontend/index.js'

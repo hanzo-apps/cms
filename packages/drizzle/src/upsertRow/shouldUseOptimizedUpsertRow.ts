@@ -1,4 +1,4 @@
-import type { FlattenedField } from @hanzo/cms'from 
+import type { FlattenedField } from '@hanzo/cms'
 
 /**
  * Checks whether we should use the upsertRow function for the passed data and otherwise use a simple SQL SET call.

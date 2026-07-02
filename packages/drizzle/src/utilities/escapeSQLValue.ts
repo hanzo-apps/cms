@@ -1,4 +1,4 @@
-import { APIError } from @hanzo/cms'from 
+import { APIError } from '@hanzo/cms'
 
 export const SAFE_STRING_REGEX = /^[\w @.\-+:]*$/
 

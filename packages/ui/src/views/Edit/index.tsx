@@ -1,9 +1,9 @@
 'use client'
 
-import type { ClientUser, DocumentViewClientProps } from @hanzo/cms'from 
+import type { ClientUser, DocumentViewClientProps } from '@hanzo/cms'
 
 import { useRouter, useSearchParams } from 'next/navigation.js'
-import { formatAdminURL, hasAutosaveEnabled } from @hanzo/cms'from 
+import { formatAdminURL, hasAutosaveEnabled } from '@hanzo/cms/shared'
 import React, { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { toast } from 'sonner'
 

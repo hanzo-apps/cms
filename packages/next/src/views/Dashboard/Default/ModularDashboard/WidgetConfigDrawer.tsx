@@ -1,6 +1,6 @@
 'use client'
 
-import type { ClientWidget, FormState } from @hanzo/cms'from 
+import type { ClientWidget, FormState } from '@hanzo/cms'
 
 import {
   Drawer,

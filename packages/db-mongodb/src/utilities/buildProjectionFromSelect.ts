@@ -4,14 +4,14 @@ import type {
   SelectIncludeType,
   SelectMode,
   SelectType,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import {
   deepCopyObjectSimple,
   fieldAffectsData,
   fieldShouldBeLocalized,
   getSelectMode,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/shared'
 
 import type { MongooseAdapter } from '../index.js'
 

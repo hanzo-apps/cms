@@ -1,6 +1,6 @@
 'use client'
 
-import type { Permissions } from @hanzo/cms'from 
+import type { Permissions } from '@hanzo/cms/auth'
 
 import React, { createContext, useCallback, use, useEffect, useState } from 'react'
 

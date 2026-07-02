@@ -1,4 +1,4 @@
-import { FlattenedField, PayloadRequest } from @hanzo/cms'from 
+import { FlattenedField, PayloadRequest } from '@hanzo/cms'
 
 import { getImportFieldFunctions } from './getImportFieldFunctions.js'
 import { unflattenObject } from './unflattenObject.js'

@@ -1,6 +1,6 @@
 'use client'
 
-import type { ViewDescriptionClientProps } from @hanzo/cms'from 
+import type { ViewDescriptionClientProps } from '@hanzo/cms'
 
 import { ViewDescription as DefaultViewDescription } from '@hanzo/cms-ui'
 import React from 'react'

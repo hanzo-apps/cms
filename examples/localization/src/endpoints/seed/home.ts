@@ -1,4 +1,4 @@
-import type { RequiredDataFromCollectionSlug } from @hanzo/cms'from 
+import type { RequiredDataFromCollectionSlug } from '@hanzo/cms'
 
 export const home = (locale: 'en' | 'es' | 'ja'): RequiredDataFromCollectionSlug<'pages'> => ({
   slug: 'home',

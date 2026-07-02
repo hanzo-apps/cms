@@ -1,4 +1,4 @@
-import type { FlattenedField, JoinQuery, SanitizedConfig, TypeWithID } from @hanzo/cms'from 
+import type { FlattenedField, JoinQuery, SanitizedConfig, TypeWithID } from '@hanzo/cms'
 
 import type { DrizzleAdapter } from '../../types.js'
 

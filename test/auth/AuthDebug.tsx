@@ -1,9 +1,9 @@
 'use client'
 
-import type { UIField, User } from @hanzo/cms'from 
+import type { UIField, User } from '@hanzo/cms'
 
 import { useAuth } from '@hanzo/cms-ui'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useEffect, useState } from 'react'
 
 export const AuthDebug: React.FC<UIField> = () => {

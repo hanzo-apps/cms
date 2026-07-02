@@ -1,10 +1,10 @@
 'use client'
 
-import type { UnpublishButtonClientProps } from @hanzo/cms'from 
+import type { UnpublishButtonClientProps } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@hanzo/cms-translations'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React, { useCallback, useEffect, useState } from 'react'
 import { toast } from 'sonner'

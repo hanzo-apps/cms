@@ -1,4 +1,4 @@
-import type { FlattenedField } from @hanzo/cms'from 
+import type { FlattenedField } from '@hanzo/cms'
 
 /**
  * Returns the `flattenedFields` of a group/tab/array field, or undefined for

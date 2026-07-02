@@ -6,7 +6,7 @@ import type {
   TextField,
   TextFieldSingleValidation,
   TypedUser,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import type { LinkFields } from '../nodes/types.js'
 

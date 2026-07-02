@@ -1,5 +1,5 @@
 import type { DrizzleAdapter } from '@hanzo/cms-drizzle/types'
-import type { Connect, Migration } from @hanzo/cms'from 
+import type { Connect, Migration } from '@hanzo/cms'
 
 import { pushDevSchema } from '@hanzo/cms-drizzle'
 import { sql, VercelPool } from '@vercel/postgres'

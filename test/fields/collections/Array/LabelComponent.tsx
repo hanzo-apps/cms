@@ -1,6 +1,6 @@
 'use client'
 
-import type { PayloadClientReactComponent, RowLabelComponent } from @hanzo/cms'from 
+import type { PayloadClientReactComponent, RowLabelComponent } from '@hanzo/cms'
 
 import { useRowLabel } from '@hanzo/cms-ui'
 import React from 'react'

@@ -1,6 +1,6 @@
 import { existsSync, rmSync } from 'fs'
 import path from 'path'
-import { buildConfig, getPayload } from @hanzo/cms'from 
+import { buildConfig, getPayload } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 import { describe, it } from 'vitest'
 

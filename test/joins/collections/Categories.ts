@@ -1,6 +1,6 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
-import { ValidationError } from @hanzo/cms'from 
+import { ValidationError } from '@hanzo/cms'
 
 import { categoriesSlug, hiddenPostsSlug, postsSlug, versionsSlug } from '../shared.js'
 import { singularSlug } from './Singular.js'

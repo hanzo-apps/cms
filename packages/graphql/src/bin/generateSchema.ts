@@ -1,4 +1,4 @@
-import type { SanitizedConfig } from @hanzo/cms'from 
+import type { SanitizedConfig } from '@hanzo/cms'
 
 import fs from 'fs'
 import { printSchema } from 'graphql'

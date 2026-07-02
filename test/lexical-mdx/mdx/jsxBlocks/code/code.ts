@@ -1,4 +1,4 @@
-import type { Block } from @hanzo/cms'from 
+import type { Block } from '@hanzo/cms'
 
 import { languages } from '../../../collections/Posts/shared.js'
 import { codeConverter } from './converter.js'

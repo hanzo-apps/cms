@@ -1,4 +1,4 @@
-import type { AdminViewServerProps } from @hanzo/cms'from 
+import type { AdminViewServerProps } from '@hanzo/cms'
 
 import { CreateFirstUserView } from '@hanzo/cms-next/views'
 import React from 'react'

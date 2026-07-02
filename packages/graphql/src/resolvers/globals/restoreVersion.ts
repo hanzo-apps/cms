@@ -1,6 +1,6 @@
-import type { Document, PayloadRequest, SanitizedGlobalConfig } from @hanzo/cms'from 
+import type { Document, PayloadRequest, SanitizedGlobalConfig } from '@hanzo/cms'
 
-import { isolateObjectProperty, restoreVersionOperationGlobal } from @hanzo/cms'from 
+import { isolateObjectProperty, restoreVersionOperationGlobal } from '@hanzo/cms'
 
 import type { Context } from '../types.js'
 

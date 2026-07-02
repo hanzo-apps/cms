@@ -1,4 +1,4 @@
-import type { DeleteOne } from @hanzo/cms'from 
+import type { DeleteOne } from '@hanzo/cms'
 
 import { eq } from 'drizzle-orm'
 import toSnakeCase from 'to-snake-case'

@@ -1,7 +1,7 @@
 'use client'
 import { Link, useConfig, useTranslation } from '@hanzo/cms-ui'
 import { formatDate } from '@hanzo/cms-ui/shared'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React from 'react'
 
 export type CreatedAtCellProps = {

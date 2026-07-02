@@ -1,4 +1,4 @@
-import type { AdminViewServerProps } from @hanzo/cms'from 
+import type { AdminViewServerProps } from '@hanzo/cms'
 
 import { Button } from '@hanzo/cms-ui'
 import LinkImport from 'next/link.js'

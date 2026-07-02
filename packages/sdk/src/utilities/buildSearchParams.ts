@@ -1,4 +1,4 @@
-import type { Sort, Where } from @hanzo/cms'from 
+import type { Sort, Where } from '@hanzo/cms'
 
 import { stringify } from 'qs-esm'
 

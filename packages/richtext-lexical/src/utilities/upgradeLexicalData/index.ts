@@ -1,4 +1,4 @@
-import type { CollectionConfig, Field, GlobalConfig, Payload } from @hanzo/cms'from 
+import type { CollectionConfig, Field, GlobalConfig, Payload } from '@hanzo/cms'
 
 import { upgradeDocumentFieldsRecursively } from './upgradeDocumentFieldsRecursively.js'
 

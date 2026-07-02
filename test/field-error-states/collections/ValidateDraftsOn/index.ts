@@ -1,4 +1,4 @@
-import type { CollectionConfig, TextFieldSingleValidation } from @hanzo/cms'from 
+import type { CollectionConfig, TextFieldSingleValidation } from '@hanzo/cms'
 
 import { collectionSlugs } from '../../shared.js'
 

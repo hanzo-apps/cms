@@ -1,7 +1,7 @@
 'use client'
 
 import type { Modifier } from '@dnd-kit/core'
-import type { ClientWidget, WidgetWidth } from @hanzo/cms'from 
+import type { ClientWidget, WidgetWidth } from '@hanzo/cms'
 
 import { DndContext, DragOverlay, useDraggable, useDroppable } from '@dnd-kit/core'
 import { snapCenterToCursor } from '@dnd-kit/modifiers'

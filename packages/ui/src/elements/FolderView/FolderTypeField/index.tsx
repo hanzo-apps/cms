@@ -1,4 +1,4 @@
-import type { OptionObject, SelectFieldClientProps } from @hanzo/cms'from 
+import type { OptionObject, SelectFieldClientProps } from '@hanzo/cms'
 
 import React from 'react'
 

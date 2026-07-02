@@ -1,4 +1,4 @@
-import type { ImportMap, PayloadComponent } from @hanzo/cms'from 
+import type { ImportMap, PayloadComponent } from '@hanzo/cms'
 
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import React from 'react'

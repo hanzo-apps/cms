@@ -1,5 +1,5 @@
 import escapeHTML from 'escape-html'
-import { sanitizeUrl } from @hanzo/cms'from 
+import { sanitizeUrl } from '@hanzo/cms/shared'
 
 import type { SerializedAutoLinkNode, SerializedLinkNode } from '../../../../../nodeTypes.js'
 import type { HTMLConvertersAsync, HTMLPopulateFn } from '../types.js'

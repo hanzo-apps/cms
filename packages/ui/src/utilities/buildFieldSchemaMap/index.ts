@@ -1,7 +1,7 @@
 import type { I18n } from '@hanzo/cms-translations'
-import type { Field, FieldSchemaMap, SanitizedConfig, TextField } from @hanzo/cms'from 
+import type { Field, FieldSchemaMap, SanitizedConfig, TextField } from '@hanzo/cms'
 
-import { confirmPassword, password } from @hanzo/cms'from 
+import { confirmPassword, password } from '@hanzo/cms/shared'
 
 import { traverseFields } from './traverseFields.js'
 

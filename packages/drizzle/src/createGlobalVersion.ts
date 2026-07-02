@@ -1,8 +1,8 @@
-import type { CreateGlobalVersionArgs, JsonObject, TypeWithVersion } from @hanzo/cms'from 
+import type { CreateGlobalVersionArgs, JsonObject, TypeWithVersion } from '@hanzo/cms'
 
 import { sql } from 'drizzle-orm'
-import { buildVersionGlobalFields } from @hanzo/cms'from 
-import { hasDraftsEnabled } from @hanzo/cms'from 
+import { buildVersionGlobalFields } from '@hanzo/cms'
+import { hasDraftsEnabled } from '@hanzo/cms/shared'
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from './types.js'

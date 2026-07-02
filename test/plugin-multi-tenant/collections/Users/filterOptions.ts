@@ -1,4 +1,4 @@
-import type { FilterOptions } from @hanzo/cms'from 
+import type { FilterOptions } from '@hanzo/cms'
 
 import { getTenantFromCookie } from '@hanzo/cms-plugin-multi-tenant/utilities'
 

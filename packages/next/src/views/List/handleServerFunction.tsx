@@ -1,9 +1,9 @@
 import type { RenderListServerFnArgs, RenderListServerFnReturnType } from '@hanzo/cms-ui'
-import type { CollectionPreferences, ServerFunction, VisibleEntities } from @hanzo/cms'from 
+import type { CollectionPreferences, ServerFunction, VisibleEntities } from '@hanzo/cms'
 
 import { getClientConfig } from '@hanzo/cms-ui/utilities/getClientConfig'
-import { canAccessAdmin, isEntityHidden, UnauthorizedError } from @hanzo/cms'from 
-import { applyLocaleFiltering } from @hanzo/cms'from 
+import { canAccessAdmin, isEntityHidden, UnauthorizedError } from '@hanzo/cms'
+import { applyLocaleFiltering } from '@hanzo/cms/shared'
 
 import { renderListView } from './index.js'
 

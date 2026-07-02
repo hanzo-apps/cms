@@ -1,4 +1,4 @@
-import type { CollectionConfig, Field, GroupField, TextField } from @hanzo/cms'from 
+import type { CollectionConfig, Field, GroupField, TextField } from '@hanzo/cms'
 
 import path from 'path'
 

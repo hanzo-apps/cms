@@ -1,4 +1,4 @@
-import type { FileData, PayloadRequest } from @hanzo/cms'from 
+import type { FileData, PayloadRequest } from '@hanzo/cms'
 
 import type { File } from '../types.js'
 

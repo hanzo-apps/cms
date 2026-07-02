@@ -1,4 +1,4 @@
-import { type FormField, type FormState } from @hanzo/cms'from 
+import { type FormField, type FormState } from '@hanzo/cms'
 
 type BlacklistedKeys = 'customComponents' | 'validate'
 const blacklistedKeys: BlacklistedKeys[] = ['validate', 'customComponents']

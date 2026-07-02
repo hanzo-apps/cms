@@ -1,8 +1,8 @@
-import type { CreateMigration, MigrationTemplateArgs } from @hanzo/cms'from 
+import type { CreateMigration, MigrationTemplateArgs } from '@hanzo/cms'
 
 import fs from 'fs'
 import path from 'path'
-import { getPredefinedMigration, writeMigrationIndex } from @hanzo/cms'from 
+import { getPredefinedMigration, writeMigrationIndex } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 
 const migrationTemplate = ({ downSQL, imports, upSQL }: MigrationTemplateArgs): string => `import {

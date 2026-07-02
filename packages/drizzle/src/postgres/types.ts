@@ -21,7 +21,7 @@ import type {
 } from 'drizzle-orm/pg-core'
 import type { PgTableFn } from 'drizzle-orm/pg-core/table'
 import type { SQLiteColumn } from 'drizzle-orm/sqlite-core'
-import type { Payload, PayloadRequest } from @hanzo/cms'from 
+import type { Payload, PayloadRequest } from '@hanzo/cms'
 import type { ClientConfig, QueryResult } from 'pg'
 
 import type { extendDrizzleTable, Operators } from '../index.js'

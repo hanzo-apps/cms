@@ -1,5 +1,5 @@
 'use client'
-import type { FieldDescriptionClientComponent } from @hanzo/cms'from 
+import type { FieldDescriptionClientComponent } from '@hanzo/cms'
 
 import { useFormFields } from '@hanzo/cms-ui'
 import React from 'react'

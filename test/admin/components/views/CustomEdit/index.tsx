@@ -1,4 +1,4 @@
-import type { DocumentViewServerProps } from @hanzo/cms'from 
+import type { DocumentViewServerProps } from '@hanzo/cms'
 
 import { SetStepNav } from '@hanzo/cms-ui'
 import { notFound, redirect } from 'next/navigation.js'

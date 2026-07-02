@@ -1,8 +1,8 @@
-import type { CollectionConfig, FileData, PayloadRequest, UploadConfig } from @hanzo/cms'from 
+import type { CollectionConfig, FileData, PayloadRequest, UploadConfig } from '@hanzo/cms'
 
-import { FileRetrievalError, getFileByPath } from @hanzo/cms'from 
-import { getExternalFile } from @hanzo/cms'from 
-import { formatAdminURL } from @hanzo/cms'from 
+import { FileRetrievalError, getFileByPath } from '@hanzo/cms'
+import { getExternalFile } from '@hanzo/cms/internal'
+import { formatAdminURL } from '@hanzo/cms/shared'
 
 type Args = {
   collectionConfig: CollectionConfig

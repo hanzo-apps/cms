@@ -1,7 +1,7 @@
 import type { PaginateOptions, PipelineStage, QueryOptions } from 'mongoose'
-import type { QueryDrafts } from @hanzo/cms'from 
+import type { QueryDrafts } from '@hanzo/cms'
 
-import { buildVersionCollectionFields, combineQueries, flattenWhereToOperators } from @hanzo/cms'from 
+import { buildVersionCollectionFields, combineQueries, flattenWhereToOperators } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 

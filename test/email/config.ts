@@ -1,6 +1,6 @@
 import { nodemailerAdapter } from '@hanzo/cms-email-nodemailer'
 import path from 'path'
-import { getFileByPath } from @hanzo/cms'from 
+import { getFileByPath } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 
 import { buildConfigWithDefaults } from '../buildConfigWithDefaults.js'

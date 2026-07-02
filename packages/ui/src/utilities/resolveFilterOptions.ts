@@ -1,4 +1,4 @@
-import type { FilterOptions, FilterOptionsProps, ResolvedFilterOptions } from @hanzo/cms'from 
+import type { FilterOptions, FilterOptionsProps, ResolvedFilterOptions } from '@hanzo/cms'
 
 export const resolveFilterOptions = async (
   filterOptions: FilterOptions,

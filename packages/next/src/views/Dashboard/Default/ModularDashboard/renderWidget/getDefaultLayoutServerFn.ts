@@ -4,7 +4,7 @@ import type {
   ServerFunction,
   Widget,
   WidgetServerProps,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 

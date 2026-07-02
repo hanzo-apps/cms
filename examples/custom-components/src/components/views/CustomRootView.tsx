@@ -1,4 +1,4 @@
-import type { AdminViewProps } from @hanzo/cms'from 
+import type { AdminViewProps } from '@hanzo/cms'
 
 import React from 'react'
 

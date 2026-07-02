@@ -12,10 +12,10 @@ import type {
   SelectMode,
   SelectType,
   TabAsField,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
-import { stripUnselectedFields } from @hanzo/cms'from 
-import { getFieldPaths } from @hanzo/cms'from 
+import { stripUnselectedFields } from '@hanzo/cms'
+import { getFieldPaths } from '@hanzo/cms/shared'
 
 import type { AddFieldStatePromiseArgs } from './addFieldStatePromise.js'
 import type { RenderFieldMethod } from './types.js'

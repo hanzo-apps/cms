@@ -1,5 +1,5 @@
 import { Table } from 'console-table-printer'
-import { getMigrations, readMigrationFiles } from @hanzo/cms'from 
+import { getMigrations, readMigrationFiles } from '@hanzo/cms'
 
 import type { DrizzleAdapter } from './types.js'
 

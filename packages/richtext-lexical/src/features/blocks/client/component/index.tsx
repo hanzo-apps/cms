@@ -30,8 +30,8 @@ import {
   type ClientBlock,
   type CollapsedPreferences,
   type FormState,
-} from @hanzo/cms'from 
-import { deepCopyObjectSimpleWithoutReactComponents, reduceFieldsToValues } from @hanzo/cms'from 
+} from '@hanzo/cms'
+import { deepCopyObjectSimpleWithoutReactComponents, reduceFieldsToValues } from '@hanzo/cms/shared'
 import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { v4 as uuid } from 'uuid'
 

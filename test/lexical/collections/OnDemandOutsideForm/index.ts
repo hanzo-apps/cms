@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { EXPERIMENTAL_TableFeature, lexicalEditor } from '@hanzo/cms-richtext-lexical'
 

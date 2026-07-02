@@ -1,11 +1,11 @@
-import type { ClientField, FormState, SanitizedFieldPermissions } from @hanzo/cms'from 
+import type { ClientField, FormState, SanitizedFieldPermissions } from '@hanzo/cms'
 
 import {
   fieldAffectsData,
   fieldHasSubFields,
   fieldIsHiddenOrDisabled,
   getFieldPermissions,
-} from @hanzo/cms'from 
+} from '@hanzo/cms/shared'
 
 import { createNestedClientFieldPath } from '../../forms/Form/createNestedClientFieldPath.js'
 import { combineFieldLabel } from '../../utilities/combineFieldLabel.js'

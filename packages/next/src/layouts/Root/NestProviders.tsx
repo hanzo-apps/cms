@@ -1,4 +1,4 @@
-import type { Config, ImportMap, ServerProps } from @hanzo/cms'from 
+import type { Config, ImportMap, ServerProps } from '@hanzo/cms'
 
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import '@hanzo/cms-ui/scss/app.scss'

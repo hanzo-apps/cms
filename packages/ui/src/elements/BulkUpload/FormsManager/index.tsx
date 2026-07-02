@@ -8,10 +8,10 @@ import type {
   JsonObject,
   SanitizedDocumentPermissions,
   UploadEdits,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import * as qs from 'qs-esm'
 import React from 'react'
 import { toast } from 'sonner'

@@ -1,10 +1,10 @@
 'use client'
 
-import type { ClientCollectionConfig, ClientConfig, ViewTypes } from @hanzo/cms'from 
+import type { ClientCollectionConfig, ClientConfig, ViewTypes } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import { useRouter } from 'next/navigation.js'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { usePreferences } from '../../providers/Preferences/index.js'

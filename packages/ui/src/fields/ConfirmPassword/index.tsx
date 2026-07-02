@@ -1,6 +1,6 @@
 'use client'
 
-import { confirmPassword } from @hanzo/cms'from 
+import { confirmPassword } from '@hanzo/cms/shared'
 import React from 'react'
 
 import { useField } from '../../forms/useField/index.js'

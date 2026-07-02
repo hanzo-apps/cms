@@ -1,4 +1,4 @@
-import type { Payload, TypedUser } from @hanzo/cms'from 
+import type { Payload, TypedUser } from '@hanzo/cms'
 
 import { cookies as getCookies } from 'next/headers.js'
 

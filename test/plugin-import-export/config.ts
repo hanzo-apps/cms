@@ -6,7 +6,7 @@ import { he } from '@hanzo/cms-translations/languages/he'
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
-import { defaultTimezones } from @hanzo/cms'from 
+import { defaultTimezones } from '@hanzo/cms/shared'
 
 import { buildConfigWithDefaults } from '../buildConfigWithDefaults.js'
 import { createTestBucket } from '../plugin-cloud-storage/utils.js'

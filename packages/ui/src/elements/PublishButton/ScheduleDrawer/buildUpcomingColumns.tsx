@@ -1,4 +1,4 @@
-import type { ClientConfig, Column } from @hanzo/cms'from 
+import type { ClientConfig, Column } from '@hanzo/cms'
 
 import { getTranslation, type I18nClient, type TFunction } from '@hanzo/cms-translations'
 import React from 'react'

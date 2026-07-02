@@ -5,7 +5,7 @@ import type {
   ServerProps,
   ViewTypes,
   VisibleEntities,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import {
   ActionsProvider,

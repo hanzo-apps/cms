@@ -166,10 +166,10 @@ export type {
   /**
    * @deprecated
    * This export will be removed in the next major version.
-   * Use `import { Column } from @hanzo/cms'from ` instead.
+   * Use `import { Column } from '@hanzo/cms'` instead.
    */
   Column,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 export { DefaultCell } from '../../elements/Table/DefaultCell/index.js'
 export { Thumbnail } from '../../elements/Thumbnail/index.js'
 export { Tooltip } from '../../elements/Tooltip/index.js'
@@ -383,46 +383,46 @@ export type {
   /**
    * @deprecated
    * This export will be removed in the next major version.
-   * Use `import type { ListViewSlots } from @hanzo/cms'from ` instead.
+   * Use `import type { ListViewSlots } from '@hanzo/cms'` instead.
    */
   ListViewSlots,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export type {
   /**
    * @deprecated
    * This export will be removed in the next major version.
-   * Use `import type { ListViewClientProps } from @hanzo/cms'from ` instead.
+   * Use `import type { ListViewClientProps } from '@hanzo/cms'` instead.
    */
   ListViewClientProps,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export type {
   /**
    * @deprecated
    * This export will be removed in the next major version.
-   * Use `import type { ListViewClientProps } from @hanzo/cms'from ` instead.
+   * Use `import type { ListViewClientProps } from '@hanzo/cms'` instead.
    */
   ListViewClientProps as ListComponentClientProps,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export type {
   /**
    * @deprecated
    * This export will be removed in the next major version.
-   * Use `import type { ListViewServerProps } from @hanzo/cms'from ` instead.
+   * Use `import type { ListViewServerProps } from '@hanzo/cms'` instead.
    */
   ListViewServerProps as ListComponentServerProps,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export type {
   /**
    * @deprecated
    * This export will be removed in the next major version.
-   * Use `import type { CollectionPreferences } from @hanzo/cms'from ` instead.
+   * Use `import type { CollectionPreferences } from '@hanzo/cms'` instead.
    */
   ListPreferences,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export type { ListHeaderProps } from '../../views/List/ListHeader/index.js'
 

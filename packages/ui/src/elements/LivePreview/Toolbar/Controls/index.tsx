@@ -1,6 +1,6 @@
 'use client'
 
-import type { EditViewProps } from @hanzo/cms'from 
+import type { EditViewProps } from '@hanzo/cms'
 
 import React from 'react'
 

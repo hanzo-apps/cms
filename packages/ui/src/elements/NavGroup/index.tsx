@@ -1,7 +1,7 @@
 'use client'
-import type { NavPreferences } from @hanzo/cms'from 
+import type { NavPreferences } from '@hanzo/cms'
 
-import { PREFERENCE_KEYS } from @hanzo/cms'from 
+import { PREFERENCE_KEYS } from '@hanzo/cms/shared'
 import React, { useState } from 'react'
 
 import { ChevronIcon } from '../../icons/Chevron/index.js'

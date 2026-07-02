@@ -1,4 +1,4 @@
-import type { ClientConfig, RichTextFieldClient } from @hanzo/cms'from 
+import type { ClientConfig, RichTextFieldClient } from '@hanzo/cms'
 
 import type {
   BaseClientFeatureProps,

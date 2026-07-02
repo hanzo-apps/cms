@@ -1,5 +1,5 @@
-// const payload = require(@hanzo/cms'require();
-import type { CollectionConfig } from @hanzo/cms'from 
+// const payload = require('@hanzo/cms'require();
+import type { CollectionConfig } from '@hanzo/cms'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',

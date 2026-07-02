@@ -1,5 +1,5 @@
 'use client'
-import type { CollapsibleFieldClientComponent, DocumentPreferences } from @hanzo/cms'from 
+import type { CollapsibleFieldClientComponent, DocumentPreferences } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React, { Fragment, useCallback, useEffect, useMemo, useState } from 'react'

@@ -13,7 +13,7 @@ import type {
   JsonObject,
   TypedUploadCollection,
   UploadCollectionSlug,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 import type { JSX } from 'react'
 
 import { DecoratorBlockNode } from '@lexical/react/LexicalDecoratorBlockNode.js'

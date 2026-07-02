@@ -1,4 +1,4 @@
-import type { Access, CollectionConfig, Field } from @hanzo/cms'from 
+import type { Access, CollectionConfig, Field } from '@hanzo/cms'
 
 import type { AccessConfig, CurrenciesConfig } from '../../types/index.js'
 import type { CartItemMatcher } from './operations/types.js'

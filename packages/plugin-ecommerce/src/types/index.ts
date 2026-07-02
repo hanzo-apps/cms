@@ -13,7 +13,7 @@ import type {
   TypedCollection,
   TypedUser,
   Where,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 import type React from 'react'
 
 import type { TypedEcommerce } from './utilities.js'

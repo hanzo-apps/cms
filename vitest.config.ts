@@ -63,7 +63,7 @@ export default defineConfig({
           setupFiles: ['./test/vitest.setup.ts'],
           // Root-level `server.deps.inline` is not inherited by projects. Without
           // this, @hanzo/cms-figma (used by PAYLOAD_DATABASE=content-api) is
-          // externalized, and its static `import ... from @hanzo/cms'from ` falls to
+          // externalized, and its static `import ... from '@hanzo/cms'` falls to
           // Node's loader, which cannot read payload's .ts source exports.
           server: {
             deps: {

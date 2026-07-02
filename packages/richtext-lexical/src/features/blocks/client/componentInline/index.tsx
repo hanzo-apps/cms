@@ -1,6 +1,6 @@
 'use client'
 
-import type { BlocksFieldClient, ClientBlock, Data, FormState } from @hanzo/cms'from 
+import type { BlocksFieldClient, ClientBlock, Data, FormState } from '@hanzo/cms'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
@@ -26,7 +26,7 @@ import { $getNodeByKey, SKIP_DOM_SELECTION_TAG } from 'lexical'
 
 import './index.scss'
 
-import { deepCopyObjectSimpleWithoutReactComponents, reduceFieldsToValues } from @hanzo/cms'from 
+import { deepCopyObjectSimpleWithoutReactComponents, reduceFieldsToValues } from '@hanzo/cms/shared'
 import React, { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
 import { v4 as uuid } from 'uuid'
 

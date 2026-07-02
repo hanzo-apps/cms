@@ -1,4 +1,4 @@
-import type { SingleRelationshipField } from @hanzo/cms'from 
+import type { SingleRelationshipField } from '@hanzo/cms'
 
 export const createParentField = (
   relationTo: string,

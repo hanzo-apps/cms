@@ -6,7 +6,7 @@ import type {
   FieldSchemaMap,
   Payload,
   TextFieldClient,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { traverseFields } from './traverseFields.js'
 

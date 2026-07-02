@@ -1,4 +1,4 @@
-import type { PayloadHandler } from @hanzo/cms'from 
+import type { PayloadHandler } from '@hanzo/cms'
 
 import { PayloadIcon } from '@hanzo/cms-ui/shared'
 import fs from 'fs/promises'

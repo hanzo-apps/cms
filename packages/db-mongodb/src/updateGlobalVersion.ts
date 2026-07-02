@@ -1,7 +1,7 @@
 import type { QueryOptions } from 'mongoose'
-import type { JsonObject, UpdateGlobalVersionArgs } from @hanzo/cms'from 
+import type { JsonObject, UpdateGlobalVersionArgs } from '@hanzo/cms'
 
-import { buildVersionGlobalFields } from @hanzo/cms'from 
+import { buildVersionGlobalFields } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 

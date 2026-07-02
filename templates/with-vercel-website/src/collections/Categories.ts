@@ -1,8 +1,8 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
-import { slugField } from @hanzo/cms'from 
+import { slugField } from '@hanzo/cms'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',

@@ -1,5 +1,5 @@
 'use client'
-import type { RowFieldDiffClientComponent } from @hanzo/cms'from 
+import type { RowFieldDiffClientComponent } from '@hanzo/cms'
 
 import React from 'react'
 

@@ -5,7 +5,7 @@
  * - each tab has a different label in each language. Needs to be a LOCALIZED label, not a single label for all languages. Only then can it be reproduced
  */
 
-import type { GlobalConfig } from @hanzo/cms'from 
+import type { GlobalConfig } from '@hanzo/cms'
 
 import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
 

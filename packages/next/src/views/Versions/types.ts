@@ -5,7 +5,7 @@ import type {
   SanitizedConfig,
   SanitizedGlobalConfig,
   TypedUser,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 export type DefaultVersionsViewProps = {
   canAccessAdmin: boolean

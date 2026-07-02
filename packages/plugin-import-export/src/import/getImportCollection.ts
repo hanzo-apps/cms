@@ -1,6 +1,6 @@
-import type { CollectionAfterChangeHook, CollectionConfig } from @hanzo/cms'from 
+import type { CollectionAfterChangeHook, CollectionConfig } from '@hanzo/cms'
 
-import { FileRetrievalError } from @hanzo/cms'from 
+import { FileRetrievalError } from '@hanzo/cms'
 
 import type { ImportConfig, ImportExportPluginConfig } from '../types.js'
 import type { ImportTaskInput } from './getCreateImportCollectionTask.js'

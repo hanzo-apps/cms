@@ -1,5 +1,5 @@
 import config from '@payload-config'
-import { getPayload } from @hanzo/cms'from 
+import { getPayload } from '@hanzo/cms'
 
 import type { Footer } from '../../../payload-types.js'
 

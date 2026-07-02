@@ -1,4 +1,4 @@
-import type { LivePreviewConfig } from @hanzo/cms'from 
+import type { LivePreviewConfig } from '@hanzo/cms'
 
 export const formatLivePreviewURL: LivePreviewConfig['url'] = async ({
   data,

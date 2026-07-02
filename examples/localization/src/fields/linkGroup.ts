@@ -1,4 +1,4 @@
-import type { ArrayField, Field } from @hanzo/cms'from 
+import type { ArrayField, Field } from '@hanzo/cms'
 
 import type { LinkAppearances } from './link'
 

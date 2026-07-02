@@ -3,9 +3,9 @@ import type {
   SanitizedCollectionConfig,
   TypeWithVersion,
   UpdateVersionArgs,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
-import { buildVersionCollectionFields } from @hanzo/cms'from 
+import { buildVersionCollectionFields } from '@hanzo/cms'
 import toSnakeCase from 'to-snake-case'
 
 import type { DrizzleAdapter } from './types.js'

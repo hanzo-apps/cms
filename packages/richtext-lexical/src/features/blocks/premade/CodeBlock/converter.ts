@@ -1,4 +1,4 @@
-import type { BlockJSX } from @hanzo/cms'from 
+import type { BlockJSX } from '@hanzo/cms'
 
 /**
  * @internal

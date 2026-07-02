@@ -1,4 +1,4 @@
-import type { Endpoint } from @hanzo/cms'from 
+import type { Endpoint } from '@hanzo/cms'
 
 import Stripe from 'stripe'
 

@@ -1,6 +1,6 @@
 import type { LibSQLDatabase } from 'drizzle-orm/libsql'
 import type { SelectedFields } from 'drizzle-orm/sqlite-core'
-import type { TypeWithID } from @hanzo/cms'from 
+import type { TypeWithID } from '@hanzo/cms'
 
 import { and, desc, eq, isNull, or } from 'drizzle-orm'
 

@@ -11,7 +11,7 @@ import type {
   SQLiteTransactionConfig,
 } from 'drizzle-orm/sqlite-core'
 import type { SQLiteRaw } from 'drizzle-orm/sqlite-core/query-builders/raw'
-import type { Payload, PayloadRequest } from @hanzo/cms'from 
+import type { Payload, PayloadRequest } from '@hanzo/cms'
 
 type SQLiteSchema = {
   relations: Record<string, GenericRelation>

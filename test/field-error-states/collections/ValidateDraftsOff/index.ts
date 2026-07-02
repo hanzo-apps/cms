@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { collectionSlugs } from '../../shared.js'
 import { ValidateDraftsOn } from '../ValidateDraftsOn/index.js'

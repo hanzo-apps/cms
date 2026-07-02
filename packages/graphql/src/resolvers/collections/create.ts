@@ -4,9 +4,9 @@ import type {
   DataFromCollectionSlug,
   PayloadRequest,
   RequiredDataFromCollectionSlug,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
-import { createOperation, isolateObjectProperty } from @hanzo/cms'from 
+import { createOperation, isolateObjectProperty } from '@hanzo/cms'
 
 import type { Context } from '../types.js'
 

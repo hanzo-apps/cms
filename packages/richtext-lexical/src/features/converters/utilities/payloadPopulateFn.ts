@@ -1,4 +1,4 @@
-import { createLocalReq, type Payload, type PayloadRequest, type TypedLocale } from @hanzo/cms'from 
+import { createLocalReq, type Payload, type PayloadRequest, type TypedLocale } from '@hanzo/cms'
 
 import type { HTMLPopulateFn } from '../lexicalToHtml/async/types.js'
 

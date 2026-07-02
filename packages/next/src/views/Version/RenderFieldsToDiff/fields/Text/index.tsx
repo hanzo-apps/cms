@@ -1,5 +1,5 @@
 'use client'
-import type { TextFieldDiffClientComponent } from @hanzo/cms'from 
+import type { TextFieldDiffClientComponent } from '@hanzo/cms'
 
 import {
   escapeDiffHTML,

@@ -5,7 +5,7 @@ import type {
   LexicalNodeReplacement,
   TextFormatType,
 } from 'lexical'
-import type { ClientConfig, RichTextFieldClient } from @hanzo/cms'from 
+import type { ClientConfig, RichTextFieldClient } from '@hanzo/cms'
 import type React from 'react'
 import type { JSX } from 'react'
 

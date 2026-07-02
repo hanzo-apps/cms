@@ -1,4 +1,4 @@
-import type { TaskConfig } from @hanzo/cms'from 
+import type { TaskConfig } from '@hanzo/cms'
 
 export const EverySecondTask: TaskConfig<'EverySecond'> = {
   schedule: [

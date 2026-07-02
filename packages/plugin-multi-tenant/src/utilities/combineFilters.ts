@@ -1,4 +1,4 @@
-import type { BaseFilter, Where } from @hanzo/cms'from 
+import type { BaseFilter, Where } from '@hanzo/cms'
 
 type Args = {
   baseFilter?: BaseFilter

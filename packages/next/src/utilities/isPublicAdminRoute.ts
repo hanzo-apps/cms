@@ -1,4 +1,4 @@
-import type { SanitizedConfig } from @hanzo/cms'from 
+import type { SanitizedConfig } from '@hanzo/cms'
 
 import { getRouteWithoutAdmin } from './getRouteWithoutAdmin.js'
 

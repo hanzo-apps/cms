@@ -1,4 +1,4 @@
-import type { EditMenuItemsServerProps } from @hanzo/cms'from 
+import type { EditMenuItemsServerProps } from '@hanzo/cms'
 
 import React from 'react'
 

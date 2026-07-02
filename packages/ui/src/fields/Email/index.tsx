@@ -3,7 +3,7 @@ import type {
   EmailFieldClientComponent,
   EmailFieldClientProps,
   EmailFieldValidation,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React, { useCallback, useMemo } from 'react'

@@ -1,5 +1,5 @@
 import type { I18nClient, TFunction } from '@hanzo/cms-translations'
-import type { ClientCollectionConfig, ViewTypes } from @hanzo/cms'from 
+import type { ClientCollectionConfig, ViewTypes } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'

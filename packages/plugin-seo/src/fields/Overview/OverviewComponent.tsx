@@ -1,6 +1,6 @@
 'use client'
 
-import type { FormField, UIField } from @hanzo/cms'from 
+import type { FormField, UIField } from '@hanzo/cms'
 
 import { useAllFormFields, useForm, useTranslation } from '@hanzo/cms-ui'
 import React, { useCallback, useEffect, useState } from 'react'

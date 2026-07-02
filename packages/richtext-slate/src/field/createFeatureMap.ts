@@ -1,4 +1,4 @@
-import type { ClientField } from @hanzo/cms'from 
+import type { ClientField } from '@hanzo/cms'
 
 import type { EnabledFeatures } from './types.js'
 

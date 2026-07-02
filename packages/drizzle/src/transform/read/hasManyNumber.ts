@@ -1,4 +1,4 @@
-import type { NumberField } from @hanzo/cms'from 
+import type { NumberField } from '@hanzo/cms'
 
 type Args = {
   field: NumberField

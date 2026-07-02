@@ -1,7 +1,7 @@
-import type { Payload } from @hanzo/cms'from 
+import type { Payload } from '@hanzo/cms'
 
 import path from 'path'
-import { getFileByPath } from @hanzo/cms'from 
+import { getFileByPath } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 
 import { devUser, regularUser } from '../../credentials.js'

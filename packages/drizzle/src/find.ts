@@ -1,4 +1,4 @@
-import type { Find, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { Find, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import toSnakeCase from 'to-snake-case'
 

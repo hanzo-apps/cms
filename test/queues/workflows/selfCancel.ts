@@ -1,4 +1,4 @@
-import { JobCancelledError, type WorkflowConfig } from @hanzo/cms'from 
+import { JobCancelledError, type WorkflowConfig } from '@hanzo/cms'
 
 export const selfCancelWorkflow: WorkflowConfig<'selfCancel'> = {
   slug: 'selfCancel',

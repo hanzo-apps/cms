@@ -1,6 +1,6 @@
 'use client'
 
-import type { RelationshipFieldClientProps } from @hanzo/cms'from 
+import type { RelationshipFieldClientProps } from '@hanzo/cms'
 
 import {
   Pill,

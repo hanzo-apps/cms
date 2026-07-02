@@ -5,13 +5,13 @@ import type {
   Payload,
   SanitizedConfig,
   User,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import crypto from 'crypto'
 import { jwtDecode } from 'jwt-decode'
 import path from 'path'
-import { getFieldsToSign } from @hanzo/cms'from 
-import { email as emailValidation } from @hanzo/cms'from 
+import { getFieldsToSign } from '@hanzo/cms'
+import { email as emailValidation } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 import { v4 as uuid } from 'uuid'
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vitest } from 'vitest'

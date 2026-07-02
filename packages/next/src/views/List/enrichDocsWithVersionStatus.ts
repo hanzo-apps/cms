@@ -1,4 +1,4 @@
-import type { PaginatedDocs, PayloadRequest, SanitizedCollectionConfig } from @hanzo/cms'from 
+import type { PaginatedDocs, PayloadRequest, SanitizedCollectionConfig } from '@hanzo/cms'
 
 /**
  * Enriches list view documents with correct draft status display.

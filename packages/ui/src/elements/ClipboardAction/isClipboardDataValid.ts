@@ -1,6 +1,6 @@
-import type { ClientBlock, ClientField } from @hanzo/cms'from 
+import type { ClientBlock, ClientField } from '@hanzo/cms'
 
-import { fieldAffectsData, fieldHasSubFields } from @hanzo/cms'from 
+import { fieldAffectsData, fieldHasSubFields } from '@hanzo/cms/shared'
 
 import type { ClipboardPasteActionValidateArgs } from './types.js'
 

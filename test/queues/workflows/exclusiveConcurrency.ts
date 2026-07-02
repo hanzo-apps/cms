@@ -1,6 +1,6 @@
-import type { WorkflowConfig } from @hanzo/cms'from 
+import type { WorkflowConfig } from '@hanzo/cms'
 
-import { wait } from @hanzo/cms'from 
+import { wait } from '@hanzo/cms/shared'
 
 /**
  * A workflow that uses exclusive concurrency to prevent parallel execution

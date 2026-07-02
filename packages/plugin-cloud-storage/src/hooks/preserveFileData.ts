@@ -1,4 +1,4 @@
-import type { CollectionBeforeChangeHook, FileData, TypeWithID } from @hanzo/cms'from 
+import type { CollectionBeforeChangeHook, FileData, TypeWithID } from '@hanzo/cms'
 
 /**
  * Preserves req.file in req.context and ensures nested calls don't overwrite the original file data.

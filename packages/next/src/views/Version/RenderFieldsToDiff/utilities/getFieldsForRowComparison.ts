@@ -6,9 +6,9 @@ import type {
   ClientConfig,
   ClientField,
   VersionField,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
-import { getUniqueListBy } from @hanzo/cms'from 
+import { getUniqueListBy } from '@hanzo/cms/shared'
 
 /**
  * Get the fields for a row in an iterable field for comparison.

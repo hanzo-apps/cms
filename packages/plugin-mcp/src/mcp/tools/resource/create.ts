@@ -1,6 +1,6 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import type { JSONSchema4 } from 'json-schema'
-import type { PayloadRequest, SelectType, TypedUser } from @hanzo/cms'from 
+import type { PayloadRequest, SelectType, TypedUser } from '@hanzo/cms'
 
 import { z } from 'zod'
 

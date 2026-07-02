@@ -1,13 +1,13 @@
 'use client'
 
 import type { groupNavItems } from '@hanzo/cms-ui/shared'
-import type { NavPreferences } from @hanzo/cms'from 
+import type { NavPreferences } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import { BrowseByFolderButton, Link, NavGroup, useConfig, useTranslation } from '@hanzo/cms-ui'
 import { EntityType } from '@hanzo/cms-ui/shared'
 import { usePathname } from 'next/navigation.js'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { Fragment } from 'react'
 
 const baseClass = 'nav'

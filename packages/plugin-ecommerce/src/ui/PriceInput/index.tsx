@@ -1,4 +1,4 @@
-import type { NumberFieldServerProps } from @hanzo/cms'from 
+import type { NumberFieldServerProps } from '@hanzo/cms'
 
 import './index.css'
 

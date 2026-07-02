@@ -1,9 +1,9 @@
 import type { DrizzleSnapshotJSON } from 'drizzle-kit/api'
-import type { Payload, PayloadRequest } from @hanzo/cms'from 
+import type { Payload, PayloadRequest } from '@hanzo/cms'
 
 import { sql } from 'drizzle-orm'
 import fs from 'fs'
-import { buildVersionCollectionFields, buildVersionGlobalFields } from @hanzo/cms'from 
+import { buildVersionCollectionFields, buildVersionGlobalFields } from '@hanzo/cms'
 import toSnakeCase from 'to-snake-case'
 
 import type { BasePostgresAdapter } from '../../types.js'

@@ -5,8 +5,8 @@ import {
   getPayload,
   migrateCLI,
   type SanitizedConfig,
-} from @hanzo/cms'from 
-import { wait } from @hanzo/cms'from 
+} from '@hanzo/cms'
+import { wait } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 import { beforeAll, describe, expect, it } from 'vitest'
 

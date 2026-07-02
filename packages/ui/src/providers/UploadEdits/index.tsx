@@ -1,5 +1,5 @@
 'use client'
-import type { UploadEdits } from @hanzo/cms'from 
+import type { UploadEdits } from '@hanzo/cms'
 
 import React from 'react'
 

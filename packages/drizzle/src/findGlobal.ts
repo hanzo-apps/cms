@@ -1,4 +1,4 @@
-import type { FindGlobal } from @hanzo/cms'from 
+import type { FindGlobal } from '@hanzo/cms'
 
 import toSnakeCase from 'to-snake-case'
 

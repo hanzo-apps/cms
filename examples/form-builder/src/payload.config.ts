@@ -10,7 +10,7 @@ import {
   LinkFeature,
 } from '@hanzo/cms-richtext-lexical'
 import path from 'path'
-import { buildConfig } from @hanzo/cms'from 
+import { buildConfig } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 
 import { Pages } from './collections/Pages'

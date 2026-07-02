@@ -1,6 +1,6 @@
 'use client'
 
-import type { GenericLabelProps } from @hanzo/cms'from 
+import type { GenericLabelProps } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React from 'react'

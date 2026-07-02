@@ -1,4 +1,4 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
 import { uploads2Slug, uploadsPoly, uploadsSlug } from '../../slugs.js'
 

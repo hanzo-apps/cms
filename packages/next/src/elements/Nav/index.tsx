@@ -1,5 +1,5 @@
 import type { EntityToGroup } from '@hanzo/cms-ui/shared'
-import type { PayloadRequest, ServerProps } from @hanzo/cms'from 
+import type { PayloadRequest, ServerProps } from '@hanzo/cms'
 
 import { Logout } from '@hanzo/cms-ui'
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'

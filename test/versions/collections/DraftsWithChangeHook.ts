@@ -1,6 +1,6 @@
-import type { CollectionConfig } from @hanzo/cms'from 
+import type { CollectionConfig } from '@hanzo/cms'
 
-import { APIError } from @hanzo/cms'from 
+import { APIError } from '@hanzo/cms'
 
 import { draftWithChangeHookCollectionSlug } from '../slugs.js'
 

@@ -3,7 +3,7 @@ import { es } from '@hanzo/cms-translations/languages/es'
 import { he } from '@hanzo/cms-translations/languages/he'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
-import { type Config } from @hanzo/cms'from 
+import { type Config } from '@hanzo/cms'
 
 import { LexicalFullyFeatured } from './collections/_LexicalFullyFeatured/index.js'
 import ArrayFields from './collections/Array/index.js'

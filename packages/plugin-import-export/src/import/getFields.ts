@@ -1,4 +1,4 @@
-import type { Field, PayloadRequest } from @hanzo/cms'from 
+import type { Field, PayloadRequest } from '@hanzo/cms'
 
 type GetFieldsOptions = {
   /**

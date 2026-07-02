@@ -1,6 +1,6 @@
 'use client'
 
-import type { ClientField } from @hanzo/cms'from 
+import type { ClientField } from '@hanzo/cms'
 
 const equalsOperators = [
   {

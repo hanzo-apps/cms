@@ -1,4 +1,4 @@
-import type { Payload, PayloadRequest } from @hanzo/cms'from 
+import type { Payload, PayloadRequest } from '@hanzo/cms'
 
 import { randomBytes, randomUUID } from 'crypto'
 import path from 'path'

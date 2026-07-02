@@ -7,9 +7,9 @@ import type {
   FlattenedBlocksField,
   UIFieldClientProps,
   UIFieldServerProps,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
-import { fieldsToJSONSchema, flattenAllFields, sanitizeFields } from @hanzo/cms'from 
+import { fieldsToJSONSchema, flattenAllFields, sanitizeFields } from '@hanzo/cms'
 
 import { applyBaseFilterToFields } from '../../../utilities/applyBaseFilterToFields.js'
 import { createServerFeature } from '../../../utilities/createServerFeature.js'

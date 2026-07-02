@@ -11,7 +11,7 @@ import {
   useFormModified,
   useTranslation,
 } from '@hanzo/cms-ui'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React from 'react'
 
 import type {

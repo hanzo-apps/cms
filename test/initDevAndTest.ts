@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { generateImportMap, type SanitizedConfig } from @hanzo/cms'from 
+import { generateImportMap, type SanitizedConfig } from '@hanzo/cms'
 
 import type { allDatabaseAdapters } from './generateDatabaseAdapter.js'
 

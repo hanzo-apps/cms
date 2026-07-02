@@ -1,4 +1,4 @@
-import { APIError } from @hanzo/cms'from 
+import { APIError } from '@hanzo/cms'
 
 import type { CreateJSONQueryArgs } from '../../types.js'
 

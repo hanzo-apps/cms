@@ -4,7 +4,7 @@ import type {
   SanitizedServerEditorConfig,
   SerializedBlockNode,
 } from '@hanzo/cms-richtext-lexical'
-import type { RichTextField, SanitizedConfig } from @hanzo/cms'from 
+import type { RichTextField, SanitizedConfig } from '@hanzo/cms'
 import type { MarkOptional } from 'ts-essentials'
 
 import { writeFileSync } from 'fs'

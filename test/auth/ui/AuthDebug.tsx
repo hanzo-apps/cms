@@ -1,4 +1,4 @@
-import type { UIField, User } from @hanzo/cms'from 
+import type { UIField, User } from '@hanzo/cms'
 
 import { useAuth } from '@hanzo/cms-ui'
 import React, { useEffect, useState } from 'react'

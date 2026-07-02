@@ -1,5 +1,5 @@
 import type { Page } from '@playwright/test'
-import type { CollectionSlug } from @hanzo/cms'from 
+import type { CollectionSlug } from '@hanzo/cms'
 
 import { expect, test } from '@playwright/test'
 import path from 'path'

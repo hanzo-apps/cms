@@ -1,4 +1,4 @@
-import type { SelectFieldClient } from @hanzo/cms'from 
+import type { SelectFieldClient } from '@hanzo/cms'
 
 export type Props = {
   id: string

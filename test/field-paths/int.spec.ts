@@ -1,4 +1,4 @@
-import type { Payload, SanitizedConfig } from @hanzo/cms'from 
+import type { Payload, SanitizedConfig } from '@hanzo/cms'
 
 import { initI18n } from '@hanzo/cms-translations'
 import path from 'path'

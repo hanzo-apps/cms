@@ -1,4 +1,4 @@
-import type { FormState, UploadEdits } from @hanzo/cms'from 
+import type { FormState, UploadEdits } from '@hanzo/cms'
 
 import { v4 as uuidv4 } from 'uuid'
 

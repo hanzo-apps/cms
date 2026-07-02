@@ -1,6 +1,6 @@
 'use client'
 
-import type { OptionObject, UIField } from @hanzo/cms'from 
+import type { OptionObject, UIField } from '@hanzo/cms'
 
 import { SelectInput, useField } from '@hanzo/cms-ui'
 import { useEffect, useMemo } from 'react'

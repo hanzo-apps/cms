@@ -1,4 +1,4 @@
-import type { FlattenedField, Payload, PayloadRequest } from @hanzo/cms'from 
+import type { FlattenedField, Payload, PayloadRequest } from '@hanzo/cms'
 
 import type { BasePostgresAdapter, PostgresDB } from '../../../types.js'
 import type { DocsToResave } from '../types.js'

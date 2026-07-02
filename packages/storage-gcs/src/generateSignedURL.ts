@@ -1,9 +1,9 @@
 import type { Storage } from '@google-cloud/storage'
 import type { ClientUploadsAccess } from '@hanzo/cms-plugin-cloud-storage/types'
-import type { PayloadHandler } from @hanzo/cms'from 
+import type { PayloadHandler } from '@hanzo/cms'
 
 import { resolveSignedURLKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
-import { APIError, Forbidden } from @hanzo/cms'from 
+import { APIError, Forbidden } from '@hanzo/cms'
 
 import type { GcsStorageOptions } from './index.js'
 

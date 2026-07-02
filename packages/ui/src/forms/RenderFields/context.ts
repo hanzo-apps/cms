@@ -10,7 +10,7 @@ import React from 'react'
  * 'use client'
  * import React from 'react'
  * import { TextField, FieldPathContext } from '@hanzo/cms-ui'
- * import type { TextFieldClientComponent } from @hanzo/cms'from 
+ * import type { TextFieldClientComponent } from '@hanzo/cms'
  *
  * export const MyCustomField: TextFieldClientComponent = (props) => {
  *   return (

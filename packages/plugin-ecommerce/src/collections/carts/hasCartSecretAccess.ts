@@ -1,4 +1,4 @@
-import type { Access } from @hanzo/cms'from 
+import type { Access } from '@hanzo/cms'
 
 /**
  * Internal access function for guest cart access via secret in context or queries.

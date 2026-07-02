@@ -9,7 +9,7 @@ import type {
 import { acceptedLanguages } from '@hanzo/cms-translations'
 import fs from 'fs'
 import path from 'path'
-import { deepMergeSimple } from @hanzo/cms'from 
+import { deepMergeSimple } from '@hanzo/cms/shared'
 import { format } from 'prettier'
 
 import { applyEslintFixes } from './applyEslintFixes.js'

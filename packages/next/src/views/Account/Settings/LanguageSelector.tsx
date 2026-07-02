@@ -1,7 +1,7 @@
 'use client'
 import type { AcceptedLanguages } from '@hanzo/cms-translations'
 import type { ReactSelectOption } from '@hanzo/cms-ui'
-import type { LanguageOptions } from @hanzo/cms'from 
+import type { LanguageOptions } from '@hanzo/cms'
 
 import { ReactSelect, useTranslation } from '@hanzo/cms-ui'
 import React from 'react'

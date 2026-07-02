@@ -1,4 +1,4 @@
-import type { EditViewComponent, SanitizedCollectionConfig, SanitizedGlobalConfig } from @hanzo/cms'from 
+import type { EditViewComponent, SanitizedCollectionConfig, SanitizedGlobalConfig } from '@hanzo/cms'
 
 export const getCustomDocumentViewByKey = (
   views:

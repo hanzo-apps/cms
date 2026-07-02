@@ -1,6 +1,6 @@
 'use client'
 
-import type { Data } from @hanzo/cms'from 
+import type { Data } from '@hanzo/cms'
 
 import { EditIcon, useConfig, useModal, useTranslation } from '@hanzo/cms-ui'
 import React, { useId } from 'react'

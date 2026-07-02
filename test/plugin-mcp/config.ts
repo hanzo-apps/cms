@@ -1,7 +1,7 @@
 import { ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { mcpPlugin } from '@hanzo/cms-plugin-mcp'
 import path from 'path'
-import { definePlugin } from @hanzo/cms'from 
+import { definePlugin } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 import { z } from 'zod'
 

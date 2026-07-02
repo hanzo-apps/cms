@@ -1,6 +1,6 @@
-import type { CollectionAfterChangeHook, JsonObject } from @hanzo/cms'from 
+import type { CollectionAfterChangeHook, JsonObject } from '@hanzo/cms'
 
-import { APIError, ValidationError } from @hanzo/cms'from 
+import { APIError, ValidationError } from '@hanzo/cms'
 
 import type { NestedDocsPluginConfig } from '../types.js'
 

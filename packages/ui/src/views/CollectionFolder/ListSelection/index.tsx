@@ -1,9 +1,9 @@
 'use client'
 
-import type { CollectionSlug } from @hanzo/cms'from 
+import type { CollectionSlug } from '@hanzo/cms'
 
 import { useModal } from '@faceless-ui/modal'
-import { extractID } from @hanzo/cms'from 
+import { extractID } from '@hanzo/cms/shared'
 import React, { Fragment } from 'react'
 import { toast } from 'sonner'
 

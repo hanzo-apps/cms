@@ -1,6 +1,6 @@
 import type { QueryOptions } from 'mongoose'
 
-import { buildVersionCollectionFields, type UpdateVersion } from @hanzo/cms'from 
+import { buildVersionCollectionFields, type UpdateVersion } from '@hanzo/cms'
 
 import type { MongooseAdapter } from './index.js'
 

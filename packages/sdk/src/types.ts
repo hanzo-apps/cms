@@ -10,7 +10,7 @@ import type {
   TypedCollectionSelect,
   TypeWithID,
   Where,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 // Simple property access - PayloadTypesShape guarantees these properties exist
 export type DataFromCollectionSlug<

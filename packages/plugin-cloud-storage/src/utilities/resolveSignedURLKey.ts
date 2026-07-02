@@ -1,6 +1,6 @@
-import type { PayloadRequest } from @hanzo/cms'from 
+import type { PayloadRequest } from '@hanzo/cms'
 
-import { getSafeFileName } from @hanzo/cms'from 
+import { getSafeFileName } from '@hanzo/cms/internal'
 
 import { getFileKey } from './getFileKey.js'
 

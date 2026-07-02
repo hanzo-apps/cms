@@ -1,7 +1,7 @@
 import { mongooseAdapter } from '@hanzo/cms-db-mongodb'
 import sharp from 'sharp'
 import path from 'path'
-import { buildConfig, PayloadRequest } from @hanzo/cms'from 
+import { buildConfig, PayloadRequest } from '@hanzo/cms'
 import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'

@@ -1,4 +1,4 @@
-import type { Locale, SanitizedLocalizationConfig } from @hanzo/cms'from 
+import type { Locale, SanitizedLocalizationConfig } from '@hanzo/cms'
 /*
  return the Locale for given locale code, else return null
 */

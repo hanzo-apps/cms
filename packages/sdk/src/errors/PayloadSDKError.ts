@@ -1,4 +1,4 @@
-import type { ErrorResult } from @hanzo/cms'from 
+import type { ErrorResult } from '@hanzo/cms'
 
 /**
  * Error class for SDK API errors.

@@ -1,4 +1,4 @@
-import type { Payload, PayloadRequest } from @hanzo/cms'from 
+import type { Payload, PayloadRequest } from '@hanzo/cms'
 
 import { documentsSlug, formsSlug, formSubmissionsSlug, mediaSlug, pagesSlug } from '../shared.js'
 

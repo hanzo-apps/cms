@@ -1,5 +1,5 @@
 import type { SerializedEditorState } from 'lexical'
-import type { RichTextField, Validate } from @hanzo/cms'from 
+import type { RichTextField, Validate } from '@hanzo/cms'
 
 import type { SanitizedServerEditorConfig } from '../lexical/config/types.js'
 

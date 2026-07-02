@@ -1,6 +1,6 @@
 'use client'
 
-import type { FormField, UIField } from @hanzo/cms'from 
+import type { FormField, UIField } from '@hanzo/cms'
 
 import {
   useAllFormFields,
@@ -12,7 +12,7 @@ import {
   useTranslation,
 } from '@hanzo/cms-ui'
 import { reduceToSerializableFields } from '@hanzo/cms-ui/shared'
-import { formatAdminURL } from @hanzo/cms'from 
+import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useEffect, useState } from 'react'
 
 import type { PluginSEOTranslationKeys, PluginSEOTranslations } from '../../translations/index.js'

@@ -1,4 +1,4 @@
-import { RequiredDataFromCollectionSlug } from @hanzo/cms'from 
+import { RequiredDataFromCollectionSlug } from '@hanzo/cms'
 import type { PostArgs } from './post-1'
 
 export const post2: (args: PostArgs) => RequiredDataFromCollectionSlug<'posts'> = ({

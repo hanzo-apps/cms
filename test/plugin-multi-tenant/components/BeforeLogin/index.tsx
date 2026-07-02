@@ -1,6 +1,6 @@
 'use client'
 
-import type { PayloadClientReactComponent, SanitizedConfig } from @hanzo/cms'from 
+import type { PayloadClientReactComponent, SanitizedConfig } from '@hanzo/cms'
 
 import { useAuth, useRouteCache } from '@hanzo/cms-ui'
 import React, { useState } from 'react'

@@ -1,4 +1,4 @@
-import type { PayloadHandler } from @hanzo/cms'from 
+import type { PayloadHandler } from '@hanzo/cms'
 
 import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'

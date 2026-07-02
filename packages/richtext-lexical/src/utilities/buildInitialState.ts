@@ -8,7 +8,7 @@ import type {
   PayloadRequest,
   RichTextField,
   SanitizedFieldPermissions,
-} from @hanzo/cms'from 
+} from '@hanzo/cms'
 
 import { fieldSchemasToFormState } from '@hanzo/cms-ui/forms/fieldSchemasToFormState'
 

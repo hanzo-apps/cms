@@ -1,5 +1,5 @@
 'use client'
-import type { ClientCollectionConfig, ClientConfig, ClientGlobalConfig } from @hanzo/cms'from 
+import type { ClientCollectionConfig, ClientConfig, ClientGlobalConfig } from '@hanzo/cms'
 
 import { useEffect, useRef } from 'react'
 

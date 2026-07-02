@@ -1,7 +1,7 @@
 import type { GraphQLResolveInfo } from 'graphql'
-import type { Collection, TypeWithID, TypeWithVersion } from @hanzo/cms'from 
+import type { Collection, TypeWithID, TypeWithVersion } from '@hanzo/cms'
 
-import { findVersionByIDOperation, isolateObjectProperty } from @hanzo/cms'from 
+import { findVersionByIDOperation, isolateObjectProperty } from '@hanzo/cms'
 
 import type { Context } from '../types.js'
 

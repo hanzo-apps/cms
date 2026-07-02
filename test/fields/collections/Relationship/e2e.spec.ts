@@ -10,7 +10,7 @@ import { runAxeScan } from '__helpers/e2e/runAxeScan.js'
 import { getSelectInputOptions, selectInput } from '__helpers/e2e/selectInput.js'
 import { openDocDrawer } from '__helpers/e2e/toggleDocDrawer.js'
 import path from 'path'
-import { wait } from @hanzo/cms'from 
+import { wait } from '@hanzo/cms/shared'
 import { fileURLToPath } from 'url'
 
 import type { PayloadTestSDK } from '../../../__helpers/shared/sdk/index.js'

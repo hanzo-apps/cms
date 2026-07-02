@@ -1,5 +1,5 @@
 import { dequal } from 'dequal/lite'
-import { type Block, type BlockSlug, type Config, traverseFields } from @hanzo/cms'from 
+import { type Block, type BlockSlug, type Config, traverseFields } from '@hanzo/cms'
 
 export const autoDedupeBlocksPlugin =
   (args?: { debug?: boolean; disabled?: boolean; silent?: boolean }) =>

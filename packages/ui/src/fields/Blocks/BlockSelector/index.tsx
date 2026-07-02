@@ -1,6 +1,6 @@
 'use client'
 import type { I18nClient } from '@hanzo/cms-translations'
-import type { ClientBlock } from @hanzo/cms'from 
+import type { ClientBlock } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import React, { Fragment, useEffect, useMemo, useState } from 'react'
