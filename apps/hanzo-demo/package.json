@@ -1,0 +1,37 @@
+{
+  "name": "@hanzo/cms-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reference Hanzo CMS app: Base/SQLite (per-org) + SeaweedFS S3 + IAM SSO + org==tenant + white-label.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@hanzo/cms": "workspace:*",
+    "@hanzo/cms-auth-iam": "workspace:*",
+    "@hanzo/cms-db-sqlite": "workspace:*",
+    "@hanzo/cms-next": "workspace:*",
+    "@hanzo/cms-plugin-multi-tenant": "workspace:*",
+    "@hanzo/cms-plugin-whitelabel": "workspace:*",
+    "@hanzo/cms-richtext-lexical": "workspace:*",
+    "@hanzo/cms-storage-s3": "workspace:*",
+    "@hanzo/cms-ui": "workspace:*",
+    "cross-env": "^7.0.3",
+    "graphql": "^16.8.1",
+    "next": "16.2.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "sharp": "0.34.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.9",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "typescript": "5.7.3"
+  }
+}
