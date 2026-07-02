@@ -34,10 +34,13 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   // DB = Hanzo Base / SQLite (per-org). libsql; no Postgres/Mongo default.
+  // push: true — each per-org embedded db is schema-synced from this config on
+  // boot (Base model: on-demand per-tenant dbs, no migration files to ship).
   db: sqliteAdapter({
     client: {
       url: process.env.DATABASE_URI || `file:${path.resolve(dirname, `../data/${ORG}.db`)}`,
     },
+    push: true,
   }),
   plugins: [
     // Media/DAM -> SeaweedFS (hanzoai/s3), per-org prefix. forcePathStyle required.

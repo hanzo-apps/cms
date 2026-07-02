@@ -57,11 +57,16 @@ export const connect: Connect = async function connect(
     throw new Error(`Error: cannot connect to SQLite: ${message}`)
   }
 
-  // Only push schema if not in production
+  // Push schema in dev by default, and in ANY environment when the adapter
+  // explicitly opts in with `push: true`. The explicit opt-in is what the
+  // Hanzo Base/SQLite per-org model needs: each org's embedded db is created
+  // on demand and its schema is synced declaratively from the Payload config
+  // on boot (no migration ceremony for per-tenant dbs). Default behavior is
+  // unchanged — production only pushes when `push: true` is set.
   if (
-    process.env.NODE_ENV !== 'production' &&
     process.env.PAYLOAD_MIGRATING !== 'true' &&
-    this.push !== false
+    this.push !== false &&
+    (this.push === true || process.env.NODE_ENV !== 'production')
   ) {
     await pushDevSchema(this as unknown as DrizzleAdapter)
   }
