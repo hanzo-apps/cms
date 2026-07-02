@@ -45,6 +45,12 @@ type Args = {
 let baseEvent: BaseEvent | null = null
 
 export const sendEvent = async ({ event, payload }: Args): Promise<void> => {
+  // Hanzo CMS: no phone-home. Telemetry is fully disabled — this fork never
+  // sends events to any external endpoint. Set PAYLOAD_TELEMETRY_DEBUG to log
+  // locally what a build of upstream Payload would otherwise have transmitted.
+  if (!process.env.PAYLOAD_TELEMETRY_DEBUG) {
+    return
+  }
   try {
     if (payload.config.telemetry !== false) {
       const { packageJSON, packageJSONPath } = await getPackageJSON()
@@ -68,20 +74,9 @@ export const sendEvent = async ({ event, payload }: Args): Promise<void> => {
         }
       }
 
-      if (process.env.PAYLOAD_TELEMETRY_DEBUG) {
-        payload.logger.info({
-          event: { ...baseEvent, ...event, packageJSONPath },
-          msg: 'Telemetry Event',
-        })
-        return
-      }
-
-      await fetch('https://telemetry.payloadcms.com/events', {
-        body: JSON.stringify({ ...baseEvent, ...event }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'post',
+      payload.logger.info({
+        event: { ...baseEvent, ...event, packageJSONPath },
+        msg: 'Telemetry Event (local only — Hanzo CMS never transmits)',
       })
     }
   } catch (_) {

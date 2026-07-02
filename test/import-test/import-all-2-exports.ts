@@ -403,7 +403,6 @@ import {
   GenerateURL as seoGenerateURL,
   PluginConfig as SeoPluginConfig,
 } from '@hanzo/cms-plugin-seo/types'
-import stripePlugin from '@hanzo/cms-plugin-stripe'
 import {
   FieldSyncConfig,
   SanitizedStripeConfig,
@@ -412,7 +411,6 @@ import {
   StripeWebhookHandler,
   StripeWebhookHandlers,
   SyncConfig,
-} from '@hanzo/cms-plugin-stripe/types'
 import {
   $createAutoLinkNode,
   $createBlockNode,

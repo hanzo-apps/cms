@@ -21,7 +21,7 @@ export const defaults: Omit<Config, 'db' | 'editor' | 'secret'> = {
     meta: {
       defaultOGImageType: 'dynamic',
       robots: 'noindex, nofollow',
-      titleSuffix: '- Payload',
+      titleSuffix: '',
     },
     routes: {
       account: '/account',
@@ -75,7 +75,8 @@ export const defaults: Omit<Config, 'db' | 'editor' | 'secret'> = {
     graphQLPlayground: '/graphql-playground',
   },
   serverURL: '',
-  telemetry: true,
+  // Hanzo CMS: telemetry is OFF by default and never transmits externally.
+  telemetry: false,
   typescript: {
     autoGenerate: true,
     outputFile: `${typeof process?.cwd === 'function' ? process.cwd() : ''}/payload-types.ts`,
@@ -99,7 +100,7 @@ export const addDefaultsToConfig = (config: Config): Config => {
     meta: {
       defaultOGImageType: 'dynamic',
       robots: 'noindex, nofollow',
-      titleSuffix: '- Payload',
+      titleSuffix: '',
       ...(config?.admin?.meta || {}),
     },
     routes: {
@@ -156,7 +157,7 @@ export const addDefaultsToConfig = (config: Config): Config => {
     ...(config.routes || {}),
   }
   config.serverURL = config.serverURL ?? ''
-  config.telemetry = config.telemetry ?? true
+  config.telemetry = config.telemetry ?? false
   config.typescript = {
     autoGenerate: true,
     outputFile: `${typeof process?.cwd === 'function' ? process.cwd() : ''}/payload-types.ts`,

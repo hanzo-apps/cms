@@ -20,7 +20,6 @@
     "@hanzo/cms-db-mongodb": "latest",
     "@hanzo/cms-live-preview-react": "latest",
     "@hanzo/cms-next": "latest",
-    "@hanzo/cms-cloud": "latest",
     "@hanzo/cms-plugin-form-builder": "latest",
     "@hanzo/cms-plugin-nested-docs": "latest",
     "@hanzo/cms-plugin-redirects": "latest",

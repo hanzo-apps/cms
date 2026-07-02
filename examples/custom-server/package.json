@@ -12,7 +12,6 @@
   "dependencies": {
     "@hanzo/cms-db-mongodb": "latest",
     "@hanzo/cms-next": "latest",
-    "@hanzo/cms-cloud": "latest",
     "@hanzo/cms-richtext-lexical": "latest",
     "cross-env": "^7.0.3",
     "express": "^4.21.1",

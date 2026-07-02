@@ -36,7 +36,6 @@ export const tgzToPkgNameMap = {
   '@hanzo/cms-plugin-search': 'payloadcms-plugin-search-*',
   '@hanzo/cms-plugin-sentry': 'payloadcms-plugin-sentry-*',
   '@hanzo/cms-plugin-seo': 'payloadcms-plugin-seo-*',
-  '@hanzo/cms-plugin-stripe': 'payloadcms-plugin-stripe-*',
   '@hanzo/cms-richtext-lexical': 'payloadcms-richtext-lexical-*',
   '@hanzo/cms-richtext-slate': 'payloadcms-richtext-slate-*',
   '@hanzo/cms-sdk': 'payloadcms-sdk-*',

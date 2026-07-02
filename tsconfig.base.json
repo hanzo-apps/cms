@@ -56,7 +56,6 @@
       ],
       "@hanzo/cms-plugin-seo/client": ["./packages/plugin-seo/src/exports/client.ts"],
       "@hanzo/cms-plugin-sentry/client": ["./packages/plugin-sentry/src/exports/client.ts"],
-      "@hanzo/cms-plugin-stripe/client": ["./packages/plugin-stripe/src/exports/client.ts"],
       "@hanzo/cms-plugin-search/client": ["./packages/plugin-search/src/exports/client.ts"],
       "@hanzo/cms-plugin-form-builder/client": [
         "./packages/plugin-form-builder/src/exports/client.ts"

@@ -43,11 +43,13 @@ const getTitleString = (title: Metadata['title']): string | undefined => {
   return title.default
 }
 
+// Brand-neutral defaults. Adopters override per-brand via
+// `admin.meta.openGraph` / `admin.meta.titleSuffix` (or the white-label
+// resolver in @hanzo/cms-plugin-whitelabel). No product name is hardcoded.
 const defaultOpenGraph: Metadata['openGraph'] = {
-  description:
-    'Payload is a headless CMS and application framework built with TypeScript, Node.js, and React.',
-  siteName: 'Payload App',
-  title: 'Payload App',
+  description: 'Content management, built on your stack.',
+  siteName: 'Admin',
+  title: 'Admin',
 }
 
 export const generateMetadata = async (
