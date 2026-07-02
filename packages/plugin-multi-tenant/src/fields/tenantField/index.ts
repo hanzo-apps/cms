@@ -1,14 +1,27 @@
 import type { RelationshipFieldValidation, SingleRelationshipField } from '@hanzo/cms'
 
-import type { RootTenantFieldConfigOverrides } from '../../types.js'
+import type { RootTenantFieldConfigOverrides, UserWithTenantsField } from '../../types.js'
 
 import { defaults } from '../../defaults.js'
+import { extractID } from '../../utilities/extractID.js'
 import { getCollectionIDType } from '../../utilities/getCollectionIDType.js'
 import { getTenantFromCookie } from '../../utilities/getTenantFromCookie.js'
 import { getUserTenantIDs } from '../../utilities/getUserTenantIDs.js'
 
+type FieldValidationArgs = {
+  tenantsArrayFieldName: string
+  tenantsArrayTenantFieldName: string
+  userHasAccessToAllTenants: (user: UserWithTenantsField) => boolean
+  validateFunction?: RelationshipFieldValidation
+}
+
 const fieldValidation =
-  (validateFunction?: RelationshipFieldValidation): RelationshipFieldValidation =>
+  ({
+    tenantsArrayFieldName,
+    tenantsArrayTenantFieldName,
+    userHasAccessToAllTenants,
+    validateFunction,
+  }: FieldValidationArgs): RelationshipFieldValidation =>
   (value, options) => {
     if (validateFunction) {
       const result = validateFunction(value, options)
@@ -27,6 +40,28 @@ const fieldValidation =
       }
     }
 
+    // Tenant-ownership enforcement (defense in depth against cross-tenant writes).
+    // The admin UI restricts the selector via filterOptions, but the REST/GraphQL
+    // API would otherwise accept an arbitrary `tenant` value — letting one org
+    // write documents INTO another org's tenant (a cross-tenant integrity breach,
+    // and a cross-tenant read once the victim lists their content). An
+    // authenticated non-super user may only assign a tenant they belong to.
+    // System/local-API calls (no req.user) are trusted and skip this.
+    const user = options.req?.user as null | UserWithTenantsField
+    if (user && !userHasAccessToAllTenants(user)) {
+      const allowed = getUserTenantIDs(user, {
+        tenantsArrayFieldName,
+        tenantsArrayTenantFieldName,
+      }).map((id) => String(id))
+      const assigned = (Array.isArray(value) ? value : [value])
+        .filter((v) => v !== null && v !== undefined)
+        .map((v) => String(extractID(v as number | string)))
+      const ownsAll = assigned.length > 0 && assigned.every((id) => allowed.includes(id))
+      if (!ownsAll) {
+        return options.req.t('validation:required')
+      }
+    }
+
     return true
   }
 
@@ -39,6 +74,7 @@ type Args = {
   tenantsArrayTenantFieldName: string
   tenantsCollectionSlug: string
   unique: boolean
+  userHasAccessToAllTenants: (user: UserWithTenantsField) => boolean
 }
 export const tenantField = ({
   name = defaults.tenantFieldName,
@@ -49,6 +85,7 @@ export const tenantField = ({
   tenantsArrayTenantFieldName = defaults.tenantsArrayTenantFieldName,
   tenantsCollectionSlug = defaults.tenantCollectionSlug,
   unique,
+  userHasAccessToAllTenants = () => false,
 }: Args): SingleRelationshipField => {
   const { hasMany = false, validate, ...overrides } = _overrides || {}
   return {
@@ -138,12 +175,22 @@ export const tenantField = ({
       ? {
           hasMany: true,
           // TODO: V4 - replace validation with required: true
-          validate: fieldValidation(validate as RelationshipFieldValidation),
+          validate: fieldValidation({
+            tenantsArrayFieldName,
+            tenantsArrayTenantFieldName,
+            userHasAccessToAllTenants,
+            validateFunction: validate as RelationshipFieldValidation,
+          }),
         }
       : {
           hasMany: false,
           // TODO: V4 - replace validation with required: true
-          validate: fieldValidation(validate as RelationshipFieldValidation),
+          validate: fieldValidation({
+            tenantsArrayFieldName,
+            tenantsArrayTenantFieldName,
+            userHasAccessToAllTenants,
+            validateFunction: validate as RelationshipFieldValidation,
+          }),
         }),
     // @ts-expect-error translations are not typed for this plugin
     label: overrides.label || (({ t }) => t('plugin-multi-tenant:field-assignedTenant-label')),

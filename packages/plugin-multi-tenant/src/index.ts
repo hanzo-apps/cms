@@ -1,11 +1,11 @@
-import type { AcceptedLanguages } from '@hanzo/cms-translations'
 import type { CollectionConfig, Config } from '@hanzo/cms'
+import type { AcceptedLanguages } from '@hanzo/cms-translations'
 
-import chalk from 'chalk'
 import { hasAutosaveEnabled } from '@hanzo/cms/shared'
+import chalk from 'chalk'
 
 import type { PluginDefaultTranslationsObject } from './translations/types.js'
-import type { MultiTenantPluginConfig } from './types.js'
+import type { MultiTenantPluginConfig, UserWithTenantsField } from './types.js'
 
 import { defaults } from './defaults.js'
 import { getTenantOptionsEndpoint } from './endpoints/getTenantOptionsEndpoint.js'
@@ -201,6 +201,9 @@ export const multiTenantPlugin =
               tenantsArrayTenantFieldName,
               tenantsCollectionSlug,
               unique: false,
+              userHasAccessToAllTenants: userHasAccessToAllTenants as (
+                user: UserWithTenantsField,
+              ) => boolean,
             }),
           )
         }
@@ -395,6 +398,9 @@ export const multiTenantPlugin =
               tenantsArrayTenantFieldName,
               tenantsCollectionSlug,
               unique: isGlobal,
+              userHasAccessToAllTenants: userHasAccessToAllTenants as (
+                user: UserWithTenantsField,
+              ) => boolean,
             }),
           )
         }
