@@ -41,4 +41,19 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default withPayload(nextConfig, { devBundleServerPackages: false })
+const payloadConfig = withPayload(nextConfig, { devBundleServerPackages: false })
+
+// Base/SQLite per-org model syncs each embedded db's schema from the Payload
+// config on boot (db.push: true), which needs `drizzle-kit/api` at RUNTIME.
+// withPayload adds drizzle-kit to outputFileTracingExcludes because Payload's
+// default production path is migrations (drizzle-kit unused at runtime). We use
+// runtime push, so undo that exclude — nft then traces drizzle-kit + its dep
+// closure into the standalone bundle (the exclude was the only suppressor).
+const tracingExcludes = payloadConfig.outputFileTracingExcludes
+if (tracingExcludes?.['**/*']) {
+  tracingExcludes['**/*'] = tracingExcludes['**/*'].filter(
+    (pkg: string) => pkg !== 'drizzle-kit' && pkg !== 'drizzle-kit/api',
+  )
+}
+
+export default payloadConfig
