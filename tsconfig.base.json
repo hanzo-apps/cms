@@ -31,8 +31,10 @@
       }
     ],
     "paths": {
-      "@hanzo/cms-figma": ["../enterprise-plugins/packages/figma/src/index.ts"],
       "@payload-config": ["./test/_community/config.ts"],
+      "@hanzo/cms-auth-iam": ["./packages/auth-iam/src/index.ts"],
+      "@hanzo/cms-plugin-whitelabel": ["./packages/plugin-whitelabel/src/index.ts"],
+      "@hanzo/cms-plugin-whitelabel/types": ["./packages/plugin-whitelabel/src/types.ts"],
       "@hanzo/cms-admin-bar": ["./packages/admin-bar/src"],
       "@hanzo/cms-live-preview": ["./packages/live-preview/src"],
       "@hanzo/cms-live-preview-react": ["./packages/live-preview-react/src/index.ts"],
