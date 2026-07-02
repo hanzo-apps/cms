@@ -1,6 +1,6 @@
 {
   "name": "@hanzo/cms-monorepo",
-  "version": "3.85.7",
+  "version": "3.85.8",
   "private": true,
   "type": "module",
   "workspaces": [

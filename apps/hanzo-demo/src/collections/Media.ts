@@ -17,11 +17,27 @@ import type { CollectionConfig } from '@hanzo/cms'
  */
 export const Media: CollectionConfig = {
   slug: 'media',
-  fields: [
-    {
-      name: 'alt',
-      type: 'text',
-    },
-  ],
+  hooks: {
+    // Per-tenant S3 key prefix (defense in depth). Without this every org shared
+    // one static prefix (the HANZO_ORG env), so two orgs uploading the same
+    // filename collide/overwrite in one key space. Derive the prefix ONLY from
+    // the server-set `tenant` (which the multi-tenant plugin + the tenant-field
+    // ownership guard bind to the caller's validated IAM org) — never a client
+    // value. beforeValidate runs before the storage adapter's beforeChange
+    // upload, which reads `data.prefix`. Bytes stay access-controlled + the
+    // bucket private; this just isolates the key space.
+    beforeValidate: [
+      ({ data }) => {
+        if (data && data.tenant !== undefined && data.tenant !== null) {
+          const tenant = data.tenant as { id?: number | string } | number | string
+          const tenantID = typeof tenant === 'object' ? tenant.id : tenant
+          if (tenantID !== undefined && tenantID !== null) {
+            data.prefix = `org-${String(tenantID)}`
+          }
+        }
+        return data
+      },
+    ],
+  },
   upload: true,
 }

@@ -20,6 +20,11 @@ const dirname = path.dirname(filename)
 // org == tenant. Every persistent primitive is per-org.
 const ORG = process.env.HANZO_ORG || 'hanzo'
 
+// A super user (global admin) may cross tenants; everyone else is org-scoped.
+// Reused by the multi-tenant plugin AND the internal jobs queue lock-down.
+const isSuper = (user: unknown): boolean =>
+  Boolean(user && (user as { iamOrg?: string }).iamOrg === 'admin')
+
 export default buildConfig({
   admin: {
     importMap: {
@@ -29,6 +34,22 @@ export default buildConfig({
   },
   collections: [Users, Tenants, Pages, Media],
   editor: lexicalEditor(),
+  // The jobs queue is a Payload FRAMEWORK collection (not tenant-scoped). Its
+  // auth-only default let any org read another org's job inputs (schedulePublish
+  // payloads) and enqueue jobs against another org's docs. Job execution and the
+  // schedulePublish enqueue both run via the local API (overrideAccess), so
+  // external REST/GraphQL access is never needed — lock it to super/internal.
+  jobs: {
+    jobsCollectionOverrides: ({ defaultJobsCollection }) => ({
+      ...defaultJobsCollection,
+      access: {
+        create: ({ req }) => isSuper(req.user),
+        delete: ({ req }) => isSuper(req.user),
+        read: ({ req }) => isSuper(req.user),
+        update: ({ req }) => isSuper(req.user),
+      },
+    }),
+  },
   secret: process.env.PAYLOAD_SECRET || 'dev-secret-change-me',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
@@ -66,8 +87,7 @@ export default buildConfig({
         pages: {},
       },
       tenantsSlug: 'tenants',
-      userHasAccessToAllTenants: (user) =>
-        Boolean(user && (user as { iamOrg?: string }).iamOrg === 'admin'),
+      userHasAccessToAllTenants: (user) => isSuper(user),
     }),
     // Brand-neutral / white-label by domain. Neutral when no brand matches.
     whiteLabelPlugin({
