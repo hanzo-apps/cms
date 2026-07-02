@@ -18,6 +18,16 @@ export type IAMClaims = {
 
 export type HanzoIAMStrategyConfig = {
   /**
+   * Expected token audience(s). When set, the token's `aud` MUST include one of
+   * these (jose rejects otherwise) — completes RFC-8725 claim checking
+   * (iss + aud + exp) and scopes the CMS to tokens minted FOR it, so a token
+   * issued for an unrelated app cannot be replayed here. Defaults to
+   * HANZO_IAM_AUDIENCE (comma-separated). When unset, `aud` is not checked
+   * (issuer + signature + expiry still are); set it once a `hanzo-cms` IAM app
+   * mints CMS-scoped tokens to tighten least privilege.
+   */
+  audience?: string | string[]
+  /**
    * Slug of the Payload auth collection users are mapped into (e.g. 'users').
    */
   authSlug?: string
@@ -49,33 +59,5 @@ export type HanzoIAMStrategyConfig = {
    * Slug of the tenants collection (org == tenant). Defaults to 'tenants'.
    * A tenant doc is provisioned per IAM org on first login.
    */
-  tenantsSlug?: string
-}
-
-/**
- * Config for the same-origin SSO proxy strategy (browser admin embed). The
- * proxy has already verified the IAM session; this strategy trusts its
- * session-derived tenant headers only when the shared secret matches.
- */
-export type HanzoProxyStrategyConfig = {
-  /** Header carrying the actor (user) id. Defaults to 'x-actor-id'. */
-  actorHeader?: string
-  /** Payload auth collection slug. Defaults to 'users'. */
-  authSlug?: string
-  /** Strategy name surfaced to Payload. Defaults to 'hanzo-proxy'. */
-  name?: string
-  /** Header carrying the IAM org (== tenant) slug. Defaults to 'x-org-id'. */
-  orgHeader?: string
-  /**
-   * Shared secret the proxy must present. Defaults to env HANZO_PROXY_SECRET.
-   * When unset the strategy is DISABLED (fail-secure) — a header alone can
-   * never authenticate.
-   */
-  secret?: string
-  /** Header carrying the shared secret. Defaults to 'x-hanzo-proxy-secret'. */
-  secretHeader?: string
-  /** User→tenant array field managed by the multi-tenant plugin. Defaults 'tenants'. */
-  tenantsArrayField?: string
-  /** Tenants collection slug (org == tenant). Defaults to 'tenants'. */
   tenantsSlug?: string
 }

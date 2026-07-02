@@ -1,4 +1,9 @@
-import type { AuthStrategy, AuthStrategyFunctionArgs, AuthStrategyResult, Payload } from '@hanzo/cms'
+import type {
+  AuthStrategy,
+  AuthStrategyFunctionArgs,
+  AuthStrategyResult,
+  Payload,
+} from '@hanzo/cms'
 
 import { createRemoteJWKSet, jwtVerify } from 'jose'
 
@@ -60,14 +65,14 @@ const ensureTenant = async (args: {
 
   const existingDoc = existing.docs[0]
   if (existingDoc) {
-    return existingDoc.id as number | string
+    return existingDoc.id
   }
 
   const created = await payload.create({
     collection: tenantsSlug,
     data: { name: slug, slug },
   })
-  return created.id as number | string
+  return created.id
 }
 
 /**
@@ -89,6 +94,14 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
   const tenantsArrayField = config.tenantsArrayField || 'tenants'
   const issuer = config.issuer || process.env.HANZO_IAM_ISSUER || DEFAULT_ISSUER
   const jwksUri = config.jwksUri || process.env.HANZO_IAM_JWKS_URI || DEFAULT_JWKS
+  // Optional audience pinning (least privilege). Empty → aud not checked.
+  const audience =
+    config.audience ??
+    (process.env.HANZO_IAM_AUDIENCE
+      ? process.env.HANZO_IAM_AUDIENCE.split(',')
+          .map((a) => a.trim())
+          .filter(Boolean)
+      : undefined)
 
   return {
     name,
@@ -105,11 +118,12 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
       let claims: IAMClaims
       try {
         const { payload: verified } = await jwtVerify(token, getJWKS(jwksUri), {
+          ...(audience ? { audience } : {}),
           issuer,
         })
         claims = verified as IAMClaims
       } catch {
-        // invalid / expired / wrong-issuer token → anonymous
+        // invalid / expired / wrong-issuer / wrong-audience token → anonymous
         return { user: null }
       }
 
@@ -133,9 +147,7 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
         iamSub: claims.sub,
         username: claims.name,
         ...(config.claimsToUser ? config.claimsToUser(claims) : {}),
-        ...(tenantID !== undefined
-          ? { [tenantsArrayField]: [{ tenant: tenantID }] }
-          : {}),
+        ...(tenantID !== undefined ? { [tenantsArrayField]: [{ tenant: tenantID }] } : {}),
       }
 
       let userDoc
