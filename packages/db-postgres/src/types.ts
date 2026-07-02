@@ -98,7 +98,7 @@ export type PostgresAdapter = {
   poolOptions: PoolConfig
 } & BasePostgresAdapter
 
-declare module 'payload' {
+declare module '@hanzo/cms' {
   export interface DatabaseAdapter
     extends Omit<Args, 'idType' | 'logger' | 'migrationDir' | 'pool'>,
       DrizzleAdapter {

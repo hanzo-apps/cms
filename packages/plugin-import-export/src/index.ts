@@ -229,7 +229,7 @@ export const importExportPlugin =
     return config
   }
 
-declare module 'payload' {
+declare module '@hanzo/cms' {
   export interface FieldCustom {
     'plugin-import-export'?: {
       /**

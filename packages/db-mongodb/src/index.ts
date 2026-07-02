@@ -210,7 +210,7 @@ export type MongooseAdapter = {
 } & Args &
   BaseDatabaseAdapter
 
-declare module 'payload' {
+declare module '@hanzo/cms' {
   export interface DatabaseAdapter
     extends Omit<BaseDatabaseAdapter, 'sessions'>,
       Omit<Args, 'migrationDir'> {

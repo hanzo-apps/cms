@@ -5,7 +5,7 @@ import type { MCPAccessSettings, MCPPluginConfig } from './types.js'
 import { createAPIKeysCollection } from './collections/createApiKeysCollection.js'
 import { initializeMCPHandler } from './endpoints/mcp.js'
 
-declare module 'payload' {
+declare module '@hanzo/cms' {
   export interface PayloadRequest {
     payloadAPI: 'GraphQL' | 'local' | 'MCP' | 'REST'
   }

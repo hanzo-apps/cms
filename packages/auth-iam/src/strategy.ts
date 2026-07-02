@@ -25,7 +25,7 @@ const getBearer = (headers: AuthStrategyFunctionArgs['headers']): null | string 
     return null
   }
   const [scheme, token] = raw.split(' ')
-  if (!token || scheme.toLowerCase() !== 'bearer') {
+  if (!scheme || !token || scheme.toLowerCase() !== 'bearer') {
     return null
   }
   return token.trim()
@@ -58,8 +58,9 @@ const ensureTenant = async (args: {
     where: { slug: { equals: slug } },
   })
 
-  if (existing.docs.length > 0) {
-    return existing.docs[0].id as number | string
+  const existingDoc = existing.docs[0]
+  if (existingDoc) {
+    return existingDoc.id as number | string
   }
 
   const created = await payload.create({
@@ -138,9 +139,10 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
       }
 
       let userDoc
-      if (found.docs.length > 0) {
+      const foundUser = found.docs[0]
+      if (foundUser) {
         userDoc = await payload.update({
-          id: found.docs[0].id,
+          id: foundUser.id,
           collection: authSlug,
           data: baseData,
         })

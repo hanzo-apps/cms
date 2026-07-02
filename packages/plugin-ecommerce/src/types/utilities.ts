@@ -39,7 +39,7 @@ type ResolveEcommerceType<T> = T extends { ecommerce: infer E }
 
 export type TypedEcommerce = EcommerceBase & ResolveEcommerceType<GeneratedTypes>
 
-declare module 'payload' {
+declare module '@hanzo/cms' {
   export interface GeneratedTypes {
     ecommerceUntyped: {
       collections: {

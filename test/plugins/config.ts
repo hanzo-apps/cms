@@ -15,7 +15,7 @@ export type ReaderPluginOptions = {
   items: Array<{ name: string }>
 }
 
-declare module 'payload' {
+declare module '@hanzo/cms' {
   interface RegisteredPlugins {
     'priority-reader': ReaderPluginOptions
   }

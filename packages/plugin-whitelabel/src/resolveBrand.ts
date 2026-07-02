@@ -6,7 +6,7 @@ import type { Brand } from './types.js'
  * fallback exists — callers then use the brand-neutral defaults.
  */
 export const resolveBrand = (brands: Brand[], host?: null | string): Brand | undefined => {
-  const normalized = (host || '').toLowerCase().split(':')[0].trim()
+  const normalized = ((host || '').toLowerCase().split(':')[0] || '').trim()
 
   let best: Brand | undefined
   let bestLen = -1

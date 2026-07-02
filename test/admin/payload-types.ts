@@ -1595,7 +1595,7 @@ export interface Auth {
 }
 
 
-declare module 'payload' {
+declare module '@hanzo/cms' {
   // @ts-ignore 
   export interface GeneratedTypes extends Config {}
 }

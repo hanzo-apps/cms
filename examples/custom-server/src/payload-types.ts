@@ -224,6 +224,6 @@ export interface Auth {
 }
 
 
-declare module 'payload' {
+declare module '@hanzo/cms' {
   export interface GeneratedTypes extends Config {}
 }

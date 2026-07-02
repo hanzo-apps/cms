@@ -105,7 +105,7 @@ export type VercelPostgresAdapter = {
   poolOptions?: Args['pool']
 } & BasePostgresAdapter
 
-declare module 'payload' {
+declare module '@hanzo/cms' {
   export interface DatabaseAdapter
     extends Omit<Args, 'idType' | 'logger' | 'migrationDir' | 'pool'>,
       DrizzleAdapter {

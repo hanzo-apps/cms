@@ -276,7 +276,7 @@ export interface GeneratedTypes {}
  *
  * @example
  * // In a plugin package's index.ts:
- * declare module 'payload' {
+ * declare module '@hanzo/cms' {
  *   interface RegisteredPlugins {
  *     'plugin-seo': SEOPluginOptions
  *   }
