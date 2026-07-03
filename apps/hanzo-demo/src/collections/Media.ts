@@ -17,6 +17,16 @@ import type { CollectionConfig } from '@hanzo/cms'
  */
 export const Media: CollectionConfig = {
   slug: 'media',
+  // A tenant-enabled collection MUST declare a `fields` array. The multi-tenant
+  // plugin runs during buildConfig (before Payload defaults `fields` to []) and
+  // unshifts the `tenant` field into it + iterates it in addFilterOptionsToFields
+  // — an undefined `fields` there throws `c.fields is not iterable` at boot.
+  fields: [
+    {
+      name: 'alt',
+      type: 'text',
+    },
+  ],
   hooks: {
     // Per-tenant S3 key prefix (defense in depth). Without this every org shared
     // one static prefix (the HANZO_ORG env), so two orgs uploading the same
