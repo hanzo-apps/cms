@@ -26,6 +26,13 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     user: Users.slug,
+    // Hanzo branding on the admin panel — the browser tab / login no longer
+    // shows the upstream framework name.
+    meta: {
+      titleSuffix: '— Hanzo CMS',
+      title: 'Hanzo CMS',
+      description: 'Hanzo CMS — headless content for the Hanzo platform.',
+    },
   },
   collections: [Users, Tenants, Pages, Media],
   editor: lexicalEditor(),
