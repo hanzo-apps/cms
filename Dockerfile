@@ -24,11 +24,12 @@ RUN corepack enable && corepack prepare pnpm@10.27.0 --activate
 # links; the app's next.config roots file-tracing at the workspace).
 COPY . .
 RUN pnpm install --frozen-lockfile
-# Build every package's dist (types + entry points), then the app's standalone
-# bundle (next build --webpack — Turbopack can't do the .js->.tsx workspace
-# remap; see apps/hanzo-demo/next.config.ts).
-RUN pnpm build:all
-RUN pnpm --filter @hanzo/cms-demo build
+# Build ONLY the app + its real dependency graph (turbo --filter), producing the
+# standalone bundle (next build --webpack — Turbopack can't do the .js->.tsx
+# workspace remap; see apps/hanzo-demo/next.config.ts). This is exactly the
+# validated-green command (14/14 tasks); `build:all` is avoided because it also
+# builds unrelated tooling (@tools/scripts) that isn't needed for the image.
+RUN pnpm turbo build --filter @hanzo/cms-demo
 
 # ---- runner ----------------------------------------------------------------
 FROM node:22-bookworm-slim AS runner
