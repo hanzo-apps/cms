@@ -44,7 +44,8 @@ RUN groupadd --system --gid 1001 nodejs && useradd --system --uid 1001 --gid nod
 # path, and the traced node_modules ride alongside it at the workspace root).
 COPY --from=builder --chown=nextjs:nodejs /app/apps/hanzo-demo/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/apps/hanzo-demo/.next/static ./apps/hanzo-demo/.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/apps/hanzo-demo/public ./apps/hanzo-demo/public
+# No public/ dir in this app — media is served from S3 (hanzo-cms bucket), not
+# a static public folder, so there is nothing to copy.
 
 USER nextjs
 EXPOSE 3000
