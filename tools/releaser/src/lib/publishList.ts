@@ -33,6 +33,9 @@ export const packagePublishList = [
   // SDK
   'sdk',
 
+  // Auth
+  'auth-iam',
+
   // Storage
   'storage-s3',
   'storage-r2',
@@ -45,7 +48,6 @@ export const packagePublishList = [
   'kv-redis',
 
   // Plugins
-  'payload-cloud',
   'plugin-cloud-storage',
   'plugin-ecommerce',
   'plugin-form-builder',
@@ -57,7 +59,7 @@ export const packagePublishList = [
   'plugin-search',
   'plugin-sentry',
   'plugin-seo',
-  'plugin-stripe',
+  'plugin-whitelabel',
 
   'typescript-plugin',
 
