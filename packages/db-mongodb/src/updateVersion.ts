@@ -31,9 +31,9 @@ export const updateVersion: UpdateVersion = async function updateVersion(
   })
 
   const whereToUse = where || { id: { equals: id } }
-  const fields = buildVersionCollectionFields(this.payload.config, collectionConfig)
+  const fields = buildVersionCollectionFields(this.cms.config, collectionConfig)
 
-  const flattenedFields = buildVersionCollectionFields(this.payload.config, collectionConfig, true)
+  const flattenedFields = buildVersionCollectionFields(this.cms.config, collectionConfig, true)
 
   const query = await buildQuery({
     adapter: this,

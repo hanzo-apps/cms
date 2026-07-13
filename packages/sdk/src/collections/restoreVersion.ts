@@ -1,10 +1,10 @@
-import type { CollectionSlug, PayloadTypesShape, TypedLocale } from '@hanzo/cms'
+import type { CollectionSlug, CMSTypesShape, TypedLocale } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type { DataFromCollectionSlug, PopulateType } from '../types.js'
 
 export type RestoreVersionByIDOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
 > = {
   /**
@@ -37,8 +37,8 @@ export type RestoreVersionByIDOptions<
   populate?: PopulateType<T>
 }
 
-export async function restoreVersion<T extends PayloadTypesShape, TSlug extends CollectionSlug<T>>(
-  sdk: PayloadSDK<T>,
+export async function restoreVersion<T extends CMSTypesShape, TSlug extends CollectionSlug<T>>(
+  sdk: CMSSDK<T>,
   options: RestoreVersionByIDOptions<T, TSlug>,
   init?: RequestInit,
 ): Promise<DataFromCollectionSlug<T, TSlug>> {

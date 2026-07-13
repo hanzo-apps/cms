@@ -7,7 +7,7 @@ import { preferencesCollectionSlug } from '../config.js'
 export async function findOne(args: PreferenceRequest): Promise<TypedCollection['_preference']> {
   const {
     key,
-    req: { payload },
+    req: { cms },
     req,
     user,
   } = args
@@ -24,7 +24,7 @@ export async function findOne(args: PreferenceRequest): Promise<TypedCollection[
     ],
   }
 
-  const { docs } = await payload.db.find({
+  const { docs } = await cms.db.find({
     collection: preferencesCollectionSlug,
     limit: 1,
     pagination: false,

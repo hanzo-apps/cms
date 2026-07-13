@@ -405,7 +405,7 @@ export const bnBdTranslations: DefaultTranslationsObject = {
     password: 'পাসওয়ার্ড',
     pasteField: 'ফিল্ড পেস্ট করুন',
     pasteRow: 'সারি পেস্ট করুন',
-    payloadSettings: 'পেলোড সেটিংস',
+    cmsSettings: 'পেলোড সেটিংস',
     permanentlyDelete: 'চিরতরে মুছে ফেলুন',
     permanentlyDeletedCountSuccessfully:
       'স্থায়ীভাবে {{count}} {{label}} সফলভাবে মুছে ফেলা হয়েছে।',
@@ -424,7 +424,7 @@ export const bnBdTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'প্রকাশিত সংস্করণ হিসাবে পুনরুদ্ধার করুন',
     restoredCountSuccessfully: '{{count}} {{label}} সফলভাবে পুনরুদ্ধার করা হয়েছে।',
     restoring:
-      'Payload এর প্রসঙ্গে মূল পাঠের অর্থ সম্মান করুন। এখানে Payload পদ গুলির একটি তালিকা রয়েছে যা খুব নির্দিষ্ট অর্থ বহন করে:\n     - সংগ্রহ: একটি সং',
+      'CMS এর প্রসঙ্গে মূল পাঠের অর্থ সম্মান করুন। এখানে CMS পদ গুলির একটি তালিকা রয়েছে যা খুব নির্দিষ্ট অর্থ বহন করে:\n     - সংগ্রহ: একটি সং',
     row: 'সারি',
     rows: 'সারিগুলি',
     save: 'সংরক্ষণ করুন',

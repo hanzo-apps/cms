@@ -1,7 +1,7 @@
 {
   "name": "@hanzo/cms-eslint-config",
   "version": "3.28.0",
-  "description": "Payload styles for ESLint and Prettier",
+  "description": "CMS styles for ESLint and Prettier",
   "keywords": [],
   "homepage": "https://payloadcms.com",
   "repository": {

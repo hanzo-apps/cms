@@ -1,4 +1,4 @@
-import type { FlattenedField, PayloadRequest } from '@hanzo/cms'
+import type { FlattenedField, CMSRequest } from '@hanzo/cms'
 
 import type { ImportFieldHookEntry } from '../types.js'
 
@@ -10,7 +10,7 @@ type UnflattenArgs = {
   fields: FlattenedField[]
   format?: 'csv' | 'json' | ({} & string)
   importFieldHooks?: Record<string, ImportFieldHookEntry>
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 const indexSegment = /^\d+$/
@@ -182,7 +182,7 @@ export const unflattenObject = ({
           })
         }
       } catch (error) {
-        req.payload.logger.error({
+        req.cms.logger.error({
           err: error,
           msg: `[plugin-import-export] Field-level beforeImport hook for "${flatKey}" threw — falling back to original value`,
         })
@@ -399,7 +399,7 @@ export const unflattenObject = ({
   } catch (err) {
     // Log but don't throw - return partially processed result
 
-    req.payload.logger.error({
+    req.cms.logger.error({
       err,
       msg: '[plugin-import-export] Error in postProcessDocument',
     })

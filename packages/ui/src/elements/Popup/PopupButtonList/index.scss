@@ -1,6 +1,6 @@
 @import '../../../scss/styles.scss';
 
-@layer payload-default {
+@layer cms-default {
   .popup-button-list {
     --list-button-padding: calc(var(--base) * 0.5);
     --popup-button-list-gap: 3px;

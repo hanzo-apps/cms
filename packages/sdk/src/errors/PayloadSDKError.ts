@@ -4,7 +4,7 @@ import type { ErrorResult } from '@hanzo/cms'
  * Error class for SDK API errors.
  * Contains the HTTP status code and error details from the API response.
  */
-export class PayloadSDKError extends Error {
+export class CMSSDKError extends Error {
   /**
    * The error data from the API response.
    * For ValidationError, this contains `collection`, `global`, and `errors` array.
@@ -29,7 +29,7 @@ export class PayloadSDKError extends Error {
     status: number
   }) {
     super(message)
-    this.name = 'PayloadSDKError'
+    this.name = 'CMSSDKError'
     this.status = status
     this.errors = errors
     this.response = response

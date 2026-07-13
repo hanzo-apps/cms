@@ -21,7 +21,7 @@ import type {
   SelectFieldClient,
   TabsFieldClient,
 } from '../../fields/config/types.js'
-import type { Payload } from '../../types/index.js'
+import type { CMS } from '../../types/index.js'
 
 import { getFromImportMap } from '../../bin/generateImportMap/utilities/getFromImportMap.js'
 import { MissingEditorProp } from '../../errors/MissingEditorProp.js'
@@ -86,7 +86,7 @@ export const createClientBlocks = ({
   importMap,
 }: {
   blocks: (Block | string)[]
-  defaultIDType: Payload['config']['db']['defaultIDType']
+  defaultIDType: CMS['config']['db']['defaultIDType']
   i18n: I18nClient
   importMap: ImportMap
 }): (ClientBlock | string)[] | ClientBlock[] => {
@@ -127,7 +127,7 @@ export const createClientBlocks = ({
     if (block?.admin?.jsx) {
       const jsxResolved = getFromImportMap<BlockJSX>({
         importMap,
-        PayloadComponent: block.admin.jsx,
+        CMSComponent: block.admin.jsx,
         schemaPath: '',
       })
       clientBlock.jsx = jsxResolved
@@ -178,7 +178,7 @@ export const createClientField = ({
   i18n,
   importMap,
 }: {
-  defaultIDType: Payload['config']['db']['defaultIDType']
+  defaultIDType: CMS['config']['db']['defaultIDType']
   field: Field
   i18n: I18nClient
   importMap: ImportMap
@@ -483,7 +483,7 @@ export const createClientFields = ({
   i18n,
   importMap,
 }: {
-  defaultIDType: Payload['config']['db']['defaultIDType']
+  defaultIDType: CMS['config']['db']['defaultIDType']
   disableAddingID?: boolean
   fields: Field[]
   i18n: I18nClient

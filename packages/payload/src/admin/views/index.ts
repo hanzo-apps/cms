@@ -8,18 +8,18 @@ import type {
   CustomComponent,
   Locale,
   MetaConfig,
-  PayloadComponent,
+  CMSComponent,
   SanitizedConfig,
   ServerProps,
 } from '../../config/types.js'
 import type { SanitizedGlobalConfig } from '../../globals/config/types.js'
-import type { PayloadRequest } from '../../types/index.js'
+import type { CMSRequest } from '../../types/index.js'
 import type { LanguageOptions } from '../LanguageOptions.js'
 import type { Data, StaticDescription } from '../types.js'
 import type { DocumentSubViewTypes } from './document.js'
 
 export type AdminViewConfig = {
-  Component: PayloadComponent
+  Component: CMSComponent
   /** Whether the path should be matched exactly or as a prefix */
   exact?: boolean
   meta?: MetaConfig
@@ -68,7 +68,7 @@ export type AdminViewServerProps = AdminViewClientProps & AdminViewServerPropsOn
 /**
  * @deprecated This should be removed in favor of direct props
  */
-export type AdminViewComponent = PayloadComponent<AdminViewServerProps>
+export type AdminViewComponent = CMSComponent<AdminViewServerProps>
 
 export type VisibleEntities = {
   collections: SanitizedCollectionConfig['slug'][]
@@ -84,7 +84,7 @@ export type InitPageResult = {
   locale?: Locale
   permissions: SanitizedPermissions
   redirectTo?: string
-  req: PayloadRequest
+  req: CMSRequest
   translations: ClientTranslationsObject
   visibleEntities: VisibleEntities
 }

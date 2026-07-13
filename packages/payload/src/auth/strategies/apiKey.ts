@@ -7,7 +7,7 @@ import type { AuthStrategyFunction } from '../index.js'
 
 export const APIKeyAuthentication =
   (collectionConfig: SanitizedCollectionConfig): AuthStrategyFunction =>
-  async ({ headers, isGraphQL = false, payload }) => {
+  async ({ headers, isGraphQL = false, cms }) => {
     const authHeader = headers.get('Authorization')
 
     if (authHeader?.startsWith(`${collectionConfig.slug} API-Key `)) {
@@ -15,9 +15,9 @@ export const APIKeyAuthentication =
 
       // TODO: V4 remove extra algorithm check
       // api keys saved prior to v3.46.0 will have sha1
-      const sha1APIKeyIndex = crypto.createHmac('sha1', payload.secret).update(apiKey).digest('hex')
+      const sha1APIKeyIndex = crypto.createHmac('sha1', cms.secret).update(apiKey).digest('hex')
       const sha256APIKeyIndex = crypto
-        .createHmac('sha256', payload.secret)
+        .createHmac('sha256', cms.secret)
         .update(apiKey)
         .digest('hex')
 
@@ -51,7 +51,7 @@ export const APIKeyAuthentication =
           where.or = apiKeyConstraints
         }
 
-        const userQuery = await payload.find({
+        const userQuery = await cms.find({
           collection: collectionConfig.slug,
           depth: isGraphQL ? 0 : collectionConfig.auth.depth,
           limit: 1,

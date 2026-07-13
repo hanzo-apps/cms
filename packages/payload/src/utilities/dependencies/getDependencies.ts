@@ -24,7 +24,7 @@ import { resolveFrom } from './resolveFrom.js'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const payloadPkgDirname = path.resolve(dirname, '../../../') // pkg dir (outside src)
+const cmsPkgDirname = path.resolve(dirname, '../../../') // pkg dir (outside src)
 
 const resolvedCwd = path.resolve(process.cwd())
 
@@ -70,7 +70,7 @@ export async function getDependencies(
 
           if (
             resolvedFoundPath.startsWith(resolvedCwd) ||
-            resolvedFoundPath.startsWith(payloadPkgDirname)
+            resolvedFoundPath.startsWith(cmsPkgDirname)
           ) {
             // We don't want to match node modules outside the user's project. Checking for both process.cwd and dirname is a reliable way to do this.
             packageJsonFilePath = resolvedFoundPath

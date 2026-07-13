@@ -1,12 +1,12 @@
 import type {
   CollectionSlug,
-  PayloadTypesShape,
+  CMSTypesShape,
   SelectType,
   TypedLocale,
   UploadCollectionSlug,
 } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type {
   PopulateType,
   RequiredDataFromCollectionSlug,
@@ -16,7 +16,7 @@ import type {
 import { resolveFileFromOptions } from '../utilities/resolveFileFromOptions.js'
 
 export type CreateOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectType,
 > = {
@@ -57,11 +57,11 @@ export type CreateOptions<
 }
 
 export async function create<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectType,
 >(
-  sdk: PayloadSDK<T>,
+  sdk: CMSSDK<T>,
   options: CreateOptions<T, TSlug, TSelect>,
   init?: RequestInit,
 ): Promise<TransformCollectionWithSelect<T, TSlug, TSelect>> {

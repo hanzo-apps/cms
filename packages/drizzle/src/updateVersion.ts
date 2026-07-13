@@ -28,13 +28,13 @@ export async function updateVersion<T extends JsonObject = JsonObject>(
     where: whereArg,
   }: UpdateVersionArgs<T>,
 ): Promise<TypeWithVersion<T>> {
-  const collectionConfig: SanitizedCollectionConfig = this.payload.collections[collection].config
+  const collectionConfig: SanitizedCollectionConfig = this.cms.collections[collection].config
   const whereToUse = whereArg || { id: { equals: id } }
   const tableName = this.tableNameMap.get(
     `_${toSnakeCase(collectionConfig.slug)}${this.versionsSuffix}`,
   )
 
-  const fields = buildVersionCollectionFields(this.payload.config, collectionConfig, true)
+  const fields = buildVersionCollectionFields(this.cms.config, collectionConfig, true)
 
   const { where } = buildQuery({
     adapter: this,

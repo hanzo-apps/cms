@@ -2,7 +2,7 @@
 import { dequal } from 'dequal/lite' // lite: no need for Map and Set support
 import { useRouter } from 'next/navigation.js'
 import { serialize } from 'object-to-formdata'
-import { type FormState, type PayloadRequest } from '@hanzo/cms'
+import { type FormState, type CMSRequest } from '@hanzo/cms'
 import {
   deepCopyObjectSimpleWithoutReactComponents,
   getDataByPath as getDataByPathFunc,
@@ -207,12 +207,12 @@ export const Form: React.FC<FormProps> = (props) => {
               path: pathSegments,
               preferences: {} as any,
               req: {
-                payload: {
+                cms: {
                   config,
                 },
                 t,
                 user,
-              } as unknown as PayloadRequest,
+              } as unknown as CMSRequest,
               siblingData: contextRef.current.getSiblingData(path),
             })
 
@@ -611,7 +611,7 @@ export const Form: React.FC<FormProps> = (props) => {
       }
 
       const dataToSerialize: Record<string, unknown> = {
-        _payload: JSON.stringify(data),
+        _cms: JSON.stringify(data),
       }
 
       if (docConfig && 'upload' in docConfig && docConfig.upload && file) {

@@ -1,6 +1,6 @@
 @import '~@hanzo/cms-ui/scss';
 
-@layer payload-default {
+@layer cms-default {
   .rich-text-lexical {
     & > .field-error.tooltip {
       right: auto;

@@ -67,7 +67,7 @@ export const booleanParams = [
 export const numberParams = ['depth', 'limit', 'page']
 
 /**
- * Takes raw query parameters and parses them into the correct types that Payload expects.
+ * Takes raw query parameters and parses them into the correct types that CMS expects.
  * Examples:
  *   a. `draft` provided as a string of "true" is converted to a boolean
  *   b. `depth` provided as a string of "0" is converted to a number

@@ -2,7 +2,7 @@ import type { RichTextAdapter } from '../../../admin/RichText.js'
 import type { SanitizedCollectionConfig } from '../../../collections/config/types.js'
 import type { SanitizedGlobalConfig } from '../../../globals/config/types.js'
 import type { RequestContext } from '../../../index.js'
-import type { JsonObject, PayloadRequest } from '../../../types/index.js'
+import type { JsonObject, CMSRequest } from '../../../types/index.js'
 import type { Block, Field, TabAsField } from '../../config/types.js'
 
 import { MissingEditorProp } from '../../../errors/index.js'
@@ -29,7 +29,7 @@ type Args = {
   parentSchemaPath: string
   previousDoc: JsonObject
   previousSiblingDoc: JsonObject
-  req: PayloadRequest
+  req: CMSRequest
   siblingData: JsonObject
   siblingDoc: JsonObject
   siblingFields?: (Field | TabAsField)[]
@@ -156,7 +156,7 @@ export const promise = async ({
           const blockTypeToMatch = (row as JsonObject).blockType
 
           const block: Block | undefined =
-            req.payload.blocks[blockTypeToMatch] ??
+            req.cms.blocks[blockTypeToMatch] ??
             ((field.blockReferences ?? field.blocks).find(
               (curBlock) => typeof curBlock !== 'string' && curBlock.slug === blockTypeToMatch,
             ) as Block | undefined)

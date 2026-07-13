@@ -2,18 +2,18 @@ import { status as httpStatus } from 'http-status'
 import { match } from 'path-to-regexp'
 
 import type { Collection } from '../collections/config/types.js'
-import type { Endpoint, PayloadHandler, SanitizedConfig } from '../config/types.js'
+import type { Endpoint, CMSHandler, SanitizedConfig } from '../config/types.js'
 import type { APIError } from '../errors/APIError.js'
 import type { GlobalConfig } from '../globals/config/types.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
-import { createPayloadRequest } from './createPayloadRequest.js'
+import { createCMSRequest } from './createPayloadRequest.js'
 import { formatAdminURL } from './formatAdminURL.js'
 import { headersWithCors } from './headersWithCors.js'
 import { mergeHeaders } from './mergeHeaders.js'
 import { routeError } from './routeError.js'
 
-const notFoundResponse = (req: PayloadRequest, pathname?: string) => {
+const notFoundResponse = (req: CMSRequest, pathname?: string) => {
   return Response.json(
     {
       message: `Route not found "${pathname ?? new URL(req.url!).pathname}"`,
@@ -29,7 +29,7 @@ const notFoundResponse = (req: PayloadRequest, pathname?: string) => {
 }
 
 /**
- * Attaches the Payload REST API to any backend framework that uses Fetch Request/Response
+ * Attaches the CMS REST API to any backend framework that uses Fetch Request/Response
  * like Next.js (app router), Remix, Bun, Hono.
  *
  * ### Example: Using Hono
@@ -64,18 +64,18 @@ export const handleEndpoints = async ({
   basePath = '',
   config: incomingConfig,
   path,
-  payloadInstanceCacheKey,
+  cmsInstanceCacheKey,
   request,
 }: {
   basePath?: string
   config: Promise<SanitizedConfig> | SanitizedConfig
   /** Override path from the request */
   path?: string
-  payloadInstanceCacheKey?: string
+  cmsInstanceCacheKey?: string
   request: Request
 }): Promise<Response> => {
-  let handler!: PayloadHandler
-  let req: PayloadRequest
+  let handler!: CMSHandler
+  let req: CMSRequest
   let collection!: Collection
 
   // This can be used against GET request search params size limit.
@@ -84,7 +84,7 @@ export const handleEndpoints = async ({
   // packages/ui/src/fields/Relationship/index.tsx
   if (
     request.method.toLowerCase() === 'post' &&
-    (request.headers.get('X-Payload-HTTP-Method-Override') === 'GET' ||
+    (request.headers.get('X-CMS-HTTP-Method-Override') === 'GET' ||
       request.headers.get('X-HTTP-Method-Override') === 'GET')
   ) {
     let url = request.url
@@ -97,7 +97,7 @@ export const handleEndpoints = async ({
       // May not be supported by every endpoint
       data = await request.json()
 
-      // locale and fallbackLocale is read by createPayloadRequest to populate req.locale and req.fallbackLocale
+      // locale and fallbackLocale is read by createCMSRequest to populate req.locale and req.fallbackLocale
       // => add to searchParams
       if (data?.locale) {
         url += `?locale=${data.locale}`
@@ -125,7 +125,7 @@ export const handleEndpoints = async ({
       basePath,
       config: incomingConfig,
       path,
-      payloadInstanceCacheKey,
+      cmsInstanceCacheKey,
       request: req,
     })
 
@@ -133,15 +133,15 @@ export const handleEndpoints = async ({
   }
 
   try {
-    req = await createPayloadRequest({
+    req = await createCMSRequest({
       canSetHeaders: true,
       config: incomingConfig,
-      payloadInstanceCacheKey,
+      cmsInstanceCacheKey,
       request,
     })
 
-    const { payload } = req
-    const { config } = payload
+    const { cms } = req
+    const { config } = cms
 
     const pathname = path ?? new URL(req.url!).pathname
     const baseAPIPath = formatAdminURL({
@@ -175,9 +175,9 @@ export const handleEndpoints = async ({
     // first param can be a global slug or collection slug, find the relevant config
     if (firstParam) {
       if (isGlobals) {
-        globalConfig = payload.globals.config.find((each) => each.slug === firstParam)!
-      } else if (payload.collections[firstParam]) {
-        collection = payload.collections[firstParam]
+        globalConfig = cms.globals.config.find((each) => each.slug === firstParam)!
+      } else if (cms.collections[firstParam]) {
+        collection = cms.collections[firstParam]
       }
     }
 

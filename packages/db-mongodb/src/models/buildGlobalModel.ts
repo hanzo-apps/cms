@@ -7,7 +7,7 @@ import { getBuildQueryPlugin } from '../queries/getBuildQueryPlugin.js'
 import { buildSchema } from './buildSchema.js'
 
 export const buildGlobalModel = (adapter: MongooseAdapter): GlobalModel | null => {
-  if (adapter.payload.config.globals && adapter.payload.config.globals.length > 0) {
+  if (adapter.cms.config.globals && adapter.cms.config.globals.length > 0) {
     const globalsSchema = new mongoose.Schema(
       {},
       { discriminatorKey: 'globalType', minimize: false, timestamps: true },
@@ -21,7 +21,7 @@ export const buildGlobalModel = (adapter: MongooseAdapter): GlobalModel | null =
       'globals',
     ) as unknown as GlobalModel
 
-    Object.values(adapter.payload.config.globals).forEach((globalConfig) => {
+    Object.values(adapter.cms.config.globals).forEach((globalConfig) => {
       const globalSchema = buildSchema({
         buildSchemaOptions: {
           options: {
@@ -29,7 +29,7 @@ export const buildGlobalModel = (adapter: MongooseAdapter): GlobalModel | null =
           },
         },
         configFields: globalConfig.fields,
-        payload: adapter.payload,
+        cms: adapter.cms,
       })
       Globals.discriminator(globalConfig.slug, globalSchema)
     })

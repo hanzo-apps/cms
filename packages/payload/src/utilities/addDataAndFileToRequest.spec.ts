@@ -1,11 +1,11 @@
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { describe, expect, it } from 'vitest'
 
 import { addDataAndFileToRequest } from './addDataAndFileToRequest.js'
 
-type MinimalReq = Pick<PayloadRequest, 'body' | 'headers' | 'method' | 'payload'> & {
-  file?: PayloadRequest['file']
+type MinimalReq = Pick<CMSRequest, 'body' | 'headers' | 'method' | 'cms'> & {
+  file?: CMSRequest['file']
 }
 
 const createReqWithMultipartBody = (): MinimalReq => {
@@ -21,7 +21,7 @@ const createReqWithMultipartBody = (): MinimalReq => {
     body: request.body,
     headers: request.headers,
     method: request.method,
-    payload: {
+    cms: {
       collections: {},
       config: {
         bodyParser: {},
@@ -30,7 +30,7 @@ const createReqWithMultipartBody = (): MinimalReq => {
       logger: {
         error: () => {},
       },
-    } as unknown as PayloadRequest['payload'],
+    } as unknown as CMSRequest['cms'],
   }
 }
 
@@ -40,7 +40,7 @@ describe('addDataAndFileToRequest', () => {
 
     expect(req.headers.get('content-length')).toBeNull()
 
-    await addDataAndFileToRequest(req as PayloadRequest)
+    await addDataAndFileToRequest(req as CMSRequest)
 
     expect(req.file).toBeDefined()
     expect(req.file?.name).toBe('hello.txt')

@@ -1,19 +1,19 @@
 import crypto from 'crypto'
-import { type PayloadHandler, type TypedUser, UnauthorizedError, type Where } from '@hanzo/cms'
+import { type CMSHandler, type TypedUser, UnauthorizedError, type Where } from '@hanzo/cms'
 
 import type { MCPAccessSettings, MCPPluginConfig } from '../types.js'
 
-import { createRequestFromPayloadRequest } from '../mcp/createRequest.js'
+import { createRequestFromCMSRequest } from '../mcp/createRequest.js'
 import { getMCPHandler } from '../mcp/getMcpHandler.js'
 
 export const initializeMCPHandler = (pluginOptions: MCPPluginConfig) => {
-  const mcpHandler: PayloadHandler = async (req) => {
-    const { payload } = req
+  const mcpHandler: CMSHandler = async (req) => {
+    const { cms } = req
     const MCPOptions = pluginOptions.mcp || {}
     const MCPHandlerOptions = MCPOptions.handlerOptions || {}
     const useVerboseLogs = MCPHandlerOptions.verboseLogs ?? false
 
-    req.payloadAPI = 'MCP' as const
+    req.cmsAPI = 'MCP' as const
 
     const getDefaultMcpAccessSettings = async (overrideApiKey?: null | string) => {
       const apiKey =
@@ -26,7 +26,7 @@ export const initializeMCPHandler = (pluginOptions: MCPPluginConfig) => {
       }
 
       const sha256APIKeyIndex = crypto
-        .createHmac('sha256', payload.secret)
+        .createHmac('sha256', cms.secret)
         .update(apiKey || '')
         .digest('hex')
 
@@ -36,8 +36,8 @@ export const initializeMCPHandler = (pluginOptions: MCPPluginConfig) => {
         },
       }
 
-      const { docs } = await payload.find({
-        collection: 'payload-mcp-api-keys',
+      const { docs } = await cms.find({
+        collection: 'cms-mcp-api-keys',
         depth: 1,
         limit: 1,
         pagination: false,
@@ -49,7 +49,7 @@ export const initializeMCPHandler = (pluginOptions: MCPPluginConfig) => {
       }
 
       if (useVerboseLogs) {
-        payload.logger.info('[payload-mcp] API Key is valid')
+        cms.logger.info('[cms-mcp] API Key is valid')
       }
 
       const user = docs[0]?.user as TypedUser
@@ -74,7 +74,7 @@ export const initializeMCPHandler = (pluginOptions: MCPPluginConfig) => {
     const originalRequest = globals['Request']
 
     const handler = getMCPHandler(pluginOptions, mcpAccessSettings, req)
-    const request = createRequestFromPayloadRequest(req)
+    const request = createRequestFromCMSRequest(req)
 
     try {
       return await handler(request)

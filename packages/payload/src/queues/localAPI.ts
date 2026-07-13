@@ -4,8 +4,8 @@ import {
   createLocalReq,
   Forbidden,
   type Job,
-  type Payload,
-  type PayloadRequest,
+  type CMS,
+  type CMSRequest,
   type Sort,
   type TypedJobs,
   type Where,
@@ -21,7 +21,7 @@ export type RunJobsSilent =
       info?: boolean
     }
   | boolean
-export const getJobsLocalAPI = (payload: Payload) => ({
+export const getJobsLocalAPI = (cms: CMS) => ({
   handleSchedules: async (args?: {
     /**
      * If you want to schedule jobs from all queues, set this to true.
@@ -39,9 +39,9 @@ export const getJobsLocalAPI = (payload: Payload) => ({
      * @default jobs from the `default` queue will be executed.
      */
     queue?: string
-    req?: PayloadRequest
+    req?: CMSRequest
   }): Promise<HandleSchedulesResult> => {
-    const newReq: PayloadRequest = args?.req ?? (await createLocalReq({}, payload))
+    const newReq: CMSRequest = args?.req ?? (await createLocalReq({}, cms))
 
     return await handleSchedules({
       allQueues: args?.allQueues,
@@ -73,7 +73,7 @@ export const getJobsLocalAPI = (payload: Payload) => ({
            * @default 'default'
            */
           queue?: string
-          req?: PayloadRequest
+          req?: CMSRequest
           task: TTaskOrWorkflowSlug extends keyof TypedJobs['tasks'] ? TTaskOrWorkflowSlug : never
           waitUntil?: Date
           workflow?: never
@@ -97,7 +97,7 @@ export const getJobsLocalAPI = (payload: Payload) => ({
            * @default 'default'
            */
           queue?: string
-          req?: PayloadRequest
+          req?: CMSRequest
           task?: never
           waitUntil?: Date
           workflow: TTaskOrWorkflowSlug extends keyof TypedJobs['workflows']
@@ -110,13 +110,13 @@ export const getJobsLocalAPI = (payload: Payload) => ({
       : RunningJobFromTask<TTaskOrWorkflowSlug>
   > => {
     const overrideAccess = args?.overrideAccess !== false
-    const req: PayloadRequest = args.req ?? (await createLocalReq({}, payload))
+    const req: CMSRequest = args.req ?? (await createLocalReq({}, cms))
 
     if (!overrideAccess) {
       /**
        * By default, jobsConfig.access.queue will be `defaultAccess` which is a function that returns `true` if the user is logged in.
        */
-      const accessFn = payload.config.jobs?.access?.queue ?? (() => true)
+      const accessFn = cms.config.jobs?.access?.queue ?? (() => true)
       const hasAccess = await accessFn({ req })
       if (!hasAccess) {
         throw new Forbidden(req.t)
@@ -131,7 +131,7 @@ export const getJobsLocalAPI = (payload: Payload) => ({
     } else if (args.workflow) {
       // Otherwise, if there is a workflow specified, and it has a default queue to use,
       // use that
-      const workflow = payload.config.jobs?.workflows?.find(({ slug }) => slug === args.workflow)
+      const workflow = cms.config.jobs?.workflows?.find(({ slug }) => slug === args.workflow)
       if (workflow?.queue) {
         queue = workflow.queue
       }
@@ -159,13 +159,13 @@ export const getJobsLocalAPI = (payload: Payload) => ({
     }
 
     // Compute concurrency key from workflow or task config (only if feature is enabled)
-    if (payload.config.jobs?.enableConcurrencyControl) {
+    if (cms.config.jobs?.enableConcurrencyControl) {
       let concurrencyKey: null | string = null
       let supersedes = false
       const queueName = queue || 'default'
 
       if (args.workflow) {
-        const workflow = payload.config.jobs?.workflows?.find(({ slug }) => slug === args.workflow)
+        const workflow = cms.config.jobs?.workflows?.find(({ slug }) => slug === args.workflow)
         if (workflow?.concurrency) {
           const concurrencyConfig = workflow.concurrency
           if (typeof concurrencyConfig === 'function') {
@@ -176,7 +176,7 @@ export const getJobsLocalAPI = (payload: Payload) => ({
           }
         }
       } else if (args.task) {
-        const task = payload.config.jobs?.tasks?.find(({ slug }) => slug === args.task)
+        const task = cms.config.jobs?.tasks?.find(({ slug }) => slug === args.task)
         if (task?.concurrency) {
           const concurrencyConfig = task.concurrency
           if (typeof concurrencyConfig === 'function') {
@@ -193,8 +193,8 @@ export const getJobsLocalAPI = (payload: Payload) => ({
 
         // If supersedes is enabled, delete older pending jobs with the same key
         if (supersedes) {
-          if (payload.config.jobs.runHooks) {
-            await payload.delete({
+          if (cms.config.jobs.runHooks) {
+            await cms.delete({
               collection: jobsCollectionSlug,
               depth: 0,
               disableTransaction: true,
@@ -207,7 +207,7 @@ export const getJobsLocalAPI = (payload: Payload) => ({
               },
             })
           } else {
-            await payload.db.deleteMany({
+            await cms.db.deleteMany({
               collection: jobsCollectionSlug,
               req,
               where: {
@@ -227,18 +227,18 @@ export const getJobsLocalAPI = (payload: Payload) => ({
       ? Job<TTaskOrWorkflowSlug>
       : RunningJobFromTask<TTaskOrWorkflowSlug> // Type assertion is still needed here
 
-    if (payload?.config?.jobs?.depth || payload?.config?.jobs?.runHooks) {
-      return (await payload.create({
+    if (cms?.config?.jobs?.depth || cms?.config?.jobs?.runHooks) {
+      return (await cms.create({
         collection: jobsCollectionSlug,
         data,
-        depth: payload.config.jobs.depth ?? 0,
+        depth: cms.config.jobs.depth ?? 0,
         overrideAccess,
         req,
       })) as ReturnType
     } else {
       return jobAfterRead({
-        config: payload.config,
-        doc: await payload.db.create({
+        config: cms.config,
+        doc: await cms.db.create({
           collection: jobsCollectionSlug,
           data,
           req,
@@ -271,7 +271,7 @@ export const getJobsLocalAPI = (payload: Payload) => ({
      */
     overrideAccess?: boolean
     /**
-     * Adjust the job processing order using a Payload sort string.
+     * Adjust the job processing order using a CMS sort string.
      *
      * FIFO would equal `createdAt` and LIFO would equal `-createdAt`.
      */
@@ -282,7 +282,7 @@ export const getJobsLocalAPI = (payload: Payload) => ({
      * @default jobs from the `default` queue will be executed.
      */
     queue?: string
-    req?: PayloadRequest
+    req?: CMSRequest
     /**
      * By default, jobs are run in parallel.
      * If you want to run them in sequence, set this to true.
@@ -292,14 +292,14 @@ export const getJobsLocalAPI = (payload: Payload) => ({
      * If set to true, the job system will not log any output to the console (for both info and error logs).
      * Can be an option for more granular control over logging.
      *
-     * This will not automatically affect user-configured logs (e.g. if you call `console.log` or `payload.logger.info` in your job code).
+     * This will not automatically affect user-configured logs (e.g. if you call `console.log` or `cms.logger.info` in your job code).
      *
      * @default false
      */
     silent?: RunJobsSilent
     where?: Where
   }): Promise<ReturnType<typeof runJobs>> => {
-    const newReq: PayloadRequest = args?.req ?? (await createLocalReq({}, payload))
+    const newReq: CMSRequest = args?.req ?? (await createLocalReq({}, cms))
 
     return await runJobs({
       allQueues: args?.allQueues,
@@ -325,18 +325,18 @@ export const getJobsLocalAPI = (payload: Payload) => ({
      * @default true
      */
     overrideAccess?: boolean
-    req?: PayloadRequest
+    req?: CMSRequest
     /**
      * If set to true, the job system will not log any output to the console (for both info and error logs).
      * Can be an option for more granular control over logging.
      *
-     * This will not automatically affect user-configured logs (e.g. if you call `console.log` or `payload.logger.info` in your job code).
+     * This will not automatically affect user-configured logs (e.g. if you call `console.log` or `cms.logger.info` in your job code).
      *
      * @default false
      */
     silent?: RunJobsSilent
   }): Promise<ReturnType<typeof runJobs>> => {
-    const newReq: PayloadRequest = args.req ?? (await createLocalReq({}, payload))
+    const newReq: CMSRequest = args.req ?? (await createLocalReq({}, cms))
 
     return await runJobs({
       id: args.id,
@@ -357,17 +357,17 @@ export const getJobsLocalAPI = (payload: Payload) => ({
      */
     overrideAccess?: boolean
     queue?: string
-    req?: PayloadRequest
+    req?: CMSRequest
     where: Where
   }): Promise<void> => {
-    const req: PayloadRequest = args.req ?? (await createLocalReq({}, payload))
+    const req: CMSRequest = args.req ?? (await createLocalReq({}, cms))
 
     const overrideAccess = args.overrideAccess !== false
     if (!overrideAccess) {
       /**
        * By default, jobsConfig.access.cancel will be `defaultAccess` which is a function that returns `true` if the user is logged in.
        */
-      const accessFn = payload.config.jobs?.access?.cancel ?? (() => true)
+      const accessFn = cms.config.jobs?.access?.cancel ?? (() => true)
       const hasAccess = await accessFn({ req })
       if (!hasAccess) {
         throw new Forbidden(req.t)
@@ -425,16 +425,16 @@ export const getJobsLocalAPI = (payload: Payload) => ({
      * @default true
      */
     overrideAccess?: boolean
-    req?: PayloadRequest
+    req?: CMSRequest
   }): Promise<void> => {
-    const req: PayloadRequest = args.req ?? (await createLocalReq({}, payload))
+    const req: CMSRequest = args.req ?? (await createLocalReq({}, cms))
 
     const overrideAccess = args.overrideAccess !== false
     if (!overrideAccess) {
       /**
        * By default, jobsConfig.access.cancel will be `defaultAccess` which is a function that returns `true` if the user is logged in.
        */
-      const accessFn = payload.config.jobs?.access?.cancel ?? (() => true)
+      const accessFn = cms.config.jobs?.access?.cancel ?? (() => true)
       const hasAccess = await accessFn({ req })
       if (!hasAccess) {
         throw new Forbidden(req.t)

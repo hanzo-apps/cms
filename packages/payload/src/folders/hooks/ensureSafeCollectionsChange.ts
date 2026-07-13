@@ -32,7 +32,7 @@ export const ensureSafeCollectionsChange =
       if (newCollections && newCollections.length > 0) {
         let hasDependentDocuments = false
         if (typeof currentFolderID === 'string' || typeof currentFolderID === 'number') {
-          const childDocumentsResult = await req.payload.findByID({
+          const childDocumentsResult = await req.cms.findByID({
             id: currentFolderID,
             collection: foldersSlug,
             joins: {
@@ -62,7 +62,7 @@ export const ensureSafeCollectionsChange =
           !hasDependentDocuments &&
           (typeof currentFolderID === 'string' || typeof currentFolderID === 'number')
         ) {
-          const childFoldersResult = await req.payload.find({
+          const childFoldersResult = await req.cms.find({
             collection: foldersSlug,
             limit: 1,
             req,
@@ -86,9 +86,9 @@ export const ensureSafeCollectionsChange =
 
         if (hasDependentDocuments || hasDependentFolders) {
           const translatedLabels = newCollections.map((collectionSlug) => {
-            if (req.payload.collections[collectionSlug]?.config.labels.singular) {
+            if (req.cms.collections[collectionSlug]?.config.labels.singular) {
               return getTranslatedLabel(
-                req.payload.collections[collectionSlug]?.config.labels.plural,
+                req.cms.collections[collectionSlug]?.config.labels.plural,
                 req.i18n,
               )
             }
@@ -111,7 +111,7 @@ export const ensureSafeCollectionsChange =
       let parentFolder
       if (typeof parentFolderID === 'string' || typeof parentFolderID === 'number') {
         try {
-          parentFolder = await req.payload.findByID({
+          parentFolder = await req.cms.findByID({
             id: parentFolderID,
             collection: foldersSlug,
             overrideAccess: true,

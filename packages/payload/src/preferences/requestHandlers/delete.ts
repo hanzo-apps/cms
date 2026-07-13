@@ -1,11 +1,11 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
-import type { PayloadRequest } from '../../types/index.js'
+import type { CMSHandler } from '../../config/types.js'
+import type { CMSRequest } from '../../types/index.js'
 
 import { deleteOperation } from '../operations/delete.js'
 
-export const deleteHandler: PayloadHandler = async (incomingReq): Promise<Response> => {
+export const deleteHandler: CMSHandler = async (incomingReq): Promise<Response> => {
   // We cannot import the addDataAndFileToRequest utility here from the 'next' package because of dependency issues
   // However that utility should be used where possible instead of manually appending the data
   let data
@@ -16,7 +16,7 @@ export const deleteHandler: PayloadHandler = async (incomingReq): Promise<Respon
     data = {}
   }
 
-  const reqWithData: PayloadRequest = incomingReq
+  const reqWithData: CMSRequest = incomingReq
 
   if (data) {
     reqWithData.data = data

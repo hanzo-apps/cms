@@ -69,7 +69,7 @@ type SanitizeFieldsArgs = {
   parentSchemaPath?: string
   polymorphicJoins?: SanitizedJoin[]
   /**
-   * If true, a richText field will require an editor property to be set, as the sanitizeFields function will not add it from the payload config if not present.
+   * If true, a richText field will require an editor property to be set, as the sanitizeFields function will not add it from the cms config if not present.
    *
    * @default false
    */
@@ -267,14 +267,14 @@ export const sanitizeField = async ({
 
     if (field.min && !field.minRows) {
       console.warn(
-        `(payload): The "min" property is deprecated for the Relationship field "${field.name}" and will be removed in a future version. Please use "minRows" instead.`,
+        `(cms): The "min" property is deprecated for the Relationship field "${field.name}" and will be removed in a future version. Please use "minRows" instead.`,
       )
       field.minRows = field.min
     }
 
     if (field.max && !field.maxRows) {
       console.warn(
-        `(payload): The "max" property is deprecated for the Relationship field "${field.name}" and will be removed in a future version. Please use "maxRows" instead.`,
+        `(cms): The "max" property is deprecated for the Relationship field "${field.name}" and will be removed in a future version. Please use "maxRows" instead.`,
       )
       field.maxRows = field.max
     }
@@ -314,10 +314,10 @@ export const sanitizeField = async ({
       let shouldDisableLocalized = !config.localization
 
       if (
-        process.env.NEXT_PUBLIC_PAYLOAD_COMPATIBILITY_allowLocalizedWithinLocalized !== 'true' &&
+        process.env.NEXT_PUBLIC_CMS_COMPATIBILITY_allowLocalizedWithinLocalized !== 'true' &&
         parentIsLocalized &&
-        // @todo PAYLOAD_DO_NOT_SANITIZE_LOCALIZED_PROPERTY=true will be the default in 4.0
-        process.env.PAYLOAD_DO_NOT_SANITIZE_LOCALIZED_PROPERTY !== 'true'
+        // @todo CMS_DO_NOT_SANITIZE_LOCALIZED_PROPERTY=true will be the default in 4.0
+        process.env.CMS_DO_NOT_SANITIZE_LOCALIZED_PROPERTY !== 'true'
       ) {
         shouldDisableLocalized = true
       }

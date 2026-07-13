@@ -12,8 +12,8 @@ import type {
   FieldSchemaMap,
   ImportMapGenerators,
   JsonObject,
-  PayloadComponent,
-  PayloadRequest,
+  CMSComponent,
+  CMSRequest,
   PopulateType,
   ReplaceAny,
   RequestContext,
@@ -51,7 +51,7 @@ export type PopulationPromise<T extends SerializedLexicalNode = SerializedLexica
   overrideAccess: boolean
   parentIsLocalized: boolean
   populationPromises: Promise<void>[]
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields: boolean
   siblingDoc: JsonObject
 }) => void
@@ -86,11 +86,11 @@ export type FeatureProviderServer<
   dependencies?: string[]
   /**  Keys of priority dependencies needed for this feature. These dependencies have to be loaded first AND have to exist, otherwise an error will be thrown. They will be available in the `feature` property. */
   dependenciesPriority?: string[]
-  /** Keys of soft-dependencies needed for this feature. These are optional. Payload will attempt to load them before this feature, but doesn't throw an error if that's not possible. */
+  /** Keys of soft-dependencies needed for this feature. These are optional. CMS will attempt to load them before this feature, but doesn't throw an error if that's not possible. */
   dependenciesSoft?: string[]
 
   /**
-   * This is being called during the payload sanitization process
+   * This is being called during the cms sanitization process
    */
   feature:
     | ((props: {
@@ -197,8 +197,8 @@ export type BaseNodeHookArgs<T extends SerializedLexicalNode> = {
   node: T
   parentRichTextFieldPath: (number | string)[]
   parentRichTextFieldSchemaPath: string[]
-  /** The payload request object. It is mocked for Local API operations. */
-  req: PayloadRequest
+  /** The cms request object. It is mocked for Local API operations. */
+  req: CMSRequest
 }
 
 export type AfterReadNodeHook<T extends SerializedLexicalNode> = (
@@ -232,7 +232,7 @@ export type NodeWithHooks<T extends LexicalNode = any> = {
     html?: HTMLConverter<ReturnType<ReplaceAny<T, LexicalNode>['exportJSON']>>
   }
   /**
-   * If a node includes sub-fields (e.g. block and link nodes), passing those subFields here will make payload
+   * If a node includes sub-fields (e.g. block and link nodes), passing those subFields here will make cms
    * automatically populate, run hooks, and generate component import maps for them
    */
   getSubFields?: (args: {
@@ -240,14 +240,14 @@ export type NodeWithHooks<T extends LexicalNode = any> = {
      * Optional. If not provided, all possible sub-fields should be returned.
      */
     node?: ReturnType<ReplaceAny<T, LexicalNode>['exportJSON']>
-    req?: PayloadRequest
+    req?: CMSRequest
   }) => Field[] | null
   /**
    * If a node includes sub-fields, the sub-fields data needs to be returned here, alongside `getSubFields` which returns their schema.
    */
   getSubFieldsData?: (args: {
     node: ReturnType<ReplaceAny<T, LexicalNode>['exportJSON']>
-    req: PayloadRequest
+    req: CMSRequest
   }) => JsonObject
   /**
    * Allows you to run population logic when a node's data was requested from graphQL.
@@ -259,7 +259,7 @@ export type NodeWithHooks<T extends LexicalNode = any> = {
     PopulationPromise<ReturnType<ReplaceAny<T, LexicalNode>['exportJSON']>>
   >
   /**
-   * Just like payload fields, you can provide hooks which are run for this specific node. These are called Node Hooks.
+   * Just like cms fields, you can provide hooks which are run for this specific node. These are called Node Hooks.
    */
   hooks?: {
     afterChange?: Array<AfterChangeNodeHook<ReturnType<ReplaceAny<T, LexicalNode>['exportJSON']>>>
@@ -274,29 +274,29 @@ export type NodeWithHooks<T extends LexicalNode = any> = {
    */
   node: Klass<T> | LexicalNodeReplacement
   /**
-   * This allows you to provide node validations, which are run when your document is being validated, alongside other payload fields.
+   * This allows you to provide node validations, which are run when your document is being validated, alongside other cms fields.
    * You can use it to throw a validation error for a specific node in case its data is incorrect.
    */
   validations?: Array<NodeValidation<ReturnType<ReplaceAny<T, LexicalNode>['exportJSON']>>>
 }
 
 export type ServerFeature<ServerProps, ClientFeatureProps> = {
-  ClientFeature?: PayloadComponent<never, BaseClientFeatureProps<ClientFeatureProps>>
+  ClientFeature?: CMSComponent<never, BaseClientFeatureProps<ClientFeatureProps>>
   /**
    * This determines what props will be available on the Client.
    */
   clientFeatureProps?: ClientFeatureProps
   /**
-   * Adds payload components to the importMap.
+   * Adds cms components to the importMap.
    *
    * If an object is provided, the imported components will automatically be made available to the client feature, keyed by the object's keys.
    */
   componentImports?:
     | {
-        [key: string]: PayloadComponent
+        [key: string]: CMSComponent
       }
     | ImportMapGenerators[0]
-    | PayloadComponent[]
+    | CMSComponent[]
   generatedTypes?: {
     modifyOutputSchema: (args: {
       collectionIDFieldTypes: { [key: string]: 'number' | 'string' }
@@ -396,11 +396,11 @@ export type SanitizedServerFeatures = {
 
   getSubFields?: Map<
     string,
-    (args: { node: SerializedLexicalNode; req: PayloadRequest }) => Field[] | null
+    (args: { node: SerializedLexicalNode; req: CMSRequest }) => Field[] | null
   >
   getSubFieldsData?: Map<
     string,
-    (args: { node: SerializedLexicalNode; req: PayloadRequest }) => JsonObject
+    (args: { node: SerializedLexicalNode; req: CMSRequest }) => JsonObject
   >
   graphQLPopulationPromises: Map<string, Array<PopulationPromise>>
   hooks: RichTextHooks

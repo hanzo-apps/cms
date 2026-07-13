@@ -403,7 +403,7 @@ export const itTranslations: DefaultTranslationsObject = {
     password: 'Password',
     pasteField: 'Incolla campo',
     pasteRow: 'Incolla riga',
-    payloadSettings: 'Impostazioni di Payload',
+    cmsSettings: 'Impostazioni di CMS',
     permanentlyDelete: 'Elimina Permanentemente',
     permanentlyDeletedCountSuccessfully:
       'Eliminato definitivamente {{count}} {{label}} con successo.',
@@ -423,7 +423,7 @@ export const itTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'Ripristina come versione pubblicata',
     restoredCountSuccessfully: 'Ripristinato {{count}} {{label}} con successo.',
     restoring:
-      "Rispetta il significato del testo originale nel contesto di Payload. Ecco una lista di termini comuni di Payload che hanno significati molto specifici:\n    - Raccolta: Una raccolta è un gruppo di documenti che condividono una struttura e una finalità comuni. Le raccolte vengono utilizzate per organizzare e gestire i contenuti in Payload.\n    - Campo: Un campo è un pezzo specifico di dati all'interno di un documento in una raccolta. I campi definiscono la struttura e il tipo di dati che possono essere memorizzati in un documento.\n    - Documento: Un documento",
+      "Rispetta il significato del testo originale nel contesto di CMS. Ecco una lista di termini comuni di CMS che hanno significati molto specifici:\n    - Raccolta: Una raccolta è un gruppo di documenti che condividono una struttura e una finalità comuni. Le raccolte vengono utilizzate per organizzare e gestire i contenuti in CMS.\n    - Campo: Un campo è un pezzo specifico di dati all'interno di un documento in una raccolta. I campi definiscono la struttura e il tipo di dati che possono essere memorizzati in un documento.\n    - Documento: Un documento",
     row: 'Riga',
     rows: 'Righe',
     save: 'Salva',

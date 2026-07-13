@@ -16,14 +16,14 @@ import './index.scss'
 type ServerLayout = WidgetInstanceClient[]
 
 export async function ModularDashboard(props: DashboardViewServerProps) {
-  const { defaultLayout = [], widgets = [] } = props.payload.config.admin.dashboard || {}
-  const { importMap } = props.payload
+  const { defaultLayout = [], widgets = [] } = props.cms.config.admin.dashboard || {}
+  const { importMap } = props.cms
   const { user } = props
   const { cookies, locale, permissions, req } = props.initPageResult
   const { i18n } = req
 
   const layout =
-    (await getItemsFromPreferences(props.payload, user)) ??
+    (await getItemsFromPreferences(props.cms, user)) ??
     (await getItemsFromConfig(defaultLayout, req, widgets))
 
   const serverLayout: ServerLayout = layout.map((layoutItem) => {

@@ -378,7 +378,7 @@ export const zhTwTranslations: DefaultTranslationsObject = {
     password: '密碼',
     pasteField: '貼上欄位',
     pasteRow: '貼上列',
-    payloadSettings: 'Payload 設定',
+    cmsSettings: 'CMS 設定',
     permanentlyDelete: '永久刪除',
     permanentlyDeletedCountSuccessfully: '已成功永久刪除 {{count}} 個 {{label}}。',
     perPage: '每頁顯示：{{limit}}',

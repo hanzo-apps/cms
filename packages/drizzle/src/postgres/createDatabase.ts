@@ -63,7 +63,7 @@ export const createDatabase = async function (this: BasePostgresAdapter, args: A
     await managementClient.connect()
     await managementClient.query(`CREATE DATABASE "${dbName}"`)
 
-    this.payload.logger.info(`Created database "${dbName}"`)
+    this.cms.logger.info(`Created database "${dbName}"`)
 
     if (schemaName !== 'public') {
       let createdDatabaseConfig: ClientConfig = {}
@@ -86,9 +86,9 @@ export const createDatabase = async function (this: BasePostgresAdapter, args: A
         await createdDatabaseClient.connect()
 
         await createdDatabaseClient.query(`CREATE SCHEMA ${schemaName}`)
-        this.payload.logger.info(`Created schema "${dbName}.${schemaName}"`)
+        this.cms.logger.info(`Created schema "${dbName}.${schemaName}"`)
       } catch (err) {
-        this.payload.logger.error({
+        this.cms.logger.error({
           err,
           msg: `Error: failed to create schema "${dbName}.${schemaName}". Details: ${err.message}`,
         })
@@ -99,7 +99,7 @@ export const createDatabase = async function (this: BasePostgresAdapter, args: A
 
     return true
   } catch (err) {
-    this.payload.logger.error({
+    this.cms.logger.error({
       err,
       msg: `Error: failed to create database ${dbName}. Details: ${err.message}`,
     })

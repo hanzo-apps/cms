@@ -69,7 +69,7 @@ const SelectAdapter: React.FC<ReactSelectAdapterProps> = (props) => {
 
   const styles: StylesConfig<Option> = {
     // Remove the default react-select z-index from the menu so that our custom
-    // z-index in the "payload-default" css layer can take effect, in such a way
+    // z-index in the "cms-default" css layer can take effect, in such a way
     // that end users can easily override it as with other styles.
     menu: (rsStyles) => ({ ...rsStyles, zIndex: undefined }),
   }

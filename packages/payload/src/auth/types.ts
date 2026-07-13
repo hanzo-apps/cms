@@ -1,7 +1,7 @@
 import type { DeepRequired } from 'ts-essentials'
 
-import type { CollectionSlug, GlobalSlug, Payload, TypedUser } from '../index.js'
-import type { PayloadRequest, Where } from '../types/index.js'
+import type { CollectionSlug, GlobalSlug, CMS, TypedUser } from '../index.js'
+import type { CMSRequest, Where } from '../types/index.js'
 
 /**
  * A permission object that can be used to determine if a user has access to a specific operation.
@@ -143,25 +143,25 @@ export type ClientUser = {
 
 export type UserSession = { createdAt: Date | string; expiresAt: Date | string; id: string }
 type GenerateVerifyEmailHTML<TUser = any> = (args: {
-  req: PayloadRequest
+  req: CMSRequest
   token: string
   user: TUser
 }) => Promise<string> | string
 
 type GenerateVerifyEmailSubject<TUser = any> = (args: {
-  req: PayloadRequest
+  req: CMSRequest
   token: string
   user: TUser
 }) => Promise<string> | string
 
 type GenerateForgotPasswordEmailHTML<TUser = any> = (args?: {
-  req?: PayloadRequest
+  req?: CMSRequest
   token?: string
   user?: TUser
 }) => Promise<string> | string
 
 type GenerateForgotPasswordEmailSubject<TUser = any> = (args?: {
-  req?: PayloadRequest
+  req?: CMSRequest
   token?: string
   user?: TUser
 }) => Promise<string> | string
@@ -173,9 +173,9 @@ export type AuthStrategyFunctionArgs = {
   canSetHeaders?: boolean
   headers: Request['headers']
   isGraphQL?: boolean
-  payload: Payload
+  cms: CMS
   /**
-   * The AuthStrategy name property from the payload config.
+   * The AuthStrategy name property from the cms config.
    */
   strategyName?: string
 }
@@ -226,7 +226,7 @@ export interface IncomingAuthType {
    */
   depth?: number
   /**
-   * Advanced - disable Payload's built-in local auth strategy. Only use this property if you have replaced Payload's auth mechanisms with your own.
+   * Advanced - disable CMS's built-in local auth strategy. Only use this property if you have replaced CMS's auth mechanisms with your own.
    */
   disableLocalStrategy?:
     | {
@@ -281,7 +281,7 @@ export interface IncomingAuthType {
    */
   tokenExpiration?: number
   /**
-   * Payload Authentication provides for API keys to be set on each user within an Authentication-enabled Collection.
+   * CMS Authentication provides for API keys to be set on each user within an Authentication-enabled Collection.
    * @default false
    * @link https://payloadcms.com/docs/authentication/api-keys
    */

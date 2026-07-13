@@ -39,7 +39,7 @@ export const hyTranslations: PluginDefaultTranslationsObject = {
     matchBy: 'Համընկնեցվել է',
     mode: 'Ռեժիմ',
     noDataToPreview:
-      'Հավելվածի իմաստը պետք է պահպանեք Payload-ի կոնտեքստում։ Ահա Payload-ի որոշ պահանջական տերմիններ',
+      'Հավելվածի իմաստը պետք է պահպանեք CMS-ի կոնտեքստում։ Ահա CMS-ի որոշ պահանջական տերմիններ',
     previewPageInfo: '{{start}}-{{end}} / {{total}}',
     'selectionToUse-allDocuments': 'Օգտագործեք բոլոր փաստաթղթերը',
     'selectionToUse-currentFilters': 'Օգտագործեք ընթացիկ ֆիլտրերը',

@@ -3,10 +3,10 @@ import type { LexicalNode } from 'lexical'
 import type { LinkFields } from '../../../nodes/types.js'
 
 /**
- * The payload of a link node
+ * The cms of a link node
  * This can be delivered from the link node to the drawer, or from the drawer/anything to the TOGGLE_LINK_COMMAND
  */
-export type LinkPayload = {
+export type LinkCMS = {
   /**
    * The fields of the link node. Undefined fields will be taken from the default values of the link node
    */

@@ -1,6 +1,6 @@
 import ObjectIdImport from 'bson-objectid'
 
-import type { JobLog, PayloadRequest } from '../../index.js'
+import type { JobLog, CMSRequest } from '../../index.js'
 import type { RunJobsSilent } from '../localAPI.js'
 import type { UpdateJobFunction } from '../operations/runJobs/runJob/getUpdateJobFunction.js'
 import type { TaskError } from './index.js'
@@ -18,12 +18,12 @@ export async function handleTaskError({
   updateJob,
 }: {
   error: TaskError
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * If set to true, the job system will not log any output to the console (for both info and error logs).
    * Can be an option for more granular control over logging.
    *
-   * This will not automatically affect user-configured logs (e.g. if you call `console.log` or `payload.logger.info` in your job code).
+   * This will not automatically affect user-configured logs (e.g. if you call `console.log` or `cms.logger.info` in your job code).
    *
    * @default false
    */
@@ -98,7 +98,7 @@ export async function handleTaskError({
     executedAt: executedAt.toISOString(),
     input,
     output: output ?? {},
-    parent: req.payload.config.jobs.addParentToTaskLog ? parent : undefined,
+    parent: req.cms.config.jobs.addParentToTaskLog ? parent : undefined,
     state: 'failed',
     taskID,
     taskSlug,
@@ -121,7 +121,7 @@ export async function handleTaskError({
     })
 
     if (!silent || (typeof silent === 'object' && !silent.error)) {
-      req.payload.logger.error({
+      req.cms.logger.error({
         err: error,
         job,
         msg: `Error running task ${taskID}. Attempt ${job.totalTried} - max retries reached`,
@@ -156,7 +156,7 @@ export async function handleTaskError({
   })
 
   if (!silent || (typeof silent === 'object' && !silent.error)) {
-    req.payload.logger.error({
+    req.cms.logger.error({
       err: error,
       job,
       msg: `Error running task ${taskID}. Attempt ${job.totalTried + 1}${maxWorkflowRetries !== undefined ? '/' + (maxWorkflowRetries + 1) : ''}`,

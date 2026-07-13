@@ -1,5 +1,5 @@
 import type { I18n, I18nClient } from '@hanzo/cms-translations'
-import type { ImportMap, InitReqResult, PayloadRequest, SanitizedConfig } from '@hanzo/cms'
+import type { ImportMap, InitReqResult, CMSRequest, SanitizedConfig } from '@hanzo/cms'
 
 import { initI18n } from '@hanzo/cms-translations'
 import { headers as getHeaders } from 'next/headers.js'
@@ -7,7 +7,7 @@ import {
   createLocalReq,
   executeAuthStrategies,
   getAccessResults,
-  getPayload,
+  getCMS,
   getRequestLanguage,
   parseCookies,
 } from '@hanzo/cms'
@@ -18,7 +18,7 @@ import { selectiveCache } from './selectiveCache.js'
 type PartialResult = {
   i18n: I18nClient
 } & Pick<InitReqResult, 'languageCode'> &
-  Pick<PayloadRequest, 'payload' | 'responseHeaders' | 'user'>
+  Pick<CMSRequest, 'cms' | 'responseHeaders' | 'user'>
 
 // Create cache instances for different parts of our application
 const partialReqCache = selectiveCache<PartialResult>('partialReq')
@@ -46,7 +46,7 @@ export const initReq = async function ({
 
   const partialResult = await partialReqCache.get(async () => {
     const config = await configPromise
-    const payload = await getPayload({ config, cron: true, importMap })
+    const cms = await getCMS({ config, cron: true, importMap })
     const languageCode = getRequestLanguage({
       config,
       cookies,
@@ -62,13 +62,13 @@ export const initReq = async function ({
     const { responseHeaders, user } = await executeAuthStrategies({
       canSetHeaders,
       headers,
-      payload,
+      cms,
     })
 
     return {
       i18n,
       languageCode,
-      payload,
+      cms,
       responseHeaders,
       user,
     }
@@ -76,7 +76,7 @@ export const initReq = async function ({
 
   return reqCache
     .get(async () => {
-      const { i18n, languageCode, payload, responseHeaders, user } = partialResult
+      const { i18n, languageCode, cms, responseHeaders, user } = partialResult
 
       const { req: reqOverrides, ...optionsOverrides } = overrides || {}
 
@@ -92,7 +92,7 @@ export const initReq = async function ({
           },
           ...(optionsOverrides || {}),
         },
-        payload,
+        cms,
       )
 
       const locale = await getRequestLocale({

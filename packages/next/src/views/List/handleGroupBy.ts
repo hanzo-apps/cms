@@ -4,7 +4,7 @@ import type {
   Column,
   ListQuery,
   PaginatedDocs,
-  PayloadRequest,
+  CMSRequest,
   SanitizedCollectionConfig,
   SanitizedFieldsPermissions,
   SelectType,
@@ -48,7 +48,7 @@ export const handleGroupBy = async ({
   enableRowSelections?: boolean
   fieldPermissions?: SanitizedFieldsPermissions
   query?: ListQuery
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   trash?: boolean
   user: any
@@ -86,7 +86,7 @@ export const handleGroupBy = async ({
     })
   }
 
-  const distinct = await req.payload.findDistinct({
+  const distinct = await req.cms.findDistinct({
     collection: collectionSlug,
     depth: 1,
     field: groupByFieldPath,
@@ -114,7 +114,7 @@ export const handleGroupBy = async ({
       // Extract value or relationship ID for database query
       const valueOrRelationshipID = extractValueOrRelationshipID(potentiallyPopulatedRelationship)
 
-      const groupData = await req.payload.find({
+      const groupData = await req.cms.find({
         collection: collectionSlug,
         depth: 0,
         draft: true,
@@ -193,7 +193,7 @@ export const handleGroupBy = async ({
           i18n: req.i18n,
           key: `table-${serializableValue}`,
           orderableFieldName: collectionConfig.orderable === true ? '_order' : undefined,
-          payload: req.payload,
+          cms: req.cms,
           query,
           useAsTitle: collectionConfig.admin.useAsTitle,
           viewType,

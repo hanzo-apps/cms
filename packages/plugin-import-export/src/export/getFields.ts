@@ -1,5 +1,5 @@
 import type { TFunction } from '@hanzo/cms-translations'
-import type { Config, Field, PayloadRequest, SelectField } from '@hanzo/cms'
+import type { Config, Field, CMSRequest, SelectField } from '@hanzo/cms'
 
 import { getFilename } from '../utilities/getFilename.js'
 import { validateLimitValue } from '../utilities/validateLimitValue.js'
@@ -245,12 +245,12 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
           },
           defaultValue: collectionSlugs[0],
           required: true,
-          validate: (value: null | string | undefined, { req }: { req: PayloadRequest }) => {
+          validate: (value: null | string | undefined, { req }: { req: CMSRequest }) => {
             if (!value) {
               return 'Collection is required'
             }
             // Validate that the collection exists
-            const collectionExists = req?.payload?.collections?.[value]
+            const collectionExists = req?.cms?.collections?.[value]
             if (!collectionExists) {
               return `Collection "${value}" does not exist`
             }

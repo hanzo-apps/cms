@@ -1,10 +1,10 @@
-import type { PayloadRequest, TypedUser } from '@hanzo/cms'
+import type { CMSRequest, TypedUser } from '@hanzo/cms'
 
 type Args = {
   collectionSlug?: string
   globalSlug?: string
   id?: number | string
-  req: PayloadRequest
+  req: CMSRequest
   updateLastEdited?: boolean
 }
 
@@ -26,7 +26,7 @@ export const handleFormStateLocking = async ({
   let result: Result
 
   // Check if the locked-documents collection exists
-  if (!req.payload.collections?.['payload-locked-documents']) {
+  if (!req.cms.collections?.['cms-locked-documents']) {
     // If the collection doesn't exist, locking is not available
     return result
   }
@@ -48,8 +48,8 @@ export const handleFormStateLocking = async ({
     }
 
     const lockDocumentsProp = collectionSlug
-      ? req.payload.collections?.[collectionSlug]?.config.lockDocuments
-      : req.payload.config.globals.find((g) => g.slug === globalSlug)?.lockDocuments
+      ? req.cms.collections?.[collectionSlug]?.config.lockDocuments
+      : req.cms.config.globals.find((g) => g.slug === globalSlug)?.lockDocuments
 
     const lockDuration =
       typeof lockDocumentsProp === 'object' ? lockDocumentsProp.duration : lockDurationDefault
@@ -64,8 +64,8 @@ export const handleFormStateLocking = async ({
         },
       })
 
-      const lockedDocument = await req.payload.find({
-        collection: 'payload-locked-documents',
+      const lockedDocument = await req.cms.find({
+        collection: 'cms-locked-documents',
         depth: 1,
         limit: 1,
         overrideAccess: false,
@@ -87,9 +87,9 @@ export const handleFormStateLocking = async ({
             : lockedDocument.docs[0]?.user?.value
         // Should only update doc if the incoming / current user is also the owner of the locked doc
         if (updateLastEdited && req.user && lockOwnerID === req.user.id) {
-          await req.payload.db.updateOne({
+          await req.cms.db.updateOne({
             id: lockedDocument.docs[0].id,
-            collection: 'payload-locked-documents',
+            collection: 'cms-locked-documents',
             data: {},
             returning: false,
           })
@@ -123,13 +123,13 @@ export const handleFormStateLocking = async ({
           }
         }
 
-        await req.payload.db.deleteMany({
-          collection: 'payload-locked-documents',
+        await req.cms.db.deleteMany({
+          collection: 'cms-locked-documents',
           where: deleteExpiredLocksQuery,
         })
 
-        await req.payload.db.create({
-          collection: 'payload-locked-documents',
+        await req.cms.db.create({
+          collection: 'cms-locked-documents',
           data: {
             document: collectionSlug
               ? {

@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import type { Collection } from '../collections/config/types.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 vi.mock('../auth/executeAccess.js', () => ({
   executeAccess: vi.fn(),
@@ -23,13 +23,13 @@ const makeCollection = (): Collection =>
     },
   }) as unknown as Collection
 
-const makeReq = (findOne: ReturnType<typeof vi.fn>): PayloadRequest =>
+const makeReq = (findOne: ReturnType<typeof vi.fn>): CMSRequest =>
   ({
     t: vi.fn(),
-    payload: {
+    cms: {
       db: { findOne },
     },
-  }) as unknown as PayloadRequest
+  }) as unknown as CMSRequest
 
 describe('checkFileAccess', () => {
   beforeEach(() => {

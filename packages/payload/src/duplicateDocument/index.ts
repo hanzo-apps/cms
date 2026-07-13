@@ -1,6 +1,6 @@
 import type { SanitizedCollectionConfig } from '../collections/config/types.js'
 import type { FindOneArgs } from '../database/types.js'
-import type { JsonObject, PayloadRequest } from '../types/index.js'
+import type { JsonObject, CMSRequest } from '../types/index.js'
 
 import { executeAccess } from '../auth/executeAccess.js'
 import { hasWhereAccessResult } from '../auth/types.js'
@@ -18,7 +18,7 @@ type GetDuplicateDocumentArgs = {
   draftArg?: boolean
   id: number | string
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
   selectedLocales?: string[]
 }
 export const getDuplicateDocumentData = async ({
@@ -32,7 +32,7 @@ export const getDuplicateDocumentData = async ({
   duplicatedFromDoc: JsonObject
   duplicatedFromDocWithLocales: JsonObject
 }> => {
-  const { payload } = req
+  const { cms } = req
   // /////////////////////////////////////
   // Read Access
   // /////////////////////////////////////
@@ -55,14 +55,14 @@ export const getDuplicateDocumentData = async ({
   let duplicatedFromDocWithLocales = await getLatestCollectionVersion({
     id,
     config: collectionConfig,
-    payload,
+    cms,
     query: findOneArgs,
     req,
   })
 
   if (selectedLocales && selectedLocales.length > 0 && duplicatedFromDocWithLocales) {
     duplicatedFromDocWithLocales = filterDataToSelectedLocales({
-      configBlockReferences: payload.config.blocks,
+      configBlockReferences: cms.config.blocks,
       docWithLocales: duplicatedFromDocWithLocales,
       fields: collectionConfig.fields,
       selectedLocales,

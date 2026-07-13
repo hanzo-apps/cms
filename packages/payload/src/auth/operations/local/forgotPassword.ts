@@ -1,5 +1,5 @@
-import type { AuthCollectionSlug, Payload, RequestContext } from '../../../index.js'
-import type { PayloadRequest } from '../../../types/index.js'
+import type { AuthCollectionSlug, CMS, RequestContext } from '../../../index.js'
+import type { CMSRequest } from '../../../types/index.js'
 import type { Result } from '../forgotPassword.js'
 
 import { APIError } from '../../../errors/index.js'
@@ -15,11 +15,11 @@ export type Options<TSlug extends AuthCollectionSlug> = {
   disableEmail?: boolean
   expiration?: number
   overrideAccess?: boolean
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
 }
 
 export async function forgotPasswordLocal<T extends AuthCollectionSlug>(
-  payload: Payload,
+  cms: CMS,
   options: Options<T>,
 ): Promise<Result> {
   const {
@@ -30,7 +30,7 @@ export async function forgotPasswordLocal<T extends AuthCollectionSlug>(
     overrideAccess = true,
   } = options
 
-  const collection = payload.collections[collectionSlug]
+  const collection = cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(
@@ -46,6 +46,6 @@ export async function forgotPasswordLocal<T extends AuthCollectionSlug>(
     disableEmail,
     expiration,
     overrideAccess,
-    req: await createLocalReq(options, payload),
+    req: await createLocalReq(options, cms),
   }) as Promise<Result>
 }

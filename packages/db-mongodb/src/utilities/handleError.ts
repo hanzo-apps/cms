@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { ValidationError } from '@hanzo/cms'
 
@@ -11,12 +11,12 @@ function extractFieldFromMessage(message: string) {
   return null
 }
 
-function stripLocaleFromPath(path: string, req?: Partial<PayloadRequest>): string {
+function stripLocaleFromPath(path: string, req?: Partial<CMSRequest>): string {
   if (!path) {
     return path
   }
 
-  const localization = req?.payload?.config?.localization
+  const localization = req?.cms?.config?.localization
   if (!localization) {
     return path
   }
@@ -43,7 +43,7 @@ export const handleError = ({
   collection?: string
   error: unknown
   global?: string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
 }) => {
   if (!error || typeof error !== 'object') {
     throw error

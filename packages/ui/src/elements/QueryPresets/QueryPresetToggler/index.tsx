@@ -25,7 +25,7 @@ export function QueryPresetToggler({
   const { getEntityConfig } = useConfig()
 
   const presetsConfig = getEntityConfig({
-    collectionSlug: 'payload-query-presets',
+    collectionSlug: 'cms-query-presets',
   })
 
   return (

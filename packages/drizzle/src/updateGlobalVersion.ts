@@ -28,7 +28,7 @@ export async function updateGlobalVersion<T extends JsonObject = JsonObject>(
     where: whereArg,
   }: UpdateGlobalVersionArgs<T>,
 ): Promise<TypeWithVersion<T>> {
-  const globalConfig: SanitizedGlobalConfig = this.payload.globals.config.find(
+  const globalConfig: SanitizedGlobalConfig = this.cms.globals.config.find(
     ({ slug }) => slug === global,
   )
   const whereToUse = whereArg || { id: { equals: id } }
@@ -37,7 +37,7 @@ export async function updateGlobalVersion<T extends JsonObject = JsonObject>(
     `_${toSnakeCase(globalConfig.slug)}${this.versionsSuffix}`,
   )
 
-  const fields = buildVersionGlobalFields(this.payload.config, globalConfig, true)
+  const fields = buildVersionGlobalFields(this.cms.config, globalConfig, true)
 
   const { where } = buildQuery({
     adapter: this,

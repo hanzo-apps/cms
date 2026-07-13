@@ -1,6 +1,6 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 import type { Where } from '../../types/index.js'
 
 import { getRequestGlobal } from '../../utilities/getRequestEntity.js'
@@ -11,7 +11,7 @@ import { sanitizeSelectParam } from '../../utilities/sanitizeSelectParam.js'
 import { sanitizeSortParams } from '../../utilities/sanitizeSortParams.js'
 import { findVersionsOperation } from '../operations/findVersions.js'
 
-export const findVersionsHandler: PayloadHandler = async (req) => {
+export const findVersionsHandler: CMSHandler = async (req) => {
   const globalConfig = getRequestGlobal(req)
   const { depth, limit, page, pagination, populate, select, sort, where } = req.query as {
     depth?: string

@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 import type { File, FileData, UploadConfig } from './types.js'
 
 import { APIError } from '../errors/index.js'
@@ -7,7 +7,7 @@ import { safeFetch } from './safeFetch.js'
 
 type Args = {
   data: FileData
-  req: PayloadRequest
+  req: CMSRequest
   uploadConfig: UploadConfig
 }
 export const getExternalFile = async ({ data, req, uploadConfig }: Args): Promise<File> => {
@@ -27,7 +27,7 @@ export const getExternalFile = async ({ data, req, uploadConfig }: Args): Promis
 
     if (trimAuthCookies) {
       cookies = cookies.filter(
-        (cookie) => !cookie.trim().startsWith(req.payload.config.cookiePrefix),
+        (cookie) => !cookie.trim().startsWith(req.cms.config.cookiePrefix),
       )
     }
 

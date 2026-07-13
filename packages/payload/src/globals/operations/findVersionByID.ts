@@ -1,6 +1,6 @@
 import type { FindOptions } from '../../collections/operations/local/find.js'
 import type { FindGlobalVersionsArgs } from '../../database/types.js'
-import type { PayloadRequest, PopulateType, SelectType } from '../../types/index.js'
+import type { CMSRequest, PopulateType, SelectType } from '../../types/index.js'
 import type { TypeWithVersion } from '../../versions/types.js'
 import type { SanitizedGlobalConfig } from '../config/types.js'
 
@@ -22,7 +22,7 @@ export type Arguments = {
   id: number | string
   overrideAccess?: boolean
   populate?: PopulateType
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields?: boolean
 } & Pick<FindOptions<string, SelectType>, 'select'>
 
@@ -37,7 +37,7 @@ export const findVersionByIDOperation = async <T extends TypeWithVersion<T> = an
     globalConfig,
     overrideAccess,
     populate,
-    req: { fallbackLocale, locale, payload },
+    req: { fallbackLocale, locale, cms },
     req,
     select: incomingSelect,
     showHiddenFields,
@@ -60,7 +60,7 @@ export const findVersionByIDOperation = async <T extends TypeWithVersion<T> = an
     const hasWhereAccess = typeof accessResults === 'object'
 
     const select = sanitizeSelect({
-      fields: buildVersionGlobalFields(payload.config, globalConfig, true),
+      fields: buildVersionGlobalFields(cms.config, globalConfig, true),
       forceSelect: getQueryDraftsSelect({ select: globalConfig.forceSelect }),
       select: incomingSelect,
       versions: true,
@@ -83,7 +83,7 @@ export const findVersionByIDOperation = async <T extends TypeWithVersion<T> = an
       throw new NotFound(req.t)
     }
 
-    const { docs: results } = await payload.db.findGlobalVersions(findGlobalVersionsArgs)
+    const { docs: results } = await cms.db.findGlobalVersions(findGlobalVersionsArgs)
     if (!results || results?.length === 0) {
       if (!disableErrors) {
         if (!hasWhereAccess) {

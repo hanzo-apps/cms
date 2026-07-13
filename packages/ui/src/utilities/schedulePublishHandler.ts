@@ -20,20 +20,20 @@ export const schedulePublishHandler: ServerFunction<SchedulePublishHandlerArgs> 
   req,
   timezone,
 }) => {
-  const { i18n, payload, user } = req
+  const { i18n, cms, user } = req
 
   await canAccessAdmin({ req })
 
   try {
     if (deleteID) {
-      await payload.delete({
-        collection: 'payload-jobs',
+      await cms.delete({
+        collection: 'cms-jobs',
         req,
         where: { id: { equals: deleteID } },
       })
     }
 
-    await payload.jobs.queue({
+    await cms.jobs.queue({
       input: {
         type,
         doc,
@@ -57,7 +57,7 @@ export const schedulePublishHandler: ServerFunction<SchedulePublishHandlerArgs> 
       }
     }
 
-    payload.logger.error({ err }, error)
+    cms.logger.error({ err }, error)
 
     return {
       error,

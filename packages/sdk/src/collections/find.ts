@@ -1,14 +1,14 @@
 import type {
   CollectionSlug,
   PaginatedDocs,
-  PayloadTypesShape,
+  CMSTypesShape,
   SelectType,
   Sort,
   TypedLocale,
   Where,
 } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type {
   JoinQuery,
   PopulateType,
@@ -17,7 +17,7 @@ import type {
 } from '../types.js'
 
 export type FindOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 > = {
@@ -92,11 +92,11 @@ export type FindOptions<
 }
 
 export async function find<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 >(
-  sdk: PayloadSDK<T>,
+  sdk: CMSSDK<T>,
   options: FindOptions<T, TSlug, TSelect>,
   init?: RequestInit,
 ): Promise<PaginatedDocs<TransformCollectionWithSelect<T, TSlug, TSelect>>> {

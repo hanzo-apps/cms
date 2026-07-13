@@ -130,7 +130,7 @@ export function filterDataToSelectedLocales({
                   selectedLocales,
                 })
 
-                // blockType, id, blockName are set by Payload internally
+                // blockType, id, blockName are set by CMS internally
                 // and not part of block.fields, so they must be preserved explicitly
                 filtered.blockType = blockData.blockType
                 filtered.id = blockData.id

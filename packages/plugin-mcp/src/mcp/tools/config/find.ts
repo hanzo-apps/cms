@@ -1,25 +1,25 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { readFileSync, statSync } from 'fs'
 
 import { toolSchemas } from '../schemas.js'
 
 export const readConfigFile = (
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   configFilePath: string,
   includeMetadata: boolean = false,
 ) => {
-  const payload = req.payload
+  const cms = req.cms
   if (verboseLogs) {
-    payload.logger.info(`[payload-mcp] Reading config file, includeMetadata: ${includeMetadata}`)
+    cms.logger.info(`[cms-mcp] Reading config file, includeMetadata: ${includeMetadata}`)
   }
 
   try {
     // Security check: ensure we're working with the specified config file
     if (!configFilePath.startsWith(process.cwd()) && !configFilePath.startsWith('/')) {
-      payload.logger.error(`[payload-mcp] Invalid config path attempted: ${configFilePath}`)
+      cms.logger.error(`[cms-mcp] Invalid config path attempted: ${configFilePath}`)
       return {
         content: [
           {
@@ -34,10 +34,10 @@ export const readConfigFile = (
     const stats = statSync(configFilePath)
 
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Successfully read config file. Size: ${stats.size} bytes`)
+      cms.logger.info(`[cms-mcp] Successfully read config file. Size: ${stats.size} bytes`)
     }
 
-    let responseText = `# Payload Configuration
+    let responseText = `# CMS Configuration
 
 **File**: \`${configFilePath}\``
 
@@ -66,7 +66,7 @@ ${content}
     }
   } catch (error) {
     const errorMessage = (error as Error).message
-    payload.logger.error(`[payload-mcp] Error reading config file: ${errorMessage}`)
+    cms.logger.error(`[cms-mcp] Error reading config file: ${errorMessage}`)
     return {
       content: [
         {
@@ -81,28 +81,28 @@ ${content}
 // MCP Server tool registration
 export const findConfigTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   configFilePath: string,
 ) => {
   const tool = (includeMetadata: boolean = false) => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Finding config, includeMetadata: ${includeMetadata}`)
+      cms.logger.info(`[cms-mcp] Finding config, includeMetadata: ${includeMetadata}`)
     }
 
     try {
       const result = readConfigFile(req, verboseLogs, configFilePath, includeMetadata)
 
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Config search completed`)
+        cms.logger.info(`[cms-mcp] Config search completed`)
       }
 
       return result
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(`[payload-mcp] Error finding config: ${errorMessage}`)
+      cms.logger.error(`[cms-mcp] Error finding config: ${errorMessage}`)
 
       return {
         content: [

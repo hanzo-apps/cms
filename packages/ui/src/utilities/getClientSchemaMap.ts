@@ -1,14 +1,14 @@
 import type { I18n, I18nClient } from '@hanzo/cms-translations'
-import type { ClientConfig, ClientFieldSchemaMap, FieldSchemaMap, Payload } from '@hanzo/cms'
+import type { ClientConfig, ClientFieldSchemaMap, FieldSchemaMap, CMS } from '@hanzo/cms'
 
 import { cache } from 'react'
 
 import { buildClientFieldSchemaMap } from './buildClientFieldSchemaMap/index.js'
 
-let cachedClientSchemaMap = global._payload_clientSchemaMap
+let cachedClientSchemaMap = global._cms_clientSchemaMap
 
 if (!cachedClientSchemaMap) {
-  cachedClientSchemaMap = global._payload_clientSchemaMap = null
+  cachedClientSchemaMap = global._cms_clientSchemaMap = null
 }
 
 export const getClientSchemaMap = cache(
@@ -17,13 +17,13 @@ export const getClientSchemaMap = cache(
     config: ClientConfig
     globalSlug?: string
     i18n: I18nClient
-    payload: Payload
+    cms: CMS
     schemaMap: FieldSchemaMap
     widgetSlug?: string
   }): ClientFieldSchemaMap => {
-    const { collectionSlug, config, globalSlug, i18n, payload, schemaMap, widgetSlug } = args
+    const { collectionSlug, config, globalSlug, i18n, cms, schemaMap, widgetSlug } = args
 
-    if (!cachedClientSchemaMap || global._payload_doNotCacheClientSchemaMap) {
+    if (!cachedClientSchemaMap || global._cms_doNotCacheClientSchemaMap) {
       cachedClientSchemaMap = new Map()
     }
 
@@ -41,16 +41,16 @@ export const getClientSchemaMap = cache(
       config,
       globalSlug,
       i18n: i18n as I18n,
-      payload,
+      cms,
       schemaMap,
       widgetSlug,
     })
 
     cachedClientSchemaMap.set(cacheKey, entityClientFieldMap)
 
-    global._payload_clientSchemaMap = cachedClientSchemaMap
+    global._cms_clientSchemaMap = cachedClientSchemaMap
 
-    global._payload_doNotCacheClientSchemaMap = false
+    global._cms_doNotCacheClientSchemaMap = false
 
     return entityClientFieldMap
   },

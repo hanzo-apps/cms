@@ -399,7 +399,7 @@ export const ukTranslations: DefaultTranslationsObject = {
     password: 'Пароль',
     pasteField: 'Вставити поле',
     pasteRow: 'Вставити рядок',
-    payloadSettings: 'Налаштування Payload',
+    cmsSettings: 'Налаштування CMS',
     permanentlyDelete: 'Назавжди видалити',
     permanentlyDeletedCountSuccessfully: 'Успішно видалено назавжди {{count}} {{label}}.',
     perPage: 'На сторінці: {{limit}}',

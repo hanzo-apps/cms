@@ -1,24 +1,24 @@
 import type tslib from 'typescript/lib/tsserverlibrary'
 
-export type PayloadComponentContext =
+export type CMSComponentContext =
   | { exportNameValue?: string; node: tslib.StringLiteral; type: 'path' }
   | { node: tslib.StringLiteral; pathValue?: string; type: 'exportName' }
   | { node: tslib.StringLiteral; type: 'string' }
 
 /**
- * Determines if a string literal is in a PayloadComponent context and what kind.
+ * Determines if a string literal is in a CMSComponent context and what kind.
  *
  * - `'string'`: direct string form, e.g. `Field: '@/components/MyField#MyField'`
  * - `'path'`: the `path` property in the object form, e.g. `{ path: '@/components/MyField' }`
  * - `'exportName'`: the `exportName` property in the object form, e.g. `{ exportName: 'MyField' }`
  */
-export function getPayloadComponentContext(
+export function getCMSComponentContext(
   ts: typeof tslib,
   node: tslib.StringLiteral,
   checker: tslib.TypeChecker,
-): PayloadComponentContext | undefined {
+): CMSComponentContext | undefined {
   const contextualType = checker.getContextualType(node)
-  if (contextualType && isPayloadComponentType(ts, contextualType)) {
+  if (contextualType && isCMSComponentType(ts, contextualType)) {
     return { type: 'string', node }
   }
 
@@ -29,7 +29,7 @@ export function getPayloadComponentContext(
     const objectLiteral = node.parent.parent
     const objectContextualType = checker.getContextualType(objectLiteral)
 
-    if (objectContextualType && isRawPayloadComponentType(ts, objectContextualType)) {
+    if (objectContextualType && isRawCMSComponentType(ts, objectContextualType)) {
       if (propName === 'path') {
         const exportNameValue = findSiblingStringProp(ts, objectLiteral, 'exportName')
         return { type: 'path', exportNameValue, node }
@@ -61,15 +61,15 @@ function findSiblingStringProp(
 }
 
 /**
- * Checks whether a type is `PayloadComponent` (the union `false | RawPayloadComponent<...> | string`).
+ * Checks whether a type is `CMSComponent` (the union `false | RawCMSComponent<...> | string`).
  *
- * Uses both alias name matching and a structural check so this catches `PayloadComponent`,
+ * Uses both alias name matching and a structural check so this catches `CMSComponent`,
  * `CustomComponent`, and any other alias that resolves to the same shape.
  */
-function isPayloadComponentType(ts: typeof tslib, type: tslib.Type): boolean {
+function isCMSComponentType(ts: typeof tslib, type: tslib.Type): boolean {
   const aliasName = type.aliasSymbol?.name
   if (
-    aliasName === 'PayloadComponent' ||
+    aliasName === 'CMSComponent' ||
     aliasName === 'CustomComponent' ||
     aliasName === 'DocumentViewComponent'
   ) {
@@ -97,12 +97,12 @@ function isPayloadComponentType(ts: typeof tslib, type: tslib.Type): boolean {
 }
 
 /**
- * Checks whether a type is `RawPayloadComponent` (an object with `path: string`
+ * Checks whether a type is `RawCMSComponent` (an object with `path: string`
  * and optional `exportName: string`).
  */
-function isRawPayloadComponentType(ts: typeof tslib, type: tslib.Type): boolean {
+function isRawCMSComponentType(ts: typeof tslib, type: tslib.Type): boolean {
   const aliasName = type.aliasSymbol?.name
-  if (aliasName === 'RawPayloadComponent') {
+  if (aliasName === 'RawCMSComponent') {
     return true
   }
 

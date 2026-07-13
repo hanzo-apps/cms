@@ -1,14 +1,14 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { getRequestCollection } from '../../utilities/getRequestEntity.js'
 import { headersWithCors } from '../../utilities/headersWithCors.js'
 import { isNumber } from '../../utilities/isNumber.js'
-import { generatePayloadCookie } from '../cookies.js'
+import { generateCMSCookie } from '../cookies.js'
 import { loginOperation } from '../operations/login.js'
 
-export const loginHandler: PayloadHandler = async (req) => {
+export const loginHandler: CMSHandler = async (req) => {
   const collection = getRequestCollection(req)
   const { searchParams, t } = req
   const depth = searchParams.get('depth')
@@ -31,9 +31,9 @@ export const loginHandler: PayloadHandler = async (req) => {
     req,
   })
 
-  const cookie = generatePayloadCookie({
+  const cookie = generateCMSCookie({
     collectionAuthConfig: collection.config.auth,
-    cookiePrefix: req.payload.config.cookiePrefix,
+    cookiePrefix: req.cms.config.cookiePrefix,
     token: result.token!,
   })
 

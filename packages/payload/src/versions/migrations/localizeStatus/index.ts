@@ -19,13 +19,13 @@ export const localizeStatus: LocalizeStatusMigration = {
     if ('db' in args && 'sql' in args) {
       // SQL database (Postgres, SQLite, etc.)
       return sqlLocalizeStatus.up(args)
-    } else if ('payload' in args && !('db' in args)) {
+    } else if ('cms' in args && !('db' in args)) {
       // MongoDB
       return mongoLocalizeStatus.up(args)
     } else {
       throw new Error(
         'Unable to detect database type. Expected either { db, sql } for SQL databases ' +
-          'or { payload } for MongoDB.',
+          'or { cms } for MongoDB.',
       )
     }
   },
@@ -35,13 +35,13 @@ export const localizeStatus: LocalizeStatusMigration = {
     if ('db' in args && 'sql' in args) {
       // SQL database (Postgres, SQLite, etc.)
       return sqlLocalizeStatus.down(args)
-    } else if ('payload' in args && !('db' in args)) {
+    } else if ('cms' in args && !('db' in args)) {
       // MongoDB
       return mongoLocalizeStatus.down(args)
     } else {
       throw new Error(
         'Unable to detect database type. Expected either { db, sql } for SQL databases ' +
-          'or { payload } for MongoDB.',
+          'or { cms } for MongoDB.',
       )
     }
   },

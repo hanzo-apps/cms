@@ -3,7 +3,7 @@ import httpStatus from 'http-status'
 import type { AccessResult } from '../../config/types.js'
 import type { PaginatedDistinctDocs } from '../../database/types.js'
 import type { FlattenedField } from '../../fields/config/types.js'
-import type { PayloadRequest, PopulateType, Sort, Where } from '../../types/index.js'
+import type { CMSRequest, PopulateType, Sort, Where } from '../../types/index.js'
 import type { Collection } from '../config/types.js'
 
 import { executeAccess } from '../../auth/executeAccess.js'
@@ -29,7 +29,7 @@ export type Arguments = {
   overrideAccess?: boolean
   page?: number
   populate?: PopulateType
-  req?: PayloadRequest
+  req?: CMSRequest
   showHiddenFields?: boolean
   sort?: Sort
   trash?: boolean
@@ -63,7 +63,7 @@ export const findDistinctOperation = async (
     } = args
 
     const req = args.req!
-    const { locale, payload } = req
+    const { locale, cms } = req
 
     // /////////////////////////////////////
     // Access
@@ -96,7 +96,7 @@ export const findDistinctOperation = async (
     // /////////////////////////////////////
 
     let fullWhere = combineQueries(where!, accessResult!)
-    sanitizeWhereQuery({ fields: collectionConfig.flattenedFields, payload, where: fullWhere })
+    sanitizeWhereQuery({ fields: collectionConfig.flattenedFields, cms, where: fullWhere })
 
     // Exclude trashed documents when trash: false
     fullWhere = appendNonTrashedFilter({
@@ -113,7 +113,7 @@ export const findDistinctOperation = async (
     })
 
     const fieldResult = getFieldByPath({
-      config: payload.config,
+      config: cms.config,
       fields: collectionConfig.flattenedFields,
       includeRelationships: true,
       path: args.field,
@@ -164,7 +164,7 @@ export const findDistinctOperation = async (
 
       const path = `${relationPath}.${fieldPathSegments.join('.')}`
 
-      const result = await payload.findDistinct({
+      const result = await cms.findDistinct({
         collection: collectionConfig.slug,
         depth: args.depth,
         disableErrors,
@@ -189,7 +189,7 @@ export const findDistinctOperation = async (
       return result
     }
 
-    let result = await payload.db.findDistinct({
+    let result = await cms.db.findDistinct({
       collection: collectionConfig.slug,
       field: args.field,
       limit: args.limit,

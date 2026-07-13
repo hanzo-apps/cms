@@ -1,7 +1,7 @@
 import type {
   CollectionSlug,
   PaginatedDocs,
-  PayloadTypesShape,
+  CMSTypesShape,
   SelectType,
   Sort,
   TypedLocale,
@@ -9,10 +9,10 @@ import type {
   Where,
 } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type { DataFromCollectionSlug, PopulateType } from '../types.js'
 
-export type FindVersionsOptions<T extends PayloadTypesShape, TSlug extends CollectionSlug<T>> = {
+export type FindVersionsOptions<T extends CMSTypesShape, TSlug extends CollectionSlug<T>> = {
   /**
    * the Collection slug to operate against.
    */
@@ -78,8 +78,8 @@ export type FindVersionsOptions<T extends PayloadTypesShape, TSlug extends Colle
   where?: Where
 }
 
-export async function findVersions<T extends PayloadTypesShape, TSlug extends CollectionSlug<T>>(
-  sdk: PayloadSDK<T>,
+export async function findVersions<T extends CMSTypesShape, TSlug extends CollectionSlug<T>>(
+  sdk: CMSSDK<T>,
   options: FindVersionsOptions<T, TSlug>,
   init?: RequestInit,
 ): Promise<PaginatedDocs<TypeWithVersion<DataFromCollectionSlug<T, TSlug>>>> {

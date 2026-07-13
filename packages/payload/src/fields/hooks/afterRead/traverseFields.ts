@@ -3,7 +3,7 @@ import type { SanitizedGlobalConfig } from '../../../globals/config/types.js'
 import type { RequestContext, TypedFallbackLocale } from '../../../index.js'
 import type {
   JsonObject,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectMode,
   SelectType,
@@ -51,7 +51,7 @@ type Args = {
   parentSchemaPath: string
   populate?: PopulateType
   populationPromises: Promise<void>[]
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   selectMode?: SelectMode
   showHiddenFields: boolean

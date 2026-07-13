@@ -88,7 +88,7 @@ export const LexicalProvider: React.FC<LexicalProviderProps> = (props) => {
 
     if (value && 'jsonContent' in value) {
       throw new Error(
-        'You have tried to pass in data from payload-plugin-lexical. The data structure is different, thus you will have to migrate your data. Migration guide: https://payloadcms.com/docs/lexical/migration#migrating-from-payload-plugin-lexical',
+        'You have tried to pass in data from cms-plugin-lexical. The data structure is different, thus you will have to migrate your data. Migration guide: https://payloadcms.com/docs/lexical/migration#migrating-from-payload-plugin-lexical',
       )
     }
 

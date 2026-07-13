@@ -134,12 +134,12 @@ export const ScheduleDrawer: React.FC<Props> = ({ slug, defaultType, schedulePub
     }
 
     const { docs } = await requests
-      .post(formatAdminURL({ apiRoute: api, path: `/payload-jobs` }), {
+      .post(formatAdminURL({ apiRoute: api, path: `/cms-jobs` }), {
         body: qs.stringify(query),
         headers: {
           'Accept-Language': i18n.language,
           'Content-Type': 'application/x-www-form-urlencoded',
-          'X-Payload-HTTP-Method-Override': 'GET',
+          'X-CMS-HTTP-Method-Override': 'GET',
         },
       })
       .then((res) => res.json())

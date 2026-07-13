@@ -1,9 +1,9 @@
 /**
  * Transforms incoming MCP tool data from object format to tuple array format.
  * Converts { longitude: number, latitude: number } back to [longitude, latitude]
- * for Payload's internal point field representation.
+ * for CMS's internal point field representation.
  */
-export function transformPointDataToPayload(
+export function transformPointDataToCMS(
   data: Record<string, unknown>,
 ): Record<string, unknown> {
   if (!data || typeof data !== 'object') {
@@ -26,11 +26,11 @@ export function transformPointDataToPayload(
     } else if (Array.isArray(value)) {
       transformed[key] = value.map((item) =>
         typeof item === 'object'
-          ? transformPointDataToPayload(item as Record<string, unknown>)
+          ? transformPointDataToCMS(item as Record<string, unknown>)
           : item,
       )
     } else if (value && typeof value === 'object') {
-      transformed[key] = transformPointDataToPayload(value as Record<string, unknown>)
+      transformed[key] = transformPointDataToCMS(value as Record<string, unknown>)
     } else {
       transformed[key] = value
     }

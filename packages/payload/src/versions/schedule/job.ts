@@ -24,7 +24,7 @@ export const getSchedulePublishTask = ({
       let user: null | TypedUser = null
 
       if (userID) {
-        user = (await req.payload.findByID({
+        user = (await req.cms.findByID({
           id: userID,
           collection: adminUserSlug,
           depth: 0,
@@ -35,8 +35,8 @@ export const getSchedulePublishTask = ({
 
       let publishSpecificLocale: string
 
-      if (input?.type === 'publish' && input.locale && req.payload.config.localization) {
-        const matchedLocale = req.payload.config.localization.locales.find(
+      if (input?.type === 'publish' && input.locale && req.cms.config.localization) {
+        const matchedLocale = req.cms.config.localization.locales.find(
           ({ code }) => code === input.locale,
         )
 
@@ -46,7 +46,7 @@ export const getSchedulePublishTask = ({
       }
 
       if (input.doc) {
-        await req.payload.update({
+        await req.cms.update({
           id: input.doc.value,
           collection: input.doc.relationTo,
           data: {
@@ -60,7 +60,7 @@ export const getSchedulePublishTask = ({
       }
 
       if (input.global) {
-        await req.payload.updateGlobal({
+        await req.cms.updateGlobal({
           slug: input.global,
           data: {
             _status,

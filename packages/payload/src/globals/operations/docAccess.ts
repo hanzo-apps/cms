@@ -1,5 +1,5 @@
 import type { SanitizedGlobalPermission } from '../../auth/index.js'
-import type { AllOperations, JsonObject, PayloadRequest } from '../../types/index.js'
+import type { AllOperations, JsonObject, CMSRequest } from '../../types/index.js'
 import type { SanitizedGlobalConfig } from '../config/types.js'
 
 import { commitTransaction } from '../../utilities/commitTransaction.js'
@@ -14,7 +14,7 @@ type Arguments = {
    */
   data?: JsonObject
   globalConfig: SanitizedGlobalConfig
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export const docAccessOperation = async (args: Arguments): Promise<SanitizedGlobalPermission> => {

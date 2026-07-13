@@ -1,6 +1,6 @@
 import type { DrizzleAdapter } from '@hanzo/cms-drizzle'
 import type { PgTableFn } from 'drizzle-orm/pg-core'
-import type { DatabaseAdapterObj, Payload } from '@hanzo/cms'
+import type { DatabaseAdapterObj, CMS } from '@hanzo/cms'
 
 import {
   beginTransaction,
@@ -68,10 +68,10 @@ const filename = fileURLToPath(import.meta.url)
 
 export function vercelPostgresAdapter(args: Args = {}): DatabaseAdapterObj<VercelPostgresAdapter> {
   const postgresIDType = args.idType || 'serial'
-  const payloadIDType = postgresIDType === 'serial' ? 'number' : 'text'
+  const cmsIDType = postgresIDType === 'serial' ? 'number' : 'text'
   const allowIDOnCreate = args.allowIDOnCreate ?? false
 
-  function adapter({ payload }: { payload: Payload }) {
+  function adapter({ cms }: { cms: CMS }) {
     const migrationDir = findMigrationDir(args.migrationDir)
     let resolveInitializing
     let rejectInitializing
@@ -175,7 +175,7 @@ export function vercelPostgresAdapter(args: Args = {}): DatabaseAdapterObj<Verce
         sanitizeStatements,
       }),
       createVersion,
-      defaultIDType: payloadIDType,
+      defaultIDType: cmsIDType,
       deleteMany,
       deleteOne,
       deleteVersions,
@@ -199,7 +199,7 @@ export function vercelPostgresAdapter(args: Args = {}): DatabaseAdapterObj<Verce
       migrateStatus,
       migrationDir,
       packageName: '@hanzo/cms-db-vercel-postgres',
-      payload,
+      cms,
       queryDrafts,
       readReplicaOptions: args.readReplicas,
       readReplicasAfterWriteInterval: args.readReplicasAfterWriteInterval ?? 2000,
@@ -229,7 +229,7 @@ export function vercelPostgresAdapter(args: Args = {}): DatabaseAdapterObj<Verce
   return {
     name: 'postgres',
     allowIDOnCreate,
-    defaultIDType: payloadIDType,
+    defaultIDType: cmsIDType,
     init: adapter,
   }
 }

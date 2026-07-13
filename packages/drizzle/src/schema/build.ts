@@ -614,7 +614,7 @@ export const buildTable = ({
       }
 
       relationships.forEach((relationTo) => {
-        const relationshipConfig = adapter.payload.collections[relationTo].config
+        const relationshipConfig = adapter.cms.collections[relationTo].config
         const formattedRelationTo = createTableName({
           adapter,
           config: relationshipConfig,
@@ -624,7 +624,7 @@ export const buildTable = ({
           ? 'uuid'
           : 'integer'
         const relatedCollectionCustomIDType =
-          adapter.payload.collections[relationshipConfig.slug]?.customIDType
+          adapter.cms.collections[relationshipConfig.slug]?.customIDType
 
         if (relatedCollectionCustomIDType === 'number') {
           colType = 'numeric'
@@ -705,7 +705,7 @@ export const buildTable = ({
       relationships.forEach((relationTo) => {
         const relatedTableName = createTableName({
           adapter,
-          config: adapter.payload.collections[relationTo].config,
+          config: adapter.cms.collections[relationTo].config,
           throwValidationError: true,
         })
         const idColumnName = `${relationTo}ID`

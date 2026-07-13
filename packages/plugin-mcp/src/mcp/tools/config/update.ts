@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { readFileSync, writeFileSync } from 'fs'
 
@@ -13,7 +13,7 @@ import {
 import { toolSchemas } from '../schemas.js'
 
 export const updateConfig = (
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   configFilePath: string,
   updateType: string,
@@ -23,14 +23,14 @@ export const updateConfig = (
   pluginUpdates?: any,
   newContent?: string,
 ) => {
-  const payload = req.payload
+  const cms = req.cms
   if (verboseLogs) {
-    payload.logger.info(`[payload-mcp] Updating config with update type: ${updateType}`)
+    cms.logger.info(`[cms-mcp] Updating config with update type: ${updateType}`)
   }
 
   // Security check: ensure we're working with the specified config file
   if (!configFilePath.startsWith(process.cwd()) && !configFilePath.startsWith('/')) {
-    payload.logger.error(`[payload-mcp] Invalid config path attempted: ${configFilePath}`)
+    cms.logger.error(`[cms-mcp] Invalid config path attempted: ${configFilePath}`)
     return {
       content: [
         {
@@ -171,7 +171,7 @@ export const updateConfig = (
     // Write the updated content back to the file
     writeFileSync(configFilePath, updatedContent, 'utf8')
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Successfully updated config file: ${configFilePath}`)
+      cms.logger.info(`[cms-mcp] Successfully updated config file: ${configFilePath}`)
     }
 
     return {
@@ -195,7 +195,7 @@ ${updatedContent}
     }
   } catch (error) {
     const errorMessage = (error as Error).message
-    payload.logger.error(`[payload-mcp] Error updating config: ${errorMessage}`)
+    cms.logger.error(`[cms-mcp] Error updating config: ${errorMessage}`)
     return {
       content: [
         {
@@ -209,7 +209,7 @@ ${updatedContent}
 
 export const updateConfigTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   configFilePath: string,
 ) => {
@@ -228,10 +228,10 @@ export const updateConfigTool = (
     pluginUpdates?: any
     updateType: string
   }) => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Updating config: ${updateType}`)
+      cms.logger.info(`[cms-mcp] Updating config: ${updateType}`)
     }
 
     try {
@@ -248,13 +248,13 @@ export const updateConfigTool = (
       )
 
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Config update completed for: ${updateType}`)
+        cms.logger.info(`[cms-mcp] Config update completed for: ${updateType}`)
       }
 
       return result
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(`[payload-mcp] Error updating config: ${errorMessage}`)
+      cms.logger.error(`[cms-mcp] Error updating config: ${errorMessage}`)
 
       return {
         content: [

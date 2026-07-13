@@ -1,10 +1,10 @@
-import type { GlobalSlug, PayloadTypesShape, TypedLocale, TypeWithVersion } from '@hanzo/cms'
+import type { GlobalSlug, CMSTypesShape, TypedLocale, TypeWithVersion } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type { DataFromGlobalSlug, PopulateType } from '../types.js'
 
 export type RestoreGlobalVersionByIDOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends GlobalSlug<T>,
 > = {
   /**
@@ -35,10 +35,10 @@ export type RestoreGlobalVersionByIDOptions<
 }
 
 export async function restoreGlobalVersion<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends GlobalSlug<T>,
 >(
-  sdk: PayloadSDK<T>,
+  sdk: CMSSDK<T>,
   options: RestoreGlobalVersionByIDOptions<T, TSlug>,
   init?: RequestInit,
 ): Promise<TypeWithVersion<DataFromGlobalSlug<T, TSlug>>> {

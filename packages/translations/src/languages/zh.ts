@@ -379,7 +379,7 @@ export const zhTranslations: DefaultTranslationsObject = {
     password: '密码',
     pasteField: '粘贴字段',
     pasteRow: '粘贴行',
-    payloadSettings: 'Payload 设置',
+    cmsSettings: 'CMS 设置',
     permanentlyDelete: '永久删除',
     permanentlyDeletedCountSuccessfully: '已成功永久删除 {{count}} 个 {{label}}。',
     perPage: '每一页: {{limit}}',

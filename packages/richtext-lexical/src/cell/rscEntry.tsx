@@ -38,7 +38,7 @@ export const RscEntryLexicalCell: React.FC<LexicalRichTextCellProps> = (props) =
     i18n,
     link,
     onClick: onClickFromProps,
-    payload,
+    cms,
     rowData,
   } = props
 
@@ -48,8 +48,8 @@ export const RscEntryLexicalCell: React.FC<LexicalRichTextCellProps> = (props) =
     classNameFromProps ||
     (field.admin && 'className' in field.admin ? field.admin.className : null) ||
     classNameFromConfigContext
-  const adminRoute = payload.config.routes.admin
-  const serverURL = payload.config.serverURL
+  const adminRoute = cms.config.routes.admin
+  const serverURL = cms.config.serverURL
 
   const onClick = onClickFromProps
 

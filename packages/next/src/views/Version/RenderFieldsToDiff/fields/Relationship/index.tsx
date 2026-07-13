@@ -1,5 +1,5 @@
 import type {
-  PayloadRequest,
+  CMSRequest,
   RelationshipField,
   RelationshipFieldDiffServerComponent,
   TypeWithID,
@@ -75,7 +75,7 @@ export const SingleRelationshipDiff: React.FC<{
   nestingLevel?: number
   parentIsLocalized: boolean
   polymorphic: boolean
-  req: PayloadRequest
+  req: CMSRequest
   valueFrom: RelationshipValue
   valueTo: RelationshipValue
 }> = async (args) => {
@@ -95,7 +95,7 @@ export const SingleRelationshipDiff: React.FC<{
 
   const localeToUse =
     locale ??
-    (req.payload.config?.localization && req.payload.config?.localization?.defaultLocale) ??
+    (req.cms.config?.localization && req.cms.config?.localization?.defaultLocale) ??
     'en'
 
   // Generate titles asynchronously before creating components
@@ -185,7 +185,7 @@ const ManyRelationshipDiff: React.FC<{
   nestingLevel?: number
   parentIsLocalized: boolean
   polymorphic: boolean
-  req: PayloadRequest
+  req: CMSRequest
   valueFrom: RelationshipValue[] | undefined
   valueTo: RelationshipValue[] | undefined
 }> = async ({
@@ -206,7 +206,7 @@ const ManyRelationshipDiff: React.FC<{
 
   const localeToUse =
     locale ??
-    (req.payload.config?.localization && req.payload.config?.localization?.defaultLocale) ??
+    (req.cms.config?.localization && req.cms.config?.localization?.defaultLocale) ??
     'en'
 
   // Generate all titles asynchronously before creating components
@@ -301,14 +301,14 @@ const RelationshipDocumentDiff = ({
   parentIsLocalized: boolean
   polymorphic: boolean
   relationTo: string
-  req: PayloadRequest
+  req: CMSRequest
   showPill?: boolean
   title: null | string
   value: RelationshipValue
 }) => {
   let pillLabel: null | string = null
   if (showPill) {
-    const collectionConfig = req.payload.collections[relationTo].config
+    const collectionConfig = req.cms.collections[relationTo].config
     pillLabel = collectionConfig.labels?.singular
       ? getTranslation(collectionConfig.labels.singular, i18n)
       : collectionConfig.slug

@@ -3,14 +3,14 @@ import type { BatchLoadFn } from 'dataloader'
 import DataLoader from 'dataloader'
 
 import type { FindArgs } from '../database/types.js'
-import type { Payload, TypedFallbackLocale } from '../index.js'
-import type { PayloadRequest, PopulateType, SelectType } from '../types/index.js'
+import type { CMS, TypedFallbackLocale } from '../index.js'
+import type { CMSRequest, PopulateType, SelectType } from '../types/index.js'
 import type { TypeWithID } from './config/types.js'
 import type { FindOptions } from './operations/local/find.js'
 
 import { isValidID } from '../utilities/isValidID.js'
 
-// Payload uses `dataloader` to solve the classic GraphQL N+1 problem.
+// CMS uses `dataloader` to solve the classic GraphQL N+1 problem.
 
 // We keep a list of all documents requested to be populated for any given request
 // and then batch together documents within the same collection,
@@ -20,9 +20,9 @@ import { isValidID } from '../utilities/isValidID.js'
 // and also ensures complex GraphQL queries perform lightning-fast.
 
 const batchAndLoadDocs =
-  (req: PayloadRequest): BatchLoadFn<string, TypeWithID> =>
+  (req: CMSRequest): BatchLoadFn<string, TypeWithID> =>
   async (keys: readonly string[]): Promise<TypeWithID[]> => {
-    const { payload } = req
+    const { cms } = req
 
     // Create docs array of same length as keys, using null as value
     // We will replace nulls with injected docs as they are retrieved
@@ -80,7 +80,7 @@ const batchAndLoadDocs =
 
       const batchKey = JSON.stringify(batchKeyArray)
 
-      const idType = payload.collections?.[collection]?.customIDType || payload.db.defaultIDType
+      const idType = cms.collections?.[collection]?.customIDType || cms.db.defaultIDType
       const sanitizedID = idType === 'number' ? parseFloat(id) : id
 
       if (isValidID(sanitizedID, idType)) {
@@ -107,10 +107,10 @@ const batchAndLoadDocs =
 
       req.transactionID = transactionID
 
-      const enableTrash = Boolean(payload.collections?.[collection]?.config?.trash)
+      const enableTrash = Boolean(cms.collections?.[collection]?.config?.trash)
       const selectWithDeletedAt = enableTrash && select ? { ...select, deletedAt: true } : select
 
-      const result = await payload.find({
+      const result = await cms.find({
         collection,
         currentDepth,
         depth,
@@ -163,9 +163,9 @@ const batchAndLoadDocs =
     return docs as TypeWithID[]
   }
 
-export const getDataLoader = (req: PayloadRequest) => {
+export const getDataLoader = (req: CMSRequest) => {
   const findQueries = new Map()
-  const dataLoader = new DataLoader(batchAndLoadDocs(req)) as PayloadRequest['payloadDataLoader']
+  const dataLoader = new DataLoader(batchAndLoadDocs(req)) as CMSRequest['cmsDataLoader']
 
   dataLoader.find = ((args: FindArgs) => {
     const key = createFindDataloaderCacheKey(args)
@@ -173,10 +173,10 @@ export const getDataLoader = (req: PayloadRequest) => {
     if (cached) {
       return cached
     }
-    const request = req.payload.find(args)
+    const request = req.cms.find(args)
     findQueries.set(key, request)
     return request
-  }) as Payload['find']
+  }) as CMS['find']
 
   return dataLoader
 }

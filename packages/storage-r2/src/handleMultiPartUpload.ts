@@ -1,5 +1,5 @@
 import type { ClientUploadsAccess } from '@hanzo/cms-plugin-cloud-storage/types'
-import type { PayloadHandler } from '@hanzo/cms'
+import type { CMSHandler } from '@hanzo/cms'
 
 import { resolveSignedURLKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
 import { APIError, Forbidden } from '@hanzo/cms'
@@ -16,7 +16,7 @@ type Args = {
 
 // Adapted from https://developers.cloudflare.com/r2/api/workers/workers-multipart-usage/
 export const getHandleMultiPartUpload =
-  ({ access, bucket, collections, useCompositePrefixes = false }: Args): PayloadHandler =>
+  ({ access, bucket, collections, useCompositePrefixes = false }: Args): CMSHandler =>
   async (req) => {
     const params = Object.fromEntries(req.searchParams) as R2StorageMultipartUploadHandlerParams
     const collectionSlug = params.collection
@@ -34,7 +34,7 @@ export const getHandleMultiPartUpload =
       }
     } else {
       // Use the collection's create access control
-      const collection = req.payload.collections[collectionSlug]
+      const collection = req.cms.collections[collectionSlug]
       if (!collection) {
         throw new APIError(`Collection ${collectionSlug} not found`)
       }

@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { readdirSync, readFileSync, statSync } from 'fs'
 import { extname, join } from 'path'
@@ -7,18 +7,18 @@ import { extname, join } from 'path'
 import { toolSchemas } from '../schemas.js'
 
 export const readCollections = (
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   collectionsDirPath: string,
   collectionName?: string,
   includeContent: boolean = false,
   includeCount: boolean = false,
 ) => {
-  const payload = req.payload
+  const cms = req.cms
 
   if (verboseLogs) {
-    payload.logger.info(
-      `[payload-mcp] Reading collections${collectionName ? ` for: ${collectionName}` : ''}, includeContent: ${includeContent}, includeCount: ${includeCount}`,
+    cms.logger.info(
+      `[cms-mcp] Reading collections${collectionName ? ` for: ${collectionName}` : ''}, includeContent: ${includeContent}, includeCount: ${includeCount}`,
     )
   }
 
@@ -29,7 +29,7 @@ export const readCollections = (
       const filePath = join(collectionsDirPath, fileName)
 
       if (!filePath.startsWith(collectionsDirPath)) {
-        payload.logger.error(`[payload-mcp] Invalid collection name attempted: ${collectionName}`)
+        cms.logger.error(`[cms-mcp] Invalid collection name attempted: ${collectionName}`)
         return {
           content: [{ type: 'text' as const, text: 'Error: Invalid collection name' }],
         }
@@ -38,7 +38,7 @@ export const readCollections = (
       try {
         const content = readFileSync(filePath, 'utf8')
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Successfully read collection: ${collectionName}`)
+          cms.logger.info(`[cms-mcp] Successfully read collection: ${collectionName}`)
         }
 
         return {
@@ -53,7 +53,7 @@ ${content}`,
           ],
         }
       } catch (_error) {
-        payload.logger.warn(`[payload-mcp] Collection not found: ${collectionName}`)
+        cms.logger.warn(`[cms-mcp] Collection not found: ${collectionName}`)
         return {
           content: [
             {
@@ -71,11 +71,11 @@ ${content}`,
       .sort()
 
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Found ${files.length} collection files in directory`)
+      cms.logger.info(`[cms-mcp] Found ${files.length} collection files in directory`)
     }
 
     if (files.length === 0) {
-      payload.logger.warn('[payload-mcp] No collection files found in src/collections directory')
+      cms.logger.warn('[cms-mcp] No collection files found in src/collections directory')
       return {
         content: [
           {
@@ -119,7 +119,7 @@ ${content}`,
       // Add document count if requested
       if (includeCount) {
         try {
-          // For now, we'll skip document counting since we don't have access to payload instance
+          // For now, we'll skip document counting since we don't have access to cms instance
           tableRow += ' | -'
         } catch (error) {
           tableRow += ` | Error: ${(error as Error).message}`
@@ -149,7 +149,7 @@ ${content}`,
     }
   } catch (error) {
     const errorMessage = (error as Error).message
-    payload.logger.error(`[payload-mcp] Error reading collections: ${errorMessage}`)
+    cms.logger.error(`[cms-mcp] Error reading collections: ${errorMessage}`)
     return {
       content: [
         {
@@ -164,7 +164,7 @@ ${content}`,
 // MCP Server tool registration
 export const findCollectionTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   collectionsDirPath: string,
 ) => {
@@ -173,11 +173,11 @@ export const findCollectionTool = (
     includeContent: boolean = false,
     includeCount: boolean = false,
   ) => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Finding collections${collectionName ? ` for: ${collectionName}` : ''}, includeContent: ${includeContent}, includeCount: ${includeCount}`,
+      cms.logger.info(
+        `[cms-mcp] Finding collections${collectionName ? ` for: ${collectionName}` : ''}, includeContent: ${includeContent}, includeCount: ${includeCount}`,
       )
     }
 
@@ -192,13 +192,13 @@ export const findCollectionTool = (
       )
 
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Collection search completed`)
+        cms.logger.info(`[cms-mcp] Collection search completed`)
       }
 
       return result
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(`[payload-mcp] Error finding collections: ${errorMessage}`)
+      cms.logger.error(`[cms-mcp] Error finding collections: ${errorMessage}`)
 
       return {
         content: [

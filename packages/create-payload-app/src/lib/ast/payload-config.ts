@@ -22,15 +22,15 @@ import {
   removeImportDeclaration,
 } from './utils.js'
 
-export function detectPayloadConfigStructure(sourceFile: SourceFile): DetectionResult {
-  debug(`[AST] Detecting payload config structure in ${sourceFile.getFilePath()}`)
+export function detectCMSConfigStructure(sourceFile: SourceFile): DetectionResult {
+  debug(`[AST] Detecting cms config structure in ${sourceFile.getFilePath()}`)
 
   // First find the actual name being used (might be aliased)
-  const payloadImport = sourceFile
+  const cmsImport = sourceFile
     .getImportDeclarations()
     .find((imp) => imp.getModuleSpecifierValue() === 'payload')
 
-  const buildConfigImportSpec = payloadImport
+  const buildConfigImportSpec = cmsImport
     ?.getNamedImports()
     .find((spec) => spec.getName() === 'buildConfig')
 
@@ -108,10 +108,10 @@ export function detectPayloadConfigStructure(sourceFile: SourceFile): DetectionR
 
   const hasImportAlias = !!aliasNode
 
-  // Check for other Payload imports
-  const payloadImports = payloadImport?.getNamedImports() || []
-  const hasOtherPayloadImports =
-    payloadImports.length > 1 || payloadImports.some((imp) => imp.getName() !== 'buildConfig')
+  // Check for other CMS imports
+  const cmsImports = cmsImport?.getNamedImports() || []
+  const hasOtherCMSImports =
+    cmsImports.length > 1 || cmsImports.some((imp) => imp.getName() !== 'buildConfig')
 
   // Track database adapter imports
   let dbAdapterImportInfo
@@ -155,13 +155,13 @@ export function detectPayloadConfigStructure(sourceFile: SourceFile): DetectionR
   const needsManualIntervention = hasImportAlias || allBuildConfigCalls.length > 2
 
   debug(
-    `[AST] Edge cases: alias=${hasImportAlias}, multiple=${allBuildConfigCalls.length > 1}, otherImports=${hasOtherPayloadImports}, manual=${needsManualIntervention}`,
+    `[AST] Edge cases: alias=${hasImportAlias}, multiple=${allBuildConfigCalls.length > 1}, otherImports=${hasOtherCMSImports}, manual=${needsManualIntervention}`,
   )
 
   return {
     edgeCases: {
       hasImportAlias,
-      hasOtherPayloadImports,
+      hasOtherCMSImports,
       multipleBuildConfigCalls: allBuildConfigCalls.length > 1,
       needsManualIntervention,
     },
@@ -193,7 +193,7 @@ export function addDatabaseAdapter({
 
   const modifications: Modification[] = []
 
-  const detection = detectPayloadConfigStructure(sourceFile)
+  const detection = detectCMSConfigStructure(sourceFile)
 
   if (!detection.success || !detection.structures) {
     return {
@@ -328,7 +328,7 @@ export function addStorageAdapter({
 
   const modifications: Modification[] = []
 
-  const detection = detectPayloadConfigStructure(sourceFile)
+  const detection = detectCMSConfigStructure(sourceFile)
 
   if (!detection.success || !detection.structures) {
     return {
@@ -494,7 +494,7 @@ export function removeSharp(sourceFile: SourceFile): TransformationResult {
   }
 
   // Find and remove sharp property from buildConfig
-  const detection = detectPayloadConfigStructure(sourceFile)
+  const detection = detectCMSConfigStructure(sourceFile)
 
   if (!detection.success || !detection.structures) {
     // If detection failed but we removed import, still count as partial success
@@ -571,13 +571,13 @@ export function removeCommentMarkers(sourceFile: SourceFile): SourceFile {
 }
 
 /**
- * Validates payload config structure has required elements after transformation.
+ * Validates cms config structure has required elements after transformation.
  * Checks that buildConfig() call exists and has a db property configured.
  */
 export function validateStructure(sourceFile: SourceFile): WriteResult {
-  debug('[AST] Validating payload config structure')
+  debug('[AST] Validating cms config structure')
 
-  const detection = detectPayloadConfigStructure(sourceFile)
+  const detection = detectCMSConfigStructure(sourceFile)
 
   if (!detection.success) {
     debug('[AST] ✗ Validation failed: detection unsuccessful')
@@ -666,11 +666,11 @@ export async function writeTransformedFile(
   return { success: true }
 }
 
-export async function configurePayloadConfig(
+export async function configureCMSConfig(
   filePath: string,
   options: ConfigureOptions = {},
 ): Promise<WriteResult> {
-  debug(`[AST] Configuring payload config: ${filePath}`)
+  debug(`[AST] Configuring cms config: ${filePath}`)
   debug(
     `[AST] Options: db=${options.db?.type}, storage=${options.storage}, removeSharp=${options.removeSharp}`,
   )
@@ -688,7 +688,7 @@ export async function configurePayloadConfig(
     let sourceFile = project.addSourceFileAtPath(filePath)
 
     // Run detection
-    const detection = detectPayloadConfigStructure(sourceFile)
+    const detection = detectCMSConfigStructure(sourceFile)
     if (!detection.success) {
       return detection
     }
@@ -799,7 +799,7 @@ export async function configurePayloadConfig(
     return {
       error: formatError({
         actual: error instanceof Error ? error.message : String(error),
-        context: 'configurePayloadConfig',
+        context: 'configureCMSConfig',
         expected: 'Successful file transformation',
         technicalDetails: error instanceof Error ? error.stack || error.message : String(error),
       }),

@@ -1,4 +1,4 @@
-import type { FlattenedField, Payload, Where } from '@hanzo/cms'
+import type { FlattenedField, CMS, Where } from '@hanzo/cms'
 
 import { APIError } from '@hanzo/cms'
 
@@ -12,7 +12,7 @@ type GetBuildQueryPluginArgs = {
 export type BuildQueryArgs = {
   globalSlug?: string
   locale?: string
-  payload: Payload
+  cms: CMS
   where: Where
 }
 
@@ -28,7 +28,7 @@ export const getBuildQueryPlugin = ({
     async function schemaBuildQuery({
       globalSlug,
       locale,
-      payload,
+      cms,
       where,
     }: BuildQueryArgs): Promise<Record<string, unknown>> {
       let fields: FlattenedField[] | null = null
@@ -37,7 +37,7 @@ export const getBuildQueryPlugin = ({
         fields = versionsFields
       } else {
         if (globalSlug) {
-          const globalConfig = payload.globals.config.find(({ slug }) => slug === globalSlug)
+          const globalConfig = cms.globals.config.find(({ slug }) => slug === globalSlug)
 
           if (!globalConfig) {
             throw new APIError(`Global with the slug ${globalSlug} was not found`)
@@ -46,7 +46,7 @@ export const getBuildQueryPlugin = ({
           fields = globalConfig.flattenedFields
         }
         if (collectionSlug) {
-          const collectionConfig = payload.collections[collectionSlug]?.config
+          const collectionConfig = cms.collections[collectionSlug]?.config
 
           if (!collectionConfig) {
             throw new APIError(`Collection with the slug ${globalSlug} was not found`)
@@ -66,7 +66,7 @@ export const getBuildQueryPlugin = ({
         globalSlug,
         locale,
         parentIsLocalized: false,
-        payload,
+        cms,
         where,
       })
 

@@ -10,7 +10,7 @@ import type {
 import type { SanitizedCollectionConfig, TypeWithID } from '../../collections/config/types.js'
 import type { SanitizedGlobalConfig } from '../../globals/config/types.js'
 import type { BlockSlug, DefaultDocumentIDType } from '../../index.js'
-import type { AllOperations, JsonObject, PayloadRequest, Where } from '../../types/index.js'
+import type { AllOperations, JsonObject, CMSRequest, Where } from '../../types/index.js'
 
 import { entityDocExists } from './entityDocExists.js'
 import { populateFieldPermissions } from './populateFieldPermissions.js'
@@ -40,7 +40,7 @@ type Args<TEntityType extends 'collection' | 'global'> = {
    * Operations to check access for
    */
   operations: AllOperations[]
-  req: PayloadRequest
+  req: CMSRequest
 } & (
   | {
       fetchData: false
@@ -110,7 +110,7 @@ export async function getEntityPermissions<TEntityType extends 'collection' | 'g
     : fetchData
       ? await (async () => {
           if (entityType === 'global') {
-            return req.payload.findGlobal({
+            return req.cms.findGlobal({
               slug: entity.slug,
               depth: 0,
               fallbackLocale: null,
@@ -121,7 +121,7 @@ export async function getEntityPermissions<TEntityType extends 'collection' | 'g
           }
 
           if (entityType === 'collection') {
-            return req.payload.findByID({
+            return req.cms.findByID({
               id: id!,
               collection: entity.slug,
               depth: 0,
@@ -259,7 +259,7 @@ const processWhereQuery = ({
   id?: DefaultDocumentIDType
   locale?: string
   operation: Extract<keyof (CollectionPermission | GlobalPermission), AllOperations>
-  req: PayloadRequest
+  req: CMSRequest
   slug: string
   wherePromises: Promise<void>[]
   whereQueryCache: WhereQueryCache

@@ -1,4 +1,4 @@
-import type { Payload } from '../../../types/index.js'
+import type { CMS } from '../../../types/index.js'
 
 /**
  * Convert to snake_case (matches to-snake-case library behavior)
@@ -55,15 +55,15 @@ export type VersionLocaleStatusMap = Map<number | string, Map<string, 'draft' | 
  *
  * @param versions - Array of version records (must be sorted by parent, then createdAt ASC)
  * @param locales - Array of locale codes (e.g., ['en', 'es', 'pt'])
- * @param payload - Payload instance for logging
+ * @param cms - CMS instance for logging
  * @returns Map of versionId -> Map of locale -> status
  */
 export function calculateVersionLocaleStatuses(
   versions: VersionRecord[],
   locales: string[],
-  payload: Payload,
+  cms: CMS,
 ): VersionLocaleStatusMap {
-  payload.logger.info({ msg: `Processing ${versions.length} version records` })
+  cms.logger.info({ msg: `Processing ${versions.length} version records` })
 
   // Track the cumulative published state for each document across all locales
   // This represents what IS published at any given point in the version history

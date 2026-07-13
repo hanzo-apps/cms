@@ -38,7 +38,7 @@ export type PluginCollectionsResult = {
  * target collection's `custom['plugin-import-export']` and looked up dynamically at
  * runtime in the export/import hooks.
  *
- * @param config - The Payload config
+ * @param config - The CMS config
  * @param pluginConfig - The import/export plugin config
  * @returns Object containing arrays of export and import collections
  */

@@ -80,7 +80,7 @@ export const sentryPlugin =
               const id = Sentry.captureException(args.error, context)
 
               if (debug) {
-                args.req.payload.logger.info(
+                args.req.cms.logger.info(
                   `Captured exception ${id} to Sentry, error msg: ${args.error.message}`,
                 )
               }

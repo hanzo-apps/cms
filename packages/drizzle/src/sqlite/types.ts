@@ -10,7 +10,7 @@ import type {
   SQLiteTransactionConfig,
 } from 'drizzle-orm/sqlite-core'
 import type { SQLiteRaw } from 'drizzle-orm/sqlite-core/query-builders/raw'
-import type { Payload, PayloadRequest } from '@hanzo/cms'
+import type { CMS, CMSRequest } from '@hanzo/cms'
 
 import type { Operators } from '../queries/operatorMap.js'
 import type { BuildQueryJoinAliases, DrizzleAdapter } from '../types.js'
@@ -31,7 +31,7 @@ export type SQLiteSchemaHook = (args: SQLiteSchemaHookArgs) => Promise<SQLiteSch
 export type BaseSQLiteArgs = {
   /**
    * Transform the schema after it's built.
-   * You can use it to customize the schema with features that aren't supported by Payload.
+   * You can use it to customize the schema with features that aren't supported by CMS.
    * Examples may include: composite indices, generated columns, vectors
    */
   afterSchemaInit?: SQLiteSchemaHook[]
@@ -39,7 +39,7 @@ export type BaseSQLiteArgs = {
    * Enable this flag if you want to thread your own ID to create operation data, for example:
    * ```ts
    * // doc created with id 1
-   * const doc = await payload.create({ collection: 'posts', data: {id: 1, title: "my title"}})
+   * const doc = await cms.create({ collection: 'posts', data: {id: 1, title: "my title"}})
    * ```
    */
   allowIDOnCreate?: boolean
@@ -50,7 +50,7 @@ export type BaseSQLiteArgs = {
   autoIncrement?: boolean
   /**
    * Transform the schema before it's built.
-   * You can use it to preserve an existing database schema and if there are any collissions Payload will override them.
+   * You can use it to preserve an existing database schema and if there are any collissions CMS will override them.
    * To generate Drizzle schema from the database, see [Drizzle Kit introspection](https://orm.drizzle.team/kit-docs/commands#introspect--pull)
    */
   beforeSchemaInit?: SQLiteSchemaHook[]
@@ -58,7 +58,7 @@ export type BaseSQLiteArgs = {
    * Store blocks as JSON column instead of storing them in a relational structure.
    */
   blocksAsJSON?: boolean
-  /** Generated schema from payload generate:db-schema file path */
+  /** Generated schema from cms generate:db-schema file path */
   generateSchemaOutputFile?: string
   idType?: 'number' | 'uuid' | 'uuidv7'
   localesSuffix?: string
@@ -191,29 +191,29 @@ export type MigrateUpArgs = {
    * ```ts
    * import { type MigrateUpArgs, sql } from '@hanzo/cms-db-sqlite'
    *
-   * export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
+   * export async function up({ db, cms, req }: MigrateUpArgs): Promise<void> {
    *   const { rows: posts } = await db.run(sql`SELECT * FROM posts`)
    * }
    * ```
    */
   db: Drizzle
   /**
-   * The Payload instance that you can use to execute Local API methods
+   * The CMS instance that you can use to execute Local API methods
    * To use the current transaction you must pass `req` to arguments
    * @example
    * ```ts
    * import { type MigrateUpArgs } from '@hanzo/cms-db-sqlite'
    *
-   * export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
-   *   const posts = await payload.find({ collection: 'posts', req })
+   * export async function up({ db, cms, req }: MigrateUpArgs): Promise<void> {
+   *   const posts = await cms.find({ collection: 'posts', req })
    * }
    * ```
    */
-  payload: Payload
+  cms: CMS
   /**
-   * The `PayloadRequest` object that contains the current transaction
+   * The `CMSRequest` object that contains the current transaction
    */
-  req: PayloadRequest
+  req: CMSRequest
 }
 export type MigrateDownArgs = {
   /**
@@ -222,27 +222,27 @@ export type MigrateDownArgs = {
    * ```ts
    * import { type MigrateDownArgs, sql } from '@hanzo/cms-db-sqlite'
    *
-   * export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
+   * export async function down({ db, cms, req }: MigrateDownArgs): Promise<void> {
    *   const { rows: posts } = await db.run(sql`SELECT * FROM posts`)
    * }
    * ```
    */
   db: Drizzle
   /**
-   * The Payload instance that you can use to execute Local API methods
+   * The CMS instance that you can use to execute Local API methods
    * To use the current transaction you must pass `req` to arguments
    * @example
    * ```ts
    * import { type MigrateDownArgs } from '@hanzo/cms-db-sqlite'
    *
-   * export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
-   *   const posts = await payload.find({ collection: 'posts', req })
+   * export async function down({ db, cms, req }: MigrateDownArgs): Promise<void> {
+   *   const posts = await cms.find({ collection: 'posts', req })
    * }
    * ```
    */
-  payload: Payload
+  cms: CMS
   /**
-   * The `PayloadRequest` object that contains the current transaction
+   * The `CMSRequest` object that contains the current transaction
    */
-  req: PayloadRequest
+  req: CMSRequest
 }

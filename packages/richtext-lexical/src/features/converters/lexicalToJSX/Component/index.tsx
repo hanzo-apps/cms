@@ -75,5 +75,5 @@ export function RichText<TNodes extends SerializedNodeBase = SerializedNodeBase>
     return <>{content}</>
   }
 
-  return <div className={className ?? 'payload-richtext'}>{content}</div>
+  return <div className={className ?? 'cms-richtext'}>{content}</div>
 }

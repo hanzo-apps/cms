@@ -76,7 +76,7 @@ describe('getLockedDocumentsCollection', () => {
     const result = getLockedDocumentsCollection(config)
 
     expect(result).not.toBeNull()
-    expect(result?.slug).toBe('payload-locked-documents')
+    expect(result?.slug).toBe('cms-locked-documents')
     expect(result?.fields).toHaveLength(3)
 
     // Check document field
@@ -218,7 +218,7 @@ describe('getLockedDocumentsCollection', () => {
     const result = getLockedDocumentsCollection(config)
 
     expect(result).not.toBeNull()
-    expect(result?.slug).toBe('payload-locked-documents')
+    expect(result?.slug).toBe('cms-locked-documents')
 
     // Should NOT have a document field since no lockable collections
     const documentField = result?.fields.find((f) => 'name' in f && f.name === 'document')

@@ -28,8 +28,8 @@ export async function updateGlobalVersion<T extends JsonObject = JsonObject>(
   const { globalConfig, Model } = getGlobal({ adapter: this, globalSlug, versions: true })
   const whereToUse = where || { id: { equals: id } }
 
-  const fields = buildVersionGlobalFields(this.payload.config, globalConfig)
-  const flattenedFields = buildVersionGlobalFields(this.payload.config, globalConfig, true)
+  const fields = buildVersionGlobalFields(this.cms.config, globalConfig)
+  const flattenedFields = buildVersionGlobalFields(this.cms.config, globalConfig, true)
 
   const query = await buildQuery({
     adapter: this,

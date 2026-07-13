@@ -40,7 +40,7 @@ export const create: Create = async function create(
     try {
       data._id = new Types.ObjectId(data.id as string)
     } catch (error) {
-      this.payload.logger.error(
+      this.cms.logger.error(
         `It appears you passed ID to create operation data but it cannot be sanitized to ObjectID, value - ${JSON.stringify(data.id)}`,
       )
       throw error

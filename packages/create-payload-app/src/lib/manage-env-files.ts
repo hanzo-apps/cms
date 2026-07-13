@@ -10,12 +10,12 @@ const sanitizeEnv = ({
   contents,
   databaseType,
   databaseUri,
-  payloadSecret,
+  cmsSecret,
 }: {
   contents: string
   databaseType: DbType | undefined
   databaseUri?: string
-  payloadSecret?: string
+  cmsSecret?: string
 }): string => {
   const seenKeys = new Set<string>()
 
@@ -31,8 +31,8 @@ const sanitizeEnv = ({
     withDefaults += '\nDATABASE_URL=your-connection-string-here'
   }
 
-  if (!contents.includes('PAYLOAD_SECRET')) {
-    withDefaults += '\nPAYLOAD_SECRET=YOUR_SECRET_HERE'
+  if (!contents.includes('CMS_SECRET')) {
+    withDefaults += '\nCMS_SECRET=YOUR_SECRET_HERE'
   }
 
   let updatedEnv = withDefaults
@@ -64,8 +64,8 @@ const sanitizeEnv = ({
         }
       }
 
-      if (key === 'PAYLOAD_SECRET' || key === 'PAYLOAD_SECRET_KEY') {
-        line = `PAYLOAD_SECRET=${payloadSecret || 'YOUR_SECRET_HERE'}`
+      if (key === 'CMS_SECRET' || key === 'CMS_SECRET_KEY') {
+        line = `CMS_SECRET=${cmsSecret || 'YOUR_SECRET_HERE'}`
       }
 
       // handles dupes
@@ -81,8 +81,8 @@ const sanitizeEnv = ({
     .reverse()
     .join('\n')
 
-  if (!updatedEnv.includes('# Added by Payload')) {
-    updatedEnv = `# Added by Payload\n${updatedEnv}`
+  if (!updatedEnv.includes('# Added by CMS')) {
+    updatedEnv = `# Added by CMS\n${updatedEnv}`
   }
 
   return updatedEnv
@@ -93,11 +93,11 @@ export async function manageEnvFiles(args: {
   cliArgs: CliArgs
   databaseType?: DbType
   databaseUri?: string
-  payloadSecret: string
+  cmsSecret: string
   projectDir: string
   template?: ProjectTemplate
 }): Promise<void> {
-  const { cliArgs, databaseType, databaseUri, payloadSecret, projectDir, template } = args
+  const { cliArgs, databaseType, databaseUri, cmsSecret, projectDir, template } = args
 
   const debugFlag = cliArgs['--debug']
 
@@ -128,7 +128,7 @@ export async function manageEnvFiles(args: {
         contents: envExampleContents,
         databaseType,
         databaseUri,
-        payloadSecret,
+        cmsSecret,
       })
 
       if (debugFlag) {
@@ -142,7 +142,7 @@ export async function manageEnvFiles(args: {
         contents: exampleEnv,
         databaseType,
         databaseUri,
-        payloadSecret,
+        cmsSecret,
       })
 
       await fs.writeFile(envPath, envContent)
@@ -158,7 +158,7 @@ export async function manageEnvFiles(args: {
         contents: envContents,
         databaseType,
         databaseUri,
-        payloadSecret,
+        cmsSecret,
       })
 
       await fs.writeFile(envPath, updatedEnvContents)

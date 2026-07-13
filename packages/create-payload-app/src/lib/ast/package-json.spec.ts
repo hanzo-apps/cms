@@ -8,7 +8,7 @@ describe('updatePackageJson', () => {
   let tempDir: string
 
   beforeEach(() => {
-    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'payload-test-'))
+    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'cms-test-'))
   })
 
   afterEach(() => {

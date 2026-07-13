@@ -71,13 +71,13 @@ export async function convertLexicalToHTMLAsync({
     if (disableContainer) {
       return html
     } else {
-      return `<div class="${className ?? 'payload-richtext'}">${html}</div>`
+      return `<div class="${className ?? 'cms-richtext'}">${html}</div>`
     }
   }
   if (disableContainer) {
     return ''
   } else {
-    return `<div class="${className ?? 'payload-richtext'}"></div>`
+    return `<div class="${className ?? 'cms-richtext'}"></div>`
   }
 }
 

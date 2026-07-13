@@ -46,7 +46,7 @@ export const getFolderResultsComponentAndDataHandler: ServerFunction<
     const res = await getFolderResultsComponentAndData(args)
     return res
   } catch (err) {
-    req.payload.logger.error({
+    req.cms.logger.error({
       err,
       msg: `There was an error getting the folder results component and data`,
     })
@@ -68,9 +68,9 @@ export const getFolderResultsComponentAndData = async ({
   req,
   sort,
 }: GetFolderResultsComponentAndDataArgs): Promise<GetFolderResultsComponentAndDataResult> => {
-  const { payload } = req
+  const { cms } = req
 
-  if (!payload.config.folders) {
+  if (!cms.config.folders) {
     throw new APIError('Folders are not enabled in the configuration.')
   }
 
@@ -88,9 +88,9 @@ export const getFolderResultsComponentAndData = async ({
 
   // todo(perf): - collect promises and resolve them in parallel
   for (const activeCollectionSlug of activeCollectionSlugs) {
-    if (activeCollectionSlug === payload.config.folders.slug) {
+    if (activeCollectionSlug === cms.config.folders.slug) {
       const folderCollectionConstraints = await buildFolderWhereConstraints({
-        collectionConfig: payload.collections[activeCollectionSlug].config,
+        collectionConfig: cms.collections[activeCollectionSlug].config,
         folderID,
         localeCode: req?.locale,
         req,
@@ -106,7 +106,7 @@ export const getFolderResultsComponentAndData = async ({
         folderWhere,
         Array.isArray(folderAssignedCollections) &&
         folderAssignedCollections.length &&
-        payload.config.folders.collectionSpecific
+        cms.config.folders.collectionSpecific
           ? {
               or: [
                 {
@@ -136,7 +136,7 @@ export const getFolderResultsComponentAndData = async ({
       }
 
       const collectionConstraints = await buildFolderWhereConstraints({
-        collectionConfig: payload.collections[activeCollectionSlug].config,
+        collectionConfig: cms.collections[activeCollectionSlug].config,
         folderID,
         localeCode: req?.locale,
         req,

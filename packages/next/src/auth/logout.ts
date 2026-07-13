@@ -3,7 +3,7 @@
 import type { MaybePromise, SanitizedConfig } from '@hanzo/cms'
 
 import { cookies as getCookies, headers as nextHeaders } from 'next/headers.js'
-import { createLocalReq, getPayload, logoutOperation } from '@hanzo/cms'
+import { createLocalReq, getCMS, logoutOperation } from '@hanzo/cms'
 
 import { getExistingAuthToken } from '../utilities/getExistingAuthToken.js'
 
@@ -14,17 +14,17 @@ export async function logout({
   allSessions?: boolean
   config: MaybePromise<SanitizedConfig>
 }) {
-  const payload = await getPayload({ config, cron: true })
+  const cms = await getCMS({ config, cron: true })
   const headers = await nextHeaders()
-  const authResult = await payload.auth({ headers })
+  const authResult = await cms.auth({ headers })
 
   if (!authResult.user) {
     return { message: 'User already logged out', success: true }
   }
 
   const { user } = authResult
-  const req = await createLocalReq({ user }, payload)
-  const collection = payload.collections[user.collection]
+  const req = await createLocalReq({ user }, cms)
+  const collection = cms.collections[user.collection]
 
   const logoutResult = await logoutOperation({
     allSessions,
@@ -36,7 +36,7 @@ export async function logout({
     return { message: 'Logout failed', success: false }
   }
 
-  const existingCookie = await getExistingAuthToken(payload.config.cookiePrefix)
+  const existingCookie = await getExistingAuthToken(cms.config.cookiePrefix)
   if (existingCookie) {
     const cookies = await getCookies()
     cookies.delete(existingCookie.name)

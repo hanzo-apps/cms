@@ -1,6 +1,6 @@
 @import '~@hanzo/cms-ui/scss';
 
-.payload-richtext-code-block.collapsible--collapsed {
+.cms-richtext-code-block.collapsible--collapsed {
   .rah-static {
     height: unset !important;
     max-height: 150px !important;
@@ -28,7 +28,7 @@
   }
 }
 
-.payload-richtext-code-block {
+.cms-richtext-code-block {
   &__pill {
     display: flex;
     align-items: center;

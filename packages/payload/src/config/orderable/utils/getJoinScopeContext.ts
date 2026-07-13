@@ -1,4 +1,4 @@
-import type { PayloadHandler } from '../../types.js'
+import type { CMSHandler } from '../../types.js'
 
 import { buildJoinScopeWhere } from './buildJoinScopeWhere.js'
 import { getValueAtPath } from './getValueAtPath.js'
@@ -10,7 +10,7 @@ export async function getJoinScopeContext(args: {
   collectionSlug: string
   joinFieldPathsByCollection: Map<string, Map<string, string>>
   orderableFieldName: string
-  req: Parameters<PayloadHandler>[0]
+  req: Parameters<CMSHandler>[0]
   target: unknown
 }): Promise<{
   joinScopeWhere: ReturnType<typeof buildJoinScopeWhere>
@@ -30,7 +30,7 @@ export async function getJoinScopeContext(args: {
     const targetID = (target as { id?: unknown }).id
 
     if (typeof targetID === 'number' || typeof targetID === 'string') {
-      targetDoc = await req.payload.findByID({
+      targetDoc = await req.cms.findByID({
         id: targetID,
         collection: collectionSlug,
         depth: 0,

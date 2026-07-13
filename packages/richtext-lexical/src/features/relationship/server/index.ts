@@ -70,7 +70,7 @@ export const RelationshipFeature = createServerFeature<
                 if (!node?.value) {
                   return node
                 }
-                const collection = req.payload.collections[node?.relationTo]
+                const collection = req.cms.collections[node?.relationTo]
 
                 if (!collection) {
                   return node

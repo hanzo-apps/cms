@@ -1,6 +1,6 @@
-import { AuthenticationError, type PayloadRequest } from '@hanzo/cms'
+import { AuthenticationError, type CMSRequest } from '@hanzo/cms'
 
-export const createRequestFromPayloadRequest = (req: PayloadRequest) => {
+export const createRequestFromCMSRequest = (req: CMSRequest) => {
   if (!req.url) {
     throw new AuthenticationError()
   }

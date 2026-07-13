@@ -16,7 +16,7 @@ import { defaultCartItemMatcher } from './defaultCartItemMatcher.js'
  * ```ts
  * // From an endpoint or hook
  * const result = await addItem({
- *   payload,
+ *   cms,
  *   cartsSlug: 'carts',
  *   cartID: '123',
  *   item: { product: 'prod-1', variant: 'var-1' },
@@ -30,7 +30,7 @@ export const addItem = async (args: AddItemArgs): Promise<CartOperationResult> =
     cartItemMatcher = defaultCartItemMatcher,
     cartsSlug,
     item,
-    payload,
+    cms,
     quantity = 1,
     req,
     secret,
@@ -39,7 +39,7 @@ export const addItem = async (args: AddItemArgs): Promise<CartOperationResult> =
   // Inject secret into request context for access control
   const reqWithSecret = createRequestWithSecret(req, secret)
 
-  const cart = await payload.findByID({
+  const cart = await cms.findByID({
     id: cartID,
     collection: cartsSlug,
     depth: 0,
@@ -86,7 +86,7 @@ export const addItem = async (args: AddItemArgs): Promise<CartOperationResult> =
     updatedItems = [...existingItems, newItem]
   }
 
-  const updatedCart = await payload.update({
+  const updatedCart = await cms.update({
     id: cartID,
     collection: cartsSlug,
     data: {

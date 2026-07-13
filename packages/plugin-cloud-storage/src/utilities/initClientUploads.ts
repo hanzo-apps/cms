@@ -1,4 +1,4 @@
-import type { Config, PayloadHandler } from '@hanzo/cms'
+import type { Config, CMSHandler } from '@hanzo/cms'
 
 export const initClientUploads = <ExtraProps extends Record<string, unknown>, T>({
   clientHandler,
@@ -16,7 +16,7 @@ export const initClientUploads = <ExtraProps extends Record<string, unknown>, T>
   enabled: boolean
   /** extra props to pass to the client handler */
   extraClientHandlerProps?: (collection: T) => ExtraProps
-  serverHandler: PayloadHandler
+  serverHandler: CMSHandler
   serverHandlerPath: string
 }) => {
   if (enabled) {

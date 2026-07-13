@@ -403,7 +403,7 @@ export const ltTranslations: DefaultTranslationsObject = {
     password: 'Slaptažodis',
     pasteField: 'Įklijuoti lauką',
     pasteRow: 'Įklijuoti eilutę',
-    payloadSettings: 'Payload nustatymai',
+    cmsSettings: 'CMS nustatymai',
     permanentlyDelete: 'Visam laikui pašalinti',
     permanentlyDeletedCountSuccessfully: 'Sėkmingai visam laikui ištrinta {{count}} {{label}}.',
     perPage: 'Puslapyje: {{limit}}',

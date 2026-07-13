@@ -1,5 +1,5 @@
 import type { SerializedEditorState, SerializedLexicalNode } from 'lexical'
-import type { Payload, PayloadRequest } from '@hanzo/cms'
+import type { CMS, CMSRequest } from '@hanzo/cms'
 
 import { createLocalReq } from '@hanzo/cms'
 
@@ -21,22 +21,22 @@ export type ConvertLexicalToHTMLArgs = {
 } & (
   | {
       /**
-       * This payload property will only be used if req is undefined.
+       * This cms property will only be used if req is undefined.
        */
-      payload?: never
+      cms?: never
       /**
        * When the converter is called, req CAN be passed in depending on where it's run.
        * If this is undefined and config is passed through, lexical will create a new req object for you. If this is null or
        * config is undefined, lexical will not create a new req object for you and local API / server-side-only
        * functionality will be disabled.
        */
-      req: PayloadRequest
+      req: CMSRequest
     }
   | {
       /**
-       * This payload property will only be used if req is undefined.
+       * This cms property will only be used if req is undefined.
        */
-      payload?: Payload
+      cms?: CMS
       /**
        * When the converter is called, req CAN be passed in depending on where it's run.
        * If this is undefined and config is passed through, lexical will create a new req object for you. If this is null or
@@ -66,13 +66,13 @@ export async function convertLexicalToHTML({
   depth,
   draft,
   overrideAccess,
-  payload,
+  cms,
   req,
   showHiddenFields,
 }: ConvertLexicalToHTMLArgs): Promise<string> {
   if (hasText(data)) {
-    if (req === undefined && payload) {
-      req = await createLocalReq({}, payload)
+    if (req === undefined && cms) {
+      req = await createLocalReq({}, cms)
     }
 
     if (!currentDepth) {
@@ -80,7 +80,7 @@ export async function convertLexicalToHTML({
     }
 
     if (!depth) {
-      depth = req?.payload?.config?.defaultDepth
+      depth = req?.cms?.config?.defaultDepth
     }
 
     return await convertLexicalNodesToHTML({
@@ -122,7 +122,7 @@ export async function convertLexicalNodesToHTML({
   /**
    * When the converter is called, req CAN be passed in depending on where it's run.
    */
-  req: null | PayloadRequest
+  req: null | CMSRequest
   showHiddenFields: boolean
 }): Promise<string> {
   const unknownConverter = converters.find((converter) => converter.nodeTypes.includes('unknown'))

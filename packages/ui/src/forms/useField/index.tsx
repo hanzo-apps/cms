@@ -1,5 +1,5 @@
 'use client'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import React, { useCallback, useMemo, useRef } from 'react'
 
@@ -157,12 +157,12 @@ const useFieldInForm = <TValue,>(options?: Options): FieldType<TValue> => {
                 path: pathSegments,
                 preferences: {} as any,
                 req: {
-                  payload: {
+                  cms: {
                     config,
                   },
                   t,
                   user,
-                } as unknown as PayloadRequest,
+                } as unknown as CMSRequest,
                 siblingData: getSiblingData(path),
               })
             : typeof prevErrorMessage.current === 'string'

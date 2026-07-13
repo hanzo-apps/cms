@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import type { ExportFieldHookEntry } from '../types.js'
 
@@ -12,7 +12,7 @@ type Args = {
   fields?: string[]
   format: 'csv' | 'json' | ({} & string)
   path?: string
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export const flattenObject = ({
@@ -115,7 +115,7 @@ export const flattenObject = ({
               return
             }
           } catch (error) {
-            req.payload.logger.error({
+            req.cms.logger.error({
               err: error,
               msg: `[plugin-import-export] Field-level beforeExport hook for "${fieldPath}" threw — falling back to default flattening`,
             })
@@ -147,7 +147,7 @@ export const flattenObject = ({
               row[fieldPath] = result
             }
           } catch (error) {
-            req.payload.logger.error({
+            req.cms.logger.error({
               err: error,
               msg: `[plugin-import-export] Field-level beforeExport hook for "${fieldPath}" threw — falling back to default flattening`,
             })
@@ -162,7 +162,7 @@ export const flattenObject = ({
               row[fieldPath] = result
             }
           } catch (error) {
-            req.payload.logger.error({
+            req.cms.logger.error({
               err: error,
               msg: `[plugin-import-export] Field-level beforeExport hook for "${fieldPath}" threw — falling back to original value`,
             })

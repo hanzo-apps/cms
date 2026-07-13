@@ -1,4 +1,4 @@
-import type { PayloadRequest, TypedUser } from '@hanzo/cms'
+import type { CMSRequest, TypedUser } from '@hanzo/cms'
 
 import { isolateObjectProperty } from '@hanzo/cms'
 
@@ -60,7 +60,7 @@ export interface ImportProcessOptions {
   matchField?: string
   /** Raw parsed rows before unflattening — used as originalData in hooks */
   originalDocs?: Record<string, unknown>[]
-  req: PayloadRequest
+  req: CMSRequest
   /** Total number of batches (pre-computed for hook args) */
   totalBatches?: number
   user?: TypedUser
@@ -135,7 +135,7 @@ type ProcessImportBatchOptions = {
   importMode: ImportMode
   matchField: string | undefined
   options: { batchSize: number; defaultVersionStatus: 'draft' | 'published' }
-  req: PayloadRequest
+  req: CMSRequest
   user?: TypedUser
 }
 
@@ -166,24 +166,24 @@ async function processImportBatch({
   }
   // Create a request proxy that isolates the transactionID property, then clear it.
   // This is critical because if a nested operation fails (e.g., Forbidden due to access control),
-  // Payload's error handling calls killTransaction(req), which would kill the parent's transaction
+  // CMS's error handling calls killTransaction(req), which would kill the parent's transaction
   // if we shared the same transaction. By isolating and clearing transactionID, each nested
   // operation either uses no transaction or starts its own, independent of the parent.
   const req = isolateObjectProperty(reqFromArgs, 'transactionID')
   req.transactionID = undefined
 
-  const collectionEntry = req.payload.collections[collectionSlug]
+  const collectionEntry = req.cms.collections[collectionSlug]
 
   const collectionConfig = collectionEntry?.config
   const collectionHasVersions = Boolean(collectionConfig?.versions)
   const hasCustomIdField = Boolean(collectionEntry?.customIDType)
 
-  const configuredLocales = req.payload.config.localization
-    ? req.payload.config.localization.localeCodes
+  const configuredLocales = req.cms.config.localization
+    ? req.cms.config.localization.localeCodes
     : undefined
 
-  const defaultLocale = req.payload.config.localization
-    ? req.payload.config.localization.defaultLocale
+  const defaultLocale = req.cms.config.localization
+    ? req.cms.config.localization.defaultLocale
     : undefined
 
   const startingRowNumber = batchIndex * options.batchSize
@@ -212,8 +212,8 @@ async function processImportBatch({
           draftOption = !isPublished
           createData._status = statusValue
 
-          if (req.payload.config.debug) {
-            req.payload.logger.info({
+          if (req.cms.config.debug) {
+            req.cms.logger.info({
               _status: createData._status,
               isPublished,
               msg: 'Status handling in create',
@@ -222,8 +222,8 @@ async function processImportBatch({
           }
         }
 
-        if (req.payload.config.debug && 'title' in createData) {
-          req.payload.logger.info({
+        if (req.cms.config.debug && 'title' in createData) {
+          req.cms.logger.info({
             msg: 'Creating document',
             title: createData.title,
             titleIsNull: createData.title === null,
@@ -241,7 +241,7 @@ async function processImportBatch({
         if (hasMultiLocale) {
           // Create with default locale data
           const defaultLocaleReq = defaultLocale ? { ...req, locale: defaultLocale } : req
-          savedDocument = await req.payload.create({
+          savedDocument = await req.cms.create({
             collection: collectionSlug,
             data: flatData,
             draft: draftOption,
@@ -253,7 +253,7 @@ async function processImportBatch({
           if (savedDocument && Object.keys(localeUpdates).length > 0) {
             for (const [locale, localeData] of Object.entries(localeUpdates)) {
               try {
-                await req.payload.update({
+                await req.cms.update({
                   id: savedDocument.id as number | string,
                   collection: collectionSlug,
                   data: localeData,
@@ -263,7 +263,7 @@ async function processImportBatch({
                   user,
                 })
               } catch (error) {
-                req.payload.logger.error({
+                req.cms.logger.error({
                   err: error,
                   msg: `Failed to update locale ${locale} for document ${String(savedDocument.id)}`,
                 })
@@ -272,7 +272,7 @@ async function processImportBatch({
           }
         } else {
           // No multi-locale data, create normally
-          savedDocument = await req.payload.create({
+          savedDocument = await req.cms.create({
             collection: collectionSlug,
             data: createData,
             draft: draftOption,
@@ -307,7 +307,7 @@ async function processImportBatch({
         const isValidObjectIdFormat = /^[0-9a-f]{24}$/i.test(matchValueStr)
 
         try {
-          existingDocResult = await req.payload.find({
+          existingDocResult = await req.cms.find({
             collection: collectionSlug,
             depth: 0,
             limit: 1,
@@ -338,8 +338,8 @@ async function processImportBatch({
           }
 
           // Debug: log what we found
-          if (req.payload.config.debug) {
-            req.payload.logger.info({
+          if (req.cms.config.debug) {
+            req.cms.logger.info({
               existingId: existingDoc.id,
               existingStatus: existingDoc._status,
               existingTitle: existingDoc.title,
@@ -363,8 +363,8 @@ async function processImportBatch({
             defaultLocale,
           )
 
-          if (req.payload.config.debug) {
-            req.payload.logger.info({
+          if (req.cms.config.debug) {
+            req.cms.logger.info({
               existingId: existingDoc.id,
               hasMultiLocale,
               mode: importMode,
@@ -384,7 +384,7 @@ async function processImportBatch({
           if (hasMultiLocale) {
             // Update with default locale data
             const defaultLocaleReq = defaultLocale ? { ...req, locale: defaultLocale } : req
-            savedDocument = await req.payload.update({
+            savedDocument = await req.cms.update({
               id: existingDoc.id as number | string,
               collection: collectionSlug,
               data: flatData,
@@ -398,7 +398,7 @@ async function processImportBatch({
             if (savedDocument && Object.keys(localeUpdates).length > 0) {
               for (const [locale, localeData] of Object.entries(localeUpdates)) {
                 try {
-                  await req.payload.update({
+                  await req.cms.update({
                     id: existingDoc.id as number | string,
                     collection: collectionSlug,
                     data: localeData,
@@ -408,7 +408,7 @@ async function processImportBatch({
                     user,
                   })
                 } catch (error) {
-                  req.payload.logger.error({
+                  req.cms.logger.error({
                     err: error,
                     msg: `Failed to update locale ${locale} for document ${String(existingDoc.id)}`,
                   })
@@ -419,8 +419,8 @@ async function processImportBatch({
             // No multi-locale data, update normally
             try {
               // Extra debug: log before update
-              if (req.payload.config.debug) {
-                req.payload.logger.info({
+              if (req.cms.config.debug) {
+                req.cms.logger.info({
                   existingId: existingDoc.id,
                   existingTitle: existingDoc.title,
                   msg: 'About to update document',
@@ -428,9 +428,9 @@ async function processImportBatch({
                 })
               }
 
-              // Update the document - don't specify draft to let Payload handle versions properly
+              // Update the document - don't specify draft to let CMS handle versions properly
               // This will create a new draft version for collections with versions enabled
-              savedDocument = await req.payload.update({
+              savedDocument = await req.cms.update({
                 id: existingDoc.id as number | string,
                 collection: collectionSlug,
                 data: updateData,
@@ -441,8 +441,8 @@ async function processImportBatch({
                 user,
               })
 
-              if (req.payload.config.debug && savedDocument) {
-                req.payload.logger.info({
+              if (req.cms.config.debug && savedDocument) {
+                req.cms.logger.info({
                   id: savedDocument.id,
                   msg: 'Update completed',
                   status: savedDocument._status,
@@ -450,7 +450,7 @@ async function processImportBatch({
                 })
               }
             } catch (updateError) {
-              req.payload.logger.error({
+              req.cms.logger.error({
                 id: existingDoc.id,
                 err: updateError,
                 msg: 'Update failed',
@@ -460,8 +460,8 @@ async function processImportBatch({
           }
         } else if (importMode === 'upsert') {
           // Create new in upsert mode
-          if (req.payload.config.debug) {
-            req.payload.logger.info({
+          if (req.cms.config.debug) {
+            req.cms.logger.info({
               document,
               matchField: matchField || 'id',
               matchValue: document[matchField || 'id'],
@@ -494,7 +494,7 @@ async function processImportBatch({
           if (hasMultiLocale) {
             // Create with default locale data
             const defaultLocaleReq = defaultLocale ? { ...req, locale: defaultLocale } : req
-            savedDocument = await req.payload.create({
+            savedDocument = await req.cms.create({
               collection: collectionSlug,
               data: flatData,
               draft: draftOption,
@@ -506,7 +506,7 @@ async function processImportBatch({
             if (savedDocument && Object.keys(localeUpdates).length > 0) {
               for (const [locale, localeData] of Object.entries(localeUpdates)) {
                 try {
-                  await req.payload.update({
+                  await req.cms.update({
                     id: savedDocument.id as number | string,
                     collection: collectionSlug,
                     data: localeData,
@@ -516,7 +516,7 @@ async function processImportBatch({
                     user,
                   })
                 } catch (error) {
-                  req.payload.logger.error({
+                  req.cms.logger.error({
                     err: error,
                     msg: `Failed to update locale ${locale} for document ${String(savedDocument.id)}`,
                   })
@@ -525,7 +525,7 @@ async function processImportBatch({
             }
           } else {
             // No multi-locale data, create normally
-            savedDocument = await req.payload.create({
+            savedDocument = await req.cms.create({
               collection: collectionSlug,
               data: createData,
               draft: draftOption,

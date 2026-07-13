@@ -135,7 +135,7 @@ import { authLocal } from './auth/operations/local/auth.js'
 import { APIKeyAuthentication } from './auth/strategies/apiKey.js'
 import { JWTAuthentication } from './auth/strategies/jwt.js'
 import { generateImportMap, type ImportMap } from './bin/generateImportMap/index.js'
-import { checkPayloadDependencies } from './checkPayloadDependencies.js'
+import { checkCMSDependencies } from './checkPayloadDependencies.js'
 import {
   countVersionsLocal,
   type CountVersionsOptions,
@@ -172,13 +172,13 @@ export { getLoginOptions } from './auth/getLoginOptions.js'
 export * from './auth/index.js'
 
 /**
- * Shape constraint for PayloadTypes.
+ * Shape constraint for CMSTypes.
  * Matches the structure of generated Config types.
  *
  * By defining the actual shape, we can use simple property access (T['collections'])
  * instead of conditional types throughout the codebase.
  */
-export interface PayloadTypesShape {
+export interface CMSTypesShape {
   auth: Record<string, unknown>
   blocks: Record<string, unknown>
   collections: Record<string, unknown>
@@ -196,9 +196,9 @@ export interface PayloadTypesShape {
 
 /**
  * Untyped fallback types. Uses the SAME property names as generated types.
- * PayloadTypes merges GeneratedTypes with these fallbacks.
+ * CMSTypes merges GeneratedTypes with these fallbacks.
  */
-export interface UntypedPayloadTypes {
+export interface UntypedCMSTypes {
   auth: {
     [slug: string]: {
       forgotPassword: {
@@ -263,7 +263,7 @@ export interface UntypedPayloadTypes {
 
 /**
  * Interface to be module-augmented by the `payload-types.ts` file.
- * When augmented, its properties take precedence over UntypedPayloadTypes.
+ * When augmented, its properties take precedence over UntypedCMSTypes.
  */
 export interface GeneratedTypes {}
 
@@ -290,19 +290,19 @@ export interface RegisteredPlugins {}
 type IsAugmented = keyof GeneratedTypes extends never ? false : true
 
 /**
- * PayloadTypes merges GeneratedTypes with UntypedPayloadTypes.
+ * CMSTypes merges GeneratedTypes with UntypedCMSTypes.
  * - When augmented: uses augmented properties, fills gaps with untyped fallbacks
- * - When not augmented: uses only UntypedPayloadTypes
+ * - When not augmented: uses only UntypedCMSTypes
  */
-export type PayloadTypes = IsAugmented extends true
-  ? GeneratedTypes & Omit<UntypedPayloadTypes, keyof GeneratedTypes>
-  : UntypedPayloadTypes
+export type CMSTypes = IsAugmented extends true
+  ? GeneratedTypes & Omit<UntypedCMSTypes, keyof GeneratedTypes>
+  : UntypedCMSTypes
 
-export type TypedCollection<T extends PayloadTypesShape = PayloadTypes> = T['collections']
+export type TypedCollection<T extends CMSTypesShape = CMSTypes> = T['collections']
 
-export type TypedBlock = PayloadTypes['blocks']
+export type TypedBlock = CMSTypes['blocks']
 
-export type TypedWidget<T extends PayloadTypesShape = PayloadTypes> = T extends {
+export type TypedWidget<T extends CMSTypesShape = CMSTypes> = T extends {
   widgets: infer TWidgets
 }
   ? TWidgets extends Record<string, unknown>
@@ -310,7 +310,7 @@ export type TypedWidget<T extends PayloadTypesShape = PayloadTypes> = T extends 
     : Record<string, unknown>
   : Record<string, unknown>
 
-export type TypedUploadCollection<T extends PayloadTypesShape = PayloadTypes> = NonNever<{
+export type TypedUploadCollection<T extends CMSTypesShape = CMSTypes> = NonNever<{
   [TSlug in keyof T['collections']]:
     | 'filename'
     | 'filesize'
@@ -320,26 +320,26 @@ export type TypedUploadCollection<T extends PayloadTypesShape = PayloadTypes> = 
     : never
 }>
 
-export type TypedCollectionSelect<T extends PayloadTypesShape = PayloadTypes> =
+export type TypedCollectionSelect<T extends CMSTypesShape = CMSTypes> =
   T['collectionsSelect']
 
-export type TypedCollectionJoins<T extends PayloadTypesShape = PayloadTypes> = T['collectionsJoins']
+export type TypedCollectionJoins<T extends CMSTypesShape = CMSTypes> = T['collectionsJoins']
 
-export type TypedGlobal<T extends PayloadTypesShape = PayloadTypes> = T['globals']
+export type TypedGlobal<T extends CMSTypesShape = CMSTypes> = T['globals']
 
-export type TypedGlobalSelect<T extends PayloadTypesShape = PayloadTypes> = T['globalsSelect']
+export type TypedGlobalSelect<T extends CMSTypesShape = CMSTypes> = T['globalsSelect']
 
 // Extract string keys from the type
 export type StringKeyOf<T> = Extract<keyof T, string>
 
 // Define the types for slugs using the appropriate collections and globals
-export type CollectionSlug<T extends PayloadTypesShape = PayloadTypes> = StringKeyOf<
+export type CollectionSlug<T extends CMSTypesShape = CMSTypes> = StringKeyOf<
   T['collections']
 >
 
 export type BlockSlug = StringKeyOf<TypedBlock>
 
-export type WidgetSlug<T extends PayloadTypesShape = PayloadTypes> = StringKeyOf<TypedWidget<T>>
+export type WidgetSlug<T extends CMSTypesShape = CMSTypes> = StringKeyOf<TypedWidget<T>>
 
 export type DataFromWidgetSlug<TSlug extends WidgetSlug> = TypedWidget[TSlug] extends {
   data?: infer TData
@@ -347,17 +347,17 @@ export type DataFromWidgetSlug<TSlug extends WidgetSlug> = TypedWidget[TSlug] ex
   ? TData
   : TypedWidget[TSlug]
 
-export type UploadCollectionSlug<T extends PayloadTypesShape = PayloadTypes> = StringKeyOf<
+export type UploadCollectionSlug<T extends CMSTypesShape = CMSTypes> = StringKeyOf<
   TypedUploadCollection<T>
 >
 
-export type DefaultDocumentIDType = PayloadTypes['db']['defaultIDType']
+export type DefaultDocumentIDType = CMSTypes['db']['defaultIDType']
 
-export type GlobalSlug<T extends PayloadTypesShape = PayloadTypes> = StringKeyOf<T['globals']>
+export type GlobalSlug<T extends CMSTypesShape = CMSTypes> = StringKeyOf<T['globals']>
 
-export type TypedLocale<T extends PayloadTypesShape = PayloadTypes> = T['locale']
+export type TypedLocale<T extends CMSTypesShape = CMSTypes> = T['locale']
 
-export type TypedFallbackLocale = PayloadTypes['fallbackLocale']
+export type TypedFallbackLocale = CMSTypes['fallbackLocale']
 
 /**
  *
@@ -366,34 +366,34 @@ export type TypedFallbackLocale = PayloadTypes['fallbackLocale']
  *
  * @todo rename to `User` in 4.0
  */
-export type TypedUser = PayloadTypes['user']
+export type TypedUser = CMSTypes['user']
 
-export type TypedAuthOperations<T extends PayloadTypesShape = PayloadTypes> = T['auth']
+export type TypedAuthOperations<T extends CMSTypesShape = CMSTypes> = T['auth']
 
-export type AuthCollectionSlug<T extends PayloadTypesShape = PayloadTypes> = StringKeyOf<T['auth']>
+export type AuthCollectionSlug<T extends CMSTypesShape = CMSTypes> = StringKeyOf<T['auth']>
 
-export type TypedJobs = PayloadTypes['jobs']
+export type TypedJobs = CMSTypes['jobs']
 
-// Check if payload-jobs exists in the AUGMENTED types (not the fallback with index signature)
-type HasPayloadJobsType = GeneratedTypes extends { collections: infer C }
-  ? 'payload-jobs' extends keyof C
+// Check if cms-jobs exists in the AUGMENTED types (not the fallback with index signature)
+type HasCMSJobsType = GeneratedTypes extends { collections: infer C }
+  ? 'cms-jobs' extends keyof C
     ? true
     : false
   : false
 
 /**
- * Represents a job in the `payload-jobs` collection, referencing a queued workflow or task (= Job).
- * If a generated type for the `payload-jobs` collection is not available, falls back to the BaseJob type.
+ * Represents a job in the `cms-jobs` collection, referencing a queued workflow or task (= Job).
+ * If a generated type for the `cms-jobs` collection is not available, falls back to the BaseJob type.
  *
  * `input` and `taksStatus` are always present here, as the job afterRead hook will always populate them.
  */
 export type Job<
   TWorkflowSlugOrInput extends false | keyof TypedJobs['workflows'] | object = false,
-> = HasPayloadJobsType extends true
+> = HasCMSJobsType extends true
   ? {
       input: BaseJob<TWorkflowSlugOrInput>['input']
       taskStatus: BaseJob<TWorkflowSlugOrInput>['taskStatus']
-    } & Omit<TypedCollection['payload-jobs'], 'input' | 'taskStatus'>
+    } & Omit<TypedCollection['cms-jobs'], 'input' | 'taskStatus'>
   : BaseJob<TWorkflowSlugOrInput>
 
 const filename = fileURLToPath(import.meta.url)
@@ -402,9 +402,9 @@ const dirname = path.dirname(filename)
 let checkedDependencies = false
 
 /**
- * @description Payload
+ * @description CMS
  */
-export class BasePayload {
+export class BaseCMS {
   /**
    * @description Authorization and Authentication using headers and cookies to run auth user strategies
    * @returns permissions: Permissions
@@ -515,7 +515,7 @@ export class BasePayload {
   ): Promise<
     PaginatedDocs<
       TDraft extends true
-        ? PayloadTypes extends { strictDraftTypes: true }
+        ? CMSTypes extends { strictDraftTypes: true }
           ? DraftTransformCollectionWithSelect<TSlug, TSelect>
           : TransformCollectionWithSelect<TSlug, TSelect>
         : TransformCollectionWithSelect<TSlug, TSelect>
@@ -818,30 +818,30 @@ export class BasePayload {
   }
 
   /**
-   * @description Initializes Payload
+   * @description Initializes CMS
    * @param options
    */
-  async init(options: InitOptions): Promise<Payload> {
+  async init(options: InitOptions): Promise<CMS> {
     if (
       process.env.NODE_ENV !== 'production' &&
-      process.env.PAYLOAD_DISABLE_DEPENDENCY_CHECKER !== 'true' &&
+      process.env.CMS_DISABLE_DEPENDENCY_CHECKER !== 'true' &&
       !checkedDependencies
     ) {
       checkedDependencies = true
-      void checkPayloadDependencies()
+      void checkCMSDependencies()
     }
 
     this.importMap = options.importMap!
 
     if (!options?.config) {
-      throw new Error('Error: the payload config is required to initialize payload.')
+      throw new Error('Error: the cms config is required to initialize cms.')
     }
 
     this.config = await options.config
-    this.logger = getLogger('payload', this.config.logger)
+    this.logger = getLogger('cms', this.config.logger)
 
     if (!this.config.secret) {
-      throw new Error('Error: missing secret key. A secret key is needed to secure Payload.')
+      throw new Error('Error: missing secret key. A secret key is needed to secure CMS.')
     }
 
     this.secret = crypto.createHash('sha256').update(this.config.secret).digest('hex').slice(0, 32)
@@ -901,10 +901,10 @@ export class BasePayload {
       })
     }
 
-    this.db = this.config.db.init({ payload: this })
-    this.db.payload = this
+    this.db = this.config.db.init({ cms: this })
+    this.db.cms = this
 
-    this.kv = this.config.kv.init({ payload: this })
+    this.kv = this.config.kv.init({ cms: this })
 
     if (this.db?.init) {
       await this.db.init()
@@ -917,9 +917,9 @@ export class BasePayload {
     // Load email adapter
     if (this.config.email instanceof Promise) {
       const awaitedAdapter = await this.config.email
-      this.email = awaitedAdapter({ payload: this })
+      this.email = awaitedAdapter({ cms: this })
     } else if (this.config.email) {
-      this.email = this.config.email({ payload: this })
+      this.email = this.config.email({ cms: this })
     } else {
       if (process.env.NEXT_PHASE !== 'phase-production-build') {
         this.logger.warn(
@@ -927,7 +927,7 @@ export class BasePayload {
         )
       }
 
-      this.email = consoleEmailAdapter({ payload: this })
+      this.email = consoleEmailAdapter({ cms: this })
     }
 
     // Warn if image resizing is enabled but sharp is not installed
@@ -1037,35 +1037,35 @@ export class BasePayload {
   }
 }
 
-const initialized = new BasePayload()
+const initialized = new BaseCMS()
 
 // eslint-disable-next-line no-restricted-exports
 export default initialized
 
 export const reload = async (
   config: SanitizedConfig,
-  payload: Payload,
+  cms: CMS,
   skipImportMapGeneration?: boolean,
   options?: InitOptions,
 ): Promise<void> => {
-  if (typeof payload.db.destroy === 'function') {
-    // Only destroy db, as we then later only call payload.db.init and not payload.init
-    await payload.db.destroy()
+  if (typeof cms.db.destroy === 'function') {
+    // Only destroy db, as we then later only call cms.db.init and not cms.init
+    await cms.db.destroy()
   }
-  payload.config = config
+  cms.config = config
 
-  payload.collections = config.collections.reduce(
+  cms.collections = config.collections.reduce(
     (collections, collection) => {
       collections[collection.slug] = {
         config: collection,
-        customIDType: payload.collections[collection.slug]?.customIDType,
+        customIDType: cms.collections[collection.slug]?.customIDType,
       }
       return collections
     },
     {} as Record<string, any>,
   )
 
-  payload.blocks = config.blocks!.reduce(
+  cms.blocks = config.blocks!.reduce(
     (blocks, block) => {
       blocks[block.slug] = block
       return blocks
@@ -1073,17 +1073,17 @@ export const reload = async (
     {} as Record<string, FlattenedBlock>,
   )
 
-  payload.globals = {
+  cms.globals = {
     config: config.globals,
   }
 
-  // TODO: support HMR for other props in the future (see payload/src/index init()) that may change on Payload singleton
+  // TODO: support HMR for other props in the future (see payload/src/index init()) that may change on CMS singleton
 
   // Generate types
   if (config.typescript.autoGenerate !== false) {
     // We cannot run it directly here, as generate-types imports json-schema-to-typescript, which breaks on turbopack.
     // see: https://github.com/vercel/next.js/issues/66723
-    void payload.bin({
+    void cms.bin({
       args: ['generate:types'],
       log: false,
     })
@@ -1100,58 +1100,58 @@ export const reload = async (
     })
   }
 
-  if (payload.db?.init) {
-    await payload.db.init()
+  if (cms.db?.init) {
+    await cms.db.init()
   }
 
-  if (!options?.disableDBConnect && payload.db.connect) {
-    await payload.db.connect({ hotReload: true })
+  if (!options?.disableDBConnect && cms.db.connect) {
+    await cms.db.connect({ hotReload: true })
   }
 
-  ;(global as any)._payload_clientConfigs = {} as Record<keyof SupportedLanguages, ClientConfig>
-  ;(global as any)._payload_schemaMap = null
-  ;(global as any)._payload_clientSchemaMap = null
-  ;(global as any)._payload_doNotCacheClientConfig = true // This will help refreshing the client config cache more reliably. If you remove this, please test HMR + client config refreshing (do new fields appear in the document?)
-  ;(global as any)._payload_doNotCacheSchemaMap = true
-  ;(global as any)._payload_doNotCacheClientSchemaMap = true
+  ;(global as any)._cms_clientConfigs = {} as Record<keyof SupportedLanguages, ClientConfig>
+  ;(global as any)._cms_schemaMap = null
+  ;(global as any)._cms_clientSchemaMap = null
+  ;(global as any)._cms_doNotCacheClientConfig = true // This will help refreshing the client config cache more reliably. If you remove this, please test HMR + client config refreshing (do new fields appear in the document?)
+  ;(global as any)._cms_doNotCacheSchemaMap = true
+  ;(global as any)._cms_doNotCacheClientSchemaMap = true
 }
 
 let _cached: Map<
   string,
   {
     initializedCrons: boolean
-    payload: null | Payload
-    promise: null | Promise<Payload>
+    cms: null | CMS
+    promise: null | Promise<CMS>
     reload: boolean | Promise<void>
     ws: null | WebSocket
   }
-> = (global as any)._payload
+> = (global as any)._cms
 
 if (!_cached) {
-  _cached = (global as any)._payload = new Map()
+  _cached = (global as any)._cms = new Map()
 }
 
 /**
- * Get a payload instance.
- * This function is a wrapper around new BasePayload().init() that adds the following functionality on top of that:
+ * Get a cms instance.
+ * This function is a wrapper around new BaseCMS().init() that adds the following functionality on top of that:
  *
- * - smartly caches Payload instance on the module scope. That way, we prevent unnecessarily initializing Payload over and over again
- * when calling getPayload multiple times or from multiple locations.
- * - adds HMR support and reloads the payload instance when the config changes.
+ * - smartly caches CMS instance on the module scope. That way, we prevent unnecessarily initializing CMS over and over again
+ * when calling getCMS multiple times or from multiple locations.
+ * - adds HMR support and reloads the cms instance when the config changes.
  */
-export const getPayload = async (
+export const getCMS = async (
   options: {
     /**
-     * A unique key to identify the payload instance. You can pass your own key if you want to cache this payload instance separately.
-     * This is useful if you pass a different payload config for each instance.
+     * A unique key to identify the cms instance. You can pass your own key if you want to cache this cms instance separately.
+     * This is useful if you pass a different cms config for each instance.
      *
      * @default 'default'
      */
     key?: string
   } & InitOptions,
-): Promise<Payload> => {
+): Promise<CMS> => {
   if (!options?.config) {
-    throw new Error('Error: the payload config is required for getPayload to work.')
+    throw new Error('Error: the cms config is required for getCMS to work.')
   }
 
   let alreadyCachedSameConfig = false
@@ -1160,7 +1160,7 @@ export const getPayload = async (
   if (!cached) {
     cached = {
       initializedCrons: Boolean(options.cron),
-      payload: null,
+      cms: null,
       promise: null,
       reload: false,
       ws: null,
@@ -1176,33 +1176,33 @@ export const getPayload = async (
     options.disableOnInit = true
   }
 
-  if (cached.payload) {
+  if (cached.cms) {
     if (options.cron && !cached.initializedCrons) {
-      // getPayload called with crons enabled, but existing cached version does not have crons initialized. => Initialize crons in existing cached version
+      // getCMS called with crons enabled, but existing cached version does not have crons initialized. => Initialize crons in existing cached version
       cached.initializedCrons = true
-      await cached.payload._initializeCrons()
+      await cached.cms._initializeCrons()
     }
 
     if (cached.reload === true) {
       let resolve!: () => void
 
-      // getPayload is called multiple times, in parallel. However, we only want to run `await reload` once. By immediately setting cached.reload to a promise,
-      // we can ensure that all subsequent calls will wait for the first reload to finish. So if we set it here, the 2nd call of getPayload
+      // getCMS is called multiple times, in parallel. However, we only want to run `await reload` once. By immediately setting cached.reload to a promise,
+      // we can ensure that all subsequent calls will wait for the first reload to finish. So if we set it here, the 2nd call of getCMS
       // will reach `if (cached.reload instanceof Promise) {` which then waits for the first reload to finish.
       cached.reload = new Promise((res) => (resolve = res))
       const config = await options.config
 
-      // Reload the payload instance after a config change (triggered by HMR in development).
+      // Reload the cms instance after a config change (triggered by HMR in development).
       // The second parameter (false) forces import map regeneration rather than deciding based on options.importMap.
       //
-      // Why we always regenerate import map: getPayload() may be called from multiple sources (admin panel, frontend, etc.)
+      // Why we always regenerate import map: getCMS() may be called from multiple sources (admin panel, frontend, etc.)
       // that share the same cache but may pass different importMap values. Since call order is unpredictable,
       // we cannot rely on options.importMap to determine if regeneration is needed.
       //
-      // Example scenario: If the frontend calls getPayload() without importMap first, followed by the admin
+      // Example scenario: If the frontend calls getCMS() without importMap first, followed by the admin
       // panel calling it with importMap, we'd incorrectly skip generation for the admin panel's needs.
       // By always regenerating on reload, we ensure the import map stays in sync with the updated config.
-      await reload(config, cached.payload, false, options)
+      await reload(config, cached.cms, false, options)
 
       resolve()
       cached.reload = false
@@ -1212,24 +1212,24 @@ export const getPayload = async (
       await cached.reload
     }
     if (options?.importMap) {
-      cached.payload.importMap = options.importMap
+      cached.cms.importMap = options.importMap
     }
-    return cached.payload
+    return cached.cms
   }
 
   try {
     if (!cached.promise) {
-      // no need to await options.config here, as it's already awaited in the BasePayload.init
-      cached.promise = new BasePayload().init(options)
+      // no need to await options.config here, as it's already awaited in the BaseCMS.init
+      cached.promise = new BaseCMS().init(options)
     }
 
-    cached.payload = await cached.promise
+    cached.cms = await cached.promise
 
     if (
       !cached.ws &&
       process.env.NODE_ENV !== 'production' &&
       process.env.NODE_ENV !== 'test' &&
-      process.env.DISABLE_PAYLOAD_HMR !== 'true'
+      process.env.DISABLE_CMS_HMR !== 'true'
     ) {
       try {
         const port = process.env.PORT || '3000'
@@ -1242,12 +1242,12 @@ export const getPayload = async (
         const prefix = process.env.__NEXT_ASSET_PREFIX ?? ''
 
         cached.ws = new WebSocket(
-          process.env.PAYLOAD_HMR_URL_OVERRIDE ?? `${protocol}://localhost:${port}${prefix}${path}`,
+          process.env.CMS_HMR_URL_OVERRIDE ?? `${protocol}://localhost:${port}${prefix}${path}`,
         )
 
         cached.ws.onmessage = (event) => {
           if (cached.reload instanceof Promise) {
-            // If there is an in-progress reload in the same getPayload
+            // If there is an in-progress reload in the same getCMS
             // cache instance, do not set reload to true again, which would
             // trigger another reload.
             // Instead, wait for the in-progress reload to finish.
@@ -1276,19 +1276,19 @@ export const getPayload = async (
     }
   } catch (e) {
     cached.promise = null
-    // add identifier to error object, so that our error logger in routeError.ts does not attempt to re-initialize getPayload
-    ;(e as { payloadInitError?: boolean }).payloadInitError = true
+    // add identifier to error object, so that our error logger in routeError.ts does not attempt to re-initialize getCMS
+    ;(e as { cmsInitError?: boolean }).cmsInitError = true
     throw e
   }
 
   if (options?.importMap) {
-    cached.payload.importMap = options.importMap
+    cached.cms.importMap = options.importMap
   }
 
-  return cached.payload
+  return cached.cms
 }
 
-type Payload = BasePayload
+type CMS = BaseCMS
 
 interface RequestContext {
   [key: string]: unknown
@@ -1296,7 +1296,7 @@ interface RequestContext {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface DatabaseAdapter extends BaseDatabaseAdapter {}
-export type { Payload, RequestContext }
+export type { CMS, RequestContext }
 export { jwtSign } from './auth/jwt.js'
 export { accessOperation } from './auth/operations/access.js'
 export { forgotPasswordOperation } from './auth/operations/forgotPassword.js'
@@ -1507,7 +1507,7 @@ export type {
   UpsertArgs,
 } from './database/types.js'
 export type { DynamicMigrationTemplate } from './database/types.js'
-export type { EmailAdapter as PayloadEmailAdapter, SendEmailOptions } from './email/types.js'
+export type { EmailAdapter as CMSEmailAdapter, SendEmailOptions } from './email/types.js'
 
 export {
   APIError,
@@ -1821,7 +1821,7 @@ export {
 } from './utilities/configToJSONSchema.js'
 export { createArrayFromCommaDelineated } from './utilities/createArrayFromCommaDelineated.js'
 export { createLocalReq } from './utilities/createLocalReq.js'
-export { createPayloadRequest } from './utilities/createPayloadRequest.js'
+export { createCMSRequest } from './utilities/createPayloadRequest.js'
 export {
   deepCopyObject,
   deepCopyObjectComplex,
@@ -1865,7 +1865,7 @@ export { isValidID } from './utilities/isValidID.js'
 export { killTransaction } from './utilities/killTransaction.js'
 export { logError } from './utilities/logError.js'
 export { defaultLoggerOptions } from './utilities/logger.js'
-export type { PayloadLogger } from './utilities/logger.js'
+export type { CMSLogger } from './utilities/logger.js'
 export { mapAsync } from './utilities/mapAsync.js'
 export { mergeHeaders } from './utilities/mergeHeaders.js'
 export { parseDocumentID } from './utilities/parseDocumentID.js'

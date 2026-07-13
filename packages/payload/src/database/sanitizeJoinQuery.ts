@@ -1,5 +1,5 @@
 import type { SanitizedCollectionConfig, SanitizedJoin } from '../collections/config/types.js'
-import type { JoinQuery, PayloadRequest } from '../types/index.js'
+import type { JoinQuery, CMSRequest } from '../types/index.js'
 
 import { executeAccess } from '../auth/executeAccess.js'
 import { QueryError } from '../errors/QueryError.js'
@@ -11,7 +11,7 @@ type Args = {
   collectionConfig: SanitizedCollectionConfig
   joins?: JoinQuery
   overrideAccess: boolean
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 const sanitizeJoinFieldQuery = async ({
@@ -29,7 +29,7 @@ const sanitizeJoinFieldQuery = async ({
   joinsQuery: JoinQuery
   overrideAccess: boolean
   promises: Promise<void>[]
-  req: PayloadRequest
+  req: CMSRequest
 }) => {
   const { joinPath } = join
 
@@ -39,7 +39,7 @@ const sanitizeJoinFieldQuery = async ({
     return
   }
 
-  const joinCollectionConfig = req.payload.collections[collectionSlug]!.config
+  const joinCollectionConfig = req.cms.collections[collectionSlug]!.config
 
   const accessResult = !overrideAccess
     ? await executeAccess({ disableErrors: true, req }, joinCollectionConfig.access.read)
@@ -79,7 +79,7 @@ const sanitizeJoinFieldQuery = async ({
   if (typeof accessResult === 'object') {
     sanitizeWhereQuery({
       fields: joinCollectionConfig.flattenedFields,
-      payload: req.payload,
+      cms: req.cms,
       where: accessResult,
     })
     joinQuery.where = combineQueries(joinQuery.where, accessResult)

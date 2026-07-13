@@ -1,11 +1,11 @@
-import type { AllOperations, PayloadRequest } from '../types/index.js'
+import type { AllOperations, CMSRequest } from '../types/index.js'
 import type { Permissions, SanitizedPermissions } from './types.js'
 
 import { getEntityPermissions } from '../utilities/getEntityPermissions/getEntityPermissions.js'
 import { sanitizePermissions } from '../utilities/sanitizePermissions.js'
 
 type GetAccessResultsArgs = {
-  req: PayloadRequest
+  req: CMSRequest
 }
 export async function getAccessResults({
   req,
@@ -14,13 +14,13 @@ export async function getAccessResults({
     collections: {},
     globals: {},
   } as Permissions
-  const { payload, user } = req
+  const { cms, user } = req
 
   const isLoggedIn = !!user
   const userCollectionConfig =
-    user && user.collection ? payload?.collections?.[user.collection]?.config : null
+    user && user.collection ? cms?.collections?.[user.collection]?.config : null
 
-  if (userCollectionConfig && payload.config.admin.user === user?.collection) {
+  if (userCollectionConfig && cms.config.admin.user === user?.collection) {
     results.canAccessAdmin = userCollectionConfig.access.admin
       ? await userCollectionConfig.access.admin({ req })
       : isLoggedIn
@@ -30,7 +30,7 @@ export async function getAccessResults({
   const blockReferencesPermissions = {}
 
   await Promise.all(
-    payload.config.collections.map(async (collection) => {
+    cms.config.collections.map(async (collection) => {
       const collectionOperations: AllOperations[] = ['create', 'read', 'update', 'delete']
 
       if (
@@ -58,7 +58,7 @@ export async function getAccessResults({
   )
 
   await Promise.all(
-    payload.config.globals.map(async (global) => {
+    cms.config.globals.map(async (global) => {
       const globalOperations: AllOperations[] = ['read', 'update']
 
       if (global.versions) {

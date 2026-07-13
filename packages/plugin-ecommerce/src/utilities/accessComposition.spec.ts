@@ -8,7 +8,7 @@ const mockArgs: AccessArgs = {
   req: {
     user: null,
     headers: new Headers(),
-    payload: {} as any,
+    cms: {} as any,
     context: {},
   } as any,
 }
@@ -17,7 +17,7 @@ const mockArgsWithUser: AccessArgs = {
   req: {
     user: { id: '123', email: 'test@example.com' },
     headers: new Headers(),
-    payload: {} as any,
+    cms: {} as any,
     context: {},
   } as any,
 }
@@ -379,7 +379,7 @@ describe('Access Composition Utilities', () => {
         req: {
           user: { id: '123', role: 'admin' },
           headers: new Headers(),
-          payload: {} as any,
+          cms: {} as any,
           context: {},
         } as any,
       })
@@ -390,7 +390,7 @@ describe('Access Composition Utilities', () => {
         req: {
           user: { id: '123', role: 'customer' },
           headers: new Headers(),
-          payload: {} as any,
+          cms: {} as any,
           context: {},
         } as any,
       })
@@ -571,7 +571,7 @@ describe('Access Composition Utilities', () => {
         req: {
           user: { id: '123', email: 'user@example.com' },
           headers: new Headers(),
-          payload: {} as any,
+          cms: {} as any,
           context: {},
         } as any,
       })
@@ -585,7 +585,7 @@ describe('Access Composition Utilities', () => {
         req: {
           user: { id: '123', email: 'admin@admin.com' },
           headers: new Headers(),
-          payload: {} as any,
+          cms: {} as any,
           context: {},
         } as any,
       })

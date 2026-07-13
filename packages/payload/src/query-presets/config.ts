@@ -8,7 +8,7 @@ import { getAccess } from './access.js'
 import { getConstraints } from './constraints.js'
 import { operations, type QueryPreset } from './types.js'
 
-export const queryPresetsCollectionSlug = 'payload-query-presets'
+export const queryPresetsCollectionSlug = 'cms-query-presets'
 
 export const getQueryPresetsConfig = (config: Config): CollectionConfig => ({
   slug: queryPresetsCollectionSlug,

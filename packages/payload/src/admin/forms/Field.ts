@@ -5,7 +5,7 @@ import type { SanitizedFieldPermissions } from '../../auth/types.js'
 import type { ClientBlock, ClientField, Field } from '../../fields/config/types.js'
 import type { TypedUser } from '../../index.js'
 import type { DocumentPreferences } from '../../preferences/types.js'
-import type { Operation, Payload, PayloadRequest } from '../../types/index.js'
+import type { Operation, CMS, CMSRequest } from '../../types/index.js'
 import type {
   ClientFieldSchemaMap,
   ClientTab,
@@ -94,10 +94,10 @@ export type ServerComponentProps = {
   i18n: I18nClient
   id?: number | string
   operation: Operation
-  payload: Payload
+  cms: CMS
   permissions: SanitizedFieldPermissions
   preferences: DocumentPreferences
-  req: PayloadRequest
+  req: CMSRequest
   siblingData: Data
   user: TypedUser
   value?: unknown

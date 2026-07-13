@@ -13,19 +13,19 @@ import { createRequestWithSecret } from './createRequestWithSecret.js'
  * @example
  * ```ts
  * const result = await clearCart({
- *   payload,
+ *   cms,
  *   cartsSlug: 'carts',
  *   cartID: '123',
  * })
  * ```
  */
 export const clearCart = async (args: ClearCartArgs): Promise<CartOperationResult> => {
-  const { cartID, cartsSlug, payload, req, secret } = args
+  const { cartID, cartsSlug, cms, req, secret } = args
 
   // Inject secret into request context for access control
   const reqWithSecret = createRequestWithSecret(req, secret)
 
-  const cart = await payload.findByID({
+  const cart = await cms.findByID({
     id: cartID,
     collection: cartsSlug,
     depth: 0,
@@ -41,7 +41,7 @@ export const clearCart = async (args: ClearCartArgs): Promise<CartOperationResul
     }
   }
 
-  const updatedCart = await payload.update({
+  const updatedCart = await cms.update({
     id: cartID,
     collection: cartsSlug,
     data: {

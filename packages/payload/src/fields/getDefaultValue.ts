@@ -1,12 +1,12 @@
-import type { DefaultValue, JsonValue, PayloadRequest } from '../types/index.js'
+import type { DefaultValue, JsonValue, CMSRequest } from '../types/index.js'
 
 import { deepCopyObjectSimple } from '../utilities/deepCopyObject.js'
 
 type Args = {
   defaultValue: DefaultValue
   locale: string | undefined
-  req: PayloadRequest
-  user: PayloadRequest['user']
+  req: CMSRequest
+  user: CMSRequest['user']
   value?: JsonValue
 }
 

@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '../../index.js'
+import type { CMSRequest } from '../../index.js'
 import type { RunJobsSilent } from '../localAPI.js'
 import type { UpdateJobFunction } from '../operations/runJobs/runJob/getUpdateJobFunction.js'
 import type { WorkflowError } from './index.js'
@@ -21,12 +21,12 @@ export async function handleWorkflowError({
   updateJob,
 }: {
   error: WorkflowError
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * If set to true, the job system will not log any output to the console (for both info and error logs).
    * Can be an option for more granular control over logging.
    *
-   * This will not automatically affect user-configured logs (e.g. if you call `console.log` or `payload.logger.info` in your job code).
+   * This will not automatically affect user-configured logs (e.g. if you call `console.log` or `cms.logger.info` in your job code).
    *
    * @default false
    */
@@ -76,7 +76,7 @@ export async function handleWorkflowError({
   const jobLabel = job.workflowSlug || `Task: ${job.taskSlug}`
 
   if (!silent || (typeof silent === 'object' && !silent.error)) {
-    req.payload.logger.error({
+    req.cms.logger.error({
       err: error,
       msg: `Error running job ${jobLabel} id: ${job.id} attempt ${job.totalTried + 1}${maxWorkflowRetries !== undefined ? '/' + (maxWorkflowRetries + 1) : ''}`,
     })

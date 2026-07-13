@@ -29,8 +29,8 @@ export const renderListHandler: ServerFunction<
     req,
     req: {
       i18n,
-      payload,
-      payload: { config },
+      cms,
+      cms: { config },
       user,
     },
   } = args
@@ -44,16 +44,16 @@ export const renderListHandler: ServerFunction<
   const clientConfig = getClientConfig({
     config,
     i18n,
-    importMap: payload.importMap,
+    importMap: cms.importMap,
     user,
   })
   await applyLocaleFiltering({ clientConfig, config, req })
 
   const preferencesKey = `collection-${collectionSlug}`
 
-  const preferences = await payload
+  const preferences = await cms
     .find({
-      collection: 'payload-preferences',
+      collection: 'cms-preferences',
       depth: 0,
       limit: 1,
       where: {
@@ -79,10 +79,10 @@ export const renderListHandler: ServerFunction<
     .then((res) => res.docs[0]?.value as CollectionPreferences)
 
   const visibleEntities: VisibleEntities = {
-    collections: payload.config.collections
+    collections: cms.config.collections
       .map(({ slug, admin: { hidden } }) => (!isEntityHidden({ hidden, user }) ? slug : null))
       .filter(Boolean),
-    globals: payload.config.globals
+    globals: cms.config.globals
       .map(({ slug, admin: { hidden } }) => (!isEntityHidden({ hidden, user }) ? slug : null))
       .filter(Boolean),
   }
@@ -96,11 +96,11 @@ export const renderListHandler: ServerFunction<
     drawerSlug,
     enableRowSelections,
     i18n,
-    importMap: payload.importMap,
+    importMap: cms.importMap,
     initPageResult: {
-      collectionConfig: payload?.collections?.[collectionSlug]?.config,
+      collectionConfig: cms?.collections?.[collectionSlug]?.config,
       cookies,
-      globalConfig: payload.config.globals.find((global) => global.slug === collectionSlug),
+      globalConfig: cms.config.globals.find((global) => global.slug === collectionSlug),
       languageOptions: undefined, // TODO
       locale,
       permissions,
@@ -113,7 +113,7 @@ export const renderListHandler: ServerFunction<
     params: {
       segments: ['collections', collectionSlug],
     },
-    payload,
+    cms,
     permissions,
     query,
     redirectAfterDelete,

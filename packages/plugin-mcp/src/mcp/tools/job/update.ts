@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { existsSync, readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
@@ -7,12 +7,12 @@ import { join } from 'path'
 import type { JobConfigUpdate, SchemaField, TaskSequenceItem } from '../../../types.js'
 
 import { toCamelCase } from '../../../utils/camelCase.js'
-import { validatePayloadFile } from '../../helpers/fileValidation.js'
+import { validateCMSFile } from '../../helpers/fileValidation.js'
 import { toolSchemas } from '../schemas.js'
 
 // Reusable function for updating jobs
 export const updateJob = async (
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   jobsDir: string,
   jobSlug: string,
@@ -23,10 +23,10 @@ export const updateJob = async (
   configUpdate?: JobConfigUpdate,
   handlerCode?: string,
 ) => {
-  const payload = req.payload
+  const cms = req.cms
 
   if (verboseLogs) {
-    payload.logger.info(`[payload-mcp] Updating job: ${jobSlug} (${updateType})`)
+    cms.logger.info(`[cms-mcp] Updating job: ${jobSlug} (${updateType})`)
   }
 
   try {
@@ -43,13 +43,13 @@ export const updateJob = async (
       filePath = taskPath
       jobType = 'task'
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Found task file: ${taskPath}`)
+        cms.logger.info(`[cms-mcp] Found task file: ${taskPath}`)
       }
     } else if (existsSync(workflowPath)) {
       filePath = workflowPath
       jobType = 'workflow'
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Found workflow file: ${workflowPath}`)
+        cms.logger.info(`[cms-mcp] Found workflow file: ${workflowPath}`)
       }
     } else {
       throw new Error(`No task or workflow file found for job slug: ${jobSlug}`)
@@ -60,7 +60,7 @@ export const updateJob = async (
     const originalContent = content
 
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Applying update type: ${updateType}`)
+      cms.logger.info(`[cms-mcp] Applying update type: ${updateType}`)
     }
 
     // Apply updates based on type
@@ -72,7 +72,7 @@ export const updateJob = async (
 
         content = updateConfig(content, jobSlug, configUpdate)
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Configuration updated successfully`)
+          cms.logger.info(`[cms-mcp] Configuration updated successfully`)
         }
         break
 
@@ -83,7 +83,7 @@ export const updateJob = async (
 
         content = updateSchema(content, camelCaseJobSlug, inputSchema, outputSchema)
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Schema updated successfully`)
+          cms.logger.info(`[cms-mcp] Schema updated successfully`)
         }
         break
 
@@ -94,7 +94,7 @@ export const updateJob = async (
 
         content = updateHandler(content, handlerCode, jobType)
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Handler code replaced successfully`)
+          cms.logger.info(`[cms-mcp] Handler code replaced successfully`)
         }
         break
 
@@ -109,7 +109,7 @@ export const updateJob = async (
 
         content = updateWorkflowTasks(content, taskSequence)
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Workflow tasks updated successfully`)
+          cms.logger.info(`[cms-mcp] Workflow tasks updated successfully`)
         }
         break
     }
@@ -117,7 +117,7 @@ export const updateJob = async (
     // Only write if content changed
     if (content !== originalContent) {
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Writing updated content to file`)
+        cms.logger.info(`[cms-mcp] Writing updated content to file`)
       }
 
       // Write the updated content
@@ -128,11 +128,11 @@ export const updateJob = async (
       const validationType = jobType === 'task' ? 'task' : 'workflow'
 
       try {
-        const validationResult = await validatePayloadFile(fileName, validationType)
+        const validationResult = await validateCMSFile(fileName, validationType)
 
         if (!validationResult.success) {
           if (verboseLogs) {
-            payload.logger.warn(`[payload-mcp] Validation warning: ${validationResult.error}`)
+            cms.logger.warn(`[cms-mcp] Validation warning: ${validationResult.error}`)
           }
 
           return {
@@ -146,11 +146,11 @@ export const updateJob = async (
         }
 
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] File validation successful`)
+          cms.logger.info(`[cms-mcp] File validation successful`)
         }
       } catch (validationError) {
         if (verboseLogs) {
-          payload.logger.warn(`[payload-mcp] Validation error: ${validationError}`)
+          cms.logger.warn(`[cms-mcp] Validation error: ${validationError}`)
         }
 
         return {
@@ -173,7 +173,7 @@ export const updateJob = async (
       }
     } else {
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] No changes detected, file not modified`)
+        cms.logger.info(`[cms-mcp] No changes detected, file not modified`)
       }
 
       return {
@@ -187,7 +187,7 @@ export const updateJob = async (
     }
   } catch (error) {
     const errorMessage = (error as Error).message
-    payload.logger.error(`[payload-mcp] Error updating job: ${errorMessage}`)
+    cms.logger.error(`[cms-mcp] Error updating job: ${errorMessage}`)
 
     return {
       content: [
@@ -232,7 +232,7 @@ function updateHandler(
 
 export const updateJobTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   jobsDir: string,
 ) => {
@@ -240,7 +240,7 @@ export const updateJobTool = (
     'updateJob',
     {
       description:
-        'Updates an existing Payload job with new configuration, schema, or handler code',
+        'Updates an existing CMS job with new configuration, schema, or handler code',
       inputSchema: toolSchemas.updateJob.parameters.shape,
     },
     async ({
@@ -253,8 +253,8 @@ export const updateJobTool = (
       updateType,
     }) => {
       if (verboseLogs) {
-        req.payload.logger.info(
-          `[payload-mcp] Update Job Tool called with: ${jobSlug}, ${updateType}`,
+        req.cms.logger.info(
+          `[cms-mcp] Update Job Tool called with: ${jobSlug}, ${updateType}`,
         )
       }
       return updateJob(

@@ -1,4 +1,4 @@
-@layer payload-default {
+@layer cms-default {
   .variantOptionsSelector {
     margin-top: calc(var(--spacing-field) * 2);
     margin-bottom: calc(var(--spacing-field) * 2);

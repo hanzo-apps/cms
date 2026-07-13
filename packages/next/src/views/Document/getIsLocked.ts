@@ -1,5 +1,5 @@
 import type {
-  PayloadRequest,
+  CMSRequest,
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
   TypedUser,
@@ -14,7 +14,7 @@ type Args = {
   globalConfig?: SanitizedGlobalConfig
   id?: number | string
   isEditing: boolean
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 type Result = Promise<{
@@ -36,7 +36,7 @@ export const getIsLocked = async ({
     entityConfig?.lockDocuments !== undefined ? entityConfig?.lockDocuments : true
 
   // Check if the locked-documents collection exists
-  if (!req.payload.collections?.['payload-locked-documents']) {
+  if (!req.cms.collections?.['cms-locked-documents']) {
     // If the collection doesn't exist, locking is not available
     return {
       isLocked: false,
@@ -93,8 +93,8 @@ export const getIsLocked = async ({
     ]
   }
 
-  const { docs } = await req.payload.find({
-    collection: 'payload-locked-documents',
+  const { docs } = await req.cms.find({
+    collection: 'cms-locked-documents',
     depth: 1,
     overrideAccess: false,
     req,

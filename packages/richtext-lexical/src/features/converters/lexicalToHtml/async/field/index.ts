@@ -3,7 +3,7 @@ import type { Field } from '@hanzo/cms'
 
 import type { HTMLConvertersAsync, HTMLConvertersFunctionAsync } from '../types.js'
 
-import { getPayloadPopulateFn } from '../../../utilities/payloadPopulateFn.js'
+import { getCMSPopulateFn } from '../../../utilities/payloadPopulateFn.js'
 import { convertLexicalToHTMLAsync } from '../index.js'
 
 type Args = {
@@ -63,9 +63,9 @@ export const lexicalHTMLField: (args: Args) => Field = (args) => {
             return ''
           }
 
-          const htmlPopulateFn = await getPayloadPopulateFn({
+          const htmlPopulateFn = await getCMSPopulateFn({
             currentDepth: currentDepth ?? 0,
-            depth: depth ?? req.payload.config.defaultDepth,
+            depth: depth ?? req.cms.config.defaultDepth,
             draft: draft ?? false,
             overrideAccess: overrideAccess ?? false,
             req,

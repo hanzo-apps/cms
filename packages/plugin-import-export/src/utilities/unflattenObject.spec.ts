@@ -1,4 +1,4 @@
-import { FlattenedField, PayloadRequest } from '@hanzo/cms'
+import { FlattenedField, CMSRequest } from '@hanzo/cms'
 
 import { getImportFieldFunctions } from './getImportFieldFunctions.js'
 import { unflattenObject } from './unflattenObject.js'
@@ -7,12 +7,12 @@ import { describe, it, expect, vi } from 'vitest'
 
 describe('unflattenObject', () => {
   const mockReq = {
-    payload: {
+    cms: {
       logger: {
         error: vi.fn(),
       },
     },
-  } as unknown as PayloadRequest
+  } as unknown as CMSRequest
 
   describe('hasMany number fields', () => {
     const fields: FlattenedField[] = [

@@ -7,7 +7,7 @@ import type {
 
 import { isClipboardDataValid } from './isClipboardDataValid.js'
 
-const localStorageClipboardKey = '_payloadClipboard'
+const localStorageClipboardKey = '_cmsClipboard'
 
 /**
  * @note This function doesn't use the Clipboard API, but localStorage. See rationale in #11513

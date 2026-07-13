@@ -1,4 +1,4 @@
-import type { DocumentPreferences, Payload, TypedUser } from '@hanzo/cms'
+import type { DocumentPreferences, CMS, TypedUser } from '@hanzo/cms'
 
 import { sanitizeID } from '@hanzo/cms-ui/shared'
 
@@ -6,7 +6,7 @@ type Args = {
   collectionSlug?: string
   globalSlug?: string
   id?: number | string
-  payload: Payload
+  cms: CMS
   user: TypedUser
 }
 
@@ -14,7 +14,7 @@ export const getDocPreferences = async ({
   id,
   collectionSlug,
   globalSlug,
-  payload,
+  cms,
   user,
 }: Args): Promise<DocumentPreferences> => {
   let preferencesKey
@@ -28,8 +28,8 @@ export const getDocPreferences = async ({
   }
 
   if (preferencesKey) {
-    const preferencesResult = (await payload.find({
-      collection: 'payload-preferences',
+    const preferencesResult = (await cms.find({
+      collection: 'cms-preferences',
       depth: 0,
       limit: 1,
       where: {

@@ -4,7 +4,7 @@ import type { SanitizedDocumentPermissions } from '../../auth/types.js'
 import type { Field, Option, TabAsField, Validate } from '../../fields/config/types.js'
 import type { TypedLocale } from '../../index.js'
 import type { DocumentPreferences } from '../../preferences/types.js'
-import type { PayloadRequest, SelectType, Where } from '../../types/index.js'
+import type { CMSRequest, SelectType, Where } from '../../types/index.js'
 
 export type Data = {
   [key: string]: any
@@ -144,7 +144,7 @@ export type BuildFormStateArgs = {
    * For example, you only need to render ALL fields on initial render, not on every onChange.
    */
   renderAllFields?: boolean
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * If true, will return a fresh URL for live preview based on the current form state.
    * Note: this will run on every form state event, so if your `livePreview.url` function is long running or expensive,

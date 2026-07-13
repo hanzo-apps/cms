@@ -1,29 +1,29 @@
 import type { ClientSession } from 'mongoose'
-import type { Payload, PayloadRequest } from '@hanzo/cms'
+import type { CMS, CMSRequest } from '@hanzo/cms'
 
 import type { MongooseAdapter } from '../index.js'
 
 import { getCollection, getGlobal } from '../utilities/getEntity.js'
 import { getSession } from '../utilities/getSession.js'
 
-export async function migrateVersionsV1_V2({ req }: { req: PayloadRequest }) {
-  const { payload } = req
+export async function migrateVersionsV1_V2({ req }: { req: CMSRequest }) {
+  const { cms } = req
 
-  const adapter = payload.db as MongooseAdapter
+  const adapter = cms.db as MongooseAdapter
   const session = await getSession(adapter, req)
 
   // For each collection
 
-  for (const { slug, versions } of payload.config.collections) {
+  for (const { slug, versions } of cms.config.collections) {
     if (versions?.drafts) {
-      await migrateCollectionDocs({ slug, adapter, payload, session })
+      await migrateCollectionDocs({ slug, adapter, cms, session })
 
-      payload.logger.info(`Migrated the "${slug}" collection.`)
+      cms.logger.info(`Migrated the "${slug}" collection.`)
     }
   }
 
   // For each global
-  for (const { slug, versions } of payload.config.globals) {
+  for (const { slug, versions } of cms.config.globals) {
     if (versions) {
       const { Model } = getGlobal({
         adapter,
@@ -40,7 +40,7 @@ export async function migrateVersionsV1_V2({ req }: { req: PayloadRequest }) {
         },
       ).exec()
 
-      payload.logger.info(`Migrated the "${slug}" global.`)
+      cms.logger.info(`Migrated the "${slug}" global.`)
     }
   }
 }
@@ -49,12 +49,12 @@ async function migrateCollectionDocs({
   slug,
   adapter,
   docsAtATime = 100,
-  payload,
+  cms,
   session,
 }: {
   adapter: MongooseAdapter
   docsAtATime?: number
-  payload: Payload
+  cms: CMS
   session?: ClientSession
   slug: string
 }) {
@@ -110,7 +110,7 @@ async function migrateCollectionDocs({
     )
 
     if (newVersions?.length) {
-      payload.logger.info(
+      cms.logger.info(
         `Migrated ${newVersions.length} documents in the "${slug}" versions collection.`,
       )
     }
@@ -134,5 +134,5 @@ async function migrateCollectionDocs({
     },
   )
 
-  await migrateCollectionDocs({ slug, adapter, payload, session })
+  await migrateCollectionDocs({ slug, adapter, cms, session })
 }

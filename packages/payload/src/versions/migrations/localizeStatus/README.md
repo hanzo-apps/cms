@@ -9,7 +9,7 @@ Migrate your existing version data to support per-locale draft/published status 
 ### 1. Create a migration file
 
 ```bash
-payload migrate:create localize_status
+cms migrate:create localize_status
 ```
 
 ### 2. Add the migration code
@@ -21,20 +21,20 @@ import type { MigrateDownArgs, MigrateUpArgs } from '@hanzo/cms-db-postgres'
 import { sql } from '@hanzo/cms-db-postgres'
 import { localizeStatus } from @hanzo/cms'from 
 
-export async function up({ db, payload }: MigrateUpArgs): Promise<void> {
+export async function up({ db, cms }: MigrateUpArgs): Promise<void> {
   await localizeStatus.up({
     collectionSlug: 'posts', // 👈 Change to your collection
     db,
-    payload,
+    cms,
     sql,
   })
 }
 
-export async function down({ db, payload }: MigrateDownArgs): Promise<void> {
+export async function down({ db, cms }: MigrateDownArgs): Promise<void> {
   await localizeStatus.down({
     collectionSlug: 'posts',
     db,
-    payload,
+    cms,
     sql,
   })
 }
@@ -46,17 +46,17 @@ export async function down({ db, payload }: MigrateDownArgs): Promise<void> {
 import type { MigrateDownArgs, MigrateUpArgs } from '@hanzo/cms-db-mongodb'
 import { localizeStatus } from @hanzo/cms'from 
 
-export async function up({ payload }: MigrateUpArgs): Promise<void> {
+export async function up({ cms }: MigrateUpArgs): Promise<void> {
   await localizeStatus.up({
     collectionSlug: 'posts', // 👈 Change to your collection
-    payload,
+    cms,
   })
 }
 
-export async function down({ payload }: MigrateDownArgs): Promise<void> {
+export async function down({ cms }: MigrateDownArgs): Promise<void> {
   await localizeStatus.down({
     collectionSlug: 'posts',
-    payload,
+    cms,
   })
 }
 ```
@@ -66,14 +66,14 @@ export async function down({ payload }: MigrateDownArgs): Promise<void> {
 ```typescript
 await localizeStatus.up({
   globalSlug: 'settings', // 👈 Your global slug
-  payload,
+  cms,
 })
 ```
 
 ### 3. Run the migration
 
 ```bash
-payload migrate
+cms migrate
 ```
 
 ## What it does
@@ -182,7 +182,7 @@ After migrating, enable the feature:
 To revert the migration:
 
 ```bash
-payload migrate:down
+cms migrate:down
 ```
 
 **Note**: Rollback uses "ANY locale published = globally published" logic, so some granularity may be lost.
@@ -206,10 +206,10 @@ payload migrate:down
 Call the migration multiple times:
 
 ```typescript
-export async function up({ db, payload }: MigrateUpArgs): Promise<void> {
-  await localizeStatus.up({ collectionSlug: 'posts', db, payload, sql })
-  await localizeStatus.up({ collectionSlug: 'articles', db, payload, sql })
-  await localizeStatus.up({ globalSlug: 'settings', db, payload, sql })
+export async function up({ db, cms }: MigrateUpArgs): Promise<void> {
+  await localizeStatus.up({ collectionSlug: 'posts', db, cms, sql })
+  await localizeStatus.up({ collectionSlug: 'articles', db, cms, sql })
+  await localizeStatus.up({ globalSlug: 'settings', db, cms, sql })
 }
 ```
 

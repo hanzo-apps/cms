@@ -6,8 +6,8 @@ import { createAPIKeysCollection } from './collections/createApiKeysCollection.j
 import { initializeMCPHandler } from './endpoints/mcp.js'
 
 declare module '@hanzo/cms' {
-  export interface PayloadRequest {
-    payloadAPI: 'GraphQL' | 'local' | 'MCP' | 'REST'
+  export interface CMSRequest {
+    cmsAPI: 'GraphQL' | 'local' | 'MCP' | 'REST'
   }
   interface RegisteredPlugins {
     '@hanzo/cms-plugin-mcp': MCPPluginConfig
@@ -19,7 +19,7 @@ import { defaults } from './defaults.js'
 export type { MCPAccessSettings, MCPPluginConfig }
 
 /**
- * The MCP Plugin for Payload. This plugin allows you to add MCP capabilities to your Payload project.
+ * The MCP Plugin for CMS. This plugin allows you to add MCP capabilities to your CMS project.
  *
  * @param pluginOptions - The options for the MCP plugin.
  */
@@ -51,7 +51,7 @@ export const mcpPlugin = definePlugin<MCPPluginConfig>({
     /**
      * API Keys
      * --------
-     * High resolution control over MCP capabilities is crucial when using Payload with LLMs.
+     * High resolution control over MCP capabilities is crucial when using CMS with LLMs.
      *
      * This API Keys collection has ways for admins to create API keys and allow or disallow the MCP capabilities.
      * This is useful when Admins want to allow or disallow the use of the MCP capabilities in real time.
@@ -89,7 +89,7 @@ export const mcpPlugin = definePlugin<MCPPluginConfig>({
 
     /**
      * This is the primary MCP Server Endpoint.
-     * Payload will automatically add the /api prefix to the path, so the full path is `/api/mcp`
+     * CMS will automatically add the /api prefix to the path, so the full path is `/api/mcp`
      * NOTE: This is only transport method until we add full support for SSE which will be another endpoint at `/api/sse`
      */
     config.endpoints.push({

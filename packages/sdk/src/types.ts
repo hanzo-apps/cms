@@ -3,7 +3,7 @@ import type {
   CollectionSlug,
   GlobalSlug,
   JsonObject,
-  PayloadTypesShape,
+  CMSTypesShape,
   SelectType,
   Sort,
   TransformDataWithSelect,
@@ -12,37 +12,37 @@ import type {
   Where,
 } from '@hanzo/cms'
 
-// Simple property access - PayloadTypesShape guarantees these properties exist
+// Simple property access - CMSTypesShape guarantees these properties exist
 export type DataFromCollectionSlug<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
 > = T['collections'][TSlug]
 
 // Helper for auth endpoints where TSlug is AuthCollectionSlug but we need collection data
 export type DataFromAuthSlug<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends AuthCollectionSlug<T>,
 > = T['collections'][CollectionSlug<T> & TSlug]
 
 export type DataFromGlobalSlug<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends GlobalSlug<T>,
 > = T['globals'][TSlug]
 
 // Intersection with SelectType ensures TypeScript knows the result satisfies SelectType
 // while preserving the specific collection select type for inference
 export type SelectFromCollectionSlug<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
 > = TSlug extends keyof T['collectionsSelect'] ? T['collectionsSelect'][TSlug] : SelectType
 
 export type SelectFromGlobalSlug<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends GlobalSlug<T>,
 > = TSlug extends keyof T['globalsSelect'] ? T['globalsSelect'][TSlug] : SelectType
 
 export type TransformCollectionWithSelect<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect,
 > = TSelect extends SelectType
@@ -55,7 +55,7 @@ export type TransformCollectionWithSelect<
   : T['collections'][TSlug]
 
 export type TransformGlobalWithSelect<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends GlobalSlug<T>,
   TSelect,
 > = TSelect extends SelectType
@@ -71,11 +71,11 @@ export type RequiredDataFromCollection<TData> = Omit<TData, SystemFields> &
   Partial<Pick<Record<SystemFields, unknown> & TData, SystemFields>>
 
 export type RequiredDataFromCollectionSlug<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
 > = RequiredDataFromCollection<T['collections'][TSlug]>
 
-export type JoinQuery<T extends PayloadTypesShape, TSlug extends CollectionSlug<T>> =
+export type JoinQuery<T extends CMSTypesShape, TSlug extends CollectionSlug<T>> =
   T['collectionsJoins'][TSlug] extends Record<string, string>
     ?
         | false
@@ -86,15 +86,15 @@ export type JoinQuery<T extends PayloadTypesShape, TSlug extends CollectionSlug<
           }>
     : never
 
-export type PopulateType<T extends PayloadTypesShape> = Partial<T['collectionsSelect']>
+export type PopulateType<T extends CMSTypesShape> = Partial<T['collectionsSelect']>
 
 export type IDType<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
 > = (T['collections'][TSlug] & TypeWithID)['id']
 
 export type BulkOperationResult<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect,
 > = {

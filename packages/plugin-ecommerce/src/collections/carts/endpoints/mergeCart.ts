@@ -62,7 +62,7 @@ export const mergeCartEndpoint = ({ cartItemMatcher, cartsSlug }: Args): Endpoin
     const result = await mergeCart({
       cartItemMatcher,
       cartsSlug,
-      payload: req.payload,
+      cms: req.cms,
       req,
       sourceCartID: data.sourceCartID,
       sourceSecret: data.sourceSecret,

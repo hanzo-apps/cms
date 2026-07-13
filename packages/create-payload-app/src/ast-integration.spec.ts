@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as fse from 'fs-extra'
 import * as path from 'path'
 import * as os from 'os'
-import { configurePayloadConfig } from './lib/configure-payload-config'
+import { configureCMSConfig } from './lib/configure-payload-config'
 import type { DbType, StorageAdapterType } from './types'
 import { DB_ADAPTER_CONFIG, STORAGE_ADAPTER_CONFIG } from './lib/ast/adapter-config'
 
@@ -58,7 +58,7 @@ describe('AST Integration Tests', () => {
   const templatesRoot = path.resolve(__dirname, '../../..', 'templates')
 
   beforeEach(() => {
-    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'payload-ast-integration-'))
+    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'cms-ast-integration-'))
   })
 
   afterEach(() => {
@@ -79,22 +79,22 @@ describe('AST Integration Tests', () => {
 
       fse.copySync(templateDir, testProjectDir)
 
-      const payloadConfigPath = path.join(testProjectDir, 'src', 'payload.config.ts')
+      const cmsConfigPath = path.join(testProjectDir, 'src', 'payload.config.ts')
       const packageJsonPath = path.join(testProjectDir, 'package.json')
 
       // Verify files exist before transformation
-      expect(fs.existsSync(payloadConfigPath)).toBe(true)
+      expect(fs.existsSync(cmsConfigPath)).toBe(true)
       expect(fs.existsSync(packageJsonPath)).toBe(true)
 
       // Apply transformations
-      await configurePayloadConfig({
+      await configureCMSConfig({
         dbType,
         storageAdapter,
         projectDirOrConfigPath: { projectDir: testProjectDir },
       })
 
       // Verify payload.config.ts transformations
-      const configContent = fs.readFileSync(payloadConfigPath, 'utf-8')
+      const configContent = fs.readFileSync(cmsConfigPath, 'utf-8')
 
       // Check database adapter import
       const dbConfig = DB_ADAPTER_CONFIG[dbType]
@@ -140,7 +140,7 @@ describe('AST Integration Tests', () => {
       })
 
       // Note: Storage adapter dependencies are NOT automatically added to package.json
-      // by configurePayloadConfig - only the payload.config.ts is updated.
+      // by configureCMSConfig - only the payload.config.ts is updated.
       // This is expected behavior as storage adapters are typically installed separately.
 
       // Verify file is valid TypeScript (basic syntax check)

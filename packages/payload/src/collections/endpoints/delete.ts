@@ -1,14 +1,14 @@
 import { getTranslation } from '@hanzo/cms-translations'
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { getRequestCollection } from '../../utilities/getRequestEntity.js'
 import { headersWithCors } from '../../utilities/headersWithCors.js'
 import { parseParams } from '../../utilities/parseParams/index.js'
 import { deleteOperation } from '../operations/delete.js'
 
-export const deleteHandler: PayloadHandler = async (req) => {
+export const deleteHandler: CMSHandler = async (req) => {
   const collection = getRequestCollection(req)
 
   const { depth, overrideLock, populate, select, trash, where } = parseParams(req.query)

@@ -2,7 +2,7 @@ import { status as httpStatus } from 'http-status'
 
 import type { SanitizedConfig } from '../config/types.js'
 
-type PayloadError = {
+type CMSError = {
   isPublic?: boolean
   status?: number
 } & Error
@@ -11,18 +11,18 @@ type PayloadError = {
  * Determines if an error should be shown to the user.
  */
 export function isErrorPublic(error: Error, config: SanitizedConfig) {
-  const payloadError = error as PayloadError
+  const cmsError = error as CMSError
 
   if (config.debug) {
     return true
   }
-  if (payloadError.isPublic === true) {
+  if (cmsError.isPublic === true) {
     return true
   }
-  if (payloadError.isPublic === false) {
+  if (cmsError.isPublic === false) {
     return false
   }
-  if (payloadError.status && payloadError.status !== httpStatus.INTERNAL_SERVER_ERROR) {
+  if (cmsError.status && cmsError.status !== httpStatus.INTERNAL_SERVER_ERROR) {
     return true
   }
 

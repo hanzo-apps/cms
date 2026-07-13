@@ -17,8 +17,8 @@ export async function Verify({ initPageResult, params, searchParams }: AdminView
 
   const {
     i18n,
-    payload: { config },
-    payload,
+    cms: { config },
+    cms,
     user,
   } = req
 
@@ -31,7 +31,7 @@ export async function Verify({ initPageResult, params, searchParams }: AdminView
   let isVerified = false
 
   try {
-    await req.payload.verifyEmail({
+    await req.cms.verifyEmail({
       collection: collectionSlug,
       token,
     })
@@ -58,7 +58,7 @@ export async function Verify({ initPageResult, params, searchParams }: AdminView
           i18n={i18n}
           locale={locale}
           params={params}
-          payload={payload}
+          cms={cms}
           permissions={permissions}
           searchParams={searchParams}
           user={user}

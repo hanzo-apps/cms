@@ -1,4 +1,4 @@
-import type { DefaultDocumentIDType, Payload, PayloadRequest } from '@hanzo/cms'
+import type { DefaultDocumentIDType, CMS, CMSRequest } from '@hanzo/cms'
 
 /**
  * Represents an item in the cart with populated or ID references.
@@ -6,7 +6,7 @@ import type { DefaultDocumentIDType, Payload, PayloadRequest } from '@hanzo/cms'
 export type CartItemData = {
   [key: string]: unknown
   /**
-   * The ID of the cart item. Array item IDs are always strings in Payload,
+   * The ID of the cart item. Array item IDs are always strings in CMS,
    * regardless of the database adapter's default ID type.
    */
   id?: string
@@ -82,10 +82,10 @@ export type BaseCartOperationArgs = {
   cartID: DefaultDocumentIDType
   /** The carts collection slug */
   cartsSlug: string
-  /** Payload instance */
-  payload: Payload
+  /** CMS instance */
+  cms: CMS
   /** Optional request context for access control */
-  req?: PayloadRequest
+  req?: CMSRequest
   /** Secret for guest cart access */
   secret?: string
 }
@@ -108,7 +108,7 @@ export type AddItemArgs = {
 export type RemoveItemArgs = {
   /**
    * The cart item row ID to remove.
-   * Array item IDs are always strings in Payload, regardless of the database adapter's default ID type.
+   * Array item IDs are always strings in CMS, regardless of the database adapter's default ID type.
    */
   itemID: string
 } & BaseCartOperationArgs
@@ -120,7 +120,7 @@ export type RemoveItemArgs = {
 export type UpdateItemArgs = {
   /**
    * The cart item row ID to update.
-   * Array item IDs are always strings in Payload, regardless of the database adapter's default ID type.
+   * Array item IDs are always strings in CMS, regardless of the database adapter's default ID type.
    */
   itemID: string
   /**

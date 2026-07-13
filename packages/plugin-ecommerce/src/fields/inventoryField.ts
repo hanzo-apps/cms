@@ -7,7 +7,7 @@ type Props = {
 export const inventoryField: (props?: Props) => NumberField = (props) => {
   const { overrides } = props || {}
 
-  // @ts-expect-error - issue with payload types
+  // @ts-expect-error - issue with cms types
   const field: NumberField = {
     name: 'inventory',
     type: 'number',

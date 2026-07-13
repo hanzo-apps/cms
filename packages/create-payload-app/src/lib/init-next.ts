@@ -36,7 +36,7 @@ type InitNextResult =
   | {
       isSrcDir: boolean
       nextAppDir: string
-      payloadConfigPath: string
+      cmsConfigPath: string
       success: true
     }
 
@@ -75,9 +75,9 @@ export async function initNext(args: InitNextArgs): Promise<InitNextResult> {
   }
 
   const installSpinner = p.spinner()
-  installSpinner.start('Installing Payload and dependencies...')
+  installSpinner.start('Installing CMS and dependencies...')
 
-  const configurationResult = await installAndConfigurePayload({
+  const configurationResult = await installAndConfigureCMS({
     ...args,
     nextAppDetails,
     nextConfigType,
@@ -101,12 +101,12 @@ export async function initNext(args: InitNextArgs): Promise<InitNextResult> {
   }
 
   // Add `@payload-config` to tsconfig.json `paths`
-  await addPayloadConfigToTsConfig(projectDir, isSrcDir)
-  installSpinner.stop('Successfully installed Payload and dependencies')
+  await addCMSConfigToTsConfig(projectDir, isSrcDir)
+  installSpinner.stop('Successfully installed CMS and dependencies')
   return { ...configurationResult, isSrcDir, nextAppDir, success: true }
 }
 
-async function addPayloadConfigToTsConfig(projectDir: string, isSrcDir: boolean) {
+async function addCMSConfigToTsConfig(projectDir: string, isSrcDir: boolean) {
   const tsConfigPath = path.resolve(projectDir, 'tsconfig.json')
 
   // Check if tsconfig.json exists
@@ -141,15 +141,15 @@ async function addPayloadConfigToTsConfig(projectDir: string, isSrcDir: boolean)
   }
 }
 
-async function installAndConfigurePayload(
+async function installAndConfigureCMS(
   args: {
     nextAppDetails: NextAppDetails
     nextConfigType: NextConfigType
     useDistFiles?: boolean
   } & InitNextArgs,
 ): Promise<
-  | { payloadConfigPath: string; success: true }
-  | { payloadConfigPath?: string; reason: string; success: false }
+  | { cmsConfigPath: string; success: true }
+  | { cmsConfigPath?: string; reason: string; success: false }
 > {
   const {
     '--debug': debug,
@@ -203,7 +203,7 @@ async function installAndConfigurePayload(
   logDebug(`nextAppDir: ${nextAppDir}`)
   logDebug(`projectDir: ${projectDir}`)
   logDebug(`nextConfigPath: ${nextConfigPath}`)
-  logDebug(`payloadConfigPath: ${path.resolve(projectDir, 'payload.config.ts')}`)
+  logDebug(`cmsConfigPath: ${path.resolve(projectDir, 'payload.config.ts')}`)
 
   logDebug(
     `isSrcDir: ${isSrcDir}. source: ${templateSrcDir}. dest: ${path.dirname(nextConfigPath)}`,
@@ -212,11 +212,11 @@ async function installAndConfigurePayload(
   // This is a little clunky and needs to account for isSrcDir
   copyRecursiveSync(templateSrcDir, path.dirname(nextConfigPath))
 
-  // Wrap next.config.js with withPayload
+  // Wrap next.config.js with withCMS
   await wrapNextConfig({ nextConfigPath, nextConfigType })
 
   return {
-    payloadConfigPath: path.resolve(nextAppDir, '../payload.config.ts'),
+    cmsConfigPath: path.resolve(nextAppDir, '../payload.config.ts'),
     success: true,
   }
 }
@@ -287,11 +287,11 @@ export async function getNextAppDetails(projectDir: string): Promise<NextAppDeta
 
   const isSupportedNextVersion = true
 
-  // Check if Payload already installed
+  // Check if CMS already installed
   if (packageObj.dependencies?.payload) {
     return {
       hasTopLevelLayout: false,
-      isPayloadInstalled: true,
+      isCMSInstalled: true,
       isSrcDir,
       isSupportedNextVersion,
       nextConfigPath,

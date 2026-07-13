@@ -402,7 +402,7 @@ export const idTranslations: DefaultTranslationsObject = {
     password: 'Kata Sandi',
     pasteField: 'Tempel Isian',
     pasteRow: 'Tempel Baris',
-    payloadSettings: 'Pengaturan Payload',
+    cmsSettings: 'Pengaturan CMS',
     permanentlyDelete: 'Hapus Secara Permanen',
     permanentlyDeletedCountSuccessfully: 'Berhasil menghapus secara permanen {{count}} {{label}}.',
     perPage: 'Per Halaman: {{limit}}',

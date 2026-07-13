@@ -2,11 +2,11 @@ import { execFileSync } from 'child_process'
 import os from 'os'
 
 import { getDependencies } from '../index.js'
-import { PAYLOAD_PACKAGE_LIST } from '../versions/payloadPackageList.js'
+import { CMS_PACKAGE_LIST } from '../versions/payloadPackageList.js'
 
 export const info = async () => {
   const deps = await getDependencies(process.cwd(), [
-    ...PAYLOAD_PACKAGE_LIST,
+    ...CMS_PACKAGE_LIST,
     'next',
     'react',
     'react-dom',

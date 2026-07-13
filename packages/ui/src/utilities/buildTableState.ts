@@ -53,7 +53,7 @@ export const buildTableStateHandler: ServerFunction<
     const res = await buildTableState(args)
     return res
   } catch (err) {
-    req.payload.logger.error({ err, msg: `There was an error building form state` })
+    req.cms.logger.error({ err, msg: `There was an error building form state` })
 
     if (err.message === 'Could not find field schema for given path') {
       return {
@@ -86,8 +86,8 @@ const buildTableState: ServerFunction<
     req,
     req: {
       i18n,
-      payload,
-      payload: { config },
+      cms,
+      cms: { config },
       user,
     },
     tableAppearance,
@@ -98,7 +98,7 @@ const buildTableState: ServerFunction<
   const clientConfig = getClientConfig({
     config,
     i18n,
-    importMap: payload.importMap,
+    importMap: cms.importMap,
     user,
   })
 
@@ -108,8 +108,8 @@ const buildTableState: ServerFunction<
   let clientCollectionConfig: ClientCollectionConfig
 
   if (!Array.isArray(collectionSlug)) {
-    if (req.payload.collections[collectionSlug]) {
-      collectionConfig = req.payload.collections[collectionSlug].config
+    if (req.cms.collections[collectionSlug]) {
+      collectionConfig = req.cms.collections[collectionSlug].config
       clientCollectionConfig = clientConfig.collections.find(
         (collection) => collection.slug === collectionSlug,
       )
@@ -165,7 +165,7 @@ const buildTableState: ServerFunction<
         }
       }
 
-      let parentDoc = await payload.findByID({
+      let parentDoc = await cms.findByID({
         id: parent.id,
         collection: parent.collectionSlug,
         depth: 1,
@@ -185,7 +185,7 @@ const buildTableState: ServerFunction<
         }
       }
     } else {
-      data = await payload.find({
+      data = await cms.find({
         collection: collectionSlug,
         depth: 0,
         draft: true,
@@ -220,20 +220,20 @@ const buildTableState: ServerFunction<
       : permissions.collections[collectionSlug].fields,
     i18n: req.i18n,
     orderableFieldName,
-    payload,
+    cms,
     query,
     renderRowTypes,
     req,
     tableAppearance,
     useAsTitle: Array.isArray(collectionSlug)
-      ? payload.collections[collectionSlug[0]]?.config?.admin?.useAsTitle
+      ? cms.collections[collectionSlug[0]]?.config?.admin?.useAsTitle
       : collectionConfig?.admin?.useAsTitle,
   })
 
   let renderedFilters
 
   if (collectionConfig) {
-    renderedFilters = renderFilters(collectionConfig.fields, req.payload.importMap)
+    renderedFilters = renderFilters(collectionConfig.fields, req.cms.importMap)
   }
 
   return {

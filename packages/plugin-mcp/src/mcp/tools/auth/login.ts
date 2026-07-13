@@ -1,9 +1,9 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { toolSchemas } from '../schemas.js'
 
-export const loginTool = (server: McpServer, req: PayloadRequest, verboseLogs: boolean) => {
+export const loginTool = (server: McpServer, req: CMSRequest, verboseLogs: boolean) => {
   const tool = async (
     collection: string,
     email: string,
@@ -12,16 +12,16 @@ export const loginTool = (server: McpServer, req: PayloadRequest, verboseLogs: b
     overrideAccess: boolean = false,
     showHiddenFields: boolean = false,
   ) => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Attempting login for user: ${email} in collection: ${collection}`,
+      cms.logger.info(
+        `[cms-mcp] Attempting login for user: ${email} in collection: ${collection}`,
       )
     }
 
     try {
-      const result = await payload.login({
+      const result = await cms.login({
         collection,
         data: {
           email,
@@ -33,7 +33,7 @@ export const loginTool = (server: McpServer, req: PayloadRequest, verboseLogs: b
       })
 
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Login successful for user: ${email}`)
+        cms.logger.info(`[cms-mcp] Login successful for user: ${email}`)
       }
 
       return {
@@ -46,7 +46,7 @@ export const loginTool = (server: McpServer, req: PayloadRequest, verboseLogs: b
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(`[payload-mcp] Login failed for user ${email}: ${errorMessage}`)
+      cms.logger.error(`[cms-mcp] Login failed for user ${email}: ${errorMessage}`)
 
       return {
         content: [

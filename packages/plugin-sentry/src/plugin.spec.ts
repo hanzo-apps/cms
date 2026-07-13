@@ -1,4 +1,4 @@
-import type { AfterErrorHook, AfterErrorHookArgs, Config, PayloadRequest } from '@hanzo/cms'
+import type { AfterErrorHook, AfterErrorHookArgs, Config, CMSRequest } from '@hanzo/cms'
 import { randomUUID } from 'crypto'
 import { describe, it, expect, vitest } from 'vitest'
 
@@ -65,7 +65,7 @@ describe('@hanzo/cms-plugin-sentry - unit', () => {
     const apiError = new Error('ApiError')
 
     const afterApiErrorHookArgs: AfterErrorHookArgs = {
-      req: {} as PayloadRequest,
+      req: {} as CMSRequest,
       context: {},
       error: apiError,
       collection: { slug: 'mock-slug' } as any,
@@ -87,7 +87,7 @@ describe('@hanzo/cms-plugin-sentry - unit', () => {
     const error = new Error('Error')
 
     const afterErrorHookArgs: AfterErrorHookArgs = {
-      req: {} as PayloadRequest,
+      req: {} as CMSRequest,
       context: {},
       error,
       collection: { slug: 'mock-slug' } as any,

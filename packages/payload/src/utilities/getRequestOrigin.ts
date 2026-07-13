@@ -1,5 +1,5 @@
 import type { CORSConfig, SanitizedConfig } from '../config/types.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 const getTrustedOrigins = (config: Pick<SanitizedConfig, 'cors' | 'csrf'>): null | string[] => {
   const origins = new Set<string>()
@@ -37,7 +37,7 @@ export const getRequestOrigin = ({
   req,
 }: {
   config: Pick<SanitizedConfig, 'cors' | 'csrf' | 'serverURL'>
-  req: Pick<PayloadRequest, 'headers' | 'payload' | 'url'>
+  req: Pick<CMSRequest, 'headers' | 'cms' | 'url'>
 }): string => {
   if (config.serverURL !== null && config.serverURL !== '') {
     return config.serverURL
@@ -61,7 +61,7 @@ export const getRequestOrigin = ({
     return origin
   }
 
-  req.payload.logger.warn(
+  req.cms.logger.warn(
     `Request origin "${origin}" is not in the CORS/CSRF allowlist. Falling back to empty string as request origin. It is recommended to explicitly set the serverURL in the config to avoid this warning and ensure correct request origin is used.`,
   )
 

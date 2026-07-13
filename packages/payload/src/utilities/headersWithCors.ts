@@ -1,11 +1,11 @@
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 type CorsArgs = {
   headers: Headers
-  req: Partial<PayloadRequest>
+  req: Partial<CMSRequest>
 }
 export const headersWithCors = ({ headers, req }: CorsArgs): Headers => {
-  const cors = req?.payload?.config.cors
+  const cors = req?.cms?.config.cors
   const requestOrigin = req?.headers?.get('Origin')
 
   if (cors) {
@@ -17,7 +17,7 @@ export const headersWithCors = ({ headers, req }: CorsArgs): Headers => {
       'Authorization',
       'Content-Encoding',
       'x-apollo-tracing',
-      'X-Payload-HTTP-Method-Override',
+      'X-CMS-HTTP-Method-Override',
     ]
 
     // Only set default CORS headers if they haven't been set by custom handler

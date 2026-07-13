@@ -1,4 +1,4 @@
-import type { FileData, PayloadRequest, TypeWithID } from '@hanzo/cms'
+import type { FileData, CMSRequest, TypeWithID } from '@hanzo/cms'
 
 import { getTranslation, type I18nClient } from '@hanzo/cms-translations'
 
@@ -13,7 +13,7 @@ const baseClass = 'lexical-relationship-diff'
 
 export const RelationshipDiffHTMLConverterAsync: (args: {
   i18n: I18nClient
-  req: PayloadRequest
+  req: CMSRequest
 }) => HTMLConvertersAsync<SerializedRelationshipNode> = ({ i18n, req }) => {
   return {
     relationship: async ({ node, populate, providedCSSString }) => {
@@ -34,7 +34,7 @@ export const RelationshipDiffHTMLConverterAsync: (args: {
         data = node.value as unknown as FileData & TypeWithID
       }
 
-      const relatedCollection = req.payload.collections[node.relationTo]?.config
+      const relatedCollection = req.cms.collections[node.relationTo]?.config
 
       const ReactDOMServer = (await import('react-dom/server')).default
 
@@ -61,9 +61,9 @@ export const RelationshipDiffHTMLConverterAsync: (args: {
                   className={`${baseClass}__link`}
                   data-enable-match="false"
                   href={formatAdminURL({
-                    adminRoute: req.payload.config.routes.admin,
+                    adminRoute: req.cms.config.routes.admin,
                     path: `/collections/${relatedCollection?.slug}/${data.id}`,
-                    serverURL: req.payload.config.serverURL,
+                    serverURL: req.cms.config.serverURL,
                   })}
                   rel="noopener noreferrer"
                   target="_blank"

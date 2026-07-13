@@ -1,6 +1,6 @@
 @import '~@hanzo/cms-ui/scss';
 
-@layer payload-default {
+@layer cms-default {
   @mixin textBase {
     font-size: base(0.8);
     line-height: 1.5;

@@ -29,25 +29,25 @@ export type {
   /**
    * @deprecated
    * The `CustomPreviewButton` type is deprecated and will be removed in the next major version.
-   * This type is only used for the Payload Config. Use `PreviewButtonClientProps` instead.
+   * This type is only used for the CMS Config. Use `PreviewButtonClientProps` instead.
    */
   CustomComponent as CustomPreviewButton,
   /**
    * @deprecated
    * The `CustomPublishButton` type is deprecated and will be removed in the next major version.
-   * This type is only used for the Payload Config. Use `PreviewButtonClientProps` instead.
+   * This type is only used for the CMS Config. Use `PreviewButtonClientProps` instead.
    */
   CustomComponent as CustomPublishButton,
   /**
    * @deprecated
    * The `CustomSaveButton` type is deprecated and will be removed in the next major version.
-   * This type is only used for the Payload Config. Use `PreviewButtonClientProps` instead.
+   * This type is only used for the CMS Config. Use `PreviewButtonClientProps` instead.
    */
   CustomComponent as CustomSaveButton,
   /**
    * @deprecated
    * The `CustomSaveDraftButton` type is deprecated and will be removed in the next major version.
-   * This type is only used for the Payload Config. Use `PreviewButtonClientProps` instead.
+   * This type is only used for the CMS Config. Use `PreviewButtonClientProps` instead.
    */
   CustomComponent as CustomSaveDraftButton,
 } from '../config/types.js'
@@ -535,7 +535,7 @@ export type RenderConfigArgs = {
   serverProps?: any
 } & (RenderEntityConfigArgs | RenderFieldConfigArgs | RenderRootConfigArgs)
 
-export type PayloadServerAction = (
+export type CMSServerAction = (
   args:
     | {
         [key: string]: any
@@ -552,7 +552,7 @@ export type RenderedField = {
   /**
    * @deprecated
    * This is a legacy property that will be removed in v4.
-   * Please use `fieldIsSidebar(field)` from `payload` instead.
+   * Please use `fieldIsSidebar(field)` from `cms` instead.
    * Or check `field.admin.position === 'sidebar'` directly.
    */
   isSidebar: boolean

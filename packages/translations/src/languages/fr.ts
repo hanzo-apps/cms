@@ -411,7 +411,7 @@ export const frTranslations: DefaultTranslationsObject = {
     password: 'Mot de passe',
     pasteField: 'Coller le champ',
     pasteRow: 'Coller la ligne',
-    payloadSettings: 'Paramètres de Payload',
+    cmsSettings: 'Paramètres de CMS',
     permanentlyDelete: 'Supprimer définitivement',
     permanentlyDeletedCountSuccessfully: 'Supprimé définitivement {{count}} {{label}} avec succès.',
     perPage: 'Par Page: {{limit}}',

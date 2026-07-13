@@ -51,7 +51,7 @@ export const text: TextFieldValidation = (
     minLength,
     minRows,
     req: {
-      payload: { config },
+      cms: { config },
       t,
     },
     required,
@@ -110,7 +110,7 @@ export const password: PasswordFieldValidation = (
     maxLength: fieldMaxLength,
     minLength = 3,
     req: {
-      payload: { config },
+      cms: { config },
       t,
     },
     required,
@@ -169,7 +169,7 @@ export const email: EmailFieldValidation = (
   {
     collectionSlug,
     req: {
-      payload: { collections, config },
+      cms: { collections, config },
       t,
     },
     required,
@@ -218,7 +218,7 @@ export const username: UsernameFieldValidation = (
   {
     collectionSlug,
     req: {
-      payload: { collections, config },
+      cms: { collections, config },
       t,
     },
     required,
@@ -266,7 +266,7 @@ export const textarea: TextareaFieldValidation = (
     maxLength: fieldMaxLength,
     minLength,
     req: {
-      payload: { config },
+      cms: { config },
       t,
     },
     required,
@@ -692,7 +692,7 @@ const validateFilterOptions: Validate<
             falseCollections.push(collection)
           }
 
-          const result = await req.payloadDataLoader.find({
+          const result = await req.cmsDataLoader.find({
             collection,
             depth: 0,
             limit: 0,
@@ -706,7 +706,7 @@ const validateFilterOptions: Validate<
           options[collection] = []
         }
       } catch (err) {
-        req.payload.logger.error({
+        req.cms.logger.error({
           err,
           msg: `Error validating filter options for collection ${collection}`,
         })
@@ -772,7 +772,7 @@ export const upload: UploadFieldValidation = async (value, options) => {
     maxRows,
     minRows,
     relationTo,
-    req: { payload, t },
+    req: { cms, t },
     required,
   } = options
 
@@ -827,7 +827,7 @@ export const upload: UploadFieldValidation = async (value, options) => {
       }
 
       const idType =
-        payload.collections[collectionSlug!]?.customIDType || payload?.db?.defaultIDType || 'text'
+        cms.collections[collectionSlug!]?.customIDType || cms?.db?.defaultIDType || 'text'
 
       return !isValidID(requestedID, idType)
     })
@@ -875,7 +875,7 @@ export const relationship: RelationshipFieldValidation = async (value, options) 
     maxRows,
     minRows,
     relationTo,
-    req: { payload, t },
+    req: { cms, t },
     required,
   } = options
 
@@ -930,7 +930,7 @@ export const relationship: RelationshipFieldValidation = async (value, options) 
       }
 
       const idType =
-        payload.collections[collectionSlug!]?.customIDType || payload?.db?.defaultIDType || 'text'
+        cms.collections[collectionSlug!]?.customIDType || cms?.db?.defaultIDType || 'text'
 
       return !isValidID(requestedID as number | string, idType)
     })
@@ -1088,7 +1088,7 @@ export const point: PointFieldValidation = (value = ['', ''], { req: { t }, requ
 }
 
 /**
- * Built-in field validations used by Payload
+ * Built-in field validations used by CMS
  *
  * These can be re-used in custom validations
  */

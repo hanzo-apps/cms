@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { ValidationError } from '@hanzo/cms'
 
@@ -10,13 +10,13 @@ type HandleUpsertErrorArgs = {
   error: unknown
   globalSlug?: string
   id?: number | string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   tableName: string
 }
 
 /**
  * Handles unique constraint violation errors from PostgreSQL and SQLite,
- * converting them to Payload ValidationErrors.
+ * converting them to CMS ValidationErrors.
  * Re-throws non-constraint errors unchanged.
  */
 export const handleUpsertError = ({

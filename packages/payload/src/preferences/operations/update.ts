@@ -7,7 +7,7 @@ import { preferencesCollectionSlug } from '../config.js'
 export async function update(args: PreferenceUpdateRequest) {
   const {
     key,
-    req: { payload },
+    req: { cms },
     req,
     user,
     value,
@@ -34,7 +34,7 @@ export async function update(args: PreferenceUpdateRequest) {
     value,
   }
 
-  return await payload.db.upsert({
+  return await cms.db.upsert({
     collection: preferencesCollectionSlug,
     data: preference,
     req,

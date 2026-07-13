@@ -1,6 +1,6 @@
 import type { Collection } from '@hanzo/cms'
 
-import { generatePayloadCookie, isolateObjectProperty, refreshOperation } from '@hanzo/cms'
+import { generateCMSCookie, isolateObjectProperty, refreshOperation } from '@hanzo/cms'
 
 import type { Context } from '../types.js'
 
@@ -13,9 +13,9 @@ export function refresh(collection: Collection): any {
     }
 
     const result = await refreshOperation(options)
-    const cookie = generatePayloadCookie({
+    const cookie = generateCMSCookie({
       collectionAuthConfig: collection.config.auth,
-      cookiePrefix: context.req.payload.config.cookiePrefix,
+      cookiePrefix: context.req.cms.config.cookiePrefix,
       token: result.refreshedToken,
     })
     context.headers['Set-Cookie'] = cookie

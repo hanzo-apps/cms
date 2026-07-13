@@ -25,7 +25,7 @@ import { $createBlockNode, BlockNode } from '../nodes/BlocksNode.js'
 import { $createInlineBlockNode, $isInlineBlockNode } from '../nodes/InlineBlocksNode.js'
 import { INSERT_BLOCK_COMMAND, INSERT_INLINE_BLOCK_COMMAND } from './commands.js'
 
-export type InsertBlockPayload = BlockFieldsOptionalID
+export type InsertBlockCMS = BlockFieldsOptionalID
 
 export const BlocksPlugin: PluginComponent = () => {
   const [editor] = useLexicalComposerContext()
@@ -48,14 +48,14 @@ export const BlocksPlugin: PluginComponent = () => {
     }
 
     return mergeRegister(
-      editor.registerCommand<InsertBlockPayload>(
+      editor.registerCommand<InsertBlockCMS>(
         INSERT_BLOCK_COMMAND,
-        (payload: InsertBlockPayload) => {
+        (cms: InsertBlockCMS) => {
           editor.update(() => {
             const selection = $getSelection() || $getPreviousSelection()
 
             if ($isRangeSelection(selection)) {
-              const blockNode = $createBlockNode(payload)
+              const blockNode = $createBlockNode(cms)
 
               // we need to get the focus node before inserting the block node, as $insertNodeToNearestRoot can change the focus node
               const { focus } = selection

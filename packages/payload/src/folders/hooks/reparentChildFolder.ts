@@ -1,4 +1,4 @@
-import type { CollectionAfterChangeHook, Payload } from '../../index.js'
+import type { CollectionAfterChangeHook, CMS } from '../../index.js'
 
 import { extractID } from '../../utilities/extractID.js'
 
@@ -7,7 +7,7 @@ type Args = {
   folderFieldName: string
   folderID: number | string
   parentIDToFind: number | string
-  payload: Payload
+  cms: CMS
 }
 
 /**
@@ -19,9 +19,9 @@ async function isChildOfFolder({
   folderFieldName,
   folderID,
   parentIDToFind,
-  payload,
+  cms,
 }: Args): Promise<boolean> {
-  const parentFolder = await payload.findByID({
+  const parentFolder = await cms.findByID({
     id: folderID,
     collection: folderCollectionSlug,
   })
@@ -45,7 +45,7 @@ async function isChildOfFolder({
     folderFieldName,
     folderID: parentFolderID,
     parentIDToFind,
-    payload,
+    cms,
   })
 }
 
@@ -77,25 +77,25 @@ export const reparentChildFolder = ({
     if (
       previousDoc[folderFieldName] !== doc[folderFieldName] &&
       doc[folderFieldName] &&
-      req.payload.config.folders
+      req.cms.config.folders
     ) {
       const newParentFolderID = extractID(doc[folderFieldName])
       const isMovingToChild = newParentFolderID
         ? await isChildOfFolder({
-            folderCollectionSlug: req.payload.config.folders.slug,
+            folderCollectionSlug: req.cms.config.folders.slug,
             folderFieldName,
             folderID: newParentFolderID,
             parentIDToFind: doc.id,
-            payload: req.payload,
+            cms: req.cms,
           })
         : false
 
       if (isMovingToChild) {
         // if the folder was moved into a child folder, the child folder needs
         // to be re-parented with the parent of the folder that was moved
-        await req.payload.update({
+        await req.cms.update({
           id: newParentFolderID,
-          collection: req.payload.config.folders.slug,
+          collection: req.cms.config.folders.slug,
           data: {
             [folderFieldName]: previousDoc[folderFieldName]
               ? extractID(previousDoc[folderFieldName])

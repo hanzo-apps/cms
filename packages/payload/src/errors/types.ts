@@ -1,7 +1,7 @@
 export * from './index.js'
 
 /**
- * Error names that can be thrown by Payload during runtime
+ * Error names that can be thrown by CMS during runtime
  */
 export type ErrorName =
   | 'APIError'

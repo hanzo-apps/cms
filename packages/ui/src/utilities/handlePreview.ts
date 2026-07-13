@@ -3,7 +3,7 @@ import {
   extractJWT,
   type GlobalConfig,
   type Operation,
-  type PayloadRequest,
+  type CMSRequest,
   type SanitizedConfig,
 } from '@hanzo/cms'
 
@@ -52,13 +52,13 @@ export const handlePreview = async ({
   data: Record<string, unknown>
   globalSlug?: string
   operation?: Operation
-  req: PayloadRequest
+  req: CMSRequest
 }): Promise<{
   isPreviewEnabled?: boolean
   previewURL?: string
 }> => {
   const collectionConfig = collectionSlug
-    ? req.payload.collections[collectionSlug]?.config
+    ? req.cms.collections[collectionSlug]?.config
     : undefined
 
   const globalConfig = globalSlug ? config.globals.find((g) => g.slug === globalSlug) : undefined
@@ -84,7 +84,7 @@ export const handlePreview = async ({
         previewURL = result
       }
     } catch (err) {
-      req.payload.logger.error({
+      req.cms.logger.error({
         err,
         msg: `There was an error executing the live preview URL function for ${collectionSlug || globalSlug}`,
       })

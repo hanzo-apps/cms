@@ -1,11 +1,11 @@
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { APIError } from '@hanzo/cms'
 
 import { resolveLimit } from '../utilities/resolveLimit.js'
 import { createExport } from './createExport.js'
 
-export const handleDownload = async (req: PayloadRequest, debug = false) => {
+export const handleDownload = async (req: CMSRequest, debug = false) => {
   try {
     let body
 
@@ -19,9 +19,9 @@ export const handleDownload = async (req: PayloadRequest, debug = false) => {
 
     const { collectionSlug, format } = body.data || {}
 
-    req.payload.logger.info(`Download request received ${collectionSlug}`)
+    req.cms.logger.info(`Download request received ${collectionSlug}`)
 
-    const targetCollection = req.payload.collections[collectionSlug]
+    const targetCollection = req.cms.collections[collectionSlug]
     let maxLimit: number | undefined
 
     if (targetCollection) {

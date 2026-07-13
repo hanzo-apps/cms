@@ -50,7 +50,7 @@ describe('createProject', () => {
         '--debug': true,
       } as CliArgs,
       databaseUri: '', // omitting this will ensure the default vars are used
-      payloadSecret: '', // omitting this will ensure the default vars are used
+      cmsSecret: '', // omitting this will ensure the default vars are used
       projectDir,
       template: undefined,
     })
@@ -60,7 +60,7 @@ describe('createProject', () => {
     const updatedEnvContent = fse.readFileSync(envFilePath, 'utf-8')
 
     expect(updatedEnvContent).toBe(
-      `# Added by Payload\nPAYLOAD_SECRET=YOUR_SECRET_HERE\nDATABASE_URL=your-connection-string-here`,
+      `# Added by CMS\nCMS_SECRET=YOUR_SECRET_HERE\nDATABASE_URL=your-connection-string-here`,
     )
   })
 
@@ -77,7 +77,7 @@ describe('createProject', () => {
         '--debug': true,
       } as CliArgs,
       databaseUri: '', // omitting this will ensure the `.env.example` vars are used
-      payloadSecret: '', // omitting this will ensure the `.env.example` vars are used
+      cmsSecret: '', // omitting this will ensure the `.env.example` vars are used
       projectDir,
       template: undefined,
     })
@@ -87,7 +87,7 @@ describe('createProject', () => {
     const updatedEnvContent = fse.readFileSync(envFilePath, 'utf-8')
 
     expect(updatedEnvContent).toBe(
-      `DATABASE_URL=example-connection-string\nCUSTOM_VAR=custom-value\nPAYLOAD_SECRET=YOUR_SECRET_HERE\n# Added by Payload`,
+      `DATABASE_URL=example-connection-string\nCUSTOM_VAR=custom-value\nCMS_SECRET=YOUR_SECRET_HERE\n# Added by CMS`,
     )
   })
 
@@ -111,7 +111,7 @@ describe('createProject', () => {
         '--debug': true,
       } as CliArgs,
       databaseUri: '', // omitting this will ensure the `.env` vars are kept
-      payloadSecret: '', // omitting this will ensure the `.env` vars are kept
+      cmsSecret: '', // omitting this will ensure the `.env` vars are kept
       projectDir,
       template: undefined,
     })
@@ -121,7 +121,7 @@ describe('createProject', () => {
     const updatedEnvContent = fse.readFileSync(envFilePath, 'utf-8')
 
     expect(updatedEnvContent).toBe(
-      `# Added by Payload\nPAYLOAD_SECRET=YOUR_SECRET_HERE\nDATABASE_URL=example-connection-string\nCUSTOM_VAR=custom-value`,
+      `# Added by CMS\nCMS_SECRET=YOUR_SECRET_HERE\nDATABASE_URL=example-connection-string\nCUSTOM_VAR=custom-value`,
     )
   })
 
@@ -132,7 +132,7 @@ describe('createProject', () => {
       } as CliArgs,
       databaseType: 'mongodb', // this mimics the CLI selection and will be used as the DATABASE_URL
       databaseUri: 'mongodb://localhost:27017/test', // this mimics the CLI selection and will be used as the DATABASE_URL
-      payloadSecret: 'test-secret', // this mimics the CLI selection and will be used as the PAYLOAD_SECRET
+      cmsSecret: 'test-secret', // this mimics the CLI selection and will be used as the CMS_SECRET
       projectDir,
       template: undefined,
     })
@@ -140,7 +140,7 @@ describe('createProject', () => {
     const updatedEnvContent = fse.readFileSync(envFilePath, 'utf-8')
 
     expect(updatedEnvContent).toBe(
-      `# Added by Payload\nPAYLOAD_SECRET=test-secret\nDATABASE_URL=mongodb://localhost:27017/test`,
+      `# Added by CMS\nCMS_SECRET=test-secret\nDATABASE_URL=mongodb://localhost:27017/test`,
     )
 
     // delete the generated .env file and do it again, but this time, omit the databaseUri to ensure the default is generated
@@ -152,14 +152,14 @@ describe('createProject', () => {
       } as CliArgs,
       databaseType: 'mongodb', // this mimics the CLI selection and will be used as the DATABASE_URL
       databaseUri: '', // omit this to ensure the default is generated based on the selected database type
-      payloadSecret: 'test-secret',
+      cmsSecret: 'test-secret',
       projectDir,
       template: undefined,
     })
 
     const updatedEnvContentWithDefault = fse.readFileSync(envFilePath, 'utf-8')
     expect(updatedEnvContentWithDefault).toBe(
-      `# Added by Payload\nPAYLOAD_SECRET=test-secret\nDATABASE_URL=mongodb://127.0.0.1/your-database-name`,
+      `# Added by CMS\nCMS_SECRET=test-secret\nDATABASE_URL=mongodb://127.0.0.1/your-database-name`,
     )
   })
 })

@@ -1,4 +1,4 @@
-import type { PayloadHandler } from '../../types.js'
+import type { CMSHandler } from '../../types.js'
 
 /**
  * Resolves the target key when the client sends the temporary `pending` marker.
@@ -6,7 +6,7 @@ import type { PayloadHandler } from '../../types.js'
 export async function resolvePendingTargetKey(args: {
   collectionSlug: string
   orderableFieldName: string
-  req: Parameters<PayloadHandler>[0]
+  req: Parameters<CMSHandler>[0]
   targetDoc: null | Record<string, unknown>
   targetID: string
   targetKey: string
@@ -22,7 +22,7 @@ export async function resolvePendingTargetKey(args: {
     return targetDocKey
   }
 
-  const beforeDoc = await req.payload.findByID({
+  const beforeDoc = await req.cms.findByID({
     id: targetID,
     collection: collectionSlug,
     depth: 0,

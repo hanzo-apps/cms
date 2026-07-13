@@ -11,7 +11,7 @@ import type {
   SQLiteTransactionConfig,
 } from 'drizzle-orm/sqlite-core'
 import type { SQLiteRaw } from 'drizzle-orm/sqlite-core/query-builders/raw'
-import type { Payload, PayloadRequest } from '@hanzo/cms'
+import type { CMS, CMSRequest } from '@hanzo/cms'
 
 type SQLiteSchema = {
   relations: Record<string, GenericRelation>
@@ -128,29 +128,29 @@ export type MigrateUpArgs = {
    * ```ts
    * import { type MigrateUpArgs, sql } from '@hanzo/cms-db-sqlite'
    *
-   * export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
+   * export async function up({ db, cms, req }: MigrateUpArgs): Promise<void> {
    *   const { rows: posts } = await db.run(sql`SELECT * FROM posts`)
    * }
    * ```
    */
   db: Drizzle
   /**
-   * The Payload instance that you can use to execute Local API methods
+   * The CMS instance that you can use to execute Local API methods
    * To use the current transaction you must pass `req` to arguments
    * @example
    * ```ts
    * import { type MigrateUpArgs } from '@hanzo/cms-db-sqlite'
    *
-   * export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
-   *   const posts = await payload.find({ collection: 'posts', req })
+   * export async function up({ db, cms, req }: MigrateUpArgs): Promise<void> {
+   *   const posts = await cms.find({ collection: 'posts', req })
    * }
    * ```
    */
-  payload: Payload
+  cms: CMS
   /**
-   * The `PayloadRequest` object that contains the current transaction
+   * The `CMSRequest` object that contains the current transaction
    */
-  req: PayloadRequest
+  req: CMSRequest
 }
 export type MigrateDownArgs = {
   /**
@@ -159,29 +159,29 @@ export type MigrateDownArgs = {
    * ```ts
    * import { type MigrateDownArgs, sql } from '@hanzo/cms-db-sqlite'
    *
-   * export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
+   * export async function down({ db, cms, req }: MigrateDownArgs): Promise<void> {
    *   const { rows: posts } = await db.run(sql`SELECT * FROM posts`)
    * }
    * ```
    */
   db: Drizzle
   /**
-   * The Payload instance that you can use to execute Local API methods
+   * The CMS instance that you can use to execute Local API methods
    * To use the current transaction you must pass `req` to arguments
    * @example
    * ```ts
    * import { type MigrateDownArgs } from '@hanzo/cms-db-sqlite'
    *
-   * export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
-   *   const posts = await payload.find({ collection: 'posts', req })
+   * export async function down({ db, cms, req }: MigrateDownArgs): Promise<void> {
+   *   const posts = await cms.find({ collection: 'posts', req })
    * }
    * ```
    */
-  payload: Payload
+  cms: CMS
   /**
-   * The `PayloadRequest` object that contains the current transaction
+   * The `CMSRequest` object that contains the current transaction
    */
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 declare module '@hanzo/cms' {

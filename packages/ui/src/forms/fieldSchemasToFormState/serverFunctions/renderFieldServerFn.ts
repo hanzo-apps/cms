@@ -57,7 +57,7 @@ export const _internal_renderFieldHandler: ServerFunction<
 
   const schemaMap = getSchemaMap({
     collectionSlug: entityType === 'collection' ? entitySlug : undefined,
-    config: req.payload.config,
+    config: req.cms.config,
     globalSlug: entityType === 'global' ? entitySlug : undefined,
     i18n: req.i18n,
   })
@@ -67,14 +67,14 @@ export const _internal_renderFieldHandler: ServerFunction<
   const clientSchemaMap = getClientSchemaMap({
     collectionSlug: entityType === 'collection' ? entitySlug : undefined,
     config: getClientConfig({
-      config: req.payload.config,
+      config: req.cms.config,
       i18n: req.i18n,
-      importMap: req.payload.importMap,
+      importMap: req.cms.importMap,
       user: req.user,
     }),
     globalSlug: entityType === 'global' ? entitySlug : undefined,
     i18n: req.i18n,
-    payload: req.payload,
+    cms: req.cms,
     schemaMap,
   })
 

@@ -1,11 +1,11 @@
 import type { SanitizedCollectionConfig } from '../../../collections/config/types.js'
 
-import { type JsonObject, type Payload, type TypedUser } from '../../../index.js'
+import { type JsonObject, type CMS, type TypedUser } from '../../../index.js'
 import { isUserLocked } from '../../isUserLocked.js'
 
 type Args = {
   collection: SanitizedCollectionConfig
-  payload: Payload
+  cms: CMS
   user: TypedUser
 }
 
@@ -13,7 +13,7 @@ type Args = {
 // transaction. At the same time, we want updates from parallel requests to be visible here.
 export const incrementLoginAttempts = async ({
   collection,
-  payload,
+  cms,
   user,
 }: Args): Promise<void> => {
   const {
@@ -27,7 +27,7 @@ export const incrementLoginAttempts = async ({
 
   if (user.lockUntil && !isUserLocked(new Date(user.lockUntil))) {
     // Expired lock, restart count at 1
-    const updatedUser = await payload.db.updateOne({
+    const updatedUser = await cms.db.updateOne({
       id: user.id,
       collection: collection.slug,
       data: {
@@ -57,7 +57,7 @@ export const incrementLoginAttempts = async ({
       data.lockUntil = lockUntil
     }
 
-    const updatedUser = await payload.db.updateOne({
+    const updatedUser = await cms.db.updateOne({
       id: user.id,
       collection: collection.slug,
       data,
@@ -94,7 +94,7 @@ export const incrementLoginAttempts = async ({
     // If lockUntil reached max login attempts due to multiple parallel attempts but user was not locked yet,
     const newLockUntil = new Date(currentTime + lockTime).toISOString()
 
-    await payload.db.updateOne({
+    await cms.db.updateOne({
       id: user.id,
       collection: collection.slug,
       data: {
@@ -115,7 +115,7 @@ export const incrementLoginAttempts = async ({
       // However, this request (the incorrect login attempt request) can kill the successful login attempt here.
 
       // Fetch user sessions separately (do not do this in the updateOne select in order to preserve the returning: true db call optimization)
-      const currentUser = await payload.db.findOne<TypedUser>({
+      const currentUser = await cms.db.findOne<TypedUser>({
         collection: collection.slug,
         select: {
           sessions: true,
@@ -141,7 +141,7 @@ export const incrementLoginAttempts = async ({
         // Ensure updatedAt date is always updated
         user.updatedAt = new Date().toISOString()
 
-        await payload.db.updateOne({
+        await cms.db.updateOne({
           id: user.id,
           collection: collection.slug,
           data: user,

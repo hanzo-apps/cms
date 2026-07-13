@@ -1,7 +1,7 @@
 import type { SanitizedCollectionConfig } from '../collections/config/types.js'
 import type { SanitizedGlobalConfig } from '../globals/config/types.js'
-import type { Payload, TypeWithVersion } from '../index.js'
-import type { JsonObject, PayloadRequest, SelectType } from '../types/index.js'
+import type { CMS, TypeWithVersion } from '../index.js'
+import type { JsonObject, CMSRequest, SelectType } from '../types/index.js'
 
 import { deepCopyObjectSimple } from '../index.js'
 import { getQueryDraftsSelect } from './drafts/getQueryDraftsSelect.js'
@@ -12,9 +12,9 @@ type Args<T extends JsonObject = JsonObject> = {
   data?: T
   global?: SanitizedGlobalConfig
   id?: number | string
-  payload: Payload
+  cms: CMS
   publishSpecificLocale?: string
-  req?: PayloadRequest
+  req?: CMSRequest
   select?: SelectType
 }
 
@@ -24,7 +24,7 @@ export const saveSnapshot = async <T extends JsonObject = JsonObject>({
   collection,
   data,
   global,
-  payload,
+  cms,
   publishSpecificLocale,
   req,
   select,
@@ -51,7 +51,7 @@ export const saveSnapshot = async <T extends JsonObject = JsonObject>({
   }
 
   if (collection && id) {
-    return payload.db.createVersion<T>({
+    return cms.db.createVersion<T>({
       ...sharedCreateVersionArgs,
       collectionSlug: collection.slug,
       parent: id,
@@ -59,7 +59,7 @@ export const saveSnapshot = async <T extends JsonObject = JsonObject>({
     })
   }
   if (global) {
-    return payload.db.createGlobalVersion<T>({
+    return cms.db.createGlobalVersion<T>({
       ...sharedCreateVersionArgs,
       globalSlug: global.slug,
       snapshot: true,

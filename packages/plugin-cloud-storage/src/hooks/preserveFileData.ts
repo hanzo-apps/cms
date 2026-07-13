@@ -6,11 +6,11 @@ import type { CollectionBeforeChangeHook, FileData, TypeWithID } from '@hanzo/cm
 export const getPreserveFileDataHook =
   (): CollectionBeforeChangeHook<FileData & TypeWithID> =>
   ({ req }) => {
-    if (req.file && !req.context?._payloadCloudStorage) {
+    if (req.file && !req.context?._cmsCloudStorage) {
       req.context = req.context || {}
-      req.context._payloadCloudStorage = {
+      req.context._cmsCloudStorage = {
         file: req.file,
-        uploadSizes: req.payloadUploadSizes,
+        uploadSizes: req.cmsUploadSizes,
       }
     }
   }

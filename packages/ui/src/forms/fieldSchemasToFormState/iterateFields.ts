@@ -7,7 +7,7 @@ import type {
   FieldSchemaMap,
   FormState,
   FormStateWithoutComponents,
-  PayloadRequest,
+  CMSRequest,
   SanitizedFieldsPermissions,
   SelectMode,
   SelectType,
@@ -67,7 +67,7 @@ type Args = {
   readOnly?: boolean
   renderAllFields: boolean
   renderFieldFn: RenderFieldMethod
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   selectMode?: SelectMode
   /**
@@ -163,7 +163,7 @@ export const iterateFields = async ({
       } catch (err) {
         passesCondition = false
 
-        req.payload.logger.error({
+        req.cms.logger.error({
           err,
           msg: `Error evaluating field condition at path: ${path}`,
         })

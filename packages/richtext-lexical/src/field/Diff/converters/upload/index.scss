@@ -1,6 +1,6 @@
 @import '~@hanzo/cms-ui/scss';
 
-@layer payload-default {
+@layer cms-default {
   .lexical-diff {
     .lexical-upload-diff {
       @extend %body;

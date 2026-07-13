@@ -3,11 +3,11 @@ import * as qs from 'qs-esm'
 
 import type { SanitizedConfig } from '../config/types.js'
 import type { TypedFallbackLocale } from '../index.js'
-import type { CustomPayloadRequestProperties, PayloadRequest } from '../types/index.js'
+import type { CustomCMSRequestProperties, CMSRequest } from '../types/index.js'
 
 import { executeAuthStrategies } from '../auth/executeAuthStrategies.js'
 import { getDataLoader } from '../collections/dataloader.js'
-import { getPayload } from '../index.js'
+import { getCMS } from '../index.js'
 import { sanitizeLocales } from './addLocalesToRequest.js'
 import { formatAdminURL } from './formatAdminURL.js'
 import { getRequestLanguage } from './getRequestLanguage.js'
@@ -19,25 +19,25 @@ type Args = {
   params?: {
     collection: string
   }
-  payloadInstanceCacheKey?: string
+  cmsInstanceCacheKey?: string
   request: Request
 }
 
-export const createPayloadRequest = async ({
+export const createCMSRequest = async ({
   canSetHeaders,
   config: configPromise,
   params,
-  payloadInstanceCacheKey,
+  cmsInstanceCacheKey,
   request,
-}: Args): Promise<PayloadRequest> => {
+}: Args): Promise<CMSRequest> => {
   const cookies = parseCookies(request.headers)
-  const payload = await getPayload({
+  const cms = await getCMS({
     config: configPromise,
     cron: true,
-    key: payloadInstanceCacheKey,
+    key: cmsInstanceCacheKey,
   })
 
-  const { config } = payload
+  const { config } = cms
   const localization = config.localization
 
   const urlProperties = new URL(request.url)
@@ -92,7 +92,7 @@ export const createPayloadRequest = async ({
     locale = locales.locale!
   }
 
-  const customRequest: CustomPayloadRequestProperties = {
+  const customRequest: CustomCMSRequestProperties = {
     context: {},
     fallbackLocale: fallbackLocale!,
     hash: urlProperties.hash,
@@ -102,10 +102,10 @@ export const createPayloadRequest = async ({
     locale,
     origin: urlProperties.origin,
     pathname: urlProperties.pathname,
-    payload,
-    payloadAPI: isGraphQL ? 'GraphQL' : 'REST',
-    payloadDataLoader: undefined!,
-    payloadUploadSizes: {},
+    cms,
+    cmsAPI: isGraphQL ? 'GraphQL' : 'REST',
+    cmsDataLoader: undefined!,
+    cmsUploadSizes: {},
     port: urlProperties.port,
     protocol: urlProperties.protocol,
     query,
@@ -117,15 +117,15 @@ export const createPayloadRequest = async ({
     user: null,
   }
 
-  const req: PayloadRequest = Object.assign(request, customRequest)
+  const req: CMSRequest = Object.assign(request, customRequest)
 
-  req.payloadDataLoader = getDataLoader(req)
+  req.cmsDataLoader = getDataLoader(req)
 
   const { responseHeaders, user } = await executeAuthStrategies({
     canSetHeaders,
     headers: req.headers,
     isGraphQL,
-    payload,
+    cms,
   })
 
   req.user = user

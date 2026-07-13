@@ -4,9 +4,9 @@ import path from 'path'
 import { findUpSync } from '../utilities/findUp.js'
 
 /**
- * List of all filenames to detect as a Payload configuration file.
+ * List of all filenames to detect as a CMS configuration file.
  */
-export const payloadConfigFileNames = ['payload.config.js', 'payload.config.ts']
+export const cmsConfigFileNames = ['payload.config.js', 'payload.config.ts']
 
 /**
  * Returns the source and output paths from the nearest tsconfig.json file.
@@ -49,19 +49,19 @@ const getTSConfigPaths = (): {
 }
 
 /**
- * Searches for a Payload configuration file.
- * @returns The absolute path to the Payload configuration file.
+ * Searches for a CMS configuration file.
+ * @returns The absolute path to the CMS configuration file.
  * @throws An error if no configuration file is found.
  */
 export const findConfig = (): string => {
   // If the developer has specified a config path,
   // format it if relative and use it directly if absolute
-  if (process.env.PAYLOAD_CONFIG_PATH) {
-    if (path.isAbsolute(process.env.PAYLOAD_CONFIG_PATH)) {
-      return process.env.PAYLOAD_CONFIG_PATH
+  if (process.env.CMS_CONFIG_PATH) {
+    if (path.isAbsolute(process.env.CMS_CONFIG_PATH)) {
+      return process.env.CMS_CONFIG_PATH
     }
 
-    return path.resolve(process.cwd(), process.env.PAYLOAD_CONFIG_PATH)
+    return path.resolve(process.cwd(), process.env.CMS_CONFIG_PATH)
   }
 
   const { configPath, outPath, rootPath, srcPath } = getTSConfigPaths()
@@ -83,7 +83,7 @@ export const findConfig = (): string => {
 
     const configPath = findUpSync({
       dir: searchPath,
-      fileNames: payloadConfigFileNames,
+      fileNames: cmsConfigFileNames,
     })
 
     if (configPath) {
@@ -105,7 +105,7 @@ export const findConfig = (): string => {
   } else {
     const srcConfigPath = findUpSync({
       dir: path.resolve(process.cwd(), 'src'),
-      fileNames: payloadConfigFileNames,
+      fileNames: cmsConfigFileNames,
     })
 
     if (srcConfigPath) {
@@ -114,6 +114,6 @@ export const findConfig = (): string => {
   }
 
   throw new Error(
-    'Error: cannot find Payload config. Please create a configuration file located at the root of your current working directory called "payload.config.js" or "payload.config.ts".',
+    'Error: cannot find CMS config. Please create a configuration file located at the root of your current working directory called "payload.config.js" or "payload.config.ts".',
   )
 }

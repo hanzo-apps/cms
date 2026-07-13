@@ -1,5 +1,5 @@
 import type { EntityToGroup } from '@hanzo/cms-ui/shared'
-import type { PayloadRequest, ServerProps } from '@hanzo/cms'
+import type { CMSRequest, ServerProps } from '@hanzo/cms'
 
 import { Logout } from '@hanzo/cms-ui'
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
@@ -17,7 +17,7 @@ import { getNavPrefs } from './getNavPrefs.js'
 import { DefaultNavClient } from './index.client.js'
 
 export type NavProps = {
-  req?: PayloadRequest
+  req?: CMSRequest
 } & ServerProps
 
 export const DefaultNav: React.FC<NavProps> = async (props) => {
@@ -26,7 +26,7 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
     i18n,
     locale,
     params,
-    payload,
+    cms,
     permissions,
     req,
     searchParams,
@@ -35,7 +35,7 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
     visibleEntities,
   } = props
 
-  if (!payload?.config) {
+  if (!cms?.config) {
     return null
   }
 
@@ -45,7 +45,7 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
     },
     collections,
     globals,
-  } = payload.config
+  } = cms.config
 
   const groups = groupNavItems(
     [
@@ -81,12 +81,12 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
     },
     Component: logout?.Button,
     Fallback: Logout,
-    importMap: payload.importMap,
+    importMap: cms.importMap,
     serverProps: {
       i18n,
       locale,
       params,
-      payload,
+      cms,
       permissions,
       searchParams,
       user,
@@ -102,13 +102,13 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
               viewType,
             },
             Component: item,
-            importMap: payload.importMap,
+            importMap: cms.importMap,
             key: `settings-menu-item-${index}`,
             serverProps: {
               i18n,
               locale,
               params,
-              payload,
+              cms,
               permissions,
               searchParams,
               user,
@@ -123,12 +123,12 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
       viewType,
     },
     Component: beforeNav,
-    importMap: payload.importMap,
+    importMap: cms.importMap,
     serverProps: {
       i18n,
       locale,
       params,
-      payload,
+      cms,
       permissions,
       searchParams,
       user,
@@ -141,12 +141,12 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
       viewType,
     },
     Component: beforeNavLinks,
-    importMap: payload.importMap,
+    importMap: cms.importMap,
     serverProps: {
       i18n,
       locale,
       params,
-      payload,
+      cms,
       permissions,
       searchParams,
       user,
@@ -159,12 +159,12 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
       viewType,
     },
     Component: afterNavLinks,
-    importMap: payload.importMap,
+    importMap: cms.importMap,
     serverProps: {
       i18n,
       locale,
       params,
-      payload,
+      cms,
       permissions,
       searchParams,
       user,
@@ -177,12 +177,12 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
       viewType,
     },
     Component: afterNav,
-    importMap: payload.importMap,
+    importMap: cms.importMap,
     serverProps: {
       i18n,
       locale,
       params,
-      payload,
+      cms,
       permissions,
       searchParams,
       user,

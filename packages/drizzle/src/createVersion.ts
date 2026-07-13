@@ -27,7 +27,7 @@ export async function createVersion<T extends JsonObject = JsonObject>(
     versionData,
   }: CreateVersionArgs<T>,
 ): Promise<TypeWithVersion<T>> {
-  const collection = this.payload.collections[collectionSlug].config
+  const collection = this.cms.collections[collectionSlug].config
   if (collection.versions.drafts) {
     if (typeof select === 'object') {
       select.updatedAt = true
@@ -60,7 +60,7 @@ export async function createVersion<T extends JsonObject = JsonObject>(
     collectionSlug,
     data,
     db,
-    fields: buildVersionCollectionFields(this.payload.config, collection, true),
+    fields: buildVersionCollectionFields(this.cms.config, collection, true),
     ignoreResult: returning === false ? 'idOnly' : undefined,
     operation: 'create',
     req,

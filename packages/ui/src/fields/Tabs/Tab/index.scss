@@ -1,6 +1,6 @@
 @import '../../../scss/styles.scss';
 
-@layer payload-default {
+@layer cms-default {
   .tabs-field__tab-button {
     @extend %btn-reset;
     @extend %h4;

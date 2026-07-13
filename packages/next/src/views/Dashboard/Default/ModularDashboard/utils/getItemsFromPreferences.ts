@@ -1,4 +1,4 @@
-import type { BasePayload, TypedUser } from '@hanzo/cms'
+import type { BaseCMS, TypedUser } from '@hanzo/cms'
 
 import { PREFERENCE_KEYS } from '@hanzo/cms/shared'
 
@@ -7,12 +7,12 @@ import type { WidgetItem } from '../index.client.js'
 import { getPreferences } from '../../../../../utilities/getPreferences.js'
 
 export async function getItemsFromPreferences(
-  payload: BasePayload,
+  cms: BaseCMS,
   user: TypedUser,
 ): Promise<null | WidgetItem[]> {
   const savedPreferences = await getPreferences(
     PREFERENCE_KEYS.DASHBOARD_LAYOUT,
-    payload,
+    cms,
     user.id,
     user.collection,
   )

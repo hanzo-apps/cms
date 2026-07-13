@@ -35,7 +35,7 @@ const createMockPaymentIntent = (status: string) => ({
   status,
 })
 
-const createMockPayload = () => ({
+const createMockCMS = () => ({
   create: vi.fn().mockResolvedValue({ id: 'order-123' }),
   find: vi.fn().mockResolvedValue({
     docs: [{ id: 'txn-123' }],
@@ -45,9 +45,9 @@ const createMockPayload = () => ({
   update: vi.fn().mockResolvedValue({}),
 })
 
-const createMockReq = (payload: ReturnType<typeof createMockPayload>) =>
+const createMockReq = (cms: ReturnType<typeof createMockCMS>) =>
   ({
-    payload,
+    cms,
     user: { id: 'user-123' },
   }) as any
 
@@ -64,79 +64,79 @@ describe('confirmOrder - payment status check', () => {
   it('should throw when paymentIntent status is requires_payment_method', async () => {
     mockPaymentIntentsRetrieve.mockResolvedValue(createMockPaymentIntent('requires_payment_method'))
 
-    const mockPayload = createMockPayload()
+    const mockCMS = createMockCMS()
     const handler = confirmOrder({ secretKey })
 
     await expect(
       handler({
         data: { customerEmail: 'test@test.com', paymentIntentID: 'pi_123' },
-        req: createMockReq(mockPayload),
+        req: createMockReq(mockCMS),
       }),
     ).rejects.toThrow('Payment not completed.')
 
-    expect(mockPayload.create).not.toHaveBeenCalled()
+    expect(mockCMS.create).not.toHaveBeenCalled()
   })
 
   it('should throw when paymentIntent status is canceled', async () => {
     mockPaymentIntentsRetrieve.mockResolvedValue(createMockPaymentIntent('canceled'))
 
-    const mockPayload = createMockPayload()
+    const mockCMS = createMockCMS()
     const handler = confirmOrder({ secretKey })
 
     await expect(
       handler({
         data: { customerEmail: 'test@test.com', paymentIntentID: 'pi_123' },
-        req: createMockReq(mockPayload),
+        req: createMockReq(mockCMS),
       }),
     ).rejects.toThrow('Payment not completed.')
 
-    expect(mockPayload.create).not.toHaveBeenCalled()
+    expect(mockCMS.create).not.toHaveBeenCalled()
   })
 
   it('should throw when paymentIntent status is processing', async () => {
     mockPaymentIntentsRetrieve.mockResolvedValue(createMockPaymentIntent('processing'))
 
-    const mockPayload = createMockPayload()
+    const mockCMS = createMockCMS()
     const handler = confirmOrder({ secretKey })
 
     await expect(
       handler({
         data: { customerEmail: 'test@test.com', paymentIntentID: 'pi_123' },
-        req: createMockReq(mockPayload),
+        req: createMockReq(mockCMS),
       }),
     ).rejects.toThrow('Payment not completed.')
 
-    expect(mockPayload.create).not.toHaveBeenCalled()
+    expect(mockCMS.create).not.toHaveBeenCalled()
   })
 
   it('should not update cart or transaction when payment has not succeeded', async () => {
     mockPaymentIntentsRetrieve.mockResolvedValue(createMockPaymentIntent('requires_payment_method'))
 
-    const mockPayload = createMockPayload()
+    const mockCMS = createMockCMS()
     const handler = confirmOrder({ secretKey })
 
     await expect(
       handler({
         data: { customerEmail: 'test@test.com', paymentIntentID: 'pi_123' },
-        req: createMockReq(mockPayload),
+        req: createMockReq(mockCMS),
       }),
     ).rejects.toThrow()
 
-    expect(mockPayload.update).not.toHaveBeenCalled()
+    expect(mockCMS.update).not.toHaveBeenCalled()
   })
 
   it('should create order when paymentIntent status is succeeded', async () => {
     mockPaymentIntentsRetrieve.mockResolvedValue(createMockPaymentIntent('succeeded'))
 
-    const mockPayload = createMockPayload()
+    const mockCMS = createMockCMS()
     const handler = confirmOrder({ secretKey })
 
     const result = await handler({
       data: { customerEmail: 'test@test.com', paymentIntentID: 'pi_123' },
-      req: createMockReq(mockPayload),
+      req: createMockReq(mockCMS),
     })
 
-    expect(mockPayload.create).toHaveBeenCalledWith(
+    expect(mockCMS.create).toHaveBeenCalledWith(
       expect.objectContaining({
         collection: 'orders',
         data: expect.objectContaining({

@@ -1254,7 +1254,7 @@ function generateAuthOperationSchemas(collections: SanitizedCollectionConfig[]):
 }
 
 /**
- * This is used for generating the TypeScript types (payload-types.ts) with the payload generate:types command.
+ * This is used for generating the TypeScript types (payload-types.ts) with the cms generate:types command.
  */
 export function configToJSONSchema(
   config: SanitizedConfig,

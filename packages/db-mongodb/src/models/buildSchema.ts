@@ -16,7 +16,7 @@ import {
   type JSONField,
   type NonPresentationalField,
   type NumberField,
-  type Payload,
+  type CMS,
   type PointField,
   type RadioField,
   type RelationshipField,
@@ -50,7 +50,7 @@ export type BuildSchemaOptions = {
 type FieldSchemaGenerator<T extends Field = Field> = (
   field: T,
   schema: Schema,
-  config: Payload,
+  config: CMS,
   buildSchemaOptions: BuildSchemaOptions,
   parentIsLocalized: boolean,
 ) => void
@@ -133,14 +133,14 @@ export const buildSchema = (args: {
   configFields: Field[]
   flattenedFields?: FlattenedField[]
   parentIsLocalized?: boolean
-  payload: Payload
+  cms: CMS
 }): Schema => {
   const {
     buildSchemaOptions = {},
     configFields,
     flattenedFields,
     parentIsLocalized,
-    payload,
+    cms,
   } = args
   const { allowIDField, options } = buildSchemaOptions
   let fields = {}
@@ -155,7 +155,7 @@ export const buildSchema = (args: {
       fields = {
         _id:
           idField.type === 'number'
-            ? payload.db.useBigIntForNumberIDs
+            ? cms.db.useBigIntForNumberIDs
               ? mongoose.Schema.Types.BigInt
               : Number
             : String,
@@ -177,7 +177,7 @@ export const buildSchema = (args: {
       const addFieldSchema = getSchemaGenerator(field.type)
 
       if (addFieldSchema) {
-        addFieldSchema(field, schema, payload, buildSchemaOptions, parentIsLocalized ?? false)
+        addFieldSchema(field, schema, cms, buildSchemaOptions, parentIsLocalized ?? false)
       }
     }
   })
@@ -187,8 +187,8 @@ export const buildSchema = (args: {
       const indexDefinition: Record<string, 1> = {}
 
       for (const field of index.fields) {
-        if (field.pathHasLocalized && payload.config.localization) {
-          for (const locale of payload.config.localization.locales) {
+        if (field.pathHasLocalized && cms.config.localization) {
+          for (const locale of cms.config.localization.locales) {
             indexDefinition[field.localizedPath.replace('<locale>', locale.code)] = 1
           }
         } else {
@@ -208,7 +208,7 @@ export const buildSchema = (args: {
 const array: FieldSchemaGenerator<ArrayField> = (
   field: ArrayField,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ) => {
@@ -228,20 +228,20 @@ const array: FieldSchemaGenerator<ArrayField> = (
         },
         configFields: field.fields,
         parentIsLocalized: parentIsLocalized || field.localized,
-        payload,
+        cms,
       }),
     ],
   }
 
   schema.add({
-    [field.name]: localizeSchema(field, baseSchema, payload.config.localization, parentIsLocalized),
+    [field.name]: localizeSchema(field, baseSchema, cms.config.localization, parentIsLocalized),
   })
 }
 
 const blocks: FieldSchemaGenerator<BlocksField> = (
   field: BlocksField,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -254,14 +254,14 @@ const blocks: FieldSchemaGenerator<BlocksField> = (
     [field.name]: localizeSchema(
       field,
       fieldSchema,
-      payload.config.localization,
+      cms.config.localization,
       parentIsLocalized,
     ),
   })
   ;(field.blockReferences ?? field.blocks).forEach((blockItem) => {
     const blockSchema = new mongoose.Schema({}, { _id: false, id: false })
 
-    const block = typeof blockItem === 'string' ? payload.blocks[blockItem] : blockItem
+    const block = typeof blockItem === 'string' ? cms.blocks[blockItem] : blockItem
 
     if (!block) {
       return
@@ -278,15 +278,15 @@ const blocks: FieldSchemaGenerator<BlocksField> = (
         addFieldSchema(
           blockField,
           blockSchema,
-          payload,
+          cms,
           buildSchemaOptions,
           (parentIsLocalized || field.localized) ?? false,
         )
       }
     })
 
-    if (fieldShouldBeLocalized({ field, parentIsLocalized }) && payload.config.localization) {
-      payload.config.localization.localeCodes.forEach((localeCode) => {
+    if (fieldShouldBeLocalized({ field, parentIsLocalized }) && cms.config.localization) {
+      cms.config.localization.localeCodes.forEach((localeCode) => {
         // @ts-expect-error Possible incorrect typing in mongoose types, this works
         schema.path(`${field.name}.${localeCode}`).discriminator(block.slug, blockSchema)
       })
@@ -300,7 +300,7 @@ const blocks: FieldSchemaGenerator<BlocksField> = (
 const checkbox: FieldSchemaGenerator<CheckboxField> = (
   field: CheckboxField,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -310,14 +310,14 @@ const checkbox: FieldSchemaGenerator<CheckboxField> = (
   }
 
   schema.add({
-    [field.name]: localizeSchema(field, baseSchema, payload.config.localization, parentIsLocalized),
+    [field.name]: localizeSchema(field, baseSchema, cms.config.localization, parentIsLocalized),
   })
 }
 
 const code: FieldSchemaGenerator<CodeField> = (
   field: CodeField,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -327,14 +327,14 @@ const code: FieldSchemaGenerator<CodeField> = (
   }
 
   schema.add({
-    [field.name]: localizeSchema(field, baseSchema, payload.config.localization, parentIsLocalized),
+    [field.name]: localizeSchema(field, baseSchema, cms.config.localization, parentIsLocalized),
   })
 }
 
 const collapsible: FieldSchemaGenerator<CollapsibleField> = (
   field: CollapsibleField,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -346,7 +346,7 @@ const collapsible: FieldSchemaGenerator<CollapsibleField> = (
     const addFieldSchema = getSchemaGenerator(subField.type)
 
     if (addFieldSchema) {
-      addFieldSchema(subField, schema, payload, buildSchemaOptions, parentIsLocalized)
+      addFieldSchema(subField, schema, cms, buildSchemaOptions, parentIsLocalized)
     }
   })
 }
@@ -354,7 +354,7 @@ const collapsible: FieldSchemaGenerator<CollapsibleField> = (
 const date: FieldSchemaGenerator<DateField> = (
   field: DateField,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -364,14 +364,14 @@ const date: FieldSchemaGenerator<DateField> = (
   }
 
   schema.add({
-    [field.name]: localizeSchema(field, baseSchema, payload.config.localization, parentIsLocalized),
+    [field.name]: localizeSchema(field, baseSchema, cms.config.localization, parentIsLocalized),
   })
 }
 
 const email: FieldSchemaGenerator<EmailField> = (
   field,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -381,14 +381,14 @@ const email: FieldSchemaGenerator<EmailField> = (
   }
 
   schema.add({
-    [field.name]: localizeSchema(field, baseSchema, payload.config.localization, parentIsLocalized),
+    [field.name]: localizeSchema(field, baseSchema, cms.config.localization, parentIsLocalized),
   })
 }
 
 const group: FieldSchemaGenerator<GroupField> = (
   field: GroupField,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -416,7 +416,7 @@ const group: FieldSchemaGenerator<GroupField> = (
         },
         configFields: field.fields,
         parentIsLocalized: parentIsLocalized || field.localized,
-        payload,
+        cms,
       }),
     }
 
@@ -424,7 +424,7 @@ const group: FieldSchemaGenerator<GroupField> = (
       [field.name]: localizeSchema(
         field,
         baseSchema,
-        payload.config.localization,
+        cms.config.localization,
         parentIsLocalized,
       ),
     })
@@ -440,7 +440,7 @@ const group: FieldSchemaGenerator<GroupField> = (
         addFieldSchema(
           subField,
           schema,
-          payload,
+          cms,
           buildSchemaOptions,
           (parentIsLocalized || field.localized) ?? false,
         )
@@ -452,7 +452,7 @@ const group: FieldSchemaGenerator<GroupField> = (
 const json: FieldSchemaGenerator<JSONField> = (
   field,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -462,14 +462,14 @@ const json: FieldSchemaGenerator<JSONField> = (
   }
 
   schema.add({
-    [field.name]: localizeSchema(field, baseSchema, payload.config.localization, parentIsLocalized),
+    [field.name]: localizeSchema(field, baseSchema, cms.config.localization, parentIsLocalized),
   })
 }
 
 const number: FieldSchemaGenerator<NumberField> = (
   field,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -479,14 +479,14 @@ const number: FieldSchemaGenerator<NumberField> = (
   }
 
   schema.add({
-    [field.name]: localizeSchema(field, baseSchema, payload.config.localization, parentIsLocalized),
+    [field.name]: localizeSchema(field, baseSchema, cms.config.localization, parentIsLocalized),
   })
 }
 
 const point: FieldSchemaGenerator<PointField> = (
   field,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -514,7 +514,7 @@ const point: FieldSchemaGenerator<PointField> = (
   }
 
   schema.add({
-    [field.name]: localizeSchema(field, baseSchema, payload.config.localization, parentIsLocalized),
+    [field.name]: localizeSchema(field, baseSchema, cms.config.localization, parentIsLocalized),
   })
 
   if (field.index === true || field.index === undefined) {
@@ -523,8 +523,8 @@ const point: FieldSchemaGenerator<PointField> = (
       indexOptions.sparse = true
       indexOptions.unique = true
     }
-    if (fieldShouldBeLocalized({ field, parentIsLocalized }) && payload.config.localization) {
-      payload.config.localization.locales.forEach((locale) => {
+    if (fieldShouldBeLocalized({ field, parentIsLocalized }) && cms.config.localization) {
+      cms.config.localization.locales.forEach((locale) => {
         schema.index({ [`${field.name}.${locale.code}`]: '2dsphere' }, indexOptions)
       })
     } else {
@@ -536,7 +536,7 @@ const point: FieldSchemaGenerator<PointField> = (
 const radio: FieldSchemaGenerator<RadioField> = (
   field,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -552,26 +552,26 @@ const radio: FieldSchemaGenerator<RadioField> = (
   }
 
   schema.add({
-    [field.name]: localizeSchema(field, baseSchema, payload.config.localization, parentIsLocalized),
+    [field.name]: localizeSchema(field, baseSchema, cms.config.localization, parentIsLocalized),
   })
 }
 
 const relationship: FieldSchemaGenerator<RelationshipField> = (
   field,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ) => {
   const hasManyRelations = Array.isArray(field.relationTo)
   let schemaToReturn: { [key: string]: any } = {}
 
-  const valueType = getRelationshipValueType(field, payload)
+  const valueType = getRelationshipValueType(field, cms)
 
-  if (fieldShouldBeLocalized({ field, parentIsLocalized }) && payload.config.localization) {
+  if (fieldShouldBeLocalized({ field, parentIsLocalized }) && cms.config.localization) {
     schemaToReturn = {
       _id: false,
-      type: payload.config.localization.localeCodes.reduce((locales, locale) => {
+      type: cms.config.localization.localeCodes.reduce((locales, locale) => {
         let localeSchema: { [key: string]: any } = {}
 
         if (hasManyRelations) {
@@ -643,7 +643,7 @@ const relationship: FieldSchemaGenerator<RelationshipField> = (
 const richText: FieldSchemaGenerator<RichTextField> = (
   field,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -653,14 +653,14 @@ const richText: FieldSchemaGenerator<RichTextField> = (
   }
 
   schema.add({
-    [field.name]: localizeSchema(field, baseSchema, payload.config.localization, parentIsLocalized),
+    [field.name]: localizeSchema(field, baseSchema, cms.config.localization, parentIsLocalized),
   })
 }
 
 const row: FieldSchemaGenerator<RowField> = (
   field,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -672,7 +672,7 @@ const row: FieldSchemaGenerator<RowField> = (
     const addFieldSchema = getSchemaGenerator(subField.type)
 
     if (addFieldSchema) {
-      addFieldSchema(subField, schema, payload, buildSchemaOptions, parentIsLocalized)
+      addFieldSchema(subField, schema, cms, buildSchemaOptions, parentIsLocalized)
     }
   })
 }
@@ -680,7 +680,7 @@ const row: FieldSchemaGenerator<RowField> = (
 const select: FieldSchemaGenerator<SelectField> = (
   field,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -703,7 +703,7 @@ const select: FieldSchemaGenerator<SelectField> = (
     [field.name]: localizeSchema(
       field,
       field.hasMany ? [baseSchema] : baseSchema,
-      payload.config.localization,
+      cms.config.localization,
       parentIsLocalized,
     ),
   })
@@ -712,7 +712,7 @@ const select: FieldSchemaGenerator<SelectField> = (
 const tabs: FieldSchemaGenerator<TabsField> = (
   field,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -734,12 +734,12 @@ const tabs: FieldSchemaGenerator<TabsField> = (
           },
           configFields: tab.fields,
           parentIsLocalized: parentIsLocalized || tab.localized,
-          payload,
+          cms,
         }),
       }
 
       schema.add({
-        [tab.name]: localizeSchema(tab, baseSchema, payload.config.localization, parentIsLocalized),
+        [tab.name]: localizeSchema(tab, baseSchema, cms.config.localization, parentIsLocalized),
       })
     } else {
       tab.fields.forEach((subField: Field) => {
@@ -752,7 +752,7 @@ const tabs: FieldSchemaGenerator<TabsField> = (
           addFieldSchema(
             subField,
             schema,
-            payload,
+            cms,
             buildSchemaOptions,
             (parentIsLocalized || tab.localized) ?? false,
           )
@@ -765,7 +765,7 @@ const tabs: FieldSchemaGenerator<TabsField> = (
 const text: FieldSchemaGenerator<TextField> = (
   field,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -775,14 +775,14 @@ const text: FieldSchemaGenerator<TextField> = (
   }
 
   schema.add({
-    [field.name]: localizeSchema(field, baseSchema, payload.config.localization, parentIsLocalized),
+    [field.name]: localizeSchema(field, baseSchema, cms.config.localization, parentIsLocalized),
   })
 }
 
 const textarea: FieldSchemaGenerator<TextareaField> = (
   field: TextareaField,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
@@ -792,26 +792,26 @@ const textarea: FieldSchemaGenerator<TextareaField> = (
   }
 
   schema.add({
-    [field.name]: localizeSchema(field, baseSchema, payload.config.localization, parentIsLocalized),
+    [field.name]: localizeSchema(field, baseSchema, cms.config.localization, parentIsLocalized),
   })
 }
 
 const upload: FieldSchemaGenerator<UploadField> = (
   field,
   schema,
-  payload,
+  cms,
   buildSchemaOptions,
   parentIsLocalized,
 ): void => {
   const hasManyRelations = Array.isArray(field.relationTo)
   let schemaToReturn: { [key: string]: any } = {}
 
-  const valueType = getRelationshipValueType(field, payload)
+  const valueType = getRelationshipValueType(field, cms)
 
-  if (fieldShouldBeLocalized({ field, parentIsLocalized }) && payload.config.localization) {
+  if (fieldShouldBeLocalized({ field, parentIsLocalized }) && cms.config.localization) {
     schemaToReturn = {
       _id: false,
-      type: payload.config.localization.localeCodes.reduce((locales, locale) => {
+      type: cms.config.localization.localeCodes.reduce((locales, locale) => {
         let localeSchema: { [key: string]: any } = {}
 
         if (hasManyRelations) {
@@ -911,16 +911,16 @@ const fieldToSchemaMap = {
   upload,
 }
 
-const getRelationshipValueType = (field: RelationshipField | UploadField, payload: Payload) => {
+const getRelationshipValueType = (field: RelationshipField | UploadField, cms: CMS) => {
   if (typeof field.relationTo === 'string') {
-    const customIDType = payload.collections[field.relationTo]?.customIDType
+    const customIDType = cms.collections[field.relationTo]?.customIDType
 
     if (!customIDType) {
       return mongoose.Schema.Types.ObjectId
     }
 
     if (customIDType === 'number') {
-      if (payload.db.useBigIntForNumberIDs) {
+      if (cms.db.useBigIntForNumberIDs) {
         return mongoose.Schema.Types.BigInt
       } else {
         return mongoose.Schema.Types.Number
@@ -933,7 +933,7 @@ const getRelationshipValueType = (field: RelationshipField | UploadField, payloa
   // has custom id relationTo
   if (
     field.relationTo.some((relationTo) => {
-      return !!payload.collections[relationTo]?.customIDType
+      return !!cms.collections[relationTo]?.customIDType
     })
   ) {
     return mongoose.Schema.Types.Mixed

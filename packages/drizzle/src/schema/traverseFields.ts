@@ -139,7 +139,7 @@ export const traverseFields = ({
     // If field is localized,
     // add the column to the locale table instead of main table
     if (
-      adapter.payload.config.localization &&
+      adapter.cms.config.localization &&
       (isFieldLocalized || forceLocalized) &&
       field.type !== 'array' &&
       (field.type !== 'blocks' || adapter.blocksAsJSON) &&
@@ -226,7 +226,7 @@ export const traverseFields = ({
         }
 
         const isLocalized =
-          Boolean(isFieldLocalized && adapter.payload.config.localization) ||
+          Boolean(isFieldLocalized && adapter.cms.config.localization) ||
           withinLocalizedArrayOrBlock ||
           forceLocalized
 
@@ -385,7 +385,7 @@ export const traverseFields = ({
         const disableNotNullFromHere = Boolean(field.admin?.condition) || disableNotNull
 
         ;(field.blockReferences ?? field.blocks).forEach((_block) => {
-          const block = typeof _block === 'string' ? adapter.payload.blocks[_block] : _block
+          const block = typeof _block === 'string' ? adapter.cms.blocks[_block] : _block
 
           let blockTableName = createTableName({
             adapter,
@@ -466,7 +466,7 @@ export const traverseFields = ({
             }
 
             const isLocalized =
-              Boolean(isFieldLocalized && adapter.payload.config.localization) ||
+              Boolean(isFieldLocalized && adapter.cms.config.localization) ||
               withinLocalizedArrayOrBlock ||
               forceLocalized
 
@@ -724,7 +724,7 @@ export const traverseFields = ({
       case 'number': {
         if (field.hasMany) {
           const isLocalized =
-            Boolean(isFieldLocalized && adapter.payload.config.localization) ||
+            Boolean(isFieldLocalized && adapter.cms.config.localization) ||
             withinLocalizedArrayOrBlock ||
             forceLocalized
 
@@ -849,7 +849,7 @@ export const traverseFields = ({
           }
 
           const isLocalized =
-            Boolean(isFieldLocalized && adapter.payload.config.localization) ||
+            Boolean(isFieldLocalized && adapter.cms.config.localization) ||
             withinLocalizedArrayOrBlock ||
             forceLocalized
 
@@ -941,7 +941,7 @@ export const traverseFields = ({
           }
         } else {
           // simple relationships get a column on the targetTable with a foreign key to the relationTo table
-          const relationshipConfig = adapter.payload.collections[field.relationTo].config
+          const relationshipConfig = adapter.cms.collections[field.relationTo].config
 
           const tableName = adapter.tableNameMap.get(toSnakeCase(field.relationTo))
 
@@ -971,7 +971,7 @@ export const traverseFields = ({
           // add relationship to table
           relationsToBuild.set(fieldName, {
             type: 'one',
-            localized: adapter.payload.config.localization && (isFieldLocalized || forceLocalized),
+            localized: adapter.cms.config.localization && (isFieldLocalized || forceLocalized),
             target: tableName,
           })
 
@@ -983,7 +983,7 @@ export const traverseFields = ({
         }
 
         if (
-          Boolean(isFieldLocalized && adapter.payload.config.localization) ||
+          Boolean(isFieldLocalized && adapter.cms.config.localization) ||
           withinLocalizedArrayOrBlock
         ) {
           hasLocalizedRelationshipField = true
@@ -994,7 +994,7 @@ export const traverseFields = ({
       case 'text': {
         if (field.hasMany) {
           const isLocalized =
-            Boolean(isFieldLocalized && adapter.payload.config.localization) ||
+            Boolean(isFieldLocalized && adapter.cms.config.localization) ||
             withinLocalizedArrayOrBlock ||
             forceLocalized
 

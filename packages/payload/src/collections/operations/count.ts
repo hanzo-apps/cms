@@ -1,6 +1,6 @@
 import type { AccessResult } from '../../config/types.js'
 import type { CollectionSlug } from '../../index.js'
-import type { PayloadRequest, Where } from '../../types/index.js'
+import type { CMSRequest, Where } from '../../types/index.js'
 import type { Collection } from '../config/types.js'
 
 import { executeAccess } from '../../auth/executeAccess.js'
@@ -16,7 +16,7 @@ export type Arguments = {
   collection: Collection
   disableErrors?: boolean
   overrideAccess?: boolean
-  req?: PayloadRequest
+  req?: CMSRequest
   trash?: boolean
   where?: Where
 }
@@ -48,7 +48,7 @@ export const countOperation = async <TSlug extends CollectionSlug>(
       where,
     } = args
 
-    const { payload } = req!
+    const { cms } = req!
 
     // /////////////////////////////////////
     // Access
@@ -70,7 +70,7 @@ export const countOperation = async <TSlug extends CollectionSlug>(
     let result: { totalDocs: number }
 
     let fullWhere = combineQueries(where!, accessResult!)
-    sanitizeWhereQuery({ fields: collectionConfig.flattenedFields, payload, where: fullWhere })
+    sanitizeWhereQuery({ fields: collectionConfig.flattenedFields, cms, where: fullWhere })
 
     // Exclude trashed documents when trash: false
     fullWhere = appendNonTrashedFilter({
@@ -86,7 +86,7 @@ export const countOperation = async <TSlug extends CollectionSlug>(
       where: where!,
     })
 
-    result = await payload.db.count({
+    result = await cms.db.count({
       collection: collectionConfig.slug,
       req,
       where: fullWhere,

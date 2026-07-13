@@ -1,0 +1,25 @@
+# Canonical CI/CD — imports the shared hanzoai/ci reusable workflow, which reads
+# hanzo.yml (images + deploy + kms). No per-repo build logic, no GitHub-hosted
+# runners (defaults to the Hanzo cloud arc pool).
+#
+# NOTE: the repo's existing main.yml (upstream Payload tests) is untouched; this
+# is the additive image-build + deploy path that stands up cms.hanzo.ai from the
+# committed Dockerfile instead of an out-of-band build.
+name: CI/CD
+
+on:
+  push:
+    # hanzo-cms is this repo's mainline (default branch); main kept for parity.
+    branches: [hanzo-cms, main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  cicd:
+    uses: hanzoai/ci/.github/workflows/build.yml@v1
+    # Target the Hanzo arc scale set by its installation name (ARC scale sets are
+    # matched by name, not the default [self-hosted,linux,amd64] label triple).
+    with:
+      runner: '["hanzo-build-linux-amd64"]'
+    secrets: inherit

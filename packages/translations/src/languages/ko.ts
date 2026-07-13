@@ -396,7 +396,7 @@ export const koTranslations: DefaultTranslationsObject = {
     password: '비밀번호',
     pasteField: '필드 붙여넣기',
     pasteRow: '행 붙여넣기',
-    payloadSettings: 'Payload 설정',
+    cmsSettings: 'CMS 설정',
     permanentlyDelete: '영구적으로 삭제',
     permanentlyDeletedCountSuccessfully:
       '영구적으로 {{count}} {{label}}가 성공적으로 삭제되었습니다.',
@@ -415,7 +415,7 @@ export const koTranslations: DefaultTranslationsObject = {
     restoreAsPublished: '게시된 버전으로 복원하다',
     restoredCountSuccessfully: '성공적으로 {{count}} {{label}}를 복원했습니다.',
     restoring:
-      '원래 텍스트의 의미를 Payload 문맥 내에서 존중하십시오. 여기에는 매우 특정한 의미를 가진 일반 Payload 용어 목록이 있습니다:\n    - Collection: 컬렉션은 공통 구조와 목적을 공유하는 문서의 그룹입니다. 컬렉션은 Payload에서 컨텐츠를 구성하고 관리하는 데 사용됩니다.\n    - Field: 필드는 컬렉션 내의 문서에 있는 특정 데이터 조각입니다.',
+      '원래 텍스트의 의미를 CMS 문맥 내에서 존중하십시오. 여기에는 매우 특정한 의미를 가진 일반 CMS 용어 목록이 있습니다:\n    - Collection: 컬렉션은 공통 구조와 목적을 공유하는 문서의 그룹입니다. 컬렉션은 CMS에서 컨텐츠를 구성하고 관리하는 데 사용됩니다.\n    - Field: 필드는 컬렉션 내의 문서에 있는 특정 데이터 조각입니다.',
     row: '행',
     rows: '행',
     save: '저장',

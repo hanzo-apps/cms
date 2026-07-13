@@ -1,14 +1,14 @@
 import type { SendMailOptions as NodemailerSendMailOptions } from 'nodemailer'
 import type { Address } from 'nodemailer/lib/mailer'
 
-import type { Payload } from '../types/index.js'
+import type { CMS } from '../types/index.js'
 
 type Prettify<T> = {
   [K in keyof T]: T[K]
 } & NonNullable<unknown>
 
 /**
- * Options for sending an email. Allows access to the PayloadRequest object.
+ * Options for sending an email. Allows access to the CMSRequest object.
  *
  * @todo: Remove in v4. See `normalizeSendEmailOptions` for details.
  */
@@ -19,7 +19,7 @@ export type SendEmailOptions = Prettify<
 >
 
 /**
- * Email adapter after it has been initialized. This is used internally by Payload.
+ * Email adapter after it has been initialized. This is used internally by CMS.
  */
 export type InitializedEmailAdapter<TSendEmailResponse = unknown> = ReturnType<
   EmailAdapter<TSendEmailResponse>
@@ -31,7 +31,7 @@ export type InitializedEmailAdapter<TSendEmailResponse = unknown> = ReturnType<
  * This is the interface to use if you are creating a new email adapter.
  */
 
-export type EmailAdapter<TSendEmailResponse = unknown> = ({ payload }: { payload: Payload }) => {
+export type EmailAdapter<TSendEmailResponse = unknown> = ({ cms }: { cms: CMS }) => {
   defaultFromAddress: string
   defaultFromName: string
   name: string

@@ -1,6 +1,6 @@
 import type { ClientConfig } from '../config/client.js'
 import type { SanitizedConfig } from '../config/types.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 export async function applyLocaleFiltering({
   clientConfig,
@@ -9,7 +9,7 @@ export async function applyLocaleFiltering({
 }: {
   clientConfig: ClientConfig
   config: SanitizedConfig
-  req: PayloadRequest
+  req: CMSRequest
 }): Promise<void> {
   if (
     !clientConfig.localization ||

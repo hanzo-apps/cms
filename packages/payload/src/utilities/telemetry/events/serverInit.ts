@@ -1,4 +1,4 @@
-import type { Payload } from '../../../index.js'
+import type { CMS } from '../../../index.js'
 
 import { sendEvent } from '../index.js'
 
@@ -6,12 +6,12 @@ export type ServerInitEvent = {
   type: 'server-init'
 }
 
-export const serverInit = (payload: Payload): void => {
+export const serverInit = (cms: CMS): void => {
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
   sendEvent({
     event: {
       type: 'server-init',
     },
-    payload,
+    cms,
   })
 }

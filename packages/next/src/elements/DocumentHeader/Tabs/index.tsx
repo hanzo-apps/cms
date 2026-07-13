@@ -1,7 +1,7 @@
 import type {
   DocumentTabClientProps,
   DocumentTabServerPropsOnly,
-  PayloadRequest,
+  CMSRequest,
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
   SanitizedPermissions,
@@ -21,9 +21,9 @@ export const DocumentTabs: React.FC<{
   collectionConfig: SanitizedCollectionConfig
   globalConfig: SanitizedGlobalConfig
   permissions: SanitizedPermissions
-  req: PayloadRequest
+  req: CMSRequest
 }> = ({ collectionConfig, globalConfig, permissions, req }) => {
-  const { config } = req.payload
+  const { config } = req.cms
 
   const tabs = getTabs({
     collectionConfig,
@@ -52,13 +52,13 @@ export const DocumentTabs: React.FC<{
                     path: viewPath,
                   } satisfies DocumentTabClientProps,
                   Component: tabConfig.Component,
-                  importMap: req.payload.importMap,
+                  importMap: req.cms.importMap,
                   key: `tab-${index}`,
                   serverProps: {
                     collectionConfig,
                     globalConfig,
                     i18n: req.i18n,
-                    payload: req.payload,
+                    cms: req.cms,
                     permissions,
                     req,
                     user: req.user,

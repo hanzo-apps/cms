@@ -16,7 +16,7 @@ export const rollbackTransaction: RollbackTransaction = async function rollbackT
 
   // when session exists but is not inTransaction something unexpected is happening to the session
   if (!this.sessions[transactionID]?.inTransaction()) {
-    this.payload.logger.warn('rollbackTransaction called when no transaction exists')
+    this.cms.logger.warn('rollbackTransaction called when no transaction exists')
     delete this.sessions[transactionID]
     return
   }

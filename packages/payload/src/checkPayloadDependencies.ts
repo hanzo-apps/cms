@@ -1,18 +1,18 @@
 import { checkDependencies } from './utilities/dependencies/dependencyChecker.js'
-import { PAYLOAD_PACKAGE_LIST } from './versions/payloadPackageList.js'
+import { CMS_PACKAGE_LIST } from './versions/payloadPackageList.js'
 
-export function checkPayloadDependencies() {
-  const dependencies = [...PAYLOAD_PACKAGE_LIST]
+export function checkCMSDependencies() {
+  const dependencies = [...CMS_PACKAGE_LIST]
 
-  if (process.env.PAYLOAD_CI_DEPENDENCY_CHECKER !== 'true') {
+  if (process.env.CMS_CI_DEPENDENCY_CHECKER !== 'true') {
     dependencies.push('@hanzo/cms-plugin-sentry')
   }
 
-  // First load. First check if there are mismatching dependency versions of payload packages
+  // First load. First check if there are mismatching dependency versions of cms packages
   void checkDependencies({
     dependencyGroups: [
       {
-        name: 'payload',
+        name: 'cms',
         dependencies,
         targetVersionDependency: 'payload',
       },

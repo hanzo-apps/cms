@@ -1,5 +1,5 @@
-import type { AuthCollectionSlug, Payload, RequestContext } from '../../../index.js'
-import type { PayloadRequest } from '../../../types/index.js'
+import type { AuthCollectionSlug, CMS, RequestContext } from '../../../index.js'
+import type { CMSRequest } from '../../../types/index.js'
 import type { Result } from '../resetPassword.js'
 
 import { APIError } from '../../../errors/index.js'
@@ -14,16 +14,16 @@ export type Options<TSlug extends AuthCollectionSlug> = {
     token: string
   }
   overrideAccess: boolean
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
 }
 
 export async function resetPasswordLocal<TSlug extends AuthCollectionSlug>(
-  payload: Payload,
+  cms: CMS,
   options: Options<TSlug>,
 ): Promise<Result> {
   const { collection: collectionSlug, data, overrideAccess } = options
 
-  const collection = payload.collections[collectionSlug]
+  const collection = cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(
@@ -37,7 +37,7 @@ export async function resetPasswordLocal<TSlug extends AuthCollectionSlug>(
     collection,
     data,
     overrideAccess,
-    req: await createLocalReq(options, payload),
+    req: await createLocalReq(options, cms),
   })
 
   if (collection.config.auth.removeTokenFromResponses) {

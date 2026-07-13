@@ -12,7 +12,7 @@ export const countGlobalVersions: CountGlobalVersions = async function countGlob
   this: DrizzleAdapter,
   { global, locale, req, where: whereArg },
 ) {
-  const globalConfig: SanitizedGlobalConfig = this.payload.globals.config.find(
+  const globalConfig: SanitizedGlobalConfig = this.cms.globals.config.find(
     ({ slug }) => slug === global,
   )
 
@@ -20,7 +20,7 @@ export const countGlobalVersions: CountGlobalVersions = async function countGlob
     `_${toSnakeCase(globalConfig.slug)}${this.versionsSuffix}`,
   )
 
-  const fields = buildVersionGlobalFields(this.payload.config, globalConfig, true)
+  const fields = buildVersionGlobalFields(this.cms.config, globalConfig, true)
 
   const { joins, where } = buildQuery({
     adapter: this,

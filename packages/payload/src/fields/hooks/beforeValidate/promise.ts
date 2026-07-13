@@ -2,7 +2,7 @@ import type { RichTextAdapter } from '../../../admin/RichText.js'
 import type { SanitizedCollectionConfig, TypeWithID } from '../../../collections/config/types.js'
 import type { SanitizedGlobalConfig } from '../../../globals/config/types.js'
 import type { RequestContext } from '../../../index.js'
-import type { JsonObject, JsonValue, PayloadRequest } from '../../../types/index.js'
+import type { JsonObject, JsonValue, CMSRequest } from '../../../types/index.js'
 import type { Block, Field, TabAsField } from '../../config/types.js'
 
 import { MissingEditorProp } from '../../../errors/index.js'
@@ -34,7 +34,7 @@ type Args<T> = {
   parentIsLocalized: boolean
   parentPath: string
   parentSchemaPath: string
-  req: PayloadRequest
+  req: CMSRequest
   siblingData: JsonObject
   /**
    * The original siblingData (not modified by any hooks)
@@ -170,7 +170,7 @@ export const promise = async <T>({
         if (Array.isArray(field.relationTo)) {
           if (Array.isArray(value)) {
             value.forEach((relatedDoc: { relationTo: string; value: JsonValue }, i) => {
-              const relatedCollection = req.payload.collections?.[relatedDoc.relationTo]?.config
+              const relatedCollection = req.cms.collections?.[relatedDoc.relationTo]?.config
 
               if (
                 typeof relatedDoc.value === 'object' &&
@@ -195,7 +195,7 @@ export const promise = async <T>({
             })
           }
           if (field.hasMany !== true && valueIsValueWithRelation(value)) {
-            const relatedCollection = req.payload.collections?.[value.relationTo]?.config
+            const relatedCollection = req.cms.collections?.[value.relationTo]?.config
 
             if (typeof value.value === 'object' && value.value && 'id' in value.value) {
               value.value = (value.value as TypeWithID).id
@@ -216,7 +216,7 @@ export const promise = async <T>({
             value.forEach((relatedDoc: unknown, i) => {
               const relatedCollection = Array.isArray(field.relationTo)
                 ? undefined
-                : req.payload.collections?.[field.relationTo]?.config
+                : req.cms.collections?.[field.relationTo]?.config
 
               if (typeof relatedDoc === 'object' && relatedDoc && 'id' in relatedDoc) {
                 value[i] = relatedDoc.id
@@ -234,7 +234,7 @@ export const promise = async <T>({
             })
           }
           if (field.hasMany !== true && value) {
-            const relatedCollection = req.payload.collections?.[field.relationTo]?.config
+            const relatedCollection = req.cms.collections?.[field.relationTo]?.config
 
             if (typeof value === 'object' && value && 'id' in value) {
               siblingData[field.name] = value.id
@@ -389,7 +389,7 @@ export const promise = async <T>({
           const blockTypeToMatch = (row as JsonObject).blockType || rowSiblingDoc.blockType
 
           const block: Block | undefined =
-            req.payload.blocks[blockTypeToMatch] ??
+            req.cms.blocks[blockTypeToMatch] ??
             ((field.blockReferences ?? field.blocks).find(
               (curBlock) => typeof curBlock !== 'string' && curBlock.slug === blockTypeToMatch,
             ) as Block | undefined)

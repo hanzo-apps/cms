@@ -7,7 +7,7 @@ import type {
   FieldSchemaMap,
   FormState,
   FormStateWithoutComponents,
-  PayloadRequest,
+  CMSRequest,
   SanitizedFieldsPermissions,
   SelectMode,
   SelectType,
@@ -73,7 +73,7 @@ type Args = {
    */
   renderAllFields: boolean
   renderFieldFn?: RenderFieldMethod
-  req: PayloadRequest
+  req: CMSRequest
   schemaPath: string
   select?: SelectType
   selectMode?: SelectMode

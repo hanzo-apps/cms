@@ -1,10 +1,10 @@
 import type {
   AuthCollectionSlug,
   AuthOperationsFromCollectionSlug,
-  Payload,
+  CMS,
   RequestContext,
 } from '../../../index.js'
-import type { PayloadRequest } from '../../../types/index.js'
+import type { CMSRequest } from '../../../types/index.js'
 import type { LoginResult } from '../login.js'
 
 import { APIError } from '../../../errors/index.js'
@@ -19,13 +19,13 @@ export type Options<TSlug extends AuthCollectionSlug> = {
   fallbackLocale?: string
   locale?: string
   overrideAccess?: boolean
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   showHiddenFields?: boolean
   trash?: boolean
 }
 
 export async function loginLocal<TSlug extends AuthCollectionSlug>(
-  payload: Payload,
+  cms: CMS,
   options: Options<TSlug>,
 ): Promise<LoginResult<TSlug>> {
   const {
@@ -36,7 +36,7 @@ export async function loginLocal<TSlug extends AuthCollectionSlug>(
     showHiddenFields,
   } = options
 
-  const collection = payload.collections[collectionSlug]
+  const collection = cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(
@@ -49,7 +49,7 @@ export async function loginLocal<TSlug extends AuthCollectionSlug>(
     data,
     depth,
     overrideAccess,
-    req: await createLocalReq(options, payload),
+    req: await createLocalReq(options, cms),
     showHiddenFields,
   }
 

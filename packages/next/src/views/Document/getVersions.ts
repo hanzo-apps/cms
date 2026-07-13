@@ -2,7 +2,7 @@ import { sanitizeID, traverseForLocalizedFields } from '@hanzo/cms-ui/shared'
 import {
   combineQueries,
   extractAccessFromPermission,
-  type Payload,
+  type CMS,
   type SanitizedCollectionConfig,
   type SanitizedDocumentPermissions,
   type SanitizedGlobalConfig,
@@ -23,7 +23,7 @@ type Args = {
   globalConfig?: SanitizedGlobalConfig
   id?: number | string
   locale?: string
-  payload: Payload
+  cms: CMS
   user: TypedUser
 }
 
@@ -44,7 +44,7 @@ export const getVersions = async ({
   docPermissions,
   globalConfig,
   locale,
-  payload,
+  cms,
   user,
 }: Args): Result => {
   const id = sanitizeID(idArg)
@@ -59,7 +59,7 @@ export const getVersions = async ({
   const hasLocalizedFields = traverseForLocalizedFields(entityConfig.fields)
   const localizedDraftsEnabled =
     hasDraftsEnabled(entityConfig) &&
-    typeof payload.config.localization === 'object' &&
+    typeof cms.config.localization === 'object' &&
     hasLocalizedFields
 
   const shouldFetchVersions = Boolean(versionsConfig && docPermissions?.readVersions)
@@ -94,7 +94,7 @@ export const getVersions = async ({
         publishedDoc = doc
       } else {
         publishedDoc = (
-          await payload.find({
+          await cms.find({
             collection: collectionConfig.slug,
             depth: 0,
             limit: 1,
@@ -145,7 +145,7 @@ export const getVersions = async ({
           })
         }
 
-        const mostRecentVersion = await payload.findVersions({
+        const mostRecentVersion = await cms.findVersions({
           collection: collectionConfig.slug,
           depth: 0,
           limit: 1,
@@ -167,7 +167,7 @@ export const getVersions = async ({
       }
 
       if (publishedDoc?.updatedAt) {
-        ;({ totalDocs: unpublishedVersionCount } = await payload.countVersions({
+        ;({ totalDocs: unpublishedVersionCount } = await cms.countVersions({
           collection: collectionConfig.slug,
           locale,
           user,
@@ -215,7 +215,7 @@ export const getVersions = async ({
       })
     }
 
-    ;({ totalDocs: versionCount } = await payload.countVersions({
+    ;({ totalDocs: versionCount } = await cms.countVersions({
       collection: collectionConfig.slug,
       locale,
       user,
@@ -232,7 +232,7 @@ export const getVersions = async ({
       if (doc?._status === 'published') {
         publishedDoc = doc
       } else {
-        publishedDoc = await payload.findGlobal({
+        publishedDoc = await cms.findGlobal({
           slug: globalConfig.slug,
           depth: 0,
           locale,
@@ -248,7 +248,7 @@ export const getVersions = async ({
       }
 
       if (hasAutosaveEnabled(globalConfig)) {
-        const mostRecentVersion = await payload.findGlobalVersions({
+        const mostRecentVersion = await cms.findGlobalVersions({
           slug: globalConfig.slug,
           limit: 1,
           locale,
@@ -268,7 +268,7 @@ export const getVersions = async ({
       }
 
       if (publishedDoc?.updatedAt) {
-        ;({ totalDocs: unpublishedVersionCount } = await payload.countGlobalVersions({
+        ;({ totalDocs: unpublishedVersionCount } = await cms.countGlobalVersions({
           global: globalConfig.slug,
           locale,
           user,
@@ -293,7 +293,7 @@ export const getVersions = async ({
       }
     }
 
-    ;({ totalDocs: versionCount } = await payload.countGlobalVersions({
+    ;({ totalDocs: versionCount } = await cms.countGlobalVersions({
       global: globalConfig.slug,
       locale,
       user,

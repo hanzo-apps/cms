@@ -2,7 +2,7 @@ import type {
   Field,
   Job,
   MaybePromise,
-  PayloadRequest,
+  CMSRequest,
   StringKeyOf,
   TypedJobs,
 } from '../../../index.js'
@@ -49,7 +49,7 @@ export type TaskHandlerArgs<
       ? TTaskSlugOrInputOutput['input']
       : never
   job: Job<TWorkflowSlug>
-  req: PayloadRequest
+  req: CMSRequest
   tasks: RunTaskFunctions
 }
 
@@ -58,7 +58,7 @@ export type TaskHandlerArgs<
  */
 export type TaskHandlerArgsNoInput<TWorkflowInput extends false | object = false> = {
   job: Job<TWorkflowInput>
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export type TaskHandler<
@@ -123,7 +123,7 @@ export type RunInlineTaskFunction = <TTaskInput extends object, TTaskOutput exte
       inlineTask: RunInlineTaskFunction
       input: TTaskInput
       job: Job<any>
-      req: PayloadRequest
+      req: CMSRequest
       tasks: RunTaskFunctions
     }) => MaybePromise<
       | {
@@ -150,7 +150,7 @@ export type TaskCallbackArgs = {
    */
   input?: object
   job: Job
-  req: PayloadRequest
+  req: CMSRequest
   taskStatus: null | SingleTaskStatus<string>
 }
 
@@ -241,7 +241,7 @@ export type TaskConfig<
    */
   handler: string | TaskHandler<TTaskSlugOrInputOutput>
   /**
-   * Define the input field schema - payload will generate a type for this schema.
+   * Define the input field schema - cms will generate a type for this schema.
    */
   inputSchema?: Field[]
   /**
@@ -261,7 +261,7 @@ export type TaskConfig<
    */
   onSuccess?: TaskCallbackFn
   /**
-   * Define the output field schema - payload will generate a type for this schema.
+   * Define the output field schema - cms will generate a type for this schema.
    */
   outputSchema?: Field[]
   /**

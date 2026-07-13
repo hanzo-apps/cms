@@ -401,7 +401,7 @@ export const rsTranslations: DefaultTranslationsObject = {
     password: 'Лозинка',
     pasteField: 'Залепи поље',
     pasteRow: 'Залепи ред',
-    payloadSettings: 'Payload поставке',
+    cmsSettings: 'CMS поставке',
     permanentlyDelete: 'Trajno Izbriši',
     permanentlyDeletedCountSuccessfully: 'Trajno obrisano {{count}} {{label}} uspešno.',
     perPage: 'По страници: {{limit}}',

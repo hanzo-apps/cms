@@ -1,8 +1,8 @@
 import type pino from 'pino'
 
-import type { Payload } from '../types/index.js'
+import type { CMS } from '../types/index.js'
 
-export const logError = ({ err, payload }: { err: unknown; payload: Payload }): void => {
+export const logError = ({ err, cms }: { err: unknown; cms: CMS }): void => {
   let level: false | pino.Level = 'error'
 
   if (
@@ -10,10 +10,10 @@ export const logError = ({ err, payload }: { err: unknown; payload: Payload }): 
     typeof err === 'object' &&
     'name' in err &&
     typeof err.name === 'string' &&
-    typeof payload.config.loggingLevels[err.name as keyof typeof payload.config.loggingLevels] !==
+    typeof cms.config.loggingLevels[err.name as keyof typeof cms.config.loggingLevels] !==
       'undefined'
   ) {
-    level = payload.config.loggingLevels[err.name as keyof typeof payload.config.loggingLevels]
+    level = cms.config.loggingLevels[err.name as keyof typeof cms.config.loggingLevels]
   }
 
   if (level) {
@@ -25,6 +25,6 @@ export const logError = ({ err, payload }: { err: unknown; payload: Payload }): 
       logObject.err = err
     }
 
-    payload.logger[level](logObject)
+    cms.logger[level](logObject)
   }
 }

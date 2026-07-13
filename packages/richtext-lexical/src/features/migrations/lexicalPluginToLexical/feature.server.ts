@@ -1,4 +1,4 @@
-import type { LexicalPluginNodeConverter, PayloadPluginLexicalData } from './converter/types.js'
+import type { LexicalPluginNodeConverter, CMSPluginLexicalData } from './converter/types.js'
 
 import { createServerFeature } from '../../../utilities/createServerFeature.js'
 import { defaultConverters } from './converter/defaultConverters.js'
@@ -51,7 +51,7 @@ export const LexicalPluginToLexicalFeature =
                   // Lexical Plugin => convert to lexical
                   return convertLexicalPluginToLexical({
                     converters: props.converters as LexicalPluginNodeConverter[],
-                    lexicalPluginData: value as PayloadPluginLexicalData,
+                    lexicalPluginData: value as CMSPluginLexicalData,
                     quiet: props?.quiet,
                   })
                 },

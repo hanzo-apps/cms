@@ -11,7 +11,7 @@ export const findGlobalVersions: FindGlobalVersions = async function findGlobalV
   this: DrizzleAdapter,
   { global, limit, locale, page, pagination, req, select, sort: sortArg, where },
 ) {
-  const globalConfig: SanitizedGlobalConfig = this.payload.globals.config.find(
+  const globalConfig: SanitizedGlobalConfig = this.cms.globals.config.find(
     ({ slug }) => slug === global,
   )
   const sort = sortArg !== undefined && sortArg !== null ? sortArg : '-createdAt'
@@ -20,7 +20,7 @@ export const findGlobalVersions: FindGlobalVersions = async function findGlobalV
     `_${toSnakeCase(globalConfig.slug)}${this.versionsSuffix}`,
   )
 
-  const fields = buildVersionGlobalFields(this.payload.config, globalConfig, true)
+  const fields = buildVersionGlobalFields(this.cms.config, globalConfig, true)
 
   return findMany({
     adapter: this,

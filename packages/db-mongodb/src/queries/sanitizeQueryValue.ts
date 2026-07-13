@@ -3,7 +3,7 @@ import type {
   FlattenedBlocksField,
   FlattenedField,
   Operator,
-  Payload,
+  CMS,
   RelationshipField,
 } from '@hanzo/cms'
 
@@ -18,7 +18,7 @@ type SanitizeQueryValueArgs = {
   operator: Operator
   parentIsLocalized: boolean
   path: string
-  payload: Payload
+  cms: CMS
   val: any
 }
 
@@ -49,20 +49,20 @@ const buildExistsQuery = (formattedValue: unknown, path: string, treatEmptyStrin
 // returns nestedField Field object from blocks.nestedField path because getLocalizedPaths splits them only for relationships
 const getFieldFromSegments = ({
   field,
-  payload,
+  cms,
   segments,
 }: {
   field: FlattenedBlock | FlattenedField
-  payload: Payload
+  cms: CMS
   segments: string[]
 }): FlattenedField | undefined => {
   if ('blocks' in field || 'blockReferences' in field) {
     const _field: FlattenedBlocksField = field as FlattenedBlocksField
     for (const _block of _field.blockReferences ?? _field.blocks) {
       const block: FlattenedBlock | undefined =
-        typeof _block === 'string' ? payload.blocks[_block] : _block
+        typeof _block === 'string' ? cms.blocks[_block] : _block
       if (block) {
-        const field = getFieldFromSegments({ field: block, payload, segments })
+        const field = getFieldFromSegments({ field: block, cms, segments })
         if (field) {
           return field
         }
@@ -83,7 +83,7 @@ const getFieldFromSegments = ({
       }
 
       segments.shift()
-      return getFieldFromSegments({ field: foundField, payload, segments })
+      return getFieldFromSegments({ field: foundField, cms, segments })
     }
   }
 }
@@ -95,7 +95,7 @@ export const sanitizeQueryValue = ({
   operator,
   parentIsLocalized,
   path,
-  payload,
+  cms,
   val,
 }: SanitizeQueryValueArgs):
   | {
@@ -110,7 +110,7 @@ export const sanitizeQueryValue = ({
   if (['array', 'blocks', 'group', 'tab'].includes(field.type) && path.includes('.')) {
     const segments = path.split('.')
     segments.shift()
-    const foundField = getFieldFromSegments({ field, payload, segments })
+    const foundField = getFieldFromSegments({ field, cms, segments })
 
     if (foundField) {
       field = foundField
@@ -233,7 +233,7 @@ export const sanitizeQueryValue = ({
 
       if (
         fieldShouldBeLocalized({ field, parentIsLocalized }) &&
-        payload.config.localization &&
+        cms.config.localization &&
         locale
       ) {
         localizedPath = `${path}.${locale}`
@@ -274,8 +274,8 @@ export const sanitizeQueryValue = ({
           return formattedValues
         }
 
-        if (typeof relationTo === 'string' && payload.collections[relationTo]?.customIDType) {
-          if (payload.collections[relationTo].customIDType === 'number') {
+        if (typeof relationTo === 'string' && cms.collections[relationTo]?.customIDType) {
+          if (cms.collections[relationTo].customIDType === 'number') {
             const parsedNumber = parseFloat(inVal)
             if (!Number.isNaN(parsedNumber)) {
               formattedValues.push(parsedNumber)
@@ -289,7 +289,7 @@ export const sanitizeQueryValue = ({
 
         if (
           Array.isArray(relationTo) &&
-          relationTo.some((relationTo) => !!payload.collections[relationTo]?.customIDType)
+          relationTo.some((relationTo) => !!cms.collections[relationTo]?.customIDType)
         ) {
           if (Types.ObjectId.isValid(inVal.toString())) {
             formattedValues.push(new Types.ObjectId(inVal))
@@ -316,7 +316,7 @@ export const sanitizeQueryValue = ({
       field.hasMany
     ) {
       if (typeof relationTo === 'string') {
-        const customIDType = payload.collections[relationTo]?.customIDType
+        const customIDType = cms.collections[relationTo]?.customIDType
 
         // Convert array values to proper types (ObjectId or custom ID type)
         formattedValue = formattedValue.map((v) => {
@@ -334,7 +334,7 @@ export const sanitizeQueryValue = ({
         formattedValue = formattedValue.map((item) => {
           if (typeof item === 'object' && 'value' in item) {
             const relTo = item.relationTo
-            const customIDType = payload.collections[relTo]?.customIDType
+            const customIDType = cms.collections[relTo]?.customIDType
             if (customIDType === 'number') {
               const parsed = parseFloat(item.value)
               return { relationTo: relTo, value: Number.isNaN(parsed) ? item.value : parsed }
@@ -356,7 +356,7 @@ export const sanitizeQueryValue = ({
       (!Array.isArray(relationTo) || !path.endsWith('.relationTo'))
     ) {
       if (typeof relationTo === 'string') {
-        const customIDType = payload.collections[relationTo]?.customIDType
+        const customIDType = cms.collections[relationTo]?.customIDType
 
         if (customIDType) {
           if (customIDType === 'number') {
@@ -374,7 +374,7 @@ export const sanitizeQueryValue = ({
         }
       } else {
         const hasCustomIDType = relationTo.some(
-          (relationTo) => !!payload.collections[relationTo]?.customIDType,
+          (relationTo) => !!cms.collections[relationTo]?.customIDType,
         )
 
         if (hasCustomIDType) {

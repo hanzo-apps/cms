@@ -1,7 +1,7 @@
 import * as p from '@clack/prompts'
 import { describe, it, expect, vitest } from 'vitest'
 
-import { parseAndModifyConfigContent, withPayloadStatement } from './wrap-next-config.js'
+import { parseAndModifyConfigContent, withCMSStatement } from './wrap-next-config.js'
 
 const tsConfigs = {
   defaultNextConfig: `import type { NextConfig } from "next";
@@ -80,10 +80,10 @@ module.exports = nextConfig;
 `,
 }
 
-describe('parseAndInsertWithPayload', () => {
+describe('parseAndInsertWithCMS', () => {
   describe('ts', () => {
     const configType = 'ts'
-    const importStatement = withPayloadStatement[configType]
+    const importStatement = withCMSStatement[configType]
 
     it('should parse the default next config', async () => {
       const { modifiedConfigContent } = await parseAndModifyConfigContent(
@@ -91,7 +91,7 @@ describe('parseAndInsertWithPayload', () => {
         configType,
       )
       expect(modifiedConfigContent).toContain(importStatement)
-      expect(modifiedConfigContent).toContain('withPayload(nextConfig)')
+      expect(modifiedConfigContent).toContain('withCMS(nextConfig)')
     })
 
     it('should parse the config with a function', async () => {
@@ -99,7 +99,7 @@ describe('parseAndInsertWithPayload', () => {
         tsConfigs.nextConfigWithFunc,
         configType,
       )
-      expect(modifiedConfigContent2).toContain('withPayload(someFunc(nextConfig))')
+      expect(modifiedConfigContent2).toContain('withCMS(someFunc(nextConfig))')
     })
 
     it('should parse the config with a multi-lined function', async () => {
@@ -108,7 +108,7 @@ describe('parseAndInsertWithPayload', () => {
         configType,
       )
       expect(modifiedConfigContent).toContain(importStatement)
-      expect(modifiedConfigContent).toMatch(/withPayload\(someFunc\(\n {2}nextConfig\n\)\)/)
+      expect(modifiedConfigContent).toMatch(/withCMS\(someFunc\(\n {2}nextConfig\n\)\)/)
     })
 
     it('should parse the config with a spread', async () => {
@@ -117,26 +117,26 @@ describe('parseAndInsertWithPayload', () => {
         configType,
       )
       expect(modifiedConfigContent).toContain(importStatement)
-      expect(modifiedConfigContent).toContain('withPayload(nextConfig)')
+      expect(modifiedConfigContent).toContain('withCMS(nextConfig)')
     })
   })
   describe('esm', () => {
     const configType = 'esm'
-    const importStatement = withPayloadStatement[configType]
+    const importStatement = withCMSStatement[configType]
     it('should parse the default next config', async () => {
       const { modifiedConfigContent } = await parseAndModifyConfigContent(
         esmConfigs.defaultNextConfig,
         configType,
       )
       expect(modifiedConfigContent).toContain(importStatement)
-      expect(modifiedConfigContent).toContain('withPayload(nextConfig)')
+      expect(modifiedConfigContent).toContain('withCMS(nextConfig)')
     })
     it('should parse the config with a function', async () => {
       const { modifiedConfigContent } = await parseAndModifyConfigContent(
         esmConfigs.nextConfigWithFunc,
         configType,
       )
-      expect(modifiedConfigContent).toContain('withPayload(someFunc(nextConfig))')
+      expect(modifiedConfigContent).toContain('withCMS(someFunc(nextConfig))')
     })
 
     it('should parse the config with a multi-lined function', async () => {
@@ -145,7 +145,7 @@ describe('parseAndInsertWithPayload', () => {
         configType,
       )
       expect(modifiedConfigContent).toContain(importStatement)
-      expect(modifiedConfigContent).toMatch(/withPayload\(someFunc\(\n {2}nextConfig\n\)\)/)
+      expect(modifiedConfigContent).toMatch(/withCMS\(someFunc\(\n {2}nextConfig\n\)\)/)
     })
 
     it('should parse the config with a spread', async () => {
@@ -154,7 +154,7 @@ describe('parseAndInsertWithPayload', () => {
         configType,
       )
       expect(modifiedConfigContent).toContain(importStatement)
-      expect(modifiedConfigContent).toContain('withPayload(nextConfig)')
+      expect(modifiedConfigContent).toContain('withCMS(nextConfig)')
     })
 
     // Unsupported: export { wrapped as default }
@@ -176,14 +176,14 @@ describe('parseAndInsertWithPayload', () => {
 
   describe('cjs', () => {
     const configType = 'cjs'
-    const requireStatement = withPayloadStatement[configType]
+    const requireStatement = withCMSStatement[configType]
     it('should parse the default next config', async () => {
       const { modifiedConfigContent } = await parseAndModifyConfigContent(
         cjsConfigs.defaultNextConfig,
         configType,
       )
       expect(modifiedConfigContent).toContain(requireStatement)
-      expect(modifiedConfigContent).toContain('withPayload(nextConfig)')
+      expect(modifiedConfigContent).toContain('withCMS(nextConfig)')
     })
     it('should parse anonymous default config', async () => {
       const { modifiedConfigContent } = await parseAndModifyConfigContent(
@@ -191,14 +191,14 @@ describe('parseAndInsertWithPayload', () => {
         configType,
       )
       expect(modifiedConfigContent).toContain(requireStatement)
-      expect(modifiedConfigContent).toContain('withPayload({})')
+      expect(modifiedConfigContent).toContain('withCMS({})')
     })
     it('should parse the config with a function', async () => {
       const { modifiedConfigContent } = await parseAndModifyConfigContent(
         cjsConfigs.nextConfigWithFunc,
         configType,
       )
-      expect(modifiedConfigContent).toContain('withPayload(someFunc(nextConfig))')
+      expect(modifiedConfigContent).toContain('withCMS(someFunc(nextConfig))')
     })
     it('should parse the config with a multi-lined function', async () => {
       const { modifiedConfigContent } = await parseAndModifyConfigContent(
@@ -206,7 +206,7 @@ describe('parseAndInsertWithPayload', () => {
         configType,
       )
       expect(modifiedConfigContent).toContain(requireStatement)
-      expect(modifiedConfigContent).toMatch(/withPayload\(someFunc\(\n {2}nextConfig\n\)\)/)
+      expect(modifiedConfigContent).toMatch(/withCMS\(someFunc\(\n {2}nextConfig\n\)\)/)
     })
     it('should parse the config with a named export as default', async () => {
       const { modifiedConfigContent } = await parseAndModifyConfigContent(
@@ -214,7 +214,7 @@ describe('parseAndInsertWithPayload', () => {
         configType,
       )
       expect(modifiedConfigContent).toContain(requireStatement)
-      expect(modifiedConfigContent).toContain('withPayload(wrapped)')
+      expect(modifiedConfigContent).toContain('withCMS(wrapped)')
     })
 
     it('should parse the config with a spread', async () => {
@@ -223,7 +223,7 @@ describe('parseAndInsertWithPayload', () => {
         configType,
       )
       expect(modifiedConfigContent).toContain(requireStatement)
-      expect(modifiedConfigContent).toContain('withPayload(nextConfig)')
+      expect(modifiedConfigContent).toContain('withCMS(nextConfig)')
     })
   })
 })

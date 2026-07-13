@@ -1,5 +1,5 @@
 import type { ClientSession } from 'mongoose'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import type { MongooseAdapter } from '../index.js'
 
@@ -9,7 +9,7 @@ import type { MongooseAdapter } from '../index.js'
  */
 export async function getSession(
   db: MongooseAdapter,
-  req?: Partial<PayloadRequest>,
+  req?: Partial<CMSRequest>,
 ): Promise<ClientSession | undefined> {
   if (!req) {
     return

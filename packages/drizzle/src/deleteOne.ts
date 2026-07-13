@@ -17,7 +17,7 @@ export const deleteOne: DeleteOne = async function deleteOne(
   this: DrizzleAdapter,
   { collection: collectionSlug, req, returning, select, where: whereArg },
 ) {
-  const collection = this.payload.collections[collectionSlug].config
+  const collection = this.cms.collections[collectionSlug].config
 
   const tableName = this.tableNameMap.get(toSnakeCase(collection.slug))
 
@@ -71,7 +71,7 @@ export const deleteOne: DeleteOne = async function deleteOne(
       ? null
       : transform({
           adapter: this,
-          config: this.payload.config,
+          config: this.cms.config,
           data: docToDelete,
           fields: collection.flattenedFields,
           joinQuery: false,

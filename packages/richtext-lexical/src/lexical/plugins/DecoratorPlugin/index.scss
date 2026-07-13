@@ -1,6 +1,6 @@
 @import '~@hanzo/cms-ui/scss';
 
-@layer payload-default {
+@layer cms-default {
   [data-lexical-decorator='true'] {
     width: fit-content;
     border-radius: $style-radius-m;

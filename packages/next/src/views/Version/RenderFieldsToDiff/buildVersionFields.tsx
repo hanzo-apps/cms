@@ -12,8 +12,8 @@ import {
   type FieldTypes,
   type FlattenedBlock,
   MissingEditorProp,
-  type PayloadComponent,
-  type PayloadRequest,
+  type CMSComponent,
+  type CMSRequest,
   type SanitizedFieldPermissions,
   type SanitizedFieldsPermissions,
   type VersionField,
@@ -31,7 +31,7 @@ import { diffComponents } from './fields/index.js'
 export type BuildVersionFieldsArgs = {
   clientSchemaMap: ClientFieldSchemaMap
   customDiffComponents: Partial<
-    Record<FieldTypes, PayloadComponent<FieldDiffServerProps, FieldDiffClientProps>>
+    Record<FieldTypes, CMSComponent<FieldDiffServerProps, FieldDiffClientProps>>
   >
   entitySlug: string
   fields: Field[]
@@ -43,7 +43,7 @@ export type BuildVersionFieldsArgs = {
   parentIsLocalized: boolean
   parentPath: string
   parentSchemaPath: string
-  req: PayloadRequest
+  req: CMSRequest
   selectedLocales: string[]
   versionFromSiblingData: object
   versionToSiblingData: object
@@ -97,7 +97,7 @@ export const buildVersionFields = ({
     const clientField = clientSchemaMap.get(entitySlug + '.' + schemaPath)
 
     if (!clientField) {
-      req.payload.logger.error({
+      req.cms.logger.error({
         clientFieldKey: entitySlug + '.' + schemaPath,
         clientSchemaMapKeys: Array.from(clientSchemaMap.keys()),
         msg: 'No client field found for ' + entitySlug + '.' + schemaPath,
@@ -445,7 +445,7 @@ const buildVersionField = ({
 
       const blockSlugToMatch: string = toRow?.blockType ?? fromRow?.blockType
       const toBlock =
-        req.payload.blocks[blockSlugToMatch] ??
+        req.cms.blocks[blockSlugToMatch] ??
         ((field.blockReferences ?? field.blocks).find(
           (block) => typeof block !== 'string' && block.slug === blockSlugToMatch,
         ) as FlattenedBlock | undefined)
@@ -458,7 +458,7 @@ const buildVersionField = ({
         const fromBlockSlugToMatch: string = toRow?.blockType ?? fromRow?.blockType
 
         const fromBlock =
-          req.payload.blocks[fromBlockSlugToMatch] ??
+          req.cms.blocks[fromBlockSlugToMatch] ??
           ((field.blockReferences ?? field.blocks).find(
             (block) => typeof block !== 'string' && block.slug === fromBlockSlugToMatch,
           ) as FlattenedBlock | undefined)
@@ -556,7 +556,7 @@ const buildVersionField = ({
     clientProps: clientDiffProps,
     Component: CustomComponent,
     Fallback: DefaultComponent,
-    importMap: req.payload.importMap,
+    importMap: req.cms.importMap,
     key: 'diff component',
     serverProps: serverDiffProps,
   })

@@ -1,4 +1,4 @@
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { executeAccess } from '../../auth/executeAccess.js'
 import { APIError } from '../../errors/APIError.js'
@@ -14,7 +14,7 @@ import { safeFetch } from '../safeFetch.js'
 // If doc id is not provided, it means we are creating a new doc
 // /:collectionSlug/paste-url?src=:fileUrl
 
-export const getFileFromURLHandler: PayloadHandler = async (req) => {
+export const getFileFromURLHandler: CMSHandler = async (req) => {
   const { id, collection } = getRequestCollectionWithID(req, { optionalID: true })
 
   if (!req.user) {

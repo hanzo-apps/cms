@@ -52,7 +52,7 @@ export const groupUpSQLStatements = (list: string[]): Record<Groups, string[]> =
     addConstraint: 'ADD CONSTRAINT',
 
     /**
-     * example: CREATE TABLE IF NOT EXISTS "payload_locked_documents" (
+     * example: CREATE TABLE IF NOT EXISTS "cms_locked_documents" (
      *  "id" serial PRIMARY KEY NOT NULL,
      *  "global_slug" varchar,
      *  "updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
@@ -107,7 +107,7 @@ export const groupUpSQLStatements = (list: string[]): Record<Groups, string[]> =
     setDefault: 'SET DEFAULT',
 
     /**
-     * example: CREATE INDEX IF NOT EXISTS "payload_locked_documents_global_slug_idx" ON "payload_locked_documents" USING btree ("global_slug");
+     * example: CREATE INDEX IF NOT EXISTS "cms_locked_documents_global_slug_idx" ON "cms_locked_documents" USING btree ("global_slug");
      */
     createIndex: 'INDEX IF NOT EXISTS',
 

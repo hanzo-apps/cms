@@ -56,7 +56,7 @@ export const createAPIKeysCollection = (
   const userCollection = pluginOptions.userCollection
 
   return {
-    slug: 'payload-mcp-api-keys',
+    slug: 'cms-mcp-api-keys',
     admin: {
       description:
         'API keys control which collections, resources, tools, and prompts MCP clients can access',
@@ -112,7 +112,7 @@ export const createAPIKeysCollection = (
               },
               fields: [
                 {
-                  name: 'payload-mcp-tool',
+                  name: 'cms-mcp-tool',
                   type: 'group' as const,
                   fields: customToolsFields,
                   label: false as const,
@@ -133,7 +133,7 @@ export const createAPIKeysCollection = (
               },
               fields: [
                 {
-                  name: 'payload-mcp-resource',
+                  name: 'cms-mcp-resource',
                   type: 'group' as const,
                   fields: customResourceFields,
                   label: false as const,
@@ -154,7 +154,7 @@ export const createAPIKeysCollection = (
               },
               fields: [
                 {
-                  name: 'payload-mcp-prompt',
+                  name: 'cms-mcp-prompt',
                   type: 'group' as const,
                   fields: customPromptFields,
                   label: false as const,
@@ -190,7 +190,7 @@ export const createAPIKeysCollection = (
                             type: 'checkbox' as const,
                             admin: {
                               description:
-                                'Allow LLMs to find and list Payload collections with optional content and document counts.',
+                                'Allow LLMs to find and list CMS collections with optional content and document counts.',
                             },
                             defaultValue: false,
                           },
@@ -199,7 +199,7 @@ export const createAPIKeysCollection = (
                             type: 'checkbox' as const,
                             admin: {
                               description:
-                                'Allow LLMs to create new Payload collections with specified fields and configuration.',
+                                'Allow LLMs to create new CMS collections with specified fields and configuration.',
                             },
                             defaultValue: false,
                           },
@@ -208,7 +208,7 @@ export const createAPIKeysCollection = (
                             type: 'checkbox' as const,
                             admin: {
                               description:
-                                'Allow LLMs to update existing Payload collections with new fields, modifications, or configuration changes.',
+                                'Allow LLMs to update existing CMS collections with new fields, modifications, or configuration changes.',
                             },
                             defaultValue: false,
                           },
@@ -217,7 +217,7 @@ export const createAPIKeysCollection = (
                             type: 'checkbox' as const,
                             admin: {
                               description:
-                                'Allow LLMs to delete Payload collections and optionally update the configuration.',
+                                'Allow LLMs to delete CMS collections and optionally update the configuration.',
                             },
                             defaultValue: false,
                           },
@@ -236,7 +236,7 @@ export const createAPIKeysCollection = (
                             type: 'checkbox' as const,
                             admin: {
                               description:
-                                'Allow LLMs to create new Payload jobs (tasks and workflows) with custom schemas and configuration.',
+                                'Allow LLMs to create new CMS jobs (tasks and workflows) with custom schemas and configuration.',
                             },
                             defaultValue: false,
                           },
@@ -245,7 +245,7 @@ export const createAPIKeysCollection = (
                             type: 'checkbox' as const,
                             admin: {
                               description:
-                                'Allow LLMs to execute Payload jobs with custom input data and queue options.',
+                                'Allow LLMs to execute CMS jobs with custom input data and queue options.',
                             },
                             defaultValue: false,
                           },
@@ -254,7 +254,7 @@ export const createAPIKeysCollection = (
                             type: 'checkbox' as const,
                             admin: {
                               description:
-                                'Allow LLMs to update existing Payload jobs with new schemas, configuration, or handler code.',
+                                'Allow LLMs to update existing CMS jobs with new schemas, configuration, or handler code.',
                             },
                             defaultValue: false,
                           },
@@ -273,7 +273,7 @@ export const createAPIKeysCollection = (
                             type: 'checkbox' as const,
                             admin: {
                               description:
-                                'Allow LLMs to read and display a Payload configuration file.',
+                                'Allow LLMs to read and display a CMS configuration file.',
                             },
                             defaultValue: false,
                           },
@@ -282,7 +282,7 @@ export const createAPIKeysCollection = (
                             type: 'checkbox' as const,
                             admin: {
                               description:
-                                'Allow LLMs to update a Payload configuration file with various modifications.',
+                                'Allow LLMs to update a CMS configuration file with various modifications.',
                             },
                             defaultValue: false,
                           },

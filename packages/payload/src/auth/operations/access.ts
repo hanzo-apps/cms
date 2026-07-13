@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '../../types/index.js'
+import type { CMSRequest } from '../../types/index.js'
 import type { SanitizedPermissions } from '../types.js'
 
 import { killTransaction } from '../../utilities/killTransaction.js'
@@ -6,7 +6,7 @@ import { adminInit as adminInitTelemetry } from '../../utilities/telemetry/event
 import { getAccessResults } from '../getAccessResults.js'
 
 type Arguments = {
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export const accessOperation = async (args: Arguments): Promise<SanitizedPermissions> => {

@@ -1,4 +1,4 @@
-import type { DefaultServerCellComponentProps, Payload } from '@hanzo/cms'
+import type { DefaultServerCellComponentProps, CMS } from '@hanzo/cms'
 
 import { getTranslation, type I18nClient } from '@hanzo/cms-translations'
 import { Link } from '@hanzo/cms-ui'
@@ -11,7 +11,7 @@ import React from 'react'
 export const RscEntrySlateCell: React.FC<
   {
     i18n: I18nClient
-    payload: Payload
+    cms: CMS
   } & DefaultServerCellComponentProps
 > = (props) => {
   const {
@@ -23,7 +23,7 @@ export const RscEntrySlateCell: React.FC<
     i18n,
     link,
     onClick: onClickFromProps,
-    payload,
+    cms,
     rowData,
   } = props
 
@@ -33,8 +33,8 @@ export const RscEntrySlateCell: React.FC<
     classNameFromProps ||
     (field.admin && 'className' in field.admin ? field.admin.className : null) ||
     classNameFromConfigContext
-  const adminRoute = payload.config.routes.admin
-  const serverURL = payload.config.serverURL
+  const adminRoute = cms.config.routes.admin
+  const serverURL = cms.config.serverURL
 
   const onClick = onClickFromProps
 

@@ -4,7 +4,7 @@
  * THIS FILE IS BASED ON:
  * https://github.com/rocicorp/fractional-indexing/blob/main/src/index.js
  *
- * MODIFIED FOR PAYLOAD CMS:
+ * MODIFIED FOR CMS:
  * - Changed the integer part encoding to use only digits for "small" keys and
  *   only lowercase letters for "large" keys, ensuring consistent ordering
  *   across databases with different collations.

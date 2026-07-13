@@ -30,7 +30,7 @@ interface UploadError {
  * 1. Checks req.files for files matching upload field names (supports multiple files per field)
  * 2. Validates MIME types and file sizes before uploading
  * 3. Creates media documents in the appropriate upload collection
- * 4. Populates submissionUploads with proper Payload upload relationships
+ * 4. Populates submissionUploads with proper CMS upload relationships
  * 5. Strips upload fields from submissionData (they live in submissionUploads only)
  * 6. Validates pre-uploaded file IDs for backwards compatibility
  */
@@ -39,7 +39,7 @@ export const handleUploads = async (
   formConfig: FormBuilderPluginConfig,
 ) => {
   const { data, operation, req } = beforeChangeParams
-  const { payload } = req
+  const { cms } = req
 
   // Only handle on create
   if (operation !== 'create') {
@@ -57,7 +57,7 @@ export const handleUploads = async (
   // Fetch the form to get field configurations
   let form
   try {
-    form = await payload.findByID({
+    form = await cms.findByID({
       id: formID,
       collection: formSlug,
       req,
@@ -156,12 +156,12 @@ export const handleUploads = async (
         }
 
         // Create the media document.
-        // Note: payload.create writes the file to storage before the DB row exists. If
+        // Note: cms.create writes the file to storage before the DB row exists. If
         // the DB write throws, createdDocs never records the entry and the file on disk
-        // will not be cleaned up by the rollback loop below. Payload core owns that
+        // will not be cleaned up by the rollback loop below. CMS core owns that
         // rollback path — we only clean up docs we successfully created here.
         try {
-          const mediaDoc = await payload.create({
+          const mediaDoc = await cms.create({
             collection: uploadCollection,
             data: {},
             file: {
@@ -223,7 +223,7 @@ export const handleUploads = async (
         let fileIsValid = true
 
         try {
-          fileDoc = (await payload.findByID({
+          fileDoc = (await cms.findByID({
             id: fileId,
             collection: uploadCollection,
             req,
@@ -294,7 +294,7 @@ export const handleUploads = async (
     // Best-effort cleanup of any docs created before the error was detected
     for (const doc of createdDocs) {
       try {
-        await payload.delete({ id: doc.id, collection: doc.collection, req })
+        await cms.delete({ id: doc.id, collection: doc.collection, req })
       } catch {
         // best-effort — don't mask the original validation error
       }

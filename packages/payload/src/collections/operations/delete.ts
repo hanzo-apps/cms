@@ -2,7 +2,7 @@ import { status as httpStatus } from 'http-status'
 
 import type { AccessResult } from '../../config/types.js'
 import type { CollectionSlug, FindOptions } from '../../index.js'
-import type { PayloadRequest, PopulateType, SelectType, Where } from '../../types/index.js'
+import type { CMSRequest, PopulateType, SelectType, Where } from '../../types/index.js'
 import type {
   BulkOperationResult,
   Collection,
@@ -38,7 +38,7 @@ export type Arguments = {
   overrideAccess?: boolean
   overrideLock?: boolean
   populate?: PopulateType
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields?: boolean
   trash?: boolean
   where: Where
@@ -74,8 +74,8 @@ export const deleteOperation = async <
       req: {
         fallbackLocale,
         locale,
-        payload: { config },
-        payload,
+        cms: { config },
+        cms,
       },
       req,
       select: incomingSelect,
@@ -114,7 +114,7 @@ export const deleteOperation = async <
       where: fullWhere,
     })
 
-    sanitizeWhereQuery({ fields: collectionConfig.flattenedFields, payload, where: fullWhere })
+    sanitizeWhereQuery({ fields: collectionConfig.flattenedFields, cms, where: fullWhere })
 
     const select = sanitizeSelect({
       fields: collectionConfig.flattenedFields,
@@ -126,7 +126,7 @@ export const deleteOperation = async <
     // Retrieve documents
     // /////////////////////////////////////
 
-    const { docs } = await payload.db.find<DataFromCollectionSlug<TSlug>>({
+    const { docs } = await cms.db.find<DataFromCollectionSlug<TSlug>>({
       collection: collectionConfig.slug,
       locale: locale!,
       req,
@@ -144,7 +144,7 @@ export const deleteOperation = async <
       try {
         // Each document gets its own transaction when singleTransaction is enabled
         let docShouldCommit = false
-        if (req.payload.db.bulkOperationsSingleTransaction) {
+        if (req.cms.db.bulkOperationsSingleTransaction) {
           docShouldCommit = await initTransaction(req)
         }
 
@@ -191,7 +191,7 @@ export const deleteOperation = async <
           await deleteCollectionVersions({
             id,
             slug: collectionConfig.slug,
-            payload,
+            cms,
             req,
           })
         }
@@ -203,7 +203,7 @@ export const deleteOperation = async <
           await deleteScheduledPublishJobs({
             id,
             slug: collectionConfig.slug,
-            payload,
+            cms,
             req,
           })
         }
@@ -212,7 +212,7 @@ export const deleteOperation = async <
         // Delete document
         // /////////////////////////////////////
 
-        await payload.db.deleteOne({
+        await cms.db.deleteOne({
           collection: collectionConfig.slug,
           req,
           returning: false,
@@ -297,7 +297,7 @@ export const deleteOperation = async <
       } catch (error) {
         const isPublic = error instanceof Error ? isErrorPublic(error, config) : false
 
-        if (req.payload.db.bulkOperationsSingleTransaction) {
+        if (req.cms.db.bulkOperationsSingleTransaction) {
           await killTransaction(req)
         }
         errors.push({
@@ -312,7 +312,7 @@ export const deleteOperation = async <
     // Process sequentially when using single transaction mode to avoid shared state issues
     // Process in parallel when using one transaction for better performance
     let awaitedDocs
-    if (req.payload.db.bulkOperationsSingleTransaction) {
+    if (req.cms.db.bulkOperationsSingleTransaction) {
       awaitedDocs = []
       for (const promise of promises) {
         awaitedDocs.push(await promise)
@@ -328,7 +328,7 @@ export const deleteOperation = async <
     await deleteUserPreferences({
       collectionConfig,
       ids: docs.map(({ id }) => id),
-      payload,
+      cms,
       req,
     })
 

@@ -28,7 +28,7 @@ export const findGlobalVersions: FindGlobalVersions = async function findGlobalV
 ) {
   const { globalConfig, Model } = getGlobal({ adapter: this, globalSlug, versions: true })
 
-  const versionFields = buildVersionGlobalFields(this.payload.config, globalConfig, true)
+  const versionFields = buildVersionGlobalFields(this.cms.config, globalConfig, true)
 
   let hasNearConstraint = false
 
@@ -41,7 +41,7 @@ export const findGlobalVersions: FindGlobalVersions = async function findGlobalV
   if (!hasNearConstraint) {
     sort = buildSortParam({
       adapter: this,
-      config: this.payload.config,
+      config: this.cms.config,
       fields: versionFields,
       locale,
       sort: sortArg || '-updatedAt',
@@ -80,7 +80,7 @@ export const findGlobalVersions: FindGlobalVersions = async function findGlobalV
   }
 
   if (this.collation) {
-    const localizationConfig = this.payload.config.localization
+    const localizationConfig = this.cms.config.localization
     const defaultLocale =
       (typeof localizationConfig === 'object' && localizationConfig?.defaultLocale) || 'en'
 
@@ -136,7 +136,7 @@ export const findGlobalVersions: FindGlobalVersions = async function findGlobalV
   transform({
     adapter: this,
     data: result.docs,
-    fields: buildVersionGlobalFields(this.payload.config, globalConfig),
+    fields: buildVersionGlobalFields(this.cms.config, globalConfig),
     operation: 'read',
   })
 

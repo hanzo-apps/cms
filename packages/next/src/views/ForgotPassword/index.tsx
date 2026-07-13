@@ -14,7 +14,7 @@ export function ForgotPasswordView({ initPageResult }: AdminViewServerProps) {
   const {
     req: {
       i18n,
-      payload: { config },
+      cms: { config },
       user,
     },
   } = initPageResult

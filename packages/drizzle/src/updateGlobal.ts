@@ -12,7 +12,7 @@ export async function updateGlobal<T extends Record<string, unknown>>(
   this: DrizzleAdapter,
   { slug, data, req, returning, select }: UpdateGlobalArgs,
 ): Promise<T> {
-  const globalConfig = this.payload.globals.config.find((config) => config.slug === slug)
+  const globalConfig = this.cms.globals.config.find((config) => config.slug === slug)
   const tableName = this.tableNameMap.get(toSnakeCase(globalConfig.slug))
 
   const db = getPrimaryDb(this, await getTransaction(this, req))

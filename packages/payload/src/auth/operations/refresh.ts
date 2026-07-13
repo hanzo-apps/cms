@@ -1,5 +1,5 @@
 import type { Collection } from '../../collections/config/types.js'
-import type { Document, PayloadRequest } from '../../types/index.js'
+import type { Document, CMSRequest } from '../../types/index.js'
 
 import { buildAfterOperation } from '../../collections/operations/utilities/buildAfterOperation.js'
 import { buildBeforeOperation } from '../../collections/operations/utilities/buildBeforeOperation.js'
@@ -27,7 +27,7 @@ export type Result = {
 
 export type Arguments = {
   collection: Collection
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export const refreshOperation = async (incomingArgs: Arguments): Promise<Result> => {
@@ -55,7 +55,7 @@ export const refreshOperation = async (incomingArgs: Arguments): Promise<Result>
       collection: { config: collectionConfig },
       req,
       req: {
-        payload: { config, secret },
+        cms: { config, secret },
       },
     } = args
 
@@ -67,7 +67,7 @@ export const refreshOperation = async (incomingArgs: Arguments): Promise<Result>
 
     const isGraphQL = pathname === config.routes.graphQL
 
-    let user = await req.payload.db.findOne<any>({
+    let user = await req.cms.db.findOne<any>({
       collection: collectionConfig.slug,
       req,
       where: { id: { equals: args.req.user.id } },
@@ -89,7 +89,7 @@ export const refreshOperation = async (incomingArgs: Arguments): Promise<Result>
       // Prevent updatedAt from being updated when only refreshing a session
       user.updatedAt = null
 
-      await req.payload.db.updateOne({
+      await req.cms.db.updateOne({
         id: user.id,
         collection: collectionConfig.slug,
         data: {
@@ -101,7 +101,7 @@ export const refreshOperation = async (incomingArgs: Arguments): Promise<Result>
       })
     }
 
-    user = await req.payload.findByID({
+    user = await req.cms.findByID({
       id: user.id,
       collection: collectionConfig.slug,
       depth: isGraphQL ? 0 : args.collection.config.auth.depth,

@@ -6,7 +6,7 @@ import {
   type FlattenedBlock,
   type FlattenedField,
 } from '../fields/config/types.js'
-import { APIError, type Payload, type SanitizedCollectionConfig } from '../index.js'
+import { APIError, type CMS, type SanitizedCollectionConfig } from '../index.js'
 import { SAFE_FIELD_PATH_REGEX } from '../types/constants.js'
 
 export function getLocalizedPaths({
@@ -17,7 +17,7 @@ export function getLocalizedPaths({
   locale,
   overrideAccess = false,
   parentIsLocalized,
-  payload,
+  cms,
 }: {
   collectionSlug?: string
   fields: FlattenedField[]
@@ -29,10 +29,10 @@ export function getLocalizedPaths({
    * @todo make required in v4.0. Usually, you'd wanna pass this through
    */
   parentIsLocalized?: boolean
-  payload: Payload
+  cms: CMS
 }): PathToQuery[] {
   const pathSegments = incomingPath.split('.')
-  const localizationConfig = payload.config.localization
+  const localizationConfig = cms.config.localization
 
   let paths: PathToQuery[] = [
     {
@@ -73,7 +73,7 @@ export function getLocalizedPaths({
             lastIncompletePath.field.blocks) {
             let block: FlattenedBlock
             if (typeof _block === 'string') {
-              block = payload.blocks[_block]!
+              block = cms.blocks[_block]!
             } else {
               block = _block
             }
@@ -114,7 +114,7 @@ export function getLocalizedPaths({
         lastIncompletePath.field = {
           name: 'relationTo',
           type: 'select',
-          options: Object.keys(payload.collections),
+          options: Object.keys(cms.collections),
         }
 
         return paths
@@ -124,7 +124,7 @@ export function getLocalizedPaths({
         lastIncompletePath.path = currentPath
         const idField: Field = {
           name: 'id',
-          type: payload.db.defaultIDType as 'text',
+          type: cms.db.defaultIDType as 'text',
         }
         lastIncompletePath.field = idField
         lastIncompletePath.complete = true
@@ -183,9 +183,9 @@ export function getLocalizedPaths({
                     throw new APIError('Not supported')
                   }
 
-                  relatedCollection = payload.collections[matchedField.collection]!.config
+                  relatedCollection = cms.collections[matchedField.collection]!.config
                 } else {
-                  relatedCollection = payload.collections[matchedField.relationTo as string]!.config
+                  relatedCollection = cms.collections[matchedField.relationTo as string]!.config
                 }
 
                 const remainingPaths = getLocalizedPaths({
@@ -195,7 +195,7 @@ export function getLocalizedPaths({
                   incomingPath: nestedPathToQuery,
                   locale,
                   parentIsLocalized: false,
-                  payload,
+                  cms,
                 })
 
                 paths = [...paths, ...remainingPaths]

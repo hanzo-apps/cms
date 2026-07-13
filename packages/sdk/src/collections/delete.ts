@@ -1,6 +1,6 @@
-import type { CollectionSlug, PayloadTypesShape, SelectType, TypedLocale, Where } from '@hanzo/cms'
+import type { CollectionSlug, CMSTypesShape, SelectType, TypedLocale, Where } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type {
   BulkOperationResult,
   PopulateType,
@@ -9,7 +9,7 @@ import type {
 } from '../types.js'
 
 export type DeleteBaseOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 > = {
@@ -46,7 +46,7 @@ export type DeleteBaseOptions<
 }
 
 export type DeleteByIDOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 > = {
@@ -59,7 +59,7 @@ export type DeleteByIDOptions<
 } & DeleteBaseOptions<T, TSlug, TSelect>
 
 export type DeleteManyOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 > = {
@@ -71,17 +71,17 @@ export type DeleteManyOptions<
 } & DeleteBaseOptions<T, TSlug, TSelect>
 
 export type DeleteOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 > = DeleteByIDOptions<T, TSlug, TSelect> | DeleteManyOptions<T, TSlug, TSelect>
 
 export async function deleteOperation<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 >(
-  sdk: PayloadSDK<T>,
+  sdk: CMSSDK<T>,
   options: DeleteOptions<T, TSlug, TSelect>,
   init?: RequestInit,
 ): Promise<

@@ -4,7 +4,7 @@ import type {
   DataFromCollectionSlug,
 } from '../../collections/config/types.js'
 import type { AuthCollectionSlug, TypedUser } from '../../index.js'
-import type { PayloadRequest, Where } from '../../types/index.js'
+import type { CMSRequest, Where } from '../../types/index.js'
 
 import { buildAfterOperation } from '../../collections/operations/utilities/buildAfterOperation.js'
 import { buildBeforeOperation } from '../../collections/operations/utilities/buildBeforeOperation.js'
@@ -39,13 +39,13 @@ export type Arguments<TSlug extends AuthCollectionSlug> = {
   data: AuthOperationsFromCollectionSlug<TSlug>['login']
   depth?: number
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields?: boolean
 }
 
 type CheckLoginPermissionArgs<TSlug extends AuthCollectionSlug> = {
   loggingInWithUsername?: boolean
-  req: PayloadRequest
+  req: CMSRequest
   user: DataFromCollectionSlug<TSlug>
 }
 
@@ -97,8 +97,8 @@ export const loginOperation = async <TSlug extends AuthCollectionSlug>(
     req: {
       fallbackLocale,
       locale,
-      payload,
-      payload: { secret },
+      cms,
+      cms: { secret },
     },
     showHiddenFields,
   } = args
@@ -203,7 +203,7 @@ export const loginOperation = async <TSlug extends AuthCollectionSlug>(
     where: whereConstraint,
   })
 
-  let user = (await payload.db.findOne<TypedUser>({
+  let user = (await cms.db.findOne<TypedUser>({
     collection: collectionConfig.slug,
     req,
     where: whereConstraint,
@@ -227,7 +227,7 @@ export const loginOperation = async <TSlug extends AuthCollectionSlug>(
     if (maxLoginAttemptsEnabled) {
       await incrementLoginAttempts({
         collection: collectionConfig,
-        payload: req.payload,
+        cms: req.cms,
         user,
       })
 
@@ -256,7 +256,7 @@ export const loginOperation = async <TSlug extends AuthCollectionSlug>(
      * get locked by parallel bad attempts in the meantime.
      */
     if (maxLoginAttemptsEnabled) {
-      const { lockUntil, loginAttempts } = (await payload.db.findOne<TypedUser>({
+      const { lockUntil, loginAttempts } = (await cms.db.findOne<TypedUser>({
         collection: collectionConfig.slug,
         req,
         select: {
@@ -283,7 +283,7 @@ export const loginOperation = async <TSlug extends AuthCollectionSlug>(
 
     const session = await addSessionToUser({
       collectionConfig,
-      payload,
+      cms,
       req,
       user,
     })
@@ -299,7 +299,7 @@ export const loginOperation = async <TSlug extends AuthCollectionSlug>(
       await resetLoginAttempts({
         collection: collectionConfig,
         doc: user,
-        payload: req.payload,
+        cms: req.cms,
         req,
       })
     }
@@ -412,7 +412,7 @@ export const loginOperation = async <TSlug extends AuthCollectionSlug>(
     if (sid) {
       await revokeSession({
         collectionConfig,
-        payload,
+        cms,
         req,
         sid,
         user,

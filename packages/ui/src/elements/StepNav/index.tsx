@@ -5,7 +5,7 @@ import React, { Fragment } from 'react'
 
 import type { StepNavItem } from './types.js'
 
-import { PayloadIcon } from '../../graphics/Icon/index.js'
+import { CMSIcon } from '../../graphics/Icon/index.js'
 import { useConfig } from '../../providers/Config/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { Link } from '../Link/index.js'
@@ -45,7 +45,7 @@ const StepNav: React.FC<{
         <nav className={[baseClass, className].filter(Boolean).join(' ')}>
           <Link className={`${baseClass}__home`} href={admin} prefetch={false} tabIndex={0}>
             <span title={t('general:dashboard')}>
-              <RenderCustomComponent CustomComponent={CustomIcon} Fallback={<PayloadIcon />} />
+              <RenderCustomComponent CustomComponent={CustomIcon} Fallback={<CMSIcon />} />
             </span>
           </Link>
           <span>/</span>
@@ -77,7 +77,7 @@ const StepNav: React.FC<{
         <div className={[baseClass, className].filter(Boolean).join(' ')}>
           <div className={`${baseClass}__home`}>
             <span title={t('general:dashboard')}>
-              <RenderCustomComponent CustomComponent={CustomIcon} Fallback={<PayloadIcon />} />
+              <RenderCustomComponent CustomComponent={CustomIcon} Fallback={<CMSIcon />} />
             </span>
           </div>
         </div>

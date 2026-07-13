@@ -1,5 +1,5 @@
 import type { LexicalNode } from 'lexical'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { type I18nClient } from '@hanzo/cms-translations'
 
@@ -14,7 +14,7 @@ const baseClass = 'lexical-unknown-diff'
 
 export const UnknownDiffHTMLConverterAsync: (args: {
   i18n: I18nClient
-  req: PayloadRequest
+  req: CMSRequest
 }) => HTMLConvertersAsync<LexicalNode> = ({ i18n, req }) => {
   return {
     unknown: async ({ node, providedCSSString }) => {

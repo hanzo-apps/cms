@@ -23,7 +23,7 @@ import type {
   LabelFunction,
   LivePreviewConfig,
   MetaConfig,
-  PayloadComponent,
+  CMSComponent,
   StaticLabel,
 } from '../../config/types.js'
 import type { DBIdentifierName } from '../../database/types.js'
@@ -37,7 +37,7 @@ import type {
   TypedGlobal,
   TypedGlobalSelect,
 } from '../../index.js'
-import type { PayloadRequest, SelectIncludeType, Where } from '../../types/index.js'
+import type { CMSRequest, SelectIncludeType, Where } from '../../types/index.js'
 import type { IncomingGlobalVersions, SanitizedGlobalVersions } from '../../versions/types.js'
 
 export type DataFromGlobalSlug<TSlug extends GlobalSlug> = TypedGlobal[TSlug]
@@ -89,7 +89,7 @@ export type BeforeValidateHook = (args: {
    * Whether access control is being overridden for this operation
    */
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type BeforeChangeHook = (args: {
@@ -102,7 +102,7 @@ export type BeforeChangeHook = (args: {
    * Whether access control is being overridden for this operation
    */
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type AfterChangeHook = (args: {
@@ -116,7 +116,7 @@ export type AfterChangeHook = (args: {
    */
   overrideAccess?: boolean
   previousDoc: any
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type BeforeReadHook = (args: {
@@ -128,7 +128,7 @@ export type BeforeReadHook = (args: {
    * Whether access control is being overridden for this operation
    */
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type AfterReadHook = (args: {
@@ -142,7 +142,7 @@ export type AfterReadHook = (args: {
    */
   overrideAccess?: boolean
   query?: Where
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type HookOperationType = 'countVersions' | 'read' | 'restoreVersion' | 'update'
@@ -162,7 +162,7 @@ export type BeforeOperationHook = (args: {
    * Whether access control is being overridden for this operation
    */
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type GlobalAdminOptions = {
@@ -184,7 +184,7 @@ export type GlobalAdminOptions = {
        * Replaces the "Publish" button
        * + drafts must be enabled
        */
-      PublishButton?: PayloadComponent<PublishButtonServerProps, PublishButtonClientProps>
+      PublishButton?: CMSComponent<PublishButtonServerProps, PublishButtonClientProps>
       /**
        * Replaces the "Save" button
        * + drafts must be disabled
@@ -204,7 +204,7 @@ export type GlobalAdminOptions = {
        * Replaces the "Unpublish" button
        * + drafts must be enabled
        */
-      UnpublishButton?: PayloadComponent<UnpublishButtonServerProps, UnpublishButtonClientProps>
+      UnpublishButton?: CMSComponent<UnpublishButtonServerProps, UnpublishButtonClientProps>
     }
     views?: {
       /**
@@ -230,7 +230,7 @@ export type GlobalAdminOptions = {
   /**
    * Exclude the global from the admin nav and routes
    */
-  hidden?: ((args: { user: PayloadRequest['user'] }) => boolean) | boolean
+  hidden?: ((args: { user: CMSRequest['user'] }) => boolean) | boolean
   /**
    * Hide the API URL within the Edit View
    */

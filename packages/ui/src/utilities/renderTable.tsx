@@ -9,8 +9,8 @@ import type {
   ImportMap,
   ListQuery,
   PaginatedDocs,
-  Payload,
-  PayloadRequest,
+  CMS,
+  CMSRequest,
   SanitizedCollectionConfig,
   SanitizedFieldsPermissions,
   ViewTypes,
@@ -80,7 +80,7 @@ export const renderTable = ({
   i18n,
   key = 'table',
   orderableFieldName,
-  payload,
+  cms,
   query,
   renderRowTypes,
   req,
@@ -104,10 +104,10 @@ export const renderTable = ({
   i18n: I18nClient
   key?: string
   orderableFieldName: string
-  payload: Payload
+  cms: CMS
   query?: ListQuery
   renderRowTypes?: boolean
-  req?: PayloadRequest
+  req?: CMSRequest
   tableAppearance?: 'condensed' | 'default'
   useAsTitle: CollectionConfig['admin']['useAsTitle']
   viewType?: ViewTypes
@@ -146,7 +146,7 @@ export const renderTable = ({
         clientFields.push(field)
       }
 
-      const serverCollectionConfig = payload.collections[collection].config
+      const serverCollectionConfig = cms.collections[collection].config
 
       for (const field of filterFieldsWithPermissions<Field>({
         fieldPermissions,
@@ -171,7 +171,7 @@ export const renderTable = ({
     | 'enableRowSelections'
     | 'fieldPermissions'
     | 'i18n'
-    | 'payload'
+    | 'cms'
     | 'req'
     | 'serverFields'
     | 'useAsTitle'
@@ -184,7 +184,7 @@ export const renderTable = ({
     i18n,
     // sortColumnProps,
     customCellProps,
-    payload,
+    cms,
     req,
     serverFields,
     useAsTitle,
@@ -224,7 +224,7 @@ export const renderTable = ({
         <Pill key={i} size="small">
           {getTranslation(
             collections
-              ? payload.collections[doc.relationTo].config.labels.singular
+              ? cms.collections[doc.relationTo].config.labels.singular
               : clientCollectionConfig.labels.singular,
             i18n,
           )}

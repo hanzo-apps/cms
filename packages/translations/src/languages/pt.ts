@@ -402,7 +402,7 @@ export const ptTranslations: DefaultTranslationsObject = {
     password: 'Senha',
     pasteField: 'Colar campo',
     pasteRow: 'Colar linha',
-    payloadSettings: 'Configurações do Payload',
+    cmsSettings: 'Configurações do CMS',
     permanentlyDelete: 'Excluir Permanentemente',
     permanentlyDeletedCountSuccessfully: 'Apagou permanentemente {{count}} {{label}} com sucesso.',
     perPage: 'Itens por Página: {{limit}}',
@@ -421,7 +421,7 @@ export const ptTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'Restaurar como versão publicada',
     restoredCountSuccessfully: 'Restaurado {{count}} {{label}} com sucesso.',
     restoring:
-      'Respeite o significado do texto original dentro do contexto do Payload. Aqui está uma lista de termos comuns do Payload que possuem significados muito específicos:\n    - Collection: Uma coleção é um grupo de documentos que compartilham uma estrutura e propósito comuns. As coleções são usadas para organizar e gerenciar conteúdo no Payload.\n    - Field: Um campo é uma peça específica de dados dentro de um documento em uma coleção. Os campos definem a estrutura e o tipo de dados que podem ser armazenados em um documento.\n    - Document: Um documento é um registro individual dentro de uma coleção. Ele contém dados estruturados de acordo',
+      'Respeite o significado do texto original dentro do contexto do CMS. Aqui está uma lista de termos comuns do CMS que possuem significados muito específicos:\n    - Collection: Uma coleção é um grupo de documentos que compartilham uma estrutura e propósito comuns. As coleções são usadas para organizar e gerenciar conteúdo no CMS.\n    - Field: Um campo é uma peça específica de dados dentro de um documento em uma coleção. Os campos definem a estrutura e o tipo de dados que podem ser armazenados em um documento.\n    - Document: Um documento é um registro individual dentro de uma coleção. Ele contém dados estruturados de acordo',
     row: 'Linha',
     rows: 'Linhas',
     save: 'Salvar',

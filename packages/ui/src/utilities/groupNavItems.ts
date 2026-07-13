@@ -9,7 +9,7 @@ import type {
 import { getTranslation } from '@hanzo/cms-translations'
 
 /**
- * @deprecated Import from `payload` instead
+ * @deprecated Import from `cms` instead
  */
 export enum EntityType {
   collection = 'collections',

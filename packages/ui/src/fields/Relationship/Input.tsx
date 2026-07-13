@@ -295,7 +295,7 @@ export const RelationshipInput: React.FC<RelationshipInputProps> = (props) => {
                   headers: {
                     'Accept-Language': i18n.language,
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    'X-Payload-HTTP-Method-Override': 'GET',
+                    'X-CMS-HTTP-Method-Override': 'GET',
                   },
                   method: 'POST',
                 },
@@ -459,7 +459,7 @@ export const RelationshipInput: React.FC<RelationshipInputProps> = (props) => {
               headers: {
                 'Accept-Language': i18n.language,
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'X-Payload-HTTP-Method-Override': 'GET',
+                'X-CMS-HTTP-Method-Override': 'GET',
               },
               method: 'POST',
             },

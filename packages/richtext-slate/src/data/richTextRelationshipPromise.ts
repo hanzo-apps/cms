@@ -1,6 +1,6 @@
 import type {
   CollectionConfig,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   RichTextAdapter,
   RichTextField,
@@ -24,7 +24,7 @@ type RecurseRichTextArgs = {
   overrideAccess: boolean
   populateArg?: PopulateType
   populationPromises: Promise<void>[]
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields: boolean
 }
 
@@ -47,7 +47,7 @@ export const recurseRichText = ({
   if (Array.isArray(children)) {
     ;(children as any[]).forEach((element) => {
       if ((element.type === 'relationship' || element.type === 'upload') && element?.value?.id) {
-        const collection = req.payload.collections[element?.relationTo]
+        const collection = req.cms.collections[element?.relationTo]
 
         if (collection) {
           populationPromises.push(
@@ -63,7 +63,7 @@ export const recurseRichText = ({
               overrideAccess,
               req,
               select:
-                req.payloadAPI !== 'GraphQL'
+                req.cmsAPI !== 'GraphQL'
                   ? (populateArg?.[collection.config.slug] ?? collection.config.defaultPopulate)
                   : undefined,
               showHiddenFields,
@@ -91,7 +91,7 @@ export const recurseRichText = ({
 
       if (element.type === 'link') {
         if (element?.doc?.value && element?.doc?.relationTo) {
-          const collection = req.payload.collections[element?.doc?.relationTo]
+          const collection = req.cms.collections[element?.doc?.relationTo]
 
           if (collection) {
             populationPromises.push(
@@ -107,7 +107,7 @@ export const recurseRichText = ({
                 overrideAccess,
                 req,
                 select:
-                  req.payloadAPI !== 'GraphQL'
+                  req.cmsAPI !== 'GraphQL'
                     ? (populateArg?.[collection.config.slug] ?? collection.config.defaultPopulate)
                     : undefined,
                 showHiddenFields,

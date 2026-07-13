@@ -1,4 +1,4 @@
-import type { PayloadRequest, TypedUser } from '@hanzo/cms'
+import type { CMSRequest, TypedUser } from '@hanzo/cms'
 
 import { APIError } from '@hanzo/cms'
 
@@ -49,7 +49,7 @@ export type Import = {
 
 export type CreateImportArgs = {
   defaultVersionStatus?: 'draft' | 'published'
-  req: PayloadRequest
+  req: CMSRequest
 } & Import
 
 export const createImport = async ({
@@ -69,7 +69,7 @@ export const createImport = async ({
   let user: TypedUser | undefined
 
   if (userCollection && userID) {
-    user = (await req.payload.findByID({
+    user = (await req.cms.findByID({
       id: userID,
       collection: userCollection,
       req,
@@ -81,7 +81,7 @@ export const createImport = async ({
   }
 
   if (debug) {
-    req.payload.logger.debug({
+    req.cms.logger.debug({
       collectionSlug,
       format,
       importMode,
@@ -100,7 +100,7 @@ export const createImport = async ({
   }
 
   if (debug) {
-    req.payload.logger.debug({
+    req.cms.logger.debug({
       fileName: file.name,
       fileSize: file.data.length,
       mimeType: file.mimetype,
@@ -108,7 +108,7 @@ export const createImport = async ({
     })
   }
 
-  const collectionConfig = req.payload.config.collections.find(
+  const collectionConfig = req.cms.config.collections.find(
     ({ slug }) => slug === collectionSlug,
   )
 
@@ -157,7 +157,7 @@ export const createImport = async ({
       .filter((doc) => doc && Object.keys(doc).length > 0)
 
     if (debug) {
-      req.payload.logger.debug({
+      req.cms.logger.debug({
         documentCount: documents.length,
         msg: 'After unflattening CSV',
         rawDataCount: rawData.length,
@@ -181,11 +181,11 @@ export const createImport = async ({
   }
 
   if (debug) {
-    req.payload.logger.debug({
+    req.cms.logger.debug({
       msg: `Parsed ${documents.length} documents from ${format} file`,
     })
     if (documents.length > 0) {
-      req.payload.logger.debug({
+      req.cms.logger.debug({
         doc: documents[0],
         msg: 'First document sample:',
       })
@@ -208,7 +208,7 @@ export const createImport = async ({
   }
 
   if (debug) {
-    req.payload.logger.debug({
+    req.cms.logger.debug({
       batchSize,
       documentCount: documents.length,
       msg: 'Processing import in batches',
@@ -238,7 +238,7 @@ export const createImport = async ({
   })
 
   if (debug) {
-    req.payload.logger.info({
+    req.cms.logger.info({
       errors: result.errors.length,
       imported: result.imported,
       msg: 'Import completed',

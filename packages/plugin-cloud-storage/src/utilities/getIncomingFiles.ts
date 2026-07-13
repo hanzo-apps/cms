@@ -1,10 +1,10 @@
-import type { FileData, PayloadRequest } from '@hanzo/cms'
+import type { FileData, CMSRequest } from '@hanzo/cms'
 
 import type { File } from '../types.js'
 
 interface CloudStorageContext {
-  file: PayloadRequest['file']
-  uploadSizes: PayloadRequest['payloadUploadSizes']
+  file: CMSRequest['file']
+  uploadSizes: CMSRequest['cmsUploadSizes']
 }
 
 export function getIncomingFiles({
@@ -12,12 +12,12 @@ export function getIncomingFiles({
   req,
 }: {
   data: Partial<FileData>
-  req: PayloadRequest
+  req: CMSRequest
 }): File[] {
   // Fall back to context if req.file was cleared
-  const ctx = req.context?._payloadCloudStorage as CloudStorageContext | undefined
+  const ctx = req.context?._cmsCloudStorage as CloudStorageContext | undefined
   const file = req.file ?? ctx?.file
-  const payloadUploadSizes = req.payloadUploadSizes ?? ctx?.uploadSizes
+  const cmsUploadSizes = req.cmsUploadSizes ?? ctx?.uploadSizes
 
   let files: File[] = []
 
@@ -35,12 +35,12 @@ export function getIncomingFiles({
 
     if (data?.sizes) {
       Object.entries(data.sizes).forEach(([key, resizedFileData]) => {
-        if (payloadUploadSizes?.[key] && resizedFileData.mimeType) {
+        if (cmsUploadSizes?.[key] && resizedFileData.mimeType) {
           files = files.concat([
             {
-              buffer: payloadUploadSizes[key],
+              buffer: cmsUploadSizes[key],
               filename: `${resizedFileData.filename}`,
-              filesize: payloadUploadSizes[key].length,
+              filesize: cmsUploadSizes[key].length,
               mimeType: resizedFileData.mimeType,
             },
           ])

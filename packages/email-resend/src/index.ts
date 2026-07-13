@@ -39,8 +39,8 @@ export const resendAdapter = (args: ResendAdapterArgs): ResendAdapter => {
         ...(args.overrideRecipientAddress ? { to: args.overrideRecipientAddress } : {}),
       }
 
-      // Map the Payload email options to Resend email options
-      const sendEmailOptions = mapPayloadEmailToResendEmail(
+      // Map the CMS email options to Resend email options
+      const sendEmailOptions = mapCMSEmailToResendEmail(
         modifiedMessage,
         defaultFromAddress,
         defaultFromName,
@@ -74,7 +74,7 @@ export const resendAdapter = (args: ResendAdapterArgs): ResendAdapter => {
   return adapter
 }
 
-function mapPayloadEmailToResendEmail(
+function mapCMSEmailToResendEmail(
   message: SendEmailOptions,
   defaultFromAddress: string,
   defaultFromName: string,

@@ -19,9 +19,9 @@ const previousSchema: {
  * @returns {Promise<void>} - A promise that resolves once the schema push is complete.
  */
 export const pushDevSchema = async (adapter: DrizzleAdapter) => {
-  if (process.env.PAYLOAD_FORCE_DRIZZLE_PUSH !== 'true') {
+  if (process.env.CMS_FORCE_DRIZZLE_PUSH !== 'true') {
     const localeCodes =
-      adapter.payload.config.localization && adapter.payload.config.localization.localeCodes
+      adapter.cms.config.localization && adapter.cms.config.localization.localeCodes
 
     const equal = dequal(previousSchema, {
       localeCodes,
@@ -30,7 +30,7 @@ export const pushDevSchema = async (adapter: DrizzleAdapter) => {
 
     if (equal) {
       if (adapter.logger) {
-        adapter.payload.logger.info('No changes detected in schema, skipping schema push.')
+        adapter.cms.logger.info('No changes detected in schema, skipping schema push.')
       }
 
       return
@@ -87,8 +87,8 @@ export const pushDevSchema = async (adapter: DrizzleAdapter) => {
 
   await apply()
   const migrationsTable = adapter.schemaName
-    ? `"${adapter.schemaName}"."payload_migrations"`
-    : '"payload_migrations"'
+    ? `"${adapter.schemaName}"."cms_migrations"`
+    : '"cms_migrations"'
 
   const drizzle = adapter.drizzle as PostgresDB
 
@@ -101,7 +101,7 @@ export const pushDevSchema = async (adapter: DrizzleAdapter) => {
 
   if (!devPush.length) {
     // Use drizzle for insert so $defaultFn's are called
-    await drizzle.insert(adapter.tables.payload_migrations).values({
+    await drizzle.insert(adapter.tables.cms_migrations).values({
       name: 'dev',
       batch: -1,
     })

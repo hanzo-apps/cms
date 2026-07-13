@@ -254,7 +254,7 @@ export const thTranslations: DefaultTranslationsObject = {
     cancel: 'ยกเลิก',
     changesNotSaved: 'การเปลี่ยนแปลงยังไม่ได้ถูกบันทึก ถ้าคุณออกตอนนี้ สิ่งที่แก้ไขไว้จะหายไป',
     clear:
-      'ให้เคารพความหมายของข้อความต้นฉบับภายในบริบทของ Payload นี่คือรายการของคำที่มักใช้ใน Payload ที่มีความหมายที่เฉพาะเจาะจงมาก:\n    - Collection: Collection คือกลุ่มของเอกสารที่มีโครงสร้างและจุดประสงค์ท',
+      'ให้เคารพความหมายของข้อความต้นฉบับภายในบริบทของ CMS นี่คือรายการของคำที่มักใช้ใน CMS ที่มีความหมายที่เฉพาะเจาะจงมาก:\n    - Collection: Collection คือกลุ่มของเอกสารที่มีโครงสร้างและจุดประสงค์ท',
     clearAll: 'ล้างทั้งหมด',
     close: 'ปิด',
     collapse: 'ยุบ',
@@ -391,7 +391,7 @@ export const thTranslations: DefaultTranslationsObject = {
     password: 'รหัสผ่าน',
     pasteField: 'วางฟิลด์',
     pasteRow: 'วางแถว',
-    payloadSettings: 'การตั้งค่า Payload',
+    cmsSettings: 'การตั้งค่า CMS',
     permanentlyDelete: 'ลบถาวร',
     permanentlyDeletedCountSuccessfully: 'ลบ {{label}} {{count}} รายการอย่างถาวรสำเร็จแล้ว',
     perPage: 'จำนวนต่อหน้า: {{limit}}',
@@ -409,7 +409,7 @@ export const thTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'เรียกคืนเป็นเวอร์ชันที่เผยแพร่',
     restoredCountSuccessfully: 'ได้ทำการกู้คืน {{count}} {{label}} สำเร็จแล้ว',
     restoring:
-      'สนับสนุนความหมายของข้อความต้นฉบับในบริบทของ Payload นี่คือรายการของคำที่เกี่ยวข้องกับ Payload ที่มีความหมายเฉพาะเจาะจง:\n    - Collection: Collection เป็นกลุ่มของเอกสารที่มีโครงสร้างและจุดประสงค์ที่เหมือน',
+      'สนับสนุนความหมายของข้อความต้นฉบับในบริบทของ CMS นี่คือรายการของคำที่เกี่ยวข้องกับ CMS ที่มีความหมายเฉพาะเจาะจง:\n    - Collection: Collection เป็นกลุ่มของเอกสารที่มีโครงสร้างและจุดประสงค์ที่เหมือน',
     row: 'แถว',
     rows: 'แถว',
     save: 'บันทึก',
@@ -591,7 +591,7 @@ export const thTranslations: DefaultTranslationsObject = {
     moreVersions: 'เพิ่มเวอร์ชั่น...',
     noFurtherVersionsFound: 'ไม่พบเวอร์ชันอื่น ๆ',
     noLabelGroup:
-      'ร่วมให้ความหมายของข้อความต้นฉบับภายในบริบทของ Payload นี่คือรายการของคำศัพท์ Payload ทั่วไปที่มีความหมายที่แน่นอนมาก :\n    - Collection: Collection คือกลุ่มของเอกสารที่มีโครงสร้างและจุดประสงค์ที่เหม',
+      'ร่วมให้ความหมายของข้อความต้นฉบับภายในบริบทของ CMS นี่คือรายการของคำศัพท์ CMS ทั่วไปที่มีความหมายที่แน่นอนมาก :\n    - Collection: Collection คือกลุ่มของเอกสารที่มีโครงสร้างและจุดประสงค์ที่เหม',
     noRowsFound: 'ไม่พบ {{label}}',
     noRowsSelected: 'ไม่มี {{label}} ที่ถูกเลือก',
     preview: 'ตัวอย่าง',

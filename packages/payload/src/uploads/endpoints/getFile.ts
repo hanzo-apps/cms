@@ -5,7 +5,7 @@ import fsPromises from 'fs/promises'
 import { status as httpStatus } from 'http-status'
 import path from 'path'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { APIError } from '../../errors/APIError.js'
 import { checkFileAccess } from '../../uploads/checkFileAccess.js'
@@ -15,7 +15,7 @@ import { parseRangeHeader } from '../../uploads/parseRangeHeader.js'
 import { getRequestCollection } from '../../utilities/getRequestEntity.js'
 import { headersWithCors } from '../../utilities/headersWithCors.js'
 
-export const getFileHandler: PayloadHandler = async (req) => {
+export const getFileHandler: CMSHandler = async (req) => {
   const collection = getRequestCollection(req)
 
   const filename = req.routeParams?.filename as string
@@ -79,7 +79,7 @@ export const getFileHandler: PayloadHandler = async (req) => {
     stats = await fsPromises.stat(filePath)
   } catch (err) {
     if ((err as { code?: string }).code === 'ENOENT') {
-      req.payload.logger.error(
+      req.cms.logger.error(
         `File ${filename} for collection ${collection.config.slug} is missing on the disk. Expected path: ${filePath}`,
       )
 

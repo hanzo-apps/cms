@@ -1,11 +1,11 @@
 import type {
   FindOptions,
   GlobalSlug,
-  Payload,
+  CMS,
   RequestContext,
   TypedLocale,
 } from '../../../index.js'
-import type { Document, PayloadRequest, PopulateType, SelectType } from '../../../types/index.js'
+import type { Document, CMSRequest, PopulateType, SelectType } from '../../../types/index.js'
 import type { CreateLocalReqOptions } from '../../../utilities/createLocalReq.js'
 import type { TypeWithVersion } from '../../../versions/types.js'
 import type { DataFromGlobalSlug } from '../../config/types.js'
@@ -54,10 +54,10 @@ export type Options<TSlug extends GlobalSlug> = {
    */
   populate?: PopulateType
   /**
-   * The `PayloadRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
+   * The `CMSRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
    * Recommended to pass when using the Local API from hooks, as usually you want to execute the operation within the current transaction.
    */
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
 
   /**
    * Opt-in to receiving hidden fields. By default, they are hidden from returned documents in accordance to your config.
@@ -76,7 +76,7 @@ export type Options<TSlug extends GlobalSlug> = {
 } & Pick<FindOptions<string, SelectType>, 'select'>
 
 export async function findGlobalVersionByIDLocal<TSlug extends GlobalSlug>(
-  payload: Payload,
+  cms: CMS,
   options: Options<TSlug>,
 ): Promise<TypeWithVersion<DataFromGlobalSlug<TSlug>>> {
   const {
@@ -90,7 +90,7 @@ export async function findGlobalVersionByIDLocal<TSlug extends GlobalSlug>(
     showHiddenFields,
   } = options
 
-  const globalConfig = payload.globals.config.find((config) => config.slug === globalSlug)
+  const globalConfig = cms.globals.config.find((config) => config.slug === globalSlug)
 
   if (!globalConfig) {
     throw new APIError(`The global with slug ${String(globalSlug)} can't be found.`)
@@ -103,7 +103,7 @@ export async function findGlobalVersionByIDLocal<TSlug extends GlobalSlug>(
     globalConfig,
     overrideAccess,
     populate,
-    req: await createLocalReq(options as CreateLocalReqOptions, payload),
+    req: await createLocalReq(options as CreateLocalReqOptions, cms),
     select,
     showHiddenFields,
   })

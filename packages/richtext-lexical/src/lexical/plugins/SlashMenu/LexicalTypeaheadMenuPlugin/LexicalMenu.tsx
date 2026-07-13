@@ -326,8 +326,8 @@ export function LexicalMenu({
     return mergeRegister(
       editor.registerCommand<KeyboardEvent>(
         KEY_ARROW_DOWN_COMMAND,
-        (payload) => {
-          const event = payload
+        (cms) => {
+          const event = cms
           if (groups !== null && groups.length && selectedItemKey !== null) {
             const allItems = groups.flatMap((group) => group.items)
             const selectedIndex = allItems.findIndex((item) => item.key === selectedItemKey)
@@ -355,8 +355,8 @@ export function LexicalMenu({
       ),
       editor.registerCommand<KeyboardEvent>(
         KEY_ARROW_UP_COMMAND,
-        (payload) => {
-          const event = payload
+        (cms) => {
+          const event = cms
           if (groups !== null && groups.length && selectedItemKey !== null) {
             const allItems = groups.flatMap((group) => group.items)
             const selectedIndex = allItems.findIndex((item) => item.key === selectedItemKey)
@@ -381,8 +381,8 @@ export function LexicalMenu({
       ),
       editor.registerCommand<KeyboardEvent>(
         KEY_ESCAPE_COMMAND,
-        (payload) => {
-          const event = payload
+        (cms) => {
+          const event = cms
           event.preventDefault()
           event.stopImmediatePropagation()
           close()
@@ -392,8 +392,8 @@ export function LexicalMenu({
       ),
       editor.registerCommand<KeyboardEvent>(
         KEY_TAB_COMMAND,
-        (payload) => {
-          const event = payload
+        (cms) => {
+          const event = cms
 
           if (groups === null || selectedItemKey === null) {
             return false

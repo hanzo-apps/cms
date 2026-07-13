@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest, SelectType, TypedUser } from '@hanzo/cms'
+import type { CMSRequest, SelectType, TypedUser } from '@hanzo/cms'
 
 import type { MCPPluginConfig } from '../../../types.js'
 
@@ -8,7 +8,7 @@ import { toolSchemas } from '../schemas.js'
 
 export const findGlobalTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   user: TypedUser,
   verboseLogs: boolean,
   globalSlug: string,
@@ -25,16 +25,16 @@ export const findGlobalTool = (
       type: 'text'
     }>
   }> => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Reading global: ${globalSlug}, depth: ${depth}${locale ? `, locale: ${locale}` : ''}`,
+      cms.logger.info(
+        `[cms-mcp] Reading global: ${globalSlug}, depth: ${depth}${locale ? `, locale: ${locale}` : ''}`,
       )
     }
 
     try {
-      const findOptions: Parameters<typeof payload.findGlobal>[0] = {
+      const findOptions: Parameters<typeof cms.findGlobal>[0] = {
         slug: globalSlug,
         depth,
         user,
@@ -45,7 +45,7 @@ export const findGlobalTool = (
         try {
           selectClause = JSON.parse(select) as SelectType
         } catch (_parseError) {
-          payload.logger.warn(`[payload-mcp] Invalid select clause JSON for global: ${select}`)
+          cms.logger.warn(`[cms-mcp] Invalid select clause JSON for global: ${select}`)
           const response = {
             content: [{ type: 'text' as const, text: 'Error: Invalid JSON in select clause' }],
           }
@@ -69,10 +69,10 @@ export const findGlobalTool = (
         findOptions.select = selectClause
       }
 
-      const result = await payload.findGlobal(findOptions)
+      const result = await cms.findGlobal(findOptions)
 
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Found global: ${globalSlug}`)
+        cms.logger.info(`[cms-mcp] Found global: ${globalSlug}`)
       }
 
       const response = {
@@ -95,7 +95,7 @@ ${JSON.stringify(result)}
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(`[payload-mcp] Error reading global ${globalSlug}: ${errorMessage}`)
+      cms.logger.error(`[cms-mcp] Error reading global ${globalSlug}: ${errorMessage}`)
       const response = {
         content: [
           {

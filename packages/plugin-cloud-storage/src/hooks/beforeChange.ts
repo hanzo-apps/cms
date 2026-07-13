@@ -5,13 +5,13 @@ import type { GeneratedAdapter, GenerateFileURL } from '../types.js'
 interface Args {
   adapter: GeneratedAdapter
   collection: CollectionConfig
-  disablePayloadAccessControl?: boolean
+  disableCMSAccessControl?: boolean
   generateFileURL?: GenerateFileURL
   size?: ImageSize
 }
 
 export const getBeforeChangeHook =
-  ({ adapter, collection, disablePayloadAccessControl, generateFileURL, size }: Args): FieldHook =>
+  ({ adapter, collection, disableCMSAccessControl, generateFileURL, size }: Args): FieldHook =>
   async ({ data, originalDoc, value }) => {
     const newFilename = size ? data?.sizes?.[size.name]?.filename : data?.filename
     const originalFilename = size
@@ -28,7 +28,7 @@ export const getBeforeChangeHook =
         prefix,
         size,
       })
-    } else if (disablePayloadAccessControl && filename && adapter.generateURL) {
+    } else if (disableCMSAccessControl && filename && adapter.generateURL) {
       url = await adapter.generateURL({
         collection,
         data: data || originalDoc,

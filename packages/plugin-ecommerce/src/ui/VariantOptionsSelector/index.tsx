@@ -16,7 +16,7 @@ export const VariantOptionsSelector: React.FC<Props> = async (props) => {
   const productsSlug = (field.custom?.productsSlug as string) || 'products'
   const variantTypesSlug = (field.custom?.variantTypesSlug as string) || 'variantTypes'
 
-  const product = await req.payload.findByID({
+  const product = await req.cms.findByID({
     id: data.product,
     collection: productsSlug,
     depth: 0,
@@ -40,7 +40,7 @@ export const VariantOptionsSelector: React.FC<Props> = async (props) => {
   if (variantTypeIDs?.length && variantTypeIDs.length > 0) {
     // @ts-expect-error - TODO: Fix types
     for (const variantTypeID of variantTypeIDs) {
-      const variantType = await req.payload.findByID({
+      const variantType = await req.cms.findByID({
         id: variantTypeID,
         collection: variantTypesSlug,
         depth: 1,

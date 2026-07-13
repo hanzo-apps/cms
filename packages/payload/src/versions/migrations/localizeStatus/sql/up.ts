@@ -1,4 +1,4 @@
-import type { Payload } from '../../../../types/index.js'
+import type { CMS } from '../../../../types/index.js'
 
 import { calculateVersionLocaleStatuses, toSnakeCase } from '../shared.js'
 import { migrateMainCollectionStatus } from './migrateMainCollection.js'
@@ -8,13 +8,13 @@ export type LocalizeStatusArgs = {
   collectionSlug?: string
   db: any
   globalSlug?: string
-  payload: Payload
+  cms: CMS
   req?: any
   sql: any
 }
 
 export async function up(args: LocalizeStatusArgs): Promise<void> {
-  const { collectionSlug, db, globalSlug, payload, req, sql } = args
+  const { collectionSlug, db, globalSlug, cms, req, sql } = args
 
   if (!collectionSlug && !globalSlug) {
     throw new Error('Either collectionSlug or globalSlug must be provided')
@@ -31,19 +31,19 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     : `_${toSnakeCase(globalSlug!)}_v`
   const localesTable = `${versionsTable}_locales`
 
-  if (!payload.config.localization) {
-    throw new Error('Localization is not enabled in payload config')
+  if (!cms.config.localization) {
+    throw new Error('Localization is not enabled in cms config')
   }
 
   // Check if versions are enabled on this collection/global
   let entityConfig
   if (collectionSlug) {
-    const collection = payload.config.collections.find((c) => c.slug === collectionSlug)
+    const collection = cms.config.collections.find((c) => c.slug === collectionSlug)
     if (collection) {
       entityConfig = collection
     }
   } else if (globalSlug) {
-    const global = payload.config.globals.find((g) => g.slug === globalSlug)
+    const global = cms.config.globals.find((g) => g.slug === globalSlug)
     if (global) {
       entityConfig = global
     }
@@ -55,24 +55,24 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     )
   }
 
-  payload.logger.info({
+  cms.logger.info({
     msg: `Starting _status localization migration for ${collectionSlug ? 'collection' : 'global'}: ${entitySlug}`,
   })
 
   // Get filtered locales if filterAvailableLocales is defined
-  let locales = payload.config.localization.localeCodes
-  if (typeof payload.config.localization.filterAvailableLocales === 'function') {
-    const filteredLocaleObjects = await payload.config.localization.filterAvailableLocales({
-      locales: payload.config.localization.locales,
+  let locales = cms.config.localization.localeCodes
+  if (typeof cms.config.localization.filterAvailableLocales === 'function') {
+    const filteredLocaleObjects = await cms.config.localization.filterAvailableLocales({
+      locales: cms.config.localization.locales,
       req,
     })
     locales = filteredLocaleObjects.map((locale) => locale.code)
   }
-  payload.logger.info({ msg: `Locales: ${locales.join(', ')}` })
+  cms.logger.info({ msg: `Locales: ${locales.join(', ')}` })
 
   // Check if versions are enabled in config (skip if not)
   if (!entityConfig.versions) {
-    payload.logger.info({
+    cms.logger.info({
       msg: `Skipping migration for ${collectionSlug ? 'collection' : 'global'}: ${entitySlug} - versions not enabled`,
     })
     return
@@ -115,7 +115,7 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
 
   if (!localesTableExists) {
     // SCENARIO 1: Create the locales table (first localized field in versions)
-    payload.logger.info({ msg: `Creating new locales table: ${localesTable}` })
+    cms.logger.info({ msg: `Creating new locales table: ${localesTable}` })
 
     await db.execute({
       drizzle: db.drizzle,
@@ -143,13 +143,13 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
           RETURNING id
         `,
       })
-      payload.logger.info({
+      cms.logger.info({
         msg: `Inserted ${inserted.length} rows for locale: ${locale}`,
       })
     }
   } else {
     // SCENARIO 2: Add version__status column to existing locales table
-    payload.logger.info({ msg: `Adding version__status column to existing table: ${localesTable}` })
+    cms.logger.info({ msg: `Adding version__status column to existing table: ${localesTable}` })
 
     await db.execute({
       drizzle: db.drizzle,
@@ -159,7 +159,7 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     })
 
     // INTELLIGENT DATA MIGRATION using historical publishedLocale data
-    payload.logger.info({ msg: 'Processing version history to determine status per locale...' })
+    cms.logger.info({ msg: 'Processing version history to determine status per locale...' })
 
     // First, get the list of locales that actually exist in the locales table
     // This is important because the config may have more locales defined than what's in the OLD schema
@@ -172,7 +172,7 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
       `,
     })
     const existingLocales = existingLocalesResult.rows.map((row: any) => row._locale as string)
-    payload.logger.info({
+    cms.logger.info({
       msg: `Found existing locales in table: ${existingLocales.join(', ')}`,
     })
 
@@ -191,11 +191,11 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     const versionLocaleStatus = calculateVersionLocaleStatuses(
       versionsResult.rows,
       existingLocales,
-      payload,
+      cms,
     )
 
     // Now update the locales table with the calculated status for each version
-    payload.logger.info({ msg: 'Updating locales table with calculated statuses...' })
+    cms.logger.info({ msg: 'Updating locales table with calculated statuses...' })
 
     let updateCount = 0
     for (const [versionId, localeMap] of versionLocaleStatus.entries()) {
@@ -213,7 +213,7 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
       }
     }
 
-    payload.logger.info({ msg: `Updated ${updateCount} locale rows with status` })
+    cms.logger.info({ msg: `Updated ${updateCount} locale rows with status` })
   }
 
   // 3. Drop the old version__status column from main versions table
@@ -272,15 +272,15 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
         collectionSlug,
         db,
         locales,
-        payload,
+        cms,
         sql,
         versionsTable,
       })
     } else if (globalSlug) {
-      await migrateMainGlobalStatus({ db, globalSlug, locales, payload, sql, versionsTable })
+      await migrateMainGlobalStatus({ db, globalSlug, locales, cms, sql, versionsTable })
     }
   } else {
-    payload.logger.info({
+    cms.logger.info({
       msg: `No locales table found: ${mainLocalesTable} (collection/global not localized)`,
     })
   }
@@ -307,5 +307,5 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     })
   }
 
-  payload.logger.info({ msg: 'Migration completed successfully' })
+  cms.logger.info({ msg: 'Migration completed successfully' })
 }

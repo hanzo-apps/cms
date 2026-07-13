@@ -1,7 +1,7 @@
 import type {
   CustomComponent,
   DocumentSubViewTypes,
-  PayloadRequest,
+  CMSRequest,
   ServerProps,
   ViewTypes,
   VisibleEntities,
@@ -33,7 +33,7 @@ export type DefaultTemplateProps = {
   docID?: number | string
   documentSubViewType?: DocumentSubViewTypes
   globalSlug?: string
-  req?: PayloadRequest
+  req?: CMSRequest
   viewActions?: CustomComponent[]
   viewType?: ViewTypes
   visibleEntities: VisibleEntities
@@ -49,7 +49,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
   i18n,
   locale,
   params,
-  payload,
+  cms,
   permissions,
   req,
   searchParams,
@@ -67,7 +67,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
         Nav: undefined,
       },
     } = {},
-  } = payload.config || {}
+  } = cms.config || {}
 
   const clientProps = {
     documentSubViewType,
@@ -79,7 +79,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
     collectionSlug: string
     docID: number | string
     globalSlug: string
-    req: PayloadRequest
+    req: CMSRequest
   } & ServerProps = {
     collectionSlug,
     docID,
@@ -87,7 +87,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
     i18n,
     locale,
     params,
-    payload,
+    cms,
     permissions,
     req,
     searchParams,
@@ -103,7 +103,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
     Actions[key] = RenderServerComponent({
       clientProps,
       Component: action,
-      importMap: payload.importMap,
+      importMap: cms.importMap,
       serverProps,
     })
   }
@@ -112,7 +112,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
     clientProps,
     Component: CustomNav,
     Fallback: DefaultNav,
-    importMap: payload.importMap,
+    importMap: cms.importMap,
     serverProps,
   })
 
@@ -123,7 +123,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
           {RenderServerComponent({
             clientProps,
             Component: CustomHeader,
-            importMap: payload.importMap,
+            importMap: cms.importMap,
             serverProps,
           })}
           <div style={{ position: 'relative' }}>
@@ -142,7 +142,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
                     avatar !== 'gravatar' && avatar !== 'default'
                       ? RenderServerComponent({
                           Component: avatar.Component,
-                          importMap: payload.importMap,
+                          importMap: cms.importMap,
                           serverProps,
                         })
                       : undefined
@@ -151,7 +151,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
                     components?.graphics?.Icon
                       ? RenderServerComponent({
                           Component: components.graphics.Icon,
-                          importMap: payload.importMap,
+                          importMap: cms.importMap,
                           serverProps,
                         })
                       : undefined

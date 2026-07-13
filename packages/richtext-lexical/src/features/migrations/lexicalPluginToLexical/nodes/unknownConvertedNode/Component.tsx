@@ -14,7 +14,7 @@ export const UnknownConvertedNodeComponent: React.FC<Props> = (props) => {
 
   return (
     <div>
-      Unknown converted payload-plugin-lexical node: <strong>{data?.nodeType}</strong>
+      Unknown converted cms-plugin-lexical node: <strong>{data?.nodeType}</strong>
     </div>
   )
 }

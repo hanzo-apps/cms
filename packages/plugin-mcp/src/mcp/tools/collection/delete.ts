@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { readFileSync, unlinkSync, writeFileSync } from 'fs'
 import { join } from 'path'
@@ -8,7 +8,7 @@ import { removeCollectionFromConfig } from '../../helpers/config.js'
 import { toolSchemas } from '../schemas.js'
 
 export const deleteCollection = (
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   collectionsDirPath: string,
   configFilePath: string,
@@ -16,14 +16,14 @@ export const deleteCollection = (
   confirmDeletion: boolean,
   updateConfig: boolean,
 ) => {
-  const payload = req.payload
+  const cms = req.cms
 
   if (verboseLogs) {
-    payload.logger.info(`[payload-mcp] Attempting to delete collection: ${collectionName}`)
+    cms.logger.info(`[cms-mcp] Attempting to delete collection: ${collectionName}`)
   }
 
   if (!confirmDeletion) {
-    payload.logger.warn(`[payload-mcp] Deletion cancelled for collection: ${collectionName}`)
+    cms.logger.warn(`[cms-mcp] Deletion cancelled for collection: ${collectionName}`)
     return {
       content: [
         {
@@ -39,7 +39,7 @@ export const deleteCollection = (
 
   // Security check: ensure we're working with the collections directory
   if (!collectionFilePath.startsWith(collectionsDirPath)) {
-    payload.logger.error(`[payload-mcp] Invalid collection path attempted: ${collectionFilePath}`)
+    cms.logger.error(`[cms-mcp] Invalid collection path attempted: ${collectionFilePath}`)
     return {
       content: [
         {
@@ -57,7 +57,7 @@ export const deleteCollection = (
       readFileSync(collectionFilePath, 'utf8')
       fileExists = true
     } catch {
-      payload.logger.warn(`[payload-mcp] Collection file does not exist: ${collectionFilePath}`)
+      cms.logger.warn(`[cms-mcp] Collection file does not exist: ${collectionFilePath}`)
     }
 
     // Read current config if we need to update it
@@ -68,7 +68,7 @@ export const deleteCollection = (
         configContent = readFileSync(configFilePath, 'utf8')
         configExists = true
       } catch {
-        payload.logger.warn(`[payload-mcp] Config file does not exist: ${configFilePath}`)
+        cms.logger.warn(`[cms-mcp] Config file does not exist: ${configFilePath}`)
       }
     }
 
@@ -80,15 +80,15 @@ export const deleteCollection = (
       try {
         unlinkSync(collectionFilePath)
         if (verboseLogs) {
-          payload.logger.info(
-            `[payload-mcp] Successfully deleted collection file: ${collectionFilePath}`,
+          cms.logger.info(
+            `[cms-mcp] Successfully deleted collection file: ${collectionFilePath}`,
           )
         }
         responseText += `✅ Deleted collection file: \`${capitalizedName}.ts\`\n`
         operationsPerformed++
       } catch (error) {
         const errorMessage = (error as Error).message
-        payload.logger.error(`[payload-mcp] Error deleting collection file: ${errorMessage}`)
+        cms.logger.error(`[cms-mcp] Error deleting collection file: ${errorMessage}`)
         responseText += `❌ Error deleting collection file: ${errorMessage}\n`
       }
     } else {
@@ -101,13 +101,13 @@ export const deleteCollection = (
         const updatedConfigContent = removeCollectionFromConfig(configContent, capitalizedName)
         writeFileSync(configFilePath, updatedConfigContent, 'utf8')
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Successfully updated config file: ${configFilePath}`)
+          cms.logger.info(`[cms-mcp] Successfully updated config file: ${configFilePath}`)
         }
         responseText += `✅ Updated payload.config.ts to remove collection reference\n`
         operationsPerformed++
       } catch (error) {
         const errorMessage = (error as Error).message
-        payload.logger.error(`[payload-mcp] Error updating config file: ${errorMessage}`)
+        cms.logger.error(`[cms-mcp] Error updating config file: ${errorMessage}`)
         responseText += `❌ Error updating config file: ${errorMessage}\n`
       }
     } else if (updateConfig && !configExists) {
@@ -133,7 +133,7 @@ The collection file may not have existed or there were errors during deletion.`
     }
   } catch (error) {
     const errorMessage = (error as Error).message
-    payload.logger.error(`[payload-mcp] Error during collection deletion: ${errorMessage}`)
+    cms.logger.error(`[cms-mcp] Error during collection deletion: ${errorMessage}`)
     return {
       content: [
         {
@@ -147,7 +147,7 @@ The collection file may not have existed or there were errors during deletion.`
 
 export const deleteCollectionTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   collectionsDirPath: string,
   configFilePath: string,
@@ -157,11 +157,11 @@ export const deleteCollectionTool = (
     confirmDeletion: boolean,
     updateConfig: boolean = false,
   ) => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Deleting collection: ${collectionName}, confirmDeletion: ${confirmDeletion}, updateConfig: ${updateConfig}`,
+      cms.logger.info(
+        `[cms-mcp] Deleting collection: ${collectionName}, confirmDeletion: ${confirmDeletion}, updateConfig: ${updateConfig}`,
       )
     }
 
@@ -177,14 +177,14 @@ export const deleteCollectionTool = (
       )
 
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Collection deletion completed for: ${collectionName}`)
+        cms.logger.info(`[cms-mcp] Collection deletion completed for: ${collectionName}`)
       }
 
       return result
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(
-        `[payload-mcp] Error deleting collection ${collectionName}: ${errorMessage}`,
+      cms.logger.error(
+        `[cms-mcp] Error deleting collection ${collectionName}: ${errorMessage}`,
       )
 
       return {

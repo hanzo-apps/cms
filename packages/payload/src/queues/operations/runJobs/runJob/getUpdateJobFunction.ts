@@ -1,5 +1,5 @@
 import type { Job } from '../../../../index.js'
-import type { PayloadRequest } from '../../../../types/index.js'
+import type { CMSRequest } from '../../../../types/index.js'
 
 import { JobCancelledError } from '../../../errors/index.js'
 import { updateJob } from '../../../utilities/updateJob.js'
@@ -11,12 +11,12 @@ export type UpdateJobFunction = (jobData: Partial<Job>) => Promise<Job>
  * - Merges incoming data from the updated job into the original job object
  * - Handles job cancellation by throwing a `JobCancelledError` if the job was cancelled.
  */
-export function getUpdateJobFunction(job: Job, req: PayloadRequest): UpdateJobFunction {
+export function getUpdateJobFunction(job: Job, req: CMSRequest): UpdateJobFunction {
   return async (jobData) => {
     const updatedJob = await updateJob({
       id: job.id,
       data: jobData,
-      depth: req.payload.config.jobs.depth,
+      depth: req.cms.config.jobs.depth,
       disableTransaction: true,
       req,
     })

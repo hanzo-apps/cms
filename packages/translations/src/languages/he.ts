@@ -252,7 +252,7 @@ export const heTranslations: DefaultTranslationsObject = {
     cancel: 'ביטול',
     changesNotSaved: 'השינויים שלך לא נשמרו. אם תצא כעת, תאבד את השינויים שלך.',
     clear:
-      'בהתחשב במשמעות של הטקסט המקורי בהקשר של Payload. הנה רשימה של מונחים מקוריים של Payload שנושאים משמעויות מסוימות:\n- אוסף: אוסף הוא קבוצה של מסמכים ששותפים למבנה ולמטרה משות',
+      'בהתחשב במשמעות של הטקסט המקורי בהקשר של CMS. הנה רשימה של מונחים מקוריים של CMS שנושאים משמעויות מסוימות:\n- אוסף: אוסף הוא קבוצה של מסמכים ששותפים למבנה ולמטרה משות',
     clearAll: 'נקה הכל',
     close: 'סגור',
     collapse: 'כווץ',
@@ -386,7 +386,7 @@ export const heTranslations: DefaultTranslationsObject = {
     password: 'סיסמה',
     pasteField: 'הדבק שדה',
     pasteRow: 'הדבק שורה',
-    payloadSettings: 'הגדרות מערכת Payload',
+    cmsSettings: 'הגדרות מערכת CMS',
     permanentlyDelete: 'מחק לצמיתות',
     permanentlyDeletedCountSuccessfully: 'נמחקו לצמיתות {{count}} {{label}} בהצלחה.',
     perPage: '{{limit}} בכל עמוד',
@@ -404,7 +404,7 @@ export const heTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'שחזר כגרסה שפורסמה',
     restoredCountSuccessfully: 'שוחזרו בהצלחה {{count}} {{label}}.',
     restoring:
-      'שמעו למשמעות של הטקסט המקורי בהקשר של Payload. הנה רשימה של מונחים נפוצים של Payload שנושאים משמעויות מאוד מסוימות:\n- אוסף: אוסף הוא קבוצה של מסמכים ששותפים למבנה ולמטרה מש',
+      'שמעו למשמעות של הטקסט המקורי בהקשר של CMS. הנה רשימה של מונחים נפוצים של CMS שנושאים משמעויות מאוד מסוימות:\n- אוסף: אוסף הוא קבוצה של מסמכים ששותפים למבנה ולמטרה מש',
     row: 'שורה',
     rows: 'שורות',
     save: 'שמירה',

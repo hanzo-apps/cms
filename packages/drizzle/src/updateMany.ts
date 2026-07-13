@@ -26,7 +26,7 @@ export const updateMany: UpdateMany = async function updateMany(
     where: whereToUse,
   },
 ) {
-  const collection = this.payload.collections[collectionSlug].config
+  const collection = this.cms.collections[collectionSlug].config
   const tableName = this.tableNameMap.get(toSnakeCase(collection.slug))
 
   const sort = sortArg !== undefined && sortArg !== null ? sortArg : collection.defaultSort

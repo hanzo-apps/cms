@@ -1,6 +1,6 @@
 import type { I18nClient } from '@hanzo/cms-translations'
 
-import { type ClientFieldSchemaMap, type FieldSchemaMap, type Payload } from '@hanzo/cms'
+import { type ClientFieldSchemaMap, type FieldSchemaMap, type CMS } from '@hanzo/cms'
 import { getFromImportMap } from '@hanzo/cms/shared'
 
 import type {
@@ -14,7 +14,7 @@ type Args = {
   fieldSchemaMap: FieldSchemaMap
   i18n: I18nClient
   path: string
-  payload: Payload
+  cms: CMS
   sanitizedEditorConfig: SanitizedServerEditorConfig
   schemaPath: string
 }
@@ -44,12 +44,12 @@ export function initLexicalFeatures(args: Args): {
     /**
      * Handle client features
      */
-    const ClientFeaturePayloadComponent = resolvedFeature.ClientFeature
+    const ClientFeatureCMSComponent = resolvedFeature.ClientFeature
 
-    if (ClientFeaturePayloadComponent) {
+    if (ClientFeatureCMSComponent) {
       const clientFeatureProvider = getFromImportMap<FeatureProviderProviderClient>({
-        importMap: args.payload.importMap,
-        PayloadComponent: ClientFeaturePayloadComponent,
+        importMap: args.cms.importMap,
+        CMSComponent: ClientFeatureCMSComponent,
         schemaPath: 'lexical-clientComponent',
         silent: true,
       })
@@ -63,10 +63,10 @@ export function initLexicalFeatures(args: Args): {
       clientFeatureProps.featureKey = resolvedFeature.key
       clientFeatureProps.order = resolvedFeature.order
       if (
-        typeof ClientFeaturePayloadComponent === 'object' &&
-        ClientFeaturePayloadComponent.clientProps
+        typeof ClientFeatureCMSComponent === 'object' &&
+        ClientFeatureCMSComponent.clientProps
       ) {
-        clientFeatureProps.clientProps = ClientFeaturePayloadComponent.clientProps
+        clientFeatureProps.clientProps = ClientFeatureCMSComponent.clientProps
       }
       // As clientFeatureProvider is a client function, we cannot execute it on the server here. Thus, the client will have to execute clientFeatureProvider with its props
       clientFeatures[featureKey] = { clientFeatureProps, clientFeatureProvider }
@@ -96,10 +96,10 @@ export function initLexicalFeatures(args: Args): {
       typeof resolvedFeature.componentImports === 'object' &&
       !Array.isArray(resolvedFeature.componentImports)
     ) {
-      for (const [key, payloadComponent] of Object.entries(resolvedFeature.componentImports)) {
+      for (const [key, cmsComponent] of Object.entries(resolvedFeature.componentImports)) {
         const resolvedComponent = getFromImportMap({
-          importMap: args.payload.importMap,
-          PayloadComponent: payloadComponent,
+          importMap: args.cms.importMap,
+          CMSComponent: cmsComponent,
           schemaPath: 'lexical-clientComponent',
           silent: true,
         })

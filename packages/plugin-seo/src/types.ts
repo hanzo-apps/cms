@@ -5,7 +5,7 @@ import type {
   Field,
   GlobalConfig,
   GlobalSlug,
-  PayloadRequest,
+  CMSRequest,
   UploadCollectionSlug,
 } from '@hanzo/cms'
 
@@ -33,7 +33,7 @@ export type GenerateTitle<T = any> = (
     doc: T
     globalConfig?: GlobalConfig
     locale?: string
-    req: PayloadRequest
+    req: CMSRequest
   } & PartialDocumentInfoContext,
 ) => Promise<string> | string
 
@@ -43,7 +43,7 @@ export type GenerateDescription<T = any> = (
     doc: T
     globalConfig?: GlobalConfig
     locale?: string
-    req: PayloadRequest
+    req: CMSRequest
   } & PartialDocumentInfoContext,
 ) => Promise<string> | string
 
@@ -53,7 +53,7 @@ export type GenerateImage<T = any> = (
     doc: T
     globalConfig?: GlobalConfig
     locale?: string
-    req: PayloadRequest
+    req: CMSRequest
   } & PartialDocumentInfoContext,
 ) => { id: number | string } | number | Promise<{ id: number | string } | number | string> | string
 
@@ -63,7 +63,7 @@ export type GenerateURL<T = any> = (
     doc: T
     globalConfig?: GlobalConfig
     locale?: string
-    req: PayloadRequest
+    req: CMSRequest
   } & PartialDocumentInfoContext,
 ) => Promise<string> | string
 

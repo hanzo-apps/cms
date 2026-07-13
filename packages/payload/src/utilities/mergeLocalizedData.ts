@@ -165,7 +165,7 @@ export function mergeLocalizedData({
                     selectedLocales,
                   })
 
-                  // blockType, id, blockName are set by Payload internally
+                  // blockType, id, blockName are set by CMS internally
                   // and not part of block.fields, so they must be preserved explicitly
                   merged.blockType = newBlockData.blockType
                   merged.id = newBlockData.id

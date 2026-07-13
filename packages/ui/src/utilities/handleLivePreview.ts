@@ -4,7 +4,7 @@ import type {
   LivePreviewConfig,
   LivePreviewURLType,
   Operation,
-  PayloadRequest,
+  CMSRequest,
   SanitizedConfig,
 } from '@hanzo/cms'
 
@@ -77,14 +77,14 @@ export const handleLivePreview = async ({
   data: Record<string, unknown>
   globalSlug?: string
   operation?: Operation
-  req: PayloadRequest
+  req: CMSRequest
 }): Promise<{
   isLivePreviewEnabled?: boolean
   livePreviewConfig?: LivePreviewConfig
   livePreviewURL?: LivePreviewURLType
 }> => {
   const collectionConfig = collectionSlug
-    ? req.payload.collections[collectionSlug]?.config
+    ? req.cms.collections[collectionSlug]?.config
     : undefined
 
   const globalConfig = globalSlug ? config.globals.find((g) => g.slug === globalSlug) : undefined
@@ -119,7 +119,7 @@ export const handleLivePreview = async ({
         data,
         globalConfig,
         locale: { code: req.locale, label: '' },
-        payload: req.payload,
+        cms: req.cms,
         req,
       })
 
@@ -127,7 +127,7 @@ export const handleLivePreview = async ({
         livePreviewURL = result
       }
     } catch (err) {
-      req.payload.logger.error({
+      req.cms.logger.error({
         err,
         msg: `There was an error executing the live preview URL function for ${collectionSlug || globalSlug}`,
       })

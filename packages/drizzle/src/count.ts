@@ -11,7 +11,7 @@ export const count: Count = async function count(
   this: DrizzleAdapter,
   { collection, locale, req, where: whereArg },
 ) {
-  const collectionConfig: SanitizedCollectionConfig = this.payload.collections[collection].config
+  const collectionConfig: SanitizedCollectionConfig = this.cms.collections[collection].config
 
   const tableName = this.tableNameMap.get(toSnakeCase(collectionConfig.slug))
 

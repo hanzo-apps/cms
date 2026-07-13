@@ -15,7 +15,7 @@ import { isNumericOperator } from './types.js'
  * ```ts
  * // Set quantity to 5
  * const result = await updateItem({
- *   payload,
+ *   cms,
  *   cartsSlug: 'carts',
  *   cartID: '123',
  *   itemID: 'item-row-id',
@@ -24,7 +24,7 @@ import { isNumericOperator } from './types.js'
  *
  * // Increment by 1
  * const result = await updateItem({
- *   payload,
+ *   cms,
  *   cartsSlug: 'carts',
  *   cartID: '123',
  *   itemID: 'item-row-id',
@@ -33,7 +33,7 @@ import { isNumericOperator } from './types.js'
  *
  * // Decrement by 2
  * const result = await updateItem({
- *   payload,
+ *   cms,
  *   cartsSlug: 'carts',
  *   cartID: '123',
  *   itemID: 'item-row-id',
@@ -42,12 +42,12 @@ import { isNumericOperator } from './types.js'
  * ```
  */
 export const updateItem = async (args: UpdateItemArgs): Promise<CartOperationResult> => {
-  const { cartID, cartsSlug, itemID, payload, quantity, removeOnZero = true, req, secret } = args
+  const { cartID, cartsSlug, itemID, cms, quantity, removeOnZero = true, req, secret } = args
 
   // Inject secret into request context for access control
   const reqWithSecret = createRequestWithSecret(req, secret)
 
-  const cart = await payload.findByID({
+  const cart = await cms.findByID({
     id: cartID,
     collection: cartsSlug,
     depth: 0,
@@ -101,7 +101,7 @@ export const updateItem = async (args: UpdateItemArgs): Promise<CartOperationRes
     }
   }
 
-  const updatedCart = await payload.update({
+  const updatedCart = await cms.update({
     id: cartID,
     collection: cartsSlug,
     data: {

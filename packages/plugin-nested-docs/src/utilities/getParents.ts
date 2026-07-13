@@ -1,9 +1,9 @@
-import type { CollectionConfig, Document, PayloadRequest } from '@hanzo/cms'
+import type { CollectionConfig, Document, CMSRequest } from '@hanzo/cms'
 
 import type { NestedDocsPluginConfig } from '../types.js'
 
 export const getParents = async (
-  req: PayloadRequest,
+  req: CMSRequest,
   pluginConfig: Pick<NestedDocsPluginConfig, 'generateLabel' | 'generateURL' | 'parentFieldSlug'>,
   collection: CollectionConfig,
   doc: Record<string, unknown>,
@@ -16,7 +16,7 @@ export const getParents = async (
   if (parent) {
     // If not auto-populated, and we have an ID
     if (typeof parent === 'string' || typeof parent === 'number') {
-      retrievedParent = await req.payload.findByID({
+      retrievedParent = await req.cms.findByID({
         id: parent,
         collection: collection.slug,
         depth: 0,

@@ -1,9 +1,9 @@
-import type { OptionObject, Payload, TypedUser } from '@hanzo/cms'
+import type { OptionObject, CMS, TypedUser } from '@hanzo/cms'
 
 import type { MultiTenantPluginConfig } from '../types.js'
 
 export const getTenantOptions = async ({
-  payload,
+  cms,
   tenantsArrayFieldName,
   tenantsArrayTenantFieldName,
   tenantsCollectionSlug,
@@ -11,7 +11,7 @@ export const getTenantOptions = async ({
   user,
   userHasAccessToAllTenants,
 }: {
-  payload: Payload
+  cms: CMS
   tenantsArrayFieldName: string
   tenantsArrayTenantFieldName: string
   tenantsCollectionSlug: string
@@ -25,7 +25,7 @@ export const getTenantOptions = async ({
     return tenantOptions
   }
 
-  const isOrderable = payload.collections[tenantsCollectionSlug]?.config?.orderable || false
+  const isOrderable = cms.collections[tenantsCollectionSlug]?.config?.orderable || false
 
   const userTenantIds = !userHasAccessToAllTenants(user)
     ? ((user[tenantsArrayFieldName] as { [key: string]: unknown }[]) || []).map((tenantRow) => {
@@ -43,7 +43,7 @@ export const getTenantOptions = async ({
     return tenantOptions
   }
 
-  const tenants = await payload.find({
+  const tenants = await cms.find({
     collection: tenantsCollectionSlug,
     depth: 0,
     limit: 0,

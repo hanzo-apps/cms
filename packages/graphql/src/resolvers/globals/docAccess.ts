@@ -1,5 +1,5 @@
 import type {
-  PayloadRequest,
+  CMSRequest,
   SanitizedCollectionPermission,
   SanitizedGlobalConfig,
   SanitizedGlobalPermission,
@@ -12,7 +12,7 @@ import type { Context } from '../types.js'
 export type Resolver = (
   _: unknown,
   context: {
-    req: PayloadRequest
+    req: CMSRequest
   },
 ) => Promise<SanitizedCollectionPermission | SanitizedGlobalPermission>
 

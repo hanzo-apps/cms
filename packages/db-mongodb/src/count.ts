@@ -38,7 +38,7 @@ export const count: Count = async function count(
   }
 
   if (this.collation) {
-    const localizationConfig = this.payload.config.localization
+    const localizationConfig = this.cms.config.localization
     const defaultLocale =
       (typeof localizationConfig === 'object' && localizationConfig?.defaultLocale) || 'en'
 

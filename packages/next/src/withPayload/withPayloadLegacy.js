@@ -3,8 +3,8 @@
  * @param {import('next').NextConfig} nextConfig
  * @returns {import('next').NextConfig}
  */
-export const withPayloadLegacy = (nextConfig = {}) => {
-  if (process.env.PAYLOAD_PATCH_TURBOPACK_WARNINGS !== 'false') {
+export const withCMSLegacy = (nextConfig = {}) => {
+  if (process.env.CMS_PATCH_TURBOPACK_WARNINGS !== 'false') {
     // TODO: This warning is thrown because we cannot externalize the entry-point package for client-s3, so we patch the warning to not show it.
     // We can remove this once Next.js implements https://github.com/vercel/next.js/discussions/76991
     const turbopackWarningText =
@@ -23,7 +23,7 @@ export const withPayloadLegacy = (nextConfig = {}) => {
         return
       }
 
-      // Add Payload-specific message after turbopack config warning in Next.js 15.2.x or lower.
+      // Add CMS-specific message after turbopack config warning in Next.js 15.2.x or lower.
       // TODO 4.0: Remove this once we drop support for Next.js 15.2.x
       const hasTurbopackConfigWarning =
         (typeof args[1] === 'string' && args[1].includes(turbopackConfigWarningText)) ||
@@ -32,7 +32,7 @@ export const withPayloadLegacy = (nextConfig = {}) => {
       if (hasTurbopackConfigWarning) {
         consoleWarn(...args)
         consoleWarn(
-          'Payload: You can safely ignore the "Invalid next.config" warning above. This only occurs on Next.js 15.2.x or lower. We recommend upgrading to the latest supported Next.js version to resolve this warning.',
+          'CMS: You can safely ignore the "Invalid next.config" warning above. This only occurs on Next.js 15.2.x or lower. We recommend upgrading to the latest supported Next.js version to resolve this warning.',
         )
         return
       }
@@ -47,7 +47,7 @@ export const withPayloadLegacy = (nextConfig = {}) => {
 
   if (isBuild && (isTurbopackNextjs15 || isTurbopackNextjs16)) {
     throw new Error(
-      'Payload: Your Next.js version does not support using Turbopack for production builds. The *minimum* Next.js version required for Turbopack Builds is 16.1.0. Please upgrade to the latest supported Next.js version to resolve this error.',
+      'CMS: Your Next.js version does not support using Turbopack for production builds. The *minimum* Next.js version required for Turbopack Builds is 16.1.0. Please upgrade to the latest supported Next.js version to resolve this error.',
     )
   }
 

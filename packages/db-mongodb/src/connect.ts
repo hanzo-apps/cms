@@ -71,7 +71,7 @@ export const connect: Connect = async function connect(
     // If we are running a replica set with MongoDB Memory Server,
     // wait until the replica set elects a primary before proceeding
     if (this.mongoMemoryServer) {
-      this.payload.logger.info(
+      this.cms.logger.info(
         'Waiting for MongoDB Memory Server replica set to elect a primary...',
       )
       await new Promise((resolve) => setTimeout(resolve, 2000))
@@ -83,17 +83,17 @@ export const connect: Connect = async function connect(
     }
 
     if (!hotReload) {
-      if (process.env.PAYLOAD_DROP_DATABASE === 'true') {
-        this.payload.logger.info('---- DROPPING DATABASE ----')
+      if (process.env.CMS_DROP_DATABASE === 'true') {
+        this.cms.logger.info('---- DROPPING DATABASE ----')
         await this.connection.dropDatabase()
 
-        this.payload.logger.info('---- DROPPED DATABASE ----')
+        this.cms.logger.info('---- DROPPED DATABASE ----')
       }
     }
 
     if (this.ensureIndexes) {
       await Promise.all(
-        this.payload.config.collections.map(async (coll) => {
+        this.cms.config.collections.map(async (coll) => {
           await this.collections[coll.slug]?.ensureIndexes()
         }),
       )
@@ -109,7 +109,7 @@ export const connect: Connect = async function connect(
       msg = `${msg} Details: ${err.message}`
     }
 
-    this.payload.logger.error({
+    this.cms.logger.error({
       err,
       msg,
     })

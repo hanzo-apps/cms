@@ -1,7 +1,7 @@
 import type { SharpOptions } from 'sharp'
 
 import type { SanitizedConfig } from '../config/types.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 import type { WithMetadata } from './optionallyAppendMetadata.js'
 import type { UploadEdits } from './types.js'
 
@@ -14,9 +14,9 @@ const percentToPixel = (value: number, dimension: number) => {
 type CropImageArgs = {
   cropData: UploadEdits['crop']
   dimensions: { height: number; width: number }
-  file: PayloadRequest['file']
+  file: CMSRequest['file']
   heightInPixels: number
-  req?: PayloadRequest
+  req?: CMSRequest
   sharp: SanitizedConfig['sharp']
   widthInPixels: number
   withMetadata?: WithMetadata

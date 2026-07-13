@@ -40,20 +40,20 @@ export type DashboardViewServerPropsOnly = {
 export type DashboardViewServerProps = DashboardViewClientProps & DashboardViewServerPropsOnly
 
 export function DefaultDashboard(props: DashboardViewServerProps) {
-  const { i18n, locale, params, payload, permissions, searchParams, user } = props
-  const { afterDashboard, beforeDashboard } = payload.config.admin.components
+  const { i18n, locale, params, cms, permissions, searchParams, user } = props
+  const { afterDashboard, beforeDashboard } = cms.config.admin.components
 
   return (
     <Gutter className={baseClass}>
       {beforeDashboard &&
         RenderServerComponent({
           Component: beforeDashboard,
-          importMap: payload.importMap,
+          importMap: cms.importMap,
           serverProps: {
             i18n,
             locale,
             params,
-            payload,
+            cms,
             permissions,
             searchParams,
             user,
@@ -63,12 +63,12 @@ export function DefaultDashboard(props: DashboardViewServerProps) {
       {afterDashboard &&
         RenderServerComponent({
           Component: afterDashboard,
-          importMap: payload.importMap,
+          importMap: cms.importMap,
           serverProps: {
             i18n,
             locale,
             params,
-            payload,
+            cms,
             permissions,
             searchParams,
             user,

@@ -1,10 +1,10 @@
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { APIError } from '@hanzo/cms'
 
 export type ParseJSONArgs = {
   data: Buffer | string
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 /**
@@ -22,7 +22,7 @@ export const parseJSON = ({ data, req }: ParseJSONArgs): Record<string, unknown>
 
     return parsed
   } catch (err) {
-    req.payload.logger.error({ err, msg: 'Error parsing JSON' })
+    req.cms.logger.error({ err, msg: 'Error parsing JSON' })
     if (err instanceof APIError) {
       throw err
     }

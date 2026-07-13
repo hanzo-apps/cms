@@ -72,7 +72,7 @@ const DocumentInfo: React.FC<
 
   // Check if the locked-documents collection exists in the config
   const hasLockedDocumentsCollection = collections.some(
-    (collection) => collection.slug === 'payload-locked-documents',
+    (collection) => collection.slug === 'cms-locked-documents',
   )
 
   const abortControllerRef = useRef(new AbortController())
@@ -184,7 +184,7 @@ const DocumentInfo: React.FC<
       try {
         const isGlobal = slug === globalSlug
 
-        const request = await requests.get(`${baseAPIPath}/payload-locked-documents`, {
+        const request = await requests.get(`${baseAPIPath}/cms-locked-documents`, {
           credentials: 'include',
           params: isGlobal
             ? {
@@ -200,7 +200,7 @@ const DocumentInfo: React.FC<
 
         if (docs?.length > 0) {
           const lockID = docs[0].id
-          await requests.delete(`${baseAPIPath}/payload-locked-documents/${lockID}`, {
+          await requests.delete(`${baseAPIPath}/cms-locked-documents/${lockID}`, {
             credentials: 'include',
             headers: {
               'Content-Type': 'application/json',
@@ -227,7 +227,7 @@ const DocumentInfo: React.FC<
         const isGlobal = slug === globalSlug
 
         // Check if the document is already locked
-        const request = await requests.get(`${baseAPIPath}/payload-locked-documents`, {
+        const request = await requests.get(`${baseAPIPath}/cms-locked-documents`, {
           credentials: 'include',
           params: isGlobal
             ? {
@@ -250,7 +250,7 @@ const DocumentInfo: React.FC<
               : { relationTo: 'users', value: user }
 
           // Send a patch request to update the _lastEdited info
-          await requests.patch(`${baseAPIPath}/payload-locked-documents/${lockID}`, {
+          await requests.patch(`${baseAPIPath}/cms-locked-documents/${lockID}`, {
             body: JSON.stringify({
               user: userData,
             }),

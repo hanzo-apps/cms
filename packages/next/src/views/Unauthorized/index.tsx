@@ -14,7 +14,7 @@ export function UnauthorizedView({ initPageResult }: AdminViewServerProps) {
     permissions,
     req: {
       i18n,
-      payload: {
+      cms: {
         config: {
           admin: {
             routes: { logout: logoutRoute },

@@ -13,7 +13,7 @@ import { buildIndexName } from '../utilities/buildIndexName.js'
 import { buildTable } from './build.js'
 
 /**
- * Builds abstract Payload SQL schema
+ * Builds abstract CMS SQL schema
  */
 export const buildRawSchema = ({
   adapter,
@@ -25,7 +25,7 @@ export const buildRawSchema = ({
   adapter.indexes = new Set()
   adapter.foreignKeys = new Set()
 
-  adapter.payload.config.collections.forEach((collection) => {
+  adapter.cms.config.collections.forEach((collection) => {
     createTableName({
       adapter,
       config: collection,
@@ -41,9 +41,9 @@ export const buildRawSchema = ({
     }
   })
 
-  adapter.payload.config.collections.forEach((collection) => {
+  adapter.cms.config.collections.forEach((collection) => {
     const tableName = adapter.tableNameMap.get(toSnakeCase(collection.slug))
-    const config = adapter.payload.config
+    const config = adapter.cms.config
 
     const baseIndexes: Record<string, RawIndex> = {}
 
@@ -94,7 +94,7 @@ export const buildRawSchema = ({
     }
   })
 
-  adapter.payload.config.globals.forEach((global) => {
+  adapter.cms.config.globals.forEach((global) => {
     const tableName = createTableName({
       adapter,
       config: global,
@@ -120,7 +120,7 @@ export const buildRawSchema = ({
         versions: true,
         versionsCustomName: true,
       })
-      const config = adapter.payload.config
+      const config = adapter.cms.config
       const versionFields = buildVersionGlobalFields(config, global, true)
 
       buildTable({

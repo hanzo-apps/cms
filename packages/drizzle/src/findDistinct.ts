@@ -33,7 +33,7 @@ const getOrderColumn = (
 
 export const findDistinct: FindDistinct = async function (this: DrizzleAdapter, args) {
   const collectionConfig: SanitizedCollectionConfig =
-    this.payload.collections[args.collection].config
+    this.cms.collections[args.collection].config
   const page = args.page || 1
   const offset = args.limit ? (page - 1) * args.limit : undefined
   const tableName = this.tableNameMap.get(toSnakeCase(collectionConfig.slug))
@@ -94,7 +94,7 @@ export const findDistinct: FindDistinct = async function (this: DrizzleAdapter, 
   })
 
   const field = getFieldByPath({
-    config: this.payload.config,
+    config: this.cms.config,
     fields: collectionConfig.flattenedFields,
     includeRelationships: true,
     path: args.field,

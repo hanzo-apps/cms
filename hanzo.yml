@@ -1,0 +1,29 @@
+# Canonical CI/CD config for hanzoai/cms — read by both the hanzoai/ci reusable
+# workflow (.github/workflows/cicd.yml) and platform.hanzo.ai. One image (the
+# @hanzo/cms admin/app, Next standalone via Dockerfile), rolled onto the existing
+# `cms` operator Service CR (universe: infra/k8s/operator/crs/cms.yaml).
+#
+# No separate `test:` block: the Dockerfile IS the gate — `pnpm build:all` +
+# `next build` fail the image on any build break, so nothing broken ships (same
+# pattern as hanzoai/world + hanzoai/console).
+
+images:
+  - name: cms
+    context: .
+    dockerfile: Dockerfile
+    repo: ghcr.io/hanzoai/cms
+
+# BUILD-ONLY for the first cutover: no `deploy:` block, so main pushes the image
+# to GHCR but never rolls the CR itself. The deploy is done through the universe
+# CR bump (infra/k8s/operator/crs/cms.yaml image.tag) IN LOCKSTEP with the
+# PAYLOAD_SECRET→CMS_SECRET env fix (harden/cms-secret-env) — merging the image
+# without that env fix would drop admin auth to the dev fallback. Once the first
+# rebranded image is verified live, this can adopt world's auto-deploy `deploy:`
+# block. (Same controlled path world.hanzo.ai uses today.)
+
+# KMS (kms.hanzo.ai, Universal Auth) supplies the GHCR push token at run time.
+# Only KMS_CLIENT_ID/KMS_CLIENT_SECRET live in GitHub; everything else is fetched
+# here.
+kms:
+  path: /deploy
+  environment: prod

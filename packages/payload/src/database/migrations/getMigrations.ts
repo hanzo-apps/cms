@@ -1,16 +1,16 @@
-import type { Payload } from '../../index.js'
+import type { CMS } from '../../index.js'
 import type { MigrationData } from '../types.js'
 
 /**
  * Gets all existing migrations from the database, excluding the dev migration
  */
 export async function getMigrations({
-  payload,
+  cms,
 }: {
-  payload: Payload
+  cms: CMS
 }): Promise<{ existingMigrations: MigrationData[]; latestBatch: number }> {
-  const migrationQuery = await payload.find({
-    collection: 'payload-migrations',
+  const migrationQuery = await cms.find({
+    collection: 'cms-migrations',
     limit: 0,
     sort: ['-batch', '-name'],
     where: {

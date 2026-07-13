@@ -1,7 +1,7 @@
 @import './vars';
 @import './queries';
 
-@layer payload-default {
+@layer cms-default {
   .Toastify {
     .Toastify__toast-container {
       left: base(5);

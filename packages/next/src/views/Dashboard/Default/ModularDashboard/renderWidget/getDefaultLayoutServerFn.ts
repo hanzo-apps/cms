@@ -1,6 +1,6 @@
 import type {
   DashboardConfig,
-  PayloadRequest,
+  CMSRequest,
   ServerFunction,
   Widget,
   WidgetServerProps,
@@ -28,8 +28,8 @@ export const getDefaultLayoutHandler: ServerFunction<
     throw new Error('Unauthorized')
   }
 
-  const { defaultLayout = [], widgets = [] } = req.payload.config.admin.dashboard || {}
-  const { importMap } = req.payload
+  const { defaultLayout = [], widgets = [] } = req.cms.config.admin.dashboard || {}
+  const { importMap } = req.cms
 
   const layoutItems = await getItemsFromConfig(defaultLayout, req, widgets)
 
@@ -57,7 +57,7 @@ export const getDefaultLayoutHandler: ServerFunction<
 
 async function getItemsFromConfig(
   defaultLayout: NonNullable<DashboardConfig['defaultLayout']>,
-  req: PayloadRequest,
+  req: CMSRequest,
   widgets: Pick<Widget, 'maxWidth' | 'minWidth' | 'slug'>[],
 ): Promise<WidgetItem[]> {
   let widgetInstances

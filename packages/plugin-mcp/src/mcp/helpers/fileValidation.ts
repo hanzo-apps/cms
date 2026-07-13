@@ -58,12 +58,12 @@ export interface WorkflowConfig {
 }
 
 /**
- * Generic validation function for Payload configuration files
+ * Generic validation function for CMS configuration files
  * @param fileName - The name of the file (e.g., 'Users.ts', 'my-task.ts')
  * @param type - The type of validation to perform ('collection', 'task', or 'workflow')
  * @returns Object containing success status and any error messages
  */
-export const validatePayloadFile = async <T = CollectionConfig | TaskConfig | WorkflowConfig>(
+export const validateCMSFile = async <T = CollectionConfig | TaskConfig | WorkflowConfig>(
   fileName: string,
   type: ValidationType,
 ): Promise<ValidationResult<T>> => {
@@ -358,5 +358,5 @@ function validateWorkflowConfig(config: WorkflowConfig): ValidationResult<Workfl
 export const validateCollectionFile = async (
   fileName: string,
 ): Promise<ValidationResult<CollectionConfig>> => {
-  return validatePayloadFile<CollectionConfig>(fileName, 'collection')
+  return validateCMSFile<CollectionConfig>(fileName, 'collection')
 }

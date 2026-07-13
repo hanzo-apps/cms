@@ -10,7 +10,7 @@ import { configHasJobs } from './run.js'
  */
 export const handleSchedulesJobsEndpoint: Endpoint = {
   handler: async (req) => {
-    const jobsConfig = req.payload.config.jobs
+    const jobsConfig = req.cms.config.jobs
 
     if (!configHasJobs(jobsConfig)) {
       return Response.json(

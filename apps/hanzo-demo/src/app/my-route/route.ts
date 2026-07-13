@@ -1,8 +1,8 @@
 import configPromise from '@payload-config'
-import { getPayload } from '@hanzo/cms'
+import { getCMS } from '@hanzo/cms'
 
 export const GET = async (request: Request) => {
-  const payload = await getPayload({
+  const cms = await getCMS({
     config: configPromise,
   })
 

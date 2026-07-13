@@ -30,7 +30,7 @@ export type DetectionError = {
   userMessage: string
 }
 
-export type PayloadConfigStructures = {
+export type CMSConfigStructures = {
   buildConfigCall: CallExpression
   dbProperty?: PropertyAssignment
   importStatements: ImportDeclaration[]
@@ -45,8 +45,8 @@ export type DetectionResult = {
   edgeCases?: {
     /** Import uses an alias (e.g., import { buildConfig as bc }) */
     hasImportAlias: boolean
-    /** Other Payload imports exist (e.g., CollectionConfig) */
-    hasOtherPayloadImports: boolean
+    /** Other CMS imports exist (e.g., CollectionConfig) */
+    hasOtherCMSImports: boolean
     /** Multiple buildConfig calls found in file */
     multipleBuildConfigCalls: boolean
     /** Needs manual intervention (can't be automatically handled) */
@@ -71,7 +71,7 @@ export type DetectionResult = {
   /** Source file reference */
   sourceFile?: SourceFile
   /** Detected structures */
-  structures?: PayloadConfigStructures
+  structures?: CMSConfigStructures
   success: boolean
 }
 

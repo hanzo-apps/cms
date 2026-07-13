@@ -29,24 +29,24 @@ describe('createLinkMarkdownTransformer', () => {
         const link = $createLinkNode({
           fields: { linkType: 'custom', url: 'https://payloadcms.com', newTab: false, doc: null },
         })
-        link.append($createTextNode('Payload'))
+        link.append($createTextNode('CMS'))
         $getRoot().append($createParagraphNode().append(link))
       })
 
-      expect(markdown).toBe('[Payload](https://payloadcms.com)')
+      expect(markdown).toBe('[CMS](https://payloadcms.com)')
     })
 
     it('should export a custom link that opens in a new tab', () => {
-      // newTab is a Payload field — markdown has no equivalent, so it is intentionally dropped
+      // newTab is a CMS field — markdown has no equivalent, so it is intentionally dropped
       const markdown = toMarkdown(() => {
         const link = $createLinkNode({
           fields: { linkType: 'custom', url: 'https://payloadcms.com', newTab: true, doc: null },
         })
-        link.append($createTextNode('Payload'))
+        link.append($createTextNode('CMS'))
         $getRoot().append($createParagraphNode().append(link))
       })
 
-      expect(markdown).toBe('[Payload](https://payloadcms.com)')
+      expect(markdown).toBe('[CMS](https://payloadcms.com)')
     })
 
     it('should produce an empty href when url is null or undefined', () => {

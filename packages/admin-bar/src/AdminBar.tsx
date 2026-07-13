@@ -6,9 +6,9 @@ const dummyUser = {
   email: 'dev@email.com',
 }
 
-import type { PayloadAdminBarProps, PayloadMeUser } from './types.js'
+import type { CMSAdminBarProps, CMSMeUser } from './types.js'
 
-export const PayloadAdminBar: React.FC<PayloadAdminBarProps> = (props) => {
+export const CMSAdminBar: React.FC<CMSAdminBarProps> = (props) => {
   const {
     id: docID,
     adminPath = '/admin',
@@ -35,7 +35,7 @@ export const PayloadAdminBar: React.FC<PayloadAdminBarProps> = (props) => {
     userProps,
   } = props
 
-  const [user, setUser] = useState<PayloadMeUser>()
+  const [user, setUser] = useState<CMSMeUser>()
 
   useEffect(() => {
     const fetchMe = async () => {
@@ -79,7 +79,7 @@ export const PayloadAdminBar: React.FC<PayloadAdminBarProps> = (props) => {
     return (
       <div
         className={className}
-        id="payload-admin-bar"
+        id="cms-admin-bar"
         style={{
           ...(unstyled !== true
             ? {
@@ -126,7 +126,7 @@ export const PayloadAdminBar: React.FC<PayloadAdminBarProps> = (props) => {
               : {}),
           }}
         >
-          {logo || 'Payload CMS'}
+          {logo || 'CMS'}
         </a>
         <a
           className={classNames?.user}

@@ -31,7 +31,7 @@ import type {
   LabelFunction,
   LivePreviewConfig,
   MetaConfig,
-  PayloadComponent,
+  CMSComponent,
   StaticLabel,
 } from '../../config/types.js'
 import type { DBIdentifierName } from '../../database/types.js'
@@ -56,7 +56,7 @@ import type {
   TypedLocale,
 } from '../../index.js'
 import type {
-  PayloadRequest,
+  CMSRequest,
   SelectIncludeType,
   SelectType,
   Sort,
@@ -191,7 +191,7 @@ export type BeforeValidateHook<T extends TypeWithID = any> = (args: {
    * `undefined` on 'create' operation
    */
   originalDoc?: T
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type BeforeChangeHook<T extends TypeWithID = any> = (args: {
@@ -209,7 +209,7 @@ export type BeforeChangeHook<T extends TypeWithID = any> = (args: {
    * `undefined` on 'create' operation
    */
   originalDoc?: T
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type AfterChangeHook<T extends TypeWithID = any> = (args: {
@@ -227,7 +227,7 @@ export type AfterChangeHook<T extends TypeWithID = any> = (args: {
    */
   overrideAccess?: boolean
   previousDoc: T
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type BeforeReadHook<T extends TypeWithID = any> = (args: {
@@ -240,7 +240,7 @@ export type BeforeReadHook<T extends TypeWithID = any> = (args: {
    */
   overrideAccess?: boolean
   query: { [key: string]: any }
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type AfterReadHook<T extends TypeWithID = any> = (args: {
@@ -254,7 +254,7 @@ export type AfterReadHook<T extends TypeWithID = any> = (args: {
    */
   overrideAccess?: boolean
   query?: { [key: string]: any }
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type BeforeDeleteHook = (args: {
@@ -262,7 +262,7 @@ export type BeforeDeleteHook = (args: {
   collection: SanitizedCollectionConfig
   context: RequestContext
   id: number | string
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type AfterDeleteHook<T extends TypeWithID = any> = (args: {
@@ -271,7 +271,7 @@ export type AfterDeleteHook<T extends TypeWithID = any> = (args: {
   context: RequestContext
   doc: T
   id: number | string
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 export type AfterOperationHook<TOperationGeneric extends CollectionSlug = string> = (
@@ -286,7 +286,7 @@ export type BeforeLoginHook<T extends TypeWithID = any> = (args: {
   /** The collection which this hook is being run on */
   collection: SanitizedCollectionConfig
   context: RequestContext
-  req: PayloadRequest
+  req: CMSRequest
   user: T
 }) => any
 
@@ -294,7 +294,7 @@ export type AfterLoginHook<T extends TypeWithID = any> = (args: {
   /** The collection which this hook is being run on */
   collection: SanitizedCollectionConfig
   context: RequestContext
-  req: PayloadRequest
+  req: CMSRequest
   token: string
   user: T
 }) => any
@@ -304,7 +304,7 @@ export type AfterLogoutHook<T extends TypeWithID = any> = (args: {
   /** The collection which this hook is being run on */
   collection: SanitizedCollectionConfig
   context: RequestContext
-  req: PayloadRequest
+  req: CMSRequest
 }) => any
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -312,7 +312,7 @@ export type AfterMeHook<T extends TypeWithID = any> = (args: {
   /** The collection which this hook is being run on */
   collection: SanitizedCollectionConfig
   context: RequestContext
-  req: PayloadRequest
+  req: CMSRequest
   response: unknown
 }) => any
 
@@ -332,7 +332,7 @@ export type AfterRefreshHook<T extends TypeWithID = any> = (args: {
   collection: SanitizedCollectionConfig
   context: RequestContext
   exp: number
-  req: PayloadRequest
+  req: CMSRequest
   token: string
 }) => any
 
@@ -356,7 +356,7 @@ export type BaseFilter = (args: {
   limit: number
   locale?: TypedLocale
   page: number
-  req: PayloadRequest
+  req: CMSRequest
   sort: string
 }) => null | Promise<null | Where> | Where
 
@@ -415,7 +415,7 @@ export type CollectionAdminOptions = {
        * Replaces the "Publish" button
        * + drafts must be enabled
        */
-      PublishButton?: PayloadComponent<PublishButtonServerProps, PublishButtonClientProps>
+      PublishButton?: CMSComponent<PublishButtonServerProps, PublishButtonClientProps>
       /**
        * Replaces the "Save" button
        * + drafts must be disabled
@@ -435,7 +435,7 @@ export type CollectionAdminOptions = {
        * Replaces the "Unpublish" button
        * + drafts must be enabled
        */
-      UnpublishButton?: PayloadComponent<UnpublishButtonServerProps, UnpublishButtonClientProps>
+      UnpublishButton?: CMSComponent<UnpublishButtonServerProps, UnpublishButtonClientProps>
       /**
        * Replaces the "Upload" section
        * + upload must be enabled
@@ -460,7 +460,7 @@ export type CollectionAdminOptions = {
        * ```
        */
       [key: string]:
-        | { actions?: CustomComponent[]; Component?: PayloadComponent }
+        | { actions?: CustomComponent[]; Component?: CMSComponent }
         | AdminViewConfig
         | EditConfig
         | undefined
@@ -475,7 +475,7 @@ export type CollectionAdminOptions = {
        */
       list?: {
         actions?: CustomComponent[]
-        Component?: PayloadComponent
+        Component?: CMSComponent
       }
     }
   }
@@ -519,7 +519,7 @@ export type CollectionAdminOptions = {
      */
     defaultURL: string
     doc: Record<string, unknown>
-    req: PayloadRequest
+    req: CMSRequest
     /**
      * The current view context where the link is being generated.
      * Most relevant values for document linking are 'list' and 'trash'.
@@ -535,7 +535,7 @@ export type CollectionAdminOptions = {
   group?: false | Record<string, string> | string
   /**
    * @description Enable grouping by a field in the list view.
-   * Uses `payload.findDistinct` under the hood to populate the group-by options.
+   * Uses `cms.findDistinct` under the hood to populate the group-by options.
    *
    * @experimental This option is currently in beta and may change in future releases. Use at your own risk.
    */
@@ -584,7 +584,7 @@ export type CollectionConfig<TSlug extends CollectionSlug = any> = {
    * Access control
    */
   access?: {
-    admin?: ({ req }: { req: PayloadRequest }) => boolean | Promise<boolean>
+    admin?: ({ req }: { req: CMSRequest }) => boolean | Promise<boolean>
     create?: Access
     delete?: Access
     read?: Access
@@ -659,7 +659,7 @@ export type CollectionConfig<TSlug extends CollectionSlug = any> = {
       }
     | false
   /**
-   * Hooks to modify Payload functionality
+   * Hooks to modify CMS functionality
    */
   hooks?: {
     afterChange?: AfterChangeHook[]

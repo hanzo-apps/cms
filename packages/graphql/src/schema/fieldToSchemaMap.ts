@@ -170,7 +170,7 @@ export const fieldToSchemaMap: FieldToSchemaMap = {
     ).reduce((acc, _block) => {
       const blockSlug = typeof _block === 'string' ? _block : _block.slug
       if (!graphqlResult.types.blockTypes[blockSlug]) {
-        // TODO: iterate over blocks mapped to block slug in v4, or pass through payload.blocks
+        // TODO: iterate over blocks mapped to block slug in v4, or pass through cms.blocks
         const block =
           typeof _block === 'string' ? config.blocks.find((b) => b.slug === _block) : _block
 
@@ -450,7 +450,7 @@ export const fieldToSchemaMap: FieldToSchemaMap = {
         }
 
         if (count && limit === 0) {
-          return await req.payload.count({
+          return await req.cms.count({
             collection,
             overrideAccess: false,
             req,
@@ -458,7 +458,7 @@ export const fieldToSchemaMap: FieldToSchemaMap = {
           })
         }
 
-        const { docs, totalDocs } = await req.payload.find({
+        const { docs, totalDocs } = await req.cms.find({
           collection,
           depth: 0,
           draft,
@@ -688,7 +688,7 @@ export const fieldToSchemaMap: FieldToSchemaMap = {
                 id = relatedDoc.value
               }
 
-              const result = await context.req.payloadDataLoader.load(
+              const result = await context.req.cmsDataLoader.load(
                 createDataloaderCacheKey({
                   collectionSlug: collectionSlug as string,
                   currentDepth: 0,
@@ -738,7 +738,7 @@ export const fieldToSchemaMap: FieldToSchemaMap = {
 
         if (id) {
           if (graphQLCollections.some((collection) => collection.slug === relatedCollectionSlug)) {
-            const relatedDocument = await context.req.payloadDataLoader.load(
+            const relatedDocument = await context.req.cmsDataLoader.load(
               createDataloaderCacheKey({
                 collectionSlug: relatedCollectionSlug as string,
                 currentDepth: 0,
@@ -1107,7 +1107,7 @@ export const fieldToSchemaMap: FieldToSchemaMap = {
                 id = relatedDoc.value
               }
 
-              const result = await context.req.payloadDataLoader.load(
+              const result = await context.req.cmsDataLoader.load(
                 createDataloaderCacheKey({
                   collectionSlug: collectionSlug as string,
                   currentDepth: 0,
@@ -1157,7 +1157,7 @@ export const fieldToSchemaMap: FieldToSchemaMap = {
 
         if (id) {
           if (graphQLCollections.some((collection) => collection.slug === relatedCollectionSlug)) {
-            const relatedDocument = await context.req.payloadDataLoader.load(
+            const relatedDocument = await context.req.cmsDataLoader.load(
               createDataloaderCacheKey({
                 collectionSlug: relatedCollectionSlug as string,
                 currentDepth: 0,

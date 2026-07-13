@@ -32,7 +32,7 @@ import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from
 
 import type { LinkNode } from '../../../../nodes/LinkNode.js'
 import type { LinkFields } from '../../../../nodes/types.js'
-import type { LinkPayload } from '../types.js'
+import type { LinkCMS } from '../types.js'
 
 import { useEditorConfigContext } from '../../../../../../lexical/config/client/EditorConfigProvider.js'
 import { getSelectedNode } from '../../../../../../lexical/utils/getSelectedNode.js'
@@ -274,8 +274,8 @@ export function LinkEditor({ anchorElem }: { anchorElem: HTMLElement }): React.R
     return mergeRegister(
       editor.registerCommand(
         TOGGLE_LINK_WITH_MODAL_COMMAND,
-        (payload: LinkPayload) => {
-          editor.dispatchCommand(TOGGLE_LINK_COMMAND, payload)
+        (cms: LinkCMS) => {
+          editor.dispatchCommand(TOGGLE_LINK_COMMAND, cms)
 
           // Now, open the modal
           $updateLinkEditor()
@@ -416,10 +416,10 @@ export function LinkEditor({ anchorElem }: { anchorElem: HTMLElement }): React.R
         drawerTitle={t('fields:editLink')}
         featureKey="link"
         handleDrawerSubmit={(fields: FormState, data: Data) => {
-          const newLinkPayload = data as { text: string } & LinkFields
+          const newLinkCMS = data as { text: string } & LinkFields
 
           const bareLinkFields: LinkFields = {
-            ...newLinkPayload,
+            ...newLinkCMS,
           }
           delete bareLinkFields.text
 
@@ -448,7 +448,7 @@ export function LinkEditor({ anchorElem }: { anchorElem: HTMLElement }): React.R
           editor.dispatchCommand(TOGGLE_LINK_COMMAND, {
             fields: bareLinkFields,
             selectedNodes,
-            text: newLinkPayload.text,
+            text: newLinkCMS.text,
           })
         }}
         schemaPath={schemaPath}

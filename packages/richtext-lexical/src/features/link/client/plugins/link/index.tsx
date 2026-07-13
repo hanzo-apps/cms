@@ -13,7 +13,7 @@ import { useEffect } from 'react'
 import type { PluginComponent } from '../../../../typesClient.js'
 import type { LinkFields } from '../../../nodes/types.js'
 import type { ClientProps } from '../../index.js'
-import type { LinkPayload } from '../floatingLinkEditor/types.js'
+import type { LinkCMS } from '../floatingLinkEditor/types.js'
 
 import { validateUrl } from '../../../../../lexical/utils/url.js'
 import { $toggleLink, LinkNode, TOGGLE_LINK_COMMAND } from '../../../nodes/LinkNode.js'
@@ -28,18 +28,18 @@ export const LinkPlugin: PluginComponent<ClientProps> = ({ clientProps }) => {
     return mergeRegister(
       editor.registerCommand(
         TOGGLE_LINK_COMMAND,
-        (payload: LinkPayload) => {
-          if (payload === null) {
+        (cms: LinkCMS) => {
+          if (cms === null) {
             $toggleLink(null)
             return true
           }
-          if (!payload.fields?.linkType) {
-            payload.fields.linkType = clientProps.defaultLinkType as any
+          if (!cms.fields?.linkType) {
+            cms.fields.linkType = clientProps.defaultLinkType as any
           }
-          if (!payload.fields?.url) {
-            payload.fields.url = clientProps.defaultLinkURL as any
+          if (!cms.fields?.url) {
+            cms.fields.url = clientProps.defaultLinkURL as any
           }
-          $toggleLink(payload as { fields: LinkFields } & LinkPayload)
+          $toggleLink(cms as { fields: LinkFields } & LinkCMS)
           return true
         },
         COMMAND_PRIORITY_LOW,

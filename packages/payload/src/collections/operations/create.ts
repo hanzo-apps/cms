@@ -3,7 +3,7 @@ import crypto from 'crypto'
 import type { CollectionSlug, FindOptions, JsonObject } from '../../index.js'
 import type {
   Document,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   TransformCollectionWithSelect,
@@ -55,7 +55,7 @@ export type Arguments<TSlug extends CollectionSlug> = {
   populate?: PopulateType
   publishAllLocales?: boolean
   publishSpecificLocale?: string
-  req: PayloadRequest
+  req: CMSRequest
   selectedLocales?: string[]
   showHiddenFields?: boolean
 } & Pick<FindOptions<TSlug, SelectType>, 'select'>
@@ -110,8 +110,8 @@ export const createOperation = async <
       req: {
         fallbackLocale,
         locale,
-        payload,
-        payload: { config },
+        cms,
+        cms: { config },
       },
       req,
       select: incomingSelect,
@@ -276,7 +276,7 @@ export const createOperation = async <
     // /////////////////////////////////////
 
     if (!collectionConfig.upload.disableLocalStorage) {
-      await uploadFiles(payload, filesToUpload, req)
+      await uploadFiles(cms, filesToUpload, req)
     }
 
     // /////////////////////////////////////
@@ -301,11 +301,11 @@ export const createOperation = async <
         collection: collectionConfig,
         doc: resultWithLocales,
         password: data.password as string,
-        payload: req.payload,
+        cms: req.cms,
         req,
       })
     } else {
-      doc = await payload.db.create({
+      doc = await cms.db.create({
         collection: collectionConfig.slug,
         data: resultWithLocales,
         req,
@@ -334,7 +334,7 @@ export const createOperation = async <
         collection: collectionConfig,
         docWithLocales: result,
         operation: 'create',
-        payload,
+        cms,
         publishSpecificLocale,
         req,
         returning: false,
@@ -348,9 +348,9 @@ export const createOperation = async <
     if (collectionConfig.auth && collectionConfig.auth.verify && result.email) {
       await sendVerificationEmail({
         collection: { config: collectionConfig },
-        config: payload.config,
+        config: cms.config,
         disableEmail: disableVerificationEmail!,
-        email: payload.email,
+        email: cms.email,
         req,
         token: verificationToken,
         user: result,

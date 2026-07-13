@@ -1,4 +1,4 @@
-import { type CustomVersionParser, checkDependencies as payloadCheckDependencies } from '@hanzo/cms'
+import { type CustomVersionParser, checkDependencies as cmsCheckDependencies } from '@hanzo/cms'
 
 const customReactVersionParser: CustomVersionParser = (version) => {
   const [mainVersion, ...preReleases] = version.split('-')
@@ -20,13 +20,13 @@ let checkedDependencies = false
 export const checkDependencies = () => {
   if (
     process.env.NODE_ENV !== 'production' &&
-    process.env.PAYLOAD_DISABLE_DEPENDENCY_CHECKER !== 'true' &&
+    process.env.CMS_DISABLE_DEPENDENCY_CHECKER !== 'true' &&
     !checkedDependencies
   ) {
     checkedDependencies = true
 
     // First check if there are mismatching dependency versions of next / react packages
-    void payloadCheckDependencies({
+    void cmsCheckDependencies({
       dependencyGroups: [
         {
           name: 'react',

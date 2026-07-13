@@ -1,6 +1,6 @@
 import type { CollectionSlug, FindOptions } from '../../index.js'
 import type {
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   TransformCollectionWithSelect,
@@ -34,7 +34,7 @@ export type Arguments<TSlug extends CollectionSlug, TSelect extends SelectType> 
   overrideAccess?: boolean
   overrideLock?: boolean
   populate?: PopulateType
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields?: boolean
   trash?: boolean
 } & Pick<FindOptions<TSlug, TSelect>, 'select'>
@@ -68,8 +68,8 @@ export const deleteByIDOperation = async <TSlug extends CollectionSlug, TSelect 
       req: {
         fallbackLocale,
         locale,
-        payload: { config },
-        payload,
+        cms: { config },
+        cms,
       },
       req,
       select: incomingSelect,
@@ -114,7 +114,7 @@ export const deleteByIDOperation = async <TSlug extends CollectionSlug, TSelect 
       where,
     })
 
-    const docToDelete = await req.payload.db.findOne({
+    const docToDelete = await req.cms.db.findOne({
       collection: collectionConfig.slug,
       locale: req.locale!,
       req,
@@ -156,7 +156,7 @@ export const deleteByIDOperation = async <TSlug extends CollectionSlug, TSelect 
       await deleteCollectionVersions({
         id,
         slug: collectionConfig.slug,
-        payload,
+        cms,
         req,
       })
     }
@@ -168,7 +168,7 @@ export const deleteByIDOperation = async <TSlug extends CollectionSlug, TSelect 
       await deleteScheduledPublishJobs({
         id,
         slug: collectionConfig.slug,
-        payload,
+        cms,
         req,
       })
     }
@@ -183,7 +183,7 @@ export const deleteByIDOperation = async <TSlug extends CollectionSlug, TSelect 
     // Delete document
     // /////////////////////////////////////
 
-    let result: DataFromCollectionSlug<TSlug> = await req.payload.db.deleteOne({
+    let result: DataFromCollectionSlug<TSlug> = await req.cms.db.deleteOne({
       collection: collectionConfig.slug,
       req,
       select,
@@ -205,7 +205,7 @@ export const deleteByIDOperation = async <TSlug extends CollectionSlug, TSelect 
     await deleteUserPreferences({
       collectionConfig,
       ids: [id],
-      payload,
+      cms,
       req,
     })
 

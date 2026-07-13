@@ -1,10 +1,10 @@
 import type { DeepPartial } from 'ts-essentials'
 
 import type { CollectionSlug, TypedLocale } from '../../..//index.js'
-import type { FindOptions, Payload, RequestContext } from '../../../index.js'
+import type { FindOptions, CMS, RequestContext } from '../../../index.js'
 import type {
   Document,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   TransformCollectionWithSelect,
@@ -68,10 +68,10 @@ type BaseOptions<TSlug extends CollectionSlug, TSelect extends SelectType> = {
    */
   populate?: PopulateType
   /**
-   * The `PayloadRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
+   * The `CMSRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
    * Recommended to pass when using the Local API from hooks, as usually you want to execute the operation within the current transaction.
    */
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * Specifies which locales to include when duplicating localized fields. Non-localized data is always duplicated.
    * By default, all locales are duplicated.
@@ -96,7 +96,7 @@ export async function duplicateLocal<
   TSlug extends CollectionSlug,
   TSelect extends SelectFromCollectionSlug<TSlug>,
 >(
-  payload: Payload,
+  cms: CMS,
   options: Options<TSlug, TSelect>,
 ): Promise<TransformCollectionWithSelect<TSlug, TSelect>> {
   const {
@@ -113,7 +113,7 @@ export async function duplicateLocal<
     showHiddenFields,
   } = options
 
-  const collection = payload.collections[collectionSlug]
+  const collection = cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(
@@ -128,7 +128,7 @@ export async function duplicateLocal<
     )
   }
 
-  const req = await createLocalReq(options as CreateLocalReqOptions, payload)
+  const req = await createLocalReq(options as CreateLocalReqOptions, cms)
 
   return duplicateOperation<TSlug, TSelect>({
     id,

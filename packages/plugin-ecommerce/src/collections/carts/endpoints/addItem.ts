@@ -48,7 +48,7 @@ export const addItemEndpoint = ({ cartItemMatcher, cartsSlug }: Args): Endpoint 
       cartItemMatcher,
       cartsSlug,
       item: data.item,
-      payload: req.payload,
+      cms: req.cms,
       quantity: data.quantity,
       req,
       secret: data.secret,

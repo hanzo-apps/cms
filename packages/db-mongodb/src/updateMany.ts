@@ -40,7 +40,7 @@ export const updateMany: UpdateMany = async function updateMany(
   if (!hasNearConstraint) {
     sort = buildSortParam({
       adapter: this,
-      config: this.payload.config,
+      config: this.cms.config,
       fields: collectionConfig.flattenedFields,
       locale,
       sort: sortArg || collectionConfig.defaultSort,

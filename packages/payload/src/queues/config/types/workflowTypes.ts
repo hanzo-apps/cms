@@ -2,7 +2,7 @@ import type { Field } from '../../../fields/config/types.js'
 import type {
   Job,
   MaybePromise,
-  PayloadRequest,
+  CMSRequest,
   StringKeyOf,
   TypedCollection,
   TypedJobs,
@@ -89,26 +89,26 @@ export type RunningJob<TWorkflowSlugOrInput extends keyof TypedJobs['workflows']
     ? TypedJobs['workflows'][TWorkflowSlugOrInput]['input']
     : TWorkflowSlugOrInput
   taskStatus: JobTaskStatus
-} & Omit<TypedCollection['payload-jobs'], 'input' | 'taskStatus'>
+} & Omit<TypedCollection['cms-jobs'], 'input' | 'taskStatus'>
 
 /**
  * @deprecated - will be removed in 4.0. Use `Job` type instead.
  */
 export type RunningJobSimple<TWorkflowInput extends object> = {
   input: TWorkflowInput
-} & TypedCollection['payload-jobs']
+} & TypedCollection['cms-jobs']
 
 // Simplified version of RunningJob that doesn't break TypeScript (TypeScript seems to stop evaluating RunningJob when it's too complex)
 export type RunningJobFromTask<TTaskSlug extends keyof TypedJobs['tasks']> = {
   input: TypedJobs['tasks'][TTaskSlug]['input']
-} & TypedCollection['payload-jobs']
+} & TypedCollection['cms-jobs']
 
 export type WorkflowHandler<
   TWorkflowSlugOrInput extends false | keyof TypedJobs['workflows'] | object = false,
 > = (args: {
   inlineTask: RunInlineTaskFunction
   job: Job<TWorkflowSlugOrInput>
-  req: PayloadRequest
+  req: CMSRequest
   tasks: RunTaskFunctions
 }) => MaybePromise<void>
 
@@ -187,7 +187,7 @@ export type WorkflowConfig<
     | WorkflowHandler<TWorkflowSlugOrInput>
     | WorkflowJSON<TWorkflowSlugOrInput extends object ? string : TWorkflowSlugOrInput>
   /**
-   * Define the input field schema  - payload will generate a type for this schema.
+   * Define the input field schema  - cms will generate a type for this schema.
    */
   inputSchema?: Field[]
   /**

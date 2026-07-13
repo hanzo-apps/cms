@@ -402,7 +402,7 @@ export const jaTranslations: DefaultTranslationsObject = {
     password: 'パスワード',
     pasteField: 'フィールドを貼り付け',
     pasteRow: '行を貼り付け',
-    payloadSettings: 'Payload 設定',
+    cmsSettings: 'CMS 設定',
     permanentlyDelete: '永久に削除する',
     permanentlyDeletedCountSuccessfully: '{{count}} {{label}}を正常に完全に削除しました。',
     perPage: '表示件数: {{limit}}',

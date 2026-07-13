@@ -7,7 +7,7 @@ import path from 'path'
 
 import type { CliArgs } from './types.js'
 
-import { configurePayloadConfig } from './lib/configure-payload-config.js'
+import { configureCMSConfig } from './lib/configure-payload-config.js'
 import { createProject } from './lib/create-project.js'
 import { parseExample } from './lib/examples.js'
 import { generateSecret } from './lib/generate-secret.js'
@@ -19,7 +19,7 @@ import { parseTemplate } from './lib/parse-template.js'
 import { selectAgent } from './lib/select-agent.js'
 import { selectDb } from './lib/select-db.js'
 import { getValidTemplates, validateTemplate } from './lib/templates.js'
-import { updatePayloadInProject } from './lib/update-payload-in-project.js'
+import { updateCMSInProject } from './lib/update-payload-in-project.js'
 import { getLatestPackageVersion } from './utils/getLatestPackageVersion.js'
 import { debug, error, info } from './utils/log.js'
 import {
@@ -48,7 +48,7 @@ export class Main {
         '--name': String,
         '--secret': String,
         '--template': String,
-        '--version': String, // Allows overriding the installed Payload version instead of installing the latest
+        '--version': String, // Allows overriding the installed CMS version instead of installing the latest
 
         // Next.js
         '--init-next': Boolean, // TODO: Is this needed if we detect if inside Next.js project?
@@ -105,13 +105,13 @@ export class Main {
       // eslint-disable-next-line no-console
       console.log('\n')
       p.intro(chalk.bgCyan(chalk.black(' @hanzo/create-cms-app ')))
-      p.note("Welcome to Payload. Let's create a project!")
+      p.note("Welcome to CMS. Let's create a project!")
 
       // Detect if inside Next.js project
       const nextAppDetails = await getNextAppDetails(process.cwd())
       const {
         hasTopLevelLayout,
-        isPayloadInstalled,
+        isCMSInstalled,
         isSupportedNextVersion,
         nextAppDir,
         nextConfigPath,
@@ -120,22 +120,22 @@ export class Main {
 
       if (nextConfigPath && !isSupportedNextVersion) {
         p.log.warn(
-          `Next.js v${nextVersion} is unsupported. Next.js >= 15 is required to use Payload.`,
+          `Next.js v${nextVersion} is unsupported. Next.js >= 15 is required to use CMS.`,
         )
         p.outro(feedbackOutro())
         process.exit(0)
       }
 
-      // Upgrade Payload in existing project
-      if (isPayloadInstalled && nextConfigPath) {
-        p.log.warn(`Payload installation detected in current project.`)
+      // Upgrade CMS in existing project
+      if (isCMSInstalled && nextConfigPath) {
+        p.log.warn(`CMS installation detected in current project.`)
         const shouldUpdate = await p.confirm({
           initialValue: false,
-          message: chalk.bold(`Upgrade Payload in this project?`),
+          message: chalk.bold(`Upgrade CMS in this project?`),
         })
 
         if (!p.isCancel(shouldUpdate) && shouldUpdate) {
-          const { message, success: updateSuccess } = await updatePayloadInProject(nextAppDetails)
+          const { message, success: updateSuccess } = await updateCMSInProject(nextAppDetails)
           if (updateSuccess) {
             info(message)
           } else {
@@ -165,7 +165,7 @@ export class Main {
 
         const proceed = await p.confirm({
           initialValue: true,
-          message: chalk.bold(`Install ${chalk.green('Payload')} in this project?`),
+          message: chalk.bold(`Install ${chalk.green('CMS')} in this project?`),
         })
         if (p.isCancel(proceed) || !proceed) {
           p.outro(feedbackOutro())
@@ -194,10 +194,10 @@ export class Main {
           process.exit(1)
         }
 
-        await configurePayloadConfig({
+        await configureCMSConfig({
           dbType: dbDetails?.type,
           projectDirOrConfigPath: {
-            payloadConfigPath: result.payloadConfigPath,
+            cmsConfigPath: result.cmsConfigPath,
           },
         })
 
@@ -205,11 +205,11 @@ export class Main {
           cliArgs: this.args,
           databaseType: dbDetails.type,
           databaseUri: dbDetails.dbUri,
-          payloadSecret: generateSecret(),
+          cmsSecret: generateSecret(),
           projectDir,
         })
 
-        info('Payload project successfully initialized!')
+        info('CMS project successfully initialized!')
         p.note(successfulNextInit(), chalk.bgGreen(chalk.black(' Documentation ')))
         p.outro(feedbackOutro())
         return
@@ -294,7 +294,7 @@ export class Main {
         }
       }
 
-      info('Payload project successfully created!')
+      info('CMS project successfully created!')
       p.log.step(chalk.bgGreen(chalk.black(' Next Steps ')))
       p.log.message(successMessage(projectDir, packageManager))
       p.outro(feedbackOutro())

@@ -697,7 +697,7 @@ describe('sanitizeFields', () => {
       // Passing undefined with required should fail
       const result = sanitizedField.validate!(
         undefined as any,
-        { required: true, req: { payload: { config: {} }, t: ((v: string) => v) as any } } as any,
+        { required: true, req: { cms: { config: {} }, t: ((v: string) => v) as any } } as any,
       )
       expect(result).not.toBe(true)
     })

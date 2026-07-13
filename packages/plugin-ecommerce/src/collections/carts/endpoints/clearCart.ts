@@ -32,7 +32,7 @@ export const clearCartEndpoint = ({ cartsSlug }: Args): Endpoint => ({
     const result = await clearCart({
       cartID,
       cartsSlug,
-      payload: req.payload,
+      cms: req.cms,
       req,
       secret: data?.secret,
     })

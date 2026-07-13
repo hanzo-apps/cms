@@ -1,11 +1,11 @@
 import type {
   CollectionSlug,
   FindOptions,
-  Payload,
+  CMS,
   RequestContext,
   TypedLocale,
 } from '../../../index.js'
-import type { Document, PayloadRequest, PopulateType, SelectType } from '../../../types/index.js'
+import type { Document, CMSRequest, PopulateType, SelectType } from '../../../types/index.js'
 import type { CreateLocalReqOptions } from '../../../utilities/createLocalReq.js'
 import type { TypeWithVersion } from '../../../versions/types.js'
 import type {
@@ -61,10 +61,10 @@ type BaseOptions<TSlug extends CollectionSlug> = {
    */
   populate?: PopulateType
   /**
-   * The `PayloadRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
+   * The `CMSRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
    * Recommended to pass when using the Local API from hooks, as usually you want to execute the operation within the current transaction.
    */
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * Opt-in to receiving hidden fields. By default, they are hidden from returned documents in accordance to your config.
    * @default false
@@ -90,7 +90,7 @@ export type Options<TSlug extends CollectionSlug> =
   BaseOptions<TSlug> & DraftFlagFromCollectionSlug<TSlug>
 
 export async function findVersionByIDLocal<TSlug extends CollectionSlug>(
-  payload: Payload,
+  cms: CMS,
   options: Options<TSlug>,
 ): Promise<TypeWithVersion<DataFromCollectionSlug<TSlug>>> {
   const {
@@ -105,7 +105,7 @@ export async function findVersionByIDLocal<TSlug extends CollectionSlug>(
     trash = false,
   } = options
 
-  const collection = payload.collections[collectionSlug]
+  const collection = cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(
@@ -122,7 +122,7 @@ export async function findVersionByIDLocal<TSlug extends CollectionSlug>(
     disableErrors,
     overrideAccess,
     populate,
-    req: await createLocalReq(options as CreateLocalReqOptions, payload),
+    req: await createLocalReq(options as CreateLocalReqOptions, cms),
     select,
     showHiddenFields,
     trash,

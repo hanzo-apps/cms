@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import type { Payload } from '../../index.js'
+import type { CMS } from '../../index.js'
 import type { MigrationTemplateArgs } from '../types.js'
 
 import { dynamicImport } from '../../utilities/dynamicImport.js'
@@ -19,12 +19,12 @@ export const getPredefinedMigration = async ({
   dirname,
   file,
   migrationName: migrationNameArg,
-  payload,
+  cms,
 }: {
   dirname: string
   file?: string
   migrationName?: string
-  payload: Payload
+  cms: CMS
 }): Promise<MigrationTemplateArgs> => {
   const importPath = file ?? migrationNameArg
 
@@ -41,7 +41,7 @@ export const getPredefinedMigration = async ({
       // Support .ts in development when running from source
       cleanPath = `${cleanPath}.ts`
     } else {
-      payload.logger.error({
+      cms.logger.error({
         msg: `Canned migration ${migrationName} not found.`,
       })
       process.exit(1)
@@ -57,7 +57,7 @@ export const getPredefinedMigration = async ({
         upSQL,
       }
     } catch (err) {
-      payload.logger.error({
+      cms.logger.error({
         err,
         msg: `Error loading predefined migration ${migrationName}`,
       })

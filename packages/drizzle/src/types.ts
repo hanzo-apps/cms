@@ -24,8 +24,8 @@ import type {
   BaseDatabaseAdapter,
   FlattenedField,
   MigrationData,
-  Payload,
-  PayloadRequest,
+  CMS,
+  CMSRequest,
 } from '@hanzo/cms'
 
 import type { BuildQueryJoinAliases } from './queries/buildQuery.js'
@@ -139,21 +139,21 @@ export type RequireDrizzleKit = () => {
 export type Migration = {
   down: ({
     db,
-    payload,
+    cms,
     req,
   }: {
     db?: DrizzleTransaction | LibSQLDatabase<Record<string, never>> | PostgresDB
-    payload: Payload
-    req: PayloadRequest
+    cms: CMS
+    req: CMSRequest
   }) => Promise<void>
   up: ({
     db,
-    payload,
+    cms,
     req,
   }: {
     db?: DrizzleTransaction | LibSQLDatabase | PostgresDB
-    payload: Payload
-    req: PayloadRequest
+    cms: CMS
+    req: CMSRequest
   }) => Promise<void>
 } & MigrationData
 
@@ -365,7 +365,7 @@ export type BlocksToJsonEntityToMigrate =
 
 export interface BlocksToJsonMigrator {
   collectAndSaveEntitiesToBatches(
-    req: PayloadRequest,
+    req: CMSRequest,
     options?: {
       batchSize?: number
     },
@@ -375,13 +375,13 @@ export interface BlocksToJsonMigrator {
     writeDrizzleSnapshot(filePath: string): void
   }>
   migrateEntitiesFromTempFolder(
-    req: PayloadRequest,
+    req: CMSRequest,
     options?: {
       clearBatches?: boolean
     },
   ): Promise<void>
   setTempFolder(tempFolderPath: string): void
-  updatePayloadConfigFile(): Promise<void>
+  updateCMSConfigFile(): Promise<void>
 }
 
 export interface DrizzleAdapter extends BaseDatabaseAdapter {

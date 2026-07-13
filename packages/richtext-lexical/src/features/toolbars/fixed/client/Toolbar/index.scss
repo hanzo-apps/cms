@@ -1,6 +1,6 @@
 @import '~@hanzo/cms-ui/scss';
 
-@layer payload-default {
+@layer cms-default {
   html[data-theme='dark'] {
     .fixed-toolbar {
       &__dropdown-items {

@@ -1,5 +1,5 @@
 import type { DrizzleAdapter } from '@hanzo/cms-drizzle'
-import type { DatabaseAdapterObj, Payload } from '@hanzo/cms'
+import type { DatabaseAdapterObj, CMS } from '@hanzo/cms'
 
 import {
   beginTransaction,
@@ -68,10 +68,10 @@ const filename = fileURLToPath(import.meta.url)
 
 export function postgresAdapter(args: Args): DatabaseAdapterObj<PostgresAdapter> {
   const postgresIDType = args.idType || 'serial'
-  const payloadIDType = postgresIDType === 'serial' ? 'number' : 'text'
+  const cmsIDType = postgresIDType === 'serial' ? 'number' : 'text'
   const allowIDOnCreate = args.allowIDOnCreate ?? false
 
-  function adapter({ payload }: { payload: Payload }) {
+  function adapter({ cms }: { cms: CMS }) {
     const migrationDir = findMigrationDir(args.migrationDir)
     let resolveInitializing
     let rejectInitializing
@@ -181,7 +181,7 @@ export function postgresAdapter(args: Args): DatabaseAdapterObj<PostgresAdapter>
       createGlobalVersion,
       createJSONQuery,
       createVersion,
-      defaultIDType: payloadIDType,
+      defaultIDType: cmsIDType,
       deleteMany,
       deleteOne,
       deleteVersions,
@@ -206,7 +206,7 @@ export function postgresAdapter(args: Args): DatabaseAdapterObj<PostgresAdapter>
       migrateStatus,
       migrationDir,
       packageName: '@hanzo/cms-db-postgres',
-      payload,
+      cms,
       queryDrafts,
       rawRelations: {},
       rawTables: {},
@@ -237,7 +237,7 @@ export function postgresAdapter(args: Args): DatabaseAdapterObj<PostgresAdapter>
   return {
     name: 'postgres',
     allowIDOnCreate,
-    defaultIDType: payloadIDType,
+    defaultIDType: cmsIDType,
     init: adapter,
   }
 }

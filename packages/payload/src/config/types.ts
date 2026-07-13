@@ -50,7 +50,7 @@ import type {
   FlattenedBlock,
   JobsConfig,
   KVAdapterResult,
-  Payload,
+  CMS,
   RegisteredPlugins,
   RequestContext,
   SelectField,
@@ -60,22 +60,22 @@ import type {
 } from '../index.js'
 import type { QueryPreset, QueryPresetConstraints } from '../query-presets/types.js'
 import type { SanitizedJobsConfig } from '../queues/config/types/index.js'
-import type { PayloadRequest, Where } from '../types/index.js'
-import type { PayloadLogger } from '../utilities/logger.js'
+import type { CMSRequest, Where } from '../types/index.js'
+import type { CMSLogger } from '../utilities/logger.js'
 
 /**
  * The string path pointing to the React component. If one of the generics is `never`, you effectively mark it as a server-only or client-only component.
  *
  * If it is `false` an empty component will be rendered.
  */
-export type PayloadComponent<
+export type CMSComponent<
   TComponentServerProps extends never | object = Record<string, any>,
   TComponentClientProps extends never | object = Record<string, any>,
-> = false | RawPayloadComponent<TComponentServerProps, TComponentClientProps> | string
+> = false | RawCMSComponent<TComponentServerProps, TComponentClientProps> | string
 
-// We need the actual object as its own type, otherwise the infers for the PayloadClientReactComponent / PayloadServerReactComponent will not work due to the string union.
+// We need the actual object as its own type, otherwise the infers for the CMSClientReactComponent / CMSServerReactComponent will not work due to the string union.
 // We also NEED to actually use those generics for this to work, thus they are part of the props.
-export type RawPayloadComponent<
+export type RawCMSComponent<
   TComponentServerProps extends never | object = Record<string, any>,
   TComponentClientProps extends never | object = Record<string, any>,
 > = {
@@ -85,40 +85,40 @@ export type RawPayloadComponent<
   serverProps?: object | TComponentServerProps
 }
 
-export type PayloadComponentProps<TPayloadComponent> =
-  TPayloadComponent extends RawPayloadComponent<
+export type CMSComponentProps<TCMSComponent> =
+  TCMSComponent extends RawCMSComponent<
     infer TComponentServerProps,
     infer TComponentClientProps
   >
     ? TComponentClientProps | TComponentServerProps
     : never
 
-export type PayloadClientComponentProps<TPayloadComponent> =
-  TPayloadComponent extends RawPayloadComponent<infer _, infer TComponentClientProps>
+export type CMSClientComponentProps<TCMSComponent> =
+  TCMSComponent extends RawCMSComponent<infer _, infer TComponentClientProps>
     ? TComponentClientProps
     : never
 
-export type PayloadServerComponentProps<TPayloadComponent> =
-  TPayloadComponent extends RawPayloadComponent<infer TComponentServerProps, infer _>
+export type CMSServerComponentProps<TCMSComponent> =
+  TCMSComponent extends RawCMSComponent<infer TComponentServerProps, infer _>
     ? TComponentServerProps
     : never
 
-export type PayloadReactComponent<TPayloadComponent> = React.FC<
-  PayloadComponentProps<TPayloadComponent>
+export type CMSReactComponent<TCMSComponent> = React.FC<
+  CMSComponentProps<TCMSComponent>
 >
 
 // This also ensures that if never is passed to TComponentClientProps, this entire type will be never.
-// => TypeScript will now ensure that users cannot even define the typed Server Components if the PayloadComponent is marked as
+// => TypeScript will now ensure that users cannot even define the typed Server Components if the CMSComponent is marked as
 // Client-Only (marked as Client-Only = TComponentServerProps is never)
-export type PayloadClientReactComponent<TPayloadComponent> =
-  TPayloadComponent extends RawPayloadComponent<infer _, infer TComponentClientProps>
+export type CMSClientReactComponent<TCMSComponent> =
+  TCMSComponent extends RawCMSComponent<infer _, infer TComponentClientProps>
     ? TComponentClientProps extends never
       ? never
       : React.FC<TComponentClientProps>
     : never
 
-export type PayloadServerReactComponent<TPayloadComponent> =
-  TPayloadComponent extends RawPayloadComponent<infer TComponentServerProps, infer _>
+export type CMSServerReactComponent<TCMSComponent> =
+  TCMSComponent extends RawCMSComponent<infer TComponentServerProps, infer _>
     ? TComponentServerProps extends never
       ? never
       : React.FC<TComponentServerProps>
@@ -182,7 +182,7 @@ export type LivePreviewConfig = {
   }[]
   /**
    * The URL of the frontend application. This will be rendered within an `iframe` as its `src`.
-   * Payload will send a `window.postMessage()` to this URL with the document data in real-time.
+   * CMS will send a `window.postMessage()` to this URL with the document data in real-time.
    * The frontend application is responsible for receiving the message and updating the UI accordingly.
    * @see https://payloadcms.com/docs/live-preview/frontend
    *
@@ -200,10 +200,10 @@ export type LivePreviewConfig = {
         locale: Locale
         /**
          * @deprecated
-         * Use `req.payload` instead. This will be removed in the next major version.
+         * Use `req.cms` instead. This will be removed in the next major version.
          */
-        payload: Payload
-        req: PayloadRequest
+        cms: CMS
+        req: CMSRequest
       }) => LivePreviewURLType | Promise<LivePreviewURLType>)
     | LivePreviewURLType
 }
@@ -247,7 +247,7 @@ export type ServerOnlyLivePreviewProperties = keyof Pick<RootLivePreviewConfig, 
 
 type GeneratePreviewURLOptions = {
   locale: string
-  req: PayloadRequest
+  req: CMSRequest
   token: null | string
 }
 
@@ -294,7 +294,7 @@ export type InitOptions = {
    */
   config: Promise<SanitizedConfig> | SanitizedConfig
   /**
-   * If set to `true`, payload will initialize crons for things like autorunning jobs on initialization.
+   * If set to `true`, cms will initialize crons for things like autorunning jobs on initialization.
    *
    * @default false
    */
@@ -313,9 +313,9 @@ export type InitOptions = {
   importMap?: ImportMap
 
   /**
-   * A function that is called immediately following startup that receives the Payload instance as it's only argument.
+   * A function that is called immediately following startup that receives the CMS instance as it's only argument.
    */
-  onInit?: (payload: Payload) => Promise<void> | void
+  onInit?: (cms: CMS) => Promise<void> | void
 }
 
 /**
@@ -345,7 +345,7 @@ export type AccessArgs<TData = any> = {
   /** If true, the request is for a static file */
   isReadingStaticFile?: boolean
   /** The original request that requires an access check */
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 /**
@@ -356,8 +356,8 @@ export type AccessArgs<TData = any> = {
  */
 export type Access<TData = any> = (args: AccessArgs<TData>) => AccessResult | Promise<AccessResult>
 
-/** Web Request/Response model, but the req has more payload specific properties added to it. */
-export type PayloadHandler = (req: PayloadRequest) => Promise<Response> | Response
+/** Web Request/Response model, but the req has more cms specific properties added to it. */
+export type CMSHandler = (req: CMSRequest) => Promise<Response> | Response
 
 /**
  * Docs: https://payloadcms.com/docs/rest-api/overview#custom-endpoints
@@ -371,7 +371,7 @@ export type Endpoint = {
    *
    * Compatible with Web Request/Response Model
    */
-  handler: PayloadHandler
+  handler: CMSHandler
   /** HTTP method */
   method: 'connect' | 'delete' | 'get' | 'head' | 'options' | 'patch' | 'post' | 'put'
   /**
@@ -381,7 +381,7 @@ export type Endpoint = {
    */
   path: string
   /**
-   * Please add "root" routes under the /api folder in the Payload Project.
+   * Please add "root" routes under the /api folder in the CMS Project.
    * https://nextjs.org/docs/app/api-reference/file-conventions/route
    *
    * @deprecated in 3.0
@@ -396,7 +396,7 @@ export type Endpoint = {
  */
 export type EditViewComponent = DocumentViewComponent
 
-export type DocumentViewComponent = PayloadComponent<DocumentViewServerProps>
+export type DocumentViewComponent = CMSComponent<DocumentViewServerProps>
 
 /**
  * @deprecated
@@ -442,7 +442,7 @@ export type ServerProps = {
   readonly id?: number | string
   readonly locale?: Locale
   readonly params?: Params
-  readonly payload: Payload
+  readonly cms: CMS
   readonly permissions?: SanitizedPermissions
   readonly searchParams?: Params
   readonly user?: TypedUser
@@ -451,7 +451,7 @@ export type ServerProps = {
 }
 
 export const serverProps: (keyof ServerProps)[] = [
-  'payload',
+  'cms',
   'i18n',
   'locale',
   'params',
@@ -487,7 +487,7 @@ type SanitizedTimezoneConfig = {
 } & Omit<TimezonesConfig, 'supportedTimezones'>
 
 export type CustomComponent<TAdditionalProps extends object = Record<string, any>> =
-  PayloadComponent<ServerProps & TAdditionalProps, TAdditionalProps>
+  CMSComponent<ServerProps & TAdditionalProps, TAdditionalProps>
 
 export type Locale = {
   /**
@@ -531,12 +531,12 @@ export type BaseLocalizationConfig = {
    */
   fallback?: boolean
   /**
-   * Define a function to filter the locales made available in Payload admin UI
+   * Define a function to filter the locales made available in CMS admin UI
    * based on user.
    */
   filterAvailableLocales?: (args: {
     locales: Locale[]
-    req: PayloadRequest
+    req: CMSRequest
   }) => Locale[] | Promise<Locale[]>
 }
 
@@ -752,7 +752,7 @@ export type AfterErrorHookArgs = {
   /** The GraphQL result object, available if the hook is executed within a GraphQL context. */
   graphqlResult?: GraphQLFormattedError
   /** The Request object containing the currently authenticated user. */
-  req: PayloadRequest
+  req: CMSRequest
   /** The formatted error result object, available if the hook is executed from a REST context. */
   result?: ErrorResult
 }
@@ -774,7 +774,7 @@ export type AfterErrorHook = (
 export type WidgetWidth = 'full' | 'large' | 'medium' | 'small' | 'x-large' | 'x-small'
 
 export type Widget = {
-  Component: PayloadComponent
+  Component: CMSComponent
   fields?: Field[]
   /**
    * Human-friendly label for the widget.
@@ -822,7 +822,7 @@ export type WidgetInstance<TSlug extends WidgetSlug = WidgetSlug> = TSlug extend
 
 export type DashboardConfig = {
   defaultLayout?:
-    | ((args: { req: PayloadRequest }) => Array<WidgetInstance> | Promise<Array<WidgetInstance>>)
+    | ((args: { req: CMSRequest }) => Array<WidgetInstance> | Promise<Array<WidgetInstance>>)
     | Array<WidgetInstance>
   widgets: Array<Widget>
 }
@@ -869,7 +869,7 @@ export type Config = {
       | 'default'
       | 'gravatar'
       | {
-          Component: PayloadComponent
+          Component: CMSComponent
         }
 
     /**
@@ -937,7 +937,7 @@ export type Config = {
       /**
        * Wrap the admin dashboard in custom context providers
        */
-      providers?: PayloadComponent<{ children?: React.ReactNode }, { children?: React.ReactNode }>[]
+      providers?: CMSComponent<{ children?: React.ReactNode }, { children?: React.ReactNode }>[]
       /**
        * Add custom menu items to the navigation menu accessible via the gear icon.
        * These components will be rendered in a popup menu above the logout button.
@@ -998,7 +998,7 @@ export type Config = {
        */
       generators?: ImportMapGenerators
       /**
-       * If Payload cannot find the import map file location automatically,
+       * If CMS cannot find the import map file location automatically,
        * you can manually provide it here.
        */
       importMapFile?: string
@@ -1114,16 +1114,16 @@ export type Config = {
   }
 
   /**
-   * Configure authentication-related Payload-wide settings.
+   * Configure authentication-related CMS-wide settings.
    */
   auth?: {
     /**
-     * Define which JWT identification methods you'd like to support for Payload's local auth strategy, as well as the order that they're retrieved in.
+     * Define which JWT identification methods you'd like to support for CMS's local auth strategy, as well as the order that they're retrieved in.
      * Defaults to ['JWT', 'Bearer', 'cookie]
      */
     jwtOrder: ('Bearer' | 'cookie' | 'JWT')[]
   }
-  /** Custom Payload bin scripts can be injected via the config. */
+  /** Custom CMS bin scripts can be injected via the config. */
   bin?: BinScriptConfig[]
   blocks?: Block[]
   /**
@@ -1142,13 +1142,13 @@ export type Config = {
    */
   collections?: CollectionConfig[]
   /**
-   * Compatibility flags for prior Payload versions
+   * Compatibility flags for prior CMS versions
    */
   compatibility?: {
     /**
-     * By default, Payload will remove the `localized: true` property
+     * By default, CMS will remove the `localized: true` property
      * from fields if a parent field is localized. Set this property
-     * to `true` only if you have an existing Payload database from pre-3.0
+     * to `true` only if you have an existing CMS database from pre-3.0
      * that you would like to maintain without migrating. This is only
      * relevant for MongoDB databases.
      *
@@ -1157,14 +1157,14 @@ export type Config = {
     allowLocalizedWithinLocalized: true
   }
   /**
-   * Prefix a string to all cookies that Payload sets.
+   * Prefix a string to all cookies that CMS sets.
    *
-   * @default "payload"
+   * @default "cms"
    */
   cookiePrefix?: string
   /** Either a whitelist array of URLS to allow CORS requests from, or a wildcard string ('*') to accept incoming requests from any domain. */
   cors?: '*' | CORSConfig | string[]
-  /** A whitelist array of URLs to allow Payload cookies to be accepted from as a form of CSRF protection. */
+  /** A whitelist array of URLs to allow CMS cookies to be accepted from as a form of CSRF protection. */
   csrf?: string[]
   /** Extension point to add your custom data. Server only. */
   custom?: Record<string, any>
@@ -1225,7 +1225,7 @@ export type Config = {
   /**
    * Manage the GraphQL API
    *
-   * You can add your own GraphQL queries and mutations to Payload, making use of all the types that Payload has defined for you.
+   * You can add your own GraphQL queries and mutations to CMS, making use of all the types that CMS has defined for you.
    *
    * @see https://payloadcms.com/docs/graphql/overview
    */
@@ -1268,7 +1268,7 @@ export type Config = {
     validationRules?: (args: GraphQL.ExecutionArgs) => GraphQL.ValidationRule[]
   }
   /**
-   * Tap into Payload-wide hooks.
+   * Tap into CMS-wide hooks.
    *
    * @see https://payloadcms.com/docs/hooks/overview
    */
@@ -1323,10 +1323,10 @@ export type Config = {
    *
    * ```
    */
-  logger?: 'sync' | { destination?: DestinationStream; options: LoggerOptions } | PayloadLogger
+  logger?: 'sync' | { destination?: DestinationStream; options: LoggerOptions } | CMSLogger
 
   /**
-   * Override the log level of errors for Payload's error handler or disable logging with `false`.
+   * Override the log level of errors for CMS's error handler or disable logging with `false`.
    * Levels can be any of the following: 'trace', 'debug', 'info', 'warn', 'error', 'fatal' or false.
    *
    * Default levels:
@@ -1356,10 +1356,10 @@ export type Config = {
    */
   maxDepth?: number
 
-  /** A function that is called immediately following startup that receives the Payload instance as its only argument. */
-  onInit?: (payload: Payload) => Promise<void> | void
+  /** A function that is called immediately following startup that receives the CMS instance as its only argument. */
+  onInit?: (cms: CMS) => Promise<void> | void
   /**
-   * An array of Payload plugins.
+   * An array of CMS plugins.
    *
    * @see https://payloadcms.com/docs/plugins/overview
    */
@@ -1382,7 +1382,7 @@ export type Config = {
     /**
      * Define custom document-level access control options for presets.
      *
-     * Payload provides sensible defaults (Only Me, Everyone, Specific Users), but you can
+     * CMS provides sensible defaults (Only Me, Everyone, Specific Users), but you can
      * add custom constraints for more complex patterns like RBAC.
      *
      * @example
@@ -1436,7 +1436,7 @@ export type Config = {
     labels?: CollectionConfig['labels']
   }
   /**
-   * Control the routing structure that Payload binds itself to.
+   * Control the routing structure that CMS binds itself to.
    * @link https://payloadcms.com/docs/admin/overview#root-level-routes
    */
   routes?: {
@@ -1466,7 +1466,7 @@ export type Config = {
      */
     graphQLPlayground?: string
   }
-  /** Secure string that Payload will use for any encryption workflows */
+  /** Secure string that CMS will use for any encryption workflows */
   secret: string
   /**
    * Define the absolute URL of your app including the protocol, for example `https://example.org`.

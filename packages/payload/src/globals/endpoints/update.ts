@@ -1,6 +1,6 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { getRequestGlobal } from '../../utilities/getRequestEntity.js'
 import { headersWithCors } from '../../utilities/headersWithCors.js'
@@ -9,7 +9,7 @@ import { sanitizePopulateParam } from '../../utilities/sanitizePopulateParam.js'
 import { sanitizeSelectParam } from '../../utilities/sanitizeSelectParam.js'
 import { updateOperation } from '../operations/update.js'
 
-export const updateHandler: PayloadHandler = async (req) => {
+export const updateHandler: CMSHandler = async (req) => {
   const globalConfig = getRequestGlobal(req)
   const { searchParams } = req
   const depth = searchParams.get('depth')

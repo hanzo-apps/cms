@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import type { DrizzleAdapter } from '../types.js'
 
@@ -15,7 +15,7 @@ import { shouldReadFromPrimary } from './readAfterWrite.js'
  */
 export const getTransaction = async <T extends DrizzleAdapter = DrizzleAdapter>(
   adapter: T,
-  req?: Partial<PayloadRequest>,
+  req?: Partial<CMSRequest>,
 ): Promise<T['drizzle']> => {
   if (!req?.transactionID) {
     if (shouldReadFromPrimary(adapter)) {

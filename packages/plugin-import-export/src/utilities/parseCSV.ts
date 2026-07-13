@@ -1,10 +1,10 @@
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { parse } from 'csv-parse'
 
 export type ParseCSVArgs = {
   data: Buffer | string
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 /**
@@ -62,7 +62,7 @@ export const parseCSV = async ({ data, req }: ParseCSVArgs): Promise<Record<stri
     })
 
     parser.on('error', (err) => {
-      req.payload.logger.error({ err, msg: 'Error parsing CSV' })
+      req.cms.logger.error({ err, msg: 'Error parsing CSV' })
       reject(err)
     })
 

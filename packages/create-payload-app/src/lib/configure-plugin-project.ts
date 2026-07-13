@@ -13,12 +13,12 @@ export const configurePluginProject = ({
   projectDirPath: string
   projectName: string
 }) => {
-  const devPayloadConfigPath = path.resolve(projectDirPath, './dev/payload.config.ts')
+  const devCMSConfigPath = path.resolve(projectDirPath, './dev/payload.config.ts')
   const devTsConfigPath = path.resolve(projectDirPath, './dev/tsconfig.json')
   const indexTsPath = path.resolve(projectDirPath, './src/index.ts')
   const devImportMapPath = path.resolve(projectDirPath, './dev/app/(payload)/admin/importMap.js')
 
-  const devPayloadConfig = fse.readFileSync(devPayloadConfigPath, 'utf8')
+  const devCMSConfig = fse.readFileSync(devCMSConfigPath, 'utf8')
   const devTsConfig = fse.readFileSync(devTsConfigPath, 'utf8')
   const indexTs = fse.readFileSync(indexTsPath, 'utf-8')
   const devImportMap = fse.readFileSync(devImportMapPath, 'utf-8')
@@ -36,14 +36,14 @@ export const configurePluginProject = ({
 
   updatedIndexTs = updatedIndexTs.replaceAll('MyPluginConfig', `${toPascalCase(projectName)}Config`)
 
-  let updatedPayloadConfig = devPayloadConfig.replace(
+  let updatedCMSConfig = devCMSConfig.replace(
     'plugin-package-name-placeholder',
     projectName,
   )
 
-  updatedPayloadConfig = updatedPayloadConfig.replaceAll('myPlugin', pluginExportVariableName)
+  updatedCMSConfig = updatedCMSConfig.replaceAll('myPlugin', pluginExportVariableName)
 
-  fse.writeFileSync(devPayloadConfigPath, updatedPayloadConfig)
+  fse.writeFileSync(devCMSConfigPath, updatedCMSConfig)
   fse.writeFileSync(devTsConfigPath, updatedTsConfig)
   fse.writeFileSync(indexTsPath, updatedIndexTs)
   fse.writeFileSync(devImportMapPath, updatedImportMap)

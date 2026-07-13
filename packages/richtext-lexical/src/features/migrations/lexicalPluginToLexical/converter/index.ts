@@ -5,7 +5,7 @@ import type {
   SerializedTextNode,
 } from 'lexical'
 
-import type { LexicalPluginNodeConverter, PayloadPluginLexicalData } from './types.js'
+import type { LexicalPluginNodeConverter, CMSPluginLexicalData } from './types.js'
 
 export function convertLexicalPluginToLexical({
   converters,
@@ -13,7 +13,7 @@ export function convertLexicalPluginToLexical({
   quiet,
 }: {
   converters: LexicalPluginNodeConverter[]
-  lexicalPluginData: PayloadPluginLexicalData
+  lexicalPluginData: CMSPluginLexicalData
   quiet?: boolean
 }): SerializedEditorState {
   return {
@@ -42,7 +42,7 @@ export function convertLexicalPluginNodesToLexical({
   converters: LexicalPluginNodeConverter[]
   lexicalPluginNodes: SerializedLexicalNode[] | undefined
   /**
-   * Type of the parent lexical node (not the type of the original, parent payload-plugin-lexical type)
+   * Type of the parent lexical node (not the type of the original, parent cms-plugin-lexical type)
    */
   parentNodeType: string
   quiet?: boolean

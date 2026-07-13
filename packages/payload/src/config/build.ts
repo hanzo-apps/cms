@@ -3,9 +3,9 @@ import type { Config, SanitizedConfig } from './types.js'
 import { sanitizeConfig } from './sanitize.js'
 
 /**
- * @description Builds and validates Payload configuration
- * @param config Payload Config
- * @returns Built and sanitized Payload Config
+ * @description Builds and validates CMS configuration
+ * @param config CMS Config
+ * @returns Built and sanitized CMS Config
  */
 export async function buildConfig(config: Config): Promise<SanitizedConfig> {
   if (Array.isArray(config.plugins)) {

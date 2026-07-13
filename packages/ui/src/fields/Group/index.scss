@@ -1,6 +1,6 @@
 @import '../../scss/styles.scss';
 
-@layer payload-default {
+@layer cms-default {
   .group-field {
     margin-left: calc(var(--gutter-h) * -1);
     margin-right: calc(var(--gutter-h) * -1);

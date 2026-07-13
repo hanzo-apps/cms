@@ -1,17 +1,17 @@
 import type { Collection } from '../collections/config/types.js'
 import type { SanitizedGlobalConfig } from '../globals/config/types.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { APIError } from '../errors/APIError.js'
 
-export const getRequestCollection = (req: PayloadRequest): Collection => {
+export const getRequestCollection = (req: CMSRequest): Collection => {
   const collectionSlug = req.routeParams?.collection
 
   if (typeof collectionSlug !== 'string') {
     throw new APIError(`No collection was specified`, 400)
   }
 
-  const collection = req.payload.collections[collectionSlug]
+  const collection = req.cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(`Collection with the slug ${collectionSlug} was not found`, 404)
@@ -21,7 +21,7 @@ export const getRequestCollection = (req: PayloadRequest): Collection => {
 }
 
 export const getRequestCollectionWithID = <T extends boolean>(
-  req: PayloadRequest,
+  req: CMSRequest,
   {
     disableSanitize,
     optionalID,
@@ -57,7 +57,7 @@ export const getRequestCollectionWithID = <T extends boolean>(
   let sanitizedID: number | string = id
 
   // If default db ID type is a number, we should sanitize
-  let shouldSanitize = Boolean(req.payload.db.defaultIDType === 'number')
+  let shouldSanitize = Boolean(req.cms.db.defaultIDType === 'number')
 
   // UNLESS the customIDType for this collection is text.... then we leave it
   if (shouldSanitize && collection.customIDType === 'text') {
@@ -76,14 +76,14 @@ export const getRequestCollectionWithID = <T extends boolean>(
   }
 }
 
-export const getRequestGlobal = (req: PayloadRequest): SanitizedGlobalConfig => {
+export const getRequestGlobal = (req: CMSRequest): SanitizedGlobalConfig => {
   const globalSlug = req.routeParams?.global
 
   if (typeof globalSlug !== 'string') {
     throw new APIError(`No global was specified`, 400)
   }
 
-  const globalConfig = req.payload.globals.config.find((each) => each.slug === globalSlug)
+  const globalConfig = req.cms.globals.config.find((each) => each.slug === globalSlug)
 
   if (!globalConfig) {
     throw new APIError(`Global with the slug ${globalSlug} was not found`, 404)

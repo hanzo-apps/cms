@@ -5,7 +5,7 @@ import { ValidationError } from '../errors/ValidationError.js'
 import { formatErrors } from './formatErrors.js'
 
 describe('formatErrors', () => {
-  it('should format a Payload ValidationError', () => {
+  it('should format a CMS ValidationError', () => {
     const err = new ValidationError({
       errors: [{ message: 'Field is required', path: 'title' }],
     })
@@ -20,7 +20,7 @@ describe('formatErrors', () => {
     })
   })
 
-  it('should format a Payload APIError', () => {
+  it('should format a CMS APIError', () => {
     const err = new APIError('Something went wrong', 400, { detail: 'bad input' }, true)
 
     const result = formatErrors(err)
@@ -57,7 +57,7 @@ describe('formatErrors', () => {
     expect(result.errors[1]).toMatchObject({ message: 'item two' })
   })
 
-  it('should format a named non-Payload error', () => {
+  it('should format a named non-CMS error', () => {
     const err = new Error('Unexpected failure')
 
     const result = formatErrors(err as any)
@@ -66,7 +66,7 @@ describe('formatErrors', () => {
     expect(result.errors[0]!.message).toBe('Unexpected failure')
   })
 
-  it('should format a Payload APIError with no data', () => {
+  it('should format a CMS APIError with no data', () => {
     const err = new APIError('Server error')
 
     const result = formatErrors(err)

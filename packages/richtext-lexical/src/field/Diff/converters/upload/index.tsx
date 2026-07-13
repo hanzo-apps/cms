@@ -1,4 +1,4 @@
-import type { FileData, PayloadRequest, TypeWithID } from '@hanzo/cms'
+import type { FileData, CMSRequest, TypeWithID } from '@hanzo/cms'
 
 import { type I18nClient } from '@hanzo/cms-translations'
 import { File } from '@hanzo/cms-ui/rsc'
@@ -17,7 +17,7 @@ const baseClass = 'lexical-upload-diff'
 
 export const UploadDiffHTMLConverterAsync: (args: {
   i18n: I18nClient
-  req: PayloadRequest
+  req: CMSRequest
 }) => HTMLConvertersAsync<SerializedUploadNode> = () => {
   return {
     upload: async ({ node, populate, providedCSSString }) => {

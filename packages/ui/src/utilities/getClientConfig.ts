@@ -6,17 +6,17 @@ import { cache } from 'react'
 
 type CachedClientConfigs = Record<keyof SupportedLanguages, ClientConfig>
 
-let cachedClientConfigs = global._payload_clientConfigs as CachedClientConfigs
+let cachedClientConfigs = global._cms_clientConfigs as CachedClientConfigs
 
 if (!cachedClientConfigs) {
-  cachedClientConfigs = global._payload_clientConfigs = {} as CachedClientConfigs
+  cachedClientConfigs = global._cms_clientConfigs = {} as CachedClientConfigs
 }
 
 export const getClientConfig = cache(
   ({ config, i18n, importMap, user }: CreateClientConfigArgs): ClientConfig => {
     const currentLanguage = i18n.language
 
-    if (cachedClientConfigs[currentLanguage] && !global._payload_doNotCacheClientConfig) {
+    if (cachedClientConfigs[currentLanguage] && !global._cms_doNotCacheClientConfig) {
       if (!user) {
         return createUnauthenticatedClientConfig({
           clientConfig: cachedClientConfigs[currentLanguage],
@@ -34,8 +34,8 @@ export const getClientConfig = cache(
     })
 
     cachedClientConfigs[currentLanguage] = cachedClientConfig
-    global._payload_clientConfigs = cachedClientConfigs
-    global._payload_doNotCacheClientConfig = false
+    global._cms_clientConfigs = cachedClientConfigs
+    global._cms_doNotCacheClientConfig = false
 
     if (!user) {
       return createUnauthenticatedClientConfig({

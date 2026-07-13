@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import type { PayloadComponent, SanitizedConfig } from '../../config/types.js'
+import type { CMSComponent, SanitizedConfig } from '../../config/types.js'
 import type { Block, Field, Tab } from '../../fields/config/types.js'
 import type { AddToImportMap, Imports, InternalImportMap } from './index.js'
 
 function hasKey<T, K extends string>(
   obj: null | T | undefined,
   key: K,
-): obj is { [P in K]: PayloadComponent | PayloadComponent[] } & T {
+): obj is { [P in K]: CMSComponent | CMSComponent[] } & T {
   return obj != null && Object.prototype.hasOwnProperty.call(obj, key)
 }
 

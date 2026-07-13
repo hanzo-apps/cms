@@ -1,7 +1,7 @@
 import type {
   GlobalSlug,
   PaginatedDocs,
-  PayloadTypesShape,
+  CMSTypesShape,
   SelectType,
   Sort,
   TypedLocale,
@@ -9,10 +9,10 @@ import type {
   Where,
 } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type { DataFromGlobalSlug, PopulateType } from '../types.js'
 
-export type FindGlobalVersionsOptions<T extends PayloadTypesShape, TSlug extends GlobalSlug<T>> = {
+export type FindGlobalVersionsOptions<T extends CMSTypesShape, TSlug extends GlobalSlug<T>> = {
   /**
    * [Control auto-population](https://payloadcms.com/docs/queries/depth) of nested relationship and upload fields.
    */
@@ -66,8 +66,8 @@ export type FindGlobalVersionsOptions<T extends PayloadTypesShape, TSlug extends
   where?: Where
 }
 
-export async function findGlobalVersions<T extends PayloadTypesShape, TSlug extends GlobalSlug<T>>(
-  sdk: PayloadSDK<T>,
+export async function findGlobalVersions<T extends CMSTypesShape, TSlug extends GlobalSlug<T>>(
+  sdk: CMSSDK<T>,
   options: FindGlobalVersionsOptions<T, TSlug>,
   init?: RequestInit,
 ): Promise<PaginatedDocs<TypeWithVersion<DataFromGlobalSlug<T, TSlug>>>> {

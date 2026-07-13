@@ -1,24 +1,24 @@
 /* eslint-disable no-console */
-import type { CollectionConfig, Field, GlobalConfig, Payload } from '@hanzo/cms'
+import type { CollectionConfig, Field, GlobalConfig, CMS } from '@hanzo/cms'
 
 import { migrateDocumentFieldsRecursively } from './migrateDocumentFieldsRecursively.js'
 
 /**
- * This goes through every single collection and field in the payload config, and migrates its data from Slate to Lexical. This does not support sub-fields within slate.
+ * This goes through every single collection and field in the cms config, and migrates its data from Slate to Lexical. This does not support sub-fields within slate.
  *
  * It will only translate fields fulfilling all these requirements:
  * - field schema uses lexical editor
  * - lexical editor has SlateToLexicalFeature added
  * - saved field data is in Slate format
  *
- * @param payload
+ * @param cms
  */
-export async function migrateSlateToLexical({ payload }: { payload: Payload }) {
-  const collections = payload.config.collections
+export async function migrateSlateToLexical({ cms }: { cms: CMS }) {
+  const collections = cms.config.collections
 
   const errors: unknown[] = []
 
-  const allLocales = payload.config.localization ? payload.config.localization.localeCodes : [null]
+  const allLocales = cms.config.localization ? cms.config.localization.localeCodes : [null]
 
   const totalCollections = collections.length
   for (const locale of allLocales) {
@@ -31,15 +31,15 @@ export async function migrateSlateToLexical({ payload }: { payload: Payload }) {
         errors,
         locale,
         max: totalCollections,
-        payload,
+        cms,
       })
     }
-    for (const global of payload.config.globals) {
+    for (const global of cms.config.globals) {
       await migrateGlobal({
         errors,
         global,
         locale,
-        payload,
+        cms,
       })
     }
   }
@@ -55,16 +55,16 @@ async function migrateGlobal({
   errors,
   global,
   locale,
-  payload,
+  cms,
 }: {
   errors: unknown[]
   global: GlobalConfig
   locale: null | string
-  payload: Payload
+  cms: CMS
 }) {
   console.log(`SlateToLexical: ${locale}: Migrating global:`, global.slug)
 
-  const document = await payload.findGlobal({
+  const document = await cms.findGlobal({
     slug: global.slug,
     depth: 0,
     draft: true,
@@ -75,12 +75,12 @@ async function migrateGlobal({
   const found = migrateDocument({
     document,
     fields: global.fields,
-    payload,
+    cms,
   })
 
   if (found) {
     try {
-      await payload.updateGlobal({
+      await cms.updateGlobal({
         slug: global.slug,
         data: document,
         depth: 0,
@@ -103,14 +103,14 @@ async function migrateCollection({
   errors,
   locale,
   max,
-  payload,
+  cms,
 }: {
   collection: CollectionConfig
   cur: number
   errors: unknown[]
   locale: null | string
   max: number
-  payload: Payload
+  cms: CMS
 }) {
   console.log(
     `SlateToLexical: ${locale}: Migrating collection:`,
@@ -119,7 +119,7 @@ async function migrateCollection({
   )
 
   const documentCount = (
-    await payload.count({
+    await cms.count({
       collection: collection.slug,
       locale: locale || undefined,
     })
@@ -129,7 +129,7 @@ async function migrateCollection({
   let migrated = 0
 
   while (migrated < documentCount) {
-    const documents = await payload.find({
+    const documents = await cms.find({
       collection: collection.slug,
       depth: 0,
       draft: true,
@@ -159,12 +159,12 @@ async function migrateCollection({
       const found = migrateDocument({
         document,
         fields: collection.fields,
-        payload,
+        cms,
       })
 
       if (found) {
         try {
-          await payload.update({
+          await cms.update({
             id: document.id,
             collection: collection.slug,
             data: document,
@@ -190,16 +190,16 @@ async function migrateCollection({
 function migrateDocument({
   document,
   fields,
-  payload,
+  cms,
 }: {
   document: Record<string, unknown>
   fields: Field[]
-  payload: Payload
+  cms: CMS
 }): boolean {
   return !!migrateDocumentFieldsRecursively({
     data: document,
     fields,
     found: 0,
-    payload,
+    cms,
   })
 }

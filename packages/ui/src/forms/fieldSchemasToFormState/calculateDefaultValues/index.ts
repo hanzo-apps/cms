@@ -1,7 +1,7 @@
 import type {
   Data,
   Field as FieldSchema,
-  PayloadRequest,
+  CMSRequest,
   SelectMode,
   SelectType,
   TypedUser,
@@ -14,7 +14,7 @@ type Args = {
   fields: FieldSchema[]
   id?: number | string
   locale: string | undefined
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   selectMode?: SelectMode
   siblingData: Data

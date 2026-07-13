@@ -1,11 +1,11 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { toolSchemas } from '../schemas.js'
 
 // Reusable function for running jobs
 export const runJob = async (
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   jobSlug: string,
   input: Record<string, unknown>,
@@ -13,14 +13,14 @@ export const runJob = async (
   priority?: number,
   delay?: number,
 ) => {
-  const payload = req.payload
+  const cms = req.cms
 
   if (verboseLogs) {
-    payload.logger.info(`[payload-mcp] Running job: ${jobSlug}`)
+    cms.logger.info(`[cms-mcp] Running job: ${jobSlug}`)
   }
 
   try {
-    // Actually run the job using Payload's job queue
+    // Actually run the job using CMS's job queue
     const jobQueueOptions: Record<string, unknown> = {
       input,
       task: jobSlug,
@@ -29,38 +29,38 @@ export const runJob = async (
     if (queue && queue !== 'default') {
       jobQueueOptions.queue = queue
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Using custom queue: ${queue}`)
+        cms.logger.info(`[cms-mcp] Using custom queue: ${queue}`)
       }
     }
 
     if (priority && priority > 0) {
       jobQueueOptions.priority = priority
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Setting job priority: ${priority}`)
+        cms.logger.info(`[cms-mcp] Setting job priority: ${priority}`)
       }
     }
 
     if (delay && delay > 0) {
       jobQueueOptions.waitUntil = new Date(Date.now() + delay)
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Setting job delay: ${delay}ms`)
+        cms.logger.info(`[cms-mcp] Setting job delay: ${delay}ms`)
       }
     }
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Queuing job with options: ${JSON.stringify(jobQueueOptions)}`,
+      cms.logger.info(
+        `[cms-mcp] Queuing job with options: ${JSON.stringify(jobQueueOptions)}`,
       )
     }
 
-    const job = await payload.jobs.queue(
-      jobQueueOptions as Parameters<typeof payload.jobs.queue>[0],
+    const job = await cms.jobs.queue(
+      jobQueueOptions as Parameters<typeof cms.jobs.queue>[0],
     )
 
     const jobId = (job as { id?: string })?.id || 'unknown'
 
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Job created successfully: ${jobId}`)
+      cms.logger.info(`[cms-mcp] Job created successfully: ${jobId}`)
     }
 
     return {
@@ -90,11 +90,11 @@ You can monitor the job status using:
 
 \`\`\`typescript
 // Check job status
-const jobStatus = await payload.jobs.status('${jobId}')
+const jobStatus = await cms.jobs.status('${jobId}')
 console.log('Job status:', jobStatus)
 
 // Wait for completion
-const result = await payload.jobs.wait('${jobId}')
+const result = await cms.jobs.wait('${jobId}')
 console.log('Job result:', result)
 \`\`\`
 
@@ -104,7 +104,7 @@ console.log('Job result:', result)
     }
   } catch (error) {
     const errorMsg = (error as Error).message
-    payload.logger.error(`[payload-mcp] Error running job "${jobSlug}": ${errorMsg}`)
+    cms.logger.error(`[cms-mcp] Error running job "${jobSlug}": ${errorMsg}`)
 
     return {
       content: [
@@ -113,7 +113,7 @@ console.log('Job result:', result)
           text: `❌ Error running job "${jobSlug}": ${errorMsg}
 
 ## Common Issues:
-1. **Job not found**: The job "${jobSlug}" may not be registered in your Payload configuration
+1. **Job not found**: The job "${jobSlug}" may not be registered in your CMS configuration
 2. **Invalid input format**: Ensure the input matches the job's input schema
 3. **Queue not configured**: The queue "${queue || 'default'}" may not be properly set up
 4. **Permission issues**: Ensure proper access rights for job execution
@@ -127,7 +127,7 @@ ${JSON.stringify(input)}
 ## Next Steps:
 1. **Verify job exists**: Check that the job "${jobSlug}" is properly registered
 2. **Check input format**: Ensure the input data matches the expected schema
-3. **Review job configuration**: Verify the job is properly configured in your Payload setup
+3. **Review job configuration**: Verify the job is properly configured in your CMS setup
 4. **Check permissions**: Ensure you have the necessary permissions to run jobs
 5. **Review error logs**: Check the server logs for more detailed error information
 
@@ -142,16 +142,16 @@ ${JSON.stringify(input)}
   }
 }
 
-export const runJobTool = (server: McpServer, req: PayloadRequest, verboseLogs: boolean) => {
+export const runJobTool = (server: McpServer, req: CMSRequest, verboseLogs: boolean) => {
   server.registerTool(
     'runJob',
     {
-      description: 'Runs a Payload job with specified input data and queue options',
+      description: 'Runs a CMS job with specified input data and queue options',
       inputSchema: toolSchemas.runJob.parameters.shape,
     },
     async ({ delay, input, jobSlug, priority, queue }) => {
       if (verboseLogs) {
-        req.payload.logger.info(`[payload-mcp] Run Job Tool called with: ${jobSlug}`)
+        req.cms.logger.info(`[cms-mcp] Run Job Tool called with: ${jobSlug}`)
       }
       return runJob(
         req,

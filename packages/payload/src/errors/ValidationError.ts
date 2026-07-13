@@ -4,7 +4,7 @@ import { en } from '@hanzo/cms-translations/languages/en'
 import { status as httpStatus } from 'http-status'
 
 import type { LabelFunction, StaticLabel } from '../config/types.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { APIError } from './APIError.js'
 
@@ -33,7 +33,7 @@ export class ValidationError extends APIError<{
       /**
        *  req needs to be passed through (if you have one) in order to resolve label functions that may be part of the errors array
        */
-      req?: Partial<PayloadRequest>
+      req?: Partial<CMSRequest>
     },
     t?: TFunction,
   ) {

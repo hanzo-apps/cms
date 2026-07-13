@@ -1,4 +1,4 @@
-import type { PayloadRequest, Sort, Where } from '@hanzo/cms'
+import type { CMSRequest, Sort, Where } from '@hanzo/cms'
 
 import { addDataAndFileToRequest } from '@hanzo/cms'
 import { getObjectDotNotation } from '@hanzo/cms/shared'
@@ -26,7 +26,7 @@ const applyExportBeforeHook = async (
   data: Record<string, unknown>[],
   originalDocs: unknown[],
   format: 'csv' | 'json' | ({} & string),
-  req: PayloadRequest,
+  req: CMSRequest,
 ): Promise<Record<string, unknown>[]> => {
   if (!hook || data.length === 0) {
     return data
@@ -41,7 +41,7 @@ const applyExportBeforeHook = async (
   })
 }
 
-export const handlePreview = async (req: PayloadRequest): Promise<Response> => {
+export const handlePreview = async (req: CMSRequest): Promise<Response> => {
   await addDataAndFileToRequest(req)
 
   const {
@@ -71,7 +71,7 @@ export const handlePreview = async (req: PayloadRequest): Promise<Response> => {
   const previewLimit = Math.max(MIN_PREVIEW_LIMIT, Math.min(rawPreviewLimit, MAX_PREVIEW_LIMIT))
   const previewPage = Math.max(MIN_PREVIEW_PAGE, rawPreviewPage)
 
-  const targetCollection = req.payload.collections[collectionSlug]
+  const targetCollection = req.cms.collections[collectionSlug]
   if (!targetCollection) {
     return Response.json(
       { error: `Collection with slug ${collectionSlug} not found` },
@@ -97,7 +97,7 @@ export const handlePreview = async (req: PayloadRequest): Promise<Response> => {
   }
 
   // Count total docs matching export criteria
-  const countResult = await req.payload.count({
+  const countResult = await req.cms.count({
     collection: collectionSlug,
     overrideAccess: false,
     req,
@@ -132,8 +132,8 @@ export const handlePreview = async (req: PayloadRequest): Promise<Response> => {
 
   // Get locale codes for locale expansion when locale='all'
   const localeCodes =
-    locale === 'all' && req.payload.config.localization
-      ? req.payload.config.localization.localeCodes
+    locale === 'all' && req.cms.config.localization
+      ? req.cms.config.localization.localeCodes
       : undefined
 
   // Get disabled fields configuration
@@ -173,7 +173,7 @@ export const handlePreview = async (req: PayloadRequest): Promise<Response> => {
 
   // Fetch preview page with full previewLimit to maintain consistent pagination offsets
   // We'll trim the results afterwards if needed to respect export limit
-  const result = await req.payload.find({
+  const result = await req.cms.find({
     collection: collectionSlug,
     depth: 1,
     draft,

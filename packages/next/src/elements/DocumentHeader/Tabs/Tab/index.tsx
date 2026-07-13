@@ -1,7 +1,7 @@
 import type {
   DocumentTabConfig,
   DocumentTabServerPropsOnly,
-  PayloadRequest,
+  CMSRequest,
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
   SanitizedPermissions,
@@ -22,7 +22,7 @@ export const DefaultDocumentTab: React.FC<{
   globalConfig?: SanitizedGlobalConfig
   path?: string
   permissions?: SanitizedPermissions
-  req: PayloadRequest
+  req: CMSRequest
   tabConfig: { readonly Pill_Component?: React.FC } & DocumentTabConfig
 }> = (props) => {
   const {
@@ -42,7 +42,7 @@ export const DefaultDocumentTab: React.FC<{
       apiURL,
       collection: collectionConfig,
       global: globalConfig,
-      routes: req.payload.config.routes,
+      routes: req.cms.config.routes,
     })
   }
 
@@ -61,7 +61,7 @@ export const DefaultDocumentTab: React.FC<{
 
   return (
     <DocumentTabLink
-      adminRoute={req.payload.config.routes.admin}
+      adminRoute={req.cms.config.routes.admin}
       ariaLabel={labelToRender}
       baseClass={baseClass}
       href={href}
@@ -76,10 +76,10 @@ export const DefaultDocumentTab: React.FC<{
             {RenderServerComponent({
               Component: Pill,
               Fallback: Pill_Component,
-              importMap: req.payload.importMap,
+              importMap: req.cms.importMap,
               serverProps: {
                 i18n: req.i18n,
-                payload: req.payload,
+                cms: req.cms,
                 permissions,
                 req,
                 user: req.user,

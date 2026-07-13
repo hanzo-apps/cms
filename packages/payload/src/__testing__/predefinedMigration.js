@@ -11,8 +11,8 @@
  */
 const imports = ``
 const upSQL = `  // Test predefined migration from payload/__testing__/predefinedMigration
-  payload.logger.info('Test migration UP from payload package executed')`
-const downSQL = `  // Test predefined migration DOWN from payload package
-  payload.logger.info('Test migration DOWN from payload package executed')`
+  cms.logger.info('Test migration UP from cms package executed')`
+const downSQL = `  // Test predefined migration DOWN from cms package
+  cms.logger.info('Test migration DOWN from cms package executed')`
 
 export { downSQL, imports, upSQL }

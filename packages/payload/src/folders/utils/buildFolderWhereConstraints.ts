@@ -1,5 +1,5 @@
 import type { SanitizedCollectionConfig } from '../../collections/config/types.js'
-import type { PayloadRequest, Where } from '../../types/index.js'
+import type { CMSRequest, Where } from '../../types/index.js'
 
 import { combineWhereConstraints } from '../../utilities/combineWhereConstraints.js'
 import { mergeListSearchAndWhere } from '../../utilities/mergeListSearchAndWhere.js'
@@ -8,7 +8,7 @@ type Args = {
   collectionConfig: SanitizedCollectionConfig
   folderID?: number | string
   localeCode?: string
-  req: PayloadRequest
+  req: CMSRequest
   search?: string
   sort?: string
 }

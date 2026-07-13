@@ -9,12 +9,12 @@ import type {
   TypeWithID,
   TypeWithTimestamps,
 } from '../collections/config/types.js'
-import type payload from '../index.js'
+import type cms from '../index.js'
 import type {
   CollectionSlug,
   DataFromGlobalSlug,
   GlobalSlug,
-  Payload,
+  CMS,
   RequestContext,
   TypedCollectionJoins,
   TypedCollectionSelect,
@@ -24,9 +24,9 @@ import type {
 } from '../index.js'
 import type { File } from '../uploads/types.js'
 import type { Operator } from './constants.js'
-export type { Payload } from '../index.js'
+export type { CMS } from '../index.js'
 
-export type CustomPayloadRequestProperties = {
+export type CustomCMSRequestProperties = {
   context: RequestContext
   /** The locale that should be used for a field when it is not translated to the requested locale */
   fallbackLocale?: TypedFallbackLocale
@@ -40,29 +40,29 @@ export type CustomPayloadRequestProperties = {
   // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   locale?: 'all' | TypedLocale
   /**
-   * The payload object
+   * The cms object
    */
-  payload: typeof payload
+  cms: typeof cms
   /**
    * The context in which the request is being made
    */
-  payloadAPI: 'GraphQL' | 'local' | 'REST'
+  cmsAPI: 'GraphQL' | 'local' | 'REST'
   /** Optimized document loader */
-  payloadDataLoader: {
+  cmsDataLoader: {
     /**
-     * Wraps `payload.find` with a cache to deduplicate requests
+     * Wraps `cms.find` with a cache to deduplicate requests
      * @experimental This is may be replaced by a more robust cache strategy in future versions
      * By calling this method with the same arguments many times in one request, it will only be handled one time
-     * const result = await req.payloadDataLoader.find({
+     * const result = await req.cmsDataLoader.find({
      *  collection,
      *  req,
      *  where: findWhere,
      * })
      */
-    find: Payload['find']
+    find: CMS['find']
   } & DataLoader<string, TypeWithID>
   /** Resized versions of the image that was uploaded during this request */
-  payloadUploadSizes?: Record<string, Buffer>
+  cmsUploadSizes?: Record<string, Buffer>
   /** Query params on the request */
   query: Record<string, unknown>
   /** Any response headers that are required to be set when a response is sent */
@@ -91,11 +91,11 @@ export type CustomPayloadRequestProperties = {
   URL,
   'hash' | 'host' | 'href' | 'origin' | 'pathname' | 'port' | 'protocol' | 'search' | 'searchParams'
 >
-type PayloadRequestData = {
+type CMSRequestData = {
   /**
    * Data from the request body
    *
-   * Within Payload operations, i.e. hooks, data will be there
+   * Within CMS operations, i.e. hooks, data will be there
    * BUT in custom endpoints it will not be, you will need to
    * use either:
    *  1. `const data = await req.json()`
@@ -116,10 +116,10 @@ type PayloadRequestData = {
   /** All files from multipart form data, keyed by field name */
   files?: Record<string, File | File[]>
 }
-export interface PayloadRequest
-  extends CustomPayloadRequestProperties,
+export interface CMSRequest
+  extends CustomCMSRequestProperties,
     Partial<Request>,
-    PayloadRequestData {
+    CMSRequestData {
   headers: Request['headers']
 }
 
@@ -153,8 +153,8 @@ type SerializableValue = boolean | number | object | string
 export type DefaultValue =
   | ((args: {
       locale?: TypedLocale
-      req: PayloadRequest
-      user: PayloadRequest['user']
+      req: CMSRequest
+      user: CMSRequest['user']
     }) => SerializableValue)
   | SerializableValue
 

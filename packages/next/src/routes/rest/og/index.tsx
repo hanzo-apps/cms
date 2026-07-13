@@ -1,6 +1,6 @@
-import type { PayloadHandler } from '@hanzo/cms'
+import type { CMSHandler } from '@hanzo/cms'
 
-import { PayloadIcon } from '@hanzo/cms-ui/shared'
+import { CMSIcon } from '@hanzo/cms-ui/shared'
 import fs from 'fs/promises'
 import { ImageResponse } from 'next/og.js'
 import path from 'path'
@@ -16,8 +16,8 @@ export const runtime = 'nodejs'
 
 export const contentType = 'image/png'
 
-export const generateOGImage: PayloadHandler = async (req) => {
-  const config = req.payload.config
+export const generateOGImage: CMSHandler = async (req) => {
+  const config = req.cms.config
 
   if (config.admin.meta.defaultOGImageType === 'off') {
     return Response.json({ error: `Open Graph images are disabled` }, { status: 400 })
@@ -40,7 +40,7 @@ export const generateOGImage: PayloadHandler = async (req) => {
       // Or better yet, use a CDN like Google Fonts if ever supported
       fontData = fs.readFile(path.join(dirname, 'roboto-regular.woff'))
     } catch (e) {
-      req.payload.logger.error(`Error reading font file or not readable: ${e.message}`)
+      req.cms.logger.error(`Error reading font file or not readable: ${e.message}`)
     }
 
     const fontFamily = 'Roboto, sans-serif'
@@ -49,10 +49,10 @@ export const generateOGImage: PayloadHandler = async (req) => {
       (
         <OGImage
           description={description}
-          Fallback={PayloadIcon}
+          Fallback={CMSIcon}
           fontFamily={fontFamily}
           Icon={config.admin?.components?.graphics?.Icon}
-          importMap={req.payload.importMap}
+          importMap={req.cms.importMap}
           leader={leader}
           title={title}
         />
@@ -75,7 +75,7 @@ export const generateOGImage: PayloadHandler = async (req) => {
       },
     )
   } catch (e: any) {
-    req.payload.logger.error(`Error generating Open Graph image: ${e.message}`)
+    req.cms.logger.error(`Error generating Open Graph image: ${e.message}`)
     return Response.json({ error: `Internal Server Error: ${e.message}` }, { status: 500 })
   }
 }

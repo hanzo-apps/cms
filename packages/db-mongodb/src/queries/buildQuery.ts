@@ -25,7 +25,7 @@ export const buildQuery = async ({
     globalSlug,
     locale,
     parentIsLocalized: false,
-    payload: adapter.payload,
+    cms: adapter.cms,
     where,
   })
 

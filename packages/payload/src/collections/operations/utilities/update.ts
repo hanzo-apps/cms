@@ -9,8 +9,8 @@ import type {
 } from '../../../index.js'
 import type {
   JsonObject,
-  Payload,
-  PayloadRequest,
+  CMS,
+  CMSRequest,
   PopulateType,
   SelectType,
   TransformCollectionWithSelect,
@@ -52,11 +52,11 @@ export type SharedUpdateDocumentArgs<TSlug extends CollectionSlug> = {
   locale: string
   overrideAccess: boolean
   overrideLock: boolean
-  payload: Payload
+  cms: CMS
   populate?: PopulateType
   publishAllLocales?: boolean
   publishSpecificLocale?: string
-  req: PayloadRequest
+  req: CMSRequest
   select: SelectType
   showHiddenFields: boolean
   unpublishAllLocales?: boolean
@@ -92,7 +92,7 @@ export const updateDocument = async <
   locale,
   overrideAccess,
   overrideLock,
-  payload,
+  cms,
   populate,
   publishAllLocales: publishAllLocalesArg,
   publishSpecificLocale,
@@ -226,7 +226,7 @@ export const updateDocument = async <
   // /////////////////////////////////////
 
   if (!collectionConfig.upload.disableLocalStorage) {
-    await uploadFiles(payload, filesToUpload, req)
+    await uploadFiles(cms, filesToUpload, req)
   }
 
   // /////////////////////////////////////
@@ -305,7 +305,7 @@ export const updateDocument = async <
         }
       } else if (!isSavingDraft) {
         // publishing a single locale
-        currentDoc = await payload.db.findOne<DataFromCollectionSlug<TSlug>>({
+        currentDoc = await cms.db.findOne<DataFromCollectionSlug<TSlug>>({
           collection: collectionConfig.slug,
           req,
           where: { id: { equals: id } },
@@ -317,7 +317,7 @@ export const updateDocument = async <
       currentDoc = await getLatestCollectionVersion({
         id,
         config: collectionConfig,
-        payload,
+        cms,
         published: true,
         query: {
           collection: collectionConfig.slug,
@@ -371,7 +371,7 @@ export const updateDocument = async <
   if (!isSavingDraft) {
     // Ensure updatedAt date is always updated
     dataToUpdate.updatedAt = new Date().toISOString()
-    result = await req.payload.db.updateOne({
+    result = await req.cms.db.updateOne({
       id,
       collection: collectionConfig.slug,
       data: dataToUpdate,
@@ -392,7 +392,7 @@ export const updateDocument = async <
       docWithLocales: result,
       draft: isSavingDraft,
       operation: 'update',
-      payload,
+      cms,
       publishSpecificLocale,
       req,
       snapshot: snapshotToSave,

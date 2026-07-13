@@ -22,7 +22,7 @@ type TraverseFieldsArgs = {
    */
   blocks: BlocksMap
   /**
-   * The full Payload config
+   * The full CMS config
    */
   config: SanitizedConfig
   currentTableName: string
@@ -39,7 +39,7 @@ type TraverseFieldsArgs = {
    */
   fieldPrefix: string
   /**
-   * An array of Payload fields to traverse
+   * An array of CMS fields to traverse
    */
   fields: FlattenedField[]
   /**
@@ -76,7 +76,7 @@ type TraverseFieldsArgs = {
 }
 
 // Traverse fields recursively, transforming data
-// for each field type into required Payload shape
+// for each field type into required CMS shape
 export const traverseFields = <T extends Record<string, unknown>>({
   adapter,
   blocks,
@@ -99,7 +99,7 @@ export const traverseFields = <T extends Record<string, unknown>>({
 }: TraverseFieldsArgs): T => {
   const sanitizedPath = path ? `${path}.` : path
   const localeCodes =
-    adapter.payload.config.localization && adapter.payload.config.localization.localeCodes
+    adapter.cms.config.localization && adapter.cms.config.localization.localeCodes
 
   const formatted = fields.reduce((result, field) => {
     if (fieldIsVirtual(field)) {
@@ -246,7 +246,7 @@ export const traverseFields = <T extends Record<string, unknown>>({
           Object.entries(result[field.name]).forEach(([locale, localizedBlocks]) => {
             result[field.name][locale] = localizedBlocks.map((row) => {
               const block =
-                adapter.payload.blocks[row.blockType] ??
+                adapter.cms.blocks[row.blockType] ??
                 ((field.blockReferences ?? field.blocks).find(
                   (block) => typeof block !== 'string' && block.slug === row.blockType,
                 ) as FlattenedBlock | undefined)
@@ -313,7 +313,7 @@ export const traverseFields = <T extends Record<string, unknown>>({
             }
 
             const block =
-              adapter.payload.blocks[row.blockType] ??
+              adapter.cms.blocks[row.blockType] ??
               ((field.blockReferences ?? field.blocks).find(
                 (block) => typeof block !== 'string' && block.slug === row.blockType,
               ) as FlattenedBlock | undefined)
@@ -439,7 +439,7 @@ export const traverseFields = <T extends Record<string, unknown>>({
         | { docs: unknown[]; hasNextPage: boolean; totalDocs?: number }
         | Record<string, { docs: unknown[]; hasNextPage: boolean; totalDocs?: number }>
       if (Array.isArray(fieldData)) {
-        if (isLocalized && adapter.payload.config.localization) {
+        if (isLocalized && adapter.cms.config.localization) {
           fieldResult = fieldData.reduce(
             (joinResult, row) => {
               if (typeof row.locale === 'string') {
@@ -450,7 +450,7 @@ export const traverseFields = <T extends Record<string, unknown>>({
             },
 
             // initialize with defaults so empty won't be undefined
-            adapter.payload.config.localization.localeCodes.reduce((acc, code) => {
+            adapter.cms.config.localization.localeCodes.reduce((acc, code) => {
               acc[code] = {
                 docs: [],
                 hasNextPage: false,
@@ -690,7 +690,7 @@ export const traverseFields = <T extends Record<string, unknown>>({
           if (
             val &&
             typeof field.relationTo === 'string' &&
-            adapter.payload.collections[field.relationTo].customIDType === 'number'
+            adapter.cms.collections[field.relationTo].customIDType === 'number'
           ) {
             val = Number(val)
           }

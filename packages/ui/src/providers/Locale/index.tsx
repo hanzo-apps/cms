@@ -21,7 +21,7 @@ const fetchPreferences = async <T extends Record<string, unknown> | string>(
   key: string,
   baseURL: string,
 ): Promise<{ id: string; value: T }> =>
-  await fetch(`${baseURL}/payload-preferences/${key}`, {
+  await fetch(`${baseURL}/cms-preferences/${key}`, {
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',

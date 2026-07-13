@@ -1,21 +1,21 @@
-declare type RawPayloadComponent = {
+declare type RawCMSComponent = {
   clientProps?: object
   exportName?: string
   path: string
   serverProps?: object
 }
 
-declare type PayloadComponent = false | RawPayloadComponent | string
+declare type CMSComponent = false | RawCMSComponent | string
 
-declare type CustomComponent = PayloadComponent
+declare type CustomComponent = CMSComponent
 
 declare interface FieldConfig {
   admin?: {
     components?: {
-      Cell?: PayloadComponent
-      Description?: PayloadComponent
-      Field?: PayloadComponent
-      Label?: PayloadComponent
+      Cell?: CMSComponent
+      Description?: CMSComponent
+      Field?: CMSComponent
+      Label?: CMSComponent
     }
   }
   name: string
@@ -26,14 +26,14 @@ declare interface AdminConfig {
   components?: {
     actions?: CustomComponent[]
     graphics?: {
-      Icon?: PayloadComponent
-      Logo?: PayloadComponent
+      Icon?: CMSComponent
+      Logo?: CMSComponent
     }
-    Nav?: PayloadComponent
+    Nav?: CMSComponent
     views?: Record<
       string,
       {
-        Component?: PayloadComponent
+        Component?: CMSComponent
         path?: string
       }
     >

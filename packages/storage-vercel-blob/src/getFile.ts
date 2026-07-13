@@ -1,4 +1,4 @@
-import type { CollectionConfig, PayloadRequest } from '@hanzo/cms'
+import type { CollectionConfig, CMSRequest } from '@hanzo/cms'
 
 import { getFilePrefix as getDocPrefix } from '@hanzo/cms-plugin-cloud-storage/utilities'
 import { BlobNotFoundError, head } from '@vercel/blob'
@@ -15,7 +15,7 @@ interface GetFileArgs {
   filename: string
   incomingHeaders?: Headers
   prefixQueryParam?: string
-  req: PayloadRequest
+  req: CMSRequest
   token: string
   useCompositePrefixes?: boolean
 }
@@ -123,7 +123,7 @@ export async function getFile({
     if (err instanceof BlobNotFoundError) {
       return new Response(null, { status: 404, statusText: 'Not Found' })
     }
-    req.payload.logger.error({ err, msg: 'Unexpected error in staticHandler' })
+    req.cms.logger.error({ err, msg: 'Unexpected error in staticHandler' })
     return new Response('Internal Server Error', { status: 500 })
   }
 }

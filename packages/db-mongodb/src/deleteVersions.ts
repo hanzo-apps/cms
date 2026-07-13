@@ -22,7 +22,7 @@ export const deleteVersions: DeleteVersions = async function deleteVersions(
       globalSlug,
       versions: true,
     })
-    fields = buildVersionGlobalFields(this.payload.config, globalConfig, true)
+    fields = buildVersionGlobalFields(this.cms.config, globalConfig, true)
     VersionsModel = Model
   } else if (collectionSlug) {
     const { collectionConfig, Model } = getCollection({
@@ -30,7 +30,7 @@ export const deleteVersions: DeleteVersions = async function deleteVersions(
       collectionSlug,
       versions: true,
     })
-    fields = buildVersionCollectionFields(this.payload.config, collectionConfig, true)
+    fields = buildVersionCollectionFields(this.cms.config, collectionConfig, true)
     VersionsModel = Model
   } else {
     throw new APIError('Either collection or globalSlug must be passed.')

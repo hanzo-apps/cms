@@ -2,12 +2,12 @@ import fs from 'fs/promises'
 import { imageSize } from 'image-size'
 import { imageSizeFromFile } from 'image-size/fromFile'
 
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 import type { ProbedImageSize } from './types.js'
 
 import { temporaryFileTask } from './tempFile.js'
 
-export async function getImageSize(file: PayloadRequest['file']): Promise<ProbedImageSize> {
+export async function getImageSize(file: CMSRequest['file']): Promise<ProbedImageSize> {
   if (file?.tempFilePath) {
     return imageSizeFromFile(file.tempFilePath)
   }

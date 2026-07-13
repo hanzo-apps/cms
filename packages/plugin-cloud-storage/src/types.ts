@@ -3,7 +3,7 @@ import type {
   Field,
   FileData,
   ImageSize,
-  PayloadRequest,
+  CMSRequest,
   TypeWithID,
   UploadCollectionSlug,
 } from '@hanzo/cms'
@@ -19,7 +19,7 @@ export interface File {
 
 export type ClientUploadsAccess = (args: {
   collectionSlug: UploadCollectionSlug
-  req: PayloadRequest
+  req: CMSRequest
 }) => boolean | Promise<boolean>
 
 export type ClientUploadsConfig =
@@ -33,7 +33,7 @@ export type HandleUpload = (args: {
   collection: CollectionConfig
   data: any
   file: File
-  req: PayloadRequest
+  req: CMSRequest
 }) =>
   | Partial<FileData & TypeWithID>
   | Promise<Partial<FileData & TypeWithID>>
@@ -48,7 +48,7 @@ export type HandleDelete = (args: {
   collection: CollectionConfig
   doc: FileData & TypeWithID & TypeWithPrefix
   filename: string
-  req: PayloadRequest
+  req: CMSRequest
 }) => Promise<void> | void
 
 export type GenerateURL = (args: {
@@ -59,7 +59,7 @@ export type GenerateURL = (args: {
 }) => Promise<string> | string
 
 export type StaticHandler = (
-  req: PayloadRequest,
+  req: CMSRequest,
   args: {
     doc?: TypeWithID
     headers?: Headers
@@ -104,7 +104,7 @@ export type GenerateFileURL = (args: {
 export interface CollectionOptions {
   adapter: Adapter | null
   disableLocalStorage?: boolean
-  disablePayloadAccessControl?: true
+  disableCMSAccessControl?: true
   generateFileURL?: GenerateFileURL
   prefix?: string
 }
@@ -115,7 +115,7 @@ export interface PluginOptions {
    * the collection schema regardless of whether the plugin is enabled. This
    * ensures a consistent schema across all environments.
    *
-   * This will be enabled by default in Payload v4.
+   * This will be enabled by default in CMS v4.
    *
    * @default false
    */

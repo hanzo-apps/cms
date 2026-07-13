@@ -38,15 +38,15 @@ export const connect: Connect = async function connect(
     this.client = this.drizzle.$client as any
 
     if (!hotReload) {
-      if (process.env.PAYLOAD_DROP_DATABASE === 'true') {
-        this.payload.logger.info(`---- DROPPING TABLES ----`)
+      if (process.env.CMS_DROP_DATABASE === 'true') {
+        this.cms.logger.info(`---- DROPPING TABLES ----`)
         await this.dropDatabase({ adapter: this })
-        this.payload.logger.info('---- DROPPED TABLES ----')
+        this.cms.logger.info('---- DROPPED TABLES ----')
       }
     }
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err)
-    this.payload.logger.error({ err, msg: `Error: cannot connect to SQLite: ${message}` })
+    this.cms.logger.error({ err, msg: `Error: cannot connect to SQLite: ${message}` })
     if (typeof this.rejectInitializing === 'function') {
       this.rejectInitializing()
     }
@@ -57,7 +57,7 @@ export const connect: Connect = async function connect(
   // Only push schema if not in production
   if (
     process.env.NODE_ENV !== 'production' &&
-    process.env.PAYLOAD_MIGRATING !== 'true' &&
+    process.env.CMS_MIGRATING !== 'true' &&
     this.push !== false
   ) {
     await pushDevSchema(this as unknown as DrizzleAdapter)

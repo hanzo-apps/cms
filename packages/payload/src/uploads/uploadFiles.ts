@@ -1,14 +1,14 @@
-import type { Payload } from '../index.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMS } from '../index.js'
+import type { CMSRequest } from '../types/index.js'
 import type { FileToSave } from './types.js'
 
 import { FileUploadError } from '../errors/index.js'
 import { saveBufferToFile } from './saveBufferToFile.js'
 
 export const uploadFiles = async (
-  payload: Payload,
+  cms: CMS,
   files: FileToSave[],
-  req: PayloadRequest,
+  req: CMSRequest,
 ): Promise<void> => {
   try {
     await Promise.all(
@@ -17,7 +17,7 @@ export const uploadFiles = async (
       }),
     )
   } catch (err) {
-    payload.logger.error(err)
+    cms.logger.error(err)
     throw new FileUploadError(req.t)
   }
 }

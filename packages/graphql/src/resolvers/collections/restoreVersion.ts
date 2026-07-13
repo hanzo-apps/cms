@@ -1,4 +1,4 @@
-import type { Collection, PayloadRequest } from '@hanzo/cms'
+import type { Collection, CMSRequest } from '@hanzo/cms'
 
 import { isolateObjectProperty, restoreVersionOperation } from '@hanzo/cms'
 
@@ -11,7 +11,7 @@ export type Resolver = (
     id: number | string
   },
   context: {
-    req: PayloadRequest
+    req: CMSRequest
   },
 ) => Promise<Document>
 

@@ -6,7 +6,7 @@ import type {
   DocumentViewServerProps,
   DocumentViewServerPropsOnly,
   EditViewComponent,
-  PayloadComponent,
+  CMSComponent,
   RenderDocumentVersionsProperties,
 } from '@hanzo/cms'
 
@@ -43,7 +43,7 @@ export const generateMetadata: GenerateEditViewMetadata = async (args) => getMet
 
 export type ViewToRender =
   | EditViewComponent
-  | PayloadComponent<DocumentViewServerProps>
+  | CMSComponent<DocumentViewServerProps>
   | React.FC
   | React.FC<DocumentViewClientProps>
 
@@ -90,8 +90,8 @@ export const renderDocument = async ({
     req,
     req: {
       i18n,
-      payload,
-      payload: {
+      cms,
+      cms: {
         config,
         config: {
           routes: { admin: adminRoute, api: apiRoute },
@@ -116,7 +116,7 @@ export const renderDocument = async ({
           collectionSlug,
           globalSlug,
           locale,
-          payload,
+          cms,
           req,
           segments,
           user,
@@ -177,7 +177,7 @@ export const renderDocument = async ({
       id: idFromArgs,
       collectionSlug,
       globalSlug,
-      payload,
+      cms,
       user,
     }),
 
@@ -202,7 +202,7 @@ export const renderDocument = async ({
     // get entity preferences
     getPreferences<CollectionPreferences>(
       collectionSlug ? `collection-${collectionSlug}` : `global-${globalSlug}`,
-      payload,
+      cms,
       req.user.id,
       req.user.collection,
     ),
@@ -221,7 +221,7 @@ export const renderDocument = async ({
       docPermissions,
       globalConfig,
       locale: locale?.code,
-      payload,
+      cms,
       user,
     }),
     buildFormState({
@@ -249,7 +249,7 @@ export const renderDocument = async ({
     initPageResult,
     locale,
     params,
-    payload,
+    cms,
     permissions,
     routeSegments: segments,
     searchParams,
@@ -329,7 +329,7 @@ export const renderDocument = async ({
   let id = idFromArgs
 
   if (shouldAutosave && !validateDraftData && !idFromArgs && collectionSlug) {
-    doc = await payload.create({
+    doc = await cms.create({
       collection: collectionSlug,
       data: initialData || {},
       depth: 0,
@@ -470,7 +470,7 @@ export async function DocumentView(props: AdminViewServerProps) {
       throw error
     }
 
-    logError({ err: error, payload: props.initPageResult.req.payload })
+    logError({ err: error, cms: props.initPageResult.req.cms })
 
     if (error.message === 'not-found') {
       notFound()

@@ -33,39 +33,39 @@ describe('generateMetadata', () => {
     const result = await generateMetadata({
       serverURL: 'http://localhost:3000',
       title: { default: 'My CMS', template: '%s | My CMS' },
-      titleSuffix: '- Payload',
+      titleSuffix: '- CMS',
     })
 
     // OG title must be a plain string — extract from TemplateString.default and append titleSuffix
-    expect(result.openGraph?.title).toBe('My CMS - Payload')
+    expect(result.openGraph?.title).toBe('My CMS - CMS')
   })
 
   it('should use the TemplateString absolute for ogTitle when title has absolute property', async () => {
     const result = await generateMetadata({
       serverURL: 'http://localhost:3000',
       title: { absolute: 'My CMS Absolute' },
-      titleSuffix: '- Payload',
+      titleSuffix: '- CMS',
     })
 
-    expect(result.openGraph?.title).toBe('My CMS Absolute - Payload')
+    expect(result.openGraph?.title).toBe('My CMS Absolute - CMS')
   })
 
   it('should apply titleSuffix to the absolute field of a TemplateString title object', async () => {
     const result = await generateMetadata({
       serverURL: 'http://localhost:3000',
       title: { absolute: 'My CMS Absolute' },
-      titleSuffix: '- Payload',
+      titleSuffix: '- CMS',
     })
 
     expect(typeof result.title).toBe('object')
-    expect((result.title as { absolute: string }).absolute).toBe('My CMS Absolute - Payload')
+    expect((result.title as { absolute: string }).absolute).toBe('My CMS Absolute - CMS')
   })
 
   it('should use openGraph.title string over incomingMetadata.title for ogTitle', async () => {
     const result = await generateMetadata({
       serverURL: 'http://localhost:3000',
       title: 'My CMS',
-      titleSuffix: '- Payload',
+      titleSuffix: '- CMS',
       openGraph: { title: 'Custom OG Title' },
     })
 

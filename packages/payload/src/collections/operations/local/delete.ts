@@ -1,13 +1,13 @@
 import type {
   CollectionSlug,
   FindOptions,
-  Payload,
+  CMS,
   RequestContext,
   TypedLocale,
 } from '../../../index.js'
 import type {
   Document,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   TransformCollectionWithSelect,
@@ -66,10 +66,10 @@ export type BaseOptions<TSlug extends CollectionSlug, TSelect extends SelectType
    */
   populate?: PopulateType
   /**
-   * The `PayloadRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
+   * The `CMSRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
    * Recommended to pass when using the Local API from hooks, as usually you want to execute the operation within the current transaction.
    */
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * Opt-in to receiving hidden fields. By default, they are hidden from returned documents in accordance to your config.
    * @default false
@@ -127,28 +127,28 @@ async function deleteLocal<
   TSlug extends CollectionSlug,
   TSelect extends SelectFromCollectionSlug<TSlug>,
 >(
-  payload: Payload,
+  cms: CMS,
   options: ByIDOptions<TSlug, TSelect>,
 ): Promise<TransformCollectionWithSelect<TSlug, TSelect>>
 async function deleteLocal<
   TSlug extends CollectionSlug,
   TSelect extends SelectFromCollectionSlug<TSlug>,
 >(
-  payload: Payload,
+  cms: CMS,
   options: ManyOptions<TSlug, TSelect>,
 ): Promise<BulkOperationResult<TSlug, TSelect>>
 async function deleteLocal<
   TSlug extends CollectionSlug,
   TSelect extends SelectFromCollectionSlug<TSlug>,
 >(
-  payload: Payload,
+  cms: CMS,
   options: Options<TSlug, TSelect>,
 ): Promise<BulkOperationResult<TSlug, TSelect> | TransformCollectionWithSelect<TSlug, TSelect>>
 async function deleteLocal<
   TSlug extends CollectionSlug,
   TSelect extends SelectFromCollectionSlug<TSlug>,
 >(
-  payload: Payload,
+  cms: CMS,
   options: Options<TSlug, TSelect>,
 ): Promise<BulkOperationResult<TSlug, TSelect> | TransformCollectionWithSelect<TSlug, TSelect>> {
   const {
@@ -165,7 +165,7 @@ async function deleteLocal<
     where,
   } = options
 
-  const collection = payload.collections[collectionSlug]
+  const collection = cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(
@@ -181,7 +181,7 @@ async function deleteLocal<
     overrideAccess,
     overrideLock,
     populate,
-    req: await createLocalReq(options as CreateLocalReqOptions, payload),
+    req: await createLocalReq(options as CreateLocalReqOptions, cms),
     select,
     showHiddenFields,
     trash,

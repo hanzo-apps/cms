@@ -4,7 +4,7 @@ import type { FindOptions } from '../../collections/operations/local/find.js'
 import type { AccessResult } from '../../config/types.js'
 import type {
   JsonObject,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   Where,
@@ -34,7 +34,7 @@ export type GlobalFindOneArgs = {
   includeLockStatus?: boolean
   overrideAccess?: boolean
   populate?: PopulateType
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields?: boolean
   slug: string
 } & Pick<AfterReadArgs<JsonObject>, 'flattenLocales'> &
@@ -60,7 +60,7 @@ export const findOneOperation = async <T extends Record<string, unknown>>(
   } = args
 
   const includeLockStatus =
-    includeLockStatusFromArgs && req.payload.collections?.[lockedDocumentsCollectionSlug]
+    includeLockStatusFromArgs && req.cms.collections?.[lockedDocumentsCollectionSlug]
 
   try {
     // /////////////////////////////////////
@@ -118,7 +118,7 @@ export const findOneOperation = async <T extends Record<string, unknown>>(
     ) {
       dbSelect = { ...select, createdAt: true, updatedAt: true }
     }
-    const docFromDB = await req.payload.db.findGlobal({
+    const docFromDB = await req.cms.db.findGlobal({
       slug,
       locale: locale!,
       req,
@@ -152,7 +152,7 @@ export const findOneOperation = async <T extends Record<string, unknown>>(
           typeof lockDocumentsProp === 'object' ? lockDocumentsProp.duration : lockDurationDefault
         const lockDurationInMilliseconds = lockDuration * 1000
 
-        const lockedDocument = await req.payload.find({
+        const lockedDocument = await req.cms.find({
           collection: lockedDocumentsCollectionSlug,
           depth: 1,
           limit: 1,

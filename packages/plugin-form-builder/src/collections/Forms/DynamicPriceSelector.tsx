@@ -42,7 +42,7 @@ export const DynamicPriceSelector: TextFieldClientComponent = (props) => {
     }
   }, [fields, getDataByPath, getData, path])
 
-  // TODO: make this a number field, block by Payload
+  // TODO: make this a number field, block by CMS
   if (valueType === 'static') {
     return <TextField {...props} />
   }

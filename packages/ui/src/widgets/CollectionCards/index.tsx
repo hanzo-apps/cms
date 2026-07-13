@@ -16,14 +16,14 @@ import './index.scss'
 const baseClass = 'collections'
 
 export async function CollectionCards(props: WidgetServerProps) {
-  const { i18n, payload, user } = props.req
-  const { admin: adminRoute } = payload.config.routes
+  const { i18n, cms, user } = props.req
+  const { admin: adminRoute } = cms.config.routes
   const { t } = i18n
   const permissions = await getAccessResults({ req: props.req })
   const visibleEntities = getVisibleEntities({ req: props.req })
   const globalData = await getGlobalData(props.req)
 
-  const navGroups = getNavGroups(permissions, visibleEntities, payload.config, i18n)
+  const navGroups = getNavGroups(permissions, visibleEntities, cms.config, i18n)
 
   return (
     <div className={baseClass}>

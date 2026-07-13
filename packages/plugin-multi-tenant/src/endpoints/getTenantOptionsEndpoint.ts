@@ -22,14 +22,14 @@ export const getTenantOptionsEndpoint = <ConfigType>({
   >['userHasAccessToAllTenants']
 }): Endpoint => ({
   handler: async (req) => {
-    const { payload, user } = req
+    const { cms, user } = req
 
     if (!user) {
       throw new APIError('Unauthorized', 401)
     }
 
     const tenantOptions = await getTenantOptions({
-      payload,
+      cms,
       tenantsArrayFieldName,
       tenantsArrayTenantFieldName,
       tenantsCollectionSlug,

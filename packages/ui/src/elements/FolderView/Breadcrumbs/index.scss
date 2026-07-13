@@ -1,6 +1,6 @@
 @import '../../../scss/styles.scss';
 
-@layer payload-default {
+@layer cms-default {
   .droppable-button {
     @include btn-reset;
     font-weight: 600;

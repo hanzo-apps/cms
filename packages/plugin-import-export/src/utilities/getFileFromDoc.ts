@@ -1,4 +1,4 @@
-import type { CollectionConfig, FileData, PayloadRequest, UploadConfig } from '@hanzo/cms'
+import type { CollectionConfig, FileData, CMSRequest, UploadConfig } from '@hanzo/cms'
 
 import { FileRetrievalError, getFileByPath } from '@hanzo/cms'
 import { getExternalFile } from '@hanzo/cms/internal'
@@ -7,7 +7,7 @@ import { formatAdminURL } from '@hanzo/cms/shared'
 type Args = {
   collectionConfig: CollectionConfig
   doc: { filename: string; mimeType?: string; url?: string }
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 type Result = {
@@ -19,9 +19,9 @@ type Result = {
  * Retrieves file data from an uploaded document, handling both local storage
  * and cloud storage (S3, Azure, GCS, etc.) scenarios correctly.
  *
- * This function uses the same pattern as Payload's internal file retrieval:
+ * This function uses the same pattern as CMS's internal file retrieval:
  * - For local storage: reads directly from disk (efficient, no HTTP roundtrip)
- * - For cloud storage: fetches via Payload's file endpoint, which triggers
+ * - For cloud storage: fetches via CMS's file endpoint, which triggers
  *   the storage adapter's staticHandler to serve the file
  */
 export const getFileFromDoc = async ({ collectionConfig, doc, req }: Args): Promise<Result> => {
@@ -30,7 +30,7 @@ export const getFileFromDoc = async ({ collectionConfig, doc, req }: Args): Prom
   const disableLocalStorage = uploadConfig.disableLocalStorage ?? false
   const staticDir = uploadConfig.staticDir || collectionConfig.slug
 
-  const serverURL = req.payload.config.serverURL
+  const serverURL = req.cms.config.serverURL
   const isLocalFile = (serverURL && doc.url?.startsWith(serverURL)) || doc.url?.startsWith('/')
 
   if (!disableLocalStorage && isLocalFile && doc.filename) {
@@ -55,9 +55,9 @@ export const getFileFromDoc = async ({ collectionConfig, doc, req }: Args): Prom
   }
 
   if (doc.filename && doc.url) {
-    // Cloud storage or external - fetch via Payload's file endpoint
+    // Cloud storage or external - fetch via CMS's file endpoint
     // getExternalFile constructs full URL, includes cookies for auth, and
-    // the request goes through Payload's handler chain (including storage adapter)
+    // the request goes through CMS's handler chain (including storage adapter)
 
     // For relative URLs, construct a full URL using formatAdminURL which properly
     // handles serverURL, basePath, and other config. This is important in job contexts

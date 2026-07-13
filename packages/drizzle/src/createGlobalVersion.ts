@@ -26,7 +26,7 @@ export async function createGlobalVersion<T extends JsonObject = JsonObject>(
     versionData,
   }: CreateGlobalVersionArgs,
 ): Promise<TypeWithVersion<T>> {
-  const global = this.payload.globals.config.find(({ slug }) => slug === globalSlug)
+  const global = this.cms.globals.config.find(({ slug }) => slug === globalSlug)
 
   const tableName = this.tableNameMap.get(`_${toSnakeCase(global.slug)}${this.versionsSuffix}`)
 
@@ -44,7 +44,7 @@ export async function createGlobalVersion<T extends JsonObject = JsonObject>(
       version: versionData,
     },
     db,
-    fields: buildVersionGlobalFields(this.payload.config, global, true),
+    fields: buildVersionGlobalFields(this.cms.config, global, true),
     globalSlug,
     ignoreResult: returning === false ? 'idOnly' : false,
     operation: 'create',

@@ -1,5 +1,5 @@
 import type { DrizzleSnapshotJSON } from 'drizzle-kit/api'
-import type { Payload, PayloadRequest } from '@hanzo/cms'
+import type { CMS, CMSRequest } from '@hanzo/cms'
 
 import { sql } from 'drizzle-orm'
 import fs from 'fs'
@@ -16,16 +16,16 @@ import { traverseFields } from './traverseFields.js'
 
 type Args = {
   debug?: boolean
-  payload: Payload
-  req?: Partial<PayloadRequest>
+  cms: CMS
+  req?: Partial<CMSRequest>
 }
 
 const runStatementGroup = async ({ adapter, db, debug, statements }) => {
   const addColumnsStatement = statements.join('\n')
 
   if (debug) {
-    adapter.payload.logger.info(debug)
-    adapter.payload.logger.info(addColumnsStatement)
+    adapter.cms.logger.info(debug)
+    adapter.cms.logger.info(addColumnsStatement)
   }
 
   await db.execute(sql.raw(addColumnsStatement))
@@ -42,12 +42,12 @@ const runStatementGroup = async ({ adapter, db, debug, statements }) => {
  *    DROP CONSTRAINTs
  *    DROP COLUMNs
  * @param debug
- * @param payload
+ * @param cms
  * @param req
  */
-export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
-  const adapter = payload.db as unknown as BasePostgresAdapter
-  const dir = payload.db.migrationDir
+export const migratePostgresV2toV3 = async ({ debug, cms, req }: Args) => {
+  const adapter = cms.db as unknown as BasePostgresAdapter
+  const dir = cms.db.migrationDir
 
   // get the drizzle migrateUpSQL from drizzle using the last schema
   const { generateDrizzleJson, generateMigration, upSnapshot } = adapter.requireDrizzleKit()
@@ -77,7 +77,7 @@ export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
   const generatedSQL = await generateMigration(drizzleJsonBefore, drizzleJsonAfter)
 
   if (!generatedSQL.length) {
-    payload.logger.info(`No schema changes needed.`)
+    cms.logger.info(`No schema changes needed.`)
     process.exit(0)
   }
 
@@ -135,8 +135,8 @@ export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
     statements: sqlUpStatements.createIndex,
   })
 
-  for (const collection of payload.config.collections) {
-    if (collection.slug === 'payload-locked-documents') {
+  for (const collection of cms.config.collections) {
+    if (collection.slug === 'cms-locked-documents') {
       continue
     }
     const tableName = adapter.tableNameMap.get(toSnakeCase(collection.slug))
@@ -154,7 +154,7 @@ export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
       parentTableName: tableName,
       path: '',
       pathsToQuery,
-      payload,
+      cms,
       rootTableName: tableName,
     })
 
@@ -166,7 +166,7 @@ export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
       fields: collection.flattenedFields,
       isVersions: false,
       pathsToQuery,
-      payload,
+      cms,
       req,
       tableName,
     })
@@ -175,7 +175,7 @@ export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
       const versionsTableName = adapter.tableNameMap.get(
         `_${toSnakeCase(collection.slug)}${adapter.versionsSuffix}`,
       )
-      const versionFields = buildVersionCollectionFields(payload.config, collection, true)
+      const versionFields = buildVersionCollectionFields(cms.config, collection, true)
       const versionPathsToQuery: PathsToQuery = new Set()
 
       traverseFields({
@@ -190,7 +190,7 @@ export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
         parentTableName: versionsTableName,
         path: '',
         pathsToQuery: versionPathsToQuery,
-        payload,
+        cms,
         rootTableName: versionsTableName,
       })
 
@@ -202,14 +202,14 @@ export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
         fields: versionFields,
         isVersions: true,
         pathsToQuery: versionPathsToQuery,
-        payload,
+        cms,
         req,
         tableName: versionsTableName,
       })
     }
   }
 
-  for (const global of payload.config.globals) {
+  for (const global of cms.config.globals) {
     const tableName = adapter.tableNameMap.get(toSnakeCase(global.slug))
 
     const pathsToQuery: PathsToQuery = new Set()
@@ -226,7 +226,7 @@ export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
       parentTableName: tableName,
       path: '',
       pathsToQuery,
-      payload,
+      cms,
       rootTableName: tableName,
     })
 
@@ -238,7 +238,7 @@ export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
       globalSlug: global.slug,
       isVersions: false,
       pathsToQuery,
-      payload,
+      cms,
       req,
       tableName,
     })
@@ -248,7 +248,7 @@ export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
         `_${toSnakeCase(global.slug)}${adapter.versionsSuffix}`,
       )
 
-      const versionFields = buildVersionGlobalFields(payload.config, global, true)
+      const versionFields = buildVersionGlobalFields(cms.config, global, true)
 
       const versionPathsToQuery: PathsToQuery = new Set()
 
@@ -264,7 +264,7 @@ export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
         parentTableName: versionsTableName,
         path: '',
         pathsToQuery: versionPathsToQuery,
-        payload,
+        cms,
         rootTableName: versionsTableName,
       })
 
@@ -276,7 +276,7 @@ export const migratePostgresV2toV3 = async ({ debug, payload, req }: Args) => {
         globalSlug: global.slug,
         isVersions: true,
         pathsToQuery: versionPathsToQuery,
-        payload,
+        cms,
         req,
         tableName: versionsTableName,
       })

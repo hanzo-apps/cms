@@ -1,15 +1,15 @@
 import type { SanitizedCollectionConfig } from '../collections/config/types.js'
 import type { SanitizedGlobalConfig } from '../globals/config/types.js'
-import type { Payload } from '../index.js'
-import type { JsonObject, PayloadRequest } from '../types/index.js'
+import type { CMS } from '../index.js'
+import type { JsonObject, CMSRequest } from '../types/index.js'
 
 type Args<TData extends JsonObject> = {
   collection?: SanitizedCollectionConfig
   global?: SanitizedGlobalConfig
   id?: number | string
   now: string
-  payload: Payload
-  req?: PayloadRequest
+  cms: CMS
+  req?: CMSRequest
   shouldUpdate?: (latestVersion: JsonObject) => boolean
   versionData: TData
 }
@@ -26,7 +26,7 @@ export async function updateLatestVersion<TData extends JsonObject>({
   collection,
   global,
   now,
-  payload,
+  cms,
   req,
   shouldUpdate = () => true,
   versionData,
@@ -40,7 +40,7 @@ export async function updateLatestVersion<TData extends JsonObject>({
   }
 
   if (collection) {
-    ;({ docs } = await payload.db.findVersions<TData>({
+    ;({ docs } = await cms.db.findVersions<TData>({
       ...findVersionArgs,
       collection: collection.slug,
       where: {
@@ -50,7 +50,7 @@ export async function updateLatestVersion<TData extends JsonObject>({
       },
     }))
   } else {
-    ;({ docs } = await payload.db.findGlobalVersions<TData>({
+    ;({ docs } = await cms.db.findGlobalVersions<TData>({
       ...findVersionArgs,
       global: global!.slug,
     }))
@@ -80,21 +80,21 @@ export async function updateLatestVersion<TData extends JsonObject>({
 
   try {
     if (collection) {
-      return await payload.db.updateVersion<TData>({
+      return await cms.db.updateVersion<TData>({
         ...updateVersionArgs,
         collection: collection.slug,
         req,
       })
     }
 
-    return await payload.db.updateGlobalVersion<TData>({
+    return await cms.db.updateGlobalVersion<TData>({
       ...updateVersionArgs,
       global: global!.slug,
       req,
     })
   } catch (err) {
     versionUpdateFailed = true
-    payload.logger.warn({
+    cms.logger.warn({
       err,
       msg: `Failed to update latest version — checking if a concurrent write already succeeded.`,
     })
@@ -107,7 +107,7 @@ export async function updateLatestVersion<TData extends JsonObject>({
       let freshDocs: JsonObject[]
 
       if (collection) {
-        ;({ docs: freshDocs } = await payload.db.findVersions<TData>({
+        ;({ docs: freshDocs } = await cms.db.findVersions<TData>({
           collection: collection.slug,
           limit: 1,
           pagination: false,
@@ -116,7 +116,7 @@ export async function updateLatestVersion<TData extends JsonObject>({
           where: { parent: { equals: id } },
         }))
       } else {
-        ;({ docs: freshDocs } = await payload.db.findGlobalVersions<TData>({
+        ;({ docs: freshDocs } = await cms.db.findGlobalVersions<TData>({
           global: global!.slug,
           limit: 1,
           pagination: false,

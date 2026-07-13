@@ -5,7 +5,7 @@ import fs from 'fs/promises'
 
 import type { SanitizedCollectionConfig } from '../../collections/config/types.js'
 import type { SharpDependency } from '../../config/types.js'
-import type { PayloadRequest } from '../../types/index.js'
+import type { CMSRequest } from '../../types/index.js'
 import type { WithMetadata } from '../optionallyAppendMetadata.js'
 import type { FileSize, FileSizes, FileToSave, FocalPoint, ProbedImageSize } from '../types.js'
 
@@ -36,10 +36,10 @@ import { sanitizeResizeConfig } from './sanitizeResizeConfig.js'
 type ResizeArgs = {
   config: SanitizedCollectionConfig
   dimensions: ProbedImageSize
-  file: PayloadRequest['file']
+  file: CMSRequest['file']
   focalPoint?: FocalPoint
   mimeType: string
-  req: PayloadRequest
+  req: CMSRequest
   savedFilename: string
   sharp?: SharpDependency
   staticPath: string
@@ -238,8 +238,8 @@ export async function createImageSizes({
 
       const { name, ext } = parseFilename(savedFilename)
 
-      if (req.payloadUploadSizes) {
-        req.payloadUploadSizes[imageResizeConfig.name] = bufferData
+      if (req.cmsUploadSizes) {
+        req.cmsUploadSizes[imageResizeConfig.name] = bufferData
       }
 
       const mimeInfo = await fileTypeFromBuffer(bufferData)

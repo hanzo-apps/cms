@@ -16,17 +16,17 @@ import { migrationTableExists } from './utilities/migrationTableExists.js'
  * Run all migrate down functions
  */
 export async function migrateReset(this: DrizzleAdapter): Promise<void> {
-  const { payload } = this
-  const migrationFiles = await readMigrationFiles({ payload })
+  const { cms } = this
+  const migrationFiles = await readMigrationFiles({ cms })
 
-  const { existingMigrations } = await getMigrations({ payload })
+  const { existingMigrations } = await getMigrations({ cms })
 
   if (!existingMigrations?.length) {
-    payload.logger.info({ msg: 'No migrations to reset.' })
+    cms.logger.info({ msg: 'No migrations to reset.' })
     return
   }
 
-  const req = await createLocalReq({}, payload)
+  const req = await createLocalReq({}, cms)
 
   existingMigrations.reverse()
 
@@ -39,19 +39,19 @@ export async function migrateReset(this: DrizzleAdapter): Promise<void> {
       }
 
       const start = Date.now()
-      payload.logger.info({ msg: `Migrating down: ${migrationFile.name}` })
+      cms.logger.info({ msg: `Migrating down: ${migrationFile.name}` })
       await initTransaction(req)
       const db = await getTransaction(this, req)
-      await migrationFile.down({ db, payload, req })
-      payload.logger.info({
+      await migrationFile.down({ db, cms, req })
+      cms.logger.info({
         msg: `Migrated down:  ${migrationFile.name} (${Date.now() - start}ms)`,
       })
 
       const tableExists = await migrationTableExists(this, db)
       if (tableExists) {
-        await payload.delete({
+        await cms.delete({
           id: migration.id,
-          collection: 'payload-migrations',
+          collection: 'cms-migrations',
           req,
         })
       }
@@ -65,7 +65,7 @@ export async function migrateReset(this: DrizzleAdapter): Promise<void> {
       }
 
       await killTransaction(req)
-      payload.logger.error({
+      cms.logger.error({
         err,
         msg,
       })
@@ -78,8 +78,8 @@ export async function migrateReset(this: DrizzleAdapter): Promise<void> {
   const tableExists = await migrationTableExists(this)
   if (tableExists) {
     try {
-      await payload.delete({
-        collection: 'payload-migrations',
+      await cms.delete({
+        collection: 'cms-migrations',
         where: {
           batch: {
             equals: -1,
@@ -87,7 +87,7 @@ export async function migrateReset(this: DrizzleAdapter): Promise<void> {
         },
       })
     } catch (err: unknown) {
-      payload.logger.error({ err, msg: 'Error deleting dev migration' })
+      cms.logger.error({ err, msg: 'Error deleting dev migration' })
     }
   }
 }

@@ -1,4 +1,4 @@
-import type { Collection, PayloadRequest, Where } from '@hanzo/cms'
+import type { Collection, CMSRequest, Where } from '@hanzo/cms'
 
 import { countOperation, isolateObjectProperty } from '@hanzo/cms'
 
@@ -13,7 +13,7 @@ export type Resolver = (
     where?: Where
   },
   context: {
-    req: PayloadRequest
+    req: CMSRequest
   },
 ) => Promise<{ totalDocs: number }>
 

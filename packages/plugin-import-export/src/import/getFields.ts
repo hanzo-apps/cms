@@ -1,4 +1,4 @@
-import type { Field, PayloadRequest } from '@hanzo/cms'
+import type { Field, CMSRequest } from '@hanzo/cms'
 
 type GetFieldsOptions = {
   /**
@@ -24,12 +24,12 @@ export const getFields = (options: GetFieldsOptions): Field[] => {
       // @ts-expect-error - this is not correctly typed in plugins right now
       label: ({ t }) => t('plugin-import-export:field-collectionSlug-label'),
       required: true,
-      validate: (value: null | string | undefined, { req }: { req: PayloadRequest }) => {
+      validate: (value: null | string | undefined, { req }: { req: CMSRequest }) => {
         if (!value) {
           return 'Collection is required'
         }
         // Validate that the collection exists
-        const collectionExists = req?.payload?.collections?.[value]
+        const collectionExists = req?.cms?.collections?.[value]
         if (!collectionExists) {
           return `Collection "${value}" does not exist`
         }

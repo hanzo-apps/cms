@@ -15,7 +15,7 @@ import type { PgSchema, PgTableFn, PgTransactionConfig } from 'drizzle-orm/pg-co
 export type Args = {
   /**
    * Transform the schema after it's built.
-   * You can use it to customize the schema with features that aren't supported by Payload.
+   * You can use it to customize the schema with features that aren't supported by CMS.
    * Examples may include: composite indices, generated columns, vectors
    */
   afterSchemaInit?: PostgresSchemaHook[]
@@ -23,13 +23,13 @@ export type Args = {
    * Enable this flag if you want to thread your own ID to create operation data, for example:
    * ```ts
    * // doc created with id 1
-   * const doc = await payload.create({ collection: 'posts', data: {id: 1, title: "my title"}})
+   * const doc = await cms.create({ collection: 'posts', data: {id: 1, title: "my title"}})
    * ```
    */
   allowIDOnCreate?: boolean
   /**
    * Transform the schema before it's built.
-   * You can use it to preserve an existing database schema and if there are any collissions Payload will override them.
+   * You can use it to preserve an existing database schema and if there are any collissions CMS will override them.
    * To generate Drizzle schema from the database, see [Drizzle Kit introspection](https://orm.drizzle.team/kit-docs/commands#introspect--pull)
    */
   beforeSchemaInit?: PostgresSchemaHook[]
@@ -51,7 +51,7 @@ export type Args = {
    * and you'd to spin up the database with a special Neon's Docker Compose setup - https://vercel.com/docs/storage/vercel-postgres/local-development#option-2:-local-postgres-instance-with-docker
    */
   forceUseVercelPostgres?: boolean
-  /** Generated schema from payload generate:db-schema file path */
+  /** Generated schema from cms generate:db-schema file path */
   generateSchemaOutputFile?: string
   idType?: 'serial' | 'uuid' | 'uuidv7'
   localesSuffix?: string

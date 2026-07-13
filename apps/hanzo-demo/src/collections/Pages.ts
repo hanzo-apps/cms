@@ -1,7 +1,7 @@
 import type { CollectionConfig } from '@hanzo/cms'
 
 /**
- * Content collection with the full Payload-native publishing flow:
+ * Content collection with the full CMS-native publishing flow:
  * versions + drafts + scheduled publish. Proves draft -> publish.
  * Tenant-scoped by the multi-tenant plugin (org == tenant).
  */

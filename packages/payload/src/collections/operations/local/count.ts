@@ -1,5 +1,5 @@
-import type { CollectionSlug, Payload, RequestContext, TypedLocale } from '../../../index.js'
-import type { Document, PayloadRequest, Where } from '../../../types/index.js'
+import type { CollectionSlug, CMS, RequestContext, TypedLocale } from '../../../index.js'
+import type { Document, CMSRequest, Where } from '../../../types/index.js'
 import type { CreateLocalReqOptions } from '../../../utilities/createLocalReq.js'
 
 import { APIError } from '../../../errors/index.js'
@@ -33,10 +33,10 @@ export type CountOptions<TSlug extends CollectionSlug> = {
    */
   overrideAccess?: boolean
   /**
-   * The `PayloadRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
+   * The `CMSRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
    * Recommended to pass when using the Local API from hooks, as usually you want to execute the operation within the current transaction.
    */
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * When set to `true`, the query will include both normal and trashed documents.
    * To query only trashed documents, pass `trash: true` and combine with a `where` clause filtering by `deletedAt`.
@@ -58,7 +58,7 @@ export type CountOptions<TSlug extends CollectionSlug> = {
 }
 
 export async function countLocal<TSlug extends CollectionSlug>(
-  payload: Payload,
+  cms: CMS,
   options: CountOptions<TSlug>,
 ): Promise<{ totalDocs: number }> {
   const {
@@ -69,7 +69,7 @@ export async function countLocal<TSlug extends CollectionSlug>(
     where,
   } = options
 
-  const collection = payload.collections[collectionSlug]
+  const collection = cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(
@@ -81,7 +81,7 @@ export async function countLocal<TSlug extends CollectionSlug>(
     collection,
     disableErrors,
     overrideAccess,
-    req: await createLocalReq(options as CreateLocalReqOptions, payload),
+    req: await createLocalReq(options as CreateLocalReqOptions, cms),
     trash,
     where,
   })

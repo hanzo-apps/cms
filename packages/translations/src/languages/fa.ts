@@ -392,7 +392,7 @@ export const faTranslations: DefaultTranslationsObject = {
     password: 'رمز عبور',
     pasteField: 'جای‌گذاری در فیلد',
     pasteRow: 'جای‌گذاری در ردیف',
-    payloadSettings: 'تنظیمات Payload',
+    cmsSettings: 'تنظیمات CMS',
     permanentlyDelete: 'حذف دائمی',
     permanentlyDeletedCountSuccessfully: '{{count}} {{label}} با موفقیت برای همیشه حذف شد.',
     perPage: 'تعداد در هر صفحه: {{limit}}',

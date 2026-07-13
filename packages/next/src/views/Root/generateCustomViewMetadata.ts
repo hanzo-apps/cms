@@ -27,14 +27,14 @@ export const generateCustomViewMetadata = async (args: {
   }
 
   return generateMetadata({
-    description: `Payload`,
-    keywords: `Payload`,
+    description: `CMS`,
+    keywords: `CMS`,
     serverURL: config.serverURL,
-    title: 'Payload',
+    title: 'CMS',
     ...(config.admin.meta || {}),
     ...(viewConfig.meta || {}),
     openGraph: {
-      title: 'Payload',
+      title: 'CMS',
       ...(config.admin.meta?.openGraph || {}),
       ...(viewConfig.meta?.openGraph || {}),
     },

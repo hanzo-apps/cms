@@ -1,4 +1,4 @@
-import type { PayloadRequest, SelectType } from '@hanzo/cms'
+import type { CMSRequest, SelectType } from '@hanzo/cms'
 
 import { createDataloaderCacheKey } from '@hanzo/cms'
 
@@ -11,7 +11,7 @@ type PopulateArguments = {
   id: number | string
   key: number | string
   overrideAccess: boolean
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   showHiddenFields: boolean
 }
@@ -39,7 +39,7 @@ export const populate: PopulateFn = async ({
 
   const dataRef = data as Record<string, unknown>
 
-  const doc = await req.payloadDataLoader?.load(
+  const doc = await req.cmsDataLoader?.load(
     createDataloaderCacheKey({
       collectionSlug,
       currentDepth: currentDepth! + 1,

@@ -1,5 +1,5 @@
 import type {
-  PayloadComponent,
+  CMSComponent,
   SanitizedCollectionConfig,
   SanitizedCollectionPermission,
   SanitizedConfig,
@@ -20,7 +20,7 @@ import { getCustomViewByRoute } from './getCustomViewByRoute.js'
 
 export type ViewFromConfig<TProps extends object> = {
   Component?: React.FC<TProps>
-  ComponentConfig?: PayloadComponent<TProps>
+  ComponentConfig?: CMSComponent<TProps>
 }
 
 export const getDocumentView = ({

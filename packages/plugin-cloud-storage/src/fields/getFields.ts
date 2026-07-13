@@ -14,7 +14,7 @@ interface Args {
    */
   alwaysInsertFields?: boolean
   collection: CollectionConfig
-  disablePayloadAccessControl?: true
+  disableCMSAccessControl?: true
   generateFileURL?: GenerateFileURL
   prefix?: string
   /**
@@ -28,7 +28,7 @@ export const getFields = ({
   adapter,
   alwaysInsertFields,
   collection,
-  disablePayloadAccessControl,
+  disableCMSAccessControl,
   generateFileURL,
   prefix,
   useCompositePrefixes = false,
@@ -77,14 +77,14 @@ export const getFields = ({
       ...(existingURLField || {}),
       hooks: {
         afterRead: [
-          getAfterReadHook({ adapter, collection, disablePayloadAccessControl, generateFileURL }),
+          getAfterReadHook({ adapter, collection, disableCMSAccessControl, generateFileURL }),
           ...(existingURLField?.hooks?.afterRead || []),
         ],
         beforeChange: [
           getBeforeChangeHook({
             adapter,
             collection,
-            disablePayloadAccessControl,
+            disableCMSAccessControl,
             generateFileURL,
           }),
           ...(existingURLField?.hooks?.beforeChange || []),
@@ -140,7 +140,7 @@ export const getFields = ({
                   getAfterReadHook({
                     adapter,
                     collection,
-                    disablePayloadAccessControl,
+                    disableCMSAccessControl,
                     generateFileURL,
                     size,
                   }),
@@ -153,7 +153,7 @@ export const getFields = ({
                   getBeforeChangeHook({
                     adapter,
                     collection,
-                    disablePayloadAccessControl,
+                    disableCMSAccessControl,
                     generateFileURL,
                     size,
                   }),

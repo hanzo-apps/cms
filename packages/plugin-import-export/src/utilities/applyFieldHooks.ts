@@ -1,4 +1,4 @@
-import type { FlattenedField, PayloadRequest } from '@hanzo/cms'
+import type { FlattenedField, CMSRequest } from '@hanzo/cms'
 
 import type {
   ExportFieldHookEntry,
@@ -22,7 +22,7 @@ export type Args = {
   fields: FlattenedField[]
   format: 'csv' | 'json' | ({} & string)
   operation: 'export' | 'import'
-  req: PayloadRequest
+  req: CMSRequest
   type: 'beforeExport' | 'beforeImport'
 }
 
@@ -73,7 +73,7 @@ const traverseFields = ({
           result[field.name] = transformed
         }
       } catch (error) {
-        req.payload.logger.error({
+        req.cms.logger.error({
           err: error,
           msg: `[plugin-import-export] Field-level before${operationLabel[operation]} hook for "${fieldPath}" threw — falling back to original value`,
         })

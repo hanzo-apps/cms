@@ -125,7 +125,7 @@ export const RootPage = async ({
     locale,
     permissions,
     req,
-    req: { payload },
+    req: { cms },
   } = await initReq({
     configPromise: config,
     importMap,
@@ -145,12 +145,12 @@ export const RootPage = async ({
 
   if (
     !permissions.canAccessAdmin &&
-    !isPublicAdminRoute({ adminRoute, config: payload.config, route: currentRoute }) &&
-    !isCustomAdminView({ adminRoute, config: payload.config, route: currentRoute })
+    !isPublicAdminRoute({ adminRoute, config: cms.config, route: currentRoute }) &&
+    !isCustomAdminView({ adminRoute, config: cms.config, route: currentRoute })
   ) {
     redirect(
       handleAuthRedirect({
-        config: payload.config,
+        config: cms.config,
         route: currentRoute,
         searchParams,
         user: req.user,
@@ -164,7 +164,7 @@ export const RootPage = async ({
     if (config.folders && collectionConfig.folders && segments[1] !== config.folders.slug) {
       await getPreferences<CollectionPreferences>(
         `collection-${collectionConfig.slug}`,
-        req.payload,
+        req.cms,
         req.user.id,
         config.admin.user,
       ).then((res) => {
@@ -190,7 +190,7 @@ export const RootPage = async ({
     collectionPreferences,
     currentRoute,
     globalConfig,
-    payload,
+    cms,
     searchParams,
     segments,
   })
@@ -199,7 +199,7 @@ export const RootPage = async ({
 
   const dbHasUser =
     req.user ||
-    (await req.payload.db
+    (await req.cms.db
       .findOne({
         collection: userSlug,
         req,
@@ -210,7 +210,7 @@ export const RootPage = async ({
    * This function is responsible for handling the case where the view is not found.
    * The current route did not match any default views or custom route views.
    */
-  if (!DefaultView?.Component && !DefaultView?.payloadComponent) {
+  if (!DefaultView?.Component && !DefaultView?.cmsComponent) {
     if (req?.user) {
       notFound()
     }
@@ -240,7 +240,7 @@ export const RootPage = async ({
     redirect(adminRoute)
   }
 
-  if (!DefaultView?.Component && !DefaultView?.payloadComponent && !dbHasUser) {
+  if (!DefaultView?.Component && !DefaultView?.cmsComponent && !dbHasUser) {
     redirect(adminRoute)
   }
 
@@ -289,7 +289,7 @@ export const RootPage = async ({
       globalSlug: globalConfig?.slug,
       viewType,
     } satisfies AdminViewClientProps,
-    Component: DefaultView.payloadComponent,
+    Component: DefaultView.cmsComponent,
     Fallback: DefaultView.Component,
     importMap,
     serverProps: {
@@ -305,9 +305,9 @@ export const RootPage = async ({
         cookies,
         docID: routeParams.id,
         globalConfig,
-        languageOptions: Object.entries(req.payload.config.i18n.supportedLanguages || {}).reduce(
+        languageOptions: Object.entries(req.cms.config.i18n.supportedLanguages || {}).reduce(
           (acc, [language, languageConfig]) => {
-            if (Object.keys(req.payload.config.i18n.supportedLanguages).includes(language)) {
+            if (Object.keys(req.cms.config.i18n.supportedLanguages).includes(language)) {
               acc.push({
                 label: languageConfig.translations.general.thisLanguage,
                 value: language,
@@ -325,7 +325,7 @@ export const RootPage = async ({
         visibleEntities,
       },
       params,
-      payload: req.payload,
+      cms: req.cms,
       searchParams,
       viewActions,
     } satisfies AdminViewServerPropsOnly,
@@ -346,7 +346,7 @@ export const RootPage = async ({
           i18n={req.i18n}
           locale={locale}
           params={params}
-          payload={req.payload}
+          cms={req.cms}
           permissions={permissions}
           req={req}
           searchParams={searchParams}

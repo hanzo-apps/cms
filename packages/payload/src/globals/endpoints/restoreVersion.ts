@@ -1,13 +1,13 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { restoreVersionOperationGlobal, sanitizePopulateParam } from '../../index.js'
 import { getRequestGlobal } from '../../utilities/getRequestEntity.js'
 import { headersWithCors } from '../../utilities/headersWithCors.js'
 import { isNumber } from '../../utilities/isNumber.js'
 
-export const restoreVersionHandler: PayloadHandler = async (req) => {
+export const restoreVersionHandler: CMSHandler = async (req) => {
   const globalConfig = getRequestGlobal(req)
   const { searchParams } = req
   const depth = searchParams.get('depth')

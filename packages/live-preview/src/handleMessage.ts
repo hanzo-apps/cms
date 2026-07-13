@@ -3,7 +3,7 @@ import type { CollectionPopulationRequestHandler, LivePreviewMessageEvent } from
 import { isLivePreviewEvent } from './isLivePreviewEvent.js'
 import { mergeData } from './mergeData.js'
 
-const _payloadLivePreview: {
+const _cmsLivePreview: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   previousData: any
 } = {
@@ -17,7 +17,7 @@ const _payloadLivePreview: {
 // Reset the internal cached merged data. This is useful when navigating
 // between routes where a new subscription should not inherit prior data.
 export const resetCache = (): void => {
-  _payloadLivePreview.previousData = undefined
+  _cmsLivePreview.previousData = undefined
 }
 
 export const handleMessage = async <T extends Record<string, any>>(args: {
@@ -45,20 +45,20 @@ export const handleMessage = async <T extends Record<string, any>>(args: {
       depth,
       globalSlug,
       incomingData: data,
-      initialData: _payloadLivePreview?.previousData || initialData,
+      initialData: _cmsLivePreview?.previousData || initialData,
       locale,
       requestHandler,
       serverURL,
     })
 
-    _payloadLivePreview.previousData = mergedData
+    _cmsLivePreview.previousData = mergedData
 
     return mergedData
   }
 
-  if (!_payloadLivePreview.previousData) {
-    _payloadLivePreview.previousData = initialData
+  if (!_cmsLivePreview.previousData) {
+    _cmsLivePreview.previousData = initialData
   }
 
-  return _payloadLivePreview.previousData as T
+  return _cmsLivePreview.previousData as T
 }

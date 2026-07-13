@@ -1,7 +1,7 @@
 import type { ManyOptions } from '../../collections/operations/local/update.js'
 import type { UpdateJobsArgs } from '../../database/types.js'
 import type { Job } from '../../index.js'
-import type { PayloadRequest, Sort, Where } from '../../types/index.js'
+import type { CMSRequest, Sort, Where } from '../../types/index.js'
 
 import { jobAfterRead, jobsCollectionSlug } from '../config/collection.js'
 import { getCurrentDate } from './getCurrentDate.js'
@@ -11,7 +11,7 @@ type BaseArgs = {
   depth?: number
   disableTransaction?: boolean
   limit?: number
-  req: PayloadRequest
+  req: CMSRequest
   returning?: boolean
 }
 
@@ -60,8 +60,8 @@ export async function updateJobs({
   const limit = id ? 1 : limitArg
   const where = id ? { id: { equals: id } } : whereArg
 
-  if (depth || req.payload.config?.jobs?.runHooks) {
-    const result = await req.payload.update({
+  if (depth || req.cms.config?.jobs?.runHooks) {
+    const result = await req.cms.update({
       id,
       collection: jobsCollectionSlug,
       data,
@@ -79,8 +79,8 @@ export async function updateJobs({
 
   const jobReq = {
     transactionID:
-      req.payload.db.name !== 'mongoose'
-        ? ((await req.payload.db.beginTransaction()) as string)
+      req.cms.db.name !== 'mongoose'
+        ? ((await req.cms.db.beginTransaction()) as string)
         : undefined,
   }
 
@@ -105,10 +105,10 @@ export async function updateJobs({
         where: where as Where,
       }
 
-  const updatedJobs: Job[] | null = await req.payload.db.updateJobs(args)
+  const updatedJobs: Job[] | null = await req.cms.db.updateJobs(args)
 
-  if (req.payload.db.name !== 'mongoose' && jobReq.transactionID) {
-    await req.payload.db.commitTransaction(jobReq.transactionID)
+  if (req.cms.db.name !== 'mongoose' && jobReq.transactionID) {
+    await req.cms.db.commitTransaction(jobReq.transactionID)
   }
 
   if (returning === false || !updatedJobs?.length) {
@@ -117,7 +117,7 @@ export async function updateJobs({
 
   return updatedJobs.map((updatedJob) => {
     return jobAfterRead({
-      config: req.payload.config,
+      config: req.cms.config,
       doc: updatedJob,
     })
   })

@@ -51,7 +51,7 @@ export async function resolveJoins({
   }
 
   // Get the collection configuration from the adapter
-  const collectionConfig = adapter.payload.collections[collectionSlug]?.config
+  const collectionConfig = adapter.cms.collections[collectionSlug]?.config
   if (!collectionConfig) {
     return
   }
@@ -96,7 +96,7 @@ export async function resolveJoins({
       : [joinDef.field.collection]
 
     // Use the provided locale or fall back to the default locale for localized fields
-    const localizationConfig = adapter.payload.config.localization
+    const localizationConfig = adapter.cms.config.localization
     const effectiveLocale =
       locale ||
       (typeof localizationConfig === 'object' &&
@@ -121,7 +121,7 @@ export async function resolveJoins({
 
     // Process collections concurrently
     const collectionPromises = collections.map(async (joinCollectionSlug) => {
-      const targetConfig = adapter.payload.collections[joinCollectionSlug]?.config
+      const targetConfig = adapter.cms.collections[joinCollectionSlug]?.config
       if (!targetConfig) {
         return null
       }
@@ -158,7 +158,7 @@ export async function resolveJoins({
       whereQuery = useDrafts
         ? await JoinModel.buildQuery({
             locale,
-            payload: adapter.payload,
+            cms: adapter.cms,
             where: combineQueries(appendVersionToQueryKey(whereQuery as Where), {
               latest: {
                 equals: true,
@@ -180,7 +180,7 @@ export async function resolveJoins({
         const pathSegments = joinDef.field.on.split('.')
         const transformedSegments: string[] = []
         const fields = useDrafts
-          ? buildVersionCollectionFields(adapter.payload.config, targetConfig, true)
+          ? buildVersionCollectionFields(adapter.cms.config, targetConfig, true)
           : targetConfig.flattenedFields
 
         for (let i = 0; i < pathSegments.length; i++) {
@@ -218,12 +218,12 @@ export async function resolveJoins({
 
       // Build the sort parameters for the query
       const fields = useDrafts
-        ? buildVersionCollectionFields(adapter.payload.config, targetConfig, true)
+        ? buildVersionCollectionFields(adapter.cms.config, targetConfig, true)
         : targetConfig.flattenedFields
 
       const sort = buildSortParam({
         adapter,
-        config: adapter.payload.config,
+        config: adapter.cms.config,
         fields,
         locale,
         sort: useDrafts
@@ -251,7 +251,7 @@ export async function resolveJoins({
         adapter,
         data: results,
         fields: useDrafts
-          ? buildVersionCollectionFields(adapter.payload.config, targetConfig, false)
+          ? buildVersionCollectionFields(adapter.cms.config, targetConfig, false)
           : targetConfig.fields,
         operation: 'read',
       })
@@ -360,7 +360,7 @@ export async function resolveJoins({
         field: joinDef.field,
         parentIsLocalized: joinDef.parentIsLocalized,
       }) &&
-      adapter.payload.config.localization &&
+      adapter.cms.config.localization &&
       effectiveLocale
         ? `.${effectiveLocale}`
         : ''
@@ -447,7 +447,7 @@ export async function resolveJoins({
  * Extracts relationTo filter values from a WHERE clause
  *
  * @purpose When you have a polymorphic join field that can reference multiple collection types (e.g. the documentsAndFolders join field on
- * folders that points to all folder-enabled collections), Payload needs to decide which collections to actually query. Without filtering,
+ * folders that points to all folder-enabled collections), CMS needs to decide which collections to actually query. Without filtering,
  * it would query ALL possible collections even when the WHERE clause clearly indicates it only needs specific ones.
  *
  * extractRelationToFilter analyzes the WHERE clause to extract relationTo conditions and returns only the collection slugs that

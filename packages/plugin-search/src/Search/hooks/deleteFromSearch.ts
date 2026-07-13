@@ -2,11 +2,11 @@ import type { DeleteFromSearch } from '../../types.js'
 
 export const deleteFromSearch: DeleteFromSearch =
   (pluginConfig) =>
-  async ({ id, collection, req: { payload }, req }) => {
+  async ({ id, collection, req: { cms }, req }) => {
     const searchSlug = pluginConfig?.searchOverrides?.slug || 'search'
 
     try {
-      await payload.delete({
+      await cms.delete({
         collection: searchSlug,
         depth: 0,
         req,
@@ -20,7 +20,7 @@ export const deleteFromSearch: DeleteFromSearch =
         },
       })
     } catch (err: unknown) {
-      payload.logger.error({
+      cms.logger.error({
         err,
         msg: `Error deleting ${searchSlug} doc.`,
       })

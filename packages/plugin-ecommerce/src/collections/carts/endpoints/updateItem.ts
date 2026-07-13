@@ -89,7 +89,7 @@ export const updateItemEndpoint = ({ cartsSlug }: Args): Endpoint => ({
       cartID,
       cartsSlug,
       itemID: data.itemID,
-      payload: req.payload,
+      cms: req.cms,
       quantity: data.quantity,
       removeOnZero: data.removeOnZero,
       req,

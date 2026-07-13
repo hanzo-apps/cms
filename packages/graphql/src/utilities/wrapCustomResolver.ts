@@ -1,14 +1,14 @@
 import type { ObjMap } from 'graphql/jsutils/ObjMap.js'
 import type { GraphQLFieldConfig, GraphQLFieldResolver } from 'graphql/type/definition.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { isolateObjectProperty } from '@hanzo/cms'
 
-type PayloadContext = { req: PayloadRequest }
+type CMSContext = { req: CMSRequest }
 
 function wrapCustomResolver<TSource, TArgs, TResult>(
-  resolver: GraphQLFieldResolver<TSource, PayloadContext, TArgs, TResult>,
-): GraphQLFieldResolver<TSource, PayloadContext, TArgs, TResult> {
+  resolver: GraphQLFieldResolver<TSource, CMSContext, TArgs, TResult>,
+): GraphQLFieldResolver<TSource, CMSContext, TArgs, TResult> {
   return (source, args, context, info) => {
     return resolver(
       source,
@@ -20,8 +20,8 @@ function wrapCustomResolver<TSource, TArgs, TResult>(
 }
 
 export function wrapCustomFields<TSource>(
-  fields: ObjMap<GraphQLFieldConfig<TSource, PayloadContext>>,
-): ObjMap<GraphQLFieldConfig<TSource, PayloadContext>> {
+  fields: ObjMap<GraphQLFieldConfig<TSource, CMSContext>>,
+): ObjMap<GraphQLFieldConfig<TSource, CMSContext>> {
   for (const key in fields) {
     if (fields[key].resolve) {
       fields[key].resolve = wrapCustomResolver(fields[key].resolve)

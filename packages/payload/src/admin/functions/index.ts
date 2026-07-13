@@ -12,7 +12,7 @@ import type {
   GlobalSlug,
   SanitizedPermissions,
 } from '../../index.js'
-import type { PayloadRequest, Sort, Where } from '../../types/index.js'
+import type { CMSRequest, Sort, Where } from '../../types/index.js'
 import type { ColumnsFromURL } from '../../utilities/transformColumnPreferences.js'
 
 export type InitReqResult = {
@@ -23,7 +23,7 @@ export type InitReqResult = {
   languageCode: AcceptedLanguages
   locale?: Locale
   permissions: SanitizedPermissions
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export type DefaultServerFunctionArgs = {
@@ -162,7 +162,7 @@ export type GetFolderResultsComponentAndDataArgs = {
    * The ID of the folder to filter results by.
    */
   folderID: number | string | undefined
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * The sort order for the results.
    */

@@ -1,4 +1,4 @@
-import type { Payload, TypedUser } from '@hanzo/cms'
+import type { CMS, TypedUser } from '@hanzo/cms'
 
 import { cookies as getCookies } from 'next/headers.js'
 
@@ -9,7 +9,7 @@ import { TenantSelectionProviderClient } from './index.client.js'
 
 type Args<ConfigType> = {
   children: React.ReactNode
-  payload: Payload
+  cms: CMS
   tenantsArrayFieldName: string
   tenantsArrayTenantFieldName: string
   tenantsCollectionSlug: string
@@ -22,7 +22,7 @@ type Args<ConfigType> = {
 
 export const TenantSelectionProvider = async ({
   children,
-  payload,
+  cms,
   tenantsArrayFieldName,
   tenantsArrayTenantFieldName,
   tenantsCollectionSlug,
@@ -31,7 +31,7 @@ export const TenantSelectionProvider = async ({
   userHasAccessToAllTenants,
 }: Args<any>) => {
   const tenantOptions = await getTenantOptions({
-    payload,
+    cms,
     tenantsArrayFieldName,
     tenantsArrayTenantFieldName,
     tenantsCollectionSlug,
@@ -41,7 +41,7 @@ export const TenantSelectionProvider = async ({
   })
 
   const cookies = await getCookies()
-  const tenantCookie = cookies.get('payload-tenant')?.value
+  const tenantCookie = cookies.get('cms-tenant')?.value
   let initialValue = undefined
 
   /**

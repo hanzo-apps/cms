@@ -1,4 +1,4 @@
-import type { Field, GroupField, PayloadRequest } from '@hanzo/cms'
+import type { Field, GroupField, CMSRequest } from '@hanzo/cms'
 import type { Stripe } from 'stripe'
 
 import type {
@@ -14,7 +14,7 @@ import { initiatePayment } from './initiatePayment.js'
 
 type StripeWebhookHandler = (args: {
   event: Stripe.Event
-  req: PayloadRequest
+  req: CMSRequest
   stripe: Stripe
 }) => Promise<void> | void
 

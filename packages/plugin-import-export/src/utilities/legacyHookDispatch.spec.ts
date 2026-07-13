@@ -1,4 +1,4 @@
-import { FlattenedField, PayloadRequest } from '@hanzo/cms'
+import { FlattenedField, CMSRequest } from '@hanzo/cms'
 
 import type { FromCSVFunction, ToCSVFunction } from '../types.js'
 
@@ -10,12 +10,12 @@ import { unflattenObject } from './unflattenObject.js'
 import { describe, expect, it, vi } from 'vitest'
 
 const mockReq = {
-  payload: {
+  cms: {
     logger: {
       error: vi.fn(),
     },
   },
-} as unknown as PayloadRequest
+} as unknown as CMSRequest
 
 describe('legacy toCSV / fromCSV argument shape', () => {
   describe('toCSV receives { columnName, data, doc, row, siblingDoc, value }', () => {

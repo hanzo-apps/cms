@@ -1,4 +1,4 @@
-import type { Field, FlattenedBlock, PayloadRequest, PopulateType } from '@hanzo/cms'
+import type { Field, FlattenedBlock, CMSRequest, PopulateType } from '@hanzo/cms'
 
 import { fieldAffectsData, fieldHasSubFields, fieldIsArrayType, tabHasName } from '@hanzo/cms/shared'
 
@@ -14,7 +14,7 @@ type NestedRichTextFieldsArgs = {
   overrideAccess: boolean
   populateArg?: PopulateType
   populationPromises: Promise<void>[]
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields: boolean
 }
 
@@ -36,7 +36,7 @@ export const recurseNestedFields = ({
         if (field.hasMany && Array.isArray(data[field.name])) {
           if (Array.isArray(field.relationTo)) {
             data[field.name].forEach(({ relationTo, value }, i) => {
-              const collection = req.payload.collections[relationTo]
+              const collection = req.cms.collections[relationTo]
               if (collection) {
                 populationPromises.push(
                   populate({
@@ -59,7 +59,7 @@ export const recurseNestedFields = ({
             })
           } else {
             data[field.name].forEach((id, i) => {
-              const collection = req.payload.collections[field.relationTo as string]
+              const collection = req.cms.collections[field.relationTo as string]
               if (collection) {
                 populationPromises.push(
                   populate({
@@ -87,7 +87,7 @@ export const recurseNestedFields = ({
           data[field.name]?.relationTo
         ) {
           if (!('hasMany' in field) || !field.hasMany) {
-            const collection = req.payload.collections[data[field.name].relationTo]
+            const collection = req.cms.collections[data[field.name].relationTo]
             populationPromises.push(
               populate({
                 id: data[field.name].value,
@@ -108,7 +108,7 @@ export const recurseNestedFields = ({
         }
       }
       if (typeof data[field.name] !== 'undefined' && typeof field.relationTo === 'string') {
-        const collection = req.payload.collections[field.relationTo]
+        const collection = req.cms.collections[field.relationTo]
         populationPromises.push(
           populate({
             id: data[field.name],
@@ -173,7 +173,7 @@ export const recurseNestedFields = ({
       if (field.type === 'blocks') {
         data[field.name].forEach((row, i) => {
           const block =
-            req.payload.blocks[row?.blockType] ??
+            req.cms.blocks[row?.blockType] ??
             ((field.blockReferences ?? field.blocks).find(
               (block) => typeof block !== 'string' && block.slug === row?.blockType,
             ) as FlattenedBlock | undefined)

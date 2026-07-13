@@ -44,13 +44,13 @@ export const queryDrafts: QueryDrafts = async function queryDrafts(
     hasNearConstraint = constraints.some((prop) => Object.keys(prop).some((key) => key === 'near'))
   }
 
-  const fields = buildVersionCollectionFields(this.payload.config, collectionConfig, true)
+  const fields = buildVersionCollectionFields(this.cms.config, collectionConfig, true)
 
   const sortAggregation: PipelineStage[] = []
   if (!hasNearConstraint) {
     sort = buildSortParam({
       adapter: this,
-      config: this.payload.config,
+      config: this.cms.config,
       fields,
       locale,
       sort: sortArg || collectionConfig.defaultSort,
@@ -95,7 +95,7 @@ export const queryDrafts: QueryDrafts = async function queryDrafts(
   }
 
   if (this.collation) {
-    const localizationConfig = this.payload.config.localization
+    const localizationConfig = this.cms.config.localization
     const defaultLocale =
       (typeof localizationConfig === 'object' && localizationConfig?.defaultLocale) || 'en'
 
@@ -179,7 +179,7 @@ export const queryDrafts: QueryDrafts = async function queryDrafts(
   transform({
     adapter: this,
     data: result.docs,
-    fields: buildVersionCollectionFields(this.payload.config, collectionConfig),
+    fields: buildVersionCollectionFields(this.cms.config, collectionConfig),
     operation: 'read',
   })
 

@@ -1,12 +1,12 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { getRequestCollection } from '../../utilities/getRequestEntity.js'
 import { parseParams } from '../../utilities/parseParams/index.js'
 import { countOperation } from '../operations/count.js'
 
-export const countHandler: PayloadHandler = async (req) => {
+export const countHandler: CMSHandler = async (req) => {
   const collection = getRequestCollection(req)
 
   const { trash, where } = parseParams(req.query)

@@ -4,7 +4,7 @@ import type {
   ClientField,
   ClientFieldSchemaMap,
   FieldSchemaMap,
-  Payload,
+  CMS,
   TextFieldClient,
 } from '@hanzo/cms'
 
@@ -31,11 +31,11 @@ export const buildClientFieldSchemaMap = (args: {
   config: ClientConfig
   globalSlug?: string
   i18n: I18n
-  payload: Payload
+  cms: CMS
   schemaMap: FieldSchemaMap
   widgetSlug?: string
 }): { clientFieldSchemaMap: ClientFieldSchemaMap } => {
-  const { collectionSlug, config, globalSlug, i18n, payload, schemaMap, widgetSlug } = args
+  const { collectionSlug, config, globalSlug, i18n, cms, schemaMap, widgetSlug } = args
 
   const clientSchemaMap: ClientFieldSchemaMap = new Map()
 
@@ -65,7 +65,7 @@ export const buildClientFieldSchemaMap = (args: {
         i18n,
         parentIndexPath: '',
         parentSchemaPath: collectionSlug,
-        payload,
+        cms,
         schemaMap,
       })
     }
@@ -84,7 +84,7 @@ export const buildClientFieldSchemaMap = (args: {
         i18n,
         parentIndexPath: '',
         parentSchemaPath: globalSlug,
-        payload,
+        cms,
         schemaMap,
       })
     }
@@ -105,7 +105,7 @@ export const buildClientFieldSchemaMap = (args: {
         i18n,
         parentIndexPath: '',
         parentSchemaPath: widgetSlug,
-        payload,
+        cms,
         schemaMap,
       })
     }

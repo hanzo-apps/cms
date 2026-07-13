@@ -2,7 +2,7 @@
  * Export-specific batch processor for processing documents in batches during export.
  * Uses the generic batch processing utilities from useBatchProcessor.
  */
-import type { PayloadRequest, SelectType, Sort, TypedUser, Where } from '@hanzo/cms'
+import type { CMSRequest, SelectType, Sort, TypedUser, Where } from '@hanzo/cms'
 
 import type { ExportAfterHook, ExportBeforeHook } from '../types.js'
 
@@ -41,7 +41,7 @@ export interface ExportProcessOptions<TDoc = unknown> {
    */
   collectionSlug: string
   /**
-   * Arguments to pass to payload.find()
+   * Arguments to pass to cms.find()
    */
   findArgs: ExportFindArgs
   /**
@@ -58,9 +58,9 @@ export interface ExportProcessOptions<TDoc = unknown> {
    */
   maxDocs: number
   /**
-   * The Payload request object
+   * The CMS request object
    */
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * Starting page for pagination (default: 1)
    */
@@ -160,14 +160,14 @@ export function createExportBatchProcessor(options: ExportBatchProcessorOptions 
         break
       }
 
-      const result = await req.payload.find({
+      const result = await req.cms.find({
         ...findArgs,
         limit: Math.min(batchSize, remaining),
         page: currentPage,
       })
 
       if (debug) {
-        req.payload.logger.debug(
+        req.cms.logger.debug(
           `Processing export batch ${currentPage} with ${result.docs.length} documents`,
         )
       }
@@ -267,14 +267,14 @@ export function createExportBatchProcessor(options: ExportBatchProcessorOptions 
         break
       }
 
-      const result = await req.payload.find({
+      const result = await req.cms.find({
         ...findArgs,
         limit: Math.min(batchSize, remaining),
         page: currentPage,
       })
 
       if (debug) {
-        req.payload.logger.debug(
+        req.cms.logger.debug(
           `Streaming export batch ${currentPage} with ${result.docs.length} documents`,
         )
       }
@@ -351,14 +351,14 @@ export function createExportBatchProcessor(options: ExportBatchProcessorOptions 
         break
       }
 
-      const result = await req.payload.find({
+      const result = await req.cms.find({
         ...findArgs,
         limit: Math.min(batchSize, remaining),
         page: currentPage,
       })
 
       if (debug) {
-        req.payload.logger.debug(
+        req.cms.logger.debug(
           `Scanning columns from batch ${currentPage} with ${result.docs.length} documents`,
         )
       }
@@ -380,7 +380,7 @@ export function createExportBatchProcessor(options: ExportBatchProcessorOptions 
     }
 
     if (debug) {
-      req.payload.logger.debug(`Discovered ${columns.length} columns`)
+      req.cms.logger.debug(`Discovered ${columns.length} columns`)
     }
 
     return columns

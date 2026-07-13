@@ -94,7 +94,7 @@ export { extendDrizzleTable } from './utilities/extendDrizzleTable.js'
 export { hasLocalesTable } from './utilities/hasLocalesTable.js'
 export { pushDevSchema } from './utilities/pushDevSchema.js'
 export { validateExistingBlockIsIdentical } from './utilities/validateExistingBlockIsIdentical.js'
-import { findMigrationDir as payloadFindMigrationDir } from '@hanzo/cms'
+import { findMigrationDir as cmsFindMigrationDir } from '@hanzo/cms'
 
 /**
  * @deprecated remove in 4.0
@@ -103,4 +103,4 @@ import { findMigrationDir as payloadFindMigrationDir } from '@hanzo/cms'
  * import { findMigrationDir } from '@hanzo/cms'
  * ```
  */
-export const findMigrationDir = payloadFindMigrationDir
+export const findMigrationDir = cmsFindMigrationDir

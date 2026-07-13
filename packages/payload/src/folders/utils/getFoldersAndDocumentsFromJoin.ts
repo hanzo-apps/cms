@@ -1,6 +1,6 @@
 import type { PaginatedDocs } from '../../database/types.js'
 import type { CollectionSlug } from '../../index.js'
-import type { Document, PayloadRequest, Where } from '../../types/index.js'
+import type { Document, CMSRequest, Where } from '../../types/index.js'
 import type { FolderOrDocument } from '../types.js'
 
 import { APIError } from '../../errors/APIError.js'
@@ -23,7 +23,7 @@ type QueryDocumentsAndFoldersArgs = {
    */
   folderWhere?: Where
   parentFolderID: number | string
-  req: PayloadRequest
+  req: CMSRequest
 }
 export async function queryDocumentsAndFoldersFromJoin({
   documentWhere,
@@ -31,14 +31,14 @@ export async function queryDocumentsAndFoldersFromJoin({
   parentFolderID,
   req,
 }: QueryDocumentsAndFoldersArgs): Promise<QueryDocumentsAndFoldersResults> {
-  const { payload, user } = req
+  const { cms, user } = req
 
-  if (payload.config.folders === false) {
+  if (cms.config.folders === false) {
     throw new APIError('Folders are not enabled', 500)
   }
 
-  const subfolderDoc = (await payload.find({
-    collection: payload.config.folders.slug,
+  const subfolderDoc = (await cms.find({
+    collection: cms.config.folders.slug,
     depth: 1,
     joins: {
       documentsAndFolders: {
@@ -66,19 +66,19 @@ export async function queryDocumentsAndFoldersFromJoin({
 
   const results: QueryDocumentsAndFoldersResults = childrenDocs.reduce(
     (acc: QueryDocumentsAndFoldersResults, doc: Document) => {
-      if (!payload.config.folders) {
+      if (!cms.config.folders) {
         return acc
       }
       const { relationTo, value } = doc
       const item = formatFolderOrDocumentItem({
-        folderFieldName: payload.config.folders.fieldName,
-        isUpload: Boolean(payload.collections[relationTo]!.config.upload),
+        folderFieldName: cms.config.folders.fieldName,
+        isUpload: Boolean(cms.collections[relationTo]!.config.upload),
         relationTo,
-        useAsTitle: payload.collections[relationTo]!.config.admin?.useAsTitle,
+        useAsTitle: cms.collections[relationTo]!.config.admin?.useAsTitle,
         value,
       })
 
-      if (relationTo === payload.config.folders.slug) {
+      if (relationTo === cms.config.folders.slug) {
         acc.subfolders.push(item)
       } else {
         acc.documents.push(item)

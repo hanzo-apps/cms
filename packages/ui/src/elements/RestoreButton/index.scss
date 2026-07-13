@@ -1,6 +1,6 @@
 @import '../../scss/styles.scss';
 
-@layer payload-default {
+@layer cms-default {
   .restore-button {
     @include blur-bg;
     display: flex;

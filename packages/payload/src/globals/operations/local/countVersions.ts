@@ -1,5 +1,5 @@
-import type { GlobalSlug, Payload, RequestContext, TypedLocale } from '../../../index.js'
-import type { Document, PayloadRequest, Where } from '../../../types/index.js'
+import type { GlobalSlug, CMS, RequestContext, TypedLocale } from '../../../index.js'
+import type { Document, CMSRequest, Where } from '../../../types/index.js'
 import type { CreateLocalReqOptions } from '../../../utilities/createLocalReq.js'
 
 import { APIError } from '../../../errors/index.js'
@@ -33,10 +33,10 @@ export type CountGlobalVersionsOptions<TSlug extends GlobalSlug> = {
    */
   overrideAccess?: boolean
   /**
-   * The `PayloadRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
+   * The `CMSRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
    * Recommended to pass when using the Local API from hooks, as usually you want to execute the operation within the current transaction.
    */
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   // TODO: Strongly type User as TypedUser (= User in v4.0)
   /**
    * If you set `overrideAccess` to `false`, you can pass a user to use against the access control checks.
@@ -49,12 +49,12 @@ export type CountGlobalVersionsOptions<TSlug extends GlobalSlug> = {
 }
 
 export async function countGlobalVersionsLocal<TSlug extends GlobalSlug>(
-  payload: Payload,
+  cms: CMS,
   options: CountGlobalVersionsOptions<TSlug>,
 ): Promise<{ totalDocs: number }> {
   const { disableErrors, global: globalSlug, overrideAccess = true, where } = options
 
-  const global = payload.globals.config.find(({ slug }) => slug === globalSlug)
+  const global = cms.globals.config.find(({ slug }) => slug === globalSlug)
 
   if (!global) {
     throw new APIError(
@@ -66,7 +66,7 @@ export async function countGlobalVersionsLocal<TSlug extends GlobalSlug>(
     disableErrors,
     global,
     overrideAccess,
-    req: await createLocalReq(options as CreateLocalReqOptions, payload),
+    req: await createLocalReq(options as CreateLocalReqOptions, cms),
     where,
   })
 }

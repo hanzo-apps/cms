@@ -8,7 +8,7 @@ import type {
   StaticLabel,
 } from '../../config/types.js'
 import type { ClientField } from '../../fields/config/client.js'
-import type { Payload } from '../../types/index.js'
+import type { CMS } from '../../types/index.js'
 import type { SanitizedUploadConfig } from '../../uploads/types.js'
 import type { SanitizedCollectionConfig } from './types.js'
 
@@ -110,7 +110,7 @@ export const createClientCollectionConfig = ({
   importMap,
 }: {
   collection: SanitizedCollectionConfig
-  defaultIDType: Payload['config']['db']['defaultIDType']
+  defaultIDType: CMS['config']['db']['defaultIDType']
   i18n: I18nClient
   importMap: ImportMap
 }): ClientCollectionConfig => {
@@ -295,7 +295,7 @@ export const createClientCollectionConfigs = ({
   importMap,
 }: {
   collections: SanitizedCollectionConfig[]
-  defaultIDType: Payload['config']['db']['defaultIDType']
+  defaultIDType: CMS['config']['db']['defaultIDType']
   i18n: I18nClient
   importMap: ImportMap
 }): ClientCollectionConfig[] => {

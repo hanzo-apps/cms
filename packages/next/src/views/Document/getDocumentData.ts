@@ -2,8 +2,8 @@ import { sanitizeID } from '@hanzo/cms-ui/shared'
 import {
   type Locale,
   logError,
-  type Payload,
-  type PayloadRequest,
+  type CMS,
+  type CMSRequest,
   type TypedUser,
   type TypeWithID,
 } from '@hanzo/cms'
@@ -13,8 +13,8 @@ type Args = {
   globalSlug?: string
   id?: number | string
   locale?: Locale
-  payload: Payload
-  req?: PayloadRequest
+  cms: CMS
+  req?: CMSRequest
   segments?: string[]
   user?: TypedUser
 }
@@ -24,7 +24,7 @@ export const getDocumentData = async ({
   collectionSlug,
   globalSlug,
   locale,
-  payload,
+  cms,
   req,
   segments,
   user,
@@ -37,7 +37,7 @@ export const getDocumentData = async ({
 
   try {
     if (collectionSlug && id) {
-      resolvedData = await payload.findByID({
+      resolvedData = await cms.findByID({
         id,
         collection: collectionSlug,
         depth: 0,
@@ -54,7 +54,7 @@ export const getDocumentData = async ({
     }
 
     if (globalSlug) {
-      resolvedData = await payload.findGlobal({
+      resolvedData = await cms.findGlobal({
         slug: globalSlug,
         depth: 0,
         draft: true,
@@ -68,7 +68,7 @@ export const getDocumentData = async ({
       })
     }
   } catch (err) {
-    logError({ err, payload })
+    logError({ err, cms })
   }
 
   return resolvedData

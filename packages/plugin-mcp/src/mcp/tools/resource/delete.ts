@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest, TypedUser } from '@hanzo/cms'
+import type { CMSRequest, TypedUser } from '@hanzo/cms'
 
 import type { MCPPluginConfig } from '../../../types.js'
 
@@ -8,7 +8,7 @@ import { toolSchemas } from '../schemas.js'
 
 export const deleteResourceTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   user: TypedUser,
   verboseLogs: boolean,
   collectionSlug: string,
@@ -26,18 +26,18 @@ export const deleteResourceTool = (
       type: 'text'
     }>
   }> => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Deleting resource from collection: ${collectionSlug}${id ? ` with ID: ${id}` : ' with where clause'}${locale ? `, locale: ${locale}` : ''}`,
+      cms.logger.info(
+        `[cms-mcp] Deleting resource from collection: ${collectionSlug}${id ? ` with ID: ${id}` : ' with where clause'}${locale ? `, locale: ${locale}` : ''}`,
       )
     }
 
     try {
       // Validate that either id or where is provided
       if (!id && !where) {
-        payload.logger.error('[payload-mcp] Either id or where clause must be provided')
+        cms.logger.error('[cms-mcp] Either id or where clause must be provided')
         const response = {
           content: [
             { type: 'text' as const, text: 'Error: Either id or where clause must be provided' },
@@ -58,10 +58,10 @@ export const deleteResourceTool = (
         try {
           whereClause = JSON.parse(where)
           if (verboseLogs) {
-            payload.logger.info(`[payload-mcp] Using where clause: ${where}`)
+            cms.logger.info(`[cms-mcp] Using where clause: ${where}`)
           }
         } catch (_parseError) {
-          payload.logger.warn(`[payload-mcp] Invalid where clause JSON: ${where}`)
+          cms.logger.warn(`[cms-mcp] Invalid where clause JSON: ${where}`)
           const response = {
             content: [{ type: 'text' as const, text: 'Error: Invalid JSON in where clause' }],
           }
@@ -90,22 +90,22 @@ export const deleteResourceTool = (
       if (id) {
         deleteOptions.id = id
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Deleting single document with ID: ${id}`)
+          cms.logger.info(`[cms-mcp] Deleting single document with ID: ${id}`)
         }
       } else {
         deleteOptions.where = whereClause
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Deleting multiple documents with where clause`)
+          cms.logger.info(`[cms-mcp] Deleting multiple documents with where clause`)
         }
       }
 
-      const result = await payload.delete(deleteOptions as Parameters<typeof payload.delete>[0])
+      const result = await cms.delete(deleteOptions as Parameters<typeof cms.delete>[0])
 
       // Handle different result types
       if (id) {
         // Single document deletion
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Successfully deleted document with ID: ${id}`)
+          cms.logger.info(`[cms-mcp] Successfully deleted document with ID: ${id}`)
         }
 
         const response = {
@@ -135,8 +135,8 @@ ${JSON.stringify(result)}
         const errors = bulkResult.errors || []
 
         if (verboseLogs) {
-          payload.logger.info(
-            `[payload-mcp] Successfully deleted ${docs.length} documents, ${errors.length} errors`,
+          cms.logger.info(
+            `[cms-mcp] Successfully deleted ${docs.length} documents, ${errors.length} errors`,
           )
         }
 
@@ -181,8 +181,8 @@ ${JSON.stringify(errors)}
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(
-        `[payload-mcp] Error deleting resource from ${collectionSlug}: ${errorMessage}`,
+      cms.logger.error(
+        `[cms-mcp] Error deleting resource from ${collectionSlug}: ${errorMessage}`,
       )
 
       const response = {

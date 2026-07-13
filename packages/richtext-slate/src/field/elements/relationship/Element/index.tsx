@@ -8,7 +8,7 @@ import {
   useConfig,
   useDocumentDrawer,
   useListDrawer,
-  usePayloadAPI,
+  useCMSAPI,
   useTranslation,
 } from '@hanzo/cms-ui'
 import { formatAdminURL } from '@hanzo/cms/shared'
@@ -59,7 +59,7 @@ const RelationshipElementComponent: React.FC = () => {
   const { i18n, t } = useTranslation()
   const editor = useSlateStatic()
   const [cacheBust, dispatchCacheBust] = useReducer((state) => state + 1, 0)
-  const [{ data }, { setParams }] = usePayloadAPI(
+  const [{ data }, { setParams }] = useCMSAPI(
     formatAdminURL({ apiRoute: api, path: `/${relatedCollection.slug}/${value?.id}`, serverURL }),
     { initialParams },
   )
@@ -97,7 +97,7 @@ const RelationshipElementComponent: React.FC = () => {
 
       setParams({
         ...initialParams,
-        cacheBust, // do this to get the usePayloadAPI to re-fetch the data even though the URL string hasn't changed
+        cacheBust, // do this to get the useCMSAPI to re-fetch the data even though the URL string hasn't changed
       })
 
       closeDrawer()
@@ -125,7 +125,7 @@ const RelationshipElementComponent: React.FC = () => {
 
       setParams({
         ...initialParams,
-        cacheBust, // do this to get the usePayloadAPI to re-fetch the data even though the URL string hasn't changed
+        cacheBust, // do this to get the useCMSAPI to re-fetch the data even though the URL string hasn't changed
       })
 
       closeListDrawer()

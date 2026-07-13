@@ -59,7 +59,7 @@ export const LivePreviewWindow: React.FC<EditViewProps> = (props) => {
       }
 
       const message = {
-        type: 'payload-live-preview',
+        type: 'cms-live-preview',
         collectionSlug,
         data: values,
         externallyUpdatedRelationship: mostRecentUpdate,
@@ -94,7 +94,7 @@ export const LivePreviewWindow: React.FC<EditViewProps> = (props) => {
   ])
 
   /**
-   * To support SSR, we transmit a `window.postMessage` event without a payload
+   * To support SSR, we transmit a `window.postMessage` event without a cms
    * This is because the event will ultimately trigger a server-side roundtrip
    * i.e., save, save draft, autosave, etc. will fire `router.refresh()`
    */
@@ -104,7 +104,7 @@ export const LivePreviewWindow: React.FC<EditViewProps> = (props) => {
     }
 
     const message = {
-      type: 'payload-document-event',
+      type: 'cms-document-event',
     }
 
     // Post message to external popup window

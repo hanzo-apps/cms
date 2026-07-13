@@ -40,11 +40,11 @@ export const RelationshipPlugin: PluginComponent<RelationshipFeatureProps> = ({ 
 
     return editor.registerCommand<RelationshipData>(
       INSERT_RELATIONSHIP_COMMAND,
-      (payload) => {
+      (cms) => {
         const selection = $getSelection() || $getPreviousSelection()
 
         if ($isRangeSelection(selection)) {
-          const relationshipNode = $createRelationshipNode(payload)
+          const relationshipNode = $createRelationshipNode(cms)
           // we need to get the focus node before inserting the block node, as $insertNodeToNearestRoot can change the focus node
           const { focus } = selection
           const focusNode = focus.getNode()

@@ -243,7 +243,7 @@ export const traverseFields = ({
       ;(field.blockReferences ?? field.blocks).forEach((block) => {
         const matchedBlock =
           typeof block === 'string'
-            ? adapter.payload.config.blocks.find((each) => each.slug === block)
+            ? adapter.cms.config.blocks.find((each) => each.slug === block)
             : block
 
         blocksToDelete.add(

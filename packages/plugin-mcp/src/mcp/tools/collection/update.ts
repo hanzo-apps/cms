@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
@@ -13,7 +13,7 @@ import { validateCollectionFile } from '../../helpers/fileValidation.js'
 import { toolSchemas } from '../schemas.js'
 
 export const updateCollection = async (
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   collectionsDirPath: string,
   configFilePath: string,
@@ -25,10 +25,10 @@ export const updateCollection = async (
   configUpdates?: any,
   newContent?: string,
 ) => {
-  const payload = req.payload
+  const cms = req.cms
   if (verboseLogs) {
-    payload.logger.info(
-      `[payload-mcp] Updating collection: ${collectionName}, updateType: ${updateType}`,
+    cms.logger.info(
+      `[cms-mcp] Updating collection: ${collectionName}, updateType: ${updateType}`,
     )
   }
 
@@ -38,7 +38,7 @@ export const updateCollection = async (
 
   // Security check: ensure we're working with the collections directory
   if (!filePath.startsWith(collectionsDirPath)) {
-    payload.logger.error(`[payload-mcp] Invalid collection path attempted: ${filePath}`)
+    cms.logger.error(`[cms-mcp] Invalid collection path attempted: ${filePath}`)
     return {
       content: [
         {
@@ -159,7 +159,7 @@ export const updateCollection = async (
     // Write the updated content back to the file
     writeFileSync(filePath, updatedContent, 'utf8')
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Successfully updated collection file: ${filePath}`)
+      cms.logger.info(`[cms-mcp] Successfully updated collection file: ${filePath}`)
     }
 
     // Validate the updated file
@@ -196,7 +196,7 @@ ${updatedContent}
     }
   } catch (error) {
     const errorMessage = (error as Error).message
-    payload.logger.error(`[payload-mcp] Error updating collection: ${errorMessage}`)
+    cms.logger.error(`[cms-mcp] Error updating collection: ${errorMessage}`)
     return {
       content: [
         {
@@ -210,7 +210,7 @@ ${updatedContent}
 
 export const updateCollectionTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   collectionsDirPath: string,
   configFilePath: string,
@@ -232,11 +232,11 @@ export const updateCollectionTool = (
     newFields?: any[]
     updateType: string
   }) => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Updating collection: ${collectionName}, updateType: ${updateType}`,
+      cms.logger.info(
+        `[cms-mcp] Updating collection: ${collectionName}, updateType: ${updateType}`,
       )
     }
 
@@ -256,14 +256,14 @@ export const updateCollectionTool = (
       )
 
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Collection update completed for: ${collectionName}`)
+        cms.logger.info(`[cms-mcp] Collection update completed for: ${collectionName}`)
       }
 
       return result
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(
-        `[payload-mcp] Error updating collection ${collectionName}: ${errorMessage}`,
+      cms.logger.error(
+        `[cms-mcp] Error updating collection ${collectionName}: ${errorMessage}`,
       )
 
       return {

@@ -1,4 +1,4 @@
-import type { Payload } from '../../../../types/index.js'
+import type { CMS } from '../../../../types/index.js'
 
 import { toSnakeCase } from '../shared.js'
 
@@ -9,21 +9,21 @@ export async function migrateMainGlobalStatus({
   db,
   globalSlug,
   locales,
-  payload,
+  cms,
   sql,
   versionsTable,
 }: {
   db: any
   globalSlug: string
   locales: string[]
-  payload: Payload
+  cms: CMS
   sql: any
   versionsTable: string
 }): Promise<void> {
   const globalTable = toSnakeCase(globalSlug)
   const globalLocalesTable = `${globalTable}_locales`
 
-  payload.logger.info({ msg: `Migrating main global locales for: ${globalLocalesTable}` })
+  cms.logger.info({ msg: `Migrating main global locales for: ${globalLocalesTable}` })
 
   // For each locale, get the latest version status
   for (const locale of locales) {
@@ -50,7 +50,7 @@ export async function migrateMainGlobalStatus({
     })
 
     if (globalDoc.rows.length === 0) {
-      payload.logger.warn({ msg: `No global document found for ${globalSlug}, skipping` })
+      cms.logger.warn({ msg: `No global document found for ${globalSlug}, skipping` })
       continue
     }
 
@@ -68,5 +68,5 @@ export async function migrateMainGlobalStatus({
     })
   }
 
-  payload.logger.info({ msg: 'Migrated global document' })
+  cms.logger.info({ msg: 'Migrated global document' })
 }

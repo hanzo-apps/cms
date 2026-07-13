@@ -33,7 +33,7 @@ export const beforeChangeCart: (args: Props) => CollectionBeforeChangeHook =
         if (item.variant) {
           const id = typeof item.variant === 'object' ? item.variant.id : item.variant
 
-          const variant = await req.payload.findByID({
+          const variant = await req.cms.findByID({
             id,
             collection: variantsSlug,
             depth: 0,
@@ -46,7 +46,7 @@ export const beforeChangeCart: (args: Props) => CollectionBeforeChangeHook =
         } else {
           const id = typeof item.product === 'object' ? item.product.id : item.product
 
-          const product = await req.payload.findByID({
+          const product = await req.cms.findByID({
             id,
             collection: productsSlug,
             depth: 0,

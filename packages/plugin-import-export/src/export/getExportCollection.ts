@@ -93,7 +93,7 @@ export const getExportCollection = ({
     }
 
     const exportData = args.data as Export
-    const targetCollection = req.payload.collections[exportData.collectionSlug]
+    const targetCollection = req.cms.collections[exportData.collectionSlug]
     const targetPluginConfig = targetCollection?.config.custom?.['plugin-import-export']
 
     // Check if this target collection should use sync mode
@@ -136,7 +136,7 @@ export const getExportCollection = ({
       return
     }
 
-    const targetCollection = req.payload.collections[doc.collectionSlug]
+    const targetCollection = req.cms.collections[doc.collectionSlug]
     const targetPluginConfig = targetCollection?.config.custom?.['plugin-import-export']
     const disableJobsQueue =
       targetPluginConfig?.exportDisableJobsQueue ?? exportConfig?.disableJobsQueue ?? false
@@ -180,7 +180,7 @@ export const getExportCollection = ({
       where: doc.where,
     }
 
-    await req.payload.jobs.queue({
+    await req.cms.jobs.queue({
       input,
       task: 'createCollectionExport',
     })

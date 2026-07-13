@@ -26,7 +26,7 @@ export const uploadPopulationPromiseHOC = (
     showHiddenFields,
   }) => {
     if (node?.value) {
-      const collection = req.payload.collections[node?.relationTo]
+      const collection = req.cms.collections[node?.relationTo]
 
       if (collection) {
         // @ts-expect-error

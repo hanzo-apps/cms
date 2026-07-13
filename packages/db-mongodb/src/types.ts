@@ -14,8 +14,8 @@ import type {
   JSONField,
   MigrationData,
   NumberField,
-  Payload,
-  PayloadRequest,
+  CMS,
+  CMSRequest,
   PointField,
   RadioField,
   RelationshipField,
@@ -32,7 +32,7 @@ import type {
 import type { BuildQueryArgs } from './queries/getBuildQueryPlugin.js'
 
 export interface CollectionModel extends Model<any>, PaginateModel<any> {
-  /** buildQuery is used to transform payload's where operator into what can be used by mongoose (e.g. id => _id) */
+  /** buildQuery is used to transform cms's where operator into what can be used by mongoose (e.g. id => _id) */
   buildQuery: (args: BuildQueryArgs) => Promise<Record<string, unknown>> // TODO: Delete this
 }
 
@@ -104,30 +104,30 @@ export type FieldToSchemaMap<TSchema> = {
 
 export type MigrateUpArgs = {
   /**
-   * The Payload instance that you can use to execute Local API methods
+   * The CMS instance that you can use to execute Local API methods
    * To use the current transaction you must pass `req` to arguments
    * @example
    * ```ts
    *  import { type MigrateUpArgs } from '@hanzo/cms-db-mongodb'
    *
-   * export async function up({ session, payload, req }: MigrateUpArgs): Promise<void> {
-   *   const posts = await payload.find({ collection: 'posts', req })
+   * export async function up({ session, cms, req }: MigrateUpArgs): Promise<void> {
+   *   const posts = await cms.find({ collection: 'posts', req })
    * }
    * ```
    */
-  payload: Payload
+  cms: CMS
   /**
-   * The `PayloadRequest` object that contains the current transaction
+   * The `CMSRequest` object that contains the current transaction
    */
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * The MongoDB client session that you can use to execute MongoDB methods directly within the current transaction.
    * @example
    * ```ts
    * import { type MigrateUpArgs } from '@hanzo/cms-db-mongodb'
    *
-   * export async function up({ session, payload, req }: MigrateUpArgs): Promise<void> {
-   *   const { rows: posts } = await payload.db.collections.posts.collection.find({ session }).toArray()
+   * export async function up({ session, cms, req }: MigrateUpArgs): Promise<void> {
+   *   const { rows: posts } = await cms.db.collections.posts.collection.find({ session }).toArray()
    * }
    * ```
    */
@@ -135,30 +135,30 @@ export type MigrateUpArgs = {
 }
 export type MigrateDownArgs = {
   /**
-   * The Payload instance that you can use to execute Local API methods
+   * The CMS instance that you can use to execute Local API methods
    * To use the current transaction you must pass `req` to arguments
    * @example
    * ```ts
    * import { type MigrateDownArgs } from '@hanzo/cms-db-mongodb'
    *
-   * export async function down({ session, payload, req }: MigrateDownArgs): Promise<void> {
-   *   const posts = await payload.find({ collection: 'posts', req })
+   * export async function down({ session, cms, req }: MigrateDownArgs): Promise<void> {
+   *   const posts = await cms.find({ collection: 'posts', req })
    * }
    * ```
    */
-  payload: Payload
+  cms: CMS
   /**
-   * The `PayloadRequest` object that contains the current transaction
+   * The `CMSRequest` object that contains the current transaction
    */
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * The MongoDB client session that you can use to execute MongoDB methods directly within the current transaction.
    * @example
    * ```ts
    * import { type MigrateDownArgs } from '@hanzo/cms-db-mongodb'
    *
-   * export async function down({ session, payload, req }: MigrateDownArgs): Promise<void> {
-   *   const { rows: posts } = await payload.db.collections.posts.collection.find({ session }).toArray()
+   * export async function down({ session, cms, req }: MigrateDownArgs): Promise<void> {
+   *   const { rows: posts } = await cms.db.collections.posts.collection.find({ session }).toArray()
    * }
    * ```
    */

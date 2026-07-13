@@ -19,7 +19,7 @@ export function TextPlugin({ features }: { features: SanitizedClientFeatures }) 
     // would be more performant. If we find a noticeable perf regression we can switch to that option.
     // Overriding the FORMAT_TEXT_COMMAND and PASTE_COMMAND commands is not an option I considered because
     // there might be other forms of mutation that we might not be considering. For example:
-    // browser extensions or Payload/Lexical plugins that have their own commands.
+    // browser extensions or CMS/Lexical plugins that have their own commands.
     return editor.registerNodeTransform(TextNode, (textNode) => {
       disabledFormats.forEach((disabledFormat) => {
         if (textNode.hasFormat(disabledFormat)) {

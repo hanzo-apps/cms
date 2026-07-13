@@ -5,7 +5,7 @@ import { createTagRegexes } from '../../features/blocks/server/markdown/markdown
  * Helpful utility for parsing out all matching top-level JSX tags in a given string.
  * This will collect them in a list, that contains the content of the JSX tag and the props string.
  *
- * While this is not used within payload, this can be used for certain payload blocks that need to
+ * While this is not used within cms, this can be used for certain cms blocks that need to
  * be serializable and deserializable to and from JSX.
  *
  * @example:

@@ -17,12 +17,12 @@ export const uploadValidation = (
         operation,
         preferences,
         req,
-        req: { payload, t },
+        req: { cms, t },
       },
     },
   }) => {
-    const idType = payload.collections[node.relationTo]?.customIDType || payload.db.defaultIDType
-    // @ts-expect-error - Fix in Payload v4
+    const idType = cms.collections[node.relationTo]?.customIDType || cms.db.defaultIDType
+    // @ts-expect-error - Fix in CMS v4
     const nodeID = node?.value?.id || node?.value // for backwards-compatibility
 
     if (!isValidID(nodeID, idType)) {

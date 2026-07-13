@@ -2,7 +2,7 @@ import type {
   Collection,
   CollectionSlug,
   DataFromCollectionSlug,
-  PayloadRequest,
+  CMSRequest,
   RequiredDataFromCollectionSlug,
 } from '@hanzo/cms'
 
@@ -18,7 +18,7 @@ export type Resolver<TSlug extends CollectionSlug> = (
     locale?: string
   },
   context: {
-    req: PayloadRequest
+    req: CMSRequest
   },
 ) => Promise<DataFromCollectionSlug<TSlug>>
 

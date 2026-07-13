@@ -28,7 +28,7 @@ const addFieldToProjection = ({
   parentIsLocalized: boolean
   projection: Record<string, true>
 }) => {
-  const { config } = adapter.payload
+  const { config } = adapter.cms
 
   if (parentIsLocalized && config.localization) {
     for (const locale of config.localization.localeCodes) {
@@ -132,7 +132,7 @@ const traverseFields = ({
         const blocksSelect = select[field.name] as SelectType
 
         for (const _block of field.blockReferences ?? field.blocks) {
-          const block = typeof _block === 'string' ? adapter.payload.blocks[_block] : _block
+          const block = typeof _block === 'string' ? adapter.cms.blocks[_block] : _block
 
           if (!block) {
             continue

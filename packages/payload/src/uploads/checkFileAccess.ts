@@ -1,5 +1,5 @@
 import type { Collection, TypeWithID } from '../collections/config/types.js'
-import type { PayloadRequest, Where } from '../types/index.js'
+import type { CMSRequest, Where } from '../types/index.js'
 
 import { executeAccess } from '../auth/executeAccess.js'
 import { Forbidden } from '../errors/Forbidden.js'
@@ -13,7 +13,7 @@ export const checkFileAccess = async ({
   collection: Collection
   filename: string
   prefix?: string
-  req: PayloadRequest
+  req: CMSRequest
 }): Promise<TypeWithID | undefined> => {
   if (filename.includes('../') || filename.includes('..\\')) {
     throw new Forbidden(req.t)
@@ -48,7 +48,7 @@ export const checkFileAccess = async ({
       })
     }
 
-    const doc = await req.payload.db.findOne({
+    const doc = await req.cms.db.findOne({
       collection: config.slug,
       req,
       where: { and: [filenameCondition, ...constraints] },

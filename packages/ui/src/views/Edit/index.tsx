@@ -44,7 +44,7 @@ import { SetDocumentTitle } from './SetDocumentTitle/index.js'
 import './index.scss'
 
 const baseClass = 'collection-edit'
-const PENDING_SUCCESS_TOAST_KEY = 'payload-pending-success-toast'
+const PENDING_SUCCESS_TOAST_KEY = 'cms-pending-success-toast'
 
 export type OnSaveContext = {
   getDocPermissions?: boolean

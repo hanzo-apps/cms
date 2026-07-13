@@ -1,7 +1,7 @@
 import type { SanitizedCollectionConfig } from '../../collections/config/types.js'
 import type { FlattenedField } from '../../fields/config/types.js'
 import type { SanitizedGlobalConfig } from '../../globals/config/types.js'
-import type { Operator, PayloadRequest, Where, WhereField } from '../../types/index.js'
+import type { Operator, CMSRequest, Where, WhereField } from '../../types/index.js'
 import type { EntityPolicies } from './types.js'
 
 import { QueryError } from '../../errors/QueryError.js'
@@ -14,7 +14,7 @@ type Args = {
   // TODO: Rename to permissions or entityPermissions in 4.0
   policies?: EntityPolicies
   polymorphicJoin?: boolean
-  req: PayloadRequest
+  req: CMSRequest
   versionFields?: FlattenedField[]
   where: Where
 } & (

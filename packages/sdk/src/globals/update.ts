@@ -1,7 +1,7 @@
-import type { GlobalSlug, PayloadTypesShape, TypedLocale } from '@hanzo/cms'
+import type { GlobalSlug, CMSTypesShape, TypedLocale } from '@hanzo/cms'
 import type { DeepPartial } from 'ts-essentials'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type {
   DataFromGlobalSlug,
   PopulateType,
@@ -10,7 +10,7 @@ import type {
 } from '../types.js'
 
 export type UpdateGlobalOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends GlobalSlug<T>,
   TSelect extends SelectFromGlobalSlug<T, TSlug>,
 > = {
@@ -53,11 +53,11 @@ export type UpdateGlobalOptions<
 }
 
 export async function updateGlobal<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends GlobalSlug<T>,
   TSelect extends SelectFromGlobalSlug<T, TSlug>,
 >(
-  sdk: PayloadSDK<T>,
+  sdk: CMSSDK<T>,
   options: UpdateGlobalOptions<T, TSlug, TSelect>,
   init?: RequestInit,
 ): Promise<TransformGlobalWithSelect<T, TSlug, TSelect>> {

@@ -17,18 +17,18 @@ export const localizeStatusTemplate = (options: {
     return `import { MigrateUpArgs, MigrateDownArgs } from '@hanzo/cms-db-mongodb'
 import { localizeStatus } from '@hanzo/cms'
 
-export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
+export async function up({ cms, req }: MigrateUpArgs): Promise<void> {
   await localizeStatus.up({
     ${entity},
-    payload,
+    cms,
     req,
   })
 }
 
-export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
+export async function down({ cms, req }: MigrateDownArgs): Promise<void> {
   await localizeStatus.down({
     ${entity},
-    payload,
+    cms,
     req,
   })
 }
@@ -39,21 +39,21 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   return `import { MigrateUpArgs, MigrateDownArgs, sql } from '@hanzo/cms-db-${dbType}'
 import { localizeStatus } from '@hanzo/cms'
 
-export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
+export async function up({ db, cms, req }: MigrateUpArgs): Promise<void> {
   await localizeStatus.up({
     ${entity},
     db,
-    payload,
+    cms,
     req,
     sql,
   })
 }
 
-export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
+export async function down({ db, cms, req }: MigrateDownArgs): Promise<void> {
   await localizeStatus.down({
     ${entity},
     db,
-    payload,
+    cms,
     req,
     sql,
   })

@@ -1,8 +1,8 @@
-import type { CollectionSlug, PayloadTypesShape, TypedLocale, Where } from '@hanzo/cms'
+import type { CollectionSlug, CMSTypesShape, TypedLocale, Where } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 
-export type CountOptions<T extends PayloadTypesShape, TSlug extends CollectionSlug<T>> = {
+export type CountOptions<T extends CMSTypesShape, TSlug extends CollectionSlug<T>> = {
   /**
    * the Collection slug to operate against.
    */
@@ -22,8 +22,8 @@ export type CountOptions<T extends PayloadTypesShape, TSlug extends CollectionSl
   where?: Where
 }
 
-export async function count<T extends PayloadTypesShape, TSlug extends CollectionSlug<T>>(
-  sdk: PayloadSDK<T>,
+export async function count<T extends CMSTypesShape, TSlug extends CollectionSlug<T>>(
+  sdk: CMSSDK<T>,
   options: CountOptions<T, TSlug>,
   init?: RequestInit,
 ): Promise<{ totalDocs: number }> {

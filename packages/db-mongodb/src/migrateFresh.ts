@@ -10,7 +10,7 @@ export async function migrateFresh(
   this: MongooseAdapter,
   { forceAcceptWarning = false }: { forceAcceptWarning?: boolean },
 ): Promise<void> {
-  const { payload } = this
+  const { cms } = this
 
   if (!forceAcceptWarning) {
     const { confirm: acceptWarning } = await prompts(
@@ -32,28 +32,28 @@ export async function migrateFresh(
     }
   }
 
-  payload.logger.info({
+  cms.logger.info({
     msg: `Dropping database.`,
   })
 
   await this.connection.dropDatabase()
 
-  const migrationFiles = await readMigrationFiles({ payload })
-  payload.logger.debug({
+  const migrationFiles = await readMigrationFiles({ cms })
+  cms.logger.debug({
     msg: `Found ${migrationFiles.length} migration files.`,
   })
 
-  const req = { payload }
+  const req = { cms }
 
   // Run all migrate up
   for (const migration of migrationFiles) {
-    payload.logger.info({ msg: `Migrating: ${migration.name}` })
+    cms.logger.info({ msg: `Migrating: ${migration.name}` })
     try {
       const start = Date.now()
       await initTransaction(req)
-      await migration.up({ payload, req })
-      await payload.create({
-        collection: 'payload-migrations',
+      await migration.up({ cms, req })
+      await cms.create({
+        collection: 'cms-migrations',
         data: {
           name: migration.name,
           batch: 1,
@@ -63,10 +63,10 @@ export async function migrateFresh(
 
       await commitTransaction(req)
 
-      payload.logger.info({ msg: `Migrated:  ${migration.name} (${Date.now() - start}ms)` })
+      cms.logger.info({ msg: `Migrated:  ${migration.name} (${Date.now() - start}ms)` })
     } catch (err: unknown) {
       await killTransaction(req)
-      payload.logger.error({
+      cms.logger.error({
         err,
         msg: `Error running migration ${migration.name}. Rolling back.`,
       })

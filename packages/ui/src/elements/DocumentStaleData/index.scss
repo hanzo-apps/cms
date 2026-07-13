@@ -1,6 +1,6 @@
 @import '../../scss/styles.scss';
 
-@layer payload-default {
+@layer cms-default {
   .document-stale-data {
     @include blur-bg;
     display: flex;

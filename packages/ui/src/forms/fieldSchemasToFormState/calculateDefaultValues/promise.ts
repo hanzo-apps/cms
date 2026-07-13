@@ -2,7 +2,7 @@ import type {
   Data,
   Field,
   FlattenedBlock,
-  PayloadRequest,
+  CMSRequest,
   SelectMode,
   SelectType,
   TabAsField,
@@ -19,7 +19,7 @@ type Args<T> = {
   field: Field | TabAsField
   id?: number | string
   locale: string | undefined
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   selectMode?: SelectMode
   siblingData: Data
@@ -63,7 +63,7 @@ export const defaultValuePromise = async <T>({
           value: siblingData[field.name],
         })
       } catch (err) {
-        req.payload.logger.error({
+        req.cms.logger.error({
           err,
           msg: `Error calculating default value for field: ${field.name}`,
         })
@@ -111,7 +111,7 @@ export const defaultValuePromise = async <T>({
           const blockTypeToMatch: string = row.blockType
 
           const block =
-            req.payload.blocks[blockTypeToMatch] ??
+            req.cms.blocks[blockTypeToMatch] ??
             ((field.blockReferences ?? field.blocks).find(
               (blockType) => typeof blockType !== 'string' && blockType.slug === blockTypeToMatch,
             ) as FlattenedBlock | undefined)

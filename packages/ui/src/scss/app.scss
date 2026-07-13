@@ -1,10 +1,10 @@
-@layer payload-default, payload;
+@layer cms-default, cms;
 
 @import './styles';
 @import './toasts.scss';
 @import './colors.scss';
 
-@layer payload-default {
+@layer cms-default {
   :root {
     --base-px: 20;
     --base-body-size: 13;
@@ -202,17 +202,17 @@
     border-width: 0;
   }
 
-  .payload__modal-item {
+  .cms__modal-item {
     min-height: 100%;
     background: transparent;
   }
 
-  .payload__modal-container--enterDone {
+  .cms__modal-container--enterDone {
     overflow: auto;
   }
 
-  .payload__modal-item--enter,
-  .payload__modal-item--enterDone {
+  .cms__modal-item--enter,
+  .cms__modal-item--enterDone {
     z-index: var(--z-modal);
   }
 

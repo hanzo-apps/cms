@@ -3,7 +3,7 @@ import type { Config } from '../config/types.js'
 
 import { defaultAccess } from '../auth/defaultAccess.js'
 
-export const lockedDocumentsCollectionSlug = 'payload-locked-documents'
+export const lockedDocumentsCollectionSlug = 'cms-locked-documents'
 
 export const getLockedDocumentsCollection = (config: Config): CollectionConfig | null => {
   const lockableCollections = config

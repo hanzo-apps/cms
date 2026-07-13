@@ -2,13 +2,13 @@ import { fileTypeFromFile } from 'file-type'
 import fs from 'fs/promises'
 import path from 'path'
 
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 const mimeTypeEstimate: Record<string, string> = {
   svg: 'image/svg+xml',
 }
 
-export const getFileByPath = async (filePath: string): Promise<PayloadRequest['file']> => {
+export const getFileByPath = async (filePath: string): Promise<CMSRequest['file']> => {
   if (typeof filePath !== 'string') {
     return undefined
   }

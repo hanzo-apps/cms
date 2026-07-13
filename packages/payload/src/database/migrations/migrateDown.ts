@@ -8,19 +8,19 @@ import { getMigrations } from './getMigrations.js'
 import { readMigrationFiles } from './readMigrationFiles.js'
 
 export async function migrateDown(this: BaseDatabaseAdapter): Promise<void> {
-  const { payload } = this
-  const migrationFiles = await readMigrationFiles({ payload })
+  const { cms } = this
+  const migrationFiles = await readMigrationFiles({ cms })
 
   const { existingMigrations, latestBatch } = await getMigrations({
-    payload,
+    cms,
   })
 
   if (!existingMigrations?.length) {
-    payload.logger.info({ msg: 'No migrations to rollback.' })
+    cms.logger.info({ msg: 'No migrations to rollback.' })
     return
   }
 
-  payload.logger.info({
+  cms.logger.info({
     msg: `Rolling back batch ${latestBatch} consisting of ${existingMigrations.length} migration(s).`,
   })
 
@@ -33,27 +33,27 @@ export async function migrateDown(this: BaseDatabaseAdapter): Promise<void> {
     }
 
     const start = Date.now()
-    const req = await createLocalReq({}, payload)
+    const req = await createLocalReq({}, cms)
 
     try {
-      payload.logger.info({ msg: `Migrating down: ${migrationFile.name}` })
+      cms.logger.info({ msg: `Migrating down: ${migrationFile.name}` })
       await initTransaction(req)
-      const session = payload.db.sessions?.[await req.transactionID!]
-      await migrationFile.down({ payload, req, session })
-      payload.logger.info({
+      const session = cms.db.sessions?.[await req.transactionID!]
+      await migrationFile.down({ cms, req, session })
+      cms.logger.info({
         msg: `Migrated down:  ${migrationFile.name} (${Date.now() - start}ms)`,
       })
       // Waiting for implementation here
-      await payload.delete({
+      await cms.delete({
         id: migration.id!,
-        collection: 'payload-migrations',
+        collection: 'cms-migrations',
         req,
       })
 
       await commitTransaction(req)
     } catch (err: unknown) {
       await killTransaction(req)
-      payload.logger.error({
+      cms.logger.error({
         err,
         msg: `Error running migration ${migrationFile.name}`,
       })

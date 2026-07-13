@@ -28,7 +28,7 @@ export const GlobalViewRedirect = async (args: Args) => {
       slug: collectionSlug,
       docID: args.docID,
       headers,
-      payload: args.payload,
+      cms: args.cms,
       tenantFieldName: args.tenantFieldName,
       tenantsArrayFieldName: args.tenantArrayFieldName,
       tenantsArrayTenantFieldName: args.tenantArrayTenantFieldName,

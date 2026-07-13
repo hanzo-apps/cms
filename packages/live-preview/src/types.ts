@@ -22,5 +22,5 @@ export type LivePreviewMessageEvent<T> = MessageEvent<{
   externallyUpdatedRelationship?: DocumentEvent
   globalSlug?: string
   locale?: string
-  type: 'payload-live-preview'
+  type: 'cms-live-preview'
 }>

@@ -5,5 +5,5 @@ export const emailDefaults: Pick<
   'defaultFromAddress' | 'defaultFromName'
 > = {
   defaultFromAddress: 'info@payloadcms.com',
-  defaultFromName: 'Payload',
+  defaultFromName: 'CMS',
 }

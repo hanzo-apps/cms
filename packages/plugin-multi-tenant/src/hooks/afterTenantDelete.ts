@@ -65,13 +65,13 @@ export const afterTenantDelete =
   async ({ id, req }) => {
     const idType = getCollectionIDType({
       collectionSlug: tenantsCollectionSlug,
-      payload: req.payload,
+      cms: req.cms,
     })
     const currentTenantCookieID = getTenantFromCookie(req.headers, idType)
     if (currentTenantCookieID === id) {
       const newHeaders = new Headers({
         'Set-Cookie': generateCookie<string>({
-          name: 'payload-tenant',
+          name: 'cms-tenant',
           expires: new Date(Date.now() - 1000),
           path: '/',
           returnCookieAsObject: false,
@@ -86,7 +86,7 @@ export const afterTenantDelete =
     const cleanupPromises: Promise<JsonObject>[] = []
     enabledSlugs.forEach((slug) => {
       cleanupPromises.push(
-        req.payload.delete({
+        req.cms.delete({
           collection: slug,
           where: {
             [tenantFieldName]: {
@@ -98,7 +98,7 @@ export const afterTenantDelete =
     })
 
     try {
-      const usersWithTenant = (await req.payload.find({
+      const usersWithTenant = (await req.cms.find({
         collection: usersSlug,
         depth: 0,
         limit: 0,
@@ -111,7 +111,7 @@ export const afterTenantDelete =
 
       usersWithTenant?.docs?.forEach((user) => {
         cleanupPromises.push(
-          req.payload.update({
+          req.cms.update({
             id: user.id,
             collection: usersSlug,
             data: {

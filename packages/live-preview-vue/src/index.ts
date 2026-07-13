@@ -5,7 +5,7 @@ import { ready, subscribe, unsubscribe } from '@hanzo/cms-live-preview'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 /**
- * This is a Vue composable to implement {@link https://payloadcms.com/docs/live-preview/overview Payload Live Preview}.
+ * This is a Vue composable to implement {@link https://payloadcms.com/docs/live-preview/overview CMS Live Preview}.
  *
  * @example
  * ```ts

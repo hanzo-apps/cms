@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest'
 
 import { authenticateLocalStrategy } from './authenticate.js'
 
-// Helper to generate hash/salt like Payload does
+// Helper to generate hash/salt like CMS does
 const generateHashAndSalt = (password: string): { hash: string; salt: string } => {
   const salt = crypto.randomBytes(32).toString('hex')
   const hash = crypto.pbkdf2Sync(password, salt, 25000, 512, 'sha256').toString('hex')

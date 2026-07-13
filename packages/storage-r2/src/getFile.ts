@@ -1,4 +1,4 @@
-import type { CollectionConfig, PayloadRequest } from '@hanzo/cms'
+import type { CollectionConfig, CMSRequest } from '@hanzo/cms'
 
 import {
   getFilePrefix as getDocPrefix,
@@ -16,7 +16,7 @@ interface GetFileArgs {
   incomingHeaders?: Headers
   prefix: string
   prefixQueryParam?: string
-  req: PayloadRequest
+  req: CMSRequest
   useCompositePrefixes?: boolean
 }
 

@@ -401,7 +401,7 @@ export const nbTranslations: DefaultTranslationsObject = {
     password: 'Passord',
     pasteField: 'Lim inn felt',
     pasteRow: 'Lim inn rad',
-    payloadSettings: 'Payload-innstillinger',
+    cmsSettings: 'CMS-innstillinger',
     permanentlyDelete: 'Permanent slett',
     permanentlyDeletedCountSuccessfully: 'Permanent slettet {{count}} {{label}} med suksess.',
     perPage: 'Per side: {{limit}}',
@@ -420,7 +420,7 @@ export const nbTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'Gjenopprett som publisert versjon',
     restoredCountSuccessfully: 'Gjenopprettet {{count}} {{label}} vellykket.',
     restoring:
-      'Respekter betydningen av den opprinnelige teksten innenfor konteksten av Payload. Her er en liste over vanlige Payload-uttrykk som har veldig spesifikke betydninger:\n    - Samling: En samling er en gruppe dokumenter som deler en felles struktur og formål. Samlinger brukes til å organisere og håndtere innhold i Payload.\n    - Felt: Et felt er et bestemt stykke data innenfor et dokument i en samling. Felt definerer strukturen og typen data som kan lagres i et dokument.\n    - Dokument: Et dokument er en individuell post innen',
+      'Respekter betydningen av den opprinnelige teksten innenfor konteksten av CMS. Her er en liste over vanlige CMS-uttrykk som har veldig spesifikke betydninger:\n    - Samling: En samling er en gruppe dokumenter som deler en felles struktur og formål. Samlinger brukes til å organisere og håndtere innhold i CMS.\n    - Felt: Et felt er et bestemt stykke data innenfor et dokument i en samling. Felt definerer strukturen og typen data som kan lagres i et dokument.\n    - Dokument: Et dokument er en individuell post innen',
     row: 'Rad',
     rows: 'Rader',
     save: 'Lagre',

@@ -1,6 +1,6 @@
 @import '~@hanzo/cms-ui/scss';
 
-@layer payload-default {
+@layer cms-default {
   .rich-text-blockquote {
     &[data-slate-node='element'] {
       margin: base(0.625) 0;

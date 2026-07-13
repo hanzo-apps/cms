@@ -19,10 +19,10 @@ export const init: Init = async function init(this: BasePostgresAdapter) {
 
   await executeSchemaHooks({ type: 'beforeSchemaInit', adapter: this })
 
-  if (this.payload.config.localization) {
+  if (this.cms.config.localization) {
     this.enums.enum__locales = this.pgSchema.enum(
       '_locales',
-      this.payload.config.localization.locales.map(({ code }) => code) as [string, ...string[]],
+      this.cms.config.localization.locales.map(({ code }) => code) as [string, ...string[]],
     )
   }
 

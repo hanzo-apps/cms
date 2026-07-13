@@ -1,10 +1,10 @@
-import { createLocalReq, type Payload, type PayloadRequest, type TypedLocale } from '@hanzo/cms'
+import { createLocalReq, type CMS, type CMSRequest, type TypedLocale } from '@hanzo/cms'
 
 import type { HTMLPopulateFn } from '../lexicalToHtml/async/types.js'
 
 import { populate } from '../../../populateGraphQL/populate.js'
 
-export const getPayloadPopulateFn: (
+export const getCMSPopulateFn: (
   args: {
     currentDepth: number
     depth: number
@@ -16,9 +16,9 @@ export const getPayloadPopulateFn: (
   } & (
     | {
         /**
-         * This payload property will only be used if req is undefined. If localization is enabled, you must pass `req` instead.
+         * This cms property will only be used if req is undefined. If localization is enabled, you must pass `req` instead.
          */
-        payload: Payload
+        cms: CMS
         /**
          * When the converter is called, req CAN be passed in depending on where it's run.
          * If this is undefined and config is passed through, lexical will create a new req object for you.
@@ -27,14 +27,14 @@ export const getPayloadPopulateFn: (
       }
     | {
         /**
-         * This payload property will only be used if req is undefined. If localization is enabled, you must pass `req` instead.
+         * This cms property will only be used if req is undefined. If localization is enabled, you must pass `req` instead.
          */
-        payload?: never
+        cms?: never
         /**
          * When the converter is called, req CAN be passed in depending on where it's run.
          * If this is undefined and config is passed through, lexical will create a new req object for you.
          */
-        req: PayloadRequest
+        req: CMSRequest
       }
   ),
 ) => Promise<HTMLPopulateFn> = async ({
@@ -42,17 +42,17 @@ export const getPayloadPopulateFn: (
   depth,
   draft,
   overrideAccess,
-  payload,
+  cms,
   req,
   showHiddenFields,
 }) => {
-  let reqToUse: PayloadRequest | undefined = req
-  if (req === undefined && payload) {
-    reqToUse = await createLocalReq({}, payload)
+  let reqToUse: CMSRequest | undefined = req
+  if (req === undefined && cms) {
+    reqToUse = await createLocalReq({}, cms)
   }
 
   if (!reqToUse) {
-    throw new Error('No req or payload provided')
+    throw new Error('No req or cms provided')
   }
 
   const populateFn: HTMLPopulateFn = async ({ id, collectionSlug, select }) => {

@@ -1,12 +1,12 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { getRequestCollection } from '../../utilities/getRequestEntity.js'
 import { headersWithCors } from '../../utilities/headersWithCors.js'
 import { unlockOperation } from '../operations/unlock.js'
 
-export const unlockHandler: PayloadHandler = async (req) => {
+export const unlockHandler: CMSHandler = async (req) => {
   const collection = getRequestCollection(req)
   const { t } = req
 

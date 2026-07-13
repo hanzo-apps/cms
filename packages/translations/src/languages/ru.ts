@@ -403,7 +403,7 @@ export const ruTranslations: DefaultTranslationsObject = {
     password: 'Пароль',
     pasteField: 'Вставить поле',
     pasteRow: 'Вставить строку',
-    payloadSettings: 'Настройки Payload',
+    cmsSettings: 'Настройки CMS',
     permanentlyDelete: 'Удалить Навсегда',
     permanentlyDeletedCountSuccessfully: 'Успешно удалено {{count}} {{label}} навсегда.',
     perPage: 'На странице: {{limit}}',

@@ -1,6 +1,6 @@
 import type { FindOptions } from '../../collections/operations/local/find.js'
 import type { PaginatedDocs } from '../../database/types.js'
-import type { PayloadRequest, PopulateType, SelectType, Sort, Where } from '../../types/index.js'
+import type { CMSRequest, PopulateType, SelectType, Sort, Where } from '../../types/index.js'
 import type { TypeWithVersion } from '../../versions/types.js'
 import type { SanitizedGlobalConfig } from '../config/types.js'
 
@@ -22,7 +22,7 @@ export type Arguments = {
   page?: number
   pagination?: boolean
   populate?: PopulateType
-  req?: PayloadRequest
+  req?: CMSRequest
   showHiddenFields?: boolean
   sort?: Sort
   where?: Where
@@ -45,9 +45,9 @@ export const findVersionsOperation = async <T extends TypeWithVersion<T>>(
     where,
   } = args
   const req = args.req!
-  const { fallbackLocale, locale, payload } = req
+  const { fallbackLocale, locale, cms } = req
 
-  const versionFields = buildVersionGlobalFields(payload.config, globalConfig, true)
+  const versionFields = buildVersionGlobalFields(cms.config, globalConfig, true)
 
   try {
     // /////////////////////////////////////
@@ -69,7 +69,7 @@ export const findVersionsOperation = async <T extends TypeWithVersion<T>>(
     const fullWhere = combineQueries(where!, accessResults)
 
     const select = sanitizeSelect({
-      fields: buildVersionGlobalFields(payload.config, globalConfig, true),
+      fields: buildVersionGlobalFields(cms.config, globalConfig, true),
       forceSelect: getQueryDraftsSelect({ select: globalConfig.forceSelect }),
       select: incomingSelect,
       versions: true,
@@ -83,7 +83,7 @@ export const findVersionsOperation = async <T extends TypeWithVersion<T>>(
     const sanitizedLimit = limit ?? (usePagination ? 10 : 0)
     const sanitizedPage = page || 1
 
-    const paginatedDocs = await payload.db.findGlobalVersions<T>({
+    const paginatedDocs = await cms.db.findGlobalVersions<T>({
       global: globalConfig.slug,
       limit: sanitizedLimit,
       locale: locale!,

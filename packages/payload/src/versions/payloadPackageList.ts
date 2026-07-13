@@ -1,4 +1,4 @@
-export const PAYLOAD_PACKAGE_LIST = [
+export const CMS_PACKAGE_LIST = [
   'payload',
   '@hanzo/cms-bundler-vite',
   '@hanzo/cms-bundler-webpack',

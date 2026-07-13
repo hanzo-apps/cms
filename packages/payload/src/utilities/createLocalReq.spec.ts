@@ -1,11 +1,11 @@
 import { describe, expect, it, vi } from 'vitest'
 
-import type { Payload } from '../index.js'
+import type { CMS } from '../index.js'
 
 import { createLocalReq } from './createLocalReq.js'
 
 describe('createLocalReq - URL construction', () => {
-  const mockPayload = {
+  const mockCMS = {
     config: {
       serverURL: undefined,
       i18n: {
@@ -18,21 +18,21 @@ describe('createLocalReq - URL construction', () => {
     logger: {
       error: vi.fn(),
     },
-  } as unknown as Payload
+  } as unknown as CMS
 
   it('should use req.url when provided and serverURL is undefined', async () => {
     const req = {
       url: 'http://example.com/api/test',
     }
 
-    const result = await createLocalReq({ req }, mockPayload)
+    const result = await createLocalReq({ req }, mockCMS)
 
     expect(result.url).toBe('http://example.com/api/test')
-    expect(mockPayload.logger.error).not.toHaveBeenCalled()
+    expect(mockCMS.logger.error).not.toHaveBeenCalled()
   })
 
   it('should use serverURL when req.url is not provided', async () => {
-    const payloadWithServerURL = {
+    const cmsWithServerURL = {
       config: {
         serverURL: 'http://configured-server.com',
         i18n: {
@@ -45,18 +45,18 @@ describe('createLocalReq - URL construction', () => {
       logger: {
         error: vi.fn(),
       },
-    } as unknown as Payload
+    } as unknown as CMS
 
     const req = {}
 
-    const result = await createLocalReq({ req, urlSuffix: '/api' }, payloadWithServerURL)
+    const result = await createLocalReq({ req, urlSuffix: '/api' }, cmsWithServerURL)
 
     expect(result.url).toContain('http://configured-server.com/api')
-    expect(payloadWithServerURL.logger.error).not.toHaveBeenCalled()
+    expect(cmsWithServerURL.logger.error).not.toHaveBeenCalled()
   })
 
   it('should prioritize req.url over serverURL', async () => {
-    const payloadWithServerURL = {
+    const cmsWithServerURL = {
       config: {
         serverURL: 'http://configured-server.com',
         i18n: {
@@ -69,29 +69,29 @@ describe('createLocalReq - URL construction', () => {
       logger: {
         error: vi.fn(),
       },
-    } as unknown as Payload
+    } as unknown as CMS
 
     const req = {
       url: 'http://actual-request.com/api/test',
     }
 
-    const result = await createLocalReq({ req }, payloadWithServerURL)
+    const result = await createLocalReq({ req }, cmsWithServerURL)
 
     expect(result.url).toBe('http://actual-request.com/api/test')
-    expect(payloadWithServerURL.logger.error).not.toHaveBeenCalled()
+    expect(cmsWithServerURL.logger.error).not.toHaveBeenCalled()
   })
 
   it('should fall back to localhost when neither req.url nor serverURL provided', async () => {
     const req = {}
 
-    const result = await createLocalReq({ req }, mockPayload)
+    const result = await createLocalReq({ req }, mockCMS)
 
     expect(result.url).toBe('http://localhost/')
-    expect(mockPayload.logger.error).not.toHaveBeenCalled()
+    expect(mockCMS.logger.error).not.toHaveBeenCalled()
   })
 
   it('should append urlSuffix to serverURL when used', async () => {
-    const payloadWithServerURL = {
+    const cmsWithServerURL = {
       config: {
         serverURL: 'http://configured-server.com',
         i18n: {
@@ -104,22 +104,22 @@ describe('createLocalReq - URL construction', () => {
       logger: {
         error: vi.fn(),
       },
-    } as unknown as Payload
+    } as unknown as CMS
 
     const req = {}
 
-    const result = await createLocalReq({ req, urlSuffix: '/api/preview' }, payloadWithServerURL)
+    const result = await createLocalReq({ req, urlSuffix: '/api/preview' }, cmsWithServerURL)
 
     expect(result.url).toContain('/api/preview')
-    expect(payloadWithServerURL.logger.error).not.toHaveBeenCalled()
+    expect(cmsWithServerURL.logger.error).not.toHaveBeenCalled()
   })
 
   it('should append urlSuffix to fallback URL when neither req.url nor serverURL provided', async () => {
     const req = {}
 
-    const result = await createLocalReq({ req, urlSuffix: '/api/test' }, mockPayload)
+    const result = await createLocalReq({ req, urlSuffix: '/api/test' }, mockCMS)
 
     expect(result.url).toBe('http://localhost/api/test')
-    expect(mockPayload.logger.error).not.toHaveBeenCalled()
+    expect(mockCMS.logger.error).not.toHaveBeenCalled()
   })
 })

@@ -20,7 +20,7 @@ import type {
   LexicalRichTextFieldProps,
 } from '../types.js'
 
-// eslint-disable-next-line payload/no-imports-from-exports-dir
+// eslint-disable-next-line cms/no-imports-from-exports-dir
 import { RichTextField } from '../exports/client/index.js'
 import { buildInitialState } from '../utilities/buildInitialState.js'
 import { initLexicalFeatures } from '../utilities/initLexicalFeatures.js'
@@ -48,7 +48,7 @@ export const RscEntryLexicalField: React.FC<
     fieldSchemaMap: args.fieldSchemaMap,
     i18n: args.i18n,
     path,
-    payload: args.payload,
+    cms: args.cms,
     sanitizedEditorConfig: args.sanitizedEditorConfig,
     schemaPath,
   })
@@ -112,8 +112,8 @@ export const RscEntryLexicalField: React.FC<
   }
   if (args?.views) {
     const viewMap = getFromImportMap<LexicalEditorViewMap>({
-      importMap: args.payload.importMap,
-      PayloadComponent: args.views,
+      importMap: args.cms.importMap,
+      CMSComponent: args.views,
       schemaPath: 'lexical-viewMap',
       silent: true,
     })

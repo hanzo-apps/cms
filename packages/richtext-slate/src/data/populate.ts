@@ -1,4 +1,4 @@
-import type { Collection, Field, PayloadRequest, RichTextField, SelectType } from '@hanzo/cms'
+import type { Collection, Field, CMSRequest, RichTextField, SelectType } from '@hanzo/cms'
 
 import { createDataloaderCacheKey } from '@hanzo/cms'
 
@@ -12,7 +12,7 @@ type Arguments = {
   field: RichTextField<any[], AdapterArguments, AdapterArguments>
   key: number | string
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   showHiddenFields: boolean
 }
@@ -36,7 +36,7 @@ export const populate = async ({
 } & Omit<Arguments, 'field'>): Promise<void> => {
   const dataRef = data as Record<string, unknown>
 
-  const doc = await req.payloadDataLoader.load(
+  const doc = await req.cmsDataLoader.load(
     createDataloaderCacheKey({
       collectionSlug: collection.config.slug,
       currentDepth: currentDepth + 1,

@@ -1,4 +1,4 @@
-import type { PayloadRequest, RelationshipField, TypeWithID } from '@hanzo/cms'
+import type { CMSRequest, RelationshipField, TypeWithID } from '@hanzo/cms'
 
 import {
   fieldAffectsData,
@@ -19,7 +19,7 @@ export const generateLabelFromValue = async ({
   field: RelationshipField
   locale: string
   parentIsLocalized: boolean
-  req: PayloadRequest
+  req: CMSRequest
   value: RelationshipValue
 }): Promise<string> => {
   let relatedDoc: number | string | TypeWithID
@@ -34,7 +34,7 @@ export const generateLabelFromValue = async ({
     relatedDoc = value
   }
 
-  const relatedCollection = req.payload.collections[relationTo].config
+  const relatedCollection = req.cms.collections[relationTo].config
 
   const useAsTitle = relatedCollection?.admin?.useAsTitle
 
@@ -56,7 +56,7 @@ export const generateLabelFromValue = async ({
   } else if (typeof relatedDoc === 'string' || typeof relatedDoc === 'number') {
     // When relatedDoc is just an ID (due to maxDepth: 0), fetch the document to get the title
     try {
-      const fetchedDoc = await req.payload.findByID({
+      const fetchedDoc = await req.cms.findByID({
         id: relatedDoc,
         collection: relationTo,
         depth: 0,

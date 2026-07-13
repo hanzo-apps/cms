@@ -161,8 +161,8 @@ export const multiTenantPlugin =
      * we can assume that they have folders enabled
      */
     const foldersSlug = incomingConfig.folders
-      ? incomingConfig.folders.slug || 'payload-folders'
-      : 'payload-folders'
+      ? incomingConfig.folders.slug || 'cms-folders'
+      : 'cms-folders'
 
     if (collectionSlugs.includes(foldersSlug)) {
       multiTenantCollectionsFound.push(foldersSlug)

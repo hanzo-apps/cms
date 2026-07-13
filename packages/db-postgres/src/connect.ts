@@ -25,7 +25,7 @@ const connectWithReconnect = async function ({
       result = await pool.connect()
     } catch (ignore) {
       setTimeout(() => {
-        adapter.payload.logger.info('Reconnecting to postgres')
+        adapter.cms.logger.info('Reconnecting to postgres')
         void connectWithReconnect({ adapter, pool, reconnect: true })
       }, 1000)
     }
@@ -80,17 +80,17 @@ export const connect: Connect = async function connect(
     }
 
     if (!hotReload) {
-      if (process.env.PAYLOAD_DROP_DATABASE === 'true') {
-        this.payload.logger.info(`---- DROPPING TABLES SCHEMA(${this.schemaName || 'public'}) ----`)
+      if (process.env.CMS_DROP_DATABASE === 'true') {
+        this.cms.logger.info(`---- DROPPING TABLES SCHEMA(${this.schemaName || 'public'}) ----`)
         await this.dropDatabase({ adapter: this })
-        this.payload.logger.info('---- DROPPED TABLES ----')
+        this.cms.logger.info('---- DROPPED TABLES ----')
       }
     }
   } catch (error) {
     const err = error instanceof Error ? error : new Error(String(error))
     if (err.message?.match(/database .* does not exist/i) && !this.disableCreateDatabase) {
       // capitalize first char of the err msg
-      this.payload.logger.info(
+      this.cms.logger.info(
         `${err.message.charAt(0).toUpperCase() + err.message.slice(1)}, creating...`,
       )
       const isCreated = await this.createDatabase()
@@ -100,7 +100,7 @@ export const connect: Connect = async function connect(
         return
       }
     } else {
-      this.payload.logger.error({
+      this.cms.logger.error({
         err,
         msg: `Error: cannot connect to Postgres. Details: ${err.message}`,
       })
@@ -117,7 +117,7 @@ export const connect: Connect = async function connect(
   // Only push schema if not in production
   if (
     process.env.NODE_ENV !== 'production' &&
-    process.env.PAYLOAD_MIGRATING !== 'true' &&
+    process.env.CMS_MIGRATING !== 'true' &&
     this.push !== false
   ) {
     await pushDevSchema(this as unknown as DrizzleAdapter)

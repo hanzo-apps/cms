@@ -1,7 +1,7 @@
 import type { SanitizedCollectionConfig } from '../collections/config/types.js'
 import type { SanitizedGlobalConfig } from '../globals/config/types.js'
-import type { CreateGlobalVersionArgs, CreateVersionArgs, Payload } from '../index.js'
-import type { JsonObject, PayloadRequest, SelectType } from '../types/index.js'
+import type { CreateGlobalVersionArgs, CreateVersionArgs, CMS } from '../index.js'
+import type { JsonObject, CMSRequest, SelectType } from '../types/index.js'
 
 import { deepCopyObjectSimple } from '../index.js'
 import { getVersionsMax } from '../utilities/getVersionsConfig.js'
@@ -19,9 +19,9 @@ type Args<T extends JsonObject = JsonObject> = {
   global?: SanitizedGlobalConfig
   id?: number | string
   operation?: 'create' | 'restoreVersion' | 'update'
-  payload: Payload
+  cms: CMS
   publishSpecificLocale?: string
-  req?: PayloadRequest
+  req?: CMSRequest
   returning?: boolean
   select?: SelectType
   snapshot?: any
@@ -45,7 +45,7 @@ export async function saveVersion<TData extends JsonObject = JsonObject>({
   draft,
   global,
   operation,
-  payload,
+  cms,
   publishSpecificLocale,
   req,
   returning,
@@ -76,7 +76,7 @@ export async function saveVersion<TData extends JsonObject = JsonObject>({
         collection,
         global,
         now,
-        payload,
+        cms,
         req,
         shouldUpdate: autosave ? (v) => 'autosave' in v && v.autosave === true : undefined,
         versionData,
@@ -102,12 +102,12 @@ export async function saveVersion<TData extends JsonObject = JsonObject>({
 
       if (collection) {
         createVersionArgs.collectionSlug = collection.slug
-        result = await payload.db.createVersion(createVersionArgs as CreateVersionArgs)
+        result = await cms.db.createVersion(createVersionArgs as CreateVersionArgs)
       }
 
       if (global) {
         createVersionArgs.globalSlug = global.slug
-        result = await payload.db.createGlobalVersion(createVersionArgs as CreateGlobalVersionArgs)
+        result = await cms.db.createGlobalVersion(createVersionArgs as CreateGlobalVersionArgs)
       }
 
       if (snapshot) {
@@ -117,7 +117,7 @@ export async function saveVersion<TData extends JsonObject = JsonObject>({
           collection,
           data: snapshot,
           global,
-          payload,
+          cms,
           publishSpecificLocale,
           req,
           select,
@@ -133,7 +133,7 @@ export async function saveVersion<TData extends JsonObject = JsonObject>({
     if (global) {
       errorMessage = `There was an error while saving a version for the global ${typeof global.label === 'string' ? global.label : global.slug}.`
     }
-    payload.logger.error({ err, msg: errorMessage })
+    cms.logger.error({ err, msg: errorMessage })
     throw err
   }
 
@@ -145,7 +145,7 @@ export async function saveVersion<TData extends JsonObject = JsonObject>({
       collection,
       global,
       max,
-      payload,
+      cms,
       req,
     })
   }

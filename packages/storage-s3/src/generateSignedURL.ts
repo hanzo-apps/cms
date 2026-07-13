@@ -1,5 +1,5 @@
 import type { ClientUploadsAccess } from '@hanzo/cms-plugin-cloud-storage/types'
-import type { PayloadHandler } from '@hanzo/cms'
+import type { CMSHandler } from '@hanzo/cms'
 
 import * as AWS from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
@@ -30,13 +30,13 @@ export const getGenerateSignedURLHandler = ({
   collections,
   getStorageClient,
   useCompositePrefixes = false,
-}: Args): PayloadHandler => {
+}: Args): CMSHandler => {
   return async (req) => {
     if (!req.json) {
       throw new APIError('Content-Type expected to be application/json', 400)
     }
 
-    let filesizeLimit = req.payload.config.upload.limits?.fileSize
+    let filesizeLimit = req.cms.config.upload.limits?.fileSize
 
     if (filesizeLimit === Infinity) {
       filesizeLimit = undefined

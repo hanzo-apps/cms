@@ -129,7 +129,7 @@ export const upsertRow = async <T extends Record<string, unknown> | TypeWithID>(
 
         return transform<T>({
           adapter,
-          config: adapter.payload.config,
+          config: adapter.cms.config,
           data: doc,
           fields,
           joinQuery: false,
@@ -158,7 +158,7 @@ export const upsertRow = async <T extends Record<string, unknown> | TypeWithID>(
 
         return transform<T>({
           adapter,
-          config: adapter.payload.config,
+          config: adapter.cms.config,
           data: docs[0],
           fields,
           joinQuery: false,
@@ -179,7 +179,7 @@ export const upsertRow = async <T extends Record<string, unknown> | TypeWithID>(
 
       return transform<T>({
         adapter,
-        config: adapter.payload.config,
+        config: adapter.cms.config,
         data: doc,
         fields,
         joinQuery: false,
@@ -766,7 +766,7 @@ export const upsertRow = async <T extends Record<string, unknown> | TypeWithID>(
 
   const result = transform<T>({
     adapter,
-    config: adapter.payload.config,
+    config: adapter.cms.config,
     data: doc,
     fields,
     joinQuery: false,

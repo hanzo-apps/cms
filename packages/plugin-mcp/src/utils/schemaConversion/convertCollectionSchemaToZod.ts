@@ -29,7 +29,7 @@ export const convertCollectionSchemaToZod = (schema: JSONSchema4) => {
 
     /**
      * This Function evaluation is safe because:
-     * 1. The input schema comes from Payload's collection configuration, which is controlled by the application developer
+     * 1. The input schema comes from CMS's collection configuration, which is controlled by the application developer
      * 2. The jsonSchemaToZod library converts JSON Schema to Zod schema definitions, producing only type validation code
      * 3. The transpiled output contains only Zod schema definitions (z.string(), z.number(), etc.) - no executable logic
      * 4. The resulting Zod schema is used only for parameter validation in MCP tools, not for data processing

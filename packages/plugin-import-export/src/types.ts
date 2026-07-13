@@ -2,13 +2,13 @@ import type {
   CollectionConfig,
   CollectionSlug,
   DataFromCollectionSlug,
-  PayloadRequest,
+  CMSRequest,
 } from '@hanzo/cms'
 
 /**
  * Function to dynamically determine the limit based on request context
  */
-export type LimitFunction = (args: { req: PayloadRequest }) => number | Promise<number>
+export type LimitFunction = (args: { req: CMSRequest }) => number | Promise<number>
 
 /**
  * Limit configuration - either a hard number or a function.
@@ -60,7 +60,7 @@ export type ExportBeforeHook<TSlug extends CollectionSlug = CollectionSlug> = (a
    * `const hook: ExportBeforeHook<'posts'> = (args) => { ... }`.
    */
   originalData: DataFromCollectionSlug<TSlug>[] | Record<string, unknown>[]
-  req: PayloadRequest
+  req: CMSRequest
   /** Total number of batches for this export operation */
   totalBatches: number
 }) => Promise<Record<string, unknown>[]> | Record<string, unknown>[]
@@ -78,7 +78,7 @@ export type ExportAfterHook = (args: {
   format: 'csv' | 'json' | ({} & string)
   /** Raw DB documents before transformation */
   originalData: Record<string, unknown>[]
-  req: PayloadRequest
+  req: CMSRequest
   /** Total number of batches for this export operation */
   totalBatches: number
 }) => Promise<void> | void
@@ -102,7 +102,7 @@ export type ImportBeforeHook<TSlug extends CollectionSlug = CollectionSlug> = (a
   format: 'csv' | 'json' | ({} & string)
   /** Raw parsed file rows before unflattening. Read-only reference. */
   originalData: Record<string, unknown>[]
-  req: PayloadRequest
+  req: CMSRequest
   /** Total number of batches for this import operation */
   totalBatches: number
 }) => Partial<DataFromCollectionSlug<TSlug>>[] | Promise<Partial<DataFromCollectionSlug<TSlug>>[]>
@@ -122,7 +122,7 @@ export type ImportAfterHook = (args: {
    * the top-level parsed document. Read-only reference.
    */
   originalData: Record<string, unknown>[]
-  req: PayloadRequest
+  req: CMSRequest
   /** Result of this batch — counts and errors. Not the cumulative total. */
   result: ImportResult
   /** Total number of batches for this import operation */

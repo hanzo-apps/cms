@@ -1,4 +1,4 @@
-import type { PayloadRequest, SanitizedCollectionConfig } from '@hanzo/cms'
+import type { CMSRequest, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import type { Breadcrumb, GenerateLabel, GenerateURL } from '../types.js'
 
@@ -12,7 +12,7 @@ type Args = {
   docs: Record<string, unknown>[]
   generateLabel?: GenerateLabel
   generateURL?: GenerateURL
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export const formatBreadcrumb = ({

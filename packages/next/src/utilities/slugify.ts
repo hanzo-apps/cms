@@ -31,9 +31,9 @@ export const slugifyHandler: ServerFunction<
   }
 
   const docConfig = collectionSlug
-    ? req.payload.collections[collectionSlug]?.config
+    ? req.cms.collections[collectionSlug]?.config
     : globalSlug
-      ? req.payload.config.globals.find((g) => g.slug === globalSlug)
+      ? req.cms.config.globals.find((g) => g.slug === globalSlug)
       : null
 
   if (!docConfig) {
@@ -41,7 +41,7 @@ export const slugifyHandler: ServerFunction<
   }
 
   const { field } = getFieldByPath({
-    config: req.payload.config,
+    config: req.cms.config,
     fields: flattenAllFields({ fields: docConfig.fields }),
     path,
   })

@@ -14,7 +14,7 @@ export const LogoutView: React.FC<
 > = ({ inactivity, initPageResult, searchParams }) => {
   const {
     req: {
-      payload: {
+      cms: {
         config: {
           routes: { admin: adminRoute },
         },

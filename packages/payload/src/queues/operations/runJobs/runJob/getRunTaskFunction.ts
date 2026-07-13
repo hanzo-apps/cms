@@ -1,7 +1,7 @@
 import ObjectIdImport from 'bson-objectid'
 
 import type { Job } from '../../../../index.js'
-import type { JsonObject, PayloadRequest } from '../../../../types/index.js'
+import type { JsonObject, CMSRequest } from '../../../../types/index.js'
 import type {
   RetryConfig,
   RunInlineTaskFunction,
@@ -34,12 +34,12 @@ export type TaskParent = {
 export const getRunTaskFunction = <TIsInline extends boolean>(
   job: Job,
   workflowConfig: WorkflowConfig,
-  req: PayloadRequest,
+  req: CMSRequest,
   isInline: TIsInline,
   updateJob: UpdateJobFunction,
   parent?: TaskParent,
 ): TIsInline extends true ? RunInlineTaskFunction : RunTaskFunctions => {
-  const jobConfig = req.payload.config.jobs
+  const jobConfig = req.cms.config.jobs
 
   const runTask: <TTaskSlug extends string>(
     taskSlug: TTaskSlug,

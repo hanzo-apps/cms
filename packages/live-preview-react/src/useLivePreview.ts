@@ -5,7 +5,7 @@ import { ready, subscribe, unsubscribe } from '@hanzo/cms-live-preview'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 /**
- * This is a React hook to implement {@link https://payloadcms.com/docs/live-preview/overview Payload Live Preview}.
+ * This is a React hook to implement {@link https://payloadcms.com/docs/live-preview/overview CMS Live Preview}.
  *
  * @example
  * ```tsx

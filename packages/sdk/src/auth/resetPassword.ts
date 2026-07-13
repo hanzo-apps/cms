@@ -1,10 +1,10 @@
-import type { AuthCollectionSlug, PayloadTypesShape } from '@hanzo/cms'
+import type { AuthCollectionSlug, CMSTypesShape } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type { DataFromAuthSlug } from '../types.js'
 
 export type ResetPasswordOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends AuthCollectionSlug<T>,
 > = {
   collection: TSlug
@@ -15,7 +15,7 @@ export type ResetPasswordOptions<
 }
 
 export type ResetPasswordResult<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends AuthCollectionSlug<T>,
 > = {
   token?: string
@@ -23,10 +23,10 @@ export type ResetPasswordResult<
 }
 
 export async function resetPassword<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends AuthCollectionSlug<T>,
 >(
-  sdk: PayloadSDK<T>,
+  sdk: CMSSDK<T>,
   options: ResetPasswordOptions<T, TSlug>,
   init?: RequestInit,
 ): Promise<ResetPasswordResult<T, TSlug>> {

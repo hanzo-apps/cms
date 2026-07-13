@@ -400,7 +400,7 @@ export const viTranslations: DefaultTranslationsObject = {
     password: 'Mật khẩu',
     pasteField: 'Dán trường',
     pasteRow: 'Dán dòng',
-    payloadSettings: 'Cài đặt',
+    cmsSettings: 'Cài đặt',
     permanentlyDelete: 'Xóa vĩnh viễn',
     permanentlyDeletedCountSuccessfully: 'Đã xóa vĩnh viễn {{count}} {{label}} thành công.',
     perPage: 'Hiển thị mỗi trang: {{limit}}',
