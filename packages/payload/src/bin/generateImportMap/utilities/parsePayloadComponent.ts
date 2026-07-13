@@ -1,15 +1,15 @@
-import type { PayloadComponent } from '../../../config/types.js'
+import type { CMSComponent } from '../../../config/types.js'
 
-export function parsePayloadComponent(PayloadComponent: PayloadComponent): {
+export function parseCMSComponent(CMSComponent: CMSComponent): {
   exportName: string
   path: string
 } {
-  if (!PayloadComponent) {
+  if (!CMSComponent) {
     return null!
   }
 
   const pathAndMaybeExport =
-    typeof PayloadComponent === 'string' ? PayloadComponent : PayloadComponent.path
+    typeof CMSComponent === 'string' ? CMSComponent : CMSComponent.path
 
   let path: string
   let exportName: string
@@ -21,8 +21,8 @@ export function parsePayloadComponent(PayloadComponent: PayloadComponent): {
     exportName = 'default'
   }
 
-  if (typeof PayloadComponent === 'object' && PayloadComponent.exportName) {
-    exportName = PayloadComponent.exportName
+  if (typeof CMSComponent === 'object' && CMSComponent.exportName) {
+    exportName = CMSComponent.exportName
   }
 
   return { exportName, path }

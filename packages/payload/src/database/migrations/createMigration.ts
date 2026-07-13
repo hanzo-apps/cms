@@ -7,9 +7,9 @@ import { migrationTemplate } from './migrationTemplate.js'
 
 export const createMigration: CreateMigration = function createMigration({
   migrationName,
-  payload,
+  cms,
 }) {
-  const dir = payload.db.migrationDir
+  const dir = cms.db.migrationDir
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir)
   }
@@ -25,7 +25,7 @@ export const createMigration: CreateMigration = function createMigration({
   const filePath = `${dir}/${fileName}`
   fs.writeFileSync(filePath, migrationTemplate)
 
-  writeMigrationIndex({ migrationsDir: payload.db.migrationDir })
+  writeMigrationIndex({ migrationsDir: cms.db.migrationDir })
 
-  payload.logger.info({ msg: `Migration created at ${filePath}` })
+  cms.logger.info({ msg: `Migration created at ${filePath}` })
 }

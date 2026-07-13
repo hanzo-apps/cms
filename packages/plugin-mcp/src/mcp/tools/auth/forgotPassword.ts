@@ -1,24 +1,24 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { toolSchemas } from '../schemas.js'
 
 export const forgotPasswordTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
 ) => {
   const tool = async (collection: string, email: string, disableEmail: boolean = false) => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Sending password reset email for user: ${email} in collection: ${collection}`,
+      cms.logger.info(
+        `[cms-mcp] Sending password reset email for user: ${email} in collection: ${collection}`,
       )
     }
 
     try {
-      const result = await payload.forgotPassword({
+      const result = await cms.forgotPassword({
         collection,
         data: {
           email,
@@ -27,8 +27,8 @@ export const forgotPasswordTool = (
       })
 
       if (verboseLogs) {
-        payload.logger.info(
-          `[payload-mcp] Password reset email sent successfully for user: ${email}`,
+        cms.logger.info(
+          `[cms-mcp] Password reset email sent successfully for user: ${email}`,
         )
       }
 
@@ -42,8 +42,8 @@ export const forgotPasswordTool = (
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(
-        `[payload-mcp] Error sending password reset email for user ${email}: ${errorMessage}`,
+      cms.logger.error(
+        `[cms-mcp] Error sending password reset email for user ${email}: ${errorMessage}`,
       )
 
       return {

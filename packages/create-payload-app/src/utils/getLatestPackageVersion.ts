@@ -1,7 +1,7 @@
 /**
  * Fetches the latest version of a package from the NPM registry.
  *
- * Used in determining the latest version of Payload to use in the generated templates.
+ * Used in determining the latest version of CMS to use in the generated templates.
  */
 export async function getLatestPackageVersion({
   debug = false,
@@ -28,7 +28,7 @@ export async function getLatestPackageVersion({
 
     return latestVersion
   } catch (error) {
-    console.error('Error fetching Payload version:', error)
+    console.error('Error fetching CMS version:', error)
     throw error
   }
 }

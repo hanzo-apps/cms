@@ -3,7 +3,7 @@ import type { CollectionSlug, FindOptions, JoinQuery } from '../../index.js'
 import type {
   ApplyDisableErrors,
   JsonObject,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   TransformCollectionWithSelect,
@@ -48,7 +48,7 @@ export type FindByIDArgs = {
   joins?: JoinQuery
   overrideAccess?: boolean
   populate?: PopulateType
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields?: boolean
   trash?: boolean
 } & Pick<AfterReadArgs<JsonObject>, 'flattenLocales'> &
@@ -95,7 +95,7 @@ export const findByIDOperation = async <
     } = args
 
     const includeLockStatus =
-      includeLockStatusFromArgs && req.payload.collections?.[lockedDocumentsCollectionSlug]
+      includeLockStatusFromArgs && req.cms.collections?.[lockedDocumentsCollectionSlug]
 
     const select = sanitizeSelect({
       fields: collectionConfig.flattenedFields,
@@ -129,7 +129,7 @@ export const findByIDOperation = async <
 
     sanitizeWhereQuery({
       fields: collectionConfig.flattenedFields,
-      payload: args.req.payload,
+      cms: args.req.cms,
       where: fullWhere,
     })
 
@@ -141,7 +141,7 @@ export const findByIDOperation = async <
     })
 
     // execute only if there's a custom ID and potentially overwriten access on id
-    if (req.payload.collections[collectionConfig.slug]!.customIDType) {
+    if (req.cms.collections[collectionConfig.slug]!.customIDType) {
       await validateQueryPaths({
         collectionConfig,
         overrideAccess,
@@ -168,11 +168,11 @@ export const findByIDOperation = async <
     const findOneArgs: FindOneArgs = {
       collection: collectionConfig.slug,
       draftsEnabled: replaceWithVersion,
-      joins: req.payloadAPI === 'GraphQL' ? false : sanitizedJoins,
+      joins: req.cmsAPI === 'GraphQL' ? false : sanitizedJoins,
       locale: locale!,
       req: {
         transactionID: req.transactionID,
-      } as PayloadRequest,
+      } as CMSRequest,
       select: dbSelect,
       where: fullWhere,
     }
@@ -181,7 +181,7 @@ export const findByIDOperation = async <
       throw new NotFound(t)
     }
 
-    const docFromDB = await req.payload.db.findOne(findOneArgs)
+    const docFromDB = await req.cms.db.findOne(findOneArgs)
 
     if (!docFromDB && !args.data) {
       if (!disableErrors) {
@@ -216,7 +216,7 @@ export const findByIDOperation = async <
           typeof lockDocumentsProp === 'object' ? lockDocumentsProp.duration : lockDurationDefault
         const lockDurationInMilliseconds = lockDuration * 1000
 
-        const lockedDocument = await req.payload.find({
+        const lockedDocument = await req.cms.find({
           collection: lockedDocumentsCollectionSlug,
           depth: 1,
           limit: 1,

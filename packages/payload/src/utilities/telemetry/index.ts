@@ -5,7 +5,7 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import type { Payload } from '../../types/index.js'
+import type { CMS } from '../../types/index.js'
 import type { AdminInitEvent } from './events/adminInit.js'
 import type { ServerInitEvent } from './events/serverInit.js'
 
@@ -24,7 +24,7 @@ export type BaseEvent = {
   localizationEnabled: boolean
   nodeEnv: string
   nodeVersion: string
-  payloadVersion: string
+  cmsVersion: string
   projectID: string
   projectIDSource: 'cwd' | 'git' | 'packageJSON' | 'serverURL'
   uploadAdapters: string[]
@@ -39,42 +39,42 @@ type TelemetryEvent = AdminInitEvent | ServerInitEvent
 
 type Args = {
   event: TelemetryEvent
-  payload: Payload
+  cms: CMS
 }
 
 let baseEvent: BaseEvent | null = null
 
-export const sendEvent = async ({ event, payload }: Args): Promise<void> => {
+export const sendEvent = async ({ event, cms }: Args): Promise<void> => {
   // Hanzo CMS: no phone-home. Telemetry is fully disabled — this fork never
-  // sends events to any external endpoint. Set PAYLOAD_TELEMETRY_DEBUG to log
-  // locally what a build of upstream Payload would otherwise have transmitted.
-  if (!process.env.PAYLOAD_TELEMETRY_DEBUG) {
+  // sends events to any external endpoint. Set CMS_TELEMETRY_DEBUG to log
+  // locally what a build of upstream CMS would otherwise have transmitted.
+  if (!process.env.CMS_TELEMETRY_DEBUG) {
     return
   }
   try {
-    if (payload.config.telemetry !== false) {
+    if (cms.config.telemetry !== false) {
       const { packageJSON, packageJSONPath } = await getPackageJSON()
 
       // Only generate the base event once
       if (!baseEvent) {
-        const { projectID, source: projectIDSource } = getProjectID(payload, packageJSON!)
+        const { projectID, source: projectIDSource } = getProjectID(cms, packageJSON!)
         baseEvent = {
           ciName: ciInfo.isCI ? ciInfo.name : null,
           envID: getEnvID(),
           isCI: ciInfo.isCI,
           nodeEnv: process.env.NODE_ENV || 'development',
           nodeVersion: process.version,
-          payloadVersion: getPayloadVersion(packageJSON!),
+          cmsVersion: getCMSVersion(packageJSON!),
           projectID,
           projectIDSource,
-          ...getLocalizationInfo(payload),
-          dbAdapter: payload.db.name,
-          emailAdapter: payload.email?.name || null,
-          uploadAdapters: payload.config.upload.adapters,
+          ...getLocalizationInfo(cms),
+          dbAdapter: cms.db.name,
+          emailAdapter: cms.email?.name || null,
+          uploadAdapters: cms.config.upload.adapters,
         }
       }
 
-      payload.logger.info({
+      cms.logger.info({
         event: { ...baseEvent, ...event, packageJSONPath },
         msg: 'Telemetry Event (local only — Hanzo CMS never transmits)',
       })
@@ -103,36 +103,36 @@ const getEnvID = (): string => {
 }
 
 const getProjectID = (
-  payload: Payload,
+  cms: CMS,
   packageJSON: PackageJSON,
 ): { projectID: string; source: BaseEvent['projectIDSource'] } => {
-  const gitID = getGitID(payload)
+  const gitID = getGitID(cms)
   if (gitID) {
-    return { projectID: oneWayHash(gitID, payload.secret), source: 'git' }
+    return { projectID: oneWayHash(gitID, cms.secret), source: 'git' }
   }
 
-  const packageJSONID = getPackageJSONID(payload, packageJSON)
+  const packageJSONID = getPackageJSONID(cms, packageJSON)
   if (packageJSONID) {
-    return { projectID: oneWayHash(packageJSONID, payload.secret), source: 'packageJSON' }
+    return { projectID: oneWayHash(packageJSONID, cms.secret), source: 'packageJSON' }
   }
 
-  const serverURL = payload.config.serverURL
+  const serverURL = cms.config.serverURL
   if (serverURL) {
-    return { projectID: oneWayHash(serverURL, payload.secret), source: 'serverURL' }
+    return { projectID: oneWayHash(serverURL, cms.secret), source: 'serverURL' }
   }
 
   const cwd = process.cwd()
-  return { projectID: oneWayHash(cwd, payload.secret), source: 'cwd' }
+  return { projectID: oneWayHash(cwd, cms.secret), source: 'cwd' }
 }
 
-const getGitID = (payload: Payload) => {
+const getGitID = (cms: CMS) => {
   try {
     const originBuffer = execSync('git config --local --get remote.origin.url', {
       stdio: 'pipe',
       timeout: 1000,
     })
 
-    return oneWayHash(String(originBuffer).trim(), payload.secret)
+    return oneWayHash(String(originBuffer).trim(), cms.secret)
   } catch (_) {
     return null
   }
@@ -159,18 +159,18 @@ const getPackageJSON = async (): Promise<{
   return { packageJSON: jsonContent, packageJSONPath }
 }
 
-const getPackageJSONID = (payload: Payload, packageJSON: PackageJSON): string => {
-  return oneWayHash(packageJSON.name, payload.secret)
+const getPackageJSONID = (cms: CMS, packageJSON: PackageJSON): string => {
+  return oneWayHash(packageJSON.name, cms.secret)
 }
 
-export const getPayloadVersion = (packageJSON: PackageJSON): string => {
-  return packageJSON?.dependencies?.payload ?? ''
+export const getCMSVersion = (packageJSON: PackageJSON): string => {
+  return packageJSON?.dependencies?.cms ?? ''
 }
 
 export const getLocalizationInfo = (
-  payload: Payload,
+  cms: CMS,
 ): Pick<BaseEvent, 'locales' | 'localizationDefaultLocale' | 'localizationEnabled'> => {
-  if (!payload.config.localization) {
+  if (!cms.config.localization) {
     return {
       locales: [],
       localizationDefaultLocale: null,
@@ -179,8 +179,8 @@ export const getLocalizationInfo = (
   }
 
   return {
-    locales: payload.config.localization.localeCodes,
-    localizationDefaultLocale: payload.config.localization.defaultLocale,
+    locales: cms.config.localization.localeCodes,
+    localizationDefaultLocale: cms.config.localization.defaultLocale,
     localizationEnabled: true,
   }
 }

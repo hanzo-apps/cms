@@ -1,5 +1,5 @@
 import type { ClientSession, Model } from 'mongoose'
-import type { Field, PayloadRequest } from '@hanzo/cms'
+import type { Field, CMSRequest } from '@hanzo/cms'
 
 import { buildVersionCollectionFields, buildVersionGlobalFields } from '@hanzo/cms'
 
@@ -114,17 +114,17 @@ export async function migrateRelationshipsV2_V3({
   req,
 }: {
   batchSize: number
-  req: PayloadRequest
+  req: CMSRequest
 }): Promise<void> {
-  const { payload } = req
-  const db = payload.db as MongooseAdapter
-  const config = payload.config
+  const { cms } = req
+  const db = cms.db as MongooseAdapter
+  const config = cms.config
 
   const session = await getSession(db, req)
 
-  for (const collection of payload.config.collections) {
+  for (const collection of cms.config.collections) {
     if (hasRelationshipOrUploadField(collection)) {
-      payload.logger.info(`Migrating collection "${collection.slug}"`)
+      cms.logger.info(`Migrating collection "${collection.slug}"`)
 
       const { Model } = getCollection({ adapter: db, collectionSlug: collection.slug })
 
@@ -137,11 +137,11 @@ export async function migrateRelationshipsV2_V3({
         session,
       })
 
-      payload.logger.info(`Migrated collection "${collection.slug}"`)
+      cms.logger.info(`Migrated collection "${collection.slug}"`)
     }
 
     if (collection.versions) {
-      payload.logger.info(`Migrating collection versions "${collection.slug}"`)
+      cms.logger.info(`Migrating collection versions "${collection.slug}"`)
 
       const { Model } = getCollection({
         adapter: db,
@@ -158,15 +158,15 @@ export async function migrateRelationshipsV2_V3({
         session,
       })
 
-      payload.logger.info(`Migrated collection versions "${collection.slug}"`)
+      cms.logger.info(`Migrated collection versions "${collection.slug}"`)
     }
   }
 
   const { globals: GlobalsModel } = db
 
-  for (const global of payload.config.globals) {
+  for (const global of cms.config.globals) {
     if (hasRelationshipOrUploadField(global)) {
-      payload.logger.info(`Migrating global "${global.slug}"`)
+      cms.logger.info(`Migrating global "${global.slug}"`)
 
       const doc = await GlobalsModel.findOne<Record<string, unknown>>(
         {
@@ -196,11 +196,11 @@ export async function migrateRelationshipsV2_V3({
         )
       }
 
-      payload.logger.info(`Migrated global "${global.slug}"`)
+      cms.logger.info(`Migrated global "${global.slug}"`)
     }
 
     if (global.versions) {
-      payload.logger.info(`Migrating global versions "${global.slug}"`)
+      cms.logger.info(`Migrating global versions "${global.slug}"`)
 
       const { Model } = getGlobal({ adapter: db, globalSlug: global.slug, versions: true })
 
@@ -213,7 +213,7 @@ export async function migrateRelationshipsV2_V3({
         session,
       })
 
-      payload.logger.info(`Migrated global versions "${global.slug}"`)
+      cms.logger.info(`Migrated global versions "${global.slug}"`)
     }
   }
 }

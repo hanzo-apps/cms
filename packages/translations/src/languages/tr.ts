@@ -404,7 +404,7 @@ export const trTranslations: DefaultTranslationsObject = {
     password: 'Parola',
     pasteField: 'Alanı yapıştır',
     pasteRow: 'Satırı yapıştır',
-    payloadSettings: 'Ayarlar',
+    cmsSettings: 'Ayarlar',
     permanentlyDelete: 'Kalıcı Olarak Sil',
     permanentlyDeletedCountSuccessfully: 'Kalıcı olarak {{count}} {{label}} başarıyla silindi.',
     perPage: 'Sayfa başına: {{limit}}',
@@ -423,7 +423,7 @@ export const trTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'Yayınlanan sürüm olarak geri yükle',
     restoredCountSuccessfully: '{{count}} {{label}} başarıyla geri yüklendi.',
     restoring:
-      "Özgün metnin anlamını Payload bağlamında saygıyla yeniden oluşturun. İşte çok belirli anlamlar taşıyan yaygın Payload terimlerinin bir listesi:\n    - Koleksiyon: Bir koleksiyon, ortak bir yapı ve amaca sahip belgelerin grubudur. Koleksiyonlar içerik organizasyonu ve yönetiminde Payload'da kullanılır.\n    - Alan: Bir alan, bir koleksiyon içindeki belgedeki belirli bir veri parçasıdır. Alanlar, bir belgede saklanabilen ver",
+      "Özgün metnin anlamını CMS bağlamında saygıyla yeniden oluşturun. İşte çok belirli anlamlar taşıyan yaygın CMS terimlerinin bir listesi:\n    - Koleksiyon: Bir koleksiyon, ortak bir yapı ve amaca sahip belgelerin grubudur. Koleksiyonlar içerik organizasyonu ve yönetiminde CMS'da kullanılır.\n    - Alan: Bir alan, bir koleksiyon içindeki belgedeki belirli bir veri parçasıdır. Alanlar, bir belgede saklanabilen ver",
     row: 'Satır',
     rows: 'Satır',
     save: 'Kaydet',

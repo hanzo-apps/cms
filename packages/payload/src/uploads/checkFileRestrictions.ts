@@ -167,7 +167,7 @@ export const checkFileRestrictions = async ({
       }
 
       if (expectsDetectableType(mimeTypeFromExtension)) {
-        req.payload.logger.warn(
+        req.cms.logger.warn(
           `File buffer returned no detectable MIME type for ${file.name}. Falling back to extension-based validation.`,
         )
       }
@@ -199,7 +199,7 @@ export const checkFileRestrictions = async ({
   }
 
   if (errors.length > 0) {
-    req.payload.logger.error(errors.join(', '))
+    req.cms.logger.error(errors.join(', '))
     throw new ValidationError({
       errors: [{ message: errors.join(', '), path: 'file' }],
     })

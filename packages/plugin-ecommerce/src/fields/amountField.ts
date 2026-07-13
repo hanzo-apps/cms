@@ -16,7 +16,7 @@ export const amountField: (props: Props) => NumberField = ({
   currency,
   overrides,
 }) => {
-  // @ts-expect-error - issue with payload types
+  // @ts-expect-error - issue with cms types
   const field: NumberField = {
     name: 'amount',
     type: 'number',

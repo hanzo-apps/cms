@@ -3,7 +3,7 @@ import { status as httpStatus } from 'http-status'
 import type { BeforeChangeHook, CollectionConfig } from '../../collections/config/types.js'
 import type { Config } from '../../config/types.js'
 import type { Field, TextField } from '../../fields/config/types.js'
-import type { Endpoint, PayloadHandler, SanitizedConfig } from '../types.js'
+import type { Endpoint, CMSHandler, SanitizedConfig } from '../types.js'
 
 import { executeAccess } from '../../auth/executeAccess.js'
 import { APIError } from '../../errors/index.js'
@@ -87,7 +87,7 @@ export const addOrderableFieldsAndHook = async (
           originalDoc,
         })
 
-        const lastDoc = await req.payload.find({
+        const lastDoc = await req.cms.find({
           collection: collection.slug,
           depth: 0,
           limit: 1,
@@ -136,7 +136,7 @@ export const addOrderableEndpoint = (
   joinFieldPathsByCollection: Map<string, Map<string, string>>,
 ) => {
   // 3. Add endpoint
-  const reorderHandler: PayloadHandler = async (req) => {
+  const reorderHandler: CMSHandler = async (req) => {
     const body = (await req.json?.()) as OrderableEndpointBody
 
     const { collectionSlug, docsToMove, newKeyWillBe, orderableFieldName, target } = body
@@ -198,7 +198,7 @@ export const addOrderableEndpoint = (
      * `orderable` on a collection with existing documents.
      */
     if (!target.key) {
-      const { docs } = await req.payload.find({
+      const { docs } = await req.cms.find({
         collection: collection.slug,
         depth: 0,
         limit: 0,
@@ -214,11 +214,11 @@ export const addOrderableEndpoint = (
         ]),
       })
       await initTransaction(req)
-      // We cannot update all documents in a single operation with `payload.update`,
+      // We cannot update all documents in a single operation with `cms.update`,
       // because they would all end up with the same order key (`a0`).
       try {
         for (const doc of docs) {
-          await req.payload.update({
+          await req.cms.update({
             id: doc.id,
             collection: collection.slug,
             data: {
@@ -266,7 +266,7 @@ export const addOrderableEndpoint = (
     // The reason the endpoint does not receive this docId as an argument is that there
     // are situations where the user may not see or know what the next or previous one is. For
     // example, access control restrictions, if docBefore is the last one on the page, etc.
-    const adjacentDoc = await req.payload.find({
+    const adjacentDoc = await req.cms.find({
       collection: collection.slug,
       depth: 0,
       limit: 1,
@@ -301,7 +301,7 @@ export const addOrderableEndpoint = (
         const latestVersion = await getLatestCollectionVersion({
           id,
           config: collection,
-          payload: req.payload,
+          cms: req.cms,
           query: {
             collection: collection.slug,
             req,
@@ -313,7 +313,7 @@ export const addOrderableEndpoint = (
         draft = latestVersion?._status === 'draft'
       }
 
-      await req.payload.update({
+      await req.cms.update({
         id,
         collection: collection.slug,
         data: {

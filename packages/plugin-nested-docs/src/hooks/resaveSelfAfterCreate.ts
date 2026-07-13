@@ -12,12 +12,12 @@ export const resaveSelfAfterCreate =
       return undefined
     }
 
-    const { locale, payload } = req
+    const { locale, cms } = req
     const breadcrumbSlug = pluginConfig.breadcrumbsFieldSlug || 'breadcrumbs'
     const breadcrumbs = doc[breadcrumbSlug] as unknown as Breadcrumb[]
 
     try {
-      await payload.update({
+      await cms.update({
         id: doc.id,
         collection: collection.slug,
         data: {
@@ -33,9 +33,9 @@ export const resaveSelfAfterCreate =
         req,
       })
     } catch (err: unknown) {
-      payload.logger.error(
+      cms.logger.error(
         `Nested Docs plugin has had an error while adding breadcrumbs during document creation.`,
       )
-      payload.logger.error(err)
+      cms.logger.error(err)
     }
   }

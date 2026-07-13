@@ -39,7 +39,7 @@ export const removeItemEndpoint = ({ cartsSlug }: Args): Endpoint => ({
       cartID,
       cartsSlug,
       itemID: data.itemID,
-      payload: req.payload,
+      cms: req.cms,
       req,
       secret: data.secret,
     })

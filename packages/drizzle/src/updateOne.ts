@@ -26,7 +26,7 @@ export const updateOne: UpdateOne = async function updateOne(
     where: whereArg,
   },
 ) {
-  const collection = this.payload.collections[collectionSlug].config
+  const collection = this.cms.collections[collectionSlug].config
   const tableName = this.tableNameMap.get(toSnakeCase(collection.slug))
   let idToUpdate = id
 

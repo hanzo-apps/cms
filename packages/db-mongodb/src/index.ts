@@ -12,7 +12,7 @@ import type {
   CollectionSlug,
   DatabaseAdapterObj,
   JsonObject,
-  Payload,
+  CMS,
   TypeWithVersion,
   UpdateGlobalArgs,
   UpdateGlobalVersionArgs,
@@ -70,9 +70,9 @@ export interface Args {
   afterCreateConnection?: (adapter: MongooseAdapter) => Promise<void> | void
   afterOpenConnection?: (adapter: MongooseAdapter) => Promise<void> | void
   /**
-   * By default, Payload strips all additional keys from MongoDB data that don't exist
-   * in the Payload schema. If you have some data that you want to include to the result
-   * but it doesn't exist in Payload, you can enable this flag
+   * By default, CMS strips all additional keys from MongoDB data that don't exist
+   * in the CMS schema. If you have some data that you want to include to the result
+   * but it doesn't exist in CMS, you can enable this flag
    * @default false
    */
   allowAdditionalKeys?: boolean
@@ -82,7 +82,7 @@ export interface Args {
    * import { Types } from 'mongoose'
    *
    * const id = new Types.ObjectId().toHexString()
-   * const doc = await payload.create({ collection: 'posts', data: {id, title: "my title"}})
+   * const doc = await cms.create({ collection: 'posts', data: {id, title: "my title"}})
    * assertEq(doc.id, id)
    * ```
    */
@@ -128,7 +128,7 @@ export interface Args {
   connectOptions?: {
     /**
      * Set false to disable $facet aggregation in non-supporting databases, Defaults to true
-     * @deprecated Payload doesn't use `$facet` anymore anywhere.
+     * @deprecated CMS doesn't use `$facet` anymore anywhere.
      */
     useFacet?: boolean
   } & ConnectOptions
@@ -143,7 +143,7 @@ export interface Args {
   disableIndexHints?: boolean
   /**
    * Set to `true` to ensure that indexes are ready before completing connection.
-   * NOTE: not recommended for production. This can slow down the initialization of Payload.
+   * NOTE: not recommended for production. This can slow down the initialization of CMS.
    */
   ensureIndexes?: boolean
   migrationDir?: string
@@ -155,12 +155,12 @@ export interface Args {
 
   transactionOptions?: false | TransactionOptions
 
-  /** The URL to connect to MongoDB or false to start payload and prevent connecting */
+  /** The URL to connect to MongoDB or false to start cms and prevent connecting */
   url: false | string
 
   /**
    * Set to `true` to use an alternative `dropDatabase` implementation that calls `collection.deleteMany({})` on every collection instead of sending a raw `dropDatabase` command.
-   * Payload only uses `dropDatabase` for testing purposes.
+   * CMS only uses `dropDatabase` for testing purposes.
    * @default false
    */
   useAlternativeDropDatabase?: boolean
@@ -272,7 +272,7 @@ export function mongooseAdapter({
   useJoinAggregations = true,
   usePipelineInSortLookup = true,
 }: Args): DatabaseAdapterObj {
-  function adapter({ payload }: { payload: Payload }) {
+  function adapter({ cms }: { cms: CMS }) {
     const migrationDir = findMigrationDir(migrationDirArg)
     mongoose.set('strictQuery', false)
 
@@ -332,7 +332,7 @@ export function mongooseAdapter({
       migrateFresh,
       migrationDir,
       packageName: '@hanzo/cms-db-mongodb',
-      payload,
+      cms,
       prodMigrations,
       queryDrafts,
       rollbackTransaction,

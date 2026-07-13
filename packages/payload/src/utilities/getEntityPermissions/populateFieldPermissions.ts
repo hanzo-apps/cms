@@ -8,7 +8,7 @@ import type {
   Permission,
 } from '../../auth/types.js'
 import type { DefaultDocumentIDType } from '../../index.js'
-import type { AllOperations, JsonObject, PayloadRequest } from '../../types/index.js'
+import type { AllOperations, JsonObject, CMSRequest } from '../../types/index.js'
 import type { BlockReferencesPermissions } from './getEntityPermissions.js'
 
 import { type Field, tabHasName } from '../../fields/config/types.js'
@@ -71,7 +71,7 @@ export const populateFieldPermissions = ({
   parentPermissionsObject: CollectionPermission | FieldPermissions | GlobalPermission
   permissionsObject: FieldsPermissions
   promises: Promise<void>[]
-  req: PayloadRequest
+  req: CMSRequest
 }): void => {
   for (const field of fields) {
     // Set up permissions for all operations
@@ -159,7 +159,7 @@ export const populateFieldPermissions = ({
           )?.permission
 
           for (const _block of field.blockReferences ?? field.blocks) {
-            const block = typeof _block === 'string' ? req.payload.blocks[_block] : _block
+            const block = typeof _block === 'string' ? req.cms.blocks[_block] : _block
 
             // Skip if block doesn't exist (invalid block reference)
             if (!block) {
@@ -197,7 +197,7 @@ export const populateFieldPermissions = ({
         // Process nested content for each unique block (once per block, not once per operation)
         const processedBlocks = new Set<string>()
         for (const _block of field.blockReferences ?? field.blocks) {
-          const block = typeof _block === 'string' ? req.payload.blocks[_block] : _block
+          const block = typeof _block === 'string' ? req.cms.blocks[_block] : _block
 
           // Skip if block doesn't exist (invalid block reference)
           if (!block || processedBlocks.has(block.slug)) {

@@ -1,6 +1,6 @@
 import type { CollectionConfig } from '../collections/config/types.js'
 import type { Field, TabAsField } from '../fields/config/types.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { fieldAffectsData, tabHasName } from '../fields/config/types.js'
 
@@ -117,7 +117,7 @@ export const getFieldsToSign = (args: {
   collectionConfig: CollectionConfig
   email: string
   sid?: string
-  user: PayloadRequest['user']
+  user: CMSRequest['user']
 }): Record<string, unknown> => {
   const { collectionConfig, email, sid, user } = args
 

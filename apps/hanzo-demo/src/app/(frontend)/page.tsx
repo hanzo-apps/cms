@@ -1,6 +1,6 @@
 import { headers as getHeaders } from 'next/headers.js'
 import Image from 'next/image'
-import { getPayload } from '@hanzo/cms'
+import { getCMS } from '@hanzo/cms'
 import React from 'react'
 import { fileURLToPath } from 'url'
 
@@ -9,9 +9,9 @@ import './styles.css'
 
 export default async function HomePage() {
   const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
+  const cmsConfig = await config
+  const cms = await getCMS({ config: cmsConfig })
+  const { user } = await cms.auth({ headers })
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
@@ -21,7 +21,7 @@ export default async function HomePage() {
         <picture>
           <source srcSet="https://raw.githubusercontent.com/payloadcms/payload/3.x/packages/ui/src/assets/payload-favicon.svg" />
           <Image
-            alt="Payload Logo"
+            alt="CMS Logo"
             height={65}
             src="https://raw.githubusercontent.com/payloadcms/payload/3.x/packages/ui/src/assets/payload-favicon.svg"
             width={65}
@@ -32,7 +32,7 @@ export default async function HomePage() {
         <div className="links">
           <a
             className="admin"
-            href={payloadConfig.routes.admin}
+            href={cmsConfig.routes.admin}
             rel="noopener noreferrer"
             target="_blank"
           >

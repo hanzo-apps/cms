@@ -4,8 +4,8 @@ import type {
   CollectionConfig,
   Field,
   Locale,
-  Payload,
-  PayloadRequest,
+  CMS,
+  CMSRequest,
   StaticLabel,
 } from '@hanzo/cms'
 
@@ -23,8 +23,8 @@ export type BeforeSync = (args: {
   originalDoc: {
     [key: string]: any
   }
-  payload: Payload
-  req: PayloadRequest
+  cms: CMS
+  req: CMSRequest
   searchDoc: DocToSync
 }) => DocToSync | Promise<DocToSync>
 
@@ -34,14 +34,14 @@ export type SkipSyncFunction<ConfigTypes = unknown> = (args: {
   collectionSlug: string
   doc: any
   locale: ConfigTypes extends { locale: unknown } ? ConfigTypes['locale'] : string | undefined
-  req: PayloadRequest
+  req: CMSRequest
 }) => boolean | Promise<boolean>
 
 export type SearchPluginConfig<ConfigTypes = unknown> = {
   /**
    * @deprecated
    * This plugin gets the api route from the config directly and does not need to be passed in.
-   * As long as you have `routes.api` set in your Payload config, the plugin will use that.
+   * As long as you have `routes.api` set in your CMS config, the plugin will use that.
    * This property will be removed in the next major version.
    */
   apiBasePath?: string
@@ -77,7 +77,7 @@ export type SearchPluginConfig<ConfigTypes = unknown> = {
    *   // For non-localized collections, locale will be undefined
    *   if (!locale) return false
    *
-   *   const tenant = await req.payload.findByID({
+   *   const tenant = await req.cms.findByID({
    *     collection: 'tenants',
    *     id: doc.tenant.id
    *   })

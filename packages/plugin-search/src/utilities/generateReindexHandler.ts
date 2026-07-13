@@ -1,4 +1,4 @@
-import type { PayloadHandler, Where } from '@hanzo/cms'
+import type { CMSHandler, Where } from '@hanzo/cms'
 
 import {
   addLocalesToRequestFromData,
@@ -19,7 +19,7 @@ type ValidationResult = {
 }
 
 export const generateReindexHandler =
-  (pluginConfig: SanitizedSearchPluginConfig): PayloadHandler =>
+  (pluginConfig: SanitizedSearchPluginConfig): CMSHandler =>
   async (req) => {
     addLocalesToRequestFromData(req)
     if (!req.json) {
@@ -76,7 +76,7 @@ export const generateReindexHandler =
       return Response.json({ message: collectionError }, { headers, status: 400 })
     }
 
-    const payload = req.payload
+    const cms = req.cms
     const { reindexBatchSize: batchSize, syncDrafts } = pluginConfig
 
     const defaultLocalApiProps = {
@@ -90,7 +90,7 @@ export const generateReindexHandler =
       },
     }
     async function countDocuments(collection: string, drafts?: boolean): Promise<number> {
-      const { totalDocs } = await payload.count({
+      const { totalDocs } = await cms.count({
         collection,
         ...defaultLocalApiProps,
         req: undefined,
@@ -100,7 +100,7 @@ export const generateReindexHandler =
     }
 
     async function deleteIndexes(collection: string) {
-      await payload.delete({
+      await cms.delete({
         collection: searchSlug,
         depth: 0,
         select: { id: true },
@@ -112,7 +112,7 @@ export const generateReindexHandler =
     async function reindexCollection(
       collection: string,
     ): Promise<{ docs: number; docsWithDrafts: number; errors: number }> {
-      const draftsEnabled = Boolean(payload.collections[collection]?.config.versions?.drafts)
+      const draftsEnabled = Boolean(cms.collections[collection]?.config.versions?.drafts)
 
       const totalDocsWithDrafts = await countDocuments(collection, true)
       const totalDocs =
@@ -125,11 +125,11 @@ export const generateReindexHandler =
 
       // Loop through batches, then documents, then locales per document
       for (let i = 0; i < totalBatches; i++) {
-        const defaultLocale = req.payload.config.localization
-          ? req.payload.config.localization.defaultLocale
+        const defaultLocale = req.cms.config.localization
+          ? req.cms.config.localization.defaultLocale
           : req.locale
 
-        const { docs } = await payload.find({
+        const { docs } = await cms.find({
           collection,
           depth: 0,
           limit: batchSize,
@@ -142,8 +142,8 @@ export const generateReindexHandler =
         for (const doc of docs) {
           // Get all configured locales
           // If no localization, use [undefined] to sync once without a locale
-          const allLocales = req.payload.config.localization
-            ? req.payload.config.localization.localeCodes
+          const allLocales = req.cms.config.localization
+            ? req.cms.config.localization.localeCodes
             : [undefined]
 
           // Loop through all locales and check each one
@@ -160,7 +160,7 @@ export const generateReindexHandler =
                   req,
                 })
               } catch (err) {
-                req.payload.logger.error({
+                req.cms.logger.error({
                   err,
                   msg: 'Search plugin: Error executing skipSync. Proceeding with sync.',
                 })
@@ -205,7 +205,7 @@ export const generateReindexHandler =
           results.push(await reindexCollection(collection))
         } catch (err) {
           const message = t('error:unableToReindexCollection', { collection })
-          payload.logger.error({ err, msg: message })
+          cms.logger.error({ err, msg: message })
           results.push({ docs: 0, docsWithDrafts: 0, errors: 0 })
         }
       }

@@ -1,6 +1,6 @@
 import type { Storage } from '@google-cloud/storage'
 import type { ClientUploadsAccess } from '@hanzo/cms-plugin-cloud-storage/types'
-import type { PayloadHandler } from '@hanzo/cms'
+import type { CMSHandler } from '@hanzo/cms'
 
 import { resolveSignedURLKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
 import { APIError, Forbidden } from '@hanzo/cms'
@@ -24,7 +24,7 @@ export const getGenerateSignedURLHandler = ({
   collections,
   getStorageClient,
   useCompositePrefixes = false,
-}: Args): PayloadHandler => {
+}: Args): CMSHandler => {
   return async (req) => {
     if (!req.json) {
       throw new APIError('Unreachable')

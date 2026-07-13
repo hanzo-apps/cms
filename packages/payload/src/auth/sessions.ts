@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid'
 
 import type { SanitizedCollectionConfig, TypeWithID } from '../collections/config/types.js'
 import type { TypedUser } from '../index.js'
-import type { Payload, PayloadRequest } from '../types/index.js'
+import type { CMS, CMSRequest } from '../types/index.js'
 import type { UntypedUser, UserSession } from './types.js'
 
 /**
@@ -23,13 +23,13 @@ export const removeExpiredSessions = (sessions: UserSession[]) => {
  */
 export const addSessionToUser = async ({
   collectionConfig,
-  payload,
+  cms,
   req,
   user,
 }: {
   collectionConfig: SanitizedCollectionConfig
-  payload: Payload
-  req: PayloadRequest
+  cms: CMS
+  req: CMSRequest
   user: TypedUser
 }): Promise<{ sid?: string }> => {
   let sid: string | undefined
@@ -52,7 +52,7 @@ export const addSessionToUser = async ({
     // Prevent updatedAt from being updated when only adding a session
     user.updatedAt = null
 
-    await payload.db.updateOne({
+    await cms.db.updateOne({
       id: user.id,
       collection: collectionConfig.slug,
       data: user,
@@ -71,20 +71,20 @@ export const addSessionToUser = async ({
 
 export const revokeSession = async ({
   collectionConfig,
-  payload,
+  cms,
   req,
   sid,
   user,
 }: {
   collectionConfig: SanitizedCollectionConfig
-  payload: Payload
-  req: PayloadRequest
+  cms: CMS
+  req: CMSRequest
   sid: string
   user: null | (TypeWithID & UntypedUser)
 }): Promise<void> => {
   if (collectionConfig.auth.useSessions && user && user.sessions?.length) {
     user.sessions = user.sessions.filter((session) => session.id !== sid)
-    await payload.db.updateOne({
+    await cms.db.updateOne({
       id: user.id,
       collection: collectionConfig.slug,
       data: user,

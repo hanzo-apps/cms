@@ -1,4 +1,4 @@
-import type { CustomComponent, PayloadServerReactComponent } from '@hanzo/cms'
+import type { CustomComponent, CMSServerReactComponent } from '@hanzo/cms'
 
 import type { CollectionLabels, ResolvedCollectionLabels } from '../../../types.js'
 
@@ -14,6 +14,6 @@ export type ReindexButtonServerProps = {
 
 export type SearchReindexButtonClientComponent = ReindexButtonProps
 
-export type SearchReindexButtonServerComponent = PayloadServerReactComponent<
+export type SearchReindexButtonServerComponent = CMSServerReactComponent<
   CustomComponent<ReindexButtonServerProps>
 >

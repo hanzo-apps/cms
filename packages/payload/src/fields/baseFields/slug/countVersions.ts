@@ -2,7 +2,7 @@ import type {
   CollectionSlug,
   DefaultDocumentIDType,
   GlobalSlug,
-  PayloadRequest,
+  CMSRequest,
   Where,
 } from '../../../index.js'
 
@@ -15,7 +15,7 @@ export const countVersions = async (args: {
   collectionSlug?: CollectionSlug
   globalSlug?: GlobalSlug
   parentID?: DefaultDocumentIDType
-  req: PayloadRequest
+  req: CMSRequest
 }): Promise<number> => {
   const { collectionSlug, globalSlug, parentID, req } = args
 
@@ -29,7 +29,7 @@ export const countVersions = async (args: {
 
   if (collectionSlug) {
     countFn = () =>
-      req.payload.countVersions({
+      req.cms.countVersions({
         collection: collectionSlug,
         where,
       })
@@ -37,7 +37,7 @@ export const countVersions = async (args: {
 
   if (globalSlug) {
     countFn = () =>
-      req.payload.countGlobalVersions({
+      req.cms.countGlobalVersions({
         global: globalSlug,
         where,
       })

@@ -16,7 +16,7 @@ export const resaveChildren =
 
     const parentSlug = pluginConfig?.parentFieldSlug || 'parent'
 
-    const initialDraftChildren = await req.payload.find({
+    const initialDraftChildren = await req.cms.find({
       collection: collection.slug,
       depth: 0,
       draft: true,
@@ -32,7 +32,7 @@ export const resaveChildren =
 
     const draftChildren = initialDraftChildren.docs.filter((child) => child._status === 'draft')
 
-    const publishedChildren = await req.payload.find({
+    const publishedChildren = await req.cms.find({
       collection: collection.slug,
       depth: 0,
       draft: false,
@@ -68,7 +68,7 @@ export const resaveChildren =
         for (const child of sortedChildren) {
           const isDraft = child._status !== 'published'
 
-          await req.payload.update({
+          await req.cms.update({
             id: child.id,
             collection: collection.slug,
             data: await populateBreadcrumbs({
@@ -86,10 +86,10 @@ export const resaveChildren =
           })
         }
       } catch (err: unknown) {
-        req.payload.logger.error(
+        req.cms.logger.error(
           `Nested Docs plugin encountered an error while re-saving a child document.`,
         )
-        req.payload.logger.error(err)
+        req.cms.logger.error(err)
 
         if (err instanceof ValidationError && err.data?.errors?.length) {
           throw new APIError(

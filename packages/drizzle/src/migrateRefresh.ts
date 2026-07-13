@@ -17,23 +17,23 @@ import { parseError } from './utilities/parseError.js'
  * Run all migration down functions before running up
  */
 export async function migrateRefresh(this: DrizzleAdapter) {
-  const { payload } = this
-  const migrationFiles = await readMigrationFiles({ payload })
+  const { cms } = this
+  const migrationFiles = await readMigrationFiles({ cms })
 
   const { existingMigrations, latestBatch } = await getMigrations({
-    payload,
+    cms,
   })
 
   if (!existingMigrations?.length) {
-    payload.logger.info({ msg: 'No migrations to rollback.' })
+    cms.logger.info({ msg: 'No migrations to rollback.' })
     return
   }
 
-  payload.logger.info({
+  cms.logger.info({
     msg: `Rolling back batch ${latestBatch} consisting of ${existingMigrations.length} migration(s).`,
   })
 
-  const req = await createLocalReq({}, payload)
+  const req = await createLocalReq({}, cms)
 
   // Reverse order of migrations to rollback
   existingMigrations.reverse()
@@ -45,19 +45,19 @@ export async function migrateRefresh(this: DrizzleAdapter) {
         throw new Error(`Migration ${migration.name} not found locally.`)
       }
 
-      payload.logger.info({ msg: `Migrating down: ${migration.name}` })
+      cms.logger.info({ msg: `Migrating down: ${migration.name}` })
       const start = Date.now()
       await initTransaction(req)
       const db = await getTransaction(this, req)
-      await migrationFile.down({ db, payload, req })
-      payload.logger.info({
+      await migrationFile.down({ db, cms, req })
+      cms.logger.info({
         msg: `Migrated down:  ${migration.name} (${Date.now() - start}ms)`,
       })
 
       const tableExists = await migrationTableExists(this, db)
       if (tableExists) {
-        await payload.delete({
-          collection: 'payload-migrations',
+        await cms.delete({
+          collection: 'cms-migrations',
           req,
           where: {
             name: {
@@ -69,7 +69,7 @@ export async function migrateRefresh(this: DrizzleAdapter) {
       await commitTransaction(req)
     } catch (err: unknown) {
       await killTransaction(req)
-      payload.logger.error({
+      cms.logger.error({
         err,
         msg: parseError(err, `Error running migration ${migration.name}. Rolling back.`),
       })
@@ -79,13 +79,13 @@ export async function migrateRefresh(this: DrizzleAdapter) {
 
   // Run all migrate up
   for (const migration of migrationFiles) {
-    payload.logger.info({ msg: `Migrating: ${migration.name}` })
+    cms.logger.info({ msg: `Migrating: ${migration.name}` })
     try {
       const start = Date.now()
       await initTransaction(req)
-      await migration.up({ payload, req })
-      await payload.create({
-        collection: 'payload-migrations',
+      await migration.up({ cms, req })
+      await cms.create({
+        collection: 'cms-migrations',
         data: {
           name: migration.name,
           executed: true,
@@ -94,10 +94,10 @@ export async function migrateRefresh(this: DrizzleAdapter) {
       })
       await commitTransaction(req)
 
-      payload.logger.info({ msg: `Migrated:  ${migration.name} (${Date.now() - start}ms)` })
+      cms.logger.info({ msg: `Migrated:  ${migration.name} (${Date.now() - start}ms)` })
     } catch (err: unknown) {
       await killTransaction(req)
-      payload.logger.error({
+      cms.logger.error({
         err,
         msg: parseError(err, `Error running migration ${migration.name}. Rolling back.`),
       })

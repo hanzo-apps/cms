@@ -16,7 +16,7 @@ export type LexicalPluginNodeConverter<T extends SerializedLexicalNode = Seriali
   nodeTypes: string[]
 }
 
-export type PayloadPluginLexicalData = {
+export type CMSPluginLexicalData = {
   characters: number
   comments: unknown[]
   html?: string

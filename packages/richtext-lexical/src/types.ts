@@ -11,7 +11,7 @@ import type {
   ClientField,
   DefaultServerCellComponentProps,
   LabelFunction,
-  PayloadComponent,
+  CMSComponent,
   RichTextAdapter,
   RichTextField,
   RichTextFieldClient,
@@ -486,7 +486,7 @@ export type LexicalEditorProps = {
    * @experimental - This API is experimental and may change in a minor release.
    * @internal
    */
-  views?: PayloadComponent
+  views?: CMSComponent
 }
 
 export type LexicalRichTextAdapter = {
@@ -496,7 +496,7 @@ export type LexicalRichTextAdapter = {
 
 export type LexicalRichTextAdapterProvider =
   /**
-   * This is being called during the payload sanitization process
+   * This is being called during the cms sanitization process
    */
   ({
     config,

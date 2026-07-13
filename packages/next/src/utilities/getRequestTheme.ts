@@ -16,7 +16,7 @@ export const getRequestTheme = ({ config, cookies, headers }: GetRequestLanguage
     return config.admin.theme
   }
 
-  const themeCookie = cookies.get(`${config.cookiePrefix || 'payload'}-theme`)
+  const themeCookie = cookies.get(`${config.cookiePrefix || 'cms'}-theme`)
 
   const themeFromCookie: Theme = (
     typeof themeCookie === 'string' ? themeCookie : themeCookie?.value

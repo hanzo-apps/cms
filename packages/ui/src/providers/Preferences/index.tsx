@@ -63,7 +63,7 @@ export const PreferencesProvider: React.FC<{ children?: React.ReactNode }> = ({ 
           const request = await requests.get(
             formatAdminURL({
               apiRoute: api,
-              path: `/payload-preferences/${key}`,
+              path: `/cms-preferences/${key}`,
             }),
             {
               credentials: 'include',
@@ -101,7 +101,7 @@ export const PreferencesProvider: React.FC<{ children?: React.ReactNode }> = ({ 
         await requests.post(
           formatAdminURL({
             apiRoute: api,
-            path: `/payload-preferences/${key}`,
+            path: `/cms-preferences/${key}`,
           }),
           requestOptions(value, i18n.language),
         )
@@ -152,7 +152,7 @@ export const PreferencesProvider: React.FC<{ children?: React.ReactNode }> = ({ 
         await requests.post(
           formatAdminURL({
             apiRoute: api,
-            path: `/payload-preferences/${key}`,
+            path: `/cms-preferences/${key}`,
           }),
           requestOptions(preferencesRef.current[key], i18n.language),
         )

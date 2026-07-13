@@ -24,7 +24,7 @@ export const updateJobs: UpdateJobs = async function updateMany(
   const whereToUse: Where = id ? { id: { equals: id } } : whereArg
   const limit = id ? 1 : limitArg
 
-  const collection = this.payload.collections['payload-jobs'].config
+  const collection = this.cms.collections['cms-jobs'].config
   const tableName = this.tableNameMap.get(toSnakeCase(collection.slug))
   const sort = sortArg !== undefined && sortArg !== null ? sortArg : collection.defaultSort
 
@@ -39,7 +39,7 @@ export const updateJobs: UpdateJobs = async function updateMany(
     const result = await upsertRow({
       id,
       adapter: this,
-      collectionSlug: 'payload-jobs',
+      collectionSlug: 'cms-jobs',
       data,
       db,
       fields: collection.flattenedFields,
@@ -54,7 +54,7 @@ export const updateJobs: UpdateJobs = async function updateMany(
 
   const jobs = await findMany({
     adapter: this,
-    collectionSlug: 'payload-jobs',
+    collectionSlug: 'cms-jobs',
     fields: collection.flattenedFields,
     limit: id ? 1 : limit,
     pagination: false,
@@ -83,7 +83,7 @@ export const updateJobs: UpdateJobs = async function updateMany(
     const result = await upsertRow({
       id: job.id,
       adapter: this,
-      collectionSlug: 'payload-jobs',
+      collectionSlug: 'cms-jobs',
       data: updateData,
       db,
       fields: collection.flattenedFields,

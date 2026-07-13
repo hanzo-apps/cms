@@ -75,8 +75,8 @@ function transformPackageJson(
 
     // Add new adapter
     const dbAdapterPackageName = getDbPackageName(options.databaseAdapter)
-    const payloadVersion = transformed.dependencies?.payload || '^3.0.0'
-    transformed.dependencies[dbAdapterPackageName] = payloadVersion
+    const cmsVersion = transformed.dependencies?.payload || '^3.0.0'
+    transformed.dependencies[dbAdapterPackageName] = cmsVersion
 
     debug(`[AST] Added adapter package: ${dbAdapterPackageName}`)
   }
@@ -105,8 +105,8 @@ function transformPackageJson(
     // Add new storage adapter (if not localDisk)
     const storagePackageName = getStoragePackageName(options.storageAdapter)
     if (storagePackageName) {
-      const payloadVersion = transformed.dependencies?.payload || '^3.0.0'
-      transformed.dependencies[storagePackageName] = payloadVersion
+      const cmsVersion = transformed.dependencies?.payload || '^3.0.0'
+      transformed.dependencies[storagePackageName] = cmsVersion
       debug(`[AST] Added storage adapter package: ${storagePackageName}`)
     } else {
       debug(`[AST] Storage adapter is localDisk, no package needed`)

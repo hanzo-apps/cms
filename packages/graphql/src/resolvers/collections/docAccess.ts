@@ -1,6 +1,6 @@
 import type {
   Collection,
-  PayloadRequest,
+  CMSRequest,
   SanitizedCollectionPermission,
   SanitizedGlobalPermission,
 } from '@hanzo/cms'
@@ -15,7 +15,7 @@ export type Resolver = (
     id: number | string
   },
   context: {
-    req: PayloadRequest
+    req: CMSRequest
   },
 ) => Promise<SanitizedCollectionPermission | SanitizedGlobalPermission>
 

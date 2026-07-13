@@ -388,7 +388,7 @@ export const arTranslations: DefaultTranslationsObject = {
     password: 'كلمة المرور',
     pasteField: 'لصق الحقل',
     pasteRow: 'لصق الصف',
-    payloadSettings: 'الإعدادات',
+    cmsSettings: 'الإعدادات',
     permanentlyDelete: 'حذف بشكل دائم',
     permanentlyDeletedCountSuccessfully: 'تم حذف {{count}} {{label}} بشكل دائم بنجاح.',
     perPage: 'لكلّ صفحة: {{limit}}',
@@ -407,7 +407,7 @@ export const arTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'استعادة كإصدار منشور',
     restoredCountSuccessfully: 'تمت استعادة {{count}} {{label}} بنجاح.',
     restoring:
-      'احترم معنى النص الأصلي في سياق Payload. هنا قائمة بالمصطلحات الشائعة في Payload التي تحمل معانٍ محددة جدًا:\n    - Collection: المجموعة هي مجموعة من الوثائق التي تتشارك في الهيكل والغرض المشترك. تُستخدم المجموعات لتنظيم وإدارة المحتوى في Payload.',
+      'احترم معنى النص الأصلي في سياق CMS. هنا قائمة بالمصطلحات الشائعة في CMS التي تحمل معانٍ محددة جدًا:\n    - Collection: المجموعة هي مجموعة من الوثائق التي تتشارك في الهيكل والغرض المشترك. تُستخدم المجموعات لتنظيم وإدارة المحتوى في CMS.',
     row: 'سطر',
     rows: 'أسطُر',
     save: 'حفظ',

@@ -1,16 +1,16 @@
 import type { FlattenedField } from '../fields/config/types.js'
-import type { Payload, Where } from '../types/index.js'
+import type { CMS, Where } from '../types/index.js'
 
 /**
  * Currently used only for virtual fields linked with relationships
  */
 export const sanitizeWhereQuery = ({
   fields,
-  payload,
+  cms,
   where,
 }: {
   fields: FlattenedField[]
-  payload: Payload
+  cms: CMS
   where: Where
 }) => {
   for (const key in where) {
@@ -18,7 +18,7 @@ export const sanitizeWhereQuery = ({
 
     if (['and', 'or'].includes(key.toLowerCase()) && Array.isArray(value)) {
       for (const where of value) {
-        sanitizeWhereQuery({ fields, payload, where })
+        sanitizeWhereQuery({ fields, cms, where })
       }
       continue
     }
@@ -49,7 +49,7 @@ export const sanitizeWhereQuery = ({
         (field.type === 'relationship' || field.type === 'upload') &&
         typeof field.relationTo === 'string'
       ) {
-        const relatedCollection = payload.collections[field.relationTo]
+        const relatedCollection = cms.collections[field.relationTo]
         if (relatedCollection) {
           currentFields = relatedCollection.config.flattenedFields
         }

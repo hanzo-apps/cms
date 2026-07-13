@@ -3,7 +3,7 @@ import type {
   DocumentSlots,
   EditMenuItemsServerPropsOnly,
   Locale,
-  PayloadRequest,
+  CMSRequest,
   PreviewButtonServerPropsOnly,
   PublishButtonServerPropsOnly,
   SanitizedCollectionConfig,
@@ -32,7 +32,7 @@ export const renderDocumentSlots: (args: {
   id?: number | string
   locale: Locale
   permissions: SanitizedPermissions
-  req: PayloadRequest
+  req: CMSRequest
 }) => DocumentSlots = (args) => {
   const { id, collectionConfig, globalConfig, hasSavePermission, locale, permissions, req } = args
 
@@ -46,7 +46,7 @@ export const renderDocumentSlots: (args: {
     id,
     i18n: req.i18n,
     locale,
-    payload: req.payload,
+    cms: req.cms,
     permissions,
     user: req.user,
     // TODO: Add remaining serverProps
@@ -59,7 +59,7 @@ export const renderDocumentSlots: (args: {
   if (BeforeDocumentControls) {
     components.BeforeDocumentControls = RenderServerComponent({
       Component: BeforeDocumentControls,
-      importMap: req.payload.importMap,
+      importMap: req.cms.importMap,
       serverProps: serverProps satisfies BeforeDocumentControlsServerPropsOnly,
     })
   }
@@ -69,7 +69,7 @@ export const renderDocumentSlots: (args: {
   if (EditMenuItems) {
     components.EditMenuItems = RenderServerComponent({
       Component: EditMenuItems,
-      importMap: req.payload.importMap,
+      importMap: req.cms.importMap,
       serverProps: serverProps satisfies EditMenuItemsServerPropsOnly,
     })
   }
@@ -81,7 +81,7 @@ export const renderDocumentSlots: (args: {
   if (isPreviewEnabled && CustomPreviewButton) {
     components.PreviewButton = RenderServerComponent({
       Component: CustomPreviewButton,
-      importMap: req.payload.importMap,
+      importMap: req.cms.importMap,
       serverProps: serverProps satisfies PreviewButtonServerPropsOnly,
     })
   }
@@ -93,7 +93,7 @@ export const renderDocumentSlots: (args: {
   if (LivePreview?.Component) {
     components.LivePreview = RenderServerComponent({
       Component: LivePreview.Component,
-      importMap: req.payload.importMap,
+      importMap: req.cms.importMap,
       serverProps,
     })
   }
@@ -120,7 +120,7 @@ export const renderDocumentSlots: (args: {
       } satisfies ViewDescriptionClientProps,
       Component: CustomDescription,
       Fallback: ViewDescription,
-      importMap: req.payload.importMap,
+      importMap: req.cms.importMap,
       serverProps: serverProps satisfies ViewDescriptionServerPropsOnly,
     })
   }
@@ -133,7 +133,7 @@ export const renderDocumentSlots: (args: {
     if (CustomStatus) {
       components.Status = RenderServerComponent({
         Component: CustomStatus,
-        importMap: req.payload.importMap,
+        importMap: req.cms.importMap,
         serverProps,
       })
     }
@@ -148,7 +148,7 @@ export const renderDocumentSlots: (args: {
       if (CustomPublishButton) {
         components.PublishButton = RenderServerComponent({
           Component: CustomPublishButton,
-          importMap: req.payload.importMap,
+          importMap: req.cms.importMap,
           serverProps: serverProps satisfies PublishButtonServerPropsOnly,
         })
       }
@@ -160,7 +160,7 @@ export const renderDocumentSlots: (args: {
       if (CustomUnpublishButton) {
         components.UnpublishButton = RenderServerComponent({
           Component: CustomUnpublishButton,
-          importMap: req.payload.importMap,
+          importMap: req.cms.importMap,
           serverProps: serverProps satisfies UnpublishButtonServerPropsOnly,
         })
       }
@@ -174,7 +174,7 @@ export const renderDocumentSlots: (args: {
       if ((draftsEnabled || unsavedDraftWithValidations) && CustomSaveDraftButton) {
         components.SaveDraftButton = RenderServerComponent({
           Component: CustomSaveDraftButton,
-          importMap: req.payload.importMap,
+          importMap: req.cms.importMap,
           serverProps: serverProps satisfies SaveDraftButtonServerPropsOnly,
         })
       }
@@ -186,7 +186,7 @@ export const renderDocumentSlots: (args: {
       if (CustomSaveButton) {
         components.SaveButton = RenderServerComponent({
           Component: CustomSaveButton,
-          importMap: req.payload.importMap,
+          importMap: req.cms.importMap,
           serverProps: serverProps satisfies SaveButtonServerPropsOnly,
         })
       }
@@ -196,7 +196,7 @@ export const renderDocumentSlots: (args: {
   if (collectionConfig?.upload && collectionConfig?.admin?.components?.edit?.Upload) {
     components.Upload = RenderServerComponent({
       Component: collectionConfig.admin.components.edit.Upload,
-      importMap: req.payload.importMap,
+      importMap: req.cms.importMap,
       serverProps,
     })
   }
@@ -204,7 +204,7 @@ export const renderDocumentSlots: (args: {
   if (collectionConfig?.upload && collectionConfig.upload.admin?.components?.controls) {
     components.UploadControls = RenderServerComponent({
       Component: collectionConfig.upload.admin.components.controls,
-      importMap: req.payload.importMap,
+      importMap: req.cms.importMap,
       serverProps,
     })
   }
@@ -218,7 +218,7 @@ export const renderDocumentSlotsHandler: ServerFunction<{
 }> = async (args) => {
   const { id, collectionSlug, locale, permissions, req } = args
 
-  const collectionConfig = req.payload.collections[collectionSlug]?.config
+  const collectionConfig = req.cms.collections[collectionSlug]?.config
 
   if (!collectionConfig) {
     throw new Error(req.t('error:incorrectCollection'))

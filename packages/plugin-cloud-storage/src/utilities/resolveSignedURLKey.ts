@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { getSafeFileName } from '@hanzo/cms/internal'
 
@@ -9,7 +9,7 @@ type Args = {
   collectionSlug: string
   docPrefix?: string
   filename: string
-  req: PayloadRequest
+  req: CMSRequest
   useCompositePrefixes?: boolean
 }
 

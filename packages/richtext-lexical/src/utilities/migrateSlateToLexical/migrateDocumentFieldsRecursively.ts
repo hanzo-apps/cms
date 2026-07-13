@@ -1,4 +1,4 @@
-import type { Field, FlattenedBlock, Payload } from '@hanzo/cms'
+import type { Field, FlattenedBlock, CMS } from '@hanzo/cms'
 
 import { fieldAffectsData, fieldHasSubFields, fieldIsArrayType, tabHasName } from '@hanzo/cms/shared'
 
@@ -15,14 +15,14 @@ type NestedRichTextFieldsArgs = {
 
   fields: Field[]
   found: number
-  payload: Payload
+  cms: CMS
 }
 
 export const migrateDocumentFieldsRecursively = ({
   data,
   fields,
   found,
-  payload,
+  cms,
 }: NestedRichTextFieldsArgs): number => {
   for (const field of fields) {
     if (fieldHasSubFields(field) && !fieldIsArrayType(field)) {
@@ -31,14 +31,14 @@ export const migrateDocumentFieldsRecursively = ({
           data: data[field.name] as Record<string, unknown>,
           fields: field.fields,
           found,
-          payload,
+          cms,
         })
       } else {
         found += migrateDocumentFieldsRecursively({
           data,
           fields: field.fields,
           found,
-          payload,
+          cms,
         })
       }
     } else if (field.type === 'tabs') {
@@ -47,7 +47,7 @@ export const migrateDocumentFieldsRecursively = ({
           data: (tabHasName(tab) ? data[tab.name] : data) as Record<string, unknown>,
           fields: tab.fields,
           found,
-          payload,
+          cms,
         })
       })
     } else if (Array.isArray(data[field.name])) {
@@ -55,7 +55,7 @@ export const migrateDocumentFieldsRecursively = ({
         ;(data[field.name] as Array<Record<string, unknown>>).forEach((row) => {
           const blockTypeToMatch: string = row?.blockType as string
           const block =
-            payload?.blocks[blockTypeToMatch] ??
+            cms?.blocks[blockTypeToMatch] ??
             ((field.blockReferences ?? field.blocks).find(
               (block) => typeof block !== 'string' && block.slug === blockTypeToMatch,
             ) as FlattenedBlock | undefined)
@@ -65,7 +65,7 @@ export const migrateDocumentFieldsRecursively = ({
               data: row,
               fields: block.fields,
               found,
-              payload,
+              cms,
             })
           }
         })
@@ -77,7 +77,7 @@ export const migrateDocumentFieldsRecursively = ({
             data: row,
             fields: field.fields,
             found,
-            payload,
+            cms,
           })
         })
       }

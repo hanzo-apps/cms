@@ -1,8 +1,8 @@
-import type { PaginatedDocs, PayloadRequest, SanitizedCollectionConfig } from '@hanzo/cms'
+import type { PaginatedDocs, CMSRequest, SanitizedCollectionConfig } from '@hanzo/cms'
 
 /**
  * Enriches list view documents with correct draft status display.
- * When draft=true is used in the query, Payload returns the latest draft version if it exists.
+ * When draft=true is used in the query, CMS returns the latest draft version if it exists.
  * This function checks if draft documents also have a published version to determine "changed" status.
  *
  * Performance: Uses a single query to find all documents with "changed" status instead of N queries.
@@ -14,7 +14,7 @@ export async function enrichDocsWithVersionStatus({
 }: {
   collectionConfig: SanitizedCollectionConfig
   data: PaginatedDocs
-  req: PayloadRequest
+  req: CMSRequest
 }): Promise<PaginatedDocs> {
   const draftsEnabled = collectionConfig?.versions?.drafts
 
@@ -43,7 +43,7 @@ export async function enrichDocsWithVersionStatus({
   // These are the documents with "changed" status
   try {
     // TODO: This could be more efficient with a findDistinctVersions() API:
-    // const { values } = await req.payload.findDistinctVersions({
+    // const { values } = await req.cms.findDistinctVersions({
     //   collection: collectionConfig.slug,
     //   field: 'parent',
     //   where: {
@@ -57,7 +57,7 @@ export async function enrichDocsWithVersionStatus({
     //
     // For now, we query all published versions but only select the 'parent' field
     // to minimize data transfer, then deduplicate with a Set
-    const publishedVersions = await req.payload.findVersions({
+    const publishedVersions = await req.cms.findVersions({
       collection: collectionConfig.slug,
       depth: 0,
       limit: 0,
@@ -108,7 +108,7 @@ export async function enrichDocsWithVersionStatus({
     }
   } catch (error) {
     // If there's an error querying versions, just return the original data
-    req.payload.logger.error({
+    req.cms.logger.error({
       err: error,
       msg: `Error checking version status for collection ${collectionConfig.slug}`,
     })

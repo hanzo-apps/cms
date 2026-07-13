@@ -1,17 +1,17 @@
-import type { CollectionConfig, Field, GlobalConfig, Payload } from '@hanzo/cms'
+import type { CollectionConfig, Field, GlobalConfig, CMS } from '@hanzo/cms'
 
 import { upgradeDocumentFieldsRecursively } from './upgradeDocumentFieldsRecursively.js'
 
 /**
- * This goes through every single document in your payload app and re-saves it, if it has a lexical editor.
+ * This goes through every single document in your cms app and re-saves it, if it has a lexical editor.
  * This way, the data is automatically converted to the new format, and that automatic conversion gets applied to every single document in your app.
  *
- * @param payload
+ * @param cms
  */
-export async function upgradeLexicalData({ payload }: { payload: Payload }) {
-  const collections = payload.config.collections
+export async function upgradeLexicalData({ cms }: { cms: CMS }) {
+  const collections = cms.config.collections
 
-  const allLocales = payload.config.localization ? payload.config.localization.localeCodes : [null]
+  const allLocales = cms.config.localization ? cms.config.localization.localeCodes : [null]
 
   const totalCollections = collections.length
   for (const locale of allLocales) {
@@ -23,14 +23,14 @@ export async function upgradeLexicalData({ payload }: { payload: Payload }) {
         cur: curCollection,
         locale,
         max: totalCollections,
-        payload,
+        cms,
       })
     }
-    for (const global of payload.config.globals) {
+    for (const global of cms.config.globals) {
       await upgradeGlobal({
         global,
         locale,
-        payload,
+        cms,
       })
     }
   }
@@ -39,15 +39,15 @@ export async function upgradeLexicalData({ payload }: { payload: Payload }) {
 async function upgradeGlobal({
   global,
   locale,
-  payload,
+  cms,
 }: {
   global: GlobalConfig
   locale: null | string
-  payload: Payload
+  cms: CMS
 }) {
   console.log(`Lexical Upgrader: ${locale}: Upgrading global:`, global.slug)
 
-  const document = await payload.findGlobal({
+  const document = await cms.findGlobal({
     slug: global.slug,
     depth: 0,
     locale: locale || undefined,
@@ -57,11 +57,11 @@ async function upgradeGlobal({
   const found = upgradeDocument({
     document,
     fields: global.fields,
-    payload,
+    cms,
   })
 
   if (found) {
-    await payload.updateGlobal({
+    await cms.updateGlobal({
       slug: global.slug,
       data: document,
       depth: 0,
@@ -75,13 +75,13 @@ async function upgradeCollection({
   cur,
   locale,
   max,
-  payload,
+  cms,
 }: {
   collection: CollectionConfig
   cur: number
   locale: null | string
   max: number
-  payload: Payload
+  cms: CMS
 }) {
   console.log(
     `Lexical Upgrade: ${locale}: Upgrading collection:`,
@@ -90,7 +90,7 @@ async function upgradeCollection({
   )
 
   const documentCount = (
-    await payload.count({
+    await cms.count({
       collection: collection.slug,
       locale: locale || undefined,
     })
@@ -100,7 +100,7 @@ async function upgradeCollection({
   let upgraded = 0
 
   while (upgraded < documentCount) {
-    const documents = await payload.find({
+    const documents = await cms.find({
       collection: collection.slug,
       depth: 0,
       locale: locale || undefined,
@@ -129,11 +129,11 @@ async function upgradeCollection({
       const found = upgradeDocument({
         document,
         fields: collection.fields,
-        payload,
+        cms,
       })
 
       if (found) {
-        await payload.update({
+        await cms.update({
           id: document.id,
           collection: collection.slug,
           data: document,
@@ -149,16 +149,16 @@ async function upgradeCollection({
 function upgradeDocument({
   document,
   fields,
-  payload,
+  cms,
 }: {
   document: Record<string, unknown>
   fields: Field[]
-  payload: Payload
+  cms: CMS
 }): boolean {
   return !!upgradeDocumentFieldsRecursively({
     data: document,
     fields,
     found: 0,
-    payload,
+    cms,
   })
 }

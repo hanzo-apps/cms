@@ -1,5 +1,5 @@
 import type { DrizzleSnapshotJSON } from 'drizzle-kit/api'
-import type { CreateMigration, Payload } from '@hanzo/cms'
+import type { CreateMigration, CMS } from '@hanzo/cms'
 
 import fs from 'fs'
 import path from 'path'
@@ -22,9 +22,9 @@ export const buildCreateMigration = ({
   const dirname = path.dirname(filename)
   return async function createMigration(
     this: DrizzleAdapter,
-    { file, forceAcceptWarning, migrationName, payload, skipEmpty },
+    { file, forceAcceptWarning, migrationName, cms, skipEmpty },
   ) {
-    const dir = payload.db.migrationDir
+    const dir = cms.db.migrationDir
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir)
     }
@@ -44,7 +44,7 @@ export const buildCreateMigration = ({
       dirname,
       file,
       migrationName,
-      payload,
+      cms,
     })
 
     imports = predefinedMigration.imports
@@ -59,7 +59,7 @@ export const buildCreateMigration = ({
     const filePath = `${dir}/${fileName}`
 
     if (typeof predefinedMigration.dynamic === 'function') {
-      const dynamicResult = await predefinedMigration.dynamic({ filePath, payload })
+      const dynamicResult = await predefinedMigration.dynamic({ filePath, cms })
 
       if (dynamicResult.upSQL) {
         upSQL = dynamicResult.upSQL
@@ -98,13 +98,13 @@ export const buildCreateMigration = ({
         }
       }
 
-      payload.logger.info('Starting migration: generating UP statements...')
+      cms.logger.info('Starting migration: generating UP statements...')
       const sqlStatementsUp = await generateMigration(drizzleJsonBefore, drizzleJsonAfter)
 
-      payload.logger.info('Migration UP complete. Generating DOWN statements...')
+      cms.logger.info('Migration UP complete. Generating DOWN statements...')
       const sqlStatementsDown = await generateMigration(drizzleJsonAfter, drizzleJsonBefore)
 
-      payload.logger.info('Migration DOWN statements generation complete.')
+      cms.logger.info('Migration DOWN statements generation complete.')
 
       const sqlExecute = `await db.${executeMethod}(` + 'sql`'
 
@@ -146,7 +146,7 @@ export const buildCreateMigration = ({
     const data = getMigrationTemplate({
       downSQL: downSQL || `  // Migration code`,
       imports,
-      packageName: payload.db.packageName,
+      packageName: cms.db.packageName,
       upSQL: upSQL || `  // Migration code`,
     })
 
@@ -155,8 +155,8 @@ export const buildCreateMigration = ({
     // write migration
     fs.writeFileSync(fullPath, data)
 
-    writeMigrationIndex({ migrationsDir: payload.db.migrationDir })
+    writeMigrationIndex({ migrationsDir: cms.db.migrationDir })
 
-    payload.logger.info({ msg: `Migration created at ${fullPath}` })
+    cms.logger.info({ msg: `Migration created at ${fullPath}` })
   }
 }

@@ -12,13 +12,13 @@ export const countVersions: CountVersions = async function countVersions(
   this: DrizzleAdapter,
   { collection, locale, req, where: whereArg },
 ) {
-  const collectionConfig: SanitizedCollectionConfig = this.payload.collections[collection].config
+  const collectionConfig: SanitizedCollectionConfig = this.cms.collections[collection].config
 
   const tableName = this.tableNameMap.get(
     `_${toSnakeCase(collectionConfig.slug)}${this.versionsSuffix}`,
   )
 
-  const fields = buildVersionCollectionFields(this.payload.config, collectionConfig, true)
+  const fields = buildVersionCollectionFields(this.cms.config, collectionConfig, true)
 
   const { joins, where } = buildQuery({
     adapter: this,

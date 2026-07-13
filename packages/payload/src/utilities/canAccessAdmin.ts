@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { UnauthorizedError } from '../errors/UnauthorizedError.js'
 
@@ -6,16 +6,16 @@ import { UnauthorizedError } from '../errors/UnauthorizedError.js'
  * Protects admin-only routes, server functions, etc.
  * The requesting user must either:
  * a. pass the `access.admin` function on the `users` collection, if defined
- * b. match the `config.admin.user` property on the Payload config
+ * b. match the `config.admin.user` property on the CMS config
  * c. if no user is present, and there are no users in the system, allow access (for first user creation)
  * @throws {Error} Throws an `Unauthorized` error if access is denied that can be explicitly caught
  */
-export const canAccessAdmin = async ({ req }: { req: PayloadRequest }) => {
+export const canAccessAdmin = async ({ req }: { req: CMSRequest }) => {
   const incomingUserSlug = req.user?.collection
-  const adminUserSlug = req.payload.config.admin.user
+  const adminUserSlug = req.cms.config.admin.user
 
   if (incomingUserSlug) {
-    const adminAccessFn = req.payload.collections[incomingUserSlug]?.config.access?.admin
+    const adminAccessFn = req.cms.collections[incomingUserSlug]?.config.access?.admin
 
     if (adminAccessFn) {
       const canAccess = await adminAccessFn({ req })
@@ -28,7 +28,7 @@ export const canAccessAdmin = async ({ req }: { req: PayloadRequest }) => {
       throw new UnauthorizedError()
     }
   } else {
-    const hasUsers = await req.payload.find({
+    const hasUsers = await req.cms.find({
       collection: adminUserSlug,
       depth: 0,
       limit: 1,

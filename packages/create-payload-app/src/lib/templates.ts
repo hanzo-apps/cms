@@ -43,7 +43,7 @@ export function getValidTemplates(): ProjectTemplate[] {
     {
       name: 'plugin',
       type: 'plugin',
-      description: 'Template for creating a Payload plugin',
+      description: 'Template for creating a CMS plugin',
       url: 'https://github.com/payloadcms/payload/templates/plugin#3.x',
     },
   ]

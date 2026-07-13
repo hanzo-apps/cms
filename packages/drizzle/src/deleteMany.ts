@@ -14,7 +14,7 @@ export const deleteMany: DeleteMany = async function deleteMany(
   this: DrizzleAdapter,
   { collection, req, where: whereArg },
 ) {
-  const collectionConfig = this.payload.collections[collection].config
+  const collectionConfig = this.cms.collections[collection].config
 
   const tableName = this.tableNameMap.get(toSnakeCase(collectionConfig.slug))
 

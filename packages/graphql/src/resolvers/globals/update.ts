@@ -1,7 +1,7 @@
 import type {
   DataFromGlobalSlug,
   GlobalSlug,
-  PayloadRequest,
+  CMSRequest,
   SanitizedGlobalConfig,
   SelectType,
 } from '@hanzo/cms'
@@ -20,7 +20,7 @@ type Resolver<TSlug extends GlobalSlug> = (
     locale?: string
   },
   context: {
-    req: PayloadRequest
+    req: CMSRequest
   },
 ) => Promise<DataFromGlobalSlug<TSlug>>
 

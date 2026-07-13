@@ -1,23 +1,23 @@
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
-import { type Payload } from '../index.js'
+import { type CMS } from '../index.js'
 import { jobsCollectionSlug } from '../queues/config/collection.js'
 
 type Args = {
   id?: number | string
-  payload: Payload
-  req?: PayloadRequest
+  cms: CMS
+  req?: CMSRequest
   slug: string
 }
 
 export const deleteScheduledPublishJobs = async ({
   id,
   slug,
-  payload,
+  cms,
   req,
 }: Args): Promise<void> => {
   try {
-    await payload.db.deleteMany({
+    await cms.db.deleteMany({
       collection: jobsCollectionSlug,
       req,
       where: {
@@ -53,7 +53,7 @@ export const deleteScheduledPublishJobs = async ({
       },
     })
   } catch (err) {
-    payload.logger.error({
+    cms.logger.error({
       err,
       msg: `There was an error deleting scheduled publish jobs from the queue for ${slug} document with ID ${id}.`,
     })

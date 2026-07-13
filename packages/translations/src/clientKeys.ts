@@ -321,7 +321,7 @@ export const clientTranslationKeys = createClientTranslationKeys([
   'general:password',
   'general:pasteField',
   'general:pasteRow',
-  'general:payloadSettings',
+  'general:cmsSettings',
   'general:permanentlyDelete',
   'general:permanentlyDeletedCountSuccessfully',
   'general:perPage',

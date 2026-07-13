@@ -43,7 +43,7 @@ export const findVersions: FindVersions = async function findVersions(
   if (!hasNearConstraint) {
     sort = buildSortParam({
       adapter: this,
-      config: this.payload.config,
+      config: this.cms.config,
       fields: collectionConfig.flattenedFields,
       locale,
       sort: sortArg || '-updatedAt',
@@ -51,7 +51,7 @@ export const findVersions: FindVersions = async function findVersions(
     })
   }
 
-  const fields = buildVersionCollectionFields(this.payload.config, collectionConfig, true)
+  const fields = buildVersionCollectionFields(this.cms.config, collectionConfig, true)
 
   const query = await buildQuery({
     adapter: this,
@@ -88,7 +88,7 @@ export const findVersions: FindVersions = async function findVersions(
   }
 
   if (this.collation) {
-    const localizationConfig = this.payload.config.localization
+    const localizationConfig = this.cms.config.localization
     const defaultLocale =
       (typeof localizationConfig === 'object' && localizationConfig?.defaultLocale) || 'en'
 
@@ -144,7 +144,7 @@ export const findVersions: FindVersions = async function findVersions(
   transform({
     adapter: this,
     data: result.docs,
-    fields: buildVersionCollectionFields(this.payload.config, collectionConfig),
+    fields: buildVersionCollectionFields(this.cms.config, collectionConfig),
     operation: 'read',
   })
 

@@ -33,7 +33,7 @@ export const lexicalTargetVersion = '0.41.0'
 export function lexicalEditor(args?: LexicalEditorProps): LexicalRichTextAdapterProvider {
   if (
     process.env.NODE_ENV !== 'production' &&
-    process.env.PAYLOAD_DISABLE_DEPENDENCY_CHECKER !== 'true' &&
+    process.env.CMS_DISABLE_DEPENDENCY_CHECKER !== 'true' &&
     !checkedDependencies
   ) {
     checkedDependencies = true
@@ -919,7 +919,7 @@ export {
 } from './features/converters/lexicalToHtml_deprecated/index.js'
 export { convertLexicalToMarkdown } from './features/converters/lexicalToMarkdown/index.js'
 export { convertMarkdownToLexical } from './features/converters/markdownToLexical/index.js'
-export { getPayloadPopulateFn } from './features/converters/utilities/payloadPopulateFn.js'
+export { getCMSPopulateFn } from './features/converters/utilities/payloadPopulateFn.js'
 
 export { getRestPopulateFn } from './features/converters/utilities/restPopulateFn.js'
 export { DebugJsxConverterFeature } from './features/debug/jsxConverter/server/index.js'

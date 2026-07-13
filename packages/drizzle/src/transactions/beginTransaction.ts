@@ -63,7 +63,7 @@ export const beginTransaction: BeginTransaction = async function beginTransactio
       resolve,
     }
   } catch (err) {
-    this.payload.logger.error({ err, msg: `Error: cannot begin transaction: ${err.message}` })
+    this.cms.logger.error({ err, msg: `Error: cannot begin transaction: ${err.message}` })
     throw new Error(`Error: cannot begin transaction: ${err.message}`)
   }
 

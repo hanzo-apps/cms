@@ -1,14 +1,14 @@
 import type { FindOptions } from '../../../collections/operations/local/find.js'
 import type {
   GlobalSlug,
-  Payload,
+  CMS,
   RequestContext,
   TypedFallbackLocale,
   TypedLocale,
 } from '../../../index.js'
 import type {
   Document,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   TransformGlobalWithSelect,
@@ -71,10 +71,10 @@ type BaseFindOneOptions<TSlug extends GlobalSlug, TSelect extends SelectType> = 
    */
   populate?: PopulateType
   /**
-   * The `PayloadRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
+   * The `CMSRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
    * Recommended to pass when using the Local API from hooks, as usually you want to execute the operation within the current transaction.
    */
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * Opt-in to receiving hidden fields. By default, they are hidden from returned documents in accordance to your config.
    * @default false
@@ -99,7 +99,7 @@ export async function findOneGlobalLocal<
   TSlug extends GlobalSlug,
   TSelect extends SelectFromGlobalSlug<TSlug>,
 >(
-  payload: Payload,
+  cms: CMS,
   options: Options<TSlug, TSelect>,
 ): Promise<TransformGlobalWithSelect<TSlug, TSelect>> {
   const {
@@ -116,7 +116,7 @@ export async function findOneGlobalLocal<
     showHiddenFields,
   } = options
 
-  const globalConfig = payload.globals.config.find((config) => config.slug === globalSlug)
+  const globalConfig = cms.globals.config.find((config) => config.slug === globalSlug)
 
   if (!globalConfig) {
     throw new APIError(`The global with slug ${String(globalSlug)} can't be found.`)
@@ -133,7 +133,7 @@ export async function findOneGlobalLocal<
     includeLockStatus,
     overrideAccess,
     populate,
-    req: await createLocalReq(options as CreateLocalReqOptions, payload),
+    req: await createLocalReq(options as CreateLocalReqOptions, cms),
     select,
     showHiddenFields,
   })

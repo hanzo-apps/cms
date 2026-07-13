@@ -9,11 +9,11 @@ import {
   supportsServerFastRefreshConfig,
   supportsTurbopackExternalizeTransitiveDependencies,
 } from './withPayload.utils.js'
-import { withPayloadLegacy } from './withPayloadLegacy.js'
+import { withCMSLegacy } from './withPayloadLegacy.js'
 
 const poweredByHeader = {
   key: 'X-Powered-By',
-  value: 'Next.js, Payload',
+  value: 'Next.js, CMS',
 }
 
 /**
@@ -21,7 +21,7 @@ const poweredByHeader = {
  * @param {Object} [options] - Optional configuration options
  * @param {boolean} [options.devBundleServerPackages] - Whether to bundle server packages in development mode. @default false
  * */
-export const withPayload = (nextConfig = {}, options = {}) => {
+export const withCMS = (nextConfig = {}, options = {}) => {
   const nextjsVersion = getNextjsVersion()
 
   const supportsTurbopackBuild = supportsTurbopackExternalizeTransitiveDependencies(nextjsVersion)
@@ -31,18 +31,18 @@ export const withPayload = (nextConfig = {}, options = {}) => {
 
   if (nextConfig.experimental?.staleTimes?.dynamic) {
     console.warn(
-      'Payload: detected a non-zero value for the `staleTimes.dynamic` option in your Next.js config. This will slow down page transitions and may cause stale data to load within the Admin panel. To clear this warning, remove the `staleTimes.dynamic` option from your Next.js config or set it to 0. In the future, Next.js may support scoping this option to specific routes.',
+      'CMS: detected a non-zero value for the `staleTimes.dynamic` option in your Next.js config. This will slow down page transitions and may cause stale data to load within the Admin panel. To clear this warning, remove the `staleTimes.dynamic` option from your Next.js config or set it to 0. In the future, Next.js may support scoping this option to specific routes.',
     )
     env.NEXT_PUBLIC_ENABLE_ROUTER_CACHE_REFRESH = 'true'
   }
 
   if (nextConfig.cacheComponents) {
-    env.PAYLOAD_CACHE_COMPONENTS_ENABLED = 'true'
+    env.CMS_CACHE_COMPONENTS_ENABLED = 'true'
   }
 
   if (nextjsVersion?.major === 16 && !hasServerFastRefreshConfigOption) {
     console.warn(
-      'Payload: You are using an unsupported Next.js 16 version. You can find the supported Next.js versions here: https://payloadcms.com/docs/getting-started/installation',
+      'CMS: You are using an unsupported Next.js 16 version. You can find the supported Next.js versions here: https://payloadcms.com/docs/getting-started/installation',
     )
   }
 
@@ -144,7 +144,7 @@ export const withPayload = (nextConfig = {}, options = {}) => {
       'graphql',
       ...(process.env.NODE_ENV === 'development' && options.devBundleServerPackages !== true
         ? /**
-           * Unless explicitly disabled by the user, by passing `devBundleServerPackages: true` to withPayload, we
+           * Unless explicitly disabled by the user, by passing `devBundleServerPackages: true` to withCMS, we
            * do not bundle server-only packages during dev for two reasons:
            *
            * 1. Performance: Fewer files to compile means faster compilation speeds.
@@ -240,7 +240,7 @@ export const withPayload = (nextConfig = {}, options = {}) => {
           fallback: {
             ...(incomingWebpackConfig?.resolve?.fallback || {}),
             /*
-             * This fixes the following warning when running next build with webpack (tested on Next.js 16.0.3 with Payload 3.64.0):
+             * This fixes the following warning when running next build with webpack (tested on Next.js 16.0.3 with CMS 3.64.0):
              *
              * ⚠ Compiled with warnings in 8.7s
              *
@@ -271,7 +271,7 @@ export const withPayload = (nextConfig = {}, options = {}) => {
   }
 
   if (!supportsTurbopackBuild) {
-    return withPayloadLegacy(baseConfig)
+    return withCMSLegacy(baseConfig)
   } else {
     return {
       ...baseConfig,
@@ -290,4 +290,4 @@ export const withPayload = (nextConfig = {}, options = {}) => {
   }
 }
 
-export default withPayload
+export default withCMS

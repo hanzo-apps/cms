@@ -3,9 +3,9 @@ import crypto from 'crypto'
 import type { Field, FieldHook } from '../../fields/config/types.js'
 
 const encryptKey: FieldHook = ({ req, value }) =>
-  value ? req.payload.encrypt(value as string) : null
+  value ? req.cms.encrypt(value as string) : null
 const decryptKey: FieldHook = ({ req, value }) =>
-  value ? req.payload.decrypt(value as string) : undefined
+  value ? req.cms.decrypt(value as string) : undefined
 
 export const apiKeyFields = [
   {
@@ -50,7 +50,7 @@ export const apiKeyFields = [
           }
           if (data?.apiKey) {
             return crypto
-              .createHmac('sha256', req.payload.secret)
+              .createHmac('sha256', req.cms.secret)
               .update(data.apiKey as string)
               .digest('hex')
           }

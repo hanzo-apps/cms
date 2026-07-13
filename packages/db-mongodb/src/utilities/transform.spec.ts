@@ -384,7 +384,7 @@ describe('transform', () => {
     const flattenValuesBefore = Object.values(flattenRelationshipValues(data))
 
     const mockAdapter = {
-      payload: {
+      cms: {
         config,
       },
     } as MongooseAdapter

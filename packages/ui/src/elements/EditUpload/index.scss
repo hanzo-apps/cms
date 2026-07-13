@@ -2,7 +2,7 @@
 
 $header-height: base(5);
 
-@layer payload-default {
+@layer cms-default {
   .edit-upload {
     --edit-upload-cell-spacing: calc(var(--base) * 1.5);
     --edit-upload-sidebar-width: calc(350px + var(--gutter-h));

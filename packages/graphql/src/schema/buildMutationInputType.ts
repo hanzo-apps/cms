@@ -217,11 +217,11 @@ export function buildMutationInputType({
     }),
     relationship: (inputObjectTypeConfig: InputObjectTypeConfig, field: RelationshipField) => {
       const { relationTo } = field
-      type PayloadGraphQLRelationshipType =
+      type CMSGraphQLRelationshipType =
         | GraphQLInputObjectType
         | GraphQLList<GraphQLScalarType>
         | GraphQLScalarType
-      let type: PayloadGraphQLRelationshipType
+      let type: CMSGraphQLRelationshipType
 
       if (Array.isArray(relationTo)) {
         const fullName = `${combineParentName(
@@ -363,11 +363,11 @@ export function buildMutationInputType({
     }),
     upload: (inputObjectTypeConfig: InputObjectTypeConfig, field: UploadField) => {
       const { relationTo } = field
-      type PayloadGraphQLRelationshipType =
+      type CMSGraphQLRelationshipType =
         | GraphQLInputObjectType
         | GraphQLList<GraphQLScalarType>
         | GraphQLScalarType
-      let type: PayloadGraphQLRelationshipType
+      let type: CMSGraphQLRelationshipType
 
       if (Array.isArray(relationTo)) {
         const fullName = `${combineParentName(

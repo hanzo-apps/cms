@@ -46,7 +46,7 @@ export const traverseFields = ({
 
       case 'blocks':
         ;(field.blockReferences ?? field.blocks).map((_block) => {
-          // TODO: iterate over blocks mapped to block slug in v4, or pass through payload.blocks
+          // TODO: iterate over blocks mapped to block slug in v4, or pass through cms.blocks
           const block =
             typeof _block === 'string' ? config.blocks.find((b) => b.slug === _block) : _block
 

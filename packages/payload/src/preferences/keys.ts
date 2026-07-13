@@ -1,5 +1,5 @@
 /**
- * Centralized preference keys used throughout Payload admin UI.
+ * Centralized preference keys used throughout CMS admin UI.
  * Import these constants instead of using string literals to prevent typos.
  */
 

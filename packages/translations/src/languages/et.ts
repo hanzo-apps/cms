@@ -397,7 +397,7 @@ export const etTranslations: DefaultTranslationsObject = {
     password: 'Parool',
     pasteField: 'Kleebi väli',
     pasteRow: 'Kleebi rida',
-    payloadSettings: 'Payload seaded',
+    cmsSettings: 'CMS seaded',
     permanentlyDelete: 'Püsivalt Kustuta',
     permanentlyDeletedCountSuccessfully: '{{count}} {{label}} edukalt ja lõplikult kustutatud.',
     perPage: 'Lehel: {{limit}}',

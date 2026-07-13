@@ -51,7 +51,7 @@ export async function resolveImportMapFilePath({
       }
     } else {
       return new Error(
-        `Could not find Payload import map folder. Looked in ${appLocation} and ${srcAppLocation}`,
+        `Could not find CMS import map folder. Looked in ${appLocation} and ${srcAppLocation}`,
       )
     }
   }

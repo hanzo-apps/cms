@@ -63,7 +63,7 @@ async function buildEmail(emailConfig?: NodemailerAdapterArgs): Promise<{
 
     return {
       defaultFromAddress: 'info@payloadcms.com',
-      defaultFromName: 'Payload',
+      defaultFromName: 'CMS',
       transport,
     }
   }

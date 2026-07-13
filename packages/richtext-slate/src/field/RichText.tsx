@@ -1,6 +1,6 @@
 'use client'
 
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 import type { BaseEditor, BaseOperation } from 'slate'
 import type { HistoryEditor } from 'slate-history'
 import type { ReactEditor } from 'slate-react'
@@ -85,7 +85,7 @@ const RichTextField: React.FC<LoadedSlateFieldProps> = (props) => {
           ...validationOptions,
           req: {
             t: i18n.t,
-          } as PayloadRequest,
+          } as CMSRequest,
           required,
         })
       }

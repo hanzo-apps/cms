@@ -1,7 +1,7 @@
 import type {
   Data,
   Field,
-  PayloadRequest,
+  CMSRequest,
   SelectMode,
   SelectType,
   TabAsField,
@@ -15,7 +15,7 @@ type Args<T> = {
   fields: (Field | TabAsField)[]
   id?: number | string
   locale: string | undefined
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   selectMode?: SelectMode
   siblingData: Data

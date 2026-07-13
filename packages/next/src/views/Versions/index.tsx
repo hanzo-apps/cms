@@ -22,7 +22,7 @@ export async function VersionsView(props: DocumentViewServerProps) {
       req,
       req: {
         i18n,
-        payload: { config },
+        cms: { config },
         t,
         user,
       },

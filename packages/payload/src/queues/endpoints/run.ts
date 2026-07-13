@@ -10,7 +10,7 @@ import { runJobs, type RunJobsArgs } from '../operations/runJobs/index.js'
  */
 export const runJobsEndpoint: Endpoint = {
   handler: async (req) => {
-    const jobsConfig = req.payload.config.jobs
+    const jobsConfig = req.cms.config.jobs
 
     if (!configHasJobs(jobsConfig)) {
       return Response.json(
@@ -56,7 +56,7 @@ export const runJobsEndpoint: Endpoint = {
 
     if (shouldHandleSchedules && jobsConfig.scheduling) {
       // If should handle schedules and schedules are defined
-      await req.payload.jobs.handleSchedules({ allQueues: runAllQueues, queue, req })
+      await req.cms.jobs.handleSchedules({ allQueues: runAllQueues, queue, req })
     }
 
     const runJobsArgs: RunJobsArgs = {
@@ -80,7 +80,7 @@ export const runJobsEndpoint: Endpoint = {
       noJobsRemaining = !!result.noJobsRemaining
       remainingJobsFromQueried = result.remainingJobsFromQueried
     } catch (err) {
-      req.payload.logger.error({
+      req.cms.logger.error({
         err,
         msg: 'There was an error running jobs:',
         queue: runJobsArgs.queue,

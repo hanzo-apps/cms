@@ -1,6 +1,6 @@
 import type {
   Data,
-  PayloadRequest,
+  CMSRequest,
   SanitizedCollectionConfig,
   SanitizedDocumentPermissions,
   SanitizedGlobalConfig,
@@ -21,7 +21,7 @@ export const getDocumentPermissions = async (args: {
    * When called for creating a new document, id is not provided.
    */
   id?: number | string
-  req: PayloadRequest
+  req: CMSRequest
 }): Promise<{
   docPermissions: SanitizedDocumentPermissions
   hasDeletePermission: boolean
@@ -99,7 +99,7 @@ export const getDocumentPermissions = async (args: {
         hasTrashPermission = false
       }
     } catch (err) {
-      logError({ err, payload: req.payload })
+      logError({ err, cms: req.cms })
     }
   }
 
@@ -128,7 +128,7 @@ export const getDocumentPermissions = async (args: {
       hasDeletePermission = false
       hasTrashPermission = false
     } catch (err) {
-      logError({ err, payload: req.payload })
+      logError({ err, cms: req.cms })
     }
   }
 

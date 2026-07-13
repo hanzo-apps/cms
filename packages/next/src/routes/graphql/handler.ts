@@ -1,5 +1,5 @@
 import type { GraphQLError, GraphQLFormattedError } from 'graphql'
-import type { APIError, Payload, PayloadRequest, SanitizedConfig } from '@hanzo/cms'
+import type { APIError, CMS, CMSRequest, SanitizedConfig } from '@hanzo/cms'
 
 import { configToSchema } from '@hanzo/cms-graphql'
 import { createHandler } from 'graphql-http/lib/use/fetch'
@@ -7,7 +7,7 @@ import { status as httpStatus } from 'http-status'
 import {
   addDataAndFileToRequest,
   addLocalesToRequestFromData,
-  createPayloadRequest,
+  createCMSRequest,
   headersWithCors,
   logError,
   mergeHeaders,
@@ -15,20 +15,20 @@ import {
 
 const handleError = async ({
   err,
-  payload,
+  cms,
   req,
 }: {
   err: GraphQLError
-  payload: Payload
-  req: PayloadRequest
+  cms: CMS
+  req: CMSRequest
 }): Promise<GraphQLFormattedError> => {
   const status = (err.originalError as APIError).status || httpStatus.INTERNAL_SERVER_ERROR
   let errorMessage = err.message
-  logError({ err, payload })
+  logError({ err, cms })
 
   // Internal server errors can contain anything, including potentially sensitive data.
   // Therefore, error details will be hidden from the response unless `config.debug` is `true`
-  if (!payload.config.debug && status === httpStatus.INTERNAL_SERVER_ERROR) {
+  if (!cms.config.debug && status === httpStatus.INTERNAL_SERVER_ERROR) {
     errorMessage = 'Something went wrong.'
   }
 
@@ -36,7 +36,7 @@ const handleError = async ({
     extensions: {
       name: err?.originalError?.name || undefined,
       data: (err && err.originalError && (err.originalError as APIError).data) || undefined,
-      stack: payload.config.debug ? err.stack : undefined,
+      stack: cms.config.debug ? err.stack : undefined,
       statusCode: status,
     },
     locations: err.locations,
@@ -44,7 +44,7 @@ const handleError = async ({
     path: err.path,
   }
 
-  await payload.config.hooks.afterError?.reduce(async (promise, hook) => {
+  await cms.config.hooks.afterError?.reduce(async (promise, hook) => {
     await promise
 
     const result = await hook({
@@ -62,15 +62,15 @@ const handleError = async ({
   return response
 }
 
-let cached = global._payload_graphql
+let cached = global._cms_graphql
 
 if (!cached) {
-  cached = global._payload_graphql = { graphql: null, promise: null }
+  cached = global._cms_graphql = { graphql: null, promise: null }
 }
 
 export const getGraphql = async (config: Promise<SanitizedConfig> | SanitizedConfig) => {
   if (process.env.NODE_ENV === 'development') {
-    cached = global._payload_graphql = { graphql: null, promise: null }
+    cached = global._cms_graphql = { graphql: null, promise: null }
   }
 
   if (cached.graphql) {
@@ -98,7 +98,7 @@ export const getGraphql = async (config: Promise<SanitizedConfig> | SanitizedCon
 export const POST =
   (config: Promise<SanitizedConfig> | SanitizedConfig) => async (request: Request) => {
     const originalRequest = request.clone()
-    const req = await createPayloadRequest({
+    const req = await createCMSRequest({
       canSetHeaders: true,
       config,
       request,
@@ -109,15 +109,15 @@ export const POST =
 
     const { schema, validationRules } = await getGraphql(config)
 
-    const { payload } = req
+    const { cms } = req
 
     const headers = {}
     const apiResponse = await createHandler({
       context: { headers, req },
       onOperation: async (request, args, result) => {
         const response =
-          typeof payload.extensions === 'function'
-            ? await payload.extensions({
+          typeof cms.extensions === 'function'
+            ? await cms.extensions({
                 args,
                 req: request,
                 result,
@@ -126,7 +126,7 @@ export const POST =
         if (response.errors) {
           const errors = (await Promise.all(
             result.errors.map((error) => {
-              return handleError({ err: error, payload, req })
+              return handleError({ err: error, cms, req })
             }),
           )) as GraphQLError[]
           // errors type should be FormattedGraphQLError[] but onOperation has a return type of ExecutionResult instead of FormattedExecutionResult

@@ -44,7 +44,7 @@ export async function createFormData(
   }
 
   const dataToSerialize = {
-    _payload: JSON.stringify(dataWithOverrides),
+    _cms: JSON.stringify(dataWithOverrides),
     file,
   }
 

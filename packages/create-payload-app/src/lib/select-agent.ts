@@ -51,7 +51,7 @@ export async function selectAgent(args: { cliArgs: CliArgs }): Promise<AgentType
     { label: string; value: 'none' | AgentType }[],
     'none' | AgentType
   >({
-    message: 'Select a coding agent to install the Payload skill for',
+    message: 'Select a coding agent to install the CMS skill for',
     options: [
       ...agentChoices.map((choice) => ({
         label: choice.label,

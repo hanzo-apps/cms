@@ -3,7 +3,7 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { useEffect, useState } from 'react'
 
-// eslint-disable-next-line payload/no-imports-from-exports-dir
+// eslint-disable-next-line cms/no-imports-from-exports-dir
 import { defaultJSXConverters, RichText } from '../../../../../exports/react/index.js'
 import './style.scss'
 

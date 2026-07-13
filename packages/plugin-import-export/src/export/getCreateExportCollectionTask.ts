@@ -123,7 +123,7 @@ export const getCreateCollectionExportTask = (
     slug: 'createCollectionExport',
     handler: async ({ input, req }) => {
       if (!input) {
-        req.payload.logger.error('No input provided to createCollectionExport task')
+        req.cms.logger.error('No input provided to createCollectionExport task')
 
         return { output: {} }
       }

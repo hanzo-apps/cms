@@ -1,5 +1,5 @@
 import type { TypedFallbackLocale } from '../../../index.js'
-import type { PayloadRequest, PopulateType } from '../../../types/index.js'
+import type { CMSRequest, PopulateType } from '../../../types/index.js'
 import type { JoinField, RelationshipField, UploadField } from '../../config/types.js'
 
 import { createDataloaderCacheKey } from '../../../collections/dataloader.js'
@@ -18,7 +18,7 @@ type PopulateArgs = {
   locale: null | string
   overrideAccess: boolean
   populateArg?: PopulateType
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields: boolean
 }
 
@@ -48,7 +48,7 @@ const populate = async ({
   }
 
   const relatedCollection =
-    req.payload.collections[relation as keyof typeof req.payload.collections]
+    req.cms.collections[relation as keyof typeof req.cms.collections]
 
   if (relatedCollection) {
     let id: unknown
@@ -74,7 +74,7 @@ const populate = async ({
     }
 
     if (shouldPopulate) {
-      relationshipValue = await req.payloadDataLoader.load(
+      relationshipValue = await req.cmsDataLoader.load(
         createDataloaderCacheKey({
           collectionSlug: relatedCollection.config.slug,
           currentDepth: currentDepth + 1,
@@ -146,7 +146,7 @@ type PromiseArgs = {
   overrideAccess: boolean
   parentIsLocalized: boolean
   populate?: PopulateType
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields: boolean
   siblingDoc: Record<string, any>
 }

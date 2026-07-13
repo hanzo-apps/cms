@@ -15,7 +15,7 @@ export { useDelay } from '../../hooks/useDelay.js'
 export { useDelayedRender } from '../../hooks/useDelayedRender.js'
 export { useHotkey } from '../../hooks/useHotkey.js'
 export { useIntersect } from '../../hooks/useIntersect.js'
-export { usePayloadAPI } from '../../hooks/usePayloadAPI.js'
+export { useCMSAPI } from '../../hooks/usePayloadAPI.js'
 export { useResize } from '../../hooks/useResize.js'
 export { useThrottledEffect } from '../../hooks/useThrottledEffect.js'
 export { useEffectEvent } from '../../hooks/useEffectEvent.js'
@@ -271,7 +271,7 @@ export { WatchCondition } from '../../forms/withCondition/WatchCondition.js'
 
 // graphics
 export { Account } from '../../graphics/Account/index.js'
-export { PayloadIcon } from '../../graphics/Icon/index.js'
+export { CMSIcon } from '../../graphics/Icon/index.js'
 
 export { DefaultBlockImage } from '../../graphics/DefaultBlockImage/index.js'
 export { File } from '../../graphics/File/index.js'

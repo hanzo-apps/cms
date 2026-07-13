@@ -30,14 +30,14 @@ export const preventLockout: Validate = async (
           user: incomingReq.user,
         },
       },
-      incomingReq.payload,
+      incomingReq.cms,
     )
 
     // Might be `null` if no transactions are enabled
     const transaction = await initTransaction(req)
 
     // create a temp record to validate the constraints, using the req
-    const tempPreset = await req.payload.create({
+    const tempPreset = await req.cms.create({
       collection: queryPresetsCollectionSlug,
       data: {
         ...data,
@@ -50,7 +50,7 @@ export const preventLockout: Validate = async (
     let canRead = false
 
     try {
-      await req.payload.findByID({
+      await req.cms.findByID({
         id: tempPreset.id,
         collection: queryPresetsCollectionSlug,
         overrideAccess: false,
@@ -60,7 +60,7 @@ export const preventLockout: Validate = async (
 
       canRead = true
 
-      await req.payload.update({
+      await req.cms.update({
         id: tempPreset.id,
         collection: queryPresetsCollectionSlug,
         data: tempPreset,
@@ -79,7 +79,7 @@ export const preventLockout: Validate = async (
         await killTransaction(req)
       } else {
         // delete the temp record
-        await req.payload.delete({
+        await req.cms.delete({
           id: tempPreset.id,
           collection: queryPresetsCollectionSlug,
           req,

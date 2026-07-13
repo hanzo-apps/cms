@@ -1,4 +1,4 @@
-import type { Payload } from '../../../../types/index.js'
+import type { CMS } from '../../../../types/index.js'
 
 import { hasLocalizeStatusEnabled } from '../../../../utilities/getVersionsConfig.js'
 import { toSnakeCase } from '../shared.js'
@@ -7,13 +7,13 @@ export type LocalizeStatusArgs = {
   collectionSlug?: string
   db: any
   globalSlug?: string
-  payload: Payload
+  cms: CMS
   req?: any
   sql: any
 }
 
 export async function down(args: LocalizeStatusArgs): Promise<void> {
-  const { collectionSlug, db, globalSlug, payload, sql } = args
+  const { collectionSlug, db, globalSlug, cms, sql } = args
 
   if (!collectionSlug && !globalSlug) {
     throw new Error('Either collectionSlug or globalSlug must be provided')
@@ -30,13 +30,13 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
     : `_${toSnakeCase(globalSlug!)}_v`
   const localesTable = `${versionsTable}_locales`
 
-  if (!payload.config.localization) {
-    throw new Error('Localization is not enabled in payload config')
+  if (!cms.config.localization) {
+    throw new Error('Localization is not enabled in cms config')
   }
 
   const entityConfig = collectionSlug
-    ? payload.config.collections.find((c) => c.slug === collectionSlug)
-    : payload.config.globals.find((g) => g.slug === globalSlug!)
+    ? cms.config.collections.find((c) => c.slug === collectionSlug)
+    : cms.config.globals.find((g) => g.slug === globalSlug!)
 
   if (!entityConfig) {
     throw new Error(
@@ -51,14 +51,14 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
     )
   }
 
-  const defaultLocale = payload.config.localization.defaultLocale
+  const defaultLocale = cms.config.localization.defaultLocale
 
-  payload.logger.info({
+  cms.logger.info({
     msg: `Rolling back _status localization migration for ${collectionSlug ? 'collection' : 'global'}: ${entitySlug}`,
   })
 
   // 1. Restore version__status column to main table
-  payload.logger.info({ msg: `Restoring version__status column to ${versionsTable}` })
+  cms.logger.info({ msg: `Restoring version__status column to ${versionsTable}` })
 
   await db.execute({
     drizzle: db.drizzle,
@@ -68,7 +68,7 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
   })
 
   // 2. Copy status from default locale back to main table
-  payload.logger.info({
+  cms.logger.info({
     msg: `Copying status from default locale (${defaultLocale}) back to main table`,
   })
 
@@ -99,7 +99,7 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
 
   if (!hasOtherLocalizedFields) {
     // SCENARIO 1 ROLLBACK: No other localized fields, drop entire table
-    payload.logger.info({ msg: `Dropping entire locales table: ${localesTable}` })
+    cms.logger.info({ msg: `Dropping entire locales table: ${localesTable}` })
 
     await db.execute({
       drizzle: db.drizzle,
@@ -107,7 +107,7 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
     })
   } else {
     // SCENARIO 2 ROLLBACK: Other localized fields exist, just drop version__status column
-    payload.logger.info({ msg: `Dropping version__status column from ${localesTable}` })
+    cms.logger.info({ msg: `Dropping version__status column from ${localesTable}` })
 
     await db.execute({
       drizzle: db.drizzle,
@@ -164,7 +164,7 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
 
       if (statusInLocalesCheck.rows[0]?.exists) {
         // Add _status back to main table
-        payload.logger.info({ msg: `Restoring _status column to ${mainTable}` })
+        cms.logger.info({ msg: `Restoring _status column to ${mainTable}` })
 
         await db.execute({
           drizzle: db.drizzle,
@@ -186,7 +186,7 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
         })
 
         // Drop _status from locales table
-        payload.logger.info({ msg: `Dropping _status column from ${mainLocalesTable}` })
+        cms.logger.info({ msg: `Dropping _status column from ${mainLocalesTable}` })
 
         await db.execute({
           drizzle: db.drizzle,
@@ -198,7 +198,7 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
     } else {
       // No locales table exists - this means collection/global has no localized fields
       // Just add _status back to main table with default values
-      payload.logger.info({
+      cms.logger.info({
         msg: `Restoring _status column to ${mainTable} (no locales table exists)`,
       })
 
@@ -244,9 +244,9 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
         })
       }
 
-      payload.logger.info({ msg: `Restored _status for ${documents.rows.length} documents` })
+      cms.logger.info({ msg: `Restored _status for ${documents.rows.length} documents` })
     }
   }
 
-  payload.logger.info({ msg: 'Rollback completed successfully' })
+  cms.logger.info({ msg: 'Rollback completed successfully' })
 }

@@ -24,9 +24,9 @@ type Options = {
   initialParams?: unknown
 }
 
-type UsePayloadAPI = (url: string, options?: Options) => Result
+type UseCMSAPI = (url: string, options?: Options) => Result
 
-export const usePayloadAPI: UsePayloadAPI = (url, options = {}) => {
+export const useCMSAPI: UseCMSAPI = (url, options = {}) => {
   const { initialData, initialParams = {} } = options
 
   const { i18n } = useTranslation()

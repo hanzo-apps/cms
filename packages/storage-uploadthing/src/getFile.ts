@@ -1,4 +1,4 @@
-import type { PayloadRequest, Where } from '@hanzo/cms'
+import type { CMSRequest, Where } from '@hanzo/cms'
 import type { UTApi } from 'uploadthing/server'
 
 import { getRangeRequestInfo } from '@hanzo/cms/internal'
@@ -11,7 +11,7 @@ interface GetFileArgs {
   doc?: Record<string, unknown>
   filename: string
   incomingHeaders: Headers
-  req: PayloadRequest
+  req: CMSRequest
   utApi: UTApi
 }
 
@@ -26,7 +26,7 @@ export async function getFile({
 }: GetFileArgs): Promise<Response> {
   try {
     let key: string
-    const collectionConfig = req.payload.collections[collection]?.config
+    const collectionConfig = req.cms.collections[collection]?.config
 
     if (
       clientUploadContext &&
@@ -57,7 +57,7 @@ export async function getFile({
           })
         }
 
-        const result = await req.payload.db.findOne({
+        const result = await req.cms.db.findOne({
           collection,
           req,
           where: { or },
@@ -155,7 +155,7 @@ export async function getFile({
       status: rangeResult.status,
     })
   } catch (err) {
-    req.payload.logger.error({ err, msg: 'Unexpected error in staticHandler' })
+    req.cms.logger.error({ err, msg: 'Unexpected error in staticHandler' })
     return new Response('Internal Server Error', { status: 500 })
   }
 }

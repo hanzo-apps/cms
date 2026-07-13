@@ -30,7 +30,7 @@ import { useEnabledRelationships } from '../../../relationship/client/utils/useE
 import { UploadDrawer } from '../drawer/index.js'
 import { $createUploadNode, $isUploadNode, UploadNode } from '../nodes/UploadNode.js'
 
-export type InsertUploadPayload = Readonly<Omit<UploadData, 'id'> & Partial<Pick<UploadData, 'id'>>>
+export type InsertUploadCMS = Readonly<Omit<UploadData, 'id'> & Partial<Pick<UploadData, 'id'>>>
 
 declare global {
   interface DragEvent {
@@ -65,7 +65,7 @@ function getDragSelection(event: DragEvent): null | Range | undefined {
   return range
 }
 
-export const INSERT_UPLOAD_COMMAND: LexicalCommand<InsertUploadPayload> =
+export const INSERT_UPLOAD_COMMAND: LexicalCommand<InsertUploadCMS> =
   createCommand('INSERT_UPLOAD_COMMAND')
 
 type FileToUpload = {
@@ -224,19 +224,19 @@ export const UploadPlugin: PluginComponent<UploadFeaturePropsClient> = ({ client
         }
         void upload()
       }),
-      editor.registerCommand<InsertUploadPayload>(
+      editor.registerCommand<InsertUploadCMS>(
         INSERT_UPLOAD_COMMAND,
-        (payload: InsertUploadPayload) => {
+        (cms: InsertUploadCMS) => {
           editor.update(() => {
             const selection = $getSelection() || $getPreviousSelection()
 
             if ($isRangeSelection(selection)) {
               const uploadNode = $createUploadNode({
                 data: {
-                  id: payload.id,
-                  fields: payload.fields,
-                  relationTo: payload.relationTo,
-                  value: payload.value,
+                  id: cms.id,
+                  fields: cms.fields,
+                  relationTo: cms.relationTo,
+                  value: cms.value,
                 },
               })
               // we need to get the focus node before inserting the block node, as $insertNodeToNearestRoot can change the focus node

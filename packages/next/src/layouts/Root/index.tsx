@@ -49,7 +49,7 @@ export const RootLayout = ({
     </RootLayoutContent>
   )
 
-  if (process.env.PAYLOAD_CACHE_COMPONENTS_ENABLED === 'true') {
+  if (process.env.CMS_CACHE_COMPONENTS_ENABLED === 'true') {
     return <Suspense fallback={null}>{content}</Suspense>
   }
 
@@ -70,7 +70,7 @@ const RootLayoutContent = async ({
     permissions,
     req,
     req: {
-      payload: { config },
+      cms: { config },
     },
   } = await initReq({ configPromise, importMap, key: 'RootLayout' })
 
@@ -101,7 +101,7 @@ const RootLayoutContent = async ({
     'use server'
     const cookies = await nextCookies()
     cookies.set({
-      name: `${config.cookiePrefix || 'payload'}-lng`,
+      name: `${config.cookiePrefix || 'cms'}-lng`,
       maxAge: 60 * 60 * 24 * 365,
       path: '/',
       value: lang,
@@ -128,7 +128,7 @@ const RootLayoutContent = async ({
       {...htmlProps}
     >
       <head>
-        <style>{`@layer payload-default, payload;`}</style>
+        <style>{`@layer cms-default, cms;`}</style>
       </head>
       <body>
         <RootProvider
@@ -150,11 +150,11 @@ const RootLayoutContent = async ({
           {Array.isArray(config.admin?.components?.providers) &&
           config.admin?.components?.providers.length > 0 ? (
             <NestProviders
-              importMap={req.payload.importMap}
+              importMap={req.cms.importMap}
               providers={config.admin?.components?.providers}
               serverProps={{
                 i18n: req.i18n,
-                payload: req.payload,
+                cms: req.cms,
                 permissions,
                 user: req.user,
               }}

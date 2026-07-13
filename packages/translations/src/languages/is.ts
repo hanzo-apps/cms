@@ -397,7 +397,7 @@ export const isTranslations: DefaultTranslationsObject = {
     password: 'Lykilorð',
     pasteField: 'Líma svæði',
     pasteRow: 'Líma röð',
-    payloadSettings: 'Payload stillingar',
+    cmsSettings: 'CMS stillingar',
     permanentlyDelete: 'Eyða varanlega',
     permanentlyDeletedCountSuccessfully: 'Eyddi {{count}} {{label}} varanlega.',
     perPage: 'Á síðu: {{limit}}',

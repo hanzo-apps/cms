@@ -1,11 +1,11 @@
 import type { DefaultDocumentIDType } from '../index.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 export type PreferenceRequest = {
   key: string
   overrideAccess?: boolean
-  req: PayloadRequest
-  user: PayloadRequest['user']
+  req: CMSRequest
+  user: CMSRequest['user']
 }
 
 export type PreferenceUpdateRequest = { value: unknown } & PreferenceRequest

@@ -1,10 +1,10 @@
-import type { DashboardConfig, PayloadRequest, Widget, WidgetInstance } from '@hanzo/cms'
+import type { DashboardConfig, CMSRequest, Widget, WidgetInstance } from '@hanzo/cms'
 
 import type { WidgetItem } from '../index.client.js'
 
 export async function getItemsFromConfig(
   defaultLayout: NonNullable<DashboardConfig['defaultLayout']>,
-  req: PayloadRequest,
+  req: CMSRequest,
   widgets: Pick<Widget, 'maxWidth' | 'minWidth' | 'slug'>[],
 ): Promise<WidgetItem[]> {
   let widgetInstances: WidgetInstance[]

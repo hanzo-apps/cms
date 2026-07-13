@@ -1,13 +1,13 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { getRequestCollection } from '../../utilities/getRequestEntity.js'
 import { headersWithCors } from '../../utilities/headersWithCors.js'
-import { generatePayloadCookie } from '../cookies.js'
+import { generateCMSCookie } from '../cookies.js'
 import { registerFirstUserOperation } from '../operations/registerFirstUser.js'
 
-export const registerFirstUserHandler: PayloadHandler = async (req) => {
+export const registerFirstUserHandler: CMSHandler = async (req) => {
   const collection = getRequestCollection(req)
   const { data, t } = req
   const authData = collection.config.auth?.loginWithUsername
@@ -30,9 +30,9 @@ export const registerFirstUserHandler: PayloadHandler = async (req) => {
     req,
   })
 
-  const cookie = generatePayloadCookie({
+  const cookie = generateCMSCookie({
     collectionAuthConfig: collection.config.auth,
-    cookiePrefix: req.payload.config.cookiePrefix,
+    cookiePrefix: req.cms.config.cookiePrefix,
     token: result.token!,
   })
 

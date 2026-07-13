@@ -6,7 +6,7 @@ import type { DbType, StorageAdapterType } from '../types.js'
 
 import { warning } from '../utils/log.js'
 import { updatePackageJson } from './ast/package-json.js'
-import { configurePayloadConfig as configurePayloadConfigAST } from './ast/payload-config.js'
+import { configureCMSConfig as configureCMSConfigAST } from './ast/payload-config.js'
 
 /** Get default env var name for db type */
 function getEnvVarName(dbType: DbType, customEnvName?: string): string {
@@ -20,14 +20,14 @@ function getEnvVarName(dbType: DbType, customEnvName?: string): string {
   return 'DATABASE_URL'
 }
 
-/** Update payload config with necessary imports and adapters */
-export async function configurePayloadConfig(args: {
+/** Update cms config with necessary imports and adapters */
+export async function configureCMSConfig(args: {
   dbType?: DbType
   envNames?: {
     dbUri: string
   }
   packageJsonName?: string
-  projectDirOrConfigPath: { payloadConfigPath: string } | { projectDir: string }
+  projectDirOrConfigPath: { cmsConfigPath: string } | { projectDir: string }
   sharp?: boolean
   storageAdapter?: StorageAdapterType
 }): Promise<void> {
@@ -49,33 +49,33 @@ export async function configurePayloadConfig(args: {
         storageAdapter: args.storageAdapter,
       })
     } catch (err: unknown) {
-      warning(`Unable to configure Payload in package.json`)
+      warning(`Unable to configure CMS in package.json`)
       warning(err instanceof Error ? err.message : '')
     }
   }
 
   // Update payload.config.ts
   try {
-    let payloadConfigPath: string | undefined
-    if (!('payloadConfigPath' in args.projectDirOrConfigPath)) {
-      payloadConfigPath = (
+    let cmsConfigPath: string | undefined
+    if (!('cmsConfigPath' in args.projectDirOrConfigPath)) {
+      cmsConfigPath = (
         await globby('**/payload.config.ts', {
           absolute: true,
           cwd: args.projectDirOrConfigPath.projectDir,
         })
       )?.[0]
     } else {
-      payloadConfigPath = args.projectDirOrConfigPath.payloadConfigPath
+      cmsConfigPath = args.projectDirOrConfigPath.cmsConfigPath
     }
 
-    if (!payloadConfigPath) {
+    if (!cmsConfigPath) {
       warning('Unable to update payload.config.ts with plugins. Could not find payload.config.ts.')
       return
     }
 
     const envVarName = getEnvVarName(args.dbType, args.envNames?.dbUri)
 
-    const result = await configurePayloadConfigAST(payloadConfigPath, {
+    const result = await configureCMSConfigAST(cmsConfigPath, {
       db: {
         type: args.dbType,
         envVarName,

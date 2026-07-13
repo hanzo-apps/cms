@@ -16,7 +16,7 @@ export const ToastContainer: React.FC<{
 
   return (
     <Toaster
-      className="payload-toast-container"
+      className="cms-toast-container"
       closeButton
       // @ts-expect-error
       dir="undefined"
@@ -33,14 +33,14 @@ export const ToastContainer: React.FC<{
       position={position ?? 'bottom-right'}
       toastOptions={{
         classNames: {
-          closeButton: 'payload-toast-close-button',
+          closeButton: 'cms-toast-close-button',
           content: 'toast-content',
           error: 'toast-error',
           icon: 'toast-icon',
           info: 'toast-info',
           success: 'toast-success',
           title: 'toast-title',
-          toast: 'payload-toast-item',
+          toast: 'cms-toast-item',
           warning: 'toast-warning',
         },
         unstyled: true,

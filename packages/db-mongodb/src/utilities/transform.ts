@@ -495,7 +495,7 @@ const stripFields = ({
 }
 
 /**
- * A function that transforms Payload <-> MongoDB data.
+ * A function that transforms CMS <-> MongoDB data.
  * @internal - this function may be removed or receive breaking changes in minor releases.
  */
 export const transform = ({
@@ -534,7 +534,7 @@ export const transform = ({
   }
 
   const {
-    payload: { config },
+    cms: { config },
   } = adapter
 
   if (operation === 'read') {

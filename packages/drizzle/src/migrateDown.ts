@@ -14,19 +14,19 @@ import { migrationTableExists } from './utilities/migrationTableExists.js'
 import { parseError } from './utilities/parseError.js'
 
 export async function migrateDown(this: DrizzleAdapter): Promise<void> {
-  const { payload } = this
-  const migrationFiles = await readMigrationFiles({ payload })
+  const { cms } = this
+  const migrationFiles = await readMigrationFiles({ cms })
 
   const { existingMigrations, latestBatch } = await getMigrations({
-    payload,
+    cms,
   })
 
   if (!existingMigrations?.length) {
-    payload.logger.info({ msg: 'No migrations to rollback.' })
+    cms.logger.info({ msg: 'No migrations to rollback.' })
     return
   }
 
-  payload.logger.info({
+  cms.logger.info({
     msg: `Rolling back batch ${latestBatch} consisting of ${existingMigrations.length} migration(s).`,
   })
 
@@ -39,23 +39,23 @@ export async function migrateDown(this: DrizzleAdapter): Promise<void> {
     }
 
     const start = Date.now()
-    const req = await createLocalReq({}, payload)
+    const req = await createLocalReq({}, cms)
 
     try {
-      payload.logger.info({ msg: `Migrating down: ${migrationFile.name}` })
+      cms.logger.info({ msg: `Migrating down: ${migrationFile.name}` })
       await initTransaction(req)
       const db = await getTransaction(this, req)
-      await migrationFile.down({ db, payload, req })
-      payload.logger.info({
+      await migrationFile.down({ db, cms, req })
+      cms.logger.info({
         msg: `Migrated down:  ${migrationFile.name} (${Date.now() - start}ms)`,
       })
 
       const tableExists = await migrationTableExists(this, db)
 
       if (tableExists) {
-        await payload.delete({
+        await cms.delete({
           id: migration.id,
-          collection: 'payload-migrations',
+          collection: 'cms-migrations',
           req,
         })
       }
@@ -64,7 +64,7 @@ export async function migrateDown(this: DrizzleAdapter): Promise<void> {
     } catch (err: unknown) {
       await killTransaction(req)
 
-      payload.logger.error({
+      cms.logger.error({
         err,
         msg: parseError(err, `Error migrating down ${migrationFile.name}. Rolling back.`),
       })

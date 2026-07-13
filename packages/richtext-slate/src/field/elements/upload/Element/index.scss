@@ -1,6 +1,6 @@
 @import '~@hanzo/cms-ui/scss';
 
-@layer payload-default {
+@layer cms-default {
   .rich-text-upload {
     @extend %body;
     @include shadow-sm;

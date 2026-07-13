@@ -1,11 +1,11 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
-import type { PayloadRequest } from '../../types/index.js'
+import type { CMSHandler } from '../../config/types.js'
+import type { CMSRequest } from '../../types/index.js'
 
 import { update } from '../operations/update.js'
 
-export const updateHandler: PayloadHandler = async (incomingReq) => {
+export const updateHandler: CMSHandler = async (incomingReq) => {
   // We cannot import the addDataAndFileToRequest utility here from the 'next' package because of dependency issues
   // However that utility should be used where possible instead of manually appending the data
   let data
@@ -16,7 +16,7 @@ export const updateHandler: PayloadHandler = async (incomingReq) => {
     data = {}
   }
 
-  const reqWithData: PayloadRequest = incomingReq
+  const reqWithData: CMSRequest = incomingReq
 
   if (data) {
     reqWithData.data = data

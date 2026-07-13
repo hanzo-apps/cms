@@ -1,16 +1,16 @@
 import type { SanitizedConfig } from '../config/types.js'
 import type { TypedFallbackLocale } from '../index.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { sanitizeFallbackLocale } from './sanitizeFallbackLocale.js'
 
 /**
  * Mutates the Request to contain 'locale' and 'fallbackLocale' based on data or searchParams
  */
-export function addLocalesToRequestFromData(req: PayloadRequest): void {
+export function addLocalesToRequestFromData(req: CMSRequest): void {
   const {
     data,
-    payload: { config },
+    cms: { config },
   } = req
 
   if (data) {

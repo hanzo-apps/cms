@@ -399,7 +399,7 @@ export const taTranslations: DefaultTranslationsObject = {
     password: 'கடவுச்சொல்',
     pasteField: 'புலத்தை ஒட்டு',
     pasteRow: 'வரிசையை ஒட்டு',
-    payloadSettings: 'Payload அமைப்புகள்',
+    cmsSettings: 'CMS அமைப்புகள்',
     permanentlyDelete: 'நிரந்தரமாக நீக்கு',
     permanentlyDeletedCountSuccessfully: '{{count}} {{label}} நிரந்தரமாக நீக்கப்பட்டது.',
     perPage: 'ஒரு பக்கத்தில்: {{limit}}',

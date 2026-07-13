@@ -28,7 +28,7 @@ export const getAfterDeleteHook = ({
 
       await Promise.all(promises)
     } catch (err: unknown) {
-      req.payload.logger.error({
+      req.cms.logger.error({
         err,
         msg: `There was an error while deleting files corresponding to the ${collection.labels?.singular} with ID ${doc.id}.`,
       })

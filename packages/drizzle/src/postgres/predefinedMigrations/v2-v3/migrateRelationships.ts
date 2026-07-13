@@ -1,5 +1,5 @@
 import type { PgSchema } from 'drizzle-orm/pg-core'
-import type { FlattenedField, Payload, PayloadRequest } from '@hanzo/cms'
+import type { FlattenedField, CMS, CMSRequest } from '@hanzo/cms'
 
 import { sql } from 'drizzle-orm'
 
@@ -17,8 +17,8 @@ type Args = {
   globalSlug?: string
   isVersions: boolean
   pathsToQuery: PathsToQuery
-  payload: Payload
-  req?: Partial<PayloadRequest>
+  cms: CMS
+  req?: Partial<CMSRequest>
   tableName: string
 }
 
@@ -31,7 +31,7 @@ export const migrateRelationships = async ({
   globalSlug,
   isVersions,
   pathsToQuery,
-  payload,
+  cms,
   req,
   tableName,
 }: Args) => {
@@ -68,8 +68,8 @@ export const migrateRelationships = async ({
     (${where}) AND parent_id IN (${paginationResult.rows.map((row) => `'${row.parent_id}'`).join(', ')});
 `
     if (debug) {
-      payload.logger.info('FINDING ROWS TO MIGRATE')
-      payload.logger.info(statement)
+      cms.logger.info('FINDING ROWS TO MIGRATE')
+      cms.logger.info(statement)
     }
 
     const result = await db.execute(sql.raw(`${statement}`))
@@ -96,7 +96,7 @@ export const migrateRelationships = async ({
       fields,
       globalSlug,
       isVersions,
-      payload,
+      cms,
       req,
       tableName,
     })
@@ -104,8 +104,8 @@ export const migrateRelationships = async ({
 
   const deleteStatement = `DELETE FROM "${schemaName}"."${tableName}${adapter.relationshipsSuffix}" WHERE ${where}`
   if (debug) {
-    payload.logger.info('DELETING ROWS')
-    payload.logger.info(deleteStatement)
+    cms.logger.info('DELETING ROWS')
+    cms.logger.info(deleteStatement)
   }
   await db.execute(sql.raw(`${deleteStatement}`))
 }

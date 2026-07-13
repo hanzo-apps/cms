@@ -2,7 +2,7 @@ import type { JSONSchema4 } from 'json-schema'
 
 import { createMcpHandler } from 'mcp-handler'
 import { join } from 'path'
-import { APIError, configToJSONSchema, type PayloadRequest, type TypedUser } from '@hanzo/cms'
+import { APIError, configToJSONSchema, type CMSRequest, type TypedUser } from '@hanzo/cms'
 
 import type { MCPAccessSettings, MCPPluginConfig } from '../types.js'
 
@@ -46,10 +46,10 @@ import { updateJobTool } from './tools/job/update.js'
 export const getMCPHandler = (
   pluginOptions: MCPPluginConfig,
   mcpAccessSettings: MCPAccessSettings,
-  req: PayloadRequest,
+  req: CMSRequest,
 ) => {
-  const { payload } = req
-  const configSchema = configToJSONSchema(payload.config, payload.db.defaultIDType, req.i18n, {
+  const { cms } = req
+  const configSchema = configToJSONSchema(cms.config, cms.db.defaultIDType, req.i18n, {
     forceInlineBlocks: true,
   })
 
@@ -62,15 +62,15 @@ export const getMCPHandler = (
     }
   }
 
-  const payloadToolHandler = (
+  const cmsToolHandler = (
     handler: NonNullable<NonNullable<MCPPluginConfig['mcp']>['tools']>[number]['handler'],
   ) => wrapHandler(handler)
 
-  const payloadPromptHandler = (
+  const cmsPromptHandler = (
     handler: NonNullable<NonNullable<MCPPluginConfig['mcp']>['prompts']>[number]['handler'],
   ) => wrapHandler(handler)
 
-  const payloadResourceHandler = (
+  const cmsResourceHandler = (
     handler: NonNullable<NonNullable<MCPPluginConfig['mcp']>['resources']>[number]['handler'],
   ) => wrapHandler(handler)
 
@@ -117,7 +117,7 @@ export const getMCPHandler = (
             const rawSchema = configSchema.definitions?.[enabledCollectionSlug] as JSONSchema4
 
             const virtualFieldNames = getCollectionVirtualFieldNames(
-              payload.config,
+              cms.config,
               enabledCollectionSlug,
             )
             const schema = removeVirtualFieldsFromSchema(
@@ -147,7 +147,7 @@ export const getMCPHandler = (
                     collectionsPluginConfig,
                     schema,
                   ),
-                payload,
+                cms,
                 useVerboseLogs,
               )
             }
@@ -165,7 +165,7 @@ export const getMCPHandler = (
                     collectionsPluginConfig,
                     schema,
                   ),
-                payload,
+                cms,
                 useVerboseLogs,
               )
             }
@@ -182,7 +182,7 @@ export const getMCPHandler = (
                     enabledCollectionSlug,
                     collectionsPluginConfig,
                   ),
-                payload,
+                cms,
                 useVerboseLogs,
               )
             }
@@ -199,7 +199,7 @@ export const getMCPHandler = (
                     enabledCollectionSlug,
                     collectionsPluginConfig,
                   ),
-                payload,
+                cms,
                 useVerboseLogs,
               )
             }
@@ -218,7 +218,7 @@ export const getMCPHandler = (
           try {
             const rawSchema = configSchema.definitions?.[enabledGlobalSlug] as JSONSchema4
 
-            const virtualFieldNames = getGlobalVirtualFieldNames(payload.config, enabledGlobalSlug)
+            const virtualFieldNames = getGlobalVirtualFieldNames(cms.config, enabledGlobalSlug)
             const schema = removeVirtualFieldsFromSchema(
               JSON.parse(JSON.stringify(rawSchema)) as JSONSchema4,
               virtualFieldNames,
@@ -243,7 +243,7 @@ export const getMCPHandler = (
                     enabledGlobalSlug,
                     globalsPluginConfig,
                   ),
-                payload,
+                cms,
                 useVerboseLogs,
               )
             }
@@ -261,7 +261,7 @@ export const getMCPHandler = (
                     globalsPluginConfig,
                     schema,
                   ),
-                payload,
+                cms,
                 useVerboseLogs,
               )
             }
@@ -276,7 +276,7 @@ export const getMCPHandler = (
         // Custom tools
         customMCPTools.forEach((tool) => {
           const camelCasedToolName = toCamelCase(tool.name)
-          const isToolEnabled = mcpAccessSettings['payload-mcp-tool']?.[camelCasedToolName] ?? false
+          const isToolEnabled = mcpAccessSettings['cms-mcp-tool']?.[camelCasedToolName] ?? false
 
           registerTool(
             isToolEnabled,
@@ -288,9 +288,9 @@ export const getMCPHandler = (
                   description: tool.description,
                   inputSchema: tool.parameters,
                 },
-                payloadToolHandler(tool.handler),
+                cmsToolHandler(tool.handler),
               ),
-            payload,
+            cms,
             useVerboseLogs,
           )
         })
@@ -299,7 +299,7 @@ export const getMCPHandler = (
         customMCPPrompts.forEach((prompt) => {
           const camelCasedPromptName = toCamelCase(prompt.name)
           const isPromptEnabled =
-            mcpAccessSettings['payload-mcp-prompt']?.[camelCasedPromptName] ?? false
+            mcpAccessSettings['cms-mcp-prompt']?.[camelCasedPromptName] ?? false
 
           if (isPromptEnabled) {
             server.registerPrompt(
@@ -309,13 +309,13 @@ export const getMCPHandler = (
                 description: prompt.description,
                 title: prompt.title,
               },
-              payloadPromptHandler(prompt.handler),
+              cmsPromptHandler(prompt.handler),
             )
             if (useVerboseLogs) {
-              payload.logger.info(`[payload-mcp] ✅ Prompt: ${prompt.title} Registered.`)
+              cms.logger.info(`[cms-mcp] ✅ Prompt: ${prompt.title} Registered.`)
             }
           } else if (useVerboseLogs) {
-            payload.logger.info(`[payload-mcp] ⏭️ Prompt: ${prompt.title} Skipped.`)
+            cms.logger.info(`[cms-mcp] ⏭️ Prompt: ${prompt.title} Skipped.`)
           }
         })
 
@@ -323,7 +323,7 @@ export const getMCPHandler = (
         customMCPResources.forEach((resource) => {
           const camelCasedResourceName = toCamelCase(resource.name)
           const isResourceEnabled =
-            mcpAccessSettings['payload-mcp-resource']?.[camelCasedResourceName] ?? false
+            mcpAccessSettings['cms-mcp-resource']?.[camelCasedResourceName] ?? false
 
           if (isResourceEnabled) {
             server.registerResource(
@@ -335,14 +335,14 @@ export const getMCPHandler = (
                 mimeType: resource.mimeType,
                 title: resource.title,
               },
-              payloadResourceHandler(resource.handler),
+              cmsResourceHandler(resource.handler),
             )
 
             if (useVerboseLogs) {
-              payload.logger.info(`[payload-mcp] ✅ Resource: ${resource.title} Registered.`)
+              cms.logger.info(`[cms-mcp] ✅ Resource: ${resource.title} Registered.`)
             }
           } else if (useVerboseLogs) {
-            payload.logger.info(`[payload-mcp] ⏭️ Resource: ${resource.title} Skipped.`)
+            cms.logger.info(`[cms-mcp] ⏭️ Resource: ${resource.title} Skipped.`)
           }
         })
 
@@ -357,7 +357,7 @@ export const getMCPHandler = (
             'Create Collection',
             () =>
               createCollectionTool(server, req, useVerboseLogs, collectionsDirPath, configFilePath),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -371,7 +371,7 @@ export const getMCPHandler = (
             'Delete Collection',
             () =>
               deleteCollectionTool(server, req, useVerboseLogs, collectionsDirPath, configFilePath),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -385,7 +385,7 @@ export const getMCPHandler = (
             mcpAccessSettings.collections.find,
             'Find Collection',
             () => findCollectionTool(server, req, useVerboseLogs, collectionsDirPath),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -400,18 +400,18 @@ export const getMCPHandler = (
             'Update Collection',
             () =>
               updateCollectionTool(server, req, useVerboseLogs, collectionsDirPath, configFilePath),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
 
-        // Experimental - Payload Config Modification Tools
+        // Experimental - CMS Config Modification Tools
         if (mcpAccessSettings.config?.find && experimentalTools.config?.enabled && isDevelopment) {
           registerTool(
             mcpAccessSettings.config.find,
             'Find Config',
             () => findConfigTool(server, req, useVerboseLogs, configFilePath),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -425,7 +425,7 @@ export const getMCPHandler = (
             mcpAccessSettings.config.update,
             'Update Config',
             () => updateConfigTool(server, req, useVerboseLogs, configFilePath),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -436,7 +436,7 @@ export const getMCPHandler = (
             mcpAccessSettings.jobs.create,
             'Create Job',
             () => createJobTool(server, req, useVerboseLogs, jobsDirPath),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -446,7 +446,7 @@ export const getMCPHandler = (
             mcpAccessSettings.jobs.update,
             'Update Job',
             () => updateJobTool(server, req, useVerboseLogs, jobsDirPath),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -456,7 +456,7 @@ export const getMCPHandler = (
             mcpAccessSettings.jobs.run,
             'Run Job',
             () => runJobTool(server, req, useVerboseLogs),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -467,7 +467,7 @@ export const getMCPHandler = (
             mcpAccessSettings.auth.auth,
             'Auth',
             () => authTool(server, req, useVerboseLogs),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -477,7 +477,7 @@ export const getMCPHandler = (
             mcpAccessSettings.auth.login,
             'Login',
             () => loginTool(server, req, useVerboseLogs),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -487,7 +487,7 @@ export const getMCPHandler = (
             mcpAccessSettings.auth.verify,
             'Verify',
             () => verifyTool(server, req, useVerboseLogs),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -497,7 +497,7 @@ export const getMCPHandler = (
             mcpAccessSettings.auth.resetPassword,
             'Reset Password',
             () => resetPasswordTool(server, req, useVerboseLogs),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -507,7 +507,7 @@ export const getMCPHandler = (
             mcpAccessSettings.auth.forgotPassword,
             'Forgot Password',
             () => forgotPasswordTool(server, req, useVerboseLogs),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
@@ -517,13 +517,13 @@ export const getMCPHandler = (
             mcpAccessSettings.auth.unlock,
             'Unlock',
             () => unlockTool(server, req, useVerboseLogs),
-            payload,
+            cms,
             useVerboseLogs,
           )
         }
 
         if (useVerboseLogs) {
-          payload.logger.info('[payload-mcp] 🚀 MCP Server Ready.')
+          cms.logger.info('[cms-mcp] 🚀 MCP Server Ready.')
         }
       },
       {
@@ -531,7 +531,7 @@ export const getMCPHandler = (
         serverInfo: serverOptions.serverInfo,
       },
       {
-        basePath: MCPHandlerOptions.basePath || payload.config.routes?.api || '/api',
+        basePath: MCPHandlerOptions.basePath || cms.config.routes?.api || '/api',
         disableSse: MCPHandlerOptions.disableSse ?? true,
         maxDuration: MCPHandlerOptions.maxDuration || 60,
         onEvent: MCPHandlerOptions.onEvent,

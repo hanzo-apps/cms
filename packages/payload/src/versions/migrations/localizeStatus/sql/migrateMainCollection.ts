@@ -1,4 +1,4 @@
-import type { Payload } from '../../../../types/index.js'
+import type { CMS } from '../../../../types/index.js'
 
 import { toSnakeCase } from '../shared.js'
 
@@ -9,21 +9,21 @@ export async function migrateMainCollectionStatus({
   collectionSlug,
   db,
   locales,
-  payload,
+  cms,
   sql,
   versionsTable,
 }: {
   collectionSlug: string
   db: any
   locales: string[]
-  payload: Payload
+  cms: CMS
   sql: any
   versionsTable: string
 }): Promise<void> {
   const mainTable = toSnakeCase(collectionSlug)
   const mainLocalesTable = `${mainTable}_locales`
 
-  payload.logger.info({ msg: `Migrating main collection locales for: ${mainLocalesTable}` })
+  cms.logger.info({ msg: `Migrating main collection locales for: ${mainLocalesTable}` })
 
   // Get all documents
   const documents = await db.execute({
@@ -65,5 +65,5 @@ export async function migrateMainCollectionStatus({
     }
   }
 
-  payload.logger.info({ msg: `Migrated ${documents.rows.length} collection documents` })
+  cms.logger.info({ msg: `Migrated ${documents.rows.length} collection documents` })
 }

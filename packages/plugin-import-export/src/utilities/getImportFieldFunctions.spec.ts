@@ -1,16 +1,16 @@
-import { FlattenedField, PayloadRequest } from '@hanzo/cms'
+import { FlattenedField, CMSRequest } from '@hanzo/cms'
 
 import { describe, expect, it, vi } from 'vitest'
 
 import { getImportFieldFunctions } from './getImportFieldFunctions.js'
 
 const mockReq = {
-  payload: {
+  cms: {
     logger: {
       error: vi.fn(),
     },
   },
-} as unknown as PayloadRequest
+} as unknown as CMSRequest
 
 const callHook = (
   hooks: ReturnType<typeof getImportFieldFunctions>,

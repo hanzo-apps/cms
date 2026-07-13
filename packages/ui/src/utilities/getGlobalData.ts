@@ -1,15 +1,15 @@
-import type { ClientUser, PayloadRequest, TypedUser } from '@hanzo/cms'
+import type { ClientUser, CMSRequest, TypedUser } from '@hanzo/cms'
 
 const globalLockDurationDefault = 300
 
-export async function getGlobalData(req: PayloadRequest) {
+export async function getGlobalData(req: CMSRequest) {
   const {
-    payload: { config },
-    payload,
+    cms: { config },
+    cms,
   } = req
   // Query locked global documents only if there are globals in the config
   // This type is repeated from DashboardViewServerPropsOnly['globalData'].
-  // I thought about moving it to a payload to share it, but we're already
+  // I thought about moving it to a cms to share it, but we're already
   // exporting all the views props from the next package.
   let globalData: Array<{
     data: { _isLocked: boolean; _lastEditedAt: string; _userEditing: ClientUser | number | string }
@@ -18,9 +18,9 @@ export async function getGlobalData(req: PayloadRequest) {
   }> = []
 
   if (config.globals.length > 0) {
-    if (payload.collections?.['payload-locked-documents']) {
-      const lockedDocuments = await payload.find({
-        collection: 'payload-locked-documents',
+    if (cms.collections?.['cms-locked-documents']) {
+      const lockedDocuments = await cms.find({
+        collection: 'cms-locked-documents',
         depth: 1,
         overrideAccess: false,
         pagination: false,

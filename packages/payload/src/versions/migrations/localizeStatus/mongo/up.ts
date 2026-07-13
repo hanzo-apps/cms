@@ -1,16 +1,16 @@
-import type { Payload } from '../../../../types/index.js'
+import type { CMS } from '../../../../types/index.js'
 
 import { calculateVersionLocaleStatuses, type VersionRecord } from '../shared.js'
 
 export type LocalizeStatusArgs = {
   collectionSlug?: string
   globalSlug?: string
-  payload: Payload
+  cms: CMS
   req?: any
 }
 
 export async function up(args: LocalizeStatusArgs): Promise<void> {
-  const { collectionSlug, globalSlug, payload, req } = args
+  const { collectionSlug, globalSlug, cms, req } = args
 
   if (!collectionSlug && !globalSlug) {
     throw new Error('Either collectionSlug or globalSlug must be provided')
@@ -24,19 +24,19 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
   // MongoDB collection names are case-insensitive and stored as lowercase
   const versionsCollection = `_${entitySlug}_versions`.toLowerCase()
 
-  if (!payload.config.localization) {
-    throw new Error('Localization is not enabled in payload config')
+  if (!cms.config.localization) {
+    throw new Error('Localization is not enabled in cms config')
   }
 
   // Check if versions are enabled on this collection/global
   let entityConfig
   if (collectionSlug) {
-    const collection = payload.config.collections.find((c) => c.slug === collectionSlug)
+    const collection = cms.config.collections.find((c) => c.slug === collectionSlug)
     if (collection) {
       entityConfig = collection
     }
   } else if (globalSlug) {
-    const global = payload.config.globals.find((g) => g.slug === globalSlug)
+    const global = cms.config.globals.find((g) => g.slug === globalSlug)
     if (global) {
       entityConfig = global
     }
@@ -48,37 +48,37 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     )
   }
 
-  payload.logger.info({
+  cms.logger.info({
     msg: `Starting _status localization migration for ${collectionSlug ? 'collection' : 'global'}: ${entitySlug}`,
   })
 
   // Check if versions are enabled in config (skip if not)
   if (!entityConfig.versions) {
-    payload.logger.info({
+    cms.logger.info({
       msg: `Skipping migration for ${collectionSlug ? 'collection' : 'global'}: ${entitySlug} - versions not enabled`,
     })
     return
   }
 
   // Get MongoDB connection
-  const connection = (payload.db as any).connection
+  const connection = (cms.db as any).connection
 
   // Get filtered locales if filterAvailableLocales is defined
-  let locales = payload.config.localization.localeCodes
-  if (typeof payload.config.localization.filterAvailableLocales === 'function') {
-    const filteredLocaleObjects = await payload.config.localization.filterAvailableLocales({
-      locales: payload.config.localization.locales,
+  let locales = cms.config.localization.localeCodes
+  if (typeof cms.config.localization.filterAvailableLocales === 'function') {
+    const filteredLocaleObjects = await cms.config.localization.filterAvailableLocales({
+      locales: cms.config.localization.locales,
       req,
     })
     locales = filteredLocaleObjects.map((locale) => locale.code)
   }
-  payload.logger.info({ msg: `Locales: ${locales.join(', ')}` })
+  cms.logger.info({ msg: `Locales: ${locales.join(', ')}` })
 
   // Check if version._status exists and is NOT already localized
   const sampleDoc = await connection.collection(versionsCollection).findOne({})
 
   if (!sampleDoc) {
-    payload.logger.info({ msg: 'No version documents found, nothing to migrate' })
+    cms.logger.info({ msg: 'No version documents found, nothing to migrate' })
     return
   }
 
@@ -88,7 +88,7 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     typeof sampleDoc.version._status === 'object' &&
     !Array.isArray(sampleDoc.version._status)
   ) {
-    payload.logger.info({
+    cms.logger.info({
       msg: 'version._status is already localized, migration already completed',
     })
     return
@@ -106,7 +106,7 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     )
   }
 
-  payload.logger.info({ msg: 'Fetching all version documents...' })
+  cms.logger.info({ msg: 'Fetching all version documents...' })
 
   // Get all versions, sorted chronologically
   const allVersions = await connection
@@ -115,7 +115,7 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     .sort({ createdAt: 1, parent: 1 })
     .toArray()
 
-  payload.logger.info({ msg: `Found ${allVersions.length} version documents` })
+  cms.logger.info({ msg: `Found ${allVersions.length} version documents` })
 
   // Transform MongoDB documents to VersionRecord format
   const versionRecords: VersionRecord[] = allVersions.map((doc: any) => ({
@@ -128,9 +128,9 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
   }))
 
   // Calculate status per locale using shared logic
-  const versionLocaleStatus = calculateVersionLocaleStatuses(versionRecords, locales, payload)
+  const versionLocaleStatus = calculateVersionLocaleStatuses(versionRecords, locales, cms)
 
-  payload.logger.info({ msg: 'Updating version documents with per-locale status...' })
+  cms.logger.info({ msg: 'Updating version documents with per-locale status...' })
 
   // Update each version document
   let updateCount = 0
@@ -139,7 +139,7 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     const localeStatusMap = versionLocaleStatus.get(versionId)
 
     if (!localeStatusMap) {
-      payload.logger.warn({ msg: `No status map found for version ${versionId}, skipping` })
+      cms.logger.warn({ msg: `No status map found for version ${versionId}, skipping` })
       continue
     }
 
@@ -162,7 +162,7 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     updateCount++
   }
 
-  payload.logger.info({ msg: `Updated ${updateCount} version documents` })
+  cms.logger.info({ msg: `Updated ${updateCount} version documents` })
 
   // Migrate main collection/global document _status to per-locale status object
   // Only if it has a status field
@@ -171,7 +171,7 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     const mainDoc = await connection.collection(mainCollection).findOne({})
 
     if (mainDoc && '_status' in mainDoc) {
-      payload.logger.info({ msg: `Migrating main collection documents for: ${mainCollection}` })
+      cms.logger.info({ msg: `Migrating main collection documents for: ${mainCollection}` })
 
       const allDocs = await connection.collection(mainCollection).find({}).toArray()
 
@@ -211,9 +211,9 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
         )
       }
 
-      payload.logger.info({ msg: `Migrated ${allDocs.length} collection documents` })
+      cms.logger.info({ msg: `Migrated ${allDocs.length} collection documents` })
     } else {
-      payload.logger.info({
+      cms.logger.info({
         msg: 'Skipping main document status migration (no status field found)',
       })
     }
@@ -221,7 +221,7 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
     // Globals are stored in a single 'globals' collection with globalType discriminator
     const globalDoc = await connection.collection('globals').findOne({ globalType: globalSlug })
     if (globalDoc && '_status' in globalDoc && globalDoc._id) {
-      payload.logger.info({ msg: `Migrating main global document for: ${globalSlug}` })
+      cms.logger.info({ msg: `Migrating main global document for: ${globalSlug}` })
 
       // Get the latest version for the global
       const latestVersions = await connection
@@ -251,13 +251,13 @@ export async function up(args: LocalizeStatusArgs): Promise<void> {
         },
       )
 
-      payload.logger.info({ msg: 'Migrated global document' })
+      cms.logger.info({ msg: 'Migrated global document' })
     } else {
-      payload.logger.info({
+      cms.logger.info({
         msg: 'Skipping main document status migration (no status field found)',
       })
     }
   }
 
-  payload.logger.info({ msg: 'Migration completed successfully' })
+  cms.logger.info({ msg: 'Migration completed successfully' })
 }

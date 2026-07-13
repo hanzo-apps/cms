@@ -58,7 +58,7 @@ export type RedisKVAdapterOptions = {
   /**
    * Optional prefix for Redis keys to isolate the store
    *
-   * @default 'payload-kv:'
+   * @default 'cms-kv:'
    */
   keyPrefix?: string
   /** Redis connection URL (e.g., 'redis://localhost:6379'). Defaults to process.env.REDIS_URL */
@@ -66,7 +66,7 @@ export type RedisKVAdapterOptions = {
 }
 
 export const redisKVAdapter = (options: RedisKVAdapterOptions = {}): KVAdapterResult => {
-  const keyPrefix = options.keyPrefix ?? 'payload-kv:'
+  const keyPrefix = options.keyPrefix ?? 'cms-kv:'
   const redisURL = options.redisURL ?? process.env.REDIS_URL
 
   if (!redisURL) {

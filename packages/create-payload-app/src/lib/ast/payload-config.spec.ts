@@ -3,14 +3,14 @@ import { Project } from 'ts-morph'
 import {
   addDatabaseAdapter,
   addStorageAdapter,
-  detectPayloadConfigStructure,
+  detectCMSConfigStructure,
   removeSharp,
 } from './payload-config'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'
 
-describe('detectPayloadConfigStructure', () => {
+describe('detectCMSConfigStructure', () => {
   it('successfully detects buildConfig call', () => {
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
@@ -23,7 +23,7 @@ export default buildConfig({
 })`,
     )
 
-    const result = detectPayloadConfigStructure(sourceFile)
+    const result = detectCMSConfigStructure(sourceFile)
 
     expect(result.success).toBe(true)
     expect(result.structures?.buildConfigCall).toBeDefined()
@@ -33,7 +33,7 @@ export default buildConfig({
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile('payload.config.ts', `export default {}`)
 
-    const result = detectPayloadConfigStructure(sourceFile)
+    const result = detectCMSConfigStructure(sourceFile)
 
     expect(result.success).toBe(false)
     expect(result.error?.userMessage).toContain('buildConfig')
@@ -53,7 +53,7 @@ const config = buildConfig({
 export default config`,
     )
 
-    const result = detectPayloadConfigStructure(sourceFile)
+    const result = detectCMSConfigStructure(sourceFile)
 
     expect(result.success).toBe(true)
     expect(result.structures?.buildConfigCall).toBeDefined()
@@ -72,7 +72,7 @@ export default createConfig({
 })`,
     )
 
-    const result = detectPayloadConfigStructure(sourceFile)
+    const result = detectCMSConfigStructure(sourceFile)
 
     expect(result.success).toBe(true)
     expect(result.edgeCases?.hasImportAlias).toBe(true)
@@ -92,13 +92,13 @@ export default buildConfig({
 })`,
     )
 
-    const result = detectPayloadConfigStructure(sourceFile)
+    const result = detectCMSConfigStructure(sourceFile)
 
     expect(result.success).toBe(true)
     expect(result.edgeCases?.multipleBuildConfigCalls).toBe(true)
   })
 
-  it('detects other Payload imports', () => {
+  it('detects other CMS imports', () => {
     const project = new Project({ useInMemoryFileSystem: true })
     const sourceFile = project.createSourceFile(
       'payload.config.ts',
@@ -109,10 +109,10 @@ export default buildConfig({
 })`,
     )
 
-    const result = detectPayloadConfigStructure(sourceFile)
+    const result = detectCMSConfigStructure(sourceFile)
 
     expect(result.success).toBe(true)
-    expect(result.edgeCases?.hasOtherPayloadImports).toBe(true)
+    expect(result.edgeCases?.hasOtherCMSImports).toBe(true)
   })
 })
 
@@ -289,11 +289,11 @@ export default buildConfig({
   })
 })
 
-describe('configurePayloadConfig', () => {
+describe('configureCMSConfig', () => {
   let tempDir: string
 
   beforeEach(() => {
-    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'payload-test-'))
+    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'cms-test-'))
   })
 
   afterEach(() => {
@@ -311,8 +311,8 @@ export default buildConfig({
 })`,
     )
 
-    const { configurePayloadConfig } = await import('./payload-config')
-    const result = await configurePayloadConfig(filePath, {
+    const { configureCMSConfig } = await import('./payload-config')
+    const result = await configureCMSConfig(filePath, {
       db: { type: 'postgres', envVarName: 'DATABASE_URL' },
       storage: 'vercelBlobStorage',
     })
@@ -336,8 +336,8 @@ export default buildConfig({
 })`,
     )
 
-    const { configurePayloadConfig } = await import('./payload-config')
-    const result = await configurePayloadConfig(filePath, {
+    const { configureCMSConfig } = await import('./payload-config')
+    const result = await configureCMSConfig(filePath, {
       db: { type: 'mongodb', envVarName: 'MONGO_URL' },
     })
 
@@ -363,8 +363,8 @@ export default buildConfig({
 })`,
     )
 
-    const { configurePayloadConfig } = await import('./payload-config')
-    const result = await configurePayloadConfig(filePath, {
+    const { configureCMSConfig } = await import('./payload-config')
+    const result = await configureCMSConfig(filePath, {
       removeSharp: true,
     })
 
@@ -382,8 +382,8 @@ export default buildConfig({
       `export default {}`, // Invalid structure
     )
 
-    const { configurePayloadConfig } = await import('./payload-config')
-    const result = await configurePayloadConfig(filePath, {
+    const { configureCMSConfig } = await import('./payload-config')
+    const result = await configureCMSConfig(filePath, {
       db: { type: 'postgres', envVarName: 'DATABASE_URL' },
     })
 
@@ -394,8 +394,8 @@ export default buildConfig({
   it('handles file not found error', async () => {
     const filePath = path.join(tempDir, 'nonexistent.ts')
 
-    const { configurePayloadConfig } = await import('./payload-config')
-    const result = await configurePayloadConfig(filePath, {
+    const { configureCMSConfig } = await import('./payload-config')
+    const result = await configureCMSConfig(filePath, {
       db: { type: 'postgres', envVarName: 'DATABASE_URL' },
     })
 
@@ -416,8 +416,8 @@ export default buildConfig({
 })`,
     )
 
-    const { configurePayloadConfig } = await import('./payload-config')
-    const result = await configurePayloadConfig(filePath, {
+    const { configureCMSConfig } = await import('./payload-config')
+    const result = await configureCMSConfig(filePath, {
       db: { type: 'postgres', envVarName: 'DATABASE_URL' },
     })
 

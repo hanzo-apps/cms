@@ -1,18 +1,18 @@
 import type { CollectionConfig } from '../../index.js'
-import type { Payload, PayloadRequest } from '../../types/index.js'
+import type { CMS, CMSRequest } from '../../types/index.js'
 import type { KVAdapter, KVAdapterResult, KVStoreValue } from '../index.js'
 
 /** Mocked `req`, we don't need to use transactions, neither we want `createLocalReq` overhead. */
-const req = {} as PayloadRequest
+const req = {} as CMSRequest
 
 export class DatabaseKVAdapter implements KVAdapter {
   constructor(
-    readonly payload: Payload,
+    readonly cms: CMS,
     readonly collectionSlug: string,
   ) {}
 
   async clear(): Promise<void> {
-    await this.payload.db.deleteMany({
+    await this.cms.db.deleteMany({
       collection: this.collectionSlug,
       req,
       where: {},
@@ -20,7 +20,7 @@ export class DatabaseKVAdapter implements KVAdapter {
   }
 
   async delete(key: string): Promise<void> {
-    await this.payload.db.deleteOne({
+    await this.cms.db.deleteOne({
       collection: this.collectionSlug,
       req,
       where: { key: { equals: key } },
@@ -28,7 +28,7 @@ export class DatabaseKVAdapter implements KVAdapter {
   }
 
   async get<T extends KVStoreValue>(key: string): Promise<null | T> {
-    const doc = await this.payload.db.findOne<{
+    const doc = await this.cms.db.findOne<{
       data: T
       id: number | string
     }>({
@@ -50,7 +50,7 @@ export class DatabaseKVAdapter implements KVAdapter {
   }
 
   async has(key: string): Promise<boolean> {
-    const { totalDocs } = await this.payload.db.count({
+    const { totalDocs } = await this.cms.db.count({
       collection: this.collectionSlug,
       req,
       where: { key: { equals: key } },
@@ -60,7 +60,7 @@ export class DatabaseKVAdapter implements KVAdapter {
   }
 
   async keys(): Promise<string[]> {
-    const result = await this.payload.db.find<{ key: string }>({
+    const result = await this.cms.db.find<{ key: string }>({
       collection: this.collectionSlug,
       limit: 0,
       pagination: false,
@@ -74,7 +74,7 @@ export class DatabaseKVAdapter implements KVAdapter {
   }
 
   async set(key: string, data: KVStoreValue): Promise<void> {
-    await this.payload.db.upsert({
+    await this.cms.db.upsert({
       collection: this.collectionSlug,
       data: {
         data,
@@ -94,9 +94,9 @@ export type DatabaseKVAdapterOptions = {
 }
 
 export const databaseKVAdapter = (options: DatabaseKVAdapterOptions = {}): KVAdapterResult => {
-  const collectionSlug = options.kvCollectionOverrides?.slug ?? 'payload-kv'
+  const collectionSlug = options.kvCollectionOverrides?.slug ?? 'cms-kv'
   return {
-    init: ({ payload }) => new DatabaseKVAdapter(payload, collectionSlug),
+    init: ({ cms }) => new DatabaseKVAdapter(cms, collectionSlug),
     kvCollection: {
       slug: collectionSlug,
       access: {

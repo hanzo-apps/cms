@@ -13,7 +13,7 @@ import React from 'react'
 
 import type { AdapterArguments, RichTextCustomElement, RichTextCustomLeaf } from '../types.js'
 
-// eslint-disable-next-line payload/no-imports-from-exports-dir
+// eslint-disable-next-line cms/no-imports-from-exports-dir
 import { RichTextField } from '../exports/client/index.js'
 import { elements as elementTypes } from '../field/elements/index.js'
 import { defaultLeaves as leafTypes } from '../field/leaves/index.js'
@@ -35,7 +35,7 @@ export const RscEntrySlateField: React.FC<
   forceRender,
   i18n,
   path,
-  payload,
+  cms,
   readOnly,
   renderedBlocks,
   schemaPath,
@@ -64,7 +64,7 @@ export const RscEntrySlateField: React.FC<
         RenderServerComponent({
           clientProps,
           Component: LeafButton,
-          importMap: payload.importMap,
+          importMap: cms.importMap,
         }),
       )
 
@@ -73,7 +73,7 @@ export const RscEntrySlateField: React.FC<
         RenderServerComponent({
           clientProps,
           Component: LeafComponent,
-          importMap: payload.importMap,
+          importMap: cms.importMap,
         }),
       )
 
@@ -84,7 +84,7 @@ export const RscEntrySlateField: React.FC<
             RenderServerComponent({
               clientProps,
               Component: Plugin,
-              importMap: payload.importMap,
+              importMap: cms.importMap,
             }),
           )
         })
@@ -110,7 +110,7 @@ export const RscEntrySlateField: React.FC<
           RenderServerComponent({
             clientProps,
             Component: ElementButton,
-            importMap: payload.importMap,
+            importMap: cms.importMap,
           }),
         )
       }
@@ -119,7 +119,7 @@ export const RscEntrySlateField: React.FC<
         RenderServerComponent({
           clientProps,
           Component: ElementComponent,
-          importMap: payload.importMap,
+          importMap: cms.importMap,
         }),
       )
 
@@ -130,7 +130,7 @@ export const RscEntrySlateField: React.FC<
             RenderServerComponent({
               clientProps,
               Component: Plugin,
-              importMap: payload.importMap,
+              importMap: cms.importMap,
             }),
           )
         })
@@ -139,10 +139,10 @@ export const RscEntrySlateField: React.FC<
       switch (element.name) {
         case 'link': {
           const clientFields = createClientFields({
-            defaultIDType: payload.config.db.defaultIDType,
+            defaultIDType: cms.config.db.defaultIDType,
             fields: args.admin?.link?.fields as Field[],
             i18n,
-            importMap: payload.importMap,
+            importMap: cms.importMap,
           })
 
           componentMap.set(linkFieldsSchemaPath, clientFields)
@@ -154,7 +154,7 @@ export const RscEntrySlateField: React.FC<
           break
 
         case 'upload': {
-          const uploadEnabledCollections = payload.config.collections.filter(
+          const uploadEnabledCollections = cms.config.collections.filter(
             ({ admin: { enableRichTextRelationship, hidden }, upload }) => {
               if (hidden === true) {
                 return false
@@ -167,10 +167,10 @@ export const RscEntrySlateField: React.FC<
           uploadEnabledCollections.forEach((collection) => {
             if (args?.admin?.upload?.collections[collection.slug]?.fields) {
               const clientFields = createClientFields({
-                defaultIDType: payload.config.db.defaultIDType,
+                defaultIDType: cms.config.db.defaultIDType,
                 fields: args?.admin?.upload?.collections[collection.slug]?.fields,
                 i18n,
-                importMap: payload.importMap,
+                importMap: cms.importMap,
               })
 
               componentMap.set(`${uploadFieldsSchemaPath}.${collection.slug}`, clientFields)

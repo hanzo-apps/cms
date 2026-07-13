@@ -1,7 +1,7 @@
 import { status as httpStatus } from 'http-status'
 
 import type { FindOptions } from '../../index.js'
-import type { PayloadRequest, PopulateType, SelectType } from '../../types/index.js'
+import type { CMSRequest, PopulateType, SelectType } from '../../types/index.js'
 import type { TypeWithVersion } from '../../versions/types.js'
 import type { Collection, TypeWithID } from '../config/types.js'
 
@@ -25,7 +25,7 @@ export type Arguments = {
   id: number | string
   overrideAccess?: boolean
   populate?: PopulateType
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields?: boolean
   trash?: boolean
 } & Pick<FindOptions<string, SelectType>, 'select'>
@@ -41,7 +41,7 @@ export const findVersionByIDOperation = async <TData extends TypeWithID = any>(
     disableErrors,
     overrideAccess,
     populate,
-    req: { fallbackLocale, locale, payload },
+    req: { fallbackLocale, locale, cms },
     req,
     select: incomingSelect,
     showHiddenFields,
@@ -95,13 +95,13 @@ export const findVersionByIDOperation = async <TData extends TypeWithID = any>(
     // /////////////////////////////////////
 
     const select = sanitizeSelect({
-      fields: buildVersionCollectionFields(payload.config, collectionConfig, true),
+      fields: buildVersionCollectionFields(cms.config, collectionConfig, true),
       forceSelect: getQueryDraftsSelect({ select: collectionConfig.forceSelect }),
       select: incomingSelect,
       versions: true,
     })
 
-    const versionsQuery = await payload.db.findVersions<TData>({
+    const versionsQuery = await cms.db.findVersions<TData>({
       collection: collectionConfig.slug,
       limit: 1,
       locale: locale!,

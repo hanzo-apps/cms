@@ -402,7 +402,7 @@ export const caTranslations: DefaultTranslationsObject = {
     password: 'Contrasenya',
     pasteField: 'Enganxar camp',
     pasteRow: 'Enganxar fila',
-    payloadSettings: 'configuracio Payload',
+    cmsSettings: 'configuracio CMS',
     permanentlyDelete: 'Esborrar permanentment',
     permanentlyDeletedCountSuccessfully:
       "S'ha eliminat permanentment {{count}} {{label}} amb èxit.",

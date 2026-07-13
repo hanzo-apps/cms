@@ -3,8 +3,8 @@ export { withMergedProps } from '../../elements/withMergedProps/index.js' // can
 export { WithServerSideProps } from '../../elements/WithServerSideProps/index.js'
 export { mergeFieldStyles } from '../../fields/mergeFieldStyles.js'
 export { reduceToSerializableFields } from '../../forms/Form/reduceToSerializableFields.js'
-export { PayloadIcon } from '../../graphics/Icon/index.js'
-export { PayloadLogo } from '../../graphics/Logo/index.js'
+export { CMSIcon } from '../../graphics/Icon/index.js'
+export { CMSLogo } from '../../graphics/Logo/index.js'
 // IMPORTANT: the shared.ts file CANNOT contain any Server Components _that import client components_.
 export { filterFields } from '../../providers/TableColumns/buildColumnState/filterFields.js'
 export { getInitialColumns } from '../../providers/TableColumns/getInitialColumns.js'

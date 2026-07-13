@@ -1,5 +1,5 @@
 import type { AccessResult } from '../../config/types.js'
-import type { PayloadRequest, Where } from '../../types/index.js'
+import type { CMSRequest, Where } from '../../types/index.js'
 import type { Collection } from '../config/types.js'
 
 import { executeAccess } from '../../auth/executeAccess.js'
@@ -15,7 +15,7 @@ export type Arguments = {
   collection: Collection
   disableErrors?: boolean
   overrideAccess?: boolean
-  req?: PayloadRequest
+  req?: CMSRequest
   where?: Where
 }
 
@@ -45,7 +45,7 @@ export const countVersionsOperation = async <TSlug extends CollectionSlug>(
       where,
     } = args
 
-    const { locale, payload } = req!
+    const { locale, cms } = req!
 
     // /////////////////////////////////////
     // Access
@@ -71,9 +71,9 @@ export const countVersionsOperation = async <TSlug extends CollectionSlug>(
 
     const fullWhere = combineQueries(where!, accessResult!)
 
-    const versionFields = buildVersionCollectionFields(payload.config, collectionConfig, true)
+    const versionFields = buildVersionCollectionFields(cms.config, collectionConfig, true)
 
-    sanitizeWhereQuery({ fields: versionFields, payload, where: fullWhere })
+    sanitizeWhereQuery({ fields: versionFields, cms, where: fullWhere })
 
     await validateQueryPaths({
       collectionConfig,
@@ -83,7 +83,7 @@ export const countVersionsOperation = async <TSlug extends CollectionSlug>(
       where: where!,
     })
 
-    result = await payload.db.countVersions({
+    result = await cms.db.countVersions({
       collection: collectionConfig.slug,
       locale: locale!,
       req,

@@ -7,11 +7,11 @@ export const executeAuthStrategies = async (
 ): Promise<AuthStrategyResult> => {
   let result: AuthStrategyResult = { user: null }
 
-  if (!args.payload.authStrategies?.length) {
+  if (!args.cms.authStrategies?.length) {
     return result
   }
 
-  for (const strategy of args.payload.authStrategies) {
+  for (const strategy of args.cms.authStrategies) {
     // add the configured AuthStrategy `name` to the strategy function args
     args.strategyName = strategy.name
     args.isGraphQL = Boolean(args.isGraphQL)
@@ -27,7 +27,7 @@ export const executeAuthStrategies = async (
       }
       result = authResult
     } catch (err) {
-      logError({ err, payload: args.payload })
+      logError({ err, cms: args.cms })
     }
 
     if (result.user) {

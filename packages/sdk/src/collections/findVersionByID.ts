@@ -1,17 +1,17 @@
 import type {
   ApplyDisableErrors,
   CollectionSlug,
-  PayloadTypesShape,
+  CMSTypesShape,
   SelectType,
   TypedLocale,
   TypeWithVersion,
 } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type { DataFromCollectionSlug, PopulateType } from '../types.js'
 
 export type FindVersionByIDOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TDisableErrors extends boolean,
 > = {
@@ -64,11 +64,11 @@ export type FindVersionByIDOptions<
 }
 
 export async function findVersionByID<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TDisableErrors extends boolean,
 >(
-  sdk: PayloadSDK<T>,
+  sdk: CMSSDK<T>,
   options: FindVersionByIDOptions<T, TSlug, TDisableErrors>,
   init?: RequestInit,
 ): Promise<ApplyDisableErrors<TypeWithVersion<DataFromCollectionSlug<T, TSlug>>, TDisableErrors>> {

@@ -1,5 +1,5 @@
 import type { Job } from '../../../index.js'
-import type { PayloadRequest, Sort, Where } from '../../../types/index.js'
+import type { CMSRequest, Sort, Where } from '../../../types/index.js'
 import type { WorkflowJSON } from '../../config/types/workflowJSONTypes.js'
 import type { WorkflowConfig, WorkflowHandler } from '../../config/types/workflowTypes.js'
 import type { RunJobsSilent } from '../../localAPI.js'
@@ -49,7 +49,7 @@ export type RunJobsArgs = {
    * @default jobs from the `default` queue will be executed.
    */
   queue?: string
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * By default, jobs are run in parallel.
    * If you want to run them in sequence, set this to true.
@@ -59,7 +59,7 @@ export type RunJobsArgs = {
    * If set to true, the job system will not log any output to the console (for both info and error logs).
    * Can be an option for more granular control over logging.
    *
-   * This will not automatically affect user-configured logs (e.g. if you call `console.log` or `payload.logger.info` in your job code).
+   * This will not automatically affect user-configured logs (e.g. if you call `console.log` or `cms.logger.info` in your job code).
    *
    * @default false
    */
@@ -89,8 +89,8 @@ export const runJobs = async (args: RunJobsArgs): Promise<RunJobsResult> => {
     queue = 'default',
     req,
     req: {
-      payload,
-      payload: {
+      cms,
+      cms: {
         config: { jobs: jobsConfig },
       },
     },
@@ -157,7 +157,7 @@ export const runJobs = async (args: RunJobsArgs): Promise<RunJobsResult> => {
   if (jobsConfig.enableConcurrencyControl) {
     // Find currently running jobs with concurrency keys to enforce exclusive concurrency
     // Jobs with the same concurrencyKey should not run in parallel
-    const runningJobsWithConcurrency = await payload.db.find({
+    const runningJobsWithConcurrency = await cms.db.find({
       collection: jobsCollectionSlug,
       limit: 0,
       pagination: false,
@@ -214,7 +214,7 @@ export const runJobs = async (args: RunJobsArgs): Promise<RunJobsResult> => {
     }
   } else {
     let defaultProcessingOrder: Sort =
-      payload.collections[jobsCollectionSlug]?.config.defaultSort ?? 'createdAt'
+      cms.collections[jobsCollectionSlug]?.config.defaultSort ?? 'createdAt'
 
     const processingOrderConfig = jobsConfig.processingOrder
     if (typeof processingOrderConfig === 'function') {
@@ -315,7 +315,7 @@ export const runJobs = async (args: RunJobsArgs): Promise<RunJobsResult> => {
       }
     }
 
-    payload.logger.info({
+    cms.logger.info({
       msg: `Running ${jobs.length} jobs.`,
       new: newCount,
       retrying: retryCount,
@@ -355,10 +355,10 @@ export const runJobs = async (args: RunJobsArgs): Promise<RunJobsResult> => {
 
     if (!workflowConfig) {
       // Permanently fail jobs whose task/workflow slug is no longer registered in config — they can never complete.
-      const errorMessage = `${job.taskSlug ? `Task '${job.taskSlug}'` : `Workflow '${job.workflowSlug}'`} is not registered in payload.config.jobs.`
+      const errorMessage = `${job.taskSlug ? `Task '${job.taskSlug}'` : `Workflow '${job.workflowSlug}'`} is not registered in cms.config.jobs.`
 
       if (!silent || (typeof silent === 'object' && !silent.error)) {
-        payload.logger.error({
+        cms.logger.error({
           msg: `Error running job ${job.workflowSlug || `Task: ${job.taskSlug}`} id: ${job.id} - ${errorMessage}`,
         })
       }
@@ -398,7 +398,7 @@ export const runJobs = async (args: RunJobsArgs): Promise<RunJobsResult> => {
           const jobLabel = job.workflowSlug || `Task: ${job.taskSlug}`
           const errorMessage = `Can't find runner while importing with the path ${workflowConfig.handler} in job type ${jobLabel}.`
           if (!silent || (typeof silent === 'object' && !silent.error)) {
-            payload.logger.error(errorMessage)
+            cms.logger.error(errorMessage)
           }
 
           await updateJob({
@@ -509,21 +509,21 @@ export const runJobs = async (args: RunJobsArgs): Promise<RunJobsResult> => {
   if (jobsConfig.deleteJobOnComplete && successfullyCompletedJobs.length) {
     try {
       if (jobsConfig.runHooks) {
-        await payload.delete({
+        await cms.delete({
           collection: jobsCollectionSlug,
           depth: 0, // can be 0 since we're not returning anything
           disableTransaction: true,
           where: { id: { in: successfullyCompletedJobs } },
         })
       } else {
-        await payload.db.deleteMany({
+        await cms.db.deleteMany({
           collection: jobsCollectionSlug,
           where: { id: { in: successfullyCompletedJobs } },
         })
       }
     } catch (err) {
       if (!silent || (typeof silent === 'object' && !silent.error)) {
-        payload.logger.error({
+        cms.logger.error({
           err,
           msg: `Failed to delete jobs ${successfullyCompletedJobs.join(', ')} on complete`,
         })

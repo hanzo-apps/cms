@@ -8,12 +8,12 @@ let cachedDefaultSanitizedServerEditorConfig:
   | null
   | Promise<SanitizedServerEditorConfig>
   | SanitizedServerEditorConfig = (global as any)
-  ._payload_lexical_defaultSanitizedServerEditorConfig
+  ._cms_lexical_defaultSanitizedServerEditorConfig
 
 if (!cachedDefaultSanitizedServerEditorConfig) {
   cachedDefaultSanitizedServerEditorConfig = (
     global as any
-  )._payload_lexical_defaultSanitizedServerEditorConfig = null
+  )._cms_lexical_defaultSanitizedServerEditorConfig = null
 }
 
 export const getDefaultSanitizedEditorConfig = async (args: {
@@ -31,11 +31,11 @@ export const getDefaultSanitizedEditorConfig = async (args: {
     config,
     parentIsLocalized,
   )
-  ;(global as any).payload_lexical_defaultSanitizedServerEditorConfig =
+  ;(global as any).cms_lexical_defaultSanitizedServerEditorConfig =
     cachedDefaultSanitizedServerEditorConfig
 
   cachedDefaultSanitizedServerEditorConfig = await cachedDefaultSanitizedServerEditorConfig
-  ;(global as any).payload_lexical_defaultSanitizedServerEditorConfig =
+  ;(global as any).cms_lexical_defaultSanitizedServerEditorConfig =
     cachedDefaultSanitizedServerEditorConfig
 
   return cachedDefaultSanitizedServerEditorConfig

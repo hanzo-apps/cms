@@ -3,7 +3,7 @@ import tseslint from 'typescript-eslint'
 import perfectionist from 'eslint-plugin-perfectionist'
 import { configs as regexpPluginConfigs } from 'eslint-plugin-regexp'
 import eslintConfigPrettier from 'eslint-config-prettier/flat'
-import payloadPlugin from '@hanzo/cms-eslint-plugin'
+import cmsPlugin from '@hanzo/cms-eslint-plugin'
 import reactExtends from './configs/react/index.mjs'
 import globals from 'globals'
 import importX from 'eslint-plugin-import-x'
@@ -51,7 +51,7 @@ const baseRules = {
       partitionByNewLine': true,
     },
   ],*/
-  'payload/no-jsx-import-statements': 'error',
+  'cms/no-jsx-import-statements': 'error',
 }
 
 const reactA11yRules = {
@@ -199,7 +199,7 @@ export const rootEslintConfig = [
       eslintConfigPrettier,
       {
         plugins: {
-          payload: payloadPlugin,
+          cms: cmsPlugin,
         },
         rules: {
           ...baseRules,
@@ -220,7 +220,7 @@ export const rootEslintConfig = [
       eslintConfigPrettier,
       {
         plugins: {
-          payload: payloadPlugin,
+          cms: cmsPlugin,
         },
         rules: {
           ...baseRules,
@@ -243,9 +243,9 @@ export const rootEslintConfig = [
     ignores: ['**/*.e2e.spec.ts'],
   },
   {
-    name: 'Payload Config',
+    name: 'CMS Config',
     plugins: {
-      payload: payloadPlugin,
+      cms: cmsPlugin,
     },
     rules: {
       'no-restricted-exports': 'off',

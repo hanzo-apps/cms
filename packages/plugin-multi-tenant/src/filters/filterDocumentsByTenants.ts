@@ -1,4 +1,4 @@
-import type { PayloadRequest, TypedUser, Where } from '@hanzo/cms'
+import type { CMSRequest, TypedUser, Where } from '@hanzo/cms'
 
 import type { MultiTenantPluginConfig } from '../types.js'
 
@@ -15,7 +15,7 @@ type Args<ConfigType = unknown> = {
    */
   docTenantID?: number | number[] | string | string[]
   filterFieldName: string
-  req: PayloadRequest
+  req: CMSRequest
   tenantsArrayFieldName?: string
   tenantsArrayTenantFieldName?: string
   tenantsCollectionSlug: string
@@ -34,7 +34,7 @@ export const filterDocumentsByTenants = <ConfigType = unknown>({
 }: Args<ConfigType>): null | Where => {
   const idType = getCollectionIDType({
     collectionSlug: tenantsCollectionSlug,
-    payload: req.payload,
+    cms: req.cms,
   })
 
   // scope results to selected tenant

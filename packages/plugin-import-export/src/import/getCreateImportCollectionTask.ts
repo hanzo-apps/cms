@@ -37,7 +37,7 @@ export const getCreateCollectionImportTask = (
       } = input
 
       // Fetch the import document to get all necessary data
-      const importDoc = await req.payload.findByID({
+      const importDoc = await req.cms.findByID({
         id: importId,
         collection: importCollection,
       })
@@ -47,7 +47,7 @@ export const getCreateCollectionImportTask = (
       }
 
       // Get the collection config for the imports collection
-      const collectionConfig = req.payload.config.collections.find(
+      const collectionConfig = req.cms.config.collections.find(
         (c) => c.slug === importCollection,
       )
 
@@ -96,7 +96,7 @@ export const getCreateCollectionImportTask = (
       })
 
       // Update the import document with results
-      await req.payload.update({
+      await req.cms.update({
         id: importId,
         collection: importCollection,
         data: {

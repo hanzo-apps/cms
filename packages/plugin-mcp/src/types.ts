@@ -2,7 +2,7 @@ import type {
   CollectionConfig,
   CollectionSlug,
   GlobalSlug,
-  PayloadRequest,
+  CMSRequest,
   TypedUser,
 } from '@hanzo/cms'
 import type { z } from 'zod'
@@ -44,7 +44,7 @@ export type MCPPluginConfig = {
             }>
           },
           doc: Record<string, unknown>,
-          req: PayloadRequest,
+          req: CMSRequest,
         ) => {
           content: Array<{
             text: string
@@ -64,7 +64,7 @@ export type MCPPluginConfig = {
    */
   experimental?: {
     /**
-     * These are MCP tools that can be used by a client to modify Payload.
+     * These are MCP tools that can be used by a client to modify CMS.
      */
     tools: {
       /**
@@ -78,11 +78,11 @@ export type MCPPluginConfig = {
         enabled: boolean
       }
       /**
-       * **Experimental** -- Collection MCP tools allow for the creation, modification, and deletion of Payload collections. This is for developing ideas that help Developers with collection tasks.
+       * **Experimental** -- Collection MCP tools allow for the creation, modification, and deletion of CMS collections. This is for developing ideas that help Developers with collection tasks.
        */
       collections?: {
         /**
-         * Set the directory path to the collections directory. This can be a directory outside of your default directory, or another Payload project.
+         * Set the directory path to the collections directory. This can be a directory outside of your default directory, or another CMS project.
          */
         collectionsDirPath: string
         /**
@@ -92,21 +92,21 @@ export type MCPPluginConfig = {
         enabled: boolean
       }
       /**
-       * **Experimental** -- Config MCP tools allow for the modification of a Payload Config. This is for developing ideas that help Developers with config tasks.
+       * **Experimental** -- Config MCP tools allow for the modification of a CMS Config. This is for developing ideas that help Developers with config tasks.
        */
       config?: {
         /**
-         * Set the directory path to the config directory. This can be a directory outside of your default directory, or another Payload project.
+         * Set the directory path to the config directory. This can be a directory outside of your default directory, or another CMS project.
          */
         configFilePath: string
         /**
-         * Enable the config MCP tools. This allows Admins to enable or disable the Payload Config modification capabilities.
+         * Enable the config MCP tools. This allows Admins to enable or disable the CMS Config modification capabilities.
          * @default false
          */
         enabled: boolean
       }
       /**
-       * **Experimental** -- Jobs MCP tools allow for the modification of Payload jobs. This is for developing ideas that help Developers with job tasks.
+       * **Experimental** -- Jobs MCP tools allow for the modification of CMS jobs. This is for developing ideas that help Developers with job tasks.
        */
       jobs?: {
         /**
@@ -115,7 +115,7 @@ export type MCPPluginConfig = {
          */
         enabled: boolean
         /**
-         * Set the directory path to the jobs directory. This can be a directory outside of your default directory, or another Payload project.
+         * Set the directory path to the jobs directory. This can be a directory outside of your default directory, or another CMS project.
          */
         jobsDirPath: string
       }
@@ -156,7 +156,7 @@ export type MCPPluginConfig = {
             }>
           },
           doc: Record<string, unknown>,
-          req: PayloadRequest,
+          req: CMSRequest,
         ) => {
           content: Array<{
             text: string
@@ -188,7 +188,7 @@ export type MCPPluginConfig = {
        */
       handler: (
         args: Record<string, unknown>,
-        req: PayloadRequest,
+        req: CMSRequest,
         _extra: unknown,
       ) =>
         | {
@@ -280,7 +280,7 @@ export type MCPPluginConfig = {
        */
       handler: (
         args: Record<string, unknown>,
-        req: PayloadRequest,
+        req: CMSRequest,
         _extra: unknown,
       ) =>
         | {
@@ -323,7 +323,7 @@ export type MCPPluginConfig = {
    * @returns The MCP access settings.
    */
   overrideAuth?: (
-    req: PayloadRequest,
+    req: CMSRequest,
     getDefaultMcpAccessSettings: (overrideApiKey?: null | string) => Promise<MCPAccessSettings>,
   ) => MCPAccessSettings | Promise<MCPAccessSettings>
 
@@ -383,7 +383,7 @@ export type MCPServerOptions = {
   serverInfo?: {
     /**
      * Set the name of the MCP server.
-     * @default 'Payload MCP Server'
+     * @default 'CMS MCP Server'
      */
     name: string
     /**
@@ -423,9 +423,9 @@ export type MCPAccessSettings = {
     run?: boolean
     update?: boolean
   }
-  'payload-mcp-prompt'?: Record<string, boolean>
-  'payload-mcp-resource'?: Record<string, boolean>
-  'payload-mcp-tool'?: Record<string, boolean>
+  'cms-mcp-prompt'?: Record<string, boolean>
+  'cms-mcp-resource'?: Record<string, boolean>
+  'cms-mcp-tool'?: Record<string, boolean>
   user: TypedUser
 } & Record<string, unknown>
 

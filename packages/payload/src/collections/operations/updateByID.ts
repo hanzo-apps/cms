@@ -4,7 +4,7 @@ import { status as httpStatus } from 'http-status'
 
 import type { FindOneArgs } from '../../database/types.js'
 import type {
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   TransformCollectionWithSelect,
@@ -48,7 +48,7 @@ export type Arguments<TSlug extends CollectionSlug> = {
   populate?: PopulateType
   publishAllLocales?: boolean
   publishSpecificLocale?: string
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields?: boolean
   trash?: boolean
   unpublishAllLocales?: boolean
@@ -96,8 +96,8 @@ export const updateByIDOperation = async <
       req: {
         fallbackLocale,
         locale,
-        payload: { config },
-        payload,
+        cms: { config },
+        cms,
       },
       req,
       select: incomingSelect,
@@ -161,7 +161,7 @@ export const updateByIDOperation = async <
     >({
       id,
       config: collectionConfig,
-      payload,
+      cms,
       query: findOneArgs,
       req,
     })
@@ -214,7 +214,7 @@ export const updateByIDOperation = async <
       locale: locale!,
       overrideAccess: overrideAccess!,
       overrideLock: overrideLock!,
-      payload,
+      cms,
       populate,
       publishAllLocales,
       publishSpecificLocale,

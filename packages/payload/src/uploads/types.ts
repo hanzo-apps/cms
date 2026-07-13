@@ -1,8 +1,8 @@
 import type { ResizeOptions, Sharp, SharpOptions } from 'sharp'
 
 import type { CollectionConfig, TypeWithID } from '../collections/config/types.js'
-import type { PayloadComponent } from '../config/types.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSComponent } from '../config/types.js'
+import type { CMSRequest } from '../types/index.js'
 import type { WithMetadata } from './optionallyAppendMetadata.js'
 
 export type FileSize = {
@@ -14,9 +14,9 @@ export type FileSize = {
   width: null | number
 }
 
-// TODO: deprecate in Payload v4.
+// TODO: deprecate in CMS v4.
 /**
- * FileSizeImproved is a more precise type, and will replace FileSize in Payload v4.
+ * FileSizeImproved is a more precise type, and will replace FileSize in CMS v4.
  * This type is for internal use only as it will be deprecated in the future.
  * @internal
  */
@@ -73,7 +73,7 @@ export type ImageSize = {
   /**
    * Admin UI options that control how this image size appears in list views.
    *
-   * NOTE: In Payload v4, these options (`disableGroupBy`, `disableListColumn` and `disableListFilter`)
+   * NOTE: In CMS v4, these options (`disableGroupBy`, `disableListColumn` and `disableListFilter`)
    * should default to `true` so image size subfields are hidden from list columns
    * and filters by default, reducing noise in the admin UI.
    */
@@ -140,7 +140,7 @@ type Admin = {
     /**
      * The Controls component to extend the upload controls in the admin panel.
      */
-    controls?: PayloadComponent[]
+    controls?: CMSComponent[]
   }
 }
 
@@ -204,8 +204,8 @@ export type UploadConfig = {
    *
    * Accepts existing headers and returns the headers after filtering or modifying.
    * If using this option, you should handle the removal of any sensitive cookies
-   * (like payload-prefixed cookies) to prevent leaking session information to external
-   * services. By default, Payload automatically filters out payload-prefixed cookies
+   * (like cms-prefixed cookies) to prevent leaking session information to external
+   * services. By default, CMS automatically filters out cms-prefixed cookies
    * when this option is NOT defined.
    *
    * Useful for adding custom headers to fetch from external providers.
@@ -241,7 +241,7 @@ export type UploadConfig = {
    * @default undefined
    */
   handlers?: ((
-    req: PayloadRequest,
+    req: CMSRequest,
     args: {
       doc: TypeWithID
       headers?: Headers
@@ -317,7 +317,7 @@ export type UploadConfig = {
 export type checkFileRestrictionsParams = {
   collection: CollectionConfig
   file: File
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export type SanitizedUploadConfig = {

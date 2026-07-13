@@ -16,7 +16,7 @@ import type {
 import type { SerializedLinkNode } from '../../nodeTypes.js'
 
 import { convertLexicalToHTMLAsync } from '../../features/converters/lexicalToHtml/async/index.js'
-import { getPayloadPopulateFn } from '../../features/converters/utilities/payloadPopulateFn.js'
+import { getCMSPopulateFn } from '../../features/converters/utilities/payloadPopulateFn.js'
 import { LinkDiffHTMLConverterAsync } from './converters/link.js'
 import { ListItemDiffHTMLConverterAsync } from './converters/listitem/index.js'
 import { RelationshipDiffHTMLConverterAsync } from './converters/relationship/index.js'
@@ -69,9 +69,9 @@ export const LexicalDiffComponent: RichTextFieldDiffServerComponent = async (arg
     }
 
     return formatAdminURL({
-      adminRoute: req.payload.config.routes.admin,
+      adminRoute: req.cms.config.routes.admin,
       path: `/collections/${relationTo}/${docId}`,
-      serverURL: req.payload.config.serverURL,
+      serverURL: req.cms.config.serverURL,
     })
   }
 
@@ -84,7 +84,7 @@ export const LexicalDiffComponent: RichTextFieldDiffServerComponent = async (arg
     ...UnknownDiffHTMLConverterAsync({ i18n, req }),
   })
 
-  const payloadPopulateFn = await getPayloadPopulateFn({
+  const cmsPopulateFn = await getCMSPopulateFn({
     currentDepth: 0,
     depth: 1,
     req,
@@ -93,14 +93,14 @@ export const LexicalDiffComponent: RichTextFieldDiffServerComponent = async (arg
     converters,
     data: valueFrom as SerializedEditorState,
     disableContainer: true,
-    populate: payloadPopulateFn,
+    populate: cmsPopulateFn,
   })
 
   const toHTML = await convertLexicalToHTMLAsync({
     converters,
     data: valueTo as SerializedEditorState,
     disableContainer: true,
-    populate: payloadPopulateFn,
+    populate: cmsPopulateFn,
   })
 
   const { From, To } = getHTMLDiffComponents({

@@ -11,7 +11,7 @@ export const variantsCollectionBeforeChange: (args: Props) => CollectionBeforeCh
     if (data?.options?.length && data.options.length > 0) {
       const titleArray: string[] = []
       const productID = data.product
-      const product = await req.payload.findByID({
+      const product = await req.cms.findByID({
         id: productID,
         collection: productsSlug,
         depth: 0,
@@ -26,7 +26,7 @@ export const variantsCollectionBeforeChange: (args: Props) => CollectionBeforeCh
       }
 
       for (const option of data.options) {
-        const variantOption = await req.payload.findByID({
+        const variantOption = await req.cms.findByID({
           id: option,
           collection: variantOptionsSlug,
           depth: 0,

@@ -1,5 +1,5 @@
 import type { DrizzleAdapter, Operators } from '@hanzo/cms-drizzle'
-import type { DatabaseAdapterObj, Payload } from '@hanzo/cms'
+import type { DatabaseAdapterObj, CMS } from '@hanzo/cms'
 
 import {
   beginTransaction,
@@ -66,10 +66,10 @@ const filename = fileURLToPath(import.meta.url)
 
 export function sqliteAdapter(args: Args): DatabaseAdapterObj<SQLiteAdapter> {
   const sqliteIDType = args.idType || 'number'
-  const payloadIDType = sqliteIDType === 'uuid' || sqliteIDType === 'uuidv7' ? 'text' : 'number'
+  const cmsIDType = sqliteIDType === 'uuid' || sqliteIDType === 'uuidv7' ? 'text' : 'number'
   const allowIDOnCreate = args.allowIDOnCreate ?? false
 
-  function adapter({ payload }: { payload: Payload }) {
+  function adapter({ cms }: { cms: CMS }) {
     const migrationDir = findMigrationDir(args.migrationDir)
     let resolveInitializing: () => void = () => {}
     let rejectInitializing: () => void = () => {}
@@ -92,7 +92,7 @@ export function sqliteAdapter(args: Args): DatabaseAdapterObj<SQLiteAdapter> {
     const defaultJournalSizeLimit = 67108864 // 64MB
 
     if (args.wal && !args.client.url.startsWith('file:')) {
-      payload.logger.warn(
+      cms.logger.warn(
         '[db-sqlite] WAL mode is not supported for in-memory or TCP database connections. Disabling WAL.',
       )
       args.wal = false
@@ -189,7 +189,7 @@ export function sqliteAdapter(args: Args): DatabaseAdapterObj<SQLiteAdapter> {
         sanitizeStatements,
       }),
       createVersion,
-      defaultIDType: payloadIDType,
+      defaultIDType: cmsIDType,
       deleteMany,
       deleteOne,
       deleteVersions,
@@ -214,7 +214,7 @@ export function sqliteAdapter(args: Args): DatabaseAdapterObj<SQLiteAdapter> {
       migrateStatus,
       migrationDir,
       packageName: '@hanzo/cms-db-sqlite',
-      payload,
+      cms,
       queryDrafts,
       rejectInitializing,
       requireDrizzleKit,
@@ -239,7 +239,7 @@ export function sqliteAdapter(args: Args): DatabaseAdapterObj<SQLiteAdapter> {
   return {
     name: 'sqlite',
     allowIDOnCreate,
-    defaultIDType: payloadIDType,
+    defaultIDType: cmsIDType,
     init: adapter,
   }
 }

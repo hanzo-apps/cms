@@ -101,7 +101,7 @@ export const RootProvider: React.FC<Props> = ({
                   >
                     <ScrollInfoProvider>
                       <SearchParamsProvider>
-                        <ModalProvider classPrefix="payload" transTime={0} zIndex="var(--z-modal)">
+                        <ModalProvider classPrefix="cms" transTime={0} zIndex="var(--z-modal)">
                           <CloseModalOnRouteChange />
                           <AuthProvider permissions={permissions} user={user}>
                             <PreferencesProvider>

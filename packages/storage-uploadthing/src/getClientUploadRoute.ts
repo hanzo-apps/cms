@@ -1,15 +1,15 @@
 import {
   APIError,
   Forbidden,
-  type PayloadHandler,
-  type PayloadRequest,
+  type CMSHandler,
+  type CMSRequest,
   type UploadCollectionSlug,
 } from '@hanzo/cms'
 
 type Args = {
   access?: (args: {
     collectionSlug: UploadCollectionSlug
-    req: PayloadRequest
+    req: CMSRequest
   }) => boolean | Promise<boolean>
   acl: 'private' | 'public-read'
   routerInputConfig?: FileRouterInputConfig
@@ -30,7 +30,7 @@ export const getClientUploadRoute = ({
   acl,
   routerInputConfig = {},
   token,
-}: Args): PayloadHandler => {
+}: Args): CMSHandler => {
   const f = createUploadthing()
 
   const uploadRouter = {
@@ -44,12 +44,12 @@ export const getClientUploadRoute = ({
       },
     })
       .middleware(async ({ req: rawReq }) => {
-        const req = rawReq as PayloadRequest
+        const req = rawReq as CMSRequest
 
         const collectionSlug = req.searchParams.get('collectionSlug')
 
         if (!collectionSlug) {
-          throw new APIError('No payload was provided')
+          throw new APIError('No cms was provided')
         }
 
         if (!(await access({ collectionSlug, req }))) {

@@ -22,7 +22,7 @@ export const currencyField: (props: Props) => SelectField = ({ currenciesConfig,
       ? currenciesConfig.supportedCurrencies[0]?.code
       : undefined
 
-  // @ts-expect-error - issue with payload types
+  // @ts-expect-error - issue with cms types
   const field: SelectField = {
     name: 'currency',
     type: 'select',

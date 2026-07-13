@@ -1,10 +1,10 @@
-import type { Document, PayloadRequest } from '../../types/index.js'
+import type { Document, CMSRequest } from '../../types/index.js'
 import type { FolderBreadcrumb } from '../types.js'
 
 type GetFolderBreadcrumbsArgs = {
   breadcrumbs?: FolderBreadcrumb[]
   folderID?: number | string
-  req: PayloadRequest
+  req: CMSRequest
 }
 /**
  * Builds breadcrumbs up from child folder
@@ -15,11 +15,11 @@ export const getFolderBreadcrumbs = async ({
   folderID,
   req,
 }: GetFolderBreadcrumbsArgs): Promise<FolderBreadcrumb[] | null> => {
-  const { payload, user } = req
-  if (folderID && payload.config.folders) {
-    const folderFieldName: string = payload.config.folders.fieldName
-    const folderQuery = await payload.find({
-      collection: payload.config.folders.slug,
+  const { cms, user } = req
+  if (folderID && cms.config.folders) {
+    const folderFieldName: string = cms.config.folders.fieldName
+    const folderQuery = await cms.find({
+      collection: cms.config.folders.slug,
       depth: 0,
       limit: 1,
       overrideAccess: false,

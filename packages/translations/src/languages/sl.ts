@@ -400,7 +400,7 @@ export const slTranslations: DefaultTranslationsObject = {
     password: 'Geslo',
     pasteField: 'Prilepi polje',
     pasteRow: 'Prilepi vrstico',
-    payloadSettings: 'Nastavitve Payloada',
+    cmsSettings: 'Nastavitve CMSa',
     permanentlyDelete: 'Trajno Izbrisano',
     permanentlyDeletedCountSuccessfully: 'Uspešno trajno izbrisano {{count}} {{label}}.',
     perPage: 'Na stran: {{limit}}',
@@ -418,7 +418,7 @@ export const slTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'Obnovi kot objavljeno različico',
     restoredCountSuccessfully: 'Uspešno obnovljeno {{count}} {{label}}.',
     restoring:
-      'Spoštujte pomen izvirnega besedila znotraj konteksta Payload. Tu je seznam pogostih izrazov Payload, ki imajo zelo specifične pomene:\n    - Zbirka: Zbirka je skupina dokumentov, ki delijo skupno strukturo in namen. Zbirke se uporabljajo za organizacijo in upravljanje vsebine v Payload.\n    - Polje: Polje je določen del podatkov znotraj dokumenta v zbirki. Polja opredeljujejo strukturo in vrsto podatkov, ki jih je mogoče sh',
+      'Spoštujte pomen izvirnega besedila znotraj konteksta CMS. Tu je seznam pogostih izrazov CMS, ki imajo zelo specifične pomene:\n    - Zbirka: Zbirka je skupina dokumentov, ki delijo skupno strukturo in namen. Zbirke se uporabljajo za organizacijo in upravljanje vsebine v CMS.\n    - Polje: Polje je določen del podatkov znotraj dokumenta v zbirki. Polja opredeljujejo strukturo in vrsto podatkov, ki jih je mogoče sh',
     row: 'Vrstica',
     rows: 'Vrstice',
     save: 'Shrani',

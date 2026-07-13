@@ -1,15 +1,15 @@
 import type { SanitizedCollectionConfig } from '../collections/config/types.js'
 import type { DeleteVersionsArgs } from '../database/types.js'
 import type { SanitizedGlobalConfig } from '../globals/config/types.js'
-import type { Payload, PayloadRequest, Where } from '../types/index.js'
+import type { CMS, CMSRequest, Where } from '../types/index.js'
 
 type Args = {
   collection?: SanitizedCollectionConfig
   global?: SanitizedGlobalConfig
   id?: number | string
   max: number
-  payload: Payload
-  req?: PayloadRequest
+  cms: CMS
+  req?: CMSRequest
 }
 
 export const enforceMaxVersions = async ({
@@ -17,7 +17,7 @@ export const enforceMaxVersions = async ({
   collection,
   global: globalConfig,
   max,
-  payload,
+  cms,
   req,
 }: Args): Promise<void> => {
   const entityType = collection ? 'collection' : 'global'
@@ -32,7 +32,7 @@ export const enforceMaxVersions = async ({
         equals: id,
       }
 
-      const query = await payload.db.findVersions({
+      const query = await cms.db.findVersions({
         collection: collection.slug,
         limit: 1,
         page: max + 1,
@@ -44,7 +44,7 @@ export const enforceMaxVersions = async ({
 
       ;[oldestAllowedDoc] = query.docs
     } else if (globalConfig) {
-      const query = await payload.db.findGlobalVersions({
+      const query = await cms.db.findGlobalVersions({
         global: globalConfig.slug,
         limit: 1,
         page: max + 1,
@@ -78,11 +78,11 @@ export const enforceMaxVersions = async ({
         deleteVersionsArgs.collection = slug
       }
 
-      await payload.db.deleteVersions(deleteVersionsArgs)
+      await cms.db.deleteVersions(deleteVersionsArgs)
     }
   } catch (err) {
-    payload.logger.error(err)
-    payload.logger.error(
+    cms.logger.error(err)
+    cms.logger.error(
       `There was an error cleaning up old versions for the ${entityType} ${slug}`,
     )
   }

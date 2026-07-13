@@ -5,7 +5,7 @@ import type {
   FieldSchemaMap,
   FormState,
   Operation,
-  PayloadRequest,
+  CMSRequest,
   RichTextField,
   SanitizedFieldPermissions,
 } from '@hanzo/cms'
@@ -35,7 +35,7 @@ type Props = {
     permissions?: SanitizedFieldPermissions
     preferences: DocumentPreferences
     renderFieldFn: any
-    req: PayloadRequest
+    req: CMSRequest
   }
   initialState?: InitialLexicalFormState
   nodeData: SerializedLexicalNode[]

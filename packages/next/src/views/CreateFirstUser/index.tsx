@@ -17,7 +17,7 @@ export async function CreateFirstUserView({ initPageResult }: AdminViewServerPro
     locale,
     req,
     req: {
-      payload: {
+      cms: {
         collections,
         config: {
           admin: { user: userSlug },
@@ -34,7 +34,7 @@ export async function CreateFirstUserView({ initPageResult }: AdminViewServerPro
   const data = await getDocumentData({
     collectionSlug: collectionConfig.slug,
     locale,
-    payload: req.payload,
+    cms: req.cms,
     req,
     user: req.user,
   })
@@ -42,7 +42,7 @@ export async function CreateFirstUserView({ initPageResult }: AdminViewServerPro
   // Get document preferences
   const docPreferences = await getDocPreferences({
     collectionSlug: collectionConfig.slug,
-    payload: req.payload,
+    cms: req.cms,
     user: req.user,
   })
 

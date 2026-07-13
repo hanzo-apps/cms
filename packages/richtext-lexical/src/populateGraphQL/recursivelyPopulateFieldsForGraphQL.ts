@@ -1,4 +1,4 @@
-import type { Field, JsonObject, PayloadRequest, RequestContext } from '@hanzo/cms'
+import type { Field, JsonObject, CMSRequest, RequestContext } from '@hanzo/cms'
 
 import { afterReadTraverseFields } from '@hanzo/cms'
 
@@ -24,7 +24,7 @@ type NestedRichTextFieldsArgs = {
   overrideAccess: boolean
   parentIsLocalized: boolean
   populationPromises: Promise<void>[]
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields: boolean
   siblingDoc: JsonObject
 }

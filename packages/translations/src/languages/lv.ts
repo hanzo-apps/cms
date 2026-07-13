@@ -263,7 +263,7 @@ export const lvTranslations: DefaultTranslationsObject = {
     cancel: 'Atcelt',
     changesNotSaved: 'Jūsu izmaiņas nav saglabātas. Ja tagad pametīsiet, izmaiņas tiks zaudētas.',
     clear:
-      'Izpratiet oriģinālteksta nozīmi Payload kontekstā. Šeit ir saraksts ar Payload terminiem, kas ir ļoti specifiskas nozīmes:\n    - Kolekcija: Kolekcija ir dokumentu grupa, kuriem ir kopīga struktūra un mērķis. Kolekcijas tiek izmantotas saturu organizēšanai un pārvaldīšanai Payload.\n    - Lauks: Lauks ir konkrēts datu fragments dokumentā iekš kolekcijas. Lauki definē struktūru un dat',
+      'Izpratiet oriģinālteksta nozīmi CMS kontekstā. Šeit ir saraksts ar CMS terminiem, kas ir ļoti specifiskas nozīmes:\n    - Kolekcija: Kolekcija ir dokumentu grupa, kuriem ir kopīga struktūra un mērķis. Kolekcijas tiek izmantotas saturu organizēšanai un pārvaldīšanai CMS.\n    - Lauks: Lauks ir konkrēts datu fragments dokumentā iekš kolekcijas. Lauki definē struktūru un dat',
     clearAll: 'Notīrīt visu',
     close: 'Aizvērt',
     collapse: 'Sakļaut',
@@ -402,7 +402,7 @@ export const lvTranslations: DefaultTranslationsObject = {
     password: 'Parole',
     pasteField: 'Ielīmēt lauku',
     pasteRow: 'Ielīmēt rindu',
-    payloadSettings: 'Payload iestatījumi',
+    cmsSettings: 'CMS iestatījumi',
     permanentlyDelete: 'Pastāvīgi Dzēst',
     permanentlyDeletedCountSuccessfully: 'Veiksmīgi neatgriezeniski izdzēsts {{count}} {{label}}.',
     perPage: 'Lapas ieraksti: {{limit}}',

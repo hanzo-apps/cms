@@ -1,17 +1,17 @@
-import type { PayloadComponent } from '../../../config/types.js'
+import type { CMSComponent } from '../../../config/types.js'
 import type { ImportMap } from '../index.js'
 
-import { parsePayloadComponent } from './parsePayloadComponent.js'
+import { parseCMSComponent } from './parsePayloadComponent.js'
 
 export const getFromImportMap = <TOutput>(args: {
   importMap: ImportMap
-  PayloadComponent: PayloadComponent
+  CMSComponent: CMSComponent
   schemaPath?: string
   silent?: boolean
 }): TOutput => {
-  const { importMap, PayloadComponent, schemaPath, silent } = args
+  const { importMap, CMSComponent, schemaPath, silent } = args
 
-  const { exportName, path } = parsePayloadComponent(PayloadComponent)
+  const { exportName, path } = parseCMSComponent(CMSComponent)
 
   const key = path + '#' + exportName
 
@@ -20,13 +20,13 @@ export const getFromImportMap = <TOutput>(args: {
   if (!importMapEntry && !silent) {
     // eslint-disable-next-line no-console
     console.error(
-      `getFromImportMap: PayloadComponent not found in importMap`,
+      `getFromImportMap: CMSComponent not found in importMap`,
       {
         key,
-        PayloadComponent,
+        CMSComponent,
         schemaPath,
       },
-      'You may need to run the `payload generate:importmap` command to generate the importMap ahead of runtime.',
+      'You may need to run the `cms generate:importmap` command to generate the importMap ahead of runtime.',
     )
   }
 

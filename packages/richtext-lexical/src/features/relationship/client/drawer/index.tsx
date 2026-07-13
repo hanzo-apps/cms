@@ -57,8 +57,8 @@ const RelationshipDrawerComponent: React.FC<Props> = ({ enabledCollectionSlugs }
       replace: { nodeKey: string } | false
     }>(
       INSERT_RELATIONSHIP_WITH_DRAWER_COMMAND,
-      (payload) => {
-        setReplaceNodeKey(payload?.replace ? payload?.replace.nodeKey : null)
+      (cms) => {
+        setReplaceNodeKey(cms?.replace ? cms?.replace.nodeKey : null)
         openListDrawer()
         return true
       },

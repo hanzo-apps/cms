@@ -404,7 +404,7 @@ export const myTranslations: DefaultTranslationsObject = {
     password: 'စကားဝှက်',
     pasteField: 'ကွက်လပ်ကိုတင်ပါ',
     pasteRow: 'တန်းကိုတင်ပါ',
-    payloadSettings: 'ရွေးချယ်စရာများ',
+    cmsSettings: 'ရွေးချယ်စရာများ',
     permanentlyDelete: 'အပြီးအပိုင် ဖျက်ပါ',
     permanentlyDeletedCountSuccessfully:
       '{{count}} {{label}} ကို အပြီးအပိုင် အောင်မြင်စွာ ဖျက်လိုက်ပါပြီ။',

@@ -1,6 +1,6 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import type { JSONSchema4 } from 'json-schema'
-import type { PayloadRequest, SelectType, TypedUser } from '@hanzo/cms'
+import type { CMSRequest, SelectType, TypedUser } from '@hanzo/cms'
 
 import { z } from 'zod'
 
@@ -16,7 +16,7 @@ import { toolSchemas } from '../schemas.js'
 
 export const updateGlobalTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   user: TypedUser,
   verboseLogs: boolean,
   globalSlug: string,
@@ -36,11 +36,11 @@ export const updateGlobalTool = (
       type: 'text'
     }>
   }> => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Updating global: ${globalSlug}, draft: ${draft}${locale ? `, locale: ${locale}` : ''}`,
+      cms.logger.info(
+        `[cms-mcp] Updating global: ${globalSlug}, draft: ${draft}${locale ? `, locale: ${locale}` : ''}`,
       )
     }
 
@@ -50,16 +50,16 @@ export const updateGlobalTool = (
       try {
         parsedData = JSON.parse(data)
 
-        const virtualFieldNames = getGlobalVirtualFieldNames(payload.config, globalSlug)
+        const virtualFieldNames = getGlobalVirtualFieldNames(cms.config, globalSlug)
         parsedData = stripVirtualFields(parsedData, virtualFieldNames)
 
         if (verboseLogs) {
-          payload.logger.info(
-            `[payload-mcp] Parsed data for ${globalSlug}: ${JSON.stringify(parsedData)}`,
+          cms.logger.info(
+            `[cms-mcp] Parsed data for ${globalSlug}: ${JSON.stringify(parsedData)}`,
           )
         }
       } catch (_parseError) {
-        payload.logger.error(`[payload-mcp] Invalid JSON data provided: ${data}`)
+        cms.logger.error(`[cms-mcp] Invalid JSON data provided: ${data}`)
         const response = {
           content: [{ type: 'text' as const, text: 'Error: Invalid JSON data provided' }],
         }
@@ -76,7 +76,7 @@ export const updateGlobalTool = (
         try {
           selectClause = JSON.parse(select) as SelectType
         } catch (_parseError) {
-          payload.logger.warn(`[payload-mcp] Invalid select clause JSON for global: ${select}`)
+          cms.logger.warn(`[cms-mcp] Invalid select clause JSON for global: ${select}`)
           const response = {
             content: [{ type: 'text' as const, text: 'Error: Invalid JSON in select clause' }],
           }
@@ -89,7 +89,7 @@ export const updateGlobalTool = (
         }
       }
 
-      const updateOptions: Parameters<typeof payload.updateGlobal>[0] = {
+      const updateOptions: Parameters<typeof cms.updateGlobal>[0] = {
         slug: globalSlug,
         data: parsedData,
         depth,
@@ -108,10 +108,10 @@ export const updateGlobalTool = (
         updateOptions.select = selectClause
       }
 
-      const result = await payload.updateGlobal(updateOptions)
+      const result = await cms.updateGlobal(updateOptions)
 
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Successfully updated global: ${globalSlug}`)
+        cms.logger.info(`[cms-mcp] Successfully updated global: ${globalSlug}`)
       }
 
       const response = {
@@ -134,7 +134,7 @@ ${JSON.stringify(result)}
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(`[payload-mcp] Error updating global ${globalSlug}: ${errorMessage}`)
+      cms.logger.error(`[cms-mcp] Error updating global ${globalSlug}: ${errorMessage}`)
 
       const response = {
         content: [

@@ -59,10 +59,10 @@ export const getAfterChangeHook =
 
           // Clear to prevent re-processing
           req.file = undefined
-          req.payloadUploadSizes = undefined
+          req.cmsUploadSizes = undefined
 
           try {
-            await req.payload.update({
+            await req.cms.update({
               id: doc.id,
               collection: collection.slug,
               data: uploadMetadata,
@@ -98,7 +98,7 @@ export const getAfterChangeHook =
 
           // Collect new filenames (main + sizes) so we don't delete a
           // file that the new upload reused (e.g. same filename on reupload
-          // where Payload overwrites in place).
+          // where CMS overwrites in place).
           const newFilenames = new Set<string>()
           if (typeof docWithMetadata.filename === 'string') {
             newFilenames.add(docWithMetadata.filename)
@@ -125,10 +125,10 @@ export const getAfterChangeHook =
         }
       }
     } catch (err: unknown) {
-      req.payload.logger.error(
+      req.cms.logger.error(
         `There was an error while uploading files corresponding to the collection ${collection.slug} with filename ${doc.filename}:`,
       )
-      req.payload.logger.error({ err })
+      req.cms.logger.error({ err })
       throw err
     }
     return doc

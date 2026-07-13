@@ -5,7 +5,7 @@ import type {
   RequiredDataFromCollectionSlug,
 } from '../../collections/config/types.js'
 import type { AuthCollectionSlug } from '../../index.js'
-import type { PayloadRequest, SelectType } from '../../types/index.js'
+import type { CMSRequest, SelectType } from '../../types/index.js'
 
 import { Forbidden } from '../../errors/index.js'
 import { appendNonTrashedFilter } from '../../utilities/appendNonTrashedFilter.js'
@@ -18,7 +18,7 @@ export type Arguments<TSlug extends AuthCollectionSlug> = {
   collection: Collection
   data: AuthOperationsFromCollectionSlug<TSlug>['registerFirstUser'] &
     RequiredDataFromCollectionSlug<TSlug>
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export type Result<TData> = {
@@ -40,7 +40,7 @@ export const registerFirstUserOperation = async <TSlug extends AuthCollectionSlu
     },
     data,
     req,
-    req: { payload },
+    req: { cms },
   } = args
 
   if (config.auth.disableLocalStrategy) {
@@ -64,7 +64,7 @@ export const registerFirstUserOperation = async <TSlug extends AuthCollectionSlu
       where: {}, // no initial filter; just exclude trashed docs
     })
 
-    const doc = await payload.db.findOne({
+    const doc = await cms.db.findOne({
       collection: config.slug,
       req,
       where,
@@ -78,7 +78,7 @@ export const registerFirstUserOperation = async <TSlug extends AuthCollectionSlu
     // Register first user
     // /////////////////////////////////////
 
-    const result = await payload.create<TSlug, SelectType>({
+    const result = await cms.create<TSlug, SelectType>({
       collection: slug as TSlug,
       data,
       overrideAccess: true,
@@ -87,7 +87,7 @@ export const registerFirstUserOperation = async <TSlug extends AuthCollectionSlu
 
     // auto-verify (if applicable)
     if (verify) {
-      await payload.update({
+      await cms.update({
         id: result.id,
         collection: slug,
         data: {
@@ -101,7 +101,7 @@ export const registerFirstUserOperation = async <TSlug extends AuthCollectionSlu
     // Log in new user
     // /////////////////////////////////////
 
-    const { exp, token } = await payload.login({
+    const { exp, token } = await cms.login({
       ...args,
       collection: slug,
       req,

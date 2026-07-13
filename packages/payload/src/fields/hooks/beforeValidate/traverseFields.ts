@@ -1,7 +1,7 @@
 import type { SanitizedCollectionConfig } from '../../../collections/config/types.js'
 import type { SanitizedGlobalConfig } from '../../../globals/config/types.js'
 import type { RequestContext } from '../../../index.js'
-import type { JsonObject, PayloadRequest } from '../../../types/index.js'
+import type { JsonObject, CMSRequest } from '../../../types/index.js'
 import type { Field, TabAsField } from '../../config/types.js'
 
 import { promise } from './promise.js'
@@ -30,7 +30,7 @@ type Args<T> = {
   parentIsLocalized?: boolean
   parentPath: string
   parentSchemaPath: string
-  req: PayloadRequest
+  req: CMSRequest
   siblingData: JsonObject
   /**
    * The original siblingData (not modified by any hooks)

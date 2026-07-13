@@ -60,10 +60,10 @@ const buildSQLWhere = (where: Where, alias: string) => {
         return op(...accumulated)
       }
     } else {
-      let payloadOperator = Object.keys(where[k])[0]
+      let cmsOperator = Object.keys(where[k])[0]
 
-      const value = where[k][payloadOperator]
-      if (payloadOperator === '$raw') {
+      const value = where[k][cmsOperator]
+      if (cmsOperator === '$raw') {
         if (typeof value !== 'string') {
           return undefined
         }
@@ -75,11 +75,11 @@ const buildSQLWhere = (where: Where, alias: string) => {
       // This logic is duplicated from sanitizeQueryValue.ts because buildSQLWhere
       // is a simplified WHERE builder for polymorphic joins that doesn't have access
       // to field definitions needed by sanitizeQueryValue
-      if (payloadOperator === 'exists' && value === false) {
-        payloadOperator = 'isNull'
+      if (cmsOperator === 'exists' && value === false) {
+        cmsOperator = 'isNull'
       }
 
-      if (!(payloadOperator in operatorMap)) {
+      if (!(cmsOperator in operatorMap)) {
         return undefined
       }
 
@@ -88,7 +88,7 @@ const buildSQLWhere = (where: Where, alias: string) => {
         .map((s) => sanitizePathSegment(s))
         .join('_')
 
-      return operatorMap[payloadOperator](sql.raw(`"${alias}"."${sanitizedColumnName}"`), value)
+      return operatorMap[cmsOperator](sql.raw(`"${alias}"."${sanitizedColumnName}"`), value)
     }
   }
 }
@@ -297,7 +297,7 @@ export const traverseFields = ({
         }
 
         ;(field.blockReferences ?? field.blocks).forEach((_block) => {
-          const block = typeof _block === 'string' ? adapter.payload.blocks[_block] : _block
+          const block = typeof _block === 'string' ? adapter.cms.blocks[_block] : _block
           const blockKey = `_blocks_${block.slug}${!block[InternalBlockTableNameIndex] ? '' : `_${block[InternalBlockTableNameIndex]}`}`
 
           let blockSelect: boolean | SelectType | undefined
@@ -488,7 +488,7 @@ export const traverseFields = ({
           if (!sanitizedSort) {
             if (
               field.collection.some((collection) =>
-                adapter.payload.collections[collection].config.fields.some(
+                adapter.cms.collections[collection].config.fields.some(
                   (f) => f.type === 'date' && f.name === 'createdAt',
                 ),
               )
@@ -527,7 +527,7 @@ export const traverseFields = ({
             const collectionQueryWhere: any[] = []
             // Select for WHERE and Fallback NULL
             for (const { path, ref } of wherePaths) {
-              const collectioConfig = adapter.payload.collections[collection].config
+              const collectioConfig = adapter.cms.collections[collection].config
               const field = getFieldByPath({ fields: collectioConfig.flattenedFields, path })
 
               if (field && field.field.type === 'select' && field.field.hasMany) {
@@ -647,15 +647,15 @@ export const traverseFields = ({
         } else {
           const useDrafts =
             (versions || draftsEnabled) &&
-            hasDraftsEnabled(adapter.payload.collections[field.collection].config)
+            hasDraftsEnabled(adapter.cms.collections[field.collection].config)
 
           const fields = useDrafts
             ? buildVersionCollectionFields(
-                adapter.payload.config,
-                adapter.payload.collections[field.collection].config,
+                adapter.cms.config,
+                adapter.cms.collections[field.collection].config,
                 true,
               )
-            : adapter.payload.collections[field.collection].config.flattenedFields
+            : adapter.cms.collections[field.collection].config.flattenedFields
 
           const joinCollectionTableName = adapter.tableNameMap.get(
             useDrafts
@@ -727,7 +727,7 @@ export const traverseFields = ({
             selectLocale: true,
             sort: useDrafts
               ? getQueryDraftsSort({
-                  collectionConfig: adapter.payload.collections[field.collection].config,
+                  collectionConfig: adapter.cms.collections[field.collection].config,
                   sort,
                 })
               : sort,

@@ -9,7 +9,7 @@ import type {
   FlattenedBlock,
   FormState,
   FormStateWithoutComponents,
-  PayloadRequest,
+  CMSRequest,
   Row,
   SanitizedFieldPermissions,
   SanitizedFieldsPermissions,
@@ -91,7 +91,7 @@ export type AddFieldStatePromiseArgs = {
    * Req is used for validation and defaultValue calculation. If you don't need validation,
    * just create your own req and pass in the locale and the user
    */
-  req: PayloadRequest
+  req: CMSRequest
   schemaPath: string
   select?: SelectType
   selectMode?: SelectMode
@@ -260,7 +260,7 @@ export const addFieldStatePromise = async (args: AddFieldStatePromiseArgs): Prom
       } catch (err) {
         validationResult = `Error validating field at path: ${path}`
 
-        req.payload.logger.error({
+        req.cms.logger.error({
           err,
           msg: validationResult,
         })
@@ -450,7 +450,7 @@ export const addFieldStatePromise = async (args: AddFieldStatePromiseArgs): Prom
             const blockTypeToMatch: string = row.blockType
 
             const block =
-              req.payload.blocks[blockTypeToMatch] ??
+              req.cms.blocks[blockTypeToMatch] ??
               ((field.blockReferences ?? field.blocks).find(
                 (blockType) => typeof blockType !== 'string' && blockType.slug === blockTypeToMatch,
               ) as FlattenedBlock | undefined)

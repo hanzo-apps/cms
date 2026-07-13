@@ -10,11 +10,11 @@ const migrationTemplate = ({ downSQL, imports, upSQL }: MigrationTemplateArgs): 
   MigrateUpArgs,
 } from '@hanzo/cms-db-mongodb'
 ${imports ?? ''}
-export async function up({ payload, req, session }: MigrateUpArgs): Promise<void> {
+export async function up({ cms, req, session }: MigrateUpArgs): Promise<void> {
 ${upSQL ?? `  // Migration code`}
 }
 
-export async function down({ payload, req, session }: MigrateDownArgs): Promise<void> {
+export async function down({ cms, req, session }: MigrateDownArgs): Promise<void> {
 ${downSQL ?? `  // Migration code`}
 }
 `
@@ -22,13 +22,13 @@ ${downSQL ?? `  // Migration code`}
 export const createMigration: CreateMigration = async function createMigration({
   file,
   migrationName,
-  payload,
+  cms,
   skipEmpty,
 }) {
   const filename = fileURLToPath(import.meta.url)
   const dirname = path.dirname(filename)
 
-  const dir = payload.db.migrationDir
+  const dir = cms.db.migrationDir
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir)
   }
@@ -36,7 +36,7 @@ export const createMigration: CreateMigration = async function createMigration({
     dirname,
     file,
     migrationName,
-    payload,
+    cms,
   })
 
   const migrationFileContent = migrationTemplate(predefinedMigration)
@@ -56,7 +56,7 @@ export const createMigration: CreateMigration = async function createMigration({
     fs.writeFileSync(filePath, migrationFileContent)
   }
 
-  writeMigrationIndex({ migrationsDir: payload.db.migrationDir })
+  writeMigrationIndex({ migrationsDir: cms.db.migrationDir })
 
-  payload.logger.info({ msg: `Migration created at ${filePath}` })
+  cms.logger.info({ msg: `Migration created at ${filePath}` })
 }

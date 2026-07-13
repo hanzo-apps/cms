@@ -1,5 +1,5 @@
 'use client'
-import type { PayloadRequest, TextFieldClient } from '@hanzo/cms'
+import type { CMSRequest, TextFieldClient } from '@hanzo/cms'
 
 import { getTranslation } from '@hanzo/cms-translations'
 import { text } from '@hanzo/cms/shared'
@@ -49,11 +49,11 @@ export const APIKey: React.FC<{ readonly enabled: boolean; readonly readOnly?: b
       path: ['apiKey'],
       preferences: { fields: {} },
       req: {
-        payload: {
+        cms: {
           config,
         },
         t,
-      } as unknown as PayloadRequest,
+      } as unknown as CMSRequest,
       siblingData: {},
     })
 

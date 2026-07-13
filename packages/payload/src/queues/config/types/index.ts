@@ -1,5 +1,5 @@
 import type { CollectionConfig, Job } from '../../../index.js'
-import type { MaybePromise, Payload, PayloadRequest, Sort } from '../../../types/index.js'
+import type { MaybePromise, CMS, CMSRequest, Sort } from '../../../types/index.js'
 import type { RunJobsSilent } from '../../localAPI.js'
 import type { RunJobsArgs } from '../../operations/runJobs/index.js'
 import type { JobStats } from '../global.js'
@@ -58,7 +58,7 @@ export type AutorunCronConfig = {
    * If set to true, the job system will not log any output to the console (for both info and error logs).
    * Can be an option for more granular control over logging.
    *
-   * This will not automatically affect user-configured logs (e.g. if you call `console.log` or `payload.logger.info` in your job code).
+   * This will not automatically affect user-configured logs (e.g. if you call `console.log` or `cms.logger.info` in your job code).
    *
    * @default false
    */
@@ -66,24 +66,24 @@ export type AutorunCronConfig = {
 }
 
 export type RunJobAccessArgs = {
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export type RunJobAccess = (args: RunJobAccessArgs) => MaybePromise<boolean>
 
 export type QueueJobAccessArgs = {
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export type CancelJobAccessArgs = {
-  req: PayloadRequest
+  req: CMSRequest
 }
 export type CancelJobAccess = (args: CancelJobAccessArgs) => MaybePromise<boolean>
 export type QueueJobAccess = (args: QueueJobAccessArgs) => MaybePromise<boolean>
 
 export type SanitizedJobsConfig = {
   /**
-   * If set to `true`, the job system is enabled and a payload-jobs collection exists.
+   * If set to `true`, the job system is enabled and a cms-jobs collection exists.
    * This property is automatically set during sanitization.
    */
   enabled?: boolean
@@ -93,7 +93,7 @@ export type SanitizedJobsConfig = {
    */
   scheduling?: boolean
   /**
-   * If set to `true`, a payload-job-stats global exists.
+   * If set to `true`, a cms-job-stats global exists.
    * This property is automatically set during sanitization.
    */
   stats?: boolean
@@ -130,7 +130,7 @@ export type JobsConfig = {
    *
    * @remark this property should not be used on serverless platforms like Vercel
    */
-  autoRun?: ((payload: Payload) => MaybePromise<AutorunCronConfig[]>) | AutorunCronConfig[]
+  autoRun?: ((cms: CMS) => MaybePromise<AutorunCronConfig[]>) | AutorunCronConfig[]
   /**
    * Determine whether or not to delete a job after it has successfully completed.
    */
@@ -164,7 +164,7 @@ export type JobsConfig = {
    */
   jobsCollectionOverrides?: (args: { defaultJobsCollection: CollectionConfig }) => CollectionConfig
   /**
-   * Adjust the job processing order using a Payload sort string. This can be set globally or per queue.
+   * Adjust the job processing order using a CMS sort string. This can be set globally or per queue.
    *
    * FIFO would equal `createdAt` and LIFO would equal `-createdAt`.
    *
@@ -182,7 +182,7 @@ export type JobsConfig = {
   /**
    * By default, the job system uses direct database calls for optimal performance.
    * If you added custom hooks to your jobs collection, you can set this to true to
-   * use the standard Payload API for all job operations. This is discouraged, as it will
+   * use the standard CMS API for all job operations. This is discouraged, as it will
    * drastically affect performance.
    *
    * @default false
@@ -190,13 +190,13 @@ export type JobsConfig = {
    */
   runHooks?: boolean
   /**
-   * A function that will be executed before Payload picks up jobs which are configured by the `jobs.autorun` function.
+   * A function that will be executed before CMS picks up jobs which are configured by the `jobs.autorun` function.
    * If this function returns true, jobs will be queried and picked up. If it returns false, jobs will not be run.
    * @default undefined - if this function is not defined, jobs will be run - as if () => true was passed.
-   * @param payload
+   * @param cms
    * @returns boolean
    */
-  shouldAutoRun?: (payload: Payload) => MaybePromise<boolean>
+  shouldAutoRun?: (cms: CMS) => MaybePromise<boolean>
   /**
    * Define all possible tasks here
    */
@@ -218,11 +218,11 @@ export type Queueable = {
 export type BeforeScheduleFn = (args: {
   defaultBeforeSchedule: BeforeScheduleFn
   /**
-   * payload-job-stats global data
+   * cms-job-stats global data
    */
   jobStats: JobStats
   queueable: Queueable
-  req: PayloadRequest
+  req: CMSRequest
 }) => MaybePromise<{
   input?: object
   shouldSchedule: boolean
@@ -233,11 +233,11 @@ export type AfterScheduleFn = (
   args: {
     defaultAfterSchedule: AfterScheduleFn
     /**
-     * payload-job-stats global data. If the global does not exist, it will be null.
+     * cms-job-stats global data. If the global does not exist, it will be null.
      */
     jobStats: JobStats | null
     queueable: Queueable
-    req: PayloadRequest
+    req: CMSRequest
   } & (
     | {
         error: Error

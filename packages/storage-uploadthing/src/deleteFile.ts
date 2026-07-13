@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 import type { UTApi } from 'uploadthing/server'
 
 import { APIError } from '@hanzo/cms'
@@ -8,7 +8,7 @@ import { getKeyFromFilename } from './utilities.js'
 interface DeleteFileArgs {
   doc: Record<string, unknown>
   filename: string
-  req: PayloadRequest
+  req: CMSRequest
   utApi: UTApi
 }
 
@@ -16,7 +16,7 @@ export async function deleteFile({ doc, filename, req, utApi }: DeleteFileArgs):
   const key = getKeyFromFilename(doc, filename)
 
   if (!key) {
-    req.payload.logger.error({
+    req.cms.logger.error({
       msg: `Error deleting file: ${filename} - unable to extract key from doc`,
     })
     throw new APIError(`Error deleting file: ${filename}`)
@@ -25,7 +25,7 @@ export async function deleteFile({ doc, filename, req, utApi }: DeleteFileArgs):
   try {
     await utApi.deleteFiles(key)
   } catch (err) {
-    req.payload.logger.error({
+    req.cms.logger.error({
       err,
       msg: `Error deleting file with key: ${filename} - key: ${key}`,
     })

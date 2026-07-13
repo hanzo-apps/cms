@@ -18,16 +18,16 @@ export const deleteVersions: DeleteVersions = async function deleteVersion(
   let fields: FlattenedField[]
 
   if (globalSlug) {
-    const globalConfig = this.payload.globals.config.find(({ slug }) => slug === globalSlug)
+    const globalConfig = this.cms.globals.config.find(({ slug }) => slug === globalSlug)
     tableName = this.tableNameMap.get(`_${toSnakeCase(globalSlug)}${this.versionsSuffix}`)
-    fields = buildVersionGlobalFields(this.payload.config, globalConfig, true)
+    fields = buildVersionGlobalFields(this.cms.config, globalConfig, true)
   } else if (collectionSlug) {
     const collectionConfig: SanitizedCollectionConfig =
-      this.payload.collections[collectionSlug].config
+      this.cms.collections[collectionSlug].config
     tableName = this.tableNameMap.get(
       `_${toSnakeCase(collectionConfig.slug)}${this.versionsSuffix}`,
     )
-    fields = buildVersionCollectionFields(this.payload.config, collectionConfig, true)
+    fields = buildVersionCollectionFields(this.cms.config, collectionConfig, true)
   } else {
     throw new APIError('Either collection or globalSlug must be passed.')
   }

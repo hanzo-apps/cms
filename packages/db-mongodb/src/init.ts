@@ -27,20 +27,20 @@ export const init: Init = async function init(this: MongooseAdapter) {
     await this.afterCreateConnection(this)
   }
 
-  this.payload.config.collections.forEach((collection: SanitizedCollectionConfig) => {
+  this.cms.config.collections.forEach((collection: SanitizedCollectionConfig) => {
     const schemaOptions = this.collectionsSchemaOptions?.[collection.slug]
 
-    const schema = buildCollectionSchema(collection, this.payload, schemaOptions)
+    const schema = buildCollectionSchema(collection, this.cms, schemaOptions)
     if (collection.versions) {
       const versionModelName = getDBName({ config: collection, versions: true })
 
-      const versionCollectionFields = buildVersionCollectionFields(this.payload.config, collection)
+      const versionCollectionFields = buildVersionCollectionFields(this.cms.config, collection)
 
       const versionSchema = buildSchema({
         buildSchemaOptions: {
           disableUnique: true,
           draftsEnabled: true,
-          indexSortableFields: this.payload.config.indexSortableFields,
+          indexSortableFields: this.cms.config.indexSortableFields,
           options: {
             minimize: false,
             timestamps: false,
@@ -49,13 +49,13 @@ export const init: Init = async function init(this: MongooseAdapter) {
         },
         compoundIndexes: buildVersionCompoundIndexes({ indexes: collection.sanitizedIndexes }),
         configFields: versionCollectionFields,
-        payload: this.payload,
+        cms: this.cms,
       })
 
       versionSchema.plugin<any, PaginateOptions>(paginate, { useEstimatedCount: true }).plugin(
         getBuildQueryPlugin({
           collectionSlug: collection.slug,
-          versionsFields: buildVersionCollectionFields(this.payload.config, collection, true),
+          versionsFields: buildVersionCollectionFields(this.cms.config, collection, true),
         }),
       )
 
@@ -82,29 +82,29 @@ export const init: Init = async function init(this: MongooseAdapter) {
 
   this.globals = buildGlobalModel(this) as GlobalModel
 
-  this.payload.config.globals.forEach((global) => {
+  this.cms.config.globals.forEach((global) => {
     if (global.versions) {
       const versionModelName = getDBName({ config: global, versions: true })
 
-      const versionGlobalFields = buildVersionGlobalFields(this.payload.config, global)
+      const versionGlobalFields = buildVersionGlobalFields(this.cms.config, global)
 
       const versionSchema = buildSchema({
         buildSchemaOptions: {
           disableUnique: true,
           draftsEnabled: true,
-          indexSortableFields: this.payload.config.indexSortableFields,
+          indexSortableFields: this.cms.config.indexSortableFields,
           options: {
             minimize: false,
             timestamps: false,
           },
         },
         configFields: versionGlobalFields,
-        payload: this.payload,
+        cms: this.cms,
       })
 
       versionSchema.plugin<any, PaginateOptions>(paginate, { useEstimatedCount: true }).plugin(
         getBuildQueryPlugin({
-          versionsFields: buildVersionGlobalFields(this.payload.config, global, true),
+          versionsFields: buildVersionGlobalFields(this.cms.config, global, true),
         }),
       )
 

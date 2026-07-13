@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import type { Icon } from 'next/dist/lib/metadata/types/metadata-types.js'
 import type { MetaConfig } from '@hanzo/cms'
 
-import { payloadFaviconDark, payloadFaviconLight, staticOGImage } from '@hanzo/cms-ui/assets'
+import { cmsFaviconDark, cmsFaviconLight, staticOGImage } from '@hanzo/cms-ui/assets'
 import * as qs from 'qs-esm'
 
 const appendTitleSuffix = (
@@ -59,7 +59,7 @@ export const generateMetadata = async (
 
   /**
    * @todo find a way to remove the type assertion here.
-   * It is a result of needing to `DeepCopy` the `MetaConfig` type from Payload.
+   * It is a result of needing to `DeepCopy` the `MetaConfig` type from CMS.
    * This is required for the `DeepRequired` from `Config` to `SanitizedConfig`.
    */
   const incomingMetadata = rest as Metadata
@@ -71,7 +71,7 @@ export const generateMetadata = async (
         type: 'image/png',
         rel: 'icon',
         sizes: '32x32',
-        url: typeof payloadFaviconDark === 'object' ? payloadFaviconDark?.src : payloadFaviconDark,
+        url: typeof cmsFaviconDark === 'object' ? cmsFaviconDark?.src : cmsFaviconDark,
       },
       {
         type: 'image/png',
@@ -79,7 +79,7 @@ export const generateMetadata = async (
         rel: 'icon',
         sizes: '32x32',
         url:
-          typeof payloadFaviconLight === 'object' ? payloadFaviconLight?.src : payloadFaviconLight,
+          typeof cmsFaviconLight === 'object' ? cmsFaviconLight?.src : cmsFaviconLight,
       },
     ] satisfies Array<Icon>)
 
@@ -136,7 +136,7 @@ export const generateMetadata = async (
     icons,
     metadataBase: new URL(
       serverURL ||
-        process.env.PAYLOAD_PUBLIC_SERVER_URL ||
+        process.env.CMS_PUBLIC_SERVER_URL ||
         `http://localhost:${process.env.PORT || 3000}`,
     ),
     openGraph: mergedOpenGraph,

@@ -33,7 +33,7 @@ describe('getCustomCollectionViewByRoute', () => {
       })
 
       expect(result.viewKey).toBe('grid')
-      expect(result.view.payloadComponent).toBeDefined()
+      expect(result.view.cmsComponent).toBeDefined()
     })
 
     it('should not match when the path segment does not correspond to any custom view', () => {
@@ -45,7 +45,7 @@ describe('getCustomCollectionViewByRoute', () => {
       })
 
       expect(result.viewKey).toBeNull()
-      expect(result.view.payloadComponent).toBeUndefined()
+      expect(result.view.cmsComponent).toBeUndefined()
     })
   })
 
@@ -59,7 +59,7 @@ describe('getCustomCollectionViewByRoute', () => {
       })
 
       expect(result.viewKey).toBe('grid')
-      expect(result.view.payloadComponent).toBeDefined()
+      expect(result.view.cmsComponent).toBeDefined()
     })
 
     it('should match when adminRoute is /', () => {
@@ -71,7 +71,7 @@ describe('getCustomCollectionViewByRoute', () => {
       })
 
       expect(result.viewKey).toBe('grid')
-      expect(result.view.payloadComponent).toBeDefined()
+      expect(result.view.cmsComponent).toBeDefined()
     })
   })
 
@@ -85,7 +85,7 @@ describe('getCustomCollectionViewByRoute', () => {
       })
 
       expect(result.viewKey).toBe('grid')
-      expect(result.view.payloadComponent).toBeDefined()
+      expect(result.view.cmsComponent).toBeDefined()
     })
 
     it('should match the exact path when exact is false', () => {
@@ -97,7 +97,7 @@ describe('getCustomCollectionViewByRoute', () => {
       })
 
       expect(result.viewKey).toBe('grid')
-      expect(result.view.payloadComponent).toBeDefined()
+      expect(result.view.cmsComponent).toBeDefined()
     })
 
     it('should not match an unrelated path when exact is false', () => {
@@ -109,7 +109,7 @@ describe('getCustomCollectionViewByRoute', () => {
       })
 
       expect(result.viewKey).toBeNull()
-      expect(result.view.payloadComponent).toBeUndefined()
+      expect(result.view.cmsComponent).toBeUndefined()
     })
   })
 
@@ -123,7 +123,7 @@ describe('getCustomCollectionViewByRoute', () => {
       })
 
       expect(result.viewKey).toBeNull()
-      expect(result.view.payloadComponent).toBeUndefined()
+      expect(result.view.cmsComponent).toBeUndefined()
     })
 
     it('should not match built-in "edit" or "list" keys', () => {

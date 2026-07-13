@@ -1,6 +1,6 @@
 import type { ContainerClient, StorageSharedKeyCredential } from '@azure/storage-blob'
 import type { ClientUploadsAccess } from '@hanzo/cms-plugin-cloud-storage/types'
-import type { PayloadHandler } from '@hanzo/cms'
+import type { CMSHandler } from '@hanzo/cms'
 
 import { BlobSASPermissions, generateBlobSASQueryParameters } from '@azure/storage-blob'
 import { resolveSignedURLKey } from '@hanzo/cms-plugin-cloud-storage/utilities'
@@ -24,7 +24,7 @@ export const getGenerateSignedURLHandler = ({
   containerName,
   getStorageClient,
   useCompositePrefixes = false,
-}: Args): PayloadHandler => {
+}: Args): CMSHandler => {
   return async (req) => {
     if (!req.json) {
       throw new APIError('Unreachable')

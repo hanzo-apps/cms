@@ -404,7 +404,7 @@ export const huTranslations: DefaultTranslationsObject = {
     password: 'Jelszó',
     pasteField: 'Mező beillesztése',
     pasteRow: 'Sor beillesztése',
-    payloadSettings: 'Payload beállítások',
+    cmsSettings: 'CMS beállítások',
     permanentlyDelete: 'Végleges Törlés',
     permanentlyDeletedCountSuccessfully: 'Véglegesen törölt {{count}} {{label}} sikeresen.',
     perPage: 'Oldalanként: {{limit}}',
@@ -423,7 +423,7 @@ export const huTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'Állítsa vissza közzétett változatként',
     restoredCountSuccessfully: 'Sikeresen visszaállított {{count}} {{label}}.',
     restoring:
-      'Tartsa tiszteletben az eredeti szöveg jelentését a Payload kontextusában. Íme egy lista a Payloadban gyakran használt kifejezésekről, amelyek rendkívül specifikus jelentéssel bírnak:\n    - Gyűjtemény: A gyűjtemény egy olyan dokumentumcsoport, amelyek közös struktúrával és céllal rendelkeznek. A gyűjteményeket a tartalom szervezésére és kezelésére használjuk a Payloadban.\n    - Mező',
+      'Tartsa tiszteletben az eredeti szöveg jelentését a CMS kontextusában. Íme egy lista a CMSban gyakran használt kifejezésekről, amelyek rendkívül specifikus jelentéssel bírnak:\n    - Gyűjtemény: A gyűjtemény egy olyan dokumentumcsoport, amelyek közös struktúrával és céllal rendelkeznek. A gyűjteményeket a tartalom szervezésére és kezelésére használjuk a CMSban.\n    - Mező',
     row: 'Sor',
     rows: 'Sorok',
     save: 'Mentés',

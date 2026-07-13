@@ -25,7 +25,7 @@ export const webhooksEndpoint: (props: Props) => Endpoint = (props) => {
         // @ts-ignore - ignoring since possible versions are not type safe, only the latest version is recognised
         apiVersion: apiVersion || '2025-03-31.basil',
         appInfo: appInfo || {
-          name: 'Stripe Payload Plugin',
+          name: 'Stripe CMS Plugin',
           url: 'https://payloadcms.com',
         },
       })
@@ -40,7 +40,7 @@ export const webhooksEndpoint: (props: Props) => Endpoint = (props) => {
           event = stripe.webhooks.constructEvent(body, stripeSignature, webhookSecret)
         } catch (err: unknown) {
           const msg: string = err instanceof Error ? err.message : JSON.stringify(err)
-          req.payload.logger.error(`Error constructing Stripe event: ${msg}`)
+          req.cms.logger.error(`Error constructing Stripe event: ${msg}`)
           returnStatus = 400
         }
 

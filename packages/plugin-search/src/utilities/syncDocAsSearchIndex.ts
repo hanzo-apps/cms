@@ -7,7 +7,7 @@ export const syncDocAsSearchIndex = async ({
   onSyncError,
   operation,
   pluginConfig,
-  req: { payload },
+  req: { cms },
   req,
 }: SyncDocArgs) => {
   const { id, _status: status, title } = doc || {}
@@ -32,7 +32,7 @@ export const syncDocAsSearchIndex = async ({
         return doc
       }
     } catch (err) {
-      req.payload.logger.error({
+      req.cms.logger.error({
         err,
         msg: 'Search plugin: Error executing skipSync. Proceeding with sync.',
       })
@@ -47,13 +47,13 @@ export const syncDocAsSearchIndex = async ({
     title,
   }
   const docKeyPrefix = `${collection}:${id}`
-  const docKey = req.payload.config.localization ? `${docKeyPrefix}:${syncLocale}` : docKeyPrefix
+  const docKey = req.cms.config.localization ? `${docKeyPrefix}:${syncLocale}` : docKeyPrefix
   const syncedDocsSet = (req.context?.syncedDocsSet as Set<string>) || new Set<string>()
 
   if (syncedDocsSet.has(docKey)) {
     /*
      * prevents duplicate syncing of documents in the same request
-     * this can happen when hooks call `payload.update` within the create lifecycle
+     * this can happen when hooks call `cms.update` within the create lifecycle
      * like the nested-docs plugin does
      */
     return doc
@@ -65,11 +65,11 @@ export const syncDocAsSearchIndex = async ({
 
   if (typeof beforeSync === 'function') {
     let docToSyncWith = doc
-    if (payload.config?.localization) {
+    if (cms.config?.localization) {
       // Check if document is trashed (has deletedAt field)
       const isTrashDocument = doc && 'deletedAt' in doc && doc.deletedAt
 
-      docToSyncWith = await payload.findByID({
+      docToSyncWith = await cms.findByID({
         id,
         collection,
         locale: syncLocale,
@@ -81,7 +81,7 @@ export const syncDocAsSearchIndex = async ({
     dataToSave = await beforeSync({
       collectionSlug: collection,
       originalDoc: docToSyncWith,
-      payload,
+      cms,
       req,
       searchDoc: dataToSave,
     })
@@ -95,8 +95,8 @@ export const syncDocAsSearchIndex = async ({
       try {
         defaultPriority = await priority(doc)
       } catch (err: unknown) {
-        payload.logger.error(err)
-        payload.logger.error(
+        cms.logger.error(err)
+        cms.logger.error(
           `Error gathering default priority for ${searchSlug} documents related to ${collection}`,
         )
       }
@@ -109,7 +109,7 @@ export const syncDocAsSearchIndex = async ({
 
   try {
     if (operation === 'create' && doSync) {
-      await payload.create({
+      await cms.create({
         collection: searchSlug,
         data: {
           ...dataToSave,
@@ -124,7 +124,7 @@ export const syncDocAsSearchIndex = async ({
     if (operation === 'update') {
       try {
         // find the correct doc to sync with
-        const searchDocQuery = await payload.find({
+        const searchDocQuery = await cms.find({
           collection: searchSlug,
           depth: 0,
           locale: syncLocale,
@@ -151,14 +151,14 @@ export const syncDocAsSearchIndex = async ({
         if (duplicativeDocs.length > 0) {
           try {
             const duplicativeDocIDs = duplicativeDocs.map(({ id }) => id)
-            await payload.delete({
+            await cms.delete({
               collection: searchSlug,
               depth: 0,
               req,
               where: { id: { in: duplicativeDocIDs } },
             })
           } catch (err: unknown) {
-            payload.logger.error({
+            cms.logger.error({
               err,
               msg: `Error deleting duplicative ${searchSlug} documents.`,
             })
@@ -173,14 +173,14 @@ export const syncDocAsSearchIndex = async ({
 
           if (isTrashDocument) {
             try {
-              await payload.delete({
+              await cms.delete({
                 id: searchDocID,
                 collection: searchSlug,
                 depth: 0,
                 req,
               })
             } catch (err: unknown) {
-              payload.logger.error({
+              cms.logger.error({
                 err,
                 msg: `Error deleting ${searchSlug} document for trashed doc.`,
               })
@@ -189,7 +189,7 @@ export const syncDocAsSearchIndex = async ({
             if (doSync) {
               // update the doc normally
               try {
-                await payload.update({
+                await cms.update({
                   id: searchDocID,
                   collection: searchSlug,
                   data: {
@@ -201,7 +201,7 @@ export const syncDocAsSearchIndex = async ({
                   req,
                 })
               } catch (err: unknown) {
-                payload.logger.error({ err, msg: `Error updating ${searchSlug} document.` })
+                cms.logger.error({ err, msg: `Error updating ${searchSlug} document.` })
               }
             }
 
@@ -210,7 +210,7 @@ export const syncDocAsSearchIndex = async ({
               // We don't want to remove the search doc if there is a published version but a new draft has been created
               const {
                 docs: [docWithPublish],
-              } = await payload.find({
+              } = await cms.find({
                 collection,
                 depth: 0,
                 draft: false,
@@ -237,21 +237,21 @@ export const syncDocAsSearchIndex = async ({
               if (!docWithPublish) {
                 // do not include draft docs in search results, so delete the record
                 try {
-                  await payload.delete({
+                  await cms.delete({
                     id: searchDocID,
                     collection: searchSlug,
                     depth: 0,
                     req,
                   })
                 } catch (err: unknown) {
-                  payload.logger.error({ err, msg: `Error deleting ${searchSlug} document.` })
+                  cms.logger.error({ err, msg: `Error deleting ${searchSlug} document.` })
                 }
               }
             }
           }
         } else if (doSync) {
           try {
-            await payload.create({
+            await cms.create({
               collection: searchSlug,
               data: {
                 ...dataToSave,
@@ -262,15 +262,15 @@ export const syncDocAsSearchIndex = async ({
               req,
             })
           } catch (err: unknown) {
-            payload.logger.error({ err, msg: `Error creating ${searchSlug} document.` })
+            cms.logger.error({ err, msg: `Error creating ${searchSlug} document.` })
           }
         }
       } catch (err: unknown) {
-        payload.logger.error({ err, msg: `Error finding ${searchSlug} document.` })
+        cms.logger.error({ err, msg: `Error finding ${searchSlug} document.` })
       }
     }
   } catch (err: unknown) {
-    payload.logger.error({
+    cms.logger.error({
       err,
       msg: `Error syncing ${searchSlug} document related to ${collection} with id: '${id}'.`,
     })

@@ -1,4 +1,4 @@
-import type { Data, Document, PayloadRequest, SanitizedCollectionConfig } from '@hanzo/cms'
+import type { Data, Document, CMSRequest, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import type { GenerateLabel, GenerateURL } from '../types.js'
 
@@ -13,7 +13,7 @@ type Args = {
   generateURL?: GenerateURL
   originalDoc?: Document
   parentFieldName?: string
-  req: PayloadRequest
+  req: CMSRequest
 }
 export const populateBreadcrumbs = async ({
   breadcrumbsFieldName = 'breadcrumbs',

@@ -1,7 +1,7 @@
 import crypto from 'crypto'
 
 import type { SanitizedCollectionConfig } from '../../../collections/config/types.js'
-import type { PayloadRequest } from '../../../types/index.js'
+import type { CMSRequest } from '../../../types/index.js'
 
 import { ValidationError } from '../../../errors/index.js'
 import { password } from '../../../fields/validations.js'
@@ -23,7 +23,7 @@ function pbkdf2Promisified(password: string, salt: string): Promise<Buffer> {
 type Args = {
   collection: SanitizedCollectionConfig
   password: string
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export const generatePasswordSaltHash = async ({

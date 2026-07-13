@@ -1,4 +1,4 @@
-import type { PayloadRequest, VisibleEntities } from '@hanzo/cms'
+import type { CMSRequest, VisibleEntities } from '@hanzo/cms'
 
 type Hidden = ((args: { user: unknown }) => boolean) | boolean
 
@@ -13,12 +13,12 @@ function isHidden(hidden: Hidden | undefined, user: unknown): boolean {
   return !!hidden
 }
 
-export function getVisibleEntities({ req }: { req: PayloadRequest }): VisibleEntities {
+export function getVisibleEntities({ req }: { req: CMSRequest }): VisibleEntities {
   return {
-    collections: req.payload.config.collections
+    collections: req.cms.config.collections
       .map(({ slug, admin: { hidden } }) => (!isHidden(hidden, req.user) ? slug : null))
       .filter(Boolean),
-    globals: req.payload.config.globals
+    globals: req.cms.config.globals
       .map(({ slug, admin: { hidden } }) => (!isHidden(hidden, req.user) ? slug : null))
       .filter(Boolean),
   }

@@ -1,4 +1,4 @@
-import type { PayloadRequest, Where } from '../../../types/index.js'
+import type { CMSRequest, Where } from '../../../types/index.js'
 import type { TaskType } from '../../config/types/taskTypes.js'
 import type { WorkflowTypes } from '../../config/types/workflowTypes.js'
 
@@ -24,7 +24,7 @@ export async function countRunnableOrActiveJobsForQueue({
    */
   onlyScheduled?: boolean
   queue: string
-  req: PayloadRequest
+  req: CMSRequest
   taskSlug?: TaskType
   workflowSlug?: WorkflowTypes
 }): Promise<number> {
@@ -64,7 +64,7 @@ export async function countRunnableOrActiveJobsForQueue({
     })
   }
 
-  const runnableOrActiveJobsForQueue = await req.payload.db.count({
+  const runnableOrActiveJobsForQueue = await req.cms.db.count({
     collection: jobsCollectionSlug,
     req,
     where: {

@@ -5,10 +5,10 @@ import { cache } from 'react'
 
 import { buildFieldSchemaMap } from './buildFieldSchemaMap/index.js'
 
-let cachedSchemaMap = global._payload_schemaMap
+let cachedSchemaMap = global._cms_schemaMap
 
 if (!cachedSchemaMap) {
-  cachedSchemaMap = global._payload_schemaMap = null
+  cachedSchemaMap = global._cms_schemaMap = null
 }
 
 export const getSchemaMap = cache(
@@ -21,7 +21,7 @@ export const getSchemaMap = cache(
   }): FieldSchemaMap => {
     const { collectionSlug, config, globalSlug, i18n, widgetSlug } = args
 
-    if (!cachedSchemaMap || global._payload_doNotCacheSchemaMap) {
+    if (!cachedSchemaMap || global._cms_doNotCacheSchemaMap) {
       cachedSchemaMap = new Map()
     }
 
@@ -44,9 +44,9 @@ export const getSchemaMap = cache(
 
     cachedSchemaMap.set(cacheKey, entityFieldMap)
 
-    global._payload_schemaMap = cachedSchemaMap
+    global._cms_schemaMap = cachedSchemaMap
 
-    global._payload_doNotCacheSchemaMap = false
+    global._cms_doNotCacheSchemaMap = false
 
     return entityFieldMap
   },

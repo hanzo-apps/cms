@@ -24,17 +24,17 @@ export const generateSubmissionCollection = (
       relationTo: formSlug,
       required: true,
       // @ts-expect-error - vestiges of when tsconfig was not strict. Feel free to improve
-      validate: async (value, { req: { payload }, req }) => {
+      validate: async (value, { req: { cms }, req }) => {
         /* Don't run in the client side */
-        if (!payload) {
+        if (!cms) {
           return true
         }
 
-        if (payload) {
+        if (cms) {
           let _existingForm
 
           try {
-            _existingForm = await payload.findByID({
+            _existingForm = await cms.findByID({
               id: value,
               collection: formSlug,
               req,

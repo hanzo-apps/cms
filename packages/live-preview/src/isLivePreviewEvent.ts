@@ -2,4 +2,4 @@ export const isLivePreviewEvent = (event: MessageEvent, serverURL: string): bool
   event.origin === serverURL &&
   event.data &&
   typeof event.data === 'object' &&
-  event.data.type === 'payload-live-preview'
+  event.data.type === 'cms-live-preview'

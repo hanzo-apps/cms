@@ -1,18 +1,18 @@
 import type { SanitizedCollectionConfig, TypeWithID } from '../../../collections/config/types.js'
-import type { Payload } from '../../../index.js'
-import type { PayloadRequest } from '../../../types/index.js'
+import type { CMS } from '../../../index.js'
+import type { CMSRequest } from '../../../types/index.js'
 
 type Args = {
   collection: SanitizedCollectionConfig
   doc: Record<string, unknown> & TypeWithID
-  payload: Payload
-  req: PayloadRequest
+  cms: CMS
+  req: CMSRequest
 }
 
 export const resetLoginAttempts = async ({
   collection,
   doc,
-  payload,
+  cms,
   req,
 }: Args): Promise<void> => {
   if (
@@ -21,7 +21,7 @@ export const resetLoginAttempts = async ({
   ) {
     return
   }
-  await payload.db.updateOne({
+  await cms.db.updateOne({
     id: doc.id,
     collection: collection.slug,
     data: {

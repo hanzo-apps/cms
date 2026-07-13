@@ -5,8 +5,8 @@ import type {
   DefaultServerCellComponentProps,
   Document,
   Field,
-  Payload,
-  PayloadRequest,
+  CMS,
+  CMSRequest,
   ViewTypes,
 } from '@hanzo/cms'
 
@@ -32,8 +32,8 @@ type RenderCellArgs = {
   readonly enableRowSelections: boolean
   readonly i18n: I18nClient
   readonly isLinkedColumn: boolean
-  readonly payload: Payload
-  readonly req?: PayloadRequest
+  readonly cms: CMS
+  readonly req?: CMSRequest
   readonly rowIndex: number
   readonly serverField: Field
   readonly viewType?: ViewTypes
@@ -47,7 +47,7 @@ export function renderCell({
   enableRowSelections,
   i18n,
   isLinkedColumn,
-  payload,
+  cms,
   req,
   rowIndex,
   serverField,
@@ -71,12 +71,12 @@ export function renderCell({
   let customLinkURL: string | undefined
 
   if (isLinkedColumn && req) {
-    const collectionConfig = payload.collections[collectionSlug]?.config
+    const collectionConfig = cms.collections[collectionSlug]?.config
     const formatDocURL = collectionConfig?.admin?.formatDocURL
 
     if (typeof formatDocURL === 'function') {
       // Generate the default URL that would normally be used
-      const adminRoute = req.payload.config.routes?.admin || '/admin'
+      const adminRoute = req.cms.config.routes?.admin || '/admin'
       const defaultURL = formatAdminURL({
         adminRoute,
         path: `/collections/${collectionSlug}${viewType === 'trash' ? '/trash' : ''}/${encodeURIComponent(String(doc.id))}`,
@@ -145,7 +145,7 @@ export function renderCell({
   const cellServerProps: DefaultServerCellComponentProps = {
     cellData: cellClientProps.cellData,
     className: baseCellClientProps.className,
-    collectionConfig: payload.collections[collectionSlug].config,
+    collectionConfig: cms.collections[collectionSlug].config,
     collectionSlug,
     columnIndex,
     customCellProps: baseCellClientProps.customCellProps,
@@ -154,7 +154,7 @@ export function renderCell({
     link: shouldLink,
     linkURL: customLinkURL,
     onClick: baseCellClientProps.onClick,
-    payload,
+    cms,
     rowData: doc,
   }
 
@@ -182,7 +182,7 @@ export function renderCell({
     CustomCell = RenderServerComponent({
       clientProps: cellClientProps,
       Component: CustomCellComponent ?? serverField.editor.CellComponent,
-      importMap: payload.importMap,
+      importMap: cms.importMap,
       serverProps: cellServerProps,
     })
   } else {
@@ -192,7 +192,7 @@ export function renderCell({
       CustomCell = RenderServerComponent({
         clientProps: cellClientProps,
         Component: CustomCellComponent,
-        importMap: payload.importMap,
+        importMap: cms.importMap,
         serverProps: cellServerProps,
       })
     } else if (
@@ -203,7 +203,7 @@ export function renderCell({
       CustomCell = RenderServerComponent({
         clientProps: cellClientProps,
         Component: DefaultCell,
-        importMap: payload.importMap,
+        importMap: cms.importMap,
       })
     } else {
       const CustomCellComponent = serverField?.admin?.components?.Cell
@@ -212,7 +212,7 @@ export function renderCell({
         CustomCell = RenderServerComponent({
           clientProps: cellClientProps,
           Component: CustomCellComponent,
-          importMap: payload.importMap,
+          importMap: cms.importMap,
           serverProps: cellServerProps,
         })
       } else {

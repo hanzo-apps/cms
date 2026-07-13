@@ -36,7 +36,7 @@ export const generateEditViewMetadata: GenerateEditViewMetadata = async ({
   const metaToUse: MetaConfig = {
     ...(config.admin.meta || {}),
     description: `${verb} - ${entityLabel}`,
-    keywords: `${entityLabel}, Payload, CMS`,
+    keywords: `${entityLabel}, CMS, CMS`,
     title: `${verb} - ${entityLabel}`,
   }
 

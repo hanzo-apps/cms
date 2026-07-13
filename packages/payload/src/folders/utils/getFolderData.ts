@@ -1,5 +1,5 @@
 import type { CollectionSlug } from '../../index.js'
-import type { PayloadRequest, Where } from '../../types/index.js'
+import type { CMSRequest, Where } from '../../types/index.js'
 import type { FolderOrDocument, FolderSortKeys, GetFolderDataResult } from '../types.js'
 
 import { parseDocumentID } from '../../index.js'
@@ -28,7 +28,7 @@ type Args = {
    * @default undefined
    */
   folderWhere?: Where
-  req: PayloadRequest
+  req: CMSRequest
   sort: FolderSortKeys
 }
 /**
@@ -42,16 +42,16 @@ export const getFolderData = async ({
   req,
   sort = 'name',
 }: Args): Promise<GetFolderDataResult> => {
-  const { payload } = req
+  const { cms } = req
 
-  if (payload.config.folders === false) {
+  if (cms.config.folders === false) {
     throw new Error('Folders are not enabled')
   }
 
   const parentFolderID = parseDocumentID({
     id: _folderID,
-    collectionSlug: payload.config.folders.slug,
-    payload,
+    collectionSlug: cms.config.folders.slug,
+    cms,
   })
 
   const breadcrumbsPromise = getFolderBreadcrumbs({
@@ -80,8 +80,8 @@ export const getFolderData = async ({
     }
   } else {
     const subfoldersPromise = getOrphanedDocs({
-      collectionSlug: payload.config.folders.slug,
-      folderFieldName: payload.config.folders.fieldName,
+      collectionSlug: cms.config.folders.slug,
+      folderFieldName: cms.config.folders.fieldName,
       req,
       where: folderWhere,
     })

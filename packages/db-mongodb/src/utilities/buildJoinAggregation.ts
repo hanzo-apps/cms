@@ -55,14 +55,14 @@ export const buildJoinAggregation = async ({
     return
   }
 
-  const joinConfig = adapter.payload.collections[collection]?.config?.joins
+  const joinConfig = adapter.cms.collections[collection]?.config?.joins
 
   if (!joinConfig) {
     throw new APIError(`Could not retrieve sanitized join config for ${collection}.`)
   }
 
   const aggregate: PipelineStage[] = []
-  const polymorphicJoinsConfig = adapter.payload.collections[collection]?.config?.polymorphicJoins
+  const polymorphicJoinsConfig = adapter.cms.collections[collection]?.config?.polymorphicJoins
 
   if (!polymorphicJoinsConfig) {
     throw new APIError(`Could not retrieve sanitized polymorphic joins config for ${collection}.`)
@@ -98,7 +98,7 @@ export const buildJoinAggregation = async ({
 
     const sort = buildSortParam({
       adapter,
-      config: adapter.payload.config,
+      config: adapter.cms.config,
       fields: aggregatedFields,
       locale,
       sort: sortJoin,
@@ -273,7 +273,7 @@ export const buildJoinAggregation = async ({
         continue
       }
 
-      const collectionConfig = adapter.payload.collections[join.field.collection as string]?.config
+      const collectionConfig = adapter.cms.collections[join.field.collection as string]?.config
 
       if (!collectionConfig) {
         throw new APIError(
@@ -308,12 +308,12 @@ export const buildJoinAggregation = async ({
       }
 
       const fields = useDrafts
-        ? buildVersionCollectionFields(adapter.payload.config, collectionConfig, true)
+        ? buildVersionCollectionFields(adapter.cms.config, collectionConfig, true)
         : collectionConfig.flattenedFields
 
       const sort = buildSortParam({
         adapter,
-        config: adapter.payload.config,
+        config: adapter.cms.config,
         fields,
         locale,
         sort: useDrafts ? getQueryDraftsSort({ collectionConfig, sort: sortJoin }) : sortJoin,
@@ -324,7 +324,7 @@ export const buildJoinAggregation = async ({
 
       const $match = await JoinModel.buildQuery({
         locale,
-        payload: adapter.payload,
+        cms: adapter.cms,
         where: useDrafts
           ? combineQueries(appendVersionToQueryKey(whereJoin), {
               latest: {
@@ -389,8 +389,8 @@ export const buildJoinAggregation = async ({
         foreignFieldPrefix = 'version.'
       }
 
-      if (adapter.payload.config.localization && locale === 'all') {
-        adapter.payload.config.localization.localeCodes.forEach((code) => {
+      if (adapter.cms.config.localization && locale === 'all') {
+        adapter.cms.config.localization.localeCodes.forEach((code) => {
           const as = `${versions ? `version.${join.joinPath}` : join.joinPath}${code}`
 
           aggregate.push(
@@ -443,7 +443,7 @@ export const buildJoinAggregation = async ({
             field: join.field,
             parentIsLocalized: join.parentIsLocalized,
           }) &&
-          adapter.payload.config.localization &&
+          adapter.cms.config.localization &&
           locale
             ? `.${locale}`
             : ''

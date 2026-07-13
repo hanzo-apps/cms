@@ -69,7 +69,7 @@ export const buildFormStateHandler: ServerFunction<
 
     return res
   } catch (err) {
-    req.payload.logger.error({ err, msg: `There was an error building form state` })
+    req.cms.logger.error({ err, msg: `There was an error building form state` })
 
     if (err.message === 'Could not find field schema for given path') {
       return {
@@ -108,8 +108,8 @@ export const buildFormState = async (
     req,
     req: {
       i18n,
-      payload,
-      payload: { config },
+      cms,
+      cms: { config },
     },
     returnLivePreviewURL,
     returnLockStatus,
@@ -141,12 +141,12 @@ export const buildFormState = async (
     config: getClientConfig({
       config,
       i18n,
-      importMap: req.payload.importMap,
+      importMap: req.cms.importMap,
       user: skipClientConfigAuth ? true : req.user,
     }),
     globalSlug,
     i18n,
-    payload,
+    cms,
     schemaMap,
     widgetSlug,
   })
@@ -233,7 +233,7 @@ export const buildFormState = async (
 
   // Maintain form state of auth / upload fields
   if (collectionSlug && formState) {
-    if (payload.collections[collectionSlug]?.config?.upload && formState.file) {
+    if (cms.collections[collectionSlug]?.config?.upload && formState.file) {
       formStateResult.file = formState.file
     }
   }

@@ -14,11 +14,11 @@ export type Options = {
    * This is because when manipulating rows, field paths change in form state, but the prop remains the same until the component is re-rendered on the server.
    * This causes the component to temporarily point to the wrong field in form state until the server responds with a freshly rendered component.
    * To prevent this, fields are wrapped with a `FieldPathContext` which is guaranteed to be up-to-date.
-   * The `path` prop that Payload's default fields receive, then, are sent into this hook as the `potentiallyStalePath` arg.
+   * The `path` prop that CMS's default fields receive, then, are sent into this hook as the `potentiallyStalePath` arg.
    * This ensures that:
    *   1. Custom components that use this hook directly will still respect the `path` prop as top priority.
-   *   2. Custom server components that blindly spread their props into default Payload fields still prefer the dynamic path from context.
-   *   3. Components that render default Payload fields directly do not require a `FieldPathProvider`, e.g. the email field in the account view.
+   *   2. Custom server components that blindly spread their props into default CMS fields still prefer the dynamic path from context.
+   *   3. Components that render default CMS fields directly do not require a `FieldPathProvider`, e.g. the email field in the account view.
    */
   potentiallyStalePath?: string
   /**

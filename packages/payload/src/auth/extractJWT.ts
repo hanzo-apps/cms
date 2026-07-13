@@ -1,9 +1,9 @@
-import type { BasePayload } from '../index.js'
+import type { BaseCMS } from '../index.js'
 import type { AuthStrategyFunctionArgs } from './index.js'
 
 import { parseCookies } from '../utilities/parseCookies.js'
 
-type ExtractionMethod = (args: { headers: Headers; payload: BasePayload }) => null | string
+type ExtractionMethod = (args: { headers: Headers; cms: BaseCMS }) => null | string
 
 const extractionMethods: Record<string, ExtractionMethod> = {
   Bearer: ({ headers }) => {
@@ -16,9 +16,9 @@ const extractionMethods: Record<string, ExtractionMethod> = {
 
     return null
   },
-  cookie: ({ headers, payload }) => {
+  cookie: ({ headers, cms }) => {
     const cookies = parseCookies(headers)
-    const tokenCookieName = `${payload.config.cookiePrefix}-token`
+    const tokenCookieName = `${cms.config.cookiePrefix}-token`
     const cookieToken = cookies.get(tokenCookieName)
 
     if (!cookieToken) {
@@ -29,14 +29,14 @@ const extractionMethods: Record<string, ExtractionMethod> = {
 
     // Origin present — validate against csrf allowlist
     if (origin) {
-      if (payload.config.csrf.length === 0 || payload.config.csrf.includes(origin)) {
+      if (cms.config.csrf.length === 0 || cms.config.csrf.includes(origin)) {
         return cookieToken
       }
       return null
     }
 
     // No Origin and no csrf configured — no allowlist to enforce
-    if (payload.config.csrf.length === 0) {
+    if (cms.config.csrf.length === 0) {
       return cookieToken
     }
 
@@ -63,12 +63,12 @@ const extractionMethods: Record<string, ExtractionMethod> = {
 }
 
 export const extractJWT = (args: Omit<AuthStrategyFunctionArgs, 'strategyName'>): null | string => {
-  const { headers, payload } = args
+  const { headers, cms } = args
 
-  const extractionOrder = payload.config.auth.jwtOrder
+  const extractionOrder = cms.config.auth.jwtOrder
 
   for (const extractionStrategy of extractionOrder) {
-    const result = extractionMethods[extractionStrategy]!({ headers, payload })
+    const result = extractionMethods[extractionStrategy]!({ headers, cms })
 
     if (result) {
       return result

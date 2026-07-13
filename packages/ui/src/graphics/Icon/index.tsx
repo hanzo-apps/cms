@@ -7,7 +7,7 @@ import React from 'react'
  * the white-label resolver (@hanzo/cms-plugin-whitelabel) supplies one by
  * domain. Export name and `fill` prop are retained for API compatibility.
  */
-export const PayloadIcon: React.FC<{
+export const CMSIcon: React.FC<{
   fill?: string
 }> = ({ fill: fillFromProps }) => {
   const fill = fillFromProps || 'var(--theme-elevation-1000)'

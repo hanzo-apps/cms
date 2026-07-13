@@ -2,10 +2,10 @@ import { status as httpStatus } from 'http-status'
 
 import type { Collection } from '../collections/config/types.js'
 import type { ErrorResult, SanitizedConfig } from '../config/types.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { APIError } from '../errors/APIError.js'
-import { getPayload } from '../index.js'
+import { getCMS } from '../index.js'
 import { formatErrors } from './formatErrors.js'
 import { headersWithCors } from './headersWithCors.js'
 import { isErrorPublic } from './isErrorPublic.js'
@@ -21,30 +21,30 @@ export const routeError = async ({
   collection?: Collection
   config: Promise<SanitizedConfig> | SanitizedConfig
   err: APIError
-  req: PayloadRequest | Request
+  req: CMSRequest | Request
 }): Promise<Response> => {
-  if ('payloadInitError' in err && err.payloadInitError === true) {
-    // do not attempt initializing Payload if the error is due to a failed initialization. Otherwise,
+  if ('cmsInitError' in err && err.cmsInitError === true) {
+    // do not attempt initializing CMS if the error is due to a failed initialization. Otherwise,
     // it will cause an infinite loop of initialization attempts and endless error responses, without
     // actually logging the error, as the error logging code will never be reached.
     console.error(err)
     return Response.json(
       {
-        message: 'There was an error initializing Payload',
+        message: 'There was an error initializing CMS',
       },
       { status: httpStatus.INTERNAL_SERVER_ERROR },
     )
   }
 
-  let payload = incomingReq && 'payload' in incomingReq && incomingReq?.payload
+  let cms = incomingReq && 'cms' in incomingReq && incomingReq?.cms
 
-  if (!payload) {
+  if (!cms) {
     try {
-      payload = await getPayload({ config: configArg, cron: true })
+      cms = await getCMS({ config: configArg, cron: true })
     } catch (ignore) {
       return Response.json(
         {
-          message: 'There was an error initializing Payload',
+          message: 'There was an error initializing CMS',
         },
         { status: httpStatus.INTERNAL_SERVER_ERROR },
       )
@@ -55,17 +55,17 @@ export const routeError = async ({
 
   let status = err.status || httpStatus.INTERNAL_SERVER_ERROR
 
-  logError({ err, payload })
+  logError({ err, cms })
 
-  const req = incomingReq as PayloadRequest
+  const req = incomingReq as CMSRequest
 
-  req.payload = payload
+  req.cms = cms
   const headers = headersWithCors({
     headers: new Headers(),
     req,
   })
 
-  const { config } = payload
+  const { config } = cms
 
   // Internal server errors can contain anything, including potentially sensitive data.
   // Therefore, error details will be hidden from the response unless `config.debug` is `true`

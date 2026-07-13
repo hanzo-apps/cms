@@ -1,17 +1,17 @@
 import type {
   ApplyDisableErrors,
   GlobalSlug,
-  PayloadTypesShape,
+  CMSTypesShape,
   SelectType,
   TypedLocale,
   TypeWithVersion,
 } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type { DataFromGlobalSlug, PopulateType } from '../types.js'
 
 export type FindGlobalVersionByIDOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends GlobalSlug<T>,
   TDisableErrors extends boolean,
 > = {
@@ -52,11 +52,11 @@ export type FindGlobalVersionByIDOptions<
 }
 
 export async function findGlobalVersionByID<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends GlobalSlug<T>,
   TDisableErrors extends boolean,
 >(
-  sdk: PayloadSDK<T>,
+  sdk: CMSSDK<T>,
   options: FindGlobalVersionByIDOptions<T, TSlug, TDisableErrors>,
   init?: RequestInit,
 ): Promise<ApplyDisableErrors<TypeWithVersion<DataFromGlobalSlug<T, TSlug>>, TDisableErrors>> {

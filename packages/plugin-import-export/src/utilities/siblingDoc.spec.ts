@@ -1,4 +1,4 @@
-import { FlattenedField, PayloadRequest } from '@hanzo/cms'
+import { FlattenedField, CMSRequest } from '@hanzo/cms'
 
 import type { FieldBeforeExportHook, FieldBeforeImportHook } from '../types.js'
 
@@ -11,12 +11,12 @@ import { unflattenObject } from './unflattenObject.js'
 import { describe, expect, it, vi } from 'vitest'
 
 const mockReq = {
-  payload: {
+  cms: {
     logger: {
       error: vi.fn(),
     },
   },
-} as unknown as PayloadRequest
+} as unknown as CMSRequest
 
 describe('beforeExport / beforeImport siblingDoc arg', () => {
   describe('CSV export (flattenObject)', () => {

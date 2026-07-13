@@ -1,12 +1,12 @@
 // NOTICE: Server-only utilities, do not import anything client-side here.
 
 export { getNextRequestI18n } from '../utilities/getNextRequestI18n.js'
-export { getPayloadHMR } from '../utilities/getPayloadHMR.js'
+export { getCMSHMR } from '../utilities/getPayloadHMR.js'
 
 import {
   addDataAndFileToRequest as _addDataAndFileToRequest,
   addLocalesToRequestFromData as _addLocalesToRequestFromData,
-  createPayloadRequest as _createPayloadRequest,
+  createCMSRequest as _createCMSRequest,
   headersWithCors as _headersWithCors,
   mergeHeaders as _mergeHeaders,
   sanitizeLocales as _sanitizeLocales,
@@ -34,10 +34,10 @@ export const headersWithCors = _headersWithCors
  * @deprecated
  * Use:
  * ```ts
- * import { createPayloadRequest } from '@hanzo/cms'
+ * import { createCMSRequest } from '@hanzo/cms'
  * ```
  */
-export const createPayloadRequest = _createPayloadRequest
+export const createCMSRequest = _createCMSRequest
 
 /**
  * @deprecated

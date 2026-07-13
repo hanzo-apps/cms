@@ -25,8 +25,8 @@ export async function AccountView({ initPageResult, params, searchParams }: Admi
     req,
     req: {
       i18n,
-      payload,
-      payload: { config },
+      cms,
+      cms: { config },
       user,
     },
   } = initPageResult
@@ -37,7 +37,7 @@ export async function AccountView({ initPageResult, params, searchParams }: Admi
     serverURL,
   } = config
 
-  const collectionConfig = payload?.collections?.[userSlug]?.config
+  const collectionConfig = cms?.collections?.[userSlug]?.config
 
   if (collectionConfig && user?.id) {
     // Fetch the data required for the view
@@ -45,7 +45,7 @@ export async function AccountView({ initPageResult, params, searchParams }: Admi
       id: user.id,
       collectionSlug: collectionConfig.slug,
       locale,
-      payload,
+      cms,
       req,
       user,
     })
@@ -58,7 +58,7 @@ export async function AccountView({ initPageResult, params, searchParams }: Admi
     const docPreferences = await getDocPreferences({
       id: user.id,
       collectionSlug: collectionConfig.slug,
-      payload,
+      cms,
       user,
     })
 
@@ -107,7 +107,7 @@ export async function AccountView({ initPageResult, params, searchParams }: Admi
         doc: data,
         docPermissions,
         locale: locale?.code,
-        payload,
+        cms,
         user,
       })
 
@@ -117,7 +117,7 @@ export async function AccountView({ initPageResult, params, searchParams }: Admi
           <Settings
             i18n={i18n}
             languageOptions={languageOptions}
-            payload={payload}
+            cms={cms}
             theme={theme}
             user={user}
           />
@@ -155,7 +155,7 @@ export async function AccountView({ initPageResult, params, searchParams }: Admi
           {RenderServerComponent({
             Component: config.admin?.components?.views?.account?.Component,
             Fallback: EditView,
-            importMap: payload.importMap,
+            importMap: cms.importMap,
             serverProps: {
               doc: data,
               hasPublishedDoc,
@@ -163,7 +163,7 @@ export async function AccountView({ initPageResult, params, searchParams }: Admi
               initPageResult,
               locale,
               params,
-              payload,
+              cms,
               permissions,
               routeSegments: [],
               searchParams,

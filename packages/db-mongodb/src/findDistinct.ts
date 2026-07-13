@@ -56,7 +56,7 @@ export const findDistinct: FindDistinct = async function (this: MongooseAdapter,
 
   const sort = buildSortParam({
     adapter: this,
-    config: this.payload.config,
+    config: this.cms.config,
     fields: collectionConfig.flattenedFields,
     locale: args.locale,
     sort: args.sort ?? args.field,
@@ -73,7 +73,7 @@ export const findDistinct: FindDistinct = async function (this: MongooseAdapter,
   })
 
   const fieldPathResult = getFieldByPath({
-    config: this.payload.config,
+    config: this.cms.config,
     fields: collectionConfig.flattenedFields,
     includeRelationships: true,
     path: args.field,
@@ -133,7 +133,7 @@ export const findDistinct: FindDistinct = async function (this: MongooseAdapter,
         break
       }
       rels.push({ fieldPath: tempPath, relationTo: field.relationTo })
-      currentFields = this.payload.collections[field.relationTo]?.config
+      currentFields = this.cms.collections[field.relationTo]?.config
         .flattenedFields as FlattenedField[]
       continue
     }

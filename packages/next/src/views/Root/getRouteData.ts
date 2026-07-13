@@ -4,8 +4,8 @@ import type {
   CollectionSlug,
   CustomComponent,
   DocumentSubViewTypes,
-  Payload,
-  PayloadComponent,
+  CMS,
+  CMSComponent,
   SanitizedCollectionConfig,
   SanitizedConfig,
   SanitizedGlobalConfig,
@@ -52,7 +52,7 @@ type OneSegmentViews = {
 
 export type ViewFromConfig = {
   Component?: React.FC<AdminViewServerProps>
-  payloadComponent?: PayloadComponent<AdminViewServerProps>
+  cmsComponent?: CMSComponent<AdminViewServerProps>
 }
 
 const oneSegmentViews: OneSegmentViews = {
@@ -100,7 +100,7 @@ type GetRouteDataArgs = {
   collectionPreferences?: CollectionPreferences
   currentRoute: string
   globalConfig?: SanitizedGlobalConfig
-  payload: Payload
+  cms: CMS
   searchParams: {
     [key: string]: string | string[]
   }
@@ -113,10 +113,10 @@ export const getRouteData = ({
   collectionPreferences = undefined,
   currentRoute,
   globalConfig,
-  payload,
+  cms,
   segments,
 }: GetRouteDataArgs): GetRouteDataResult => {
-  const { config } = payload
+  const { config } = cms
   let ViewToRender: ViewFromConfig = null
   let templateClassName: string
   let templateType: 'default' | 'minimal' | undefined
@@ -179,7 +179,7 @@ export const getRouteData = ({
         (viewKey && getCustomViewByKey({ config, viewKey })) ||
         getCustomViewByRoute({ config, currentRoute })
 
-      if (customView?.view?.payloadComponent || customView?.view?.Component) {
+      if (customView?.view?.cmsComponent || customView?.view?.Component) {
         // User has configured a custom view (either overriding a built-in or a new custom view)
         ViewToRender = customView.view
 
@@ -380,7 +380,7 @@ export const getRouteData = ({
               views: collectionConfig.admin.components?.views,
             })
 
-            if (customCollectionView.viewKey && customCollectionView.view.payloadComponent) {
+            if (customCollectionView.viewKey && customCollectionView.view.cmsComponent) {
               // --> /collections/:collectionSlug/:customViewPath
               ViewToRender = customCollectionView.view
 
@@ -455,7 +455,7 @@ export const getRouteData = ({
       routeParams.id = parseDocumentID({
         id: routeParams.id,
         collectionSlug: collectionConfig.slug,
-        payload,
+        cms,
       })
     }
 
@@ -463,7 +463,7 @@ export const getRouteData = ({
       routeParams.versionID = parseDocumentID({
         id: routeParams.versionID,
         collectionSlug: collectionConfig.slug,
-        payload,
+        cms,
       })
     }
   }
@@ -472,13 +472,13 @@ export const getRouteData = ({
     routeParams.folderID = parseDocumentID({
       id: routeParams.folderID,
       collectionSlug: config.folders.slug,
-      payload,
+      cms,
     })
   }
 
   if (globalConfig && routeParams.versionID) {
     routeParams.versionID =
-      payload.db.defaultIDType === 'number' && isNumber(routeParams.versionID)
+      cms.db.defaultIDType === 'number' && isNumber(routeParams.versionID)
         ? Number(routeParams.versionID)
         : routeParams.versionID
   }

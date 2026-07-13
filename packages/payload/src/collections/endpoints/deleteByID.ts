@@ -1,13 +1,13 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { getRequestCollectionWithID } from '../../utilities/getRequestEntity.js'
 import { headersWithCors } from '../../utilities/headersWithCors.js'
 import { parseParams } from '../../utilities/parseParams/index.js'
 import { deleteByIDOperation } from '../operations/deleteByID.js'
 
-export const deleteByIDHandler: PayloadHandler = async (req) => {
+export const deleteByIDHandler: CMSHandler = async (req) => {
   const { id, collection } = getRequestCollectionWithID(req)
 
   const { depth, overrideLock, populate, select, trash } = parseParams(req.query)

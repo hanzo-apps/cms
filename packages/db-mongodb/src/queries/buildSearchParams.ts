@@ -1,5 +1,5 @@
 import type { FilterQuery } from 'mongoose'
-import type { FlattenedField, Operator, PathToQuery, Payload } from '@hanzo/cms'
+import type { FlattenedField, Operator, PathToQuery, CMS } from '@hanzo/cms'
 
 import { Types } from 'mongoose'
 import { APIError, escapeRegExp, getFieldByPath, getLocalizedPaths } from '@hanzo/cms'
@@ -24,7 +24,7 @@ const subQueryOptions = {
 }
 
 /**
- * Convert the Payload key / value / operator into a MongoDB query
+ * Convert the CMS key / value / operator into a MongoDB query
  */
 export async function buildSearchParam({
   collectionSlug,
@@ -34,7 +34,7 @@ export async function buildSearchParam({
   locale,
   operator,
   parentIsLocalized,
-  payload,
+  cms,
   val,
 }: {
   collectionSlug?: string
@@ -44,7 +44,7 @@ export async function buildSearchParam({
   locale?: string
   operator: Operator
   parentIsLocalized: boolean
-  payload: Payload
+  cms: CMS
   val: unknown
 }): Promise<SearchParam | undefined> {
   // Replace GraphQL nested field double underscore formatting
@@ -59,7 +59,7 @@ export async function buildSearchParam({
 
   if (sanitizedPath === '_id') {
     const customIDFieldType = collectionSlug
-      ? payload.collections[collectionSlug]?.customIDType
+      ? cms.collections[collectionSlug]?.customIDType
       : undefined
 
     let idFieldType: 'number' | 'text' = 'text'
@@ -87,7 +87,7 @@ export async function buildSearchParam({
       incomingPath: sanitizedPath,
       locale,
       parentIsLocalized,
-      payload,
+      cms,
     })
   }
 
@@ -104,7 +104,7 @@ export async function buildSearchParam({
       operator,
       parentIsLocalized,
       path,
-      payload,
+      cms,
       val,
     })
 
@@ -139,14 +139,14 @@ export async function buildSearchParam({
         }
 
         const { collectionConfig, Model: SubModel } = getCollection({
-          adapter: payload.db as MongooseAdapter,
+          adapter: cms.db as MongooseAdapter,
           collectionSlug,
         })
 
         if (i === 0) {
           const subQuery = await SubModel.buildQuery({
             locale,
-            payload,
+            cms,
             where: {
               [subPath]: {
                 [formattedOperator]: val,
@@ -172,8 +172,8 @@ export async function buildSearchParam({
             }
 
             let path = relationshipField.localizedPath
-            if (relationshipField.pathHasLocalized && payload.config.localization) {
-              path = path.replace('<locale>', locale || payload.config.localization.defaultLocale)
+            if (relationshipField.pathHasLocalized && cms.config.localization) {
+              path = path.replace('<locale>', locale || cms.config.localization.defaultLocale)
             }
             select[path] = true
 
@@ -293,7 +293,7 @@ export async function buildSearchParam({
             ;(Array.isArray(field.relationTo) ? field.relationTo : [field.relationTo]).forEach(
               (relationTo) => {
                 const isRelatedToCustomNumberID =
-                  payload.collections[relationTo]?.customIDType === 'number'
+                  cms.collections[relationTo]?.customIDType === 'number'
 
                 if (isRelatedToCustomNumberID) {
                   hasNumberIDRelation = true

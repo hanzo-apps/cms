@@ -1,5 +1,5 @@
 import type { SerializedLexicalNode } from 'lexical'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 /**
  * @deprecated - will be removed in 4.0
@@ -17,7 +17,7 @@ export type HTMLConverter<T extends SerializedLexicalNode = SerializedLexicalNod
     /**
      * When the converter is called, req CAN be passed in depending on where it's run.
      */
-    req: null | PayloadRequest
+    req: null | CMSRequest
     showHiddenFields: boolean
   }) => Promise<string> | string
   nodeTypes: string[]

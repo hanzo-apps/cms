@@ -25,7 +25,7 @@ import './index.scss'
 
 const confirmDeletePresetModalSlug = 'confirm-delete-preset'
 
-const queryPresetsSlug = 'payload-query-presets'
+const queryPresetsSlug = 'cms-query-presets'
 
 const baseClass = 'query-preset-bar'
 
@@ -63,7 +63,7 @@ export const QueryPresetBar: React.FC<{
 
   const filterOptions = useMemo(
     () => ({
-      'payload-query-presets': {
+      'cms-query-presets': {
         isTemp: {
           not_equals: true,
         },

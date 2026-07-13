@@ -16,7 +16,7 @@ import type {
 
 import { tryInitRepoAndCommit } from '../utils/git.js'
 import { debug, error, info, warning } from '../utils/log.js'
-import { configurePayloadConfig } from './configure-payload-config.js'
+import { configureCMSConfig } from './configure-payload-config.js'
 import { configurePluginProject } from './configure-plugin-project.js'
 import { downloadExample } from './download-example.js'
 import { downloadSkill } from './download-skill.js'
@@ -131,34 +131,34 @@ export async function createProject(
   }
 
   const spinner = p.spinner()
-  spinner.start('Checking latest Payload version...')
+  spinner.start('Checking latest CMS version...')
 
-  // Allows overriding the installed Payload version instead of installing the latest
+  // Allows overriding the installed CMS version instead of installing the latest
   const versionFromCli = cliArgs['--version']
 
-  let payloadVersion: string
+  let cmsVersion: string
 
   if (versionFromCli) {
     await verifyVersionForPackage({ version: versionFromCli })
 
-    payloadVersion = versionFromCli
+    cmsVersion = versionFromCli
 
-    spinner.stop(`Using provided version of Payload ${payloadVersion}`)
+    spinner.stop(`Using provided version of CMS ${cmsVersion}`)
   } else {
-    payloadVersion = await getLatestPackageVersion({ packageName: 'payload' })
+    cmsVersion = await getLatestPackageVersion({ packageName: 'payload' })
 
-    spinner.stop(`Found latest version of Payload ${payloadVersion}`)
+    spinner.stop(`Found latest version of CMS ${cmsVersion}`)
   }
 
-  await updatePackageJSON({ latestVersion: payloadVersion, projectDir, projectName })
+  await updatePackageJSON({ latestVersion: cmsVersion, projectDir, projectName })
 
   if ('template' in args) {
     if (args.template.type === 'plugin') {
       spinner.message('Configuring Plugin...')
       configurePluginProject({ projectDirPath: projectDir, projectName })
     } else {
-      spinner.message('Configuring Payload...')
-      await configurePayloadConfig({
+      spinner.message('Configuring CMS...')
+      await configureCMSConfig({
         dbType: dbDetails?.type,
         projectDirOrConfigPath: { projectDir },
       })
@@ -169,7 +169,7 @@ export async function createProject(
     cliArgs,
     databaseType: dbDetails?.type,
     databaseUri: dbDetails?.dbUri,
-    payloadSecret: generateSecret(),
+    cmsSecret: generateSecret(),
     projectDir,
     template: 'template' in args ? args.template : undefined,
   })
@@ -188,8 +188,8 @@ export async function createProject(
       const skillPath = `${skillsDir}/payload`
       const configContent =
         configFile === 'CLAUDE.md'
-          ? `# Claude Code\n\nThis project uses the Payload CMS skill at \`${skillPath}/\`.\nStart with \`${skillPath}/SKILL.md\` for a quick reference, then see \`${skillPath}/reference/\` for detailed docs.\n`
-          : `# Agents\n\nThis project uses the Payload CMS skill at \`${skillPath}/\`.\nStart with \`${skillPath}/SKILL.md\` for a quick reference, then see \`${skillPath}/reference/\` for detailed docs.\n`
+          ? `# Claude Code\n\nThis project uses the CMS skill at \`${skillPath}/\`.\nStart with \`${skillPath}/SKILL.md\` for a quick reference, then see \`${skillPath}/reference/\` for detailed docs.\n`
+          : `# Agents\n\nThis project uses the CMS skill at \`${skillPath}/\`.\nStart with \`${skillPath}/SKILL.md\` for a quick reference, then see \`${skillPath}/reference/\` for detailed docs.\n`
       await fse.writeFile(path.resolve(projectDir, configFile), configContent)
     } catch (err) {
       if (cliArgs['--debug'] && err instanceof Error) {
@@ -204,7 +204,7 @@ export async function createProject(
     spinner.message('Installing dependencies...')
     const result = await installDeps({ cliArgs, packageManager, projectDir })
     if (result) {
-      spinner.stop('Successfully installed Payload and dependencies')
+      spinner.stop('Successfully installed CMS and dependencies')
     } else {
       spinner.stop('Error installing dependencies', 1)
     }
@@ -220,12 +220,12 @@ export async function createProject(
 /**
  * Reads the package.json file into an object and then does the following:
  * - Sets the `name` property to the provided `projectName`.
- * - Bumps the payload packages from workspace:* to the latest version.
+ * - Bumps the cms packages from workspace:* to the latest version.
  * - Writes the updated object back to the package.json file.
  */
 export async function updatePackageJSON(args: {
   /**
-   * The latest version of Payload to use in the package.json.
+   * The latest version of CMS to use in the package.json.
    */
   latestVersion: string
   projectDir: string
@@ -281,7 +281,7 @@ export function updatePackageJSONDependencies(args: {
 /**
  * Fetches the latest version of a package from the NPM registry.
  *
- * Used in determining the latest version of Payload to use in the generated templates.
+ * Used in determining the latest version of CMS to use in the generated templates.
  */
 async function getLatestPackageVersion({
   packageName = 'payload',
@@ -315,7 +315,7 @@ async function getLatestPackageVersion({
 
     return latestVersion
   } catch (error) {
-    console.error('Error fetching Payload version:', error)
+    console.error('Error fetching CMS version:', error)
     throw error
   }
 }
@@ -346,7 +346,7 @@ async function verifyVersionForPackage({
       throw new Error(`No ${version} version found for package: ${packageName}`)
     }
   } catch (error) {
-    console.error('Error verifying Payload version:', error)
+    console.error('Error verifying CMS version:', error)
     throw error
   }
 }

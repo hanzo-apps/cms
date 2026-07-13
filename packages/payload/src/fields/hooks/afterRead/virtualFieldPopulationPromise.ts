@@ -1,5 +1,5 @@
 import type { TypedFallbackLocale } from '../../../index.js'
-import type { PayloadRequest } from '../../../types/index.js'
+import type { CMSRequest } from '../../../types/index.js'
 import type { FlattenedField } from '../../config/types.js'
 
 import { createDataloaderCacheKey } from '../../../collections/dataloader.js'
@@ -26,7 +26,7 @@ export const virtualFieldPopulationPromise = async ({
   name: string
   overrideAccess: boolean
   ref: any
-  req: PayloadRequest
+  req: CMSRequest
   segments: string[]
   shift?: boolean
   showHiddenFields: boolean
@@ -89,7 +89,7 @@ export const virtualFieldPopulationPromise = async ({
   ) {
     const select = {}
     let currentSelectRef: any = select
-    const currentFields = req.payload.collections[currentField.relationTo]?.config.flattenedFields
+    const currentFields = req.cms.collections[currentField.relationTo]?.config.flattenedFields
 
     for (let i = 0; i < segments.length; i++) {
       const field = currentFields?.find((each) => each.name === segments[i])
@@ -131,7 +131,7 @@ export const virtualFieldPopulationPromise = async ({
 
       const populatedDocs = await Promise.all(
         docIDs.map((docID) => {
-          return req.payloadDataLoader.load(
+          return req.cmsDataLoader.load(
             createDataloaderCacheKey({
               collectionSlug,
               currentDepth: 0,
@@ -158,7 +158,7 @@ export const virtualFieldPopulationPromise = async ({
           name,
           draft,
           fallbackLocale,
-          fields: req.payload.collections[currentField.relationTo]!.config.flattenedFields,
+          fields: req.cms.collections[currentField.relationTo]!.config.flattenedFields,
           hasMany: true,
           locale,
           overrideAccess,
@@ -190,7 +190,7 @@ export const virtualFieldPopulationPromise = async ({
       return
     }
 
-    const populatedDoc = await req.payloadDataLoader.load(
+    const populatedDoc = await req.cmsDataLoader.load(
       createDataloaderCacheKey({
         collectionSlug: currentField.relationTo,
         currentDepth: 0,
@@ -214,7 +214,7 @@ export const virtualFieldPopulationPromise = async ({
       name,
       draft,
       fallbackLocale,
-      fields: req.payload.collections[currentField.relationTo]!.config.flattenedFields,
+      fields: req.cms.collections[currentField.relationTo]!.config.flattenedFields,
       hasMany,
       locale,
       overrideAccess,

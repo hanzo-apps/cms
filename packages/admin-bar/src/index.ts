@@ -1,2 +1,2 @@
-export { PayloadAdminBar } from './AdminBar.js'
-export type { PayloadAdminBarProps, PayloadMeUser } from './types.js'
+export { CMSAdminBar } from './AdminBar.js'
+export type { CMSAdminBarProps, CMSMeUser } from './types.js'

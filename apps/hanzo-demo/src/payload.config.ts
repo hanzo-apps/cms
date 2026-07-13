@@ -36,7 +36,7 @@ export default buildConfig({
   },
   collections: [Users, Tenants, Pages, Media],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || 'dev-secret-change-me',
+  secret: process.env.CMS_SECRET || 'dev-secret-change-me',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

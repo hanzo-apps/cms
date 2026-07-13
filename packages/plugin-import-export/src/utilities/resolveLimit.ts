@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import type { Limit } from '../types.js'
 
@@ -12,7 +12,7 @@ import type { Limit } from '../types.js'
  */
 export async function resolveLimit(args: {
   limit?: Limit
-  req: PayloadRequest
+  req: CMSRequest
 }): Promise<number | undefined> {
   const { limit, req } = args
 

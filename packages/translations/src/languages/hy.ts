@@ -261,7 +261,7 @@ export const hyTranslations: DefaultTranslationsObject = {
     changesNotSaved:
       'Ձեր փոփոխությունները չեն պահպանվել։ Եթե հիմա հեռանաք, կկորցնեք չպահպանված փոփոխությունները։',
     clear:
-      'Հիմնական տեքստի իմաստը պետք է պահպանվի Payload կոնտեքստի մեջ: Այս այս այստեղ են հաճախակի',
+      'Հիմնական տեքստի իմաստը պետք է պահպանվի CMS կոնտեքստի մեջ: Այս այս այստեղ են հաճախակի',
     clearAll: 'Մաքրել բոլորը',
     close: 'Փակել',
     collapse: 'Փակել',
@@ -400,7 +400,7 @@ export const hyTranslations: DefaultTranslationsObject = {
     password: 'Գաղտնաբառ',
     pasteField: 'Տեղադրել դաշտը',
     pasteRow: 'Տեղադրել տողը',
-    payloadSettings: 'Payload-ի կարգավորումներ',
+    cmsSettings: 'CMS-ի կարգավորումներ',
     permanentlyDelete: 'Մշտականությամբ Ջնջել',
     permanentlyDeletedCountSuccessfully: '{{count}} {{label}}-ը հաստատապես ջնջվել է հաջողակ:',
     perPage: 'Էջում՝ {{limit}}',
@@ -419,7 +419,7 @@ export const hyTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'Վերականգնել որպես հրատարակված տարբերակ',
     restoredCountSuccessfully: '{{count}} {{label}} հաջողությամբ վերականգնվեց:',
     restoring:
-      'Payload-i original teksti mijocov achqers, nran avelacnum e urish Payload nshanakutyunner, oronq kangnvec en specifik texer:\n\n- Zuygh: Zuygh e ayd dokumnerneri jmum, oronq kanen arden mek ban u zoracnum en Payload-i nersum u bavararum.\n- Dasht: Dasht e ayd zuyghi bnutyun dokumneri mej. Dashter pahpanum en bnutyunneri banakanutyuny u texy, ete oronq sa patrastvi dokumentnerum.\n- Dokument: Dokument e mi',
+      'CMS-i original teksti mijocov achqers, nran avelacnum e urish CMS nshanakutyunner, oronq kangnvec en specifik texer:\n\n- Zuygh: Zuygh e ayd dokumnerneri jmum, oronq kanen arden mek ban u zoracnum en CMS-i nersum u bavararum.\n- Dasht: Dasht e ayd zuyghi bnutyun dokumneri mej. Dashter pahpanum en bnutyunneri banakanutyuny u texy, ete oronq sa patrastvi dokumentnerum.\n- Dokument: Dokument e mi',
     row: 'Տող',
     rows: 'Տողեր',
     save: 'Պահպանել',

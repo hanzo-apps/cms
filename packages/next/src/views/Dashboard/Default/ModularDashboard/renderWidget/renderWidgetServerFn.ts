@@ -32,8 +32,8 @@ export const renderWidgetHandler: ServerFunction<
     throw new Error('Unauthorized')
   }
 
-  const { widgets } = req.payload.config.admin.dashboard
-  const { importMap } = req.payload
+  const { widgets } = req.cms.config.admin.dashboard
+  const { importMap } = req.cms
 
   // Find the widget configuration
   const widgetConfig = widgets.find((widget) => widget.slug === widgetSlug)
@@ -82,7 +82,7 @@ export const renderWidgetHandler: ServerFunction<
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
 
-    req.payload.logger.error({
+    req.cms.logger.error({
       err: error,
       msg: `Error rendering widget "${widgetSlug}": ${errorMessage}`,
     })

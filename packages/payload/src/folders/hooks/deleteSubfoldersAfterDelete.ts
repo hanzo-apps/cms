@@ -9,7 +9,7 @@ export const deleteSubfoldersBeforeDelete = ({
   folderSlug,
 }: Args): CollectionBeforeDeleteHook => {
   return async ({ id, req }) => {
-    await req.payload.delete({
+    await req.cms.delete({
       collection: folderSlug,
       req,
       where: {

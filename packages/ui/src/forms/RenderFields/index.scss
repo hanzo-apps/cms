@@ -1,6 +1,6 @@
 @import '../../scss/styles.scss';
 
-@layer payload-default {
+@layer cms-default {
   // Positioned field-type__wrap is needed for correct positioning of field tooltips.
   // This is set outside of .render-fields, so that manually rendered fields (e.g. in Auth/index.tsx)
   // outside RenderFields also receive this styling.

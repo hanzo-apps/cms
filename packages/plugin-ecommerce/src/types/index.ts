@@ -7,7 +7,7 @@ import type {
   Field,
   FieldAccess,
   GroupField,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   TypedCollection,
@@ -26,7 +26,7 @@ export type CollectionOverride = (args: {
 
 export type CartItem = {
   /**
-   * The ID of the cart item. Array item IDs are always strings in Payload,
+   * The ID of the cart item. Array item IDs are always strings in CMS,
    * regardless of the database adapter's default ID type.
    */
   id: string
@@ -78,7 +78,7 @@ type InitiatePayment = (args: {
      */
     shippingAddress?: TypedCollection['addresses']
   }
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * The slug of the transactions collection, defaults to 'transactions'.
    * For example, this is used to create a record of the payment intent in the transactions collection.
@@ -119,7 +119,7 @@ type ConfirmOrder = (args: {
    * The slug of the orders collection, defaults to 'orders'.
    */
   ordersSlug?: string
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * The slug of the transactions collection, defaults to 'transactions'.
    * For example, this is used to create a record of the payment intent in the transactions collection.
@@ -156,7 +156,7 @@ export type PaymentAdapter = {
    */
   confirmOrder: ConfirmOrder
   /**
-   * An array of endpoints to be bootstrapped to Payload's API in order to support the payment method. All API paths are relative to `/api/payments/{provider_name}`.
+   * An array of endpoints to be bootstrapped to CMS's API in order to support the payment method. All API paths are relative to `/api/payments/{provider_name}`.
    *
    * So for example, path `/webhooks` in the Stripe adapter becomes `/api/payments/stripe/webhooks`.
    *
@@ -519,7 +519,7 @@ export type CartItemMatcherArgs = {
   existingItem: {
     [key: string]: unknown
     /**
-     * The ID of the cart item. Array item IDs are always strings in Payload,
+     * The ID of the cart item. Array item IDs are always strings in CMS,
      * regardless of the database adapter's default ID type.
      */
     id?: string
@@ -810,7 +810,7 @@ export type SyncLocalStorageConfig = {
 
 type APIProps = {
   /**
-   * The route for the Payload API, defaults to `/api`.
+   * The route for the CMS API, defaults to `/api`.
    */
   apiRoute?: string
   /**
@@ -824,7 +824,7 @@ type APIProps = {
     select?: SelectType
   }
   /**
-   * The route for the Payload API, defaults to ``. Eg for a Payload app running on `http://localhost:3000`, the default serverURL would be `http://localhost:3000`.
+   * The route for the CMS API, defaults to ``. Eg for a CMS app running on `http://localhost:3000`, the default serverURL would be `http://localhost:3000`.
    */
   serverURL?: string
 }
@@ -976,12 +976,12 @@ export type EcommerceContextType<T extends EcommerceCollections = EcommerceColle
   /**
    * Decrement an item in the cart by its array item ID.
    * If quantity reaches 0, the item will be removed from the cart.
-   * @param item - The cart item ID (always a string, as array item IDs are strings in Payload)
+   * @param item - The cart item ID (always a string, as array item IDs are strings in CMS)
    */
   decrementItem: (item: string) => Promise<void>
   /**
    * Increment an item in the cart by its array item ID.
-   * @param item - The cart item ID (always a string, as array item IDs are strings in Payload)
+   * @param item - The cart item ID (always a string, as array item IDs are strings in CMS)
    */
   incrementItem: (item: string) => Promise<void>
   /**
@@ -1034,7 +1034,7 @@ export type EcommerceContextType<T extends EcommerceCollections = EcommerceColle
   refreshCart: () => Promise<void>
   /**
    * Remove an item from the cart by its array item ID.
-   * @param item - The cart item ID (always a string, as array item IDs are strings in Payload)
+   * @param item - The cart item ID (always a string, as array item IDs are strings in CMS)
    */
   removeItem: (item: string) => Promise<void>
   /**

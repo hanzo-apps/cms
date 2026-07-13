@@ -1,5 +1,5 @@
 import type { CollectionConfig } from '../collections/config/types.js'
-import type { Payload } from '../types/index.js'
+import type { CMS } from '../types/index.js'
 
 export type KVStoreValue = NonNullable<unknown>
 
@@ -47,7 +47,7 @@ export interface KVAdapter {
 }
 
 export interface KVAdapterResult {
-  init(args: { payload: Payload }): KVAdapter
+  init(args: { cms: CMS }): KVAdapter
 
   /** Adapter can create additional collection if needed */
   kvCollection?: CollectionConfig

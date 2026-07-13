@@ -5,7 +5,7 @@ import type {
   ClientField,
   ClientFieldSchemaMap,
   FieldSchemaMap,
-  Payload,
+  CMS,
   TabAsFieldClient,
 } from '@hanzo/cms'
 
@@ -19,7 +19,7 @@ type Args = {
   i18n: I18n<any, any>
   parentIndexPath: string
   parentSchemaPath: string
-  payload: Payload
+  cms: CMS
   schemaMap: FieldSchemaMap
 }
 
@@ -30,7 +30,7 @@ export const traverseFields = ({
   i18n,
   parentIndexPath,
   parentSchemaPath,
-  payload,
+  cms,
   schemaMap,
 }: Args) => {
   for (const [index, field] of fields.entries()) {
@@ -52,7 +52,7 @@ export const traverseFields = ({
           i18n,
           parentIndexPath: '',
           parentSchemaPath: schemaPath,
-          payload,
+          cms,
           schemaMap,
         })
 
@@ -78,7 +78,7 @@ export const traverseFields = ({
             i18n,
             parentIndexPath: '',
             parentSchemaPath: schemaPath + '.' + block.slug,
-            payload,
+            cms,
             schemaMap,
           })
         })
@@ -94,7 +94,7 @@ export const traverseFields = ({
           i18n,
           parentIndexPath: indexPath,
           parentSchemaPath: schemaPath,
-          payload,
+          cms,
           schemaMap,
         })
         break
@@ -109,7 +109,7 @@ export const traverseFields = ({
             i18n,
             parentIndexPath: '',
             parentSchemaPath: schemaPath,
-            payload,
+            cms,
             schemaMap,
           })
         } else {
@@ -120,7 +120,7 @@ export const traverseFields = ({
             i18n,
             parentIndexPath: indexPath,
             parentSchemaPath: schemaPath,
-            payload,
+            cms,
             schemaMap,
           })
         }
@@ -150,9 +150,9 @@ export const traverseFields = ({
           if ('slug' in subField) {
             const clientBlocks = createClientBlocks({
               blocks: [subField],
-              defaultIDType: payload.config.db.defaultIDType,
+              defaultIDType: cms.config.db.defaultIDType,
               i18n,
-              importMap: payload.importMap,
+              importMap: cms.importMap,
             })
 
             clientSchemaMap.set(path, clientBlocks[0] as ClientBlock)
@@ -161,11 +161,11 @@ export const traverseFields = ({
 
           if ('type' in subField) {
             const clientFields = createClientFields({
-              defaultIDType: payload.config.db.defaultIDType,
+              defaultIDType: cms.config.db.defaultIDType,
               disableAddingID: true,
               fields: [subField],
               i18n,
-              importMap: payload.importMap,
+              importMap: cms.importMap,
             })
 
             clientSchemaMap.set(path, clientFields[0])
@@ -174,11 +174,11 @@ export const traverseFields = ({
 
           if ('fields' in subField) {
             const clientFields = createClientFields({
-              defaultIDType: payload.config.db.defaultIDType,
+              defaultIDType: cms.config.db.defaultIDType,
               disableAddingID: true,
               fields: subField.fields,
               i18n,
-              importMap: payload.importMap,
+              importMap: cms.importMap,
             })
 
             clientSchemaMap.set(path, { fields: clientFields })
@@ -200,7 +200,7 @@ export const traverseFields = ({
           i18n,
           parentIndexPath: isNamedTab ? '' : indexPath,
           parentSchemaPath: schemaPath,
-          payload,
+          cms,
           schemaMap,
         })
 
@@ -215,7 +215,7 @@ export const traverseFields = ({
           i18n,
           parentIndexPath: indexPath,
           parentSchemaPath: schemaPath,
-          payload,
+          cms,
           schemaMap,
         })
 

@@ -1,6 +1,6 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import type { JSONSchema4 } from 'json-schema'
-import type { PayloadRequest, SelectType, TypedUser } from '@hanzo/cms'
+import type { CMSRequest, SelectType, TypedUser } from '@hanzo/cms'
 
 import { z } from 'zod'
 
@@ -12,11 +12,11 @@ import {
   stripVirtualFields,
 } from '../../../utils/getVirtualFieldNames.js'
 import { convertCollectionSchemaToZod } from '../../../utils/schemaConversion/convertCollectionSchemaToZod.js'
-import { transformPointDataToPayload } from '../../../utils/transformPointDataToPayload.js'
+import { transformPointDataToCMS } from '../../../utils/transformPointDataToPayload.js'
 import { toolSchemas } from '../schemas.js'
 export const updateResourceTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   user: TypedUser,
   verboseLogs: boolean,
   collectionSlug: string,
@@ -41,11 +41,11 @@ export const updateResourceTool = (
       type: 'text'
     }>
   }> => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Updating resource in collection: ${collectionSlug}${id ? ` with ID: ${id}` : ' with where clause'}, draft: ${draft}${locale ? `, locale: ${locale}` : ''}`,
+      cms.logger.info(
+        `[cms-mcp] Updating resource in collection: ${collectionSlug}${id ? ` with ID: ${id}` : ' with where clause'}, draft: ${draft}${locale ? `, locale: ${locale}` : ''}`,
       )
     }
 
@@ -56,18 +56,18 @@ export const updateResourceTool = (
         parsedData = JSON.parse(data)
 
         // Transform point fields from object format to tuple array
-        parsedData = transformPointDataToPayload(parsedData)
+        parsedData = transformPointDataToCMS(parsedData)
 
-        const virtualFieldNames = getCollectionVirtualFieldNames(payload.config, collectionSlug)
+        const virtualFieldNames = getCollectionVirtualFieldNames(cms.config, collectionSlug)
         parsedData = stripVirtualFields(parsedData, virtualFieldNames)
 
         if (verboseLogs) {
-          payload.logger.info(
-            `[payload-mcp] Parsed data for ${collectionSlug}: ${JSON.stringify(parsedData)}`,
+          cms.logger.info(
+            `[cms-mcp] Parsed data for ${collectionSlug}: ${JSON.stringify(parsedData)}`,
           )
         }
       } catch (_parseError) {
-        payload.logger.error(`[payload-mcp] Invalid JSON data provided: ${data}`)
+        cms.logger.error(`[cms-mcp] Invalid JSON data provided: ${data}`)
         const response = {
           content: [{ type: 'text' as const, text: 'Error: Invalid JSON data provided' }],
         }
@@ -82,7 +82,7 @@ export const updateResourceTool = (
 
       // Validate that either id or where is provided
       if (!id && !where) {
-        payload.logger.error('[payload-mcp] Either id or where clause must be provided')
+        cms.logger.error('[cms-mcp] Either id or where clause must be provided')
         const response = {
           content: [
             { type: 'text' as const, text: 'Error: Either id or where clause must be provided' },
@@ -103,10 +103,10 @@ export const updateResourceTool = (
         try {
           whereClause = JSON.parse(where)
           if (verboseLogs) {
-            payload.logger.info(`[payload-mcp] Using where clause: ${where}`)
+            cms.logger.info(`[cms-mcp] Using where clause: ${where}`)
           }
         } catch (_parseError) {
-          payload.logger.error(`[payload-mcp] Invalid where clause JSON: ${where}`)
+          cms.logger.error(`[cms-mcp] Invalid where clause JSON: ${where}`)
           const response = {
             content: [{ type: 'text' as const, text: 'Error: Invalid JSON in where clause' }],
           }
@@ -125,7 +125,7 @@ export const updateResourceTool = (
         try {
           selectClause = JSON.parse(select) as SelectType
         } catch (_parseError) {
-          payload.logger.warn(`[payload-mcp] Invalid select clause JSON: ${select}`)
+          cms.logger.warn(`[cms-mcp] Invalid select clause JSON: ${select}`)
           const response = {
             content: [{ type: 'text' as const, text: 'Error: Invalid JSON in select clause' }],
           }
@@ -160,15 +160,15 @@ export const updateResourceTool = (
         }
 
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Updating single document with ID: ${id}`)
+          cms.logger.info(`[cms-mcp] Updating single document with ID: ${id}`)
         }
-        const result = await payload.update({
+        const result = await cms.update({
           ...updateOptions,
           data: parsedData,
         } as any)
 
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Successfully updated document with ID: ${id}`)
+          cms.logger.info(`[cms-mcp] Successfully updated document with ID: ${id}`)
         }
 
         const response = {
@@ -211,9 +211,9 @@ ${JSON.stringify(result)}
         }
 
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Updating multiple documents with where clause`)
+          cms.logger.info(`[cms-mcp] Updating multiple documents with where clause`)
         }
-        const result = await payload.update({
+        const result = await cms.update({
           ...updateOptions,
           data: parsedData,
         } as any)
@@ -223,8 +223,8 @@ ${JSON.stringify(result)}
         const errors = bulkResult.errors || []
 
         if (verboseLogs) {
-          payload.logger.info(
-            `[payload-mcp] Successfully updated ${docs.length} documents, ${errors.length} errors`,
+          cms.logger.info(
+            `[cms-mcp] Successfully updated ${docs.length} documents, ${errors.length} errors`,
           )
         }
 
@@ -269,8 +269,8 @@ ${JSON.stringify(errors)}
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(
-        `[payload-mcp] Error updating resource in ${collectionSlug}: ${errorMessage}`,
+      cms.logger.error(
+        `[cms-mcp] Error updating resource in ${collectionSlug}: ${errorMessage}`,
       )
 
       const response = {

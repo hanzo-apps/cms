@@ -1,7 +1,7 @@
 import { status as httpStatus } from 'http-status'
 
 import type { Collection } from '../../collections/config/types.js'
-import type { PayloadRequest } from '../../types/index.js'
+import type { CMSRequest } from '../../types/index.js'
 
 import { APIError, Forbidden } from '../../errors/index.js'
 import { appendNonTrashedFilter } from '../../utilities/appendNonTrashedFilter.js'
@@ -11,7 +11,7 @@ import { killTransaction } from '../../utilities/killTransaction.js'
 
 export type Args = {
   collection: Collection
-  req: PayloadRequest
+  req: CMSRequest
   token: string
 }
 
@@ -36,7 +36,7 @@ export const verifyEmailOperation = async (args: Args): Promise<boolean> => {
       },
     })
 
-    const user = await req.payload.db.findOne<any>({
+    const user = await req.cms.db.findOne<any>({
       collection: collection.config.slug,
       req,
       where,
@@ -49,7 +49,7 @@ export const verifyEmailOperation = async (args: Args): Promise<boolean> => {
     // Ensure updatedAt date is always updated
     user.updatedAt = new Date().toISOString()
 
-    await req.payload.db.updateOne({
+    await req.cms.db.updateOne({
       id: user.id,
       collection: collection.config.slug,
       data: {

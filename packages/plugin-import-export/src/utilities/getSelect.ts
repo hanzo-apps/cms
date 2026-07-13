@@ -2,7 +2,7 @@ import type { SelectIncludeType } from '@hanzo/cms'
 
 /**
  * Takes an input of array of string paths in dot notation and returns a select object.
- * Used for both export and import to build Payload's select query format.
+ * Used for both export and import to build CMS's select query format.
  *
  * @example
  * getSelect(['id', 'title', 'group.value', 'createdAt', 'updatedAt'])

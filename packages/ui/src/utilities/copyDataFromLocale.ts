@@ -5,7 +5,7 @@ import {
   type Data,
   type Field,
   type FlattenedBlock,
-  type PayloadRequest,
+  type CMSRequest,
   type ServerFunction,
   traverseFields,
 } from '@hanzo/cms'
@@ -19,7 +19,7 @@ export type CopyDataFromLocaleArgs = {
   fromLocale: string
   globalSlug?: string
   overrideData?: boolean
-  req: PayloadRequest
+  req: CMSRequest
   toLocale: string
 }
 
@@ -27,7 +27,7 @@ function iterateFields(
   fields: Field[],
   fromLocaleData: Data,
   toLocaleData: Data,
-  req: PayloadRequest,
+  req: CMSRequest,
   parentIsLocalized: boolean,
 ): void {
   fields.map((field) => {
@@ -83,7 +83,7 @@ function iterateFields(
           if (field.name in toLocaleData) {
             toLocaleData[field.name].map((blockData: Data, index: number) => {
               const block =
-                req.payload.blocks[blockData.blockType] ??
+                req.cms.blocks[blockData.blockType] ??
                 ((field.blockReferences ?? field.blocks).find(
                   (block) => typeof block !== 'string' && block.slug === blockData.blockType,
                 ) as FlattenedBlock | undefined)
@@ -183,7 +183,7 @@ function mergeData(
   fromLocaleData: Data,
   toLocaleData: Data,
   fields: Field[],
-  req: PayloadRequest,
+  req: CMSRequest,
   parentIsLocalized: boolean,
 ): Data {
   iterateFields(fields, fromLocaleData, toLocaleData, req, parentIsLocalized)
@@ -216,7 +216,7 @@ export const copyDataFromLocaleHandler: ServerFunction<CopyDataFromLocaleArgs> =
   try {
     return await copyDataFromLocale(args)
   } catch (err) {
-    req.payload.logger.error({
+    req.cms.logger.error({
       err,
       msg: `There was an error copying data from "${args.fromLocale}" to "${args.toLocale}"`,
     })
@@ -234,8 +234,8 @@ export const copyDataFromLocale = async (args: CopyDataFromLocaleArgs) => {
     globalSlug,
     overrideData = false,
     req: {
-      payload,
-      payload: { collections, globals },
+      cms,
+      cms: { collections, globals },
       user,
     },
     req,
@@ -246,7 +246,7 @@ export const copyDataFromLocale = async (args: CopyDataFromLocaleArgs) => {
 
   const [fromLocaleData, toLocaleData] = await Promise.allSettled([
     globalSlug
-      ? payload.findGlobal({
+      ? cms.findGlobal({
           slug: globalSlug,
           depth: 0,
           draft: true,
@@ -255,7 +255,7 @@ export const copyDataFromLocale = async (args: CopyDataFromLocaleArgs) => {
           user,
           // `select` would allow us to select only the fields we need in the future
         })
-      : payload.findByID({
+      : cms.findByID({
           id: docID,
           collection: collectionSlug,
           depth: 0,
@@ -267,7 +267,7 @@ export const copyDataFromLocale = async (args: CopyDataFromLocaleArgs) => {
           // `select` would allow us to select only the fields we need in the future
         }),
     globalSlug
-      ? payload.findGlobal({
+      ? cms.findGlobal({
           slug: globalSlug,
           depth: 0,
           draft: true,
@@ -276,7 +276,7 @@ export const copyDataFromLocale = async (args: CopyDataFromLocaleArgs) => {
           user,
           // `select` would allow us to select only the fields we need in the future
         })
-      : payload.findByID({
+      : cms.findByID({
           id: docID,
           collection: collectionSlug,
           depth: 0,
@@ -311,7 +311,7 @@ export const copyDataFromLocale = async (args: CopyDataFromLocaleArgs) => {
   const data = removeIdIfParentIsLocalized(dataWithID, fields)
 
   return globalSlug
-    ? await payload.updateGlobal({
+    ? await cms.updateGlobal({
         slug: globalSlug,
         data,
         draft: true,
@@ -320,7 +320,7 @@ export const copyDataFromLocale = async (args: CopyDataFromLocaleArgs) => {
         req,
         user,
       })
-    : await payload.update({
+    : await cms.update({
         id: docID,
         collection: collectionSlug,
         data,

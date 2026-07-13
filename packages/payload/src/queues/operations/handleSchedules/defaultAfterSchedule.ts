@@ -24,9 +24,9 @@ export const defaultAfterSchedule: AfterScheduleFn = async ({ jobStats, queueabl
     }
   }
 
-  // Add to payload-jobs-stats global regardless of the status
+  // Add to cms-jobs-stats global regardless of the status
   if (jobStats) {
-    await req.payload.db.updateGlobal({
+    await req.cms.db.updateGlobal({
       slug: jobStatsGlobalSlug,
       data: {
         ...(jobStats || {}),
@@ -46,7 +46,7 @@ export const defaultAfterSchedule: AfterScheduleFn = async ({ jobStats, queueabl
       returning: false,
     })
   } else {
-    await req.payload.db.createGlobal({
+    await req.cms.db.createGlobal({
       slug: jobStatsGlobalSlug,
       data: {
         createdAt: getCurrentDate().toISOString(),

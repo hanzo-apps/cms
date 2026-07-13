@@ -110,7 +110,7 @@ export type RootFoldersConfiguration = {
   /**
    * Slug for the folder collection
    *
-   * @default "payload-folders"
+   * @default "cms-folders"
    */
   slug?: string
 }

@@ -1,6 +1,6 @@
 import type { SanitizedCollectionConfig } from '../../../collections/config/types.js'
 import type { RequestContext } from '../../../index.js'
-import type { JsonObject, PayloadRequest } from '../../../types/index.js'
+import type { JsonObject, CMSRequest } from '../../../types/index.js'
 import type { Block, Field, FieldHookArgs, TabAsField } from '../../config/types.js'
 
 import { fieldAffectsData, fieldShouldBeLocalized } from '../../config/types.js'
@@ -23,7 +23,7 @@ type Args<T> = {
   parentIsLocalized: boolean
   parentPath: string
   parentSchemaPath: string
-  req: PayloadRequest
+  req: CMSRequest
   siblingDoc: JsonObject
   siblingFields?: (Field | TabAsField)[]
 }
@@ -53,7 +53,7 @@ export const promise = async <T>({
     parentSchemaPath,
   })
 
-  const { localization } = req.payload.config
+  const { localization } = req.cms.config
 
   const pathSegments = path ? path.split('.') : []
   const schemaPathSegments = schemaPath ? schemaPath.split('.') : []
@@ -189,7 +189,7 @@ export const promise = async <T>({
                   const blockTypeToMatch = row.blockType
 
                   const block: Block | undefined =
-                    req.payload.blocks[blockTypeToMatch] ??
+                    req.cms.blocks[blockTypeToMatch] ??
                     ((field.blockReferences ?? field.blocks).find(
                       (curBlock) =>
                         typeof curBlock !== 'string' && curBlock.slug === blockTypeToMatch,
@@ -291,7 +291,7 @@ export const promise = async <T>({
               const blockTypeToMatch = row.blockType
 
               const block: Block | undefined =
-                req.payload.blocks[blockTypeToMatch] ??
+                req.cms.blocks[blockTypeToMatch] ??
                 ((field.blockReferences ?? field.blocks).find(
                   (curBlock) => typeof curBlock !== 'string' && curBlock.slug === blockTypeToMatch,
                 ) as Block | undefined)

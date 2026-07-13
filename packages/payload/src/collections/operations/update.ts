@@ -3,7 +3,7 @@ import type { DeepPartial } from 'ts-essentials'
 import { status as httpStatus } from 'http-status'
 
 import type { AccessResult } from '../../config/types.js'
-import type { PayloadRequest, PopulateType, SelectType, Sort, Where } from '../../types/index.js'
+import type { CMSRequest, PopulateType, SelectType, Sort, Where } from '../../types/index.js'
 import type {
   BulkOperationResult,
   Collection,
@@ -51,7 +51,7 @@ export type Arguments<TSlug extends CollectionSlug> = {
   populate?: PopulateType
   publishAllLocales?: boolean
   publishSpecificLocale?: string
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields?: boolean
   /**
    * Sort the documents, can be a string or an array of strings
@@ -106,8 +106,8 @@ export const updateOperation = async <
       req: {
         fallbackLocale,
         locale,
-        payload: { config },
-        payload,
+        cms: { config },
+        cms,
       },
       req,
       select: incomingSelect,
@@ -171,7 +171,7 @@ export const updateOperation = async <
       where: fullWhere,
     })
 
-    sanitizeWhereQuery({ fields: collectionConfig.flattenedFields, payload, where: fullWhere })
+    sanitizeWhereQuery({ fields: collectionConfig.flattenedFields, cms, where: fullWhere })
 
     const sort = sanitizeSortQuery({
       fields: collection.config.flattenedFields,
@@ -187,11 +187,11 @@ export const updateOperation = async <
         collectionConfig: collection.config,
         overrideAccess: overrideAccess!,
         req,
-        versionFields: buildVersionCollectionFields(payload.config, collection.config, true),
+        versionFields: buildVersionCollectionFields(cms.config, collection.config, true),
         where: appendVersionToQueryKey(where),
       })
 
-      const query = await payload.db.queryDrafts<DataFromCollectionSlug<TSlug>>({
+      const query = await cms.db.queryDrafts<DataFromCollectionSlug<TSlug>>({
         collection: collectionConfig.slug,
         limit,
         locale: locale!,
@@ -203,7 +203,7 @@ export const updateOperation = async <
 
       docs = query.docs
     } else {
-      const query = await payload.db.find({
+      const query = await cms.db.find({
         collection: collectionConfig.slug,
         limit,
         locale: locale!,
@@ -238,7 +238,7 @@ export const updateOperation = async <
       try {
         // Each document gets its own transaction when singleTransaction is enabled
         let docShouldCommit = false
-        if (req.payload.db.bulkOperationsSingleTransaction) {
+        if (req.cms.db.bulkOperationsSingleTransaction) {
           docShouldCommit = await initTransaction(req)
         }
 
@@ -270,7 +270,7 @@ export const updateOperation = async <
           locale: locale!,
           overrideAccess: overrideAccess!,
           overrideLock: overrideLock!,
-          payload,
+          cms,
           populate,
           publishAllLocales,
           publishSpecificLocale,
@@ -296,7 +296,7 @@ export const updateOperation = async <
       } catch (error) {
         const isPublic = error instanceof Error ? isErrorPublic(error, config) : false
 
-        if (req.payload.db.bulkOperationsSingleTransaction) {
+        if (req.cms.db.bulkOperationsSingleTransaction) {
           await killTransaction(req)
         }
         errors.push({
@@ -317,7 +317,7 @@ export const updateOperation = async <
     // Process sequentially when using single transaction mode to avoid shared state issues
     // Process in parallel when using one transaction for better performance
     let awaitedDocs: (DataFromCollectionSlug<TSlug> | null)[]
-    if (req.payload.db.bulkOperationsSingleTransaction) {
+    if (req.cms.db.bulkOperationsSingleTransaction) {
       awaitedDocs = []
       for (const promise of promises) {
         awaitedDocs.push(await promise)

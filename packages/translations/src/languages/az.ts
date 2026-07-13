@@ -264,7 +264,7 @@ export const azTranslations: DefaultTranslationsObject = {
     changesNotSaved:
       'Dəyişiklikləriniz saxlanılmayıb. İndi çıxsanız, dəyişikliklərinizi itirəcəksiniz.',
     clear:
-      'Payload kontekstində orijinal mətnin mənasını qoruya. İşte Payload terminləri siyahısıdır ki, onlar üzərində çox xüsusi mənalar gəlir:\n    - Kolleksiya: Kolleksiya sənədlərin hamıya ortaq struktur və məqsəd sərbəst olan bir qrupdur. Kolleksiyalar Payload-da məzmunu təşkil etmək və idarə etmək üçün istifadə edilir.\n    - Sahə: Sahə',
+      'CMS kontekstində orijinal mətnin mənasını qoruya. İşte CMS terminləri siyahısıdır ki, onlar üzərində çox xüsusi mənalar gəlir:\n    - Kolleksiya: Kolleksiya sənədlərin hamıya ortaq struktur və məqsəd sərbəst olan bir qrupdur. Kolleksiyalar CMS-da məzmunu təşkil etmək və idarə etmək üçün istifadə edilir.\n    - Sahə: Sahə',
     clearAll: 'Hamısını təmizlə',
     close: 'Bağla',
     collapse: 'Bağla',
@@ -403,7 +403,7 @@ export const azTranslations: DefaultTranslationsObject = {
     password: 'Şifrə',
     pasteField: 'Sahəni yapışdır',
     pasteRow: 'Sətiri yapışdır',
-    payloadSettings: 'Payload Parametrləri',
+    cmsSettings: 'CMS Parametrləri',
     permanentlyDelete: 'Daimi Olaraq Sil',
     permanentlyDeletedCountSuccessfully: '{{count}} {{label}} uğurla daimi olaraq silindi.',
     perPage: 'Hər səhifədə: {{limit}}',
@@ -421,7 +421,7 @@ export const azTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'Nəşr edilmiş versiya kimi bərpa et',
     restoredCountSuccessfully: '{{count}} {{label}} uğurla bərpa edildi.',
     restoring:
-      'Orijinal mətnin mənasını Payload kontekstində qoruyun. Ən əhəmiyyətli Payload ifadələrinin siyahısı aşağıdakı kimi dir:\n\n    - Collection: "Collection" bir sıra sənədlərin əməkdaş olduğu, ortaq struktur və məqsədi olan bir qrupdur. "Collections", Payload-də məzmunu təşkil etmək və idarə etmək üçün istifadə edilir.\n    - Field: "Field", kolle',
+      'Orijinal mətnin mənasını CMS kontekstində qoruyun. Ən əhəmiyyətli CMS ifadələrinin siyahısı aşağıdakı kimi dir:\n\n    - Collection: "Collection" bir sıra sənədlərin əməkdaş olduğu, ortaq struktur və məqsədi olan bir qrupdur. "Collections", CMS-də məzmunu təşkil etmək və idarə etmək üçün istifadə edilir.\n    - Field: "Field", kolle',
     row: 'Sətir',
     rows: 'Sətirlər',
     save: 'Saxla',

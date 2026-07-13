@@ -1,15 +1,15 @@
 import { describe, expect, it, vi } from 'vitest'
 
-import type { CollectionConfig, PayloadRequest } from '@hanzo/cms'
+import type { CollectionConfig, CMSRequest } from '@hanzo/cms'
 
 import { getFilePrefix } from './getFilePrefix.js'
 
 const makeReq = (docs: unknown[] = []) =>
   ({
-    payload: {
+    cms: {
       find: vi.fn().mockResolvedValue({ docs }),
     },
-  }) as unknown as PayloadRequest
+  }) as unknown as CMSRequest
 
 const makeCollection = (): CollectionConfig =>
   ({ slug: 'media', upload: {} }) as unknown as CollectionConfig
@@ -27,7 +27,7 @@ describe('getFilePrefix', () => {
       })
 
       expect(result).toBe('uuid-prefix')
-      expect(req.payload.find).not.toHaveBeenCalled()
+      expect(req.cms.find).not.toHaveBeenCalled()
     })
 
     it('should return an empty string when prefixQueryParam is an empty string', async () => {
@@ -41,7 +41,7 @@ describe('getFilePrefix', () => {
       })
 
       expect(result).toBe('')
-      expect(req.payload.find).not.toHaveBeenCalled()
+      expect(req.cms.find).not.toHaveBeenCalled()
     })
 
     it('should reject multi-encoded values', async () => {
@@ -55,7 +55,7 @@ describe('getFilePrefix', () => {
       })
 
       expect(result).toBe('')
-      expect(req.payload.find).not.toHaveBeenCalled()
+      expect(req.cms.find).not.toHaveBeenCalled()
     })
 
     it('should reject malformed percent-encoding', async () => {
@@ -69,7 +69,7 @@ describe('getFilePrefix', () => {
       })
 
       expect(result).toBe('')
-      expect(req.payload.find).not.toHaveBeenCalled()
+      expect(req.cms.find).not.toHaveBeenCalled()
     })
   })
 
@@ -84,7 +84,7 @@ describe('getFilePrefix', () => {
       })
 
       expect(result).toBe('db-prefix')
-      expect(req.payload.find).toHaveBeenCalledOnce()
+      expect(req.cms.find).toHaveBeenCalledOnce()
     })
 
     it('should return empty string when no document is found', async () => {
@@ -110,7 +110,7 @@ describe('getFilePrefix', () => {
       })
 
       expect(result).toBe('context-prefix')
-      expect(req.payload.find).not.toHaveBeenCalled()
+      expect(req.cms.find).not.toHaveBeenCalled()
     })
   })
 })

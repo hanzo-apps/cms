@@ -1,17 +1,17 @@
-import type { DefaultDocumentIDType, Payload } from '@hanzo/cms'
+import type { DefaultDocumentIDType, CMS } from '@hanzo/cms'
 
 import { cache } from 'react'
 
 export const getPreferences = cache(
   async <T>(
     key: string,
-    payload: Payload,
+    cms: CMS,
     userID: DefaultDocumentIDType,
     userSlug: string,
   ): Promise<{ id: DefaultDocumentIDType; value: T }> => {
-    const result = (await payload
+    const result = (await cms
       .find({
-        collection: 'payload-preferences',
+        collection: 'cms-preferences',
         depth: 0,
         limit: 1,
         pagination: false,

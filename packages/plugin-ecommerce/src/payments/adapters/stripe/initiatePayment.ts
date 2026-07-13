@@ -12,7 +12,7 @@ type Props = {
 export const initiatePayment: (props: Props) => NonNullable<PaymentAdapter>['initiatePayment'] =
   (props) =>
   async ({ data, req, transactionsSlug }) => {
-    const payload = req.payload
+    const cms = req.cms
     const { apiVersion, appInfo, secretKey } = props || {}
 
     const customerEmail = data.customerEmail
@@ -48,7 +48,7 @@ export const initiatePayment: (props: Props) => NonNullable<PaymentAdapter>['ini
       // @ts-ignore - ignoring since possible versions are not type safe, only the latest version is recognised
       apiVersion: apiVersion || '2025-06-30.preview',
       appInfo: appInfo || {
-        name: 'Stripe Payload Plugin',
+        name: 'Stripe CMS Plugin',
         url: 'https://payloadcms.com',
       },
     })
@@ -103,7 +103,7 @@ export const initiatePayment: (props: Props) => NonNullable<PaymentAdapter>['ini
       })
 
       // Create a transaction for the payment intent in the database
-      const transaction = await payload.create({
+      const transaction = await cms.create({
         collection: transactionsSlug,
         data: {
           ...(req.user ? { customer: req.user.id } : { customerEmail }),
@@ -130,7 +130,7 @@ export const initiatePayment: (props: Props) => NonNullable<PaymentAdapter>['ini
 
       return returnData
     } catch (error) {
-      payload.logger.error({ err: error, msg: 'Error initiating payment with Stripe' })
+      cms.logger.error({ err: error, msg: 'Error initiating payment with Stripe' })
 
       throw new Error(error instanceof Error ? error.message : 'Unknown error initiating payment')
     }

@@ -1,8 +1,8 @@
 import type tslib from 'typescript/lib/tsserverlibrary'
 
-import type { PayloadComponentContext } from './helpers.js'
+import type { CMSComponentContext } from './helpers.js'
 
-import { findNodeAtPosition, getPayloadComponentContext } from './helpers.js'
+import { findNodeAtPosition, getCMSComponentContext } from './helpers.js'
 
 function init(modules: { typescript: typeof tslib }) {
   const ts = modules.typescript
@@ -36,11 +36,11 @@ function init(modules: { typescript: typeof tslib }) {
         return cached
       }
 
-      const detected = findPayloadConfigDir(sys, fileName)
+      const detected = findCMSConfigDir(sys, fileName)
       baseDirCache.set(fileName, detected)
 
       if (detected) {
-        log(`Detected baseDir: ${detected} (from payload config near ${fileName})`)
+        log(`Detected baseDir: ${detected} (from cms config near ${fileName})`)
       }
 
       return detected
@@ -61,7 +61,7 @@ function init(modules: { typescript: typeof tslib }) {
 
       const checker = program.getTypeChecker()
       const baseDir = getBaseDir(fileName)
-      const additional = getPayloadDiagnostics(ts, sourceFile, checker, program, baseDir)
+      const additional = getCMSDiagnostics(ts, sourceFile, checker, program, baseDir)
 
       return [...prior, ...additional]
     }
@@ -76,7 +76,7 @@ function init(modules: { typescript: typeof tslib }) {
 
           if (node && ts.isStringLiteral(node)) {
             const baseDir = getBaseDir(fileName)
-            const result = getPayloadCompletions(ts, node, position, checker, program, baseDir, sys)
+            const result = getCMSCompletions(ts, node, position, checker, program, baseDir, sys)
             if (result) {
               return result
             }
@@ -102,7 +102,7 @@ function init(modules: { typescript: typeof tslib }) {
 
           if (node && ts.isStringLiteral(node)) {
             const baseDir = getBaseDir(fileName)
-            const result = getPayloadDefinition(ts, node, checker, program, baseDir)
+            const result = getCMSDefinition(ts, node, checker, program, baseDir)
             if (result) {
               return result
             }
@@ -125,12 +125,12 @@ function init(modules: { typescript: typeof tslib }) {
 // -------------------------------------------------------------------
 
 /**
- * Extracts the module path and export name from any PayloadComponent context.
- * Mirrors the logic of `parsePayloadComponent` in payload core:
+ * Extracts the module path and export name from any CMSComponent context.
+ * Mirrors the logic of `parseCMSComponent` in cms core:
  * splits `#` for the export name, and respects sibling `exportName`/`path` overrides.
  */
-function parsePayloadComponent(
-  context: PayloadComponentContext,
+function parseCMSComponent(
+  context: CMSComponentContext,
   nodeText: string,
 ): { exportName: string; path: string } | undefined {
   let pathAndMaybeExport: string
@@ -176,7 +176,7 @@ function resolveModulePath(
   let pathToResolve = modulePath
   let resolveFrom = containingFile
 
-  // Payload convention: '/' and './' paths are relative to baseDir.
+  // CMS convention: '/' and './' paths are relative to baseDir.
   // Resolve from a synthetic file inside baseDir so TypeScript uses it as the base.
   if (modulePath.startsWith('/') || modulePath.startsWith('./')) {
     if (baseDir) {
@@ -216,7 +216,7 @@ function getModuleExports(
 // Diagnostics
 // -------------------------------------------------------------------
 
-function getPayloadDiagnostics(
+function getCMSDiagnostics(
   ts: typeof tslib,
   sourceFile: tslib.SourceFile,
   checker: tslib.TypeChecker,
@@ -227,13 +227,13 @@ function getPayloadDiagnostics(
 
   function visit(node: tslib.Node) {
     if (ts.isStringLiteral(node) && node.text.length > 0) {
-      const context = getPayloadComponentContext(ts, node, checker)
+      const context = getCMSComponentContext(ts, node, checker)
       if (!context) {
         ts.forEachChild(node, visit)
         return
       }
 
-      const component = parsePayloadComponent(context, node.text)
+      const component = parseCMSComponent(context, node.text)
       if (!component?.path) {
         ts.forEachChild(node, visit)
         return
@@ -296,7 +296,7 @@ function getPayloadDiagnostics(
 // Completions
 // -------------------------------------------------------------------
 
-function getPayloadCompletions(
+function getCMSCompletions(
   ts: typeof tslib,
   node: tslib.StringLiteral,
   position: number,
@@ -305,13 +305,13 @@ function getPayloadCompletions(
   baseDir: string | undefined,
   sys: tslib.System,
 ): tslib.CompletionInfo | undefined {
-  const context = getPayloadComponentContext(ts, node, checker)
+  const context = getCMSComponentContext(ts, node, checker)
   if (!context) {
     return undefined
   }
 
   if (context.type === 'exportName') {
-    const component = parsePayloadComponent(context, node.text)
+    const component = parseCMSComponent(context, node.text)
     if (!component) {
       return undefined
     }
@@ -496,19 +496,19 @@ function getPathCompletions(
 // Go-to-definition
 // -------------------------------------------------------------------
 
-function getPayloadDefinition(
+function getCMSDefinition(
   ts: typeof tslib,
   node: tslib.StringLiteral,
   checker: tslib.TypeChecker,
   program: tslib.Program,
   baseDir: string | undefined,
 ): tslib.DefinitionInfoAndBoundSpan | undefined {
-  const context = getPayloadComponentContext(ts, node, checker)
+  const context = getCMSComponentContext(ts, node, checker)
   if (!context) {
     return undefined
   }
 
-  const component = parsePayloadComponent(context, node.text)
+  const component = parseCMSComponent(context, node.text)
   if (!component?.path) {
     return undefined
   }
@@ -591,7 +591,7 @@ function resolveToDir(
   containingFile: string,
   compilerOptions: tslib.CompilerOptions,
 ): string | undefined {
-  const sentinel = '__payload_resolve_dir'
+  const sentinel = '__cms_resolve_dir'
   const result = ts.resolveModuleName(
     modulePath + '/' + sentinel,
     containingFile,
@@ -613,14 +613,14 @@ function resolveToDir(
 // baseDir detection
 // -------------------------------------------------------------------
 
-const PAYLOAD_CONFIG_NAMES = ['payload.config.ts', 'payload.config.js', 'config.ts']
+const CMS_CONFIG_NAMES = ['payload.config.ts', 'payload.config.js', 'config.ts']
 
-function findPayloadConfigDir(sys: tslib.System, fromFile: string): string | undefined {
+function findCMSConfigDir(sys: tslib.System, fromFile: string): string | undefined {
   let dir = fromFile.includes('/') ? fromFile.substring(0, fromFile.lastIndexOf('/')) : fromFile
   const root = dir.startsWith('/') ? '/' : ''
 
   for (let i = 0; i < 50; i++) {
-    for (const name of PAYLOAD_CONFIG_NAMES) {
+    for (const name of CMS_CONFIG_NAMES) {
       if (sys.fileExists(dir + '/' + name)) {
         return dir
       }

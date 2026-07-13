@@ -10,7 +10,7 @@ import { getValidTemplates } from '../lib/templates.js'
 const header = (message: string): string => chalk.bold(message)
 
 export const welcomeMessage = chalk`
-  {green Welcome to Payload. Let's create a project! }
+  {green Welcome to CMS. Let's create a project! }
 `
 
 const spacer = ' '.repeat(8)
@@ -32,7 +32,7 @@ export function helpMessage(): void {
 
   {bold OPTIONS}
 
-      -n     {underline my-payload-app}         Set project name
+      -n     {underline my-cms-app}             Set project name
       -t     {underline template_name}          Choose specific template
       -e     {underline example_name}           Choose specific example
 
@@ -40,7 +40,7 @@ export function helpMessage(): void {
 
       -a     {underline agent_name}             Set coding agent (claude, codex, cursor)
 
-        {dim Installs the Payload skill for the selected agent}
+        {dim Installs the CMS skill for the selected agent}
 
       --no-agent                    Skip agent skill installation
       --use-npm                     Use npm to install dependencies
@@ -91,7 +91,7 @@ export function moveMessage(args: { nextAppDir: string; projectDir: string }): s
   return `
 ${header('Next Steps:')}
 
-Payload does not support a top-level layout.tsx file in the app directory.
+CMS does not support a top-level layout.tsx file in the app directory.
 
 ${chalk.bold('To continue:')}
 

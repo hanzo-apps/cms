@@ -1,6 +1,6 @@
 import type { SanitizedCollectionConfig } from '../../../collections/config/types.js'
-import type { JsonObject, Payload } from '../../../index.js'
-import type { PayloadRequest, SelectType, Where } from '../../../types/index.js'
+import type { JsonObject, CMS } from '../../../index.js'
+import type { CMSRequest, SelectType, Where } from '../../../types/index.js'
 
 import { ValidationError } from '../../../errors/index.js'
 import { getLoginOptions } from '../../getLoginOptions.js'
@@ -10,15 +10,15 @@ type Args = {
   collection: SanitizedCollectionConfig
   doc: JsonObject
   password: string
-  payload: Payload
-  req: PayloadRequest
+  cms: CMS
+  req: CMSRequest
 }
 
 export const registerLocalStrategy = async ({
   collection,
   doc,
   password,
-  payload,
+  cms,
   req,
 }: Args): Promise<Record<string, unknown>> => {
   const loginWithUsername = collection?.auth?.loginWithUsername
@@ -55,7 +55,7 @@ export const registerLocalStrategy = async ({
     }
   }
 
-  const existingUser = await payload.find({
+  const existingUser = await cms.find({
     collection: collection.slug,
     depth: 0,
     limit: 1,
@@ -85,7 +85,7 @@ export const registerLocalStrategy = async ({
     delete sanitizedDoc.password
   }
 
-  return payload.db.create({
+  return cms.db.create({
     collection: collection.slug,
     data: {
       ...sanitizedDoc,

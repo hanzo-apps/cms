@@ -24,7 +24,7 @@ export const countGlobalVersions: CountGlobalVersions = async function countGlob
 
   const query = await buildQuery({
     adapter: this,
-    fields: buildVersionGlobalFields(this.payload.config, globalConfig, true),
+    fields: buildVersionGlobalFields(this.cms.config, globalConfig, true),
     locale,
     where,
   })
@@ -37,7 +37,7 @@ export const countGlobalVersions: CountGlobalVersions = async function countGlob
   }
 
   if (this.collation) {
-    const localizationConfig = this.payload.config.localization
+    const localizationConfig = this.cms.config.localization
     const defaultLocale =
       (typeof localizationConfig === 'object' && localizationConfig?.defaultLocale) || 'en'
 

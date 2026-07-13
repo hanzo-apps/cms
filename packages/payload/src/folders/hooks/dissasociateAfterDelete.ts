@@ -10,7 +10,7 @@ export const dissasociateAfterDelete = ({
 }: Args): CollectionAfterDeleteHook => {
   return async ({ id, req }) => {
     for (const collectionSlug of collectionSlugs) {
-      await req.payload.update({
+      await req.cms.update({
         collection: collectionSlug,
         data: {
           [folderFieldName]: null,

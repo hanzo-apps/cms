@@ -1,7 +1,7 @@
 import {
   logError,
   type PaginatedDocs,
-  type PayloadRequest,
+  type CMSRequest,
   type SelectType,
   type Sort,
   type TypedUser,
@@ -26,13 +26,13 @@ export const fetchVersion = async <TVersionData extends object = object>({
   id: number | string
   locale?: 'all' | ({} & string)
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   user?: TypedUser
 }): Promise<null | TypeWithVersion<TVersionData>> => {
   try {
     if (collectionSlug) {
-      return (await req.payload.findVersionByID({
+      return (await req.cms.findVersionByID({
         id: String(id),
         collection: collectionSlug,
         depth,
@@ -43,7 +43,7 @@ export const fetchVersion = async <TVersionData extends object = object>({
         user,
       })) as TypeWithVersion<TVersionData>
     } else if (globalSlug) {
-      return (await req.payload.findGlobalVersionByID({
+      return (await req.cms.findGlobalVersionByID({
         id: String(id),
         slug: globalSlug,
         depth,
@@ -55,7 +55,7 @@ export const fetchVersion = async <TVersionData extends object = object>({
       })) as TypeWithVersion<TVersionData>
     }
   } catch (err) {
-    logError({ err, payload: req.payload })
+    logError({ err, cms: req.cms })
     return null
   }
 }
@@ -85,7 +85,7 @@ export const fetchVersions = async <TVersionData extends object = object>({
   overrideAccess?: boolean
   page?: number
   parentID?: number | string
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   sort?: Sort
   user?: TypedUser
@@ -102,7 +102,7 @@ export const fetchVersions = async <TVersionData extends object = object>({
           },
         })
       }
-      return (await req.payload.findVersions({
+      return (await req.cms.findVersions({
         collection: collectionSlug,
         depth,
         draft,
@@ -117,7 +117,7 @@ export const fetchVersions = async <TVersionData extends object = object>({
         where,
       })) as PaginatedDocs<TypeWithVersion<TVersionData>>
     } else if (globalSlug) {
-      return (await req.payload.findGlobalVersions({
+      return (await req.cms.findGlobalVersions({
         slug: globalSlug,
         depth,
         limit,
@@ -132,7 +132,7 @@ export const fetchVersions = async <TVersionData extends object = object>({
       })) as PaginatedDocs<TypeWithVersion<TVersionData>>
     }
   } catch (err) {
-    logError({ err, payload: req.payload })
+    logError({ err, cms: req.cms })
 
     return null
   }
@@ -157,7 +157,7 @@ export const fetchLatestVersion = async <TVersionData extends object = object>({
   locale?: 'all' | ({} & string)
   overrideAccess?: boolean
   parentID?: number | string
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   status: 'draft' | 'published'
   user?: TypedUser
@@ -165,9 +165,9 @@ export const fetchLatestVersion = async <TVersionData extends object = object>({
 }): Promise<null | TypeWithVersion<TVersionData>> => {
   // Get the entity config to check if drafts are enabled
   const entityConfig = collectionSlug
-    ? req.payload.collections[collectionSlug]?.config
+    ? req.cms.collections[collectionSlug]?.config
     : globalSlug
-      ? req.payload.globals[globalSlug]?.config
+      ? req.cms.globals[globalSlug]?.config
       : undefined
 
   // Only query by _status if drafts are enabled (since _status field only exists with drafts)

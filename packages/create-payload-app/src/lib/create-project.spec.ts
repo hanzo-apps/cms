@@ -42,7 +42,7 @@ describe('createProject', () => {
       const template: ProjectTemplate = {
         name: 'plugin',
         type: 'plugin',
-        description: 'Template for creating a Payload plugin',
+        description: 'Template for creating a CMS plugin',
         url: 'https://github.com/payloadcms/payload/templates/plugin',
       }
 
@@ -66,7 +66,7 @@ describe('createProject', () => {
       const template: ProjectTemplate = {
         name: 'plugin',
         type: 'plugin',
-        description: 'Template for creating a Payload plugin',
+        description: 'Template for creating a CMS plugin',
         url: 'https://github.com/payloadcms/payload/templates/plugin',
       }
 
@@ -157,14 +157,14 @@ describe('createProject', () => {
           Object.keys(packageJson.dependencies).filter((n) => n.startsWith('@hanzo/cms-db-')),
         ).toHaveLength(1)
 
-        const payloadConfigPath = (
+        const cmsConfigPath = (
           await globby('**/payload.config.ts', {
             absolute: true,
             cwd: projectDir,
           })
         )?.[0]
 
-        const content = fse.readFileSync(payloadConfigPath, 'utf-8')
+        const content = fse.readFileSync(cmsConfigPath, 'utf-8')
 
         // Check payload.config.ts doesn't have placeholder comments
         expect(content).not.toContain('// database-adapter-import')

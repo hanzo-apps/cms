@@ -1,20 +1,20 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { toolSchemas } from '../schemas.js'
 
-export const unlockTool = (server: McpServer, req: PayloadRequest, verboseLogs: boolean) => {
+export const unlockTool = (server: McpServer, req: CMSRequest, verboseLogs: boolean) => {
   const tool = async (collection: string, email: string) => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Unlocking user account for user: ${email} in collection: ${collection}`,
+      cms.logger.info(
+        `[cms-mcp] Unlocking user account for user: ${email} in collection: ${collection}`,
       )
     }
 
     try {
-      const result = await payload.unlock({
+      const result = await cms.unlock({
         collection,
         data: {
           email,
@@ -23,7 +23,7 @@ export const unlockTool = (server: McpServer, req: PayloadRequest, verboseLogs: 
       })
 
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] User account unlocked successfully for user: ${email}`)
+        cms.logger.info(`[cms-mcp] User account unlocked successfully for user: ${email}`)
       }
 
       return {
@@ -36,8 +36,8 @@ export const unlockTool = (server: McpServer, req: PayloadRequest, verboseLogs: 
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(
-        `[payload-mcp] Error unlocking user account for user ${email}: ${errorMessage}`,
+      cms.logger.error(
+        `[cms-mcp] Error unlocking user account for user ${email}: ${errorMessage}`,
       )
 
       return {

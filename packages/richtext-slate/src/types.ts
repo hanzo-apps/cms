@@ -1,7 +1,7 @@
 import type {
   ClientField,
   Field,
-  PayloadComponent,
+  CMSComponent,
   RichTextFieldClientProps,
   SanitizedConfig,
 } from '@hanzo/cms'
@@ -27,7 +27,7 @@ export function nodeIsTextNode(node: ElementNode | TextNode): node is TextNode {
 /**
  * @deprecated - slate will be removed in 4.0. Please [migrate our new, lexical-based rich text editor](https://payloadcms.com/docs/rich-text/migration#migrating-from-slate).
  */
-export type RichTextPluginComponent = PayloadComponent
+export type RichTextPluginComponent = CMSComponent
 
 /**
  * @deprecated - slate will be removed in 4.0. Please [migrate our new, lexical-based rich text editor](https://payloadcms.com/docs/rich-text/migration#migrating-from-slate).
@@ -38,8 +38,8 @@ export type RichTextPlugin = (editor: Editor) => Editor
  * @deprecated - slate will be removed in 4.0. Please [migrate our new, lexical-based rich text editor](https://payloadcms.com/docs/rich-text/migration#migrating-from-slate).
  */
 export type RichTextCustomElement = {
-  Button?: PayloadComponent
-  Element: PayloadComponent
+  Button?: CMSComponent
+  Element: CMSComponent
   name: string
   plugins?: RichTextPluginComponent[]
 }
@@ -48,8 +48,8 @@ export type RichTextCustomElement = {
  * @deprecated - slate will be removed in 4.0. Please [migrate our new, lexical-based rich text editor](https://payloadcms.com/docs/rich-text/migration#migrating-from-slate).
  */
 export type RichTextCustomLeaf = {
-  Button: PayloadComponent
-  Leaf: PayloadComponent
+  Button: CMSComponent
+  Leaf: CMSComponent
   name: string
   plugins?: RichTextPluginComponent[]
 }

@@ -9,7 +9,7 @@ import type {
   ListViewServerPropsOnly,
   ListViewSlots,
   ListViewSlotSharedClientProps,
-  Payload,
+  CMS,
   SanitizedCollectionConfig,
   StaticDescription,
   ViewDescriptionClientProps,
@@ -25,7 +25,7 @@ type Args = {
   collectionConfig: SanitizedCollectionConfig
   description?: StaticDescription
   notFoundDocId?: null | string
-  payload: Payload
+  cms: CMS
   serverProps: ListViewServerPropsOnly
 }
 
@@ -34,7 +34,7 @@ export const renderListViewSlots = ({
   collectionConfig,
   description,
   notFoundDocId,
-  payload,
+  cms,
   serverProps,
 }: Args): ListViewSlots => {
   const result: ListViewSlots = {} as ListViewSlots
@@ -43,7 +43,7 @@ export const renderListViewSlots = ({
     result.AfterList = RenderServerComponent({
       clientProps: clientProps satisfies AfterListClientProps,
       Component: collectionConfig.admin.components.afterList,
-      importMap: payload.importMap,
+      importMap: cms.importMap,
       serverProps: serverProps satisfies AfterListTableServerPropsOnly,
     })
   }
@@ -55,7 +55,7 @@ export const renderListViewSlots = ({
       RenderServerComponent({
         clientProps,
         Component: listMenuItems,
-        importMap: payload.importMap,
+        importMap: cms.importMap,
         serverProps,
       }),
     ]
@@ -65,7 +65,7 @@ export const renderListViewSlots = ({
     result.AfterListTable = RenderServerComponent({
       clientProps: clientProps satisfies AfterListTableClientProps,
       Component: collectionConfig.admin.components.afterListTable,
-      importMap: payload.importMap,
+      importMap: cms.importMap,
       serverProps: serverProps satisfies AfterListTableServerPropsOnly,
     })
   }
@@ -74,7 +74,7 @@ export const renderListViewSlots = ({
     result.BeforeList = RenderServerComponent({
       clientProps: clientProps satisfies BeforeListClientProps,
       Component: collectionConfig.admin.components.beforeList,
-      importMap: payload.importMap,
+      importMap: cms.importMap,
       serverProps: serverProps satisfies BeforeListServerPropsOnly,
     })
   }
@@ -84,7 +84,7 @@ export const renderListViewSlots = ({
     ? RenderServerComponent({
         clientProps: clientProps satisfies BeforeListTableClientProps,
         Component: collectionConfig.admin.components.beforeListTable,
-        importMap: payload.importMap,
+        importMap: cms.importMap,
         serverProps: serverProps satisfies BeforeListTableServerPropsOnly,
       })
     : null
@@ -113,7 +113,7 @@ export const renderListViewSlots = ({
         description,
       } satisfies ViewDescriptionClientProps,
       Component: collectionConfig.admin.components.Description,
-      importMap: payload.importMap,
+      importMap: cms.importMap,
       serverProps: serverProps satisfies ViewDescriptionServerPropsOnly,
     })
   }

@@ -400,7 +400,7 @@ export const skTranslations: DefaultTranslationsObject = {
     password: 'Heslo',
     pasteField: 'Prilepiť pole',
     pasteRow: 'Prilepiť riadok',
-    payloadSettings: 'Nastavenia dátového záznamu',
+    cmsSettings: 'Nastavenia dátového záznamu',
     permanentlyDelete: 'Trvalo odstrániť',
     permanentlyDeletedCountSuccessfully: 'Úspešne ste natrvalo odstránili {{count}} {{label}}.',
     perPage: 'Na stránku: {{limit}}',

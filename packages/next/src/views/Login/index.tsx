@@ -15,8 +15,8 @@ export function LoginView({ initPageResult, params, searchParams }: AdminViewSer
 
   const {
     i18n,
-    payload: { config },
-    payload,
+    cms: { config },
+    cms,
     user,
   } = req
 
@@ -31,7 +31,7 @@ export function LoginView({ initPageResult, params, searchParams }: AdminViewSer
     redirect(redirectUrl)
   }
 
-  const collectionConfig = payload?.collections?.[userSlug]?.config
+  const collectionConfig = cms?.collections?.[userSlug]?.config
 
   const prefillAutoLogin =
     typeof config.admin?.autoLogin === 'object' && config.admin?.autoLogin.prefillOnly
@@ -58,7 +58,7 @@ export function LoginView({ initPageResult, params, searchParams }: AdminViewSer
           i18n={i18n}
           locale={locale}
           params={params}
-          payload={payload}
+          cms={cms}
           permissions={permissions}
           searchParams={searchParams}
           user={user}
@@ -66,12 +66,12 @@ export function LoginView({ initPageResult, params, searchParams }: AdminViewSer
       </div>
       {RenderServerComponent({
         Component: beforeLogin,
-        importMap: payload.importMap,
+        importMap: cms.importMap,
         serverProps: {
           i18n,
           locale,
           params,
-          payload,
+          cms,
           permissions,
           searchParams,
           user,
@@ -87,12 +87,12 @@ export function LoginView({ initPageResult, params, searchParams }: AdminViewSer
       )}
       {RenderServerComponent({
         Component: afterLogin,
-        importMap: payload.importMap,
+        importMap: cms.importMap,
         serverProps: {
           i18n,
           locale,
           params,
-          payload,
+          cms,
           permissions,
           searchParams,
           user,

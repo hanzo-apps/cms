@@ -47,7 +47,7 @@ export const ResetPreferences: React.FC<{
       const res = await fetch(
         formatAdminURL({
           apiRoute,
-          path: `/payload-preferences${stringifiedQuery}`,
+          path: `/cms-preferences${stringifiedQuery}`,
         }),
         {
           credentials: 'include',

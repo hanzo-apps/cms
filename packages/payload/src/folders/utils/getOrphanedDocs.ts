@@ -1,4 +1,4 @@
-import type { CollectionSlug, PayloadRequest, Where } from '../../index.js'
+import type { CollectionSlug, CMSRequest, Where } from '../../index.js'
 import type { FolderOrDocument } from '../types.js'
 
 import { combineWhereConstraints } from '../../utilities/combineWhereConstraints.js'
@@ -7,7 +7,7 @@ import { formatFolderOrDocumentItem } from './formatFolderOrDocumentItem.js'
 type Args = {
   collectionSlug: CollectionSlug
   folderFieldName: string
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * Optional where clause to filter documents by
    * @default undefined
@@ -20,7 +20,7 @@ export async function getOrphanedDocs({
   req,
   where,
 }: Args): Promise<FolderOrDocument[]> {
-  const { payload, user } = req
+  const { cms, user } = req
   const noParentFolderConstraint: Where = {
     or: [
       {
@@ -36,12 +36,12 @@ export async function getOrphanedDocs({
     ],
   }
 
-  const orphanedFolders = await payload.find({
+  const orphanedFolders = await cms.find({
     collection: collectionSlug,
     limit: 0,
     overrideAccess: false,
     req,
-    sort: payload.collections[collectionSlug]?.config.admin.useAsTitle,
+    sort: cms.collections[collectionSlug]?.config.admin.useAsTitle,
     user,
     where: where
       ? combineWhereConstraints([noParentFolderConstraint, where])
@@ -52,9 +52,9 @@ export async function getOrphanedDocs({
     orphanedFolders?.docs.map((doc) =>
       formatFolderOrDocumentItem({
         folderFieldName,
-        isUpload: Boolean(payload.collections[collectionSlug]?.config.upload),
+        isUpload: Boolean(cms.collections[collectionSlug]?.config.upload),
         relationTo: collectionSlug,
-        useAsTitle: payload.collections[collectionSlug]?.config.admin.useAsTitle,
+        useAsTitle: cms.collections[collectionSlug]?.config.admin.useAsTitle,
         value: doc,
       }),
     ) || []

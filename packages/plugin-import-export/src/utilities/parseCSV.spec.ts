@@ -1,16 +1,16 @@
-import { PayloadRequest } from '@hanzo/cms'
+import { CMSRequest } from '@hanzo/cms'
 
 import { parseCSV } from './parseCSV.js'
 import { describe, it, expect, vi } from 'vitest'
 
 describe('parseCSV', () => {
   const mockReq = {
-    payload: {
+    cms: {
       logger: {
         error: vi.fn(),
       },
     },
-  } as unknown as PayloadRequest
+  } as unknown as CMSRequest
 
   describe('cast function behavior', () => {
     it('should preserve comma-separated values as strings', async () => {
@@ -172,7 +172,7 @@ describe('parseCSV', () => {
       const invalidCsv = Buffer.from('field1,field2\n"value1')
 
       await expect(parseCSV({ data: invalidCsv, req: mockReq })).rejects.toThrow()
-      expect(mockReq.payload.logger.error).toHaveBeenCalled()
+      expect(mockReq.cms.logger.error).toHaveBeenCalled()
     })
   })
 })

@@ -37,7 +37,7 @@ export type AdditionalCodeComponentProps = {
     /**
      * Additional types to fetch and include in the editor for autocompletion.
      *
-     * For example, to include types for payload, you would set this to
+     * For example, to include types for cms, you would set this to
      *
      * [{ url: 'https://unpkg.com/payload@latest/dist/index.d.ts', filePath: 'file:///node_modules/payload/index.d.ts' }]
      */

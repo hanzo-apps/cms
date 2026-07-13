@@ -10,7 +10,7 @@ import {
   Thumbnail,
   useConfig,
   useEditDepth,
-  usePayloadAPI,
+  useCMSAPI,
   useTranslation,
 } from '@hanzo/cms-ui'
 import { $getNodeByKey, type ElementFormatType } from 'lexical'
@@ -93,7 +93,7 @@ export const UploadComponent: React.FC<ElementProps> = (props) => {
   })
 
   // Get the referenced document
-  const [{ data }, { setParams }] = usePayloadAPI(
+  const [{ data }, { setParams }] = useCMSAPI(
     formatAdminURL({ apiRoute: api, path: `/${relatedCollection.slug}/${value}`, serverURL }),
     { initialParams },
   )
@@ -110,7 +110,7 @@ export const UploadComponent: React.FC<ElementProps> = (props) => {
     (_data: Data) => {
       setParams({
         ...initialParams,
-        cacheBust, // do this to get the usePayloadAPI to re-fetch the data even though the URL string hasn't changed
+        cacheBust, // do this to get the useCMSAPI to re-fetch the data even though the URL string hasn't changed
       })
 
       dispatchCacheBust()

@@ -1,15 +1,15 @@
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { APIError } from '../errors/APIError.js'
 import { processMultipartFormdata } from '../uploads/fetchAPI-multipart/index.js'
 
-type AddDataAndFileToRequest = (req: PayloadRequest) => Promise<void>
+type AddDataAndFileToRequest = (req: CMSRequest) => Promise<void>
 
 /**
  * Mutates the Request, appending 'data' and 'file' if found
  */
 export const addDataAndFileToRequest: AddDataAndFileToRequest = async (req) => {
-  const { body, headers, method, payload } = req
+  const { body, headers, method, cms } = req
 
   if (method && ['PATCH', 'POST', 'PUT'].includes(method.toUpperCase()) && body) {
     const [contentType] = (headers.get('Content-Type') || '').split(';', 1)
@@ -27,14 +27,14 @@ export const addDataAndFileToRequest: AddDataAndFileToRequest = async (req) => {
         if (error instanceof SyntaxError) {
           throw new APIError('Invalid JSON', 400)
         }
-        req.payload.logger.error(error)
+        req.cms.logger.error(error)
         throw error
       }
     } else if ((bodyByteSize || hasBodyStream) && contentType?.includes('multipart/')) {
       const { error, fields, files } = await processMultipartFormdata({
         options: {
-          ...(payload.config.bodyParser || {}),
-          ...(payload.config.upload || {}),
+          ...(cms.config.bodyParser || {}),
+          ...(cms.config.upload || {}),
         },
         request: req as Request,
       })
@@ -53,8 +53,8 @@ export const addDataAndFileToRequest: AddDataAndFileToRequest = async (req) => {
         }
       }
 
-      if (fields?._payload && typeof fields._payload === 'string') {
-        req.data = JSON.parse(fields._payload)
+      if (fields?._cms && typeof fields._cms === 'string') {
+        req.data = JSON.parse(fields._cms)
       }
 
       if (!req.file && fields?.file && typeof fields?.file === 'string') {
@@ -66,7 +66,7 @@ export const addDataAndFileToRequest: AddDataAndFileToRequest = async (req) => {
         } catch {
           throw new APIError('A file name is required.', 400)
         }
-        const uploadConfig = req.payload.collections[collectionSlug]!.config.upload
+        const uploadConfig = req.cms.collections[collectionSlug]!.config.upload
 
         if (!uploadConfig.handlers) {
           throw new APIError('uploadConfig.handlers is not present for ' + collectionSlug)
@@ -96,7 +96,7 @@ export const addDataAndFileToRequest: AddDataAndFileToRequest = async (req) => {
 
         if (!response) {
           if (error) {
-            payload.logger.error(error)
+            cms.logger.error(error)
           }
 
           throw new APIError('Expected response from the upload handler.')

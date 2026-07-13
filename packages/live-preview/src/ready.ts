@@ -9,7 +9,7 @@ export const ready = (args: { serverURL: string }): void => {
 
     windowToPostTo?.postMessage(
       {
-        type: 'payload-live-preview',
+        type: 'cms-live-preview',
         ready: true,
       },
       serverURL,

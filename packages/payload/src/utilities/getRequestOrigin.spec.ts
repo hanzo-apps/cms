@@ -1,10 +1,10 @@
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { describe, expect, it } from 'vitest'
 
 import { getRequestOrigin } from './getRequestOrigin'
 
-type MinimalReq = Pick<PayloadRequest, 'headers' | 'payload' | 'url'>
+type MinimalReq = Pick<CMSRequest, 'headers' | 'cms' | 'url'>
 
 const makeReq = (url: string, hostOverride?: string): MinimalReq => {
   let host = hostOverride
@@ -18,7 +18,7 @@ const makeReq = (url: string, hostOverride?: string): MinimalReq => {
   return {
     url,
     headers: new Headers(host !== undefined ? { host } : {}),
-    payload: {
+    cms: {
       logger: {
         warn: () => {},
       },

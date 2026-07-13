@@ -1,10 +1,10 @@
 import crypto from 'crypto'
 import path from 'path'
 
-import type { PayloadComponent } from '../../../config/types.js'
+import type { CMSComponent } from '../../../config/types.js'
 import type { Imports, InternalImportMap } from '../index.js'
 
-import { parsePayloadComponent } from './parsePayloadComponent.js'
+import { parseCMSComponent } from './parsePayloadComponent.js'
 
 /**
  * Normalizes the component path based on the import map's base directory path.
@@ -30,26 +30,26 @@ function getAdjustedComponentPath(importMapToBaseDirPath: string, componentPath:
 }
 
 /**
- * Adds a payload component to the import map.
+ * Adds a cms component to the import map.
  */
-export function addPayloadComponentToImportMap({
+export function addCMSComponentToImportMap({
   importMap,
   importMapToBaseDirPath,
   imports,
-  payloadComponent,
+  cmsComponent,
 }: {
   importMap: InternalImportMap
   importMapToBaseDirPath: string
   imports: Imports
-  payloadComponent: PayloadComponent
+  cmsComponent: CMSComponent
 }): {
   path: string
   specifier: string
 } | null {
-  if (!payloadComponent) {
+  if (!cmsComponent) {
     return null
   }
-  const { exportName, path: componentPath } = parsePayloadComponent(payloadComponent)
+  const { exportName, path: componentPath } = parseCMSComponent(cmsComponent)
 
   if (importMap[componentPath + '#' + exportName]) {
     return null

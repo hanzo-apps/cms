@@ -6,10 +6,10 @@ import type { DrizzleAdapter } from './types.js'
 import { migrationTableExists } from './utilities/migrationTableExists.js'
 
 export async function migrateStatus(this: DrizzleAdapter): Promise<void> {
-  const { payload } = this
-  const migrationFiles = await readMigrationFiles({ payload })
+  const { cms } = this
+  const migrationFiles = await readMigrationFiles({ cms })
 
-  payload.logger.debug({
+  cms.logger.debug({
     msg: `Found ${migrationFiles.length} migration files.`,
   })
 
@@ -17,11 +17,11 @@ export async function migrateStatus(this: DrizzleAdapter): Promise<void> {
   const hasMigrationTable = await migrationTableExists(this)
 
   if (hasMigrationTable) {
-    ;({ existingMigrations } = await getMigrations({ payload }))
+    ;({ existingMigrations } = await getMigrations({ cms }))
   }
 
   if (!migrationFiles.length) {
-    payload.logger.info({ msg: 'No migrations found.' })
+    cms.logger.info({ msg: 'No migrations found.' })
     return
   }
 

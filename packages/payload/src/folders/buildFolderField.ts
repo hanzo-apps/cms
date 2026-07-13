@@ -42,7 +42,7 @@ export const buildFolderField = ({
         let parentFolder: Document = null
         if (typeof value === 'string' || typeof value === 'number') {
           // need to populate the value with the document
-          parentFolder = await req.payload.findByID({
+          parentFolder = await req.cms.findByID({
             id: newID,
             collection: folderSlug,
             depth: 0, // no need to populate nested folders

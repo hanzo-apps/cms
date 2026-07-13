@@ -20,7 +20,7 @@ export function ResetPassword({ initPageResult, params }: AdminViewServerProps) 
 
   const {
     i18n,
-    payload: { config },
+    cms: { config },
     user,
   } = req
 

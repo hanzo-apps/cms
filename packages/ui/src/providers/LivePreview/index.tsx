@@ -84,7 +84,7 @@ export const LivePreviewProvider: React.FC<LivePreviewProviderProps> = ({
   const [previewURL, setPreviewURL] = useState<string>(previewURLFromProps)
 
   const { isPopupOpen, openPopupWindow, popupRef } = usePopupWindow({
-    eventType: 'payload-live-preview',
+    eventType: 'cms-live-preview',
     url,
   })
 
@@ -215,7 +215,7 @@ export const LivePreviewProvider: React.FC<LivePreviewProviderProps> = ({
         url?.startsWith(event.origin) &&
         event.data &&
         typeof event.data === 'object' &&
-        event.data.type === 'payload-live-preview'
+        event.data.type === 'cms-live-preview'
       ) {
         if (event.data.ready) {
           setAppIsReady(true)

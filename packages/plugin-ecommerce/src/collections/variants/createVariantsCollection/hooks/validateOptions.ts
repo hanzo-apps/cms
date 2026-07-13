@@ -22,7 +22,7 @@ export const validateOptions: (props?: Props) => Validate =
       return t('ecommerce:productRequired')
     }
 
-    const product = await req.payload.findByID({
+    const product = await req.cms.findByID({
       id: productID,
       collection: productsCollectionSlug,
       depth: 1,

@@ -2,7 +2,7 @@ const imports = `import { migratePostgresV2toV3 } from '@hanzo/cms-db-postgres/m
 const upSQL = `   await migratePostgresV2toV3({
         // enables logging of changes that will be made to the database
         debug: false,
-        payload,
+        cms,
         req,
         })
 `

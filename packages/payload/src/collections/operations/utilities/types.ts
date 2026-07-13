@@ -4,7 +4,7 @@ import type { refreshOperation } from '../../../auth/operations/refresh.js'
 import type { resetPasswordOperation } from '../../../auth/operations/resetPassword.js'
 import type { unlockOperation } from '../../../auth/operations/unlock.js'
 import type { CollectionSlug, RequestContext, restoreVersionOperation } from '../../../index.js'
-import type { PayloadRequest } from '../../../types/index.js'
+import type { CMSRequest } from '../../../types/index.js'
 import type { SanitizedCollectionConfig, SelectFromCollectionSlug } from '../../config/types.js'
 import type { countOperation } from '../count.js'
 import type { countVersionsOperation } from '../countVersions.js'
@@ -57,7 +57,7 @@ export type AfterOperationArg<TOperationGeneric extends CollectionSlug> = {
    * Whether access control is being overridden for this operation
    */
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
 } & (
   | {
       args: Parameters<OperationMap<TOperationGeneric>['count']>[0]
@@ -203,7 +203,7 @@ export type BeforeOperationArg<TOperationGeneric extends CollectionSlug> = {
    * Whether access control is being overridden for this operation
    */
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
 } & (
   | {
       args:

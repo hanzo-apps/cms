@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { addDataAndFileToRequest } from '@hanzo/cms'
 
@@ -18,7 +18,7 @@ import { removeDisabledFields } from '../utilities/removeDisabledFields.js'
 import { resolveLimit } from '../utilities/resolveLimit.js'
 import { unflattenObject } from '../utilities/unflattenObject.js'
 
-export const handlePreview = async (req: PayloadRequest): Promise<Response> => {
+export const handlePreview = async (req: CMSRequest): Promise<Response> => {
   await addDataAndFileToRequest(req)
 
   const {
@@ -39,7 +39,7 @@ export const handlePreview = async (req: PayloadRequest): Promise<Response> => {
   const previewLimit = Math.max(MIN_PREVIEW_LIMIT, Math.min(rawPreviewLimit, MAX_PREVIEW_LIMIT))
   const previewPage = Math.max(MIN_PREVIEW_PAGE, rawPreviewPage)
 
-  const targetCollection = req.payload.collections[collectionSlug]
+  const targetCollection = req.cms.collections[collectionSlug]
   if (!targetCollection) {
     return Response.json(
       { error: `Collection with slug ${collectionSlug} not found` },
@@ -150,7 +150,7 @@ export const handlePreview = async (req: PayloadRequest): Promise<Response> => {
 
     return Response.json(response)
   } catch (error) {
-    req.payload.logger.error({ err: error, msg: 'Error parsing import preview data' })
+    req.cms.logger.error({ err: error, msg: 'Error parsing import preview data' })
     return Response.json({ error: 'Failed to parse file data' }, { status: 500 })
   }
 }

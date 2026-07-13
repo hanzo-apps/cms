@@ -149,7 +149,7 @@ export const sanitizeQueryValue = ({
       if (typeof field.relationTo === 'string') {
         idType = getCollectionIdType({
           adapter,
-          collection: adapter.payload.collections[field.relationTo],
+          collection: adapter.cms.collections[field.relationTo],
         })
       } else {
         if (isPolymorphicRelationship(val)) {
@@ -160,7 +160,7 @@ export const sanitizeQueryValue = ({
           }
           idType = getCollectionIdType({
             adapter,
-            collection: adapter.payload.collections[val.relationTo],
+            collection: adapter.cms.collections[val.relationTo],
           })
 
           if (isRawConstraint(val.value)) {

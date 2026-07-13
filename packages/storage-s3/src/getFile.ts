@@ -1,5 +1,5 @@
 import type * as AWS from '@aws-sdk/client-s3'
-import type { CollectionConfig, PayloadRequest } from '@hanzo/cms'
+import type { CollectionConfig, CMSRequest } from '@hanzo/cms'
 import type { Readable } from 'stream'
 
 import { GetObjectCommand } from '@aws-sdk/client-s3'
@@ -17,7 +17,7 @@ export type SignedDownloadsConfig =
       shouldUseSignedURL?(args: {
         collection: CollectionConfig
         filename: string
-        req: PayloadRequest
+        req: CMSRequest
       }): boolean | Promise<boolean>
     }
   | boolean
@@ -31,7 +31,7 @@ interface GetFileArgs {
   filename: string
   incomingHeaders?: Headers
   prefixQueryParam?: string
-  req: PayloadRequest
+  req: CMSRequest
   signedDownloads: SignedDownloadsConfig
   useCompositePrefixes?: boolean
 }
@@ -199,7 +199,7 @@ export async function getFile({
     }
 
     if (!isNodeReadableStream(object.Body)) {
-      req.payload.logger.error({
+      req.cms.logger.error({
         key,
         msg: 'S3 object body is not a readable stream',
       })
@@ -208,7 +208,7 @@ export async function getFile({
 
     const stream = object.Body
     stream.on('error', (err: Error) => {
-      req.payload.logger.error({
+      req.cms.logger.error({
         err,
         key,
         msg: 'Error while streaming S3 object (aborting)',
@@ -227,7 +227,7 @@ export async function getFile({
     ) {
       return new Response(null, { status: 404, statusText: 'Not Found' })
     }
-    req.payload.logger.error(err)
+    req.cms.logger.error(err)
     return new Response('Internal Server Error', { status: 500 })
   } finally {
     if (!streamed) {

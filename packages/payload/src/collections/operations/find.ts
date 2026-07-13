@@ -2,7 +2,7 @@ import type { AccessResult } from '../../config/types.js'
 import type { PaginatedDocs } from '../../database/types.js'
 import type { CollectionSlug, FindOptions, JoinQuery } from '../../index.js'
 import type {
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   Sort,
@@ -47,7 +47,7 @@ export type Arguments = {
   page?: number
   pagination?: boolean
   populate?: PopulateType
-  req?: PayloadRequest
+  req?: CMSRequest
   showHiddenFields?: boolean
   sort?: Sort
   trash?: boolean
@@ -100,9 +100,9 @@ export const findOperation = async <
     const req = args.req!
 
     const includeLockStatus =
-      includeLockStatusFromArgs && req.payload.collections?.[lockedDocumentsCollectionSlug]
+      includeLockStatusFromArgs && req.cms.collections?.[lockedDocumentsCollectionSlug]
 
-    const { fallbackLocale, locale, payload } = req
+    const { fallbackLocale, locale, cms } = req
 
     const select = sanitizeSelect({
       fields: collectionConfig.flattenedFields,
@@ -147,7 +147,7 @@ export const findOperation = async <
     let result: PaginatedDocs<DataFromCollectionSlug<TSlug>>
 
     let fullWhere = combineQueries(where!, accessResult!)
-    sanitizeWhereQuery({ fields: collectionConfig.flattenedFields, payload, where: fullWhere })
+    sanitizeWhereQuery({ fields: collectionConfig.flattenedFields, cms, where: fullWhere })
 
     // Exclude trashed documents when trash: false
     fullWhere = appendNonTrashedFilter({
@@ -175,13 +175,13 @@ export const findOperation = async <
         collectionConfig: collection.config,
         overrideAccess: overrideAccess!,
         req,
-        versionFields: buildVersionCollectionFields(payload.config, collection.config, true),
+        versionFields: buildVersionCollectionFields(cms.config, collection.config, true),
         where: appendVersionToQueryKey(where),
       })
 
-      result = await payload.db.queryDrafts<DataFromCollectionSlug<TSlug>>({
+      result = await cms.db.queryDrafts<DataFromCollectionSlug<TSlug>>({
         collection: collectionConfig.slug,
-        joins: req.payloadAPI === 'GraphQL' ? false : sanitizedJoins,
+        joins: req.cmsAPI === 'GraphQL' ? false : sanitizedJoins,
         limit: sanitizedLimit,
         locale: locale!,
         page: sanitizedPage,
@@ -202,10 +202,10 @@ export const findOperation = async <
         where: where!,
       })
 
-      result = await payload.db.find<DataFromCollectionSlug<TSlug>>({
+      result = await cms.db.find<DataFromCollectionSlug<TSlug>>({
         collection: collectionConfig.slug,
         draftsEnabled,
-        joins: req.payloadAPI === 'GraphQL' ? false : sanitizedJoins,
+        joins: req.cmsAPI === 'GraphQL' ? false : sanitizedJoins,
         limit: sanitizedLimit,
         locale: locale!,
         page: sanitizedPage,
@@ -235,7 +235,7 @@ export const findOperation = async <
 
         const now = new Date().getTime()
 
-        const lockedDocuments = await payload.find({
+        const lockedDocuments = await cms.find({
           collection: lockedDocumentsCollectionSlug,
           depth: 1,
           limit: sanitizedLimit,

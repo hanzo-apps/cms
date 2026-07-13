@@ -400,7 +400,7 @@ export const hrTranslations: DefaultTranslationsObject = {
     password: 'Lozinka',
     pasteField: 'Zalijepi polje',
     pasteRow: 'Zalijepi redak',
-    payloadSettings: 'Payload postavke',
+    cmsSettings: 'CMS postavke',
     permanentlyDelete: 'Trajno izbriši',
     permanentlyDeletedCountSuccessfully: 'Trajno izbrisano {{count}} {{label}} uspješno.',
     perPage: 'Po stranici: {{limit}}',
@@ -418,7 +418,7 @@ export const hrTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'Vrati kao objavljenu verziju',
     restoredCountSuccessfully: 'Uspješno obnovljeno {{count}} {{label}}.',
     restoring:
-      'Poštujte značenje izvornog teksta unutar konteksta Payloada. Evo popisa uobičajenih pojmova Payloada koji imaju vrlo specifična značenja:\n    - Kolekcija: Kolekcija je skup dokumenata koji dijele zajedničku strukturu i svrhu. Kolekcije se koriste za organiziranje i upravljanje sadržajem u Payloadu.\n    - Polje: Polje je specifičan dio podataka unutar dokumenta u kolekciji. Polja definiraju strukturu i vrstu podataka koji',
+      'Poštujte značenje izvornog teksta unutar konteksta CMSa. Evo popisa uobičajenih pojmova CMSa koji imaju vrlo specifična značenja:\n    - Kolekcija: Kolekcija je skup dokumenata koji dijele zajedničku strukturu i svrhu. Kolekcije se koriste za organiziranje i upravljanje sadržajem u CMSu.\n    - Polje: Polje je specifičan dio podataka unutar dokumenta u kolekciji. Polja definiraju strukturu i vrstu podataka koji',
     row: 'Red',
     rows: 'Redovi',
     save: 'Spremi',
@@ -603,7 +603,7 @@ export const hrTranslations: DefaultTranslationsObject = {
     moreVersions: 'Više verzija...',
     noFurtherVersionsFound: 'Nisu pronađene daljnje verzije',
     noLabelGroup:
-      'Poštujte značenje izvornog teksta unutar konteksta Payloada. Evo popisa uobičajenih Payload izraza koji nose vrlo specifična značenja:\n    - Zbirka: Zbirka je skupina dokumenata koji dijele zajedničku strukturu i svrhu. Zbirke se koriste za organiziranje i upravljanje sadržajem u Payloadu.\n    - Polje: Polje je specifičan dio podataka unutar dokumenta u zbirci. Polja definiraju strukturu i vrstu podataka koji se mogu p',
+      'Poštujte značenje izvornog teksta unutar konteksta CMSa. Evo popisa uobičajenih CMS izraza koji nose vrlo specifična značenja:\n    - Zbirka: Zbirka je skupina dokumenata koji dijele zajedničku strukturu i svrhu. Zbirke se koriste za organiziranje i upravljanje sadržajem u CMSu.\n    - Polje: Polje je specifičan dio podataka unutar dokumenta u zbirci. Polja definiraju strukturu i vrstu podataka koji se mogu p',
     noRowsFound: '{{label}} nije pronađeno',
     noRowsSelected: 'Nije odabrana {{oznaka}}',
     preview: 'Pregled',

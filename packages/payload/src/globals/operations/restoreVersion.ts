@@ -1,4 +1,4 @@
-import type { PayloadRequest, PopulateType } from '../../types/index.js'
+import type { CMSRequest, PopulateType } from '../../types/index.js'
 import type { TypeWithVersion } from '../../versions/types.js'
 import type { SanitizedGlobalConfig } from '../config/types.js'
 
@@ -17,7 +17,7 @@ export type Arguments = {
   id: number | string
   overrideAccess?: boolean
   populate?: PopulateType
-  req?: PayloadRequest
+  req?: CMSRequest
   showHiddenFields?: boolean
 }
 
@@ -26,7 +26,7 @@ export const restoreVersionOperation = async <T extends TypeWithVersion<T> = any
 ): Promise<T> => {
   const { id, depth, draft, globalConfig, overrideAccess, populate, showHiddenFields } = args
   const req = args.req!
-  const { fallbackLocale, locale, payload } = req
+  const { fallbackLocale, locale, cms } = req
 
   try {
     const shouldCommit = await initTransaction(req)
@@ -61,7 +61,7 @@ export const restoreVersionOperation = async <T extends TypeWithVersion<T> = any
     // Retrieve original raw version
     // /////////////////////////////////////
 
-    const { docs: versionDocs } = await payload.db.findGlobalVersions<any>({
+    const { docs: versionDocs } = await cms.db.findGlobalVersions<any>({
       global: globalConfig.slug,
       limit: 1,
       req,
@@ -86,7 +86,7 @@ export const restoreVersionOperation = async <T extends TypeWithVersion<T> = any
     // fetch previousDoc
     // /////////////////////////////////////
 
-    const previousDoc = await payload.findGlobal({
+    const previousDoc = await cms.findGlobal({
       slug: globalConfig.slug,
       depth,
       req,
@@ -98,7 +98,7 @@ export const restoreVersionOperation = async <T extends TypeWithVersion<T> = any
     // Update global
     // /////////////////////////////////////
 
-    const global = await payload.db.findGlobal({
+    const global = await cms.db.findGlobal({
       slug: globalConfig.slug,
       req,
     })
@@ -108,7 +108,7 @@ export const restoreVersionOperation = async <T extends TypeWithVersion<T> = any
     if (global) {
       // Ensure updatedAt date is always updated
       result.updatedAt = new Date().toISOString()
-      result = await payload.db.updateGlobal({
+      result = await cms.db.updateGlobal({
         slug: globalConfig.slug,
         data: result,
         req,
@@ -116,7 +116,7 @@ export const restoreVersionOperation = async <T extends TypeWithVersion<T> = any
 
       const now = new Date().toISOString()
 
-      result = await payload.db.createGlobalVersion({
+      result = await cms.db.createGlobalVersion({
         autosave: false,
         createdAt: result.createdAt ? new Date(result.createdAt).toISOString() : now,
         globalSlug: globalConfig.slug,
@@ -125,7 +125,7 @@ export const restoreVersionOperation = async <T extends TypeWithVersion<T> = any
         versionData: result,
       })
     } else {
-      result = await payload.db.createGlobal({
+      result = await cms.db.createGlobal({
         slug: globalConfig.slug,
         data: result,
         req,

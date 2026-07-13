@@ -47,13 +47,13 @@ export const warnOnInvalidCustomViews = (collection: CollectionConfig): void => 
 
     if (view && typeof view === 'object' && 'Component' in view && !('path' in view)) {
       console.warn(
-        `[Payload] Custom collection view "${key}" in collection "${collection.slug}" is missing a "path" property. The view will never be rendered.`,
+        `[CMS] Custom collection view "${key}" in collection "${collection.slug}" is missing a "path" property. The view will never be rendered.`,
       )
     }
 
     if (view && typeof view === 'object' && 'path' in view && !('Component' in view)) {
       console.warn(
-        `[Payload] Custom collection view "${key}" in collection "${collection.slug}" has a "path" but is missing a "Component". The view will never be rendered.`,
+        `[CMS] Custom collection view "${key}" in collection "${collection.slug}" has a "path" but is missing a "Component". The view will never be rendered.`,
       )
     }
   }
@@ -240,7 +240,7 @@ export const sanitizeCollection = async (
         sanitized.versions.drafts.localizeStatus = false
         console.log(
           miniChalk.yellowBold(
-            `Warning: "localizeStatus" for drafts is an experimental feature. To enable, set "experimental.localizeStatus" to true in your Payload config.`,
+            `Warning: "localizeStatus" for drafts is an experimental feature. To enable, set "experimental.localizeStatus" to true in your CMS config.`,
           ),
         )
       }

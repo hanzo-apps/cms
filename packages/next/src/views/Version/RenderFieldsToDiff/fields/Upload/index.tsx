@@ -1,6 +1,6 @@
 import type {
   FileData,
-  PayloadRequest,
+  CMSRequest,
   TypeWithID,
   UploadField,
   UploadFieldDiffServerComponent,
@@ -68,7 +68,7 @@ export const HasManyUploadDiff: React.FC<{
   locale: string
   nestingLevel?: number
   polymorphic: boolean
-  req: PayloadRequest
+  req: CMSRequest
   valueFrom: Array<UploadDoc>
   valueTo: Array<UploadDoc>
 }> = async (args) => {
@@ -160,7 +160,7 @@ export const SingleUploadDiff: React.FC<{
   locale: string
   nestingLevel?: number
   polymorphic: boolean
-  req: PayloadRequest
+  req: CMSRequest
   valueFrom: UploadDoc
   valueTo: UploadDoc
 }> = async (args) => {
@@ -228,7 +228,7 @@ const UploadDocumentDiff = (args: {
   i18n: I18nClient
   polymorphic: boolean
   relationTo: string | string[]
-  req: PayloadRequest
+  req: CMSRequest
   showCollectionSlug?: boolean
   uploadDoc: UploadDoc
 }) => {
@@ -263,7 +263,7 @@ const UploadDocumentDiff = (args: {
     } else {
       collectionSlug = typeof relationTo === 'string' ? relationTo : relationTo[0]
     }
-    const uploadConfig = req.payload.collections[collectionSlug].config
+    const uploadConfig = req.cms.collections[collectionSlug].config
     pillLabel = uploadConfig.labels?.singular
       ? getTranslation(uploadConfig.labels.singular, i18n)
       : uploadConfig.slug

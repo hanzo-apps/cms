@@ -1,7 +1,7 @@
 import { status as httpStatus } from 'http-status'
 
 import type { FindOneArgs } from '../../database/types.js'
-import type { JsonObject, PayloadRequest, PopulateType, SelectType } from '../../types/index.js'
+import type { JsonObject, CMSRequest, PopulateType, SelectType } from '../../types/index.js'
 import type { Collection, TypeWithID } from '../config/types.js'
 import type { FindOptions } from './local/find.js'
 
@@ -33,7 +33,7 @@ export type Arguments = {
   id: number | string
   overrideAccess?: boolean
   populate?: PopulateType
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields?: boolean
 } & Pick<FindOptions<string, SelectType>, 'select'>
 
@@ -50,7 +50,7 @@ export const restoreVersionOperation = async <
     overrideAccess = false,
     populate,
     req,
-    req: { fallbackLocale, locale, payload },
+    req: { fallbackLocale, locale, cms },
     select: incomingSelect,
     showHiddenFields,
   } = args
@@ -77,7 +77,7 @@ export const restoreVersionOperation = async <
     // Retrieve original raw version
     // /////////////////////////////////////
 
-    const { docs: versionDocs } = await req.payload.db.findVersions({
+    const { docs: versionDocs } = await req.cms.db.findVersions({
       collection: collectionConfig.slug,
       limit: 1,
       locale: 'all',
@@ -115,7 +115,7 @@ export const restoreVersionOperation = async <
     }
 
     // Get the document from the non versioned collection
-    const doc = await req.payload.db.findOne<TData>(findOneArgs)
+    const doc = await req.cms.db.findOne<TData>(findOneArgs)
 
     if (!doc && !hasWherePolicy) {
       throw new NotFound(req.t)
@@ -137,14 +137,14 @@ export const restoreVersionOperation = async <
     const prevDocWithLocales = await getLatestCollectionVersion({
       id: parentDocID,
       config: collectionConfig,
-      payload,
+      cms,
       query: findOneArgs,
       req,
     })
 
     // originalDoc with hoisted localized data
-    const validationLocale = payload.config.localization
-      ? payload.config.localization.defaultLocale
+    const validationLocale = cms.config.localization
+      ? cms.config.localization.defaultLocale
       : locale!
 
     const originalDoc = await afterRead({
@@ -268,7 +268,7 @@ export const restoreVersionOperation = async <
     // Ensure status respects restoreAsDraft arg
     result._status = draftArg ? 'draft' : result._status
     if (!draftArg) {
-      result = await req.payload.db.updateOne({
+      result = await req.cms.db.updateOne({
         id: parentDocID,
         collection: collectionConfig.slug,
         data: result,
@@ -288,7 +288,7 @@ export const restoreVersionOperation = async <
       docWithLocales: result,
       draft: draftArg,
       operation: 'restoreVersion',
-      payload,
+      cms,
       req: reqWithValidationLocale,
       select,
     })

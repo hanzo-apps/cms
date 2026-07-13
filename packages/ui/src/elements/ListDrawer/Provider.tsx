@@ -22,7 +22,7 @@ export type ListDrawerContextProps = {
     doc: Data
     /**
      * @deprecated
-     * The `docID` property is deprecated and will be removed in the next major version of Payload.
+     * The `docID` property is deprecated and will be removed in the next major version of CMS.
      * Use `doc.id` instead.
      */
     docID: string

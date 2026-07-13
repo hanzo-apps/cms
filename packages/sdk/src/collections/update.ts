@@ -1,6 +1,6 @@
 import type {
   CollectionSlug,
-  PayloadTypesShape,
+  CMSTypesShape,
   SelectType,
   TypedLocale,
   UploadCollectionSlug,
@@ -8,7 +8,7 @@ import type {
 } from '@hanzo/cms'
 import type { DeepPartial } from 'ts-essentials'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type {
   BulkOperationResult,
   PopulateType,
@@ -20,7 +20,7 @@ import type {
 import { resolveFileFromOptions } from '../utilities/resolveFileFromOptions.js'
 
 export type UpdateBaseOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 > = {
@@ -75,7 +75,7 @@ export type UpdateBaseOptions<
 }
 
 export type UpdateByIDOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 > = {
@@ -85,7 +85,7 @@ export type UpdateByIDOptions<
 } & UpdateBaseOptions<T, TSlug, TSelect>
 
 export type UpdateManyOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 > = {
@@ -95,17 +95,17 @@ export type UpdateManyOptions<
 } & UpdateBaseOptions<T, TSlug, TSelect>
 
 export type UpdateOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 > = UpdateByIDOptions<T, TSlug, TSelect> | UpdateManyOptions<T, TSlug, TSelect>
 
 export async function update<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 >(
-  sdk: PayloadSDK<T>,
+  sdk: CMSSDK<T>,
   options: UpdateOptions<T, TSlug, TSelect>,
   init?: RequestInit,
 ): Promise<

@@ -18,7 +18,7 @@ export type IAMClaims = {
 
 export type HanzoIAMStrategyConfig = {
   /**
-   * Slug of the Payload auth collection users are mapped into (e.g. 'users').
+   * Slug of the CMS auth collection users are mapped into (e.g. 'users').
    */
   authSlug?: string
   /**
@@ -36,7 +36,7 @@ export type HanzoIAMStrategyConfig = {
    */
   jwksUri?: string
   /**
-   * Strategy name surfaced to Payload. Defaults to 'hanzo-iam'.
+   * Strategy name surfaced to CMS. Defaults to 'hanzo-iam'.
    */
   name?: string
   /**

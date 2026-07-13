@@ -1,5 +1,5 @@
 'use client'
-import type { PasswordFieldValidation, PayloadRequest } from '@hanzo/cms'
+import type { PasswordFieldValidation, CMSRequest } from '@hanzo/cms'
 
 import { password } from '@hanzo/cms/shared'
 import React, { useCallback, useMemo } from 'react'
@@ -57,11 +57,11 @@ const PasswordFieldComponent: React.FC<PasswordFieldProps> = (props) => {
         path: pathSegments,
         preferences: { fields: {} },
         req: {
-          payload: {
+          cms: {
             config,
           },
           t,
-        } as unknown as PayloadRequest,
+        } as unknown as CMSRequest,
         required: true,
         siblingData: {},
       })

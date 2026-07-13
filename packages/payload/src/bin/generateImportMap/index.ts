@@ -2,10 +2,10 @@
 import fs from 'fs/promises'
 import process from 'node:process'
 
-import type { PayloadComponent, SanitizedConfig } from '../../config/types.js'
+import type { CMSComponent, SanitizedConfig } from '../../config/types.js'
 
 import { iterateConfig } from './iterateConfig.js'
-import { addPayloadComponentToImportMap } from './utilities/addPayloadComponentToImportMap.js'
+import { addCMSComponentToImportMap } from './utilities/addPayloadComponentToImportMap.js'
 import { getImportMapToBaseDirPath } from './utilities/getImportMapToBaseDirPath.js'
 import { resolveImportMapFilePath } from './utilities/resolveImportMapFilePath.js'
 
@@ -38,7 +38,7 @@ export type ImportMap = {
   [path: UserImportPath]: any
 }
 
-export type AddToImportMap = (payloadComponent?: PayloadComponent | PayloadComponent[]) => void
+export type AddToImportMap = (cmsComponent?: CMSComponent | CMSComponent[]) => void
 
 export async function generateImportMap(
   config: SanitizedConfig,
@@ -84,31 +84,31 @@ export async function generateImportMap(
     importMapPath: importMapFilePath,
   })
 
-  const addToImportMap: AddToImportMap = (payloadComponent) => {
-    if (!payloadComponent) {
+  const addToImportMap: AddToImportMap = (cmsComponent) => {
+    if (!cmsComponent) {
       return
     }
 
-    if (typeof payloadComponent !== 'object' && typeof payloadComponent !== 'string') {
-      console.error(payloadComponent)
-      throw new Error('addToImportMap > Payload component must be an object or a string')
+    if (typeof cmsComponent !== 'object' && typeof cmsComponent !== 'string') {
+      console.error(cmsComponent)
+      throw new Error('addToImportMap > CMS component must be an object or a string')
     }
 
-    if (Array.isArray(payloadComponent)) {
-      for (const component of payloadComponent) {
-        addPayloadComponentToImportMap({
+    if (Array.isArray(cmsComponent)) {
+      for (const component of cmsComponent) {
+        addCMSComponentToImportMap({
           importMap,
           importMapToBaseDirPath,
           imports,
-          payloadComponent: component,
+          cmsComponent: component,
         })
       }
     } else {
-      addPayloadComponentToImportMap({
+      addCMSComponentToImportMap({
         importMap,
         importMapToBaseDirPath,
         imports,
-        payloadComponent,
+        cmsComponent,
       })
     }
   }

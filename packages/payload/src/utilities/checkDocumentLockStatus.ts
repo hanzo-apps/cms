@@ -1,6 +1,6 @@
 import type { TypeWithID } from '../collections/config/types.js'
 import type { PaginatedDocs } from '../database/types.js'
-import type { JsonObject, PayloadRequest } from '../types/index.js'
+import type { JsonObject, CMSRequest } from '../types/index.js'
 
 import { Locked } from '../errors/index.js'
 import { lockedDocumentsCollectionSlug } from '../locked-documents/config.js'
@@ -12,7 +12,7 @@ type CheckDocumentLockStatusArgs = {
   lockDurationDefault?: number
   lockErrorMessage?: string
   overrideLock?: boolean
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export const checkDocumentLockStatus = async ({
@@ -24,18 +24,18 @@ export const checkDocumentLockStatus = async ({
   overrideLock = true,
   req,
 }: CheckDocumentLockStatusArgs): Promise<void> => {
-  const { payload } = req
+  const { cms } = req
 
   // Check if the locked-documents collection exists
-  if (!payload.collections?.[lockedDocumentsCollectionSlug]) {
+  if (!cms.collections?.[lockedDocumentsCollectionSlug]) {
     // If the collection doesn't exist, locking is not available
     return
   }
 
   // Retrieve the lockDocuments property for either collection or global
   const lockDocumentsProp = collectionSlug
-    ? payload.collections?.[collectionSlug]?.config?.lockDocuments
-    : payload.config?.globals?.find((g) => g.slug === globalSlug)?.lockDocuments
+    ? cms.collections?.[collectionSlug]?.config?.lockDocuments
+    : cms.config?.globals?.find((g) => g.slug === globalSlug)?.lockDocuments
 
   const isLockingEnabled = lockDocumentsProp !== false
 
@@ -66,7 +66,7 @@ export const checkDocumentLockStatus = async ({
 
     const finalLockErrorMessage = lockErrorMessage || defaultLockErrorMessage
 
-    const lockedDocumentResult: PaginatedDocs<JsonObject & TypeWithID> = await payload.db.find({
+    const lockedDocumentResult: PaginatedDocs<JsonObject & TypeWithID> = await cms.db.find({
       collection: lockedDocumentsCollectionSlug,
       limit: 1,
       pagination: false,
@@ -97,10 +97,10 @@ export const checkDocumentLockStatus = async ({
   }
 
   // Perform the delete operation regardless of overrideLock status
-  await payload.db.deleteMany({
+  await cms.db.deleteMany({
     collection: lockedDocumentsCollectionSlug,
     // Not passing req fails on postgres
-    req: payload.db.name === 'mongoose' ? undefined : req,
+    req: cms.db.name === 'mongoose' ? undefined : req,
     where: lockedDocumentQuery,
   })
 }

@@ -1,6 +1,6 @@
 @import '~@hanzo/cms-ui/scss';
 
-@layer payload-default {
+@layer cms-default {
   .compare-version {
     &-moreVersions {
       color: var(--theme-elevation-500);

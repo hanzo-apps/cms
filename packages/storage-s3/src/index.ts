@@ -26,7 +26,7 @@ export type S3StorageOptions = {
    * the collection schema regardless of whether the plugin is enabled. This
    * ensures a consistent schema across all environments.
    *
-   * This will be enabled by default in Payload v4.
+   * This will be enabled by default in CMS v4.
    *
    * @default false
    */

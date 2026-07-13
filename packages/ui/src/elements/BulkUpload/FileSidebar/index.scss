@@ -1,6 +1,6 @@
 @import '../../../scss/styles.scss';
 
-@layer payload-default {
+@layer cms-default {
   .file-selections {
     --file-gutter-h: calc(var(--gutter-h) / 4);
     border-right: 1px solid var(--theme-border-color);

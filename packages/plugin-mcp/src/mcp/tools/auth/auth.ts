@@ -1,14 +1,14 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { toolSchemas } from '../schemas.js'
 
-export const authTool = (server: McpServer, req: PayloadRequest, verboseLogs: boolean) => {
+export const authTool = (server: McpServer, req: CMSRequest, verboseLogs: boolean) => {
   const tool = async (headers?: string) => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info('[payload-mcp] Checking authentication status')
+      cms.logger.info('[cms-mcp] Checking authentication status')
     }
 
     try {
@@ -20,19 +20,19 @@ export const authTool = (server: McpServer, req: PayloadRequest, verboseLogs: bo
           const parsedHeaders = JSON.parse(headers)
           authHeaders = new Headers(parsedHeaders)
           if (verboseLogs) {
-            payload.logger.info(`[payload-mcp] Using custom headers: ${headers}`)
+            cms.logger.info(`[cms-mcp] Using custom headers: ${headers}`)
           }
         } catch (_ignore) {
-          payload.logger.warn(`[payload-mcp] Invalid headers JSON: ${headers}, using empty headers`)
+          cms.logger.warn(`[cms-mcp] Invalid headers JSON: ${headers}, using empty headers`)
         }
       }
 
-      const result = await payload.auth({
+      const result = await cms.auth({
         headers: authHeaders,
       })
 
       if (verboseLogs) {
-        payload.logger.info('[payload-mcp] Authentication check completed successfully')
+        cms.logger.info('[cms-mcp] Authentication check completed successfully')
       }
 
       return {
@@ -45,7 +45,7 @@ export const authTool = (server: McpServer, req: PayloadRequest, verboseLogs: bo
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(`[payload-mcp] Error checking authentication: ${errorMessage}`)
+      cms.logger.error(`[cms-mcp] Error checking authentication: ${errorMessage}`)
 
       return {
         content: [

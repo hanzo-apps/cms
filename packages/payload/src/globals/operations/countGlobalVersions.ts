@@ -1,5 +1,5 @@
 import type { AccessResult } from '../../config/types.js'
-import type { PayloadRequest, Where } from '../../types/index.js'
+import type { CMSRequest, Where } from '../../types/index.js'
 
 import { executeAccess } from '../../auth/executeAccess.js'
 import { combineQueries } from '../../database/combineQueries.js'
@@ -15,7 +15,7 @@ export type Arguments = {
   disableErrors?: boolean
   global: SanitizedGlobalConfig
   overrideAccess?: boolean
-  req?: PayloadRequest
+  req?: CMSRequest
   where?: Where
 }
 
@@ -26,7 +26,7 @@ export const countGlobalVersionsOperation = async <TSlug extends GlobalSlug>(
   try {
     const { disableErrors, global, overrideAccess, where } = args
     const req = args.req!
-    const { payload } = req
+    const { cms } = req
 
     // /////////////////////////////////////
     // beforeOperation - Global
@@ -65,7 +65,7 @@ export const countGlobalVersionsOperation = async <TSlug extends GlobalSlug>(
 
     const fullWhere = combineQueries(where!, accessResult!)
 
-    const versionFields = buildVersionGlobalFields(payload.config, global, true)
+    const versionFields = buildVersionGlobalFields(cms.config, global, true)
 
     await validateQueryPaths({
       globalConfig: global,
@@ -75,7 +75,7 @@ export const countGlobalVersionsOperation = async <TSlug extends GlobalSlug>(
       where: where!,
     })
 
-    const result = await payload.db.countGlobalVersions({
+    const result = await cms.db.countGlobalVersions({
       global: global.slug,
       req,
       where: fullWhere,

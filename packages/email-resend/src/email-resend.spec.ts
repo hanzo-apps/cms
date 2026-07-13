@@ -1,18 +1,18 @@
-import type { Payload } from '@hanzo/cms'
+import type { CMS } from '@hanzo/cms'
 import { describe, afterEach, beforeEach, it, expect, vitest, Mock } from 'vitest'
 
 import { resendAdapter } from './index.js'
 
 describe('email-resend', () => {
   const defaultFromAddress = 'dev@payloadcms.com'
-  const defaultFromName = 'Payload CMS'
+  const defaultFromName = 'CMS'
   const apiKey = 'test-api-key'
   const from = 'dev@payloadcms.com'
   const to = from
   const subject = 'This was sent on init'
   const text = 'This is my message body'
 
-  const mockPayload = {} as unknown as Payload
+  const mockCMS = {} as unknown as CMS
 
   afterEach(() => {
     vitest.clearAllMocks()
@@ -35,7 +35,7 @@ describe('email-resend', () => {
       defaultFromName,
     })
 
-    await adapter({ payload: mockPayload }).sendEmail({
+    await adapter({ cms: mockCMS }).sendEmail({
       from,
       subject,
       text,
@@ -67,7 +67,7 @@ describe('email-resend', () => {
     })
 
     const adapter = () =>
-      resendAdapter({ apiKey, defaultFromAddress, defaultFromName })({ payload: mockPayload })
+      resendAdapter({ apiKey, defaultFromAddress, defaultFromName })({ cms: mockCMS })
 
     it('should pass path-only attachments through', async () => {
       await adapter().sendEmail({
@@ -164,7 +164,7 @@ describe('email-resend', () => {
     })
 
     const adapter = () =>
-      resendAdapter({ apiKey, defaultFromAddress, defaultFromName })({ payload: mockPayload })
+      resendAdapter({ apiKey, defaultFromAddress, defaultFromName })({ cms: mockCMS })
 
     it('should pass simple string headers through as-is', async () => {
       await adapter().sendEmail({
@@ -255,7 +255,7 @@ describe('email-resend', () => {
     })
 
     await expect(() =>
-      adapter({ payload: mockPayload }).sendEmail({
+      adapter({ cms: mockCMS }).sendEmail({
         from,
         subject,
         text,

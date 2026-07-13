@@ -1,4 +1,4 @@
-import type { CollectionSlug, DefaultDocumentIDType, Payload, PayloadRequest } from '@hanzo/cms'
+import type { CollectionSlug, DefaultDocumentIDType, CMS, CMSRequest } from '@hanzo/cms'
 
 import type { CartItemData, CartOperationResult } from './types.js'
 
@@ -51,13 +51,13 @@ export type MergeCartArgs = {
    */
   cartsSlug: CollectionSlug
   /**
-   * The Payload instance.
+   * The CMS instance.
    */
-  payload: Payload
+  cms: CMS
   /**
-   * The PayloadRequest object for transaction safety.
+   * The CMSRequest object for transaction safety.
    */
-  req?: PayloadRequest
+  req?: CMSRequest
   /**
    * The ID of the source (guest) cart to merge from.
    */
@@ -80,7 +80,7 @@ export type MergeCartArgs = {
  * @example
  * ```ts
  * const result = await mergeCart({
- *   payload,
+ *   cms,
  *   cartsSlug: 'carts',
  *   targetCartID: 'user-cart-123',
  *   sourceCartID: 'guest-cart-456',
@@ -92,7 +92,7 @@ export const mergeCart = async (args: MergeCartArgs): Promise<CartOperationResul
   const {
     cartItemMatcher = defaultMergeItemMatcher,
     cartsSlug,
-    payload,
+    cms,
     req,
     sourceCartID,
     sourceSecret,
@@ -101,7 +101,7 @@ export const mergeCart = async (args: MergeCartArgs): Promise<CartOperationResul
 
   // Fetch the source (guest) cart with secret verification
   // Using overrideAccess: true here because we're manually verifying the secret in the where clause
-  const sourceCart = await payload.find({
+  const sourceCart = await cms.find({
     collection: cartsSlug,
     depth: 0,
     limit: 1,
@@ -123,7 +123,7 @@ export const mergeCart = async (args: MergeCartArgs): Promise<CartOperationResul
   const guestCart = sourceCart.docs[0]
 
   // Fetch the target (user's) cart
-  const targetCart = await payload.findByID({
+  const targetCart = await cms.findByID({
     id: targetCartID,
     collection: cartsSlug,
     depth: 0,
@@ -160,7 +160,7 @@ export const mergeCart = async (args: MergeCartArgs): Promise<CartOperationResul
       }
     } else {
       // Item doesn't exist in target - add it
-      // Omit the source item's array row `id` so Payload generates a new one.
+      // Omit the source item's array row `id` so CMS generates a new one.
       // In SQL, array items are stored in separate tables with their own IDs,
       // and using IDs from another cart's array would cause conflicts.
       const { id: _omit, ...sourceItemWithoutId } = sourceItem
@@ -169,7 +169,7 @@ export const mergeCart = async (args: MergeCartArgs): Promise<CartOperationResul
   }
 
   // Update the target cart with merged items
-  const updatedCart = await payload.update({
+  const updatedCart = await cms.update({
     id: targetCartID,
     collection: cartsSlug,
     data: {
@@ -183,7 +183,7 @@ export const mergeCart = async (args: MergeCartArgs): Promise<CartOperationResul
   // Delete the source (guest) cart after successful merge
   // Using overrideAccess: true because we've already verified the secret above
   try {
-    await payload.delete({
+    await cms.delete({
       id: sourceCartID,
       collection: cartsSlug,
       overrideAccess: true,

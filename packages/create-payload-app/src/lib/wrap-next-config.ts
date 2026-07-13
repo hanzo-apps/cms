@@ -9,10 +9,10 @@ import type { NextConfigType } from '../types.js'
 
 import { log, warning } from '../utils/log.js'
 
-export const withPayloadStatement = {
-  cjs: `const { withPayload } = require("@hanzo/cms-next/withPayload");`,
-  esm: `import { withPayload } from "@hanzo/cms-next/withPayload";`,
-  ts: `import { withPayload } from "@hanzo/cms-next/withPayload";`,
+export const withCMSStatement = {
+  cjs: `const { withCMS } = require("@hanzo/cms-next/withPayload");`,
+  esm: `import { withCMS } from "@hanzo/cms-next/withPayload";`,
+  ts: `import { withCMS } from "@hanzo/cms-next/withPayload";`,
 }
 
 export const wrapNextConfig = async (args: {
@@ -34,13 +34,13 @@ export const wrapNextConfig = async (args: {
 }
 
 /**
- * Parses config content with AST and wraps it with withPayload function
+ * Parses config content with AST and wraps it with withCMS function
  */
 export async function parseAndModifyConfigContent(
   content: string,
   configType: NextConfigType,
 ): Promise<{ modifiedConfigContent: string; success: boolean }> {
-  content = withPayloadStatement[configType] + '\n' + content
+  content = withCMSStatement[configType] + '\n' + content
 
   if (configType === 'cjs' || configType === 'esm') {
     try {
@@ -101,7 +101,7 @@ export async function parseAndModifyConfigContent(
           )
 
           if (exportSpecifier) {
-            warning('Could not automatically wrap next.config.js with withPayload.')
+            warning('Could not automatically wrap next.config.js with withCMS.')
             warning('Automatic wrapping of named exports as default not supported yet.')
 
             warnUserWrapNotSuccessful(configType)
@@ -112,7 +112,7 @@ export async function parseAndModifyConfigContent(
           }
         }
 
-        warning('Could not automatically wrap Next config with withPayload.')
+        warning('Could not automatically wrap Next config with withCMS.')
         warnUserWrapNotSuccessful(configType)
         return Promise.resolve({
           modifiedConfigContent: content,
@@ -140,7 +140,7 @@ export async function parseAndModifyConfigContent(
 
     if (exportDefaultDeclaration) {
       if (!('span' in exportDefaultDeclaration.expression)) {
-        warning('Could not automatically wrap Next config with withPayload.')
+        warning('Could not automatically wrap Next config with withCMS.')
         warnUserWrapNotSuccessful(configType)
         return Promise.resolve({
           modifiedConfigContent: content,
@@ -157,7 +157,7 @@ export async function parseAndModifyConfigContent(
     }
   }
 
-  warning('Could not automatically wrap Next config with withPayload.')
+  warning('Could not automatically wrap Next config with withCMS.')
   warnUserWrapNotSuccessful(configType)
   return Promise.resolve({
     modifiedConfigContent: content,
@@ -167,21 +167,21 @@ export async function parseAndModifyConfigContent(
 
 function warnUserWrapNotSuccessful(configType: NextConfigType) {
   // Output directions for user to update next.config.js
-  const withPayloadMessage = `
+  const withCMSMessage = `
 
-  ${chalk.bold(`Please manually wrap your existing Next config with the withPayload function. Here is an example:`)}
+  ${chalk.bold(`Please manually wrap your existing Next config with the withCMS function. Here is an example:`)}
 
-  ${withPayloadStatement[configType]}
+  ${withCMSStatement[configType]}
 
   const nextConfig = {
     // Your Next.js config here
   }
 
-  ${configType === 'cjs' ? 'module.exports = withPayload(nextConfig)' : 'export default withPayload(nextConfig)'}
+  ${configType === 'cjs' ? 'module.exports = withCMS(nextConfig)' : 'export default withCMS(nextConfig)'}
 
 `
 
-  log(withPayloadMessage)
+  log(withCMSMessage)
 }
 
 type Directive = {
@@ -225,11 +225,11 @@ function insertBeforeAndAfter(content: string, loc: Loc): string {
 
   // insert ) after end
   lines[end.line - 1] = insert(lines[end.line - 1]!, end.column, ')')
-  // insert withPayload before start
+  // insert withCMS before start
   if (start.line === end.line) {
-    lines[end.line - 1] = insert(lines[end.line - 1]!, start.column, 'withPayload(')
+    lines[end.line - 1] = insert(lines[end.line - 1]!, start.column, 'withCMS(')
   } else {
-    lines[start.line - 1] = insert(lines[start.line - 1]!, start.column, 'withPayload(')
+    lines[start.line - 1] = insert(lines[start.line - 1]!, start.column, 'withCMS(')
   }
 
   return lines.join('\n')
@@ -256,8 +256,8 @@ function insertBeforeAndAfterSWC(
 
   // insert ) after end
   content = insert(end - 1, ')')
-  // insert withPayload before start
-  content = insert(start - 1, 'withPayload(')
+  // insert withCMS before start
+  content = insert(start - 1, 'withCMS(')
 
   return content
 }

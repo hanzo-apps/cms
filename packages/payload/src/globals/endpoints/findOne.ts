@@ -1,6 +1,6 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { getRequestGlobal } from '../../utilities/getRequestEntity.js'
 import { headersWithCors } from '../../utilities/headersWithCors.js'
@@ -9,7 +9,7 @@ import { sanitizePopulateParam } from '../../utilities/sanitizePopulateParam.js'
 import { sanitizeSelectParam } from '../../utilities/sanitizeSelectParam.js'
 import { findOneOperation } from '../operations/findOne.js'
 
-export const findOneHandler: PayloadHandler = async (req) => {
+export const findOneHandler: CMSHandler = async (req) => {
   const globalConfig = getRequestGlobal(req)
   const { data, searchParams } = req
   const depth = data ? data.depth : searchParams.get('depth')

@@ -1,4 +1,4 @@
-import type { Collection, CollectionSlug, DataFromCollectionSlug, PayloadRequest } from '@hanzo/cms'
+import type { Collection, CollectionSlug, DataFromCollectionSlug, CMSRequest } from '@hanzo/cms'
 
 import { duplicateOperation, isolateObjectProperty } from '@hanzo/cms'
 
@@ -14,7 +14,7 @@ export type Resolver<TData> = (
     locale?: string
   },
   context: {
-    req: PayloadRequest
+    req: CMSRequest
   },
 ) => Promise<TData>
 

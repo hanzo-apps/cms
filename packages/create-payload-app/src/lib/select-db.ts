@@ -74,7 +74,7 @@ export async function selectDb(
 
   let dbUri: string | symbol | undefined = undefined
   const initialDbUri = `${dbChoice.dbConnectionPrefix}${
-    projectName === '.' ? `payload-${getRandomDigitSuffix()}` : slugify(projectName)
+    projectName === '.' ? `cms-${getRandomDigitSuffix()}` : slugify(projectName)
   }${dbChoice.dbConnectionSuffix || ''}`
 
   if (args['--db-accept-recommended']) {

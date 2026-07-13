@@ -3,8 +3,8 @@ import type {
   DataFromCollectionSlug,
   Document,
   PaginatedDistinctDocs,
-  Payload,
-  PayloadRequest,
+  CMS,
+  CMSRequest,
   PopulateType,
   RequestContext,
   Sort,
@@ -68,10 +68,10 @@ export type Options<
    */
   populate?: PopulateType
   /**
-   * The `PayloadRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
+   * The `CMSRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
    * Recommended to pass when using the Local API from hooks, as usually you want to execute the operation within the current transaction.
    */
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * Opt-in to receiving hidden fields. By default, they are hidden from returned documents in accordance to your config.
    * @default false
@@ -107,7 +107,7 @@ export async function findDistinct<
   TSlug extends CollectionSlug,
   TField extends keyof DataFromCollectionSlug<TSlug> & string,
 >(
-  payload: Payload,
+  cms: CMS,
   options: Options<TSlug, TField>,
 ): Promise<PaginatedDistinctDocs<Record<TField, DataFromCollectionSlug<TSlug>[TField]>>> {
   const {
@@ -124,7 +124,7 @@ export async function findDistinct<
     trash = false,
     where,
   } = options
-  const collection = payload.collections[collectionSlug]
+  const collection = cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(
@@ -141,7 +141,7 @@ export async function findDistinct<
     overrideAccess,
     page,
     populate,
-    req: await createLocalReq(options as CreateLocalReqOptions, payload),
+    req: await createLocalReq(options as CreateLocalReqOptions, cms),
     showHiddenFields,
     sort,
     trash,

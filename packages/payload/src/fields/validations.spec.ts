@@ -22,7 +22,7 @@ let options: ValidateOptions<any, any, any, any> = {
   operation: 'create',
   req: {
     context: {},
-    payload: {
+    cms: {
       config: {
         db: {
           defaultIDType: 'text',
@@ -301,8 +301,8 @@ describe('Field Validations', () => {
       relationTo: 'relation',
       req: {
         ...options.req,
-        payload: {
-          ...options.req.payload,
+        cms: {
+          ...options.req.cms,
           collections: {
             relation: {
               config: relationCollection,

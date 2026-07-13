@@ -1,12 +1,12 @@
-import type { Payload, RequestContext, TypedLocale, TypedUser } from '../index.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMS, RequestContext, TypedLocale, TypedUser } from '../index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { getDataLoader } from '../collections/dataloader.js'
 import { getLocalI18n } from '../translations/getLocalI18n.js'
 import { sanitizeFallbackLocale } from '../utilities/sanitizeFallbackLocale.js'
 
 function getRequestContext(
-  req: Partial<PayloadRequest> = { context: null } as unknown as PayloadRequest,
+  req: Partial<CMSRequest> = { context: null } as unknown as CMSRequest,
   context: RequestContext = {},
 ): RequestContext {
   if (req.context) {
@@ -21,7 +21,7 @@ function getRequestContext(
   }
 }
 
-const attachFakeURLProperties = (req: Partial<PayloadRequest>, urlSuffix?: string) => {
+const attachFakeURLProperties = (req: Partial<CMSRequest>, urlSuffix?: string) => {
   /**
    * *NOTE*
    * If no URL is provided, the local API was called outside
@@ -40,14 +40,14 @@ const attachFakeURLProperties = (req: Partial<PayloadRequest>, urlSuffix?: strin
 
     const urlToUse =
       req?.url ||
-      (req.payload?.config?.serverURL
-        ? `${req.payload?.config.serverURL}${urlSuffix || ''}`
+      (req.cms?.config?.serverURL
+        ? `${req.cms?.config.serverURL}${urlSuffix || ''}`
         : fallbackURL)
 
     try {
       urlObject = new URL(urlToUse)
     } catch (_err) {
-      req.payload?.logger.error(
+      req.cms?.logger.error(
         `Failed to create URL object from URL: ${urlToUse}, falling back to ${fallbackURL}`,
       )
 
@@ -90,12 +90,12 @@ export type CreateLocalReqOptions = {
   depth?: number
   fallbackLocale?: false | TypedLocale
   locale?: string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   urlSuffix?: string
   user?: TypedUser
 }
 
-type CreateLocalReq = (options: CreateLocalReqOptions, payload: Payload) => Promise<PayloadRequest>
+type CreateLocalReq = (options: CreateLocalReqOptions, cms: CMS) => Promise<CMSRequest>
 
 export const createLocalReq: CreateLocalReq = async (
   {
@@ -103,13 +103,13 @@ export const createLocalReq: CreateLocalReq = async (
     depth,
     fallbackLocale,
     locale: localeArg,
-    req = {} as PayloadRequest,
+    req = {} as CMSRequest,
     urlSuffix,
     user,
   },
-  payload,
-): Promise<PayloadRequest> => {
-  const localization = payload.config?.localization
+  cms,
+): Promise<CMSRequest> => {
+  const localization = cms.config?.localization
 
   if (localization) {
     const locale = localeArg === '*' ? 'all' : localeArg
@@ -130,15 +130,15 @@ export const createLocalReq: CreateLocalReq = async (
 
   const i18n =
     req?.i18n ||
-    (await getLocalI18n({ config: payload.config, language: payload.config.i18n.fallbackLanguage }))
+    (await getLocalI18n({ config: cms.config, language: cms.config.i18n.fallbackLanguage }))
 
   if (!req.headers) {
     req.headers = new Headers()
   }
 
   req.context = getRequestContext(req, context)
-  req.payloadAPI = req?.payloadAPI || 'local'
-  req.payload = payload
+  req.cmsAPI = req?.cmsAPI || 'local'
+  req.cms = cms
   req.i18n = i18n
   req.t = i18n.t
   req.user = user || req?.user || null
@@ -146,10 +146,10 @@ export const createLocalReq: CreateLocalReq = async (
   // Ensure user.collection is set for auth-related access control
   // TODO (4.0): Instead of silently falling back, throw an error if user.collection is missing
   if (req.user && !req.user.collection) {
-    req.user = { ...req.user, collection: payload.config.admin.user }
+    req.user = { ...req.user, collection: cms.config.admin.user }
   }
 
-  req.payloadDataLoader = req?.payloadDataLoader || getDataLoader(req as PayloadRequest)
+  req.cmsDataLoader = req?.cmsDataLoader || getDataLoader(req as CMSRequest)
   req.routeParams = req?.routeParams || {}
   req.query = req?.query || {}
 
@@ -159,5 +159,5 @@ export const createLocalReq: CreateLocalReq = async (
 
   attachFakeURLProperties(req, urlSuffix)
 
-  return req as PayloadRequest
+  return req as CMSRequest
 }

@@ -5,7 +5,7 @@ import type {
   Collection,
 } from '../../collections/config/types.js'
 import type { AuthCollectionSlug } from '../../index.js'
-import type { PayloadRequest, Where } from '../../types/index.js'
+import type { CMSRequest, Where } from '../../types/index.js'
 
 import { buildAfterOperation } from '../../collections/operations/utilities/buildAfterOperation.js'
 import { buildBeforeOperation } from '../../collections/operations/utilities/buildBeforeOperation.js'
@@ -23,7 +23,7 @@ export type Arguments<TSlug extends AuthCollectionSlug> = {
   collection: Collection
   data: AuthOperationsFromCollectionSlug<TSlug>['unlock']
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export const unlockOperation = async <TSlug extends AuthCollectionSlug>(
@@ -106,7 +106,7 @@ export const unlockOperation = async <TSlug extends AuthCollectionSlug>(
       where: whereConstraint,
     })
 
-    const user = await req.payload.db.findOne({
+    const user = await req.cms.db.findOne({
       collection: collectionConfig.slug,
       locale: locale!,
       req,
@@ -119,7 +119,7 @@ export const unlockOperation = async <TSlug extends AuthCollectionSlug>(
       await resetLoginAttempts({
         collection: collectionConfig,
         doc: user,
-        payload: req.payload,
+        cms: req.cms,
         req,
       })
       result = true

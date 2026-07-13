@@ -1,5 +1,5 @@
 import type {
-  PayloadRequest,
+  CMSRequest,
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
   SanitizedPermissions,
@@ -22,7 +22,7 @@ export const DocumentHeader: React.FC<{
   globalConfig?: SanitizedGlobalConfig
   hideTabs?: boolean
   permissions: SanitizedPermissions
-  req: PayloadRequest
+  req: CMSRequest
 }> = (props) => {
   const { AfterHeader, collectionConfig, globalConfig, hideTabs, permissions, req } = props
 

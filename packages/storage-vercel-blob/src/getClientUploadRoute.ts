@@ -1,4 +1,4 @@
-import type { PayloadHandler, PayloadRequest, UploadCollectionSlug } from '@hanzo/cms'
+import type { CMSHandler, CMSRequest, UploadCollectionSlug } from '@hanzo/cms'
 
 import { handleUpload, type HandleUploadBody } from '@vercel/blob/client'
 import { APIError, Forbidden } from '@hanzo/cms'
@@ -6,7 +6,7 @@ import { APIError, Forbidden } from '@hanzo/cms'
 type Args = {
   access?: (args: {
     collectionSlug: UploadCollectionSlug
-    req: PayloadRequest
+    req: CMSRequest
   }) => boolean | Promise<boolean>
   addRandomSuffix?: boolean
   cacheControlMaxAge?: number
@@ -16,7 +16,7 @@ type Args = {
 const defaultAccess: Args['access'] = ({ req }) => !!req.user
 
 export const getClientUploadRoute =
-  ({ access = defaultAccess, addRandomSuffix, cacheControlMaxAge, token }: Args): PayloadHandler =>
+  ({ access = defaultAccess, addRandomSuffix, cacheControlMaxAge, token }: Args): CMSHandler =>
   async (req) => {
     const body = (await req.json!()) as HandleUploadBody
 
@@ -44,7 +44,7 @@ export const getClientUploadRoute =
 
       return Response.json(jsonResponse)
     } catch (error) {
-      req.payload.logger.error(error)
+      req.cms.logger.error(error)
       throw new APIError('storage-vercel-blob client upload route error')
     }
   }

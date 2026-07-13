@@ -3,8 +3,8 @@ import type {
   CollectionSlug,
   GeneratedTypes,
   JoinQuery,
-  Payload,
-  PayloadTypes,
+  CMS,
+  CMSTypes,
   RequestContext,
   TypedFallbackLocale,
   TypedLocale,
@@ -12,7 +12,7 @@ import type {
 import type {
   Document,
   DraftTransformCollectionWithSelect,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   Sort,
@@ -98,12 +98,12 @@ type BaseFindOptions<TSlug extends CollectionSlug, TSelect extends SelectType> =
    */
   populate?: PopulateType
   /**
-   * The `PayloadRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
+   * The `CMSRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
    * Recommended to pass when using the Local API from hooks, as usually you want to execute the operation within the current transaction.
    */
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
-   * By default, Payload's APIs will return all fields for a given collection or global.
+   * By default, CMS's APIs will return all fields for a given collection or global.
    * But you may not need all of that data for all of your queries.
    * Sometimes, you might want just a few fields from the response.
    *
@@ -113,7 +113,7 @@ type BaseFindOptions<TSlug extends CollectionSlug, TSelect extends SelectType> =
    *
    * **Example: Select specific fields**
    * ```ts
-   * const post = await payload.findByID({
+   * const post = await cms.findByID({
    *   collection: 'posts',
    *   id: '1',
    *   select: { title: true, content: true },
@@ -125,7 +125,7 @@ type BaseFindOptions<TSlug extends CollectionSlug, TSelect extends SelectType> =
    * **Example: Select all fields except `content`**
    *
    * ```ts
-   * const post = await payload.findByID({
+   * const post = await cms.findByID({
    *   collection: 'posts',
    *   id: '1',
    *   select: { content: false },
@@ -137,7 +137,7 @@ type BaseFindOptions<TSlug extends CollectionSlug, TSelect extends SelectType> =
    * **Example: Empty select returns only `id`**
    *
    * ```ts
-   * const post = await payload.findByID({
+   * const post = await cms.findByID({
    *   collection: 'posts',
    *   id: '1',
    *   select: {},
@@ -192,12 +192,12 @@ export async function findLocal<
   TSelect extends SelectFromCollectionSlug<TSlug>,
   TDraft extends boolean = false,
 >(
-  payload: Payload,
+  cms: CMS,
   options: { draft?: TDraft } & FindOptions<TSlug, TSelect>,
 ): Promise<
   PaginatedDocs<
     TDraft extends true
-      ? PayloadTypes extends { strictDraftTypes: true }
+      ? CMSTypes extends { strictDraftTypes: true }
         ? DraftTransformCollectionWithSelect<TSlug, TSelect>
         : TransformCollectionWithSelect<TSlug, TSelect>
       : TransformCollectionWithSelect<TSlug, TSelect>
@@ -223,7 +223,7 @@ export async function findLocal<
     where,
   } = options
 
-  const collection = payload.collections[collectionSlug]
+  const collection = cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(
@@ -244,7 +244,7 @@ export async function findLocal<
     page,
     pagination,
     populate,
-    req: await createLocalReq(options as CreateLocalReqOptions, payload),
+    req: await createLocalReq(options as CreateLocalReqOptions, cms),
     select,
     showHiddenFields,
     sort,

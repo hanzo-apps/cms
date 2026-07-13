@@ -4,7 +4,7 @@ import type { FindOptions } from '../../collections/operations/local/find.js'
 import type { GlobalSlug, JsonObject } from '../../index.js'
 import type {
   Operation,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   TransformGlobalWithSelect,
@@ -48,7 +48,7 @@ type Args<TSlug extends GlobalSlug> = {
   populate?: PopulateType
   publishAllLocales?: boolean
   publishSpecificLocale?: string
-  req: PayloadRequest
+  req: CMSRequest
   showHiddenFields?: boolean
   slug: string
   unpublishAllLocales?: boolean
@@ -76,7 +76,7 @@ export const updateOperation = async <
     populate,
     publishAllLocales: publishAllLocalesArg,
     publishSpecificLocale,
-    req: { fallbackLocale, locale, payload, payload: { config } = {} },
+    req: { fallbackLocale, locale, cms, cms: { config } = {} },
     req,
     select: incomingSelect,
     showHiddenFields,
@@ -148,7 +148,7 @@ export const updateOperation = async <
       slug,
       config: globalConfig,
       locale: locale!,
-      payload,
+      cms,
       req,
       where: query,
     })
@@ -293,7 +293,7 @@ export const updateOperation = async <
           }
         } else if (!isSavingDraft) {
           // publishing a single locale
-          currentGlobal = await payload.db.findGlobal({
+          currentGlobal = await cms.db.findGlobal({
             slug: globalConfig.slug,
             req,
             where: query,
@@ -306,7 +306,7 @@ export const updateOperation = async <
           await getLatestGlobalVersion({
             slug,
             config: globalConfig,
-            payload,
+            cms,
             published: true,
             req,
             where: query,
@@ -351,14 +351,14 @@ export const updateOperation = async <
       result.updatedAt = now
 
       if (globalExists) {
-        result = await payload.db.updateGlobal({
+        result = await cms.db.updateGlobal({
           slug,
           data: result,
           req,
           select,
         })
       } else {
-        result = await payload.db.createGlobal({
+        result = await cms.db.createGlobal({
           slug,
           data: result,
           req,
@@ -377,7 +377,7 @@ export const updateOperation = async <
         draft: isSavingDraft,
         global: globalConfig,
         operation: 'update',
-        payload,
+        cms,
         publishSpecificLocale,
         req,
         select,

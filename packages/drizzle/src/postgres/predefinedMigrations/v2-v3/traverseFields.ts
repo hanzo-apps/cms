@@ -1,4 +1,4 @@
-import type { FlattenedField, Payload } from '@hanzo/cms'
+import type { FlattenedField, CMS } from '@hanzo/cms'
 
 import toSnakeCase from 'to-snake-case'
 
@@ -18,7 +18,7 @@ type Args = {
   parentTableName: string
   path: string
   pathsToQuery: PathsToQuery
-  payload: Payload
+  cms: CMS
   rootTableName: string
 }
 
@@ -66,7 +66,7 @@ export const traverseFields = (args: Args) => {
       case 'tab': {
         let newTableName = `${args.newTableName}_${toSnakeCase(field.name)}`
 
-        if (field.localized && args.payload.config.localization) {
+        if (field.localized && args.cms.config.localization) {
           newTableName += args.adapter.localesSuffix
         }
 

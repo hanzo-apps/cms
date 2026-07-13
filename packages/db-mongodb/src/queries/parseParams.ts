@@ -1,5 +1,5 @@
 import type { FilterQuery } from 'mongoose'
-import type { FlattenedField, Operator, Payload, Where } from '@hanzo/cms'
+import type { FlattenedField, Operator, CMS, Where } from '@hanzo/cms'
 
 import { deepMergeWithCombinedArrays } from '@hanzo/cms'
 import { validOperatorSet } from '@hanzo/cms/shared'
@@ -13,7 +13,7 @@ export async function parseParams({
   globalSlug,
   locale,
   parentIsLocalized,
-  payload,
+  cms,
   where,
 }: {
   collectionSlug?: string
@@ -21,7 +21,7 @@ export async function parseParams({
   globalSlug?: string
   locale?: string
   parentIsLocalized: boolean
-  payload: Payload
+  cms: CMS
   where: Where
 }): Promise<Record<string, unknown>> {
   let result = {} as FilterQuery<any>
@@ -43,7 +43,7 @@ export async function parseParams({
           globalSlug,
           locale,
           parentIsLocalized,
-          payload,
+          cms,
           where: condition,
         })
         if (builtConditions.length > 0 && conditionOperator !== null) {
@@ -68,7 +68,7 @@ export async function parseParams({
               locale,
               operator,
               parentIsLocalized,
-              payload,
+              cms,
               val: (pathOperators as Record<string, Where>)[operator],
             })
 

@@ -31,7 +31,7 @@ export async function VersionView(props: DocumentViewServerProps) {
     globalConfig,
     permissions,
     req,
-    req: { payload, payload: { config, config: { localization } } = {}, user } = {},
+    req: { cms, cms: { config, config: { localization } } = {}, user } = {},
   } = initPageResult
 
   const versionToID = routeSegments[routeSegments.length - 1]
@@ -223,14 +223,14 @@ export async function VersionView(props: DocumentViewServerProps) {
   const clientSchemaMap = getClientSchemaMap({
     collectionSlug,
     config: getClientConfig({
-      config: payload.config,
+      config: cms.config,
       i18n,
-      importMap: payload.importMap,
+      importMap: cms.importMap,
       user,
     }),
     globalSlug,
     i18n,
-    payload,
+    cms,
     schemaMap,
   })
   const RenderedDiff = RenderDiff({

@@ -1,4 +1,4 @@
-import type { Field, PayloadRequest, ResolvedFilterOptions } from '@hanzo/cms'
+import type { Field, CMSRequest, ResolvedFilterOptions } from '@hanzo/cms'
 
 import { resolveFilterOptions } from '@hanzo/cms-ui/rsc'
 import {
@@ -16,7 +16,7 @@ export const resolveAllFilterOptions = async ({
 }: {
   fields: Field[]
   pathPrefix?: string
-  req: PayloadRequest
+  req: CMSRequest
   result?: Map<string, ResolvedFilterOptions>
 }): Promise<Map<string, ResolvedFilterOptions>> => {
   const resolvedFilterOptions = !result ? new Map<string, ResolvedFilterOptions>() : result

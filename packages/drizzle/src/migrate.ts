@@ -1,4 +1,4 @@
-import type { Payload } from '@hanzo/cms'
+import type { CMS } from '@hanzo/cms'
 
 import {
   commitTransaction,
@@ -19,11 +19,11 @@ export const migrate: DrizzleAdapter['migrate'] = async function migrate(
   this: DrizzleAdapter,
   args,
 ): Promise<void> {
-  const { payload } = this
-  const migrationFiles = args?.migrations || (await readMigrationFiles({ payload }))
+  const { cms } = this
+  const migrationFiles = args?.migrations || (await readMigrationFiles({ cms }))
 
   if (!migrationFiles.length) {
-    payload.logger.info({ msg: 'No migrations to run.' })
+    cms.logger.info({ msg: 'No migrations to run.' })
     return
   }
 
@@ -37,8 +37,8 @@ export const migrate: DrizzleAdapter['migrate'] = async function migrate(
   const hasMigrationTable = await migrationTableExists(this)
 
   if (hasMigrationTable) {
-    ;({ docs: migrationsInDB } = await payload.find({
-      collection: 'payload-migrations',
+    ;({ docs: migrationsInDB } = await cms.find({
+      collection: 'cms-migrations',
       limit: 0,
       sort: '-name',
     }))
@@ -50,7 +50,7 @@ export const migrate: DrizzleAdapter['migrate'] = async function migrate(
           type: 'confirm',
           initial: false,
           message:
-            "It looks like you've run Payload in dev mode, meaning you've dynamically pushed changes to your database.\n\n" +
+            "It looks like you've run CMS in dev mode, meaning you've dynamically pushed changes to your database.\n\n" +
             "If you'd like to run migrations, data loss will occur. Would you like to proceed?",
         },
         {
@@ -83,23 +83,23 @@ export const migrate: DrizzleAdapter['migrate'] = async function migrate(
       continue
     }
 
-    await runMigrationFile(payload, migration, newBatch)
+    await runMigrationFile(cms, migration, newBatch)
   }
 }
 
-async function runMigrationFile(payload: Payload, migration: Migration, batch: number) {
+async function runMigrationFile(cms: CMS, migration: Migration, batch: number) {
   const start = Date.now()
-  const req = await createLocalReq({}, payload)
+  const req = await createLocalReq({}, cms)
 
-  payload.logger.info({ msg: `Migrating: ${migration.name}` })
+  cms.logger.info({ msg: `Migrating: ${migration.name}` })
 
   try {
     await initTransaction(req)
-    const db = await getTransaction(payload.db as DrizzleAdapter, req)
-    await migration.up({ db, payload, req })
-    payload.logger.info({ msg: `Migrated:  ${migration.name} (${Date.now() - start}ms)` })
-    await payload.create({
-      collection: 'payload-migrations',
+    const db = await getTransaction(cms.db as DrizzleAdapter, req)
+    await migration.up({ db, cms, req })
+    cms.logger.info({ msg: `Migrated:  ${migration.name} (${Date.now() - start}ms)` })
+    await cms.create({
+      collection: 'cms-migrations',
       data: {
         name: migration.name,
         batch,
@@ -109,7 +109,7 @@ async function runMigrationFile(payload: Payload, migration: Migration, batch: n
     await commitTransaction(req)
   } catch (err: unknown) {
     await killTransaction(req)
-    payload.logger.error({
+    cms.logger.error({
       err,
       msg: parseError(err, `Error running migration ${migration.name}`),
     })

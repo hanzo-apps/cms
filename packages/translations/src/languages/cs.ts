@@ -399,7 +399,7 @@ export const csTranslations: DefaultTranslationsObject = {
     password: 'Heslo',
     pasteField: 'Vložit pole',
     pasteRow: 'Vložit řádek',
-    payloadSettings: 'Payload nastavení',
+    cmsSettings: 'CMS nastavení',
     permanentlyDelete: 'Trvale smazat',
     permanentlyDeletedCountSuccessfully: 'Trvale odstraněno {{count}} {{label}} úspěšně.',
     perPage: 'Na stránku: {{limit}}',
@@ -417,7 +417,7 @@ export const csTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'Obnovit jako publikovanou verzi',
     restoredCountSuccessfully: 'Úspěšně obnoveno {{count}} {{label}}.',
     restoring:
-      'Respektujte význam původního textu v kontextu Payload. Zde je seznam běžných termínů Payload, které nesou velmi specifické významy:\n    - Collection: Sbírka je skupina dokumentů, které sdílejí společnou strukturu a účel. Sbírky se používají k organizaci a správě obsahu v Payload.\n    - Field: Field je specifický prvek dat v dokumentu ve sbírce. Field definuje strukturu a typ dat, které mohou',
+      'Respektujte význam původního textu v kontextu CMS. Zde je seznam běžných termínů CMS, které nesou velmi specifické významy:\n    - Collection: Sbírka je skupina dokumentů, které sdílejí společnou strukturu a účel. Sbírky se používají k organizaci a správě obsahu v CMS.\n    - Field: Field je specifický prvek dat v dokumentu ve sbírce. Field definuje strukturu a typ dat, které mohou',
     row: 'Řádek',
     rows: 'Řádky',
     save: 'Uložit',

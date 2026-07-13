@@ -122,7 +122,7 @@ export const LexicalEditor: React.FC<
         {isEditable && (
           <OnChangePlugin
             // Selection changes can be ignored here, reducing the
-            // frequency that the FieldComponent and Payload receive updates.
+            // frequency that the FieldComponent and CMS receive updates.
             // Selection changes are only needed if you are saving selection state
             ignoreSelectionChange
             onChange={(editorState, editor, tags) => {

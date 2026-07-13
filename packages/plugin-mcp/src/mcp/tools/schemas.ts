@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const toolSchemas = {
   findGlobal: {
-    description: 'Find a Payload global singleton configuration.',
+    description: 'Find a CMS global singleton configuration.',
     parameters: z.object({
       depth: z
         .number()
@@ -218,7 +218,7 @@ export const toolSchemas = {
   },
 
   updateGlobal: {
-    description: 'Update a Payload global singleton configuration.',
+    description: 'Update a CMS global singleton configuration.',
     parameters: z.object({
       data: z.string().describe('JSON string containing the data to update'),
       depth: z

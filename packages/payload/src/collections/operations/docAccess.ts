@@ -1,5 +1,5 @@
 import type { SanitizedCollectionPermission } from '../../auth/index.js'
-import type { AllOperations, JsonObject, PayloadRequest } from '../../types/index.js'
+import type { AllOperations, JsonObject, CMSRequest } from '../../types/index.js'
 import type { Collection } from '../config/types.js'
 
 import { getEntityPermissions } from '../../utilities/getEntityPermissions/getEntityPermissions.js'
@@ -18,7 +18,7 @@ type Arguments = {
    * When called for creating a new document, id is not provided.
    */
   id?: number | string
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export async function docAccessOperation(args: Arguments): Promise<SanitizedCollectionPermission> {

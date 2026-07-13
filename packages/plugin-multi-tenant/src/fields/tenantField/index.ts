@@ -86,11 +86,11 @@ export const tenantField = ({
       (async ({ req }) => {
         const idType = getCollectionIDType({
           collectionSlug: tenantsCollectionSlug,
-          payload: req.payload,
+          cms: req.cms,
         })
         const tenantFromCookie = getTenantFromCookie(req.headers, idType)
         if (tenantFromCookie) {
-          const isValidTenant = await req.payload.count({
+          const isValidTenant = await req.cms.count({
             collection: tenantsCollectionSlug,
             overrideAccess: false,
             req,

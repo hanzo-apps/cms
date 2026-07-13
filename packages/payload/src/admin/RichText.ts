@@ -3,7 +3,7 @@ import type { GenericLanguages, I18n } from '@hanzo/cms-translations'
 import type { JSONSchema4 } from 'json-schema'
 
 import type { SanitizedCollectionConfig, TypeWithID } from '../collections/config/types.js'
-import type { ImportMapGenerators, PayloadComponent, SanitizedConfig } from '../config/types.js'
+import type { ImportMapGenerators, CMSComponent, SanitizedConfig } from '../config/types.js'
 import type { ValidationFieldError } from '../errors/ValidationError.js'
 import type {
   FieldAffectingData,
@@ -13,7 +13,7 @@ import type {
 } from '../fields/config/types.js'
 import type { SanitizedGlobalConfig } from '../globals/config/types.js'
 import type { RequestContext, TypedFallbackLocale } from '../index.js'
-import type { JsonObject, PayloadRequest, PopulateType } from '../types/index.js'
+import type { JsonObject, CMSRequest, PopulateType } from '../types/index.js'
 import type { RichTextFieldClientProps, RichTextFieldServerProps } from './fields/RichText.js'
 import type { FieldDiffClientProps, FieldDiffServerProps, FieldSchemaMap } from './types.js'
 
@@ -143,7 +143,7 @@ export type BaseRichTextHookArgs<
    */
   path: (number | string)[]
   /** The Express request object. It is mocked for Local API operations. */
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * The schemaPath of the field, e.g. ["group", "myArray", "textField"]. The schemaPath is the path but without indexes and would be used in the context of field schemas, not field data.
    */
@@ -223,7 +223,7 @@ type RichTextAdapterBase<
   /**
    * Like an afterRead hook, but runs only for the GraphQL resolver. For populating data, this should be used, as afterRead hooks do not have a depth in graphQL.
    *
-   * To populate stuff / resolve field hooks, mutate the incoming populationPromises or fieldPromises array. They will then be awaited in the correct order within payload itself.
+   * To populate stuff / resolve field hooks, mutate the incoming populationPromises or fieldPromises array. They will then be awaited in the correct order within cms itself.
    * @param data
    */
   graphQLPopulationPromises?: (data: {
@@ -239,7 +239,7 @@ type RichTextAdapterBase<
     parentIsLocalized: boolean
     populateArg?: PopulateType
     populationPromises: Promise<void>[]
-    req: PayloadRequest
+    req: CMSRequest
     showHiddenFields: boolean
     siblingDoc: JsonObject
   }) => void
@@ -286,19 +286,19 @@ export type RichTextAdapter<
    * Component that will be displayed in the list view. Can be typed as
    * `DefaultCellComponentProps` or `DefaultServerCellComponentProps`.
    */
-  CellComponent: PayloadComponent<never>
+  CellComponent: CMSComponent<never>
   /**
    * Component that will be displayed in the version diff view.
    * If not provided, richtext content will be diffed as JSON.
    */
-  DiffComponent?: PayloadComponent<
+  DiffComponent?: CMSComponent<
     FieldDiffServerProps<RichTextField, RichTextFieldClient>,
     FieldDiffClientProps<RichTextFieldClient>
   >
   /**
    * Component that will be displayed in the edit view.
    */
-  FieldComponent: PayloadComponent<RichTextFieldServerProps, RichTextFieldClientProps>
+  FieldComponent: CMSComponent<RichTextFieldServerProps, RichTextFieldClientProps>
 } & RichTextAdapterBase<Value, AdapterProps, ExtraFieldProperties>
 
 export type RichTextAdapterProvider<
@@ -313,7 +313,7 @@ export type RichTextAdapterProvider<
   config: SanitizedConfig
   /**
    * Whether or not this is the root richText editor, defined in the top-level `editor` property
-   * of the Payload Config.
+   * of the CMS Config.
    *
    * @default false
    */

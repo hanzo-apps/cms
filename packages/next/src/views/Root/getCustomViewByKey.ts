@@ -1,4 +1,4 @@
-import type { AdminViewServerProps, PayloadComponent, SanitizedConfig } from '@hanzo/cms'
+import type { AdminViewServerProps, CMSComponent, SanitizedConfig } from '@hanzo/cms'
 
 import type { ViewFromConfig } from './getRouteData.js'
 
@@ -20,7 +20,7 @@ export const getCustomViewByKey = ({
 
   return {
     view: {
-      payloadComponent: customViewComponent.Component as PayloadComponent<AdminViewServerProps>,
+      cmsComponent: customViewComponent.Component as CMSComponent<AdminViewServerProps>,
     },
     viewKey,
   }

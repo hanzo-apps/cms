@@ -3,10 +3,10 @@ import type { GlobalConfig } from '../../globals/config/types.js'
 import type { TaskType } from './types/taskTypes.js'
 import type { WorkflowTypes } from './types/workflowTypes.js'
 
-export const jobStatsGlobalSlug = 'payload-jobs-stats'
+export const jobStatsGlobalSlug = 'cms-jobs-stats'
 
 /**
- * Type for data stored in the payload-jobs-stats global.
+ * Type for data stored in the cms-jobs-stats global.
  */
 export type JobStats = {
   stats?: {

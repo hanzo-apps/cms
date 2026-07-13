@@ -1,6 +1,6 @@
 import type { AccessResult } from '../../config/types.js'
 import type { PaginatedDocs } from '../../database/types.js'
-import type { PayloadRequest, PopulateType, SelectType, Sort, Where } from '../../types/index.js'
+import type { CMSRequest, PopulateType, SelectType, Sort, Where } from '../../types/index.js'
 import type { TypeWithVersion } from '../../versions/types.js'
 import type { Collection } from '../config/types.js'
 import type { FindOptions } from './local/find.js'
@@ -27,7 +27,7 @@ export type Arguments = {
   page?: number
   pagination?: boolean
   populate?: PopulateType
-  req?: PayloadRequest
+  req?: CMSRequest
   showHiddenFields?: boolean
   sort?: Sort
   trash?: boolean
@@ -65,7 +65,7 @@ export const findVersionsOperation = async <TData extends TypeWithVersion<TData>
     } = args
 
     const req = args.req!
-    const { fallbackLocale, locale, payload } = req
+    const { fallbackLocale, locale, cms } = req
 
     // /////////////////////////////////////
     // Access
@@ -77,7 +77,7 @@ export const findVersionsOperation = async <TData extends TypeWithVersion<TData>
       accessResults = await executeAccess({ req }, collectionConfig.access.readVersions)
     }
 
-    const versionFields = buildVersionCollectionFields(payload.config, collectionConfig, true)
+    const versionFields = buildVersionCollectionFields(cms.config, collectionConfig, true)
 
     await validateQueryPaths({
       collectionConfig,
@@ -97,7 +97,7 @@ export const findVersionsOperation = async <TData extends TypeWithVersion<TData>
       where: fullWhere,
     })
 
-    sanitizeWhereQuery({ fields: versionFields, payload, where: fullWhere })
+    sanitizeWhereQuery({ fields: versionFields, cms, where: fullWhere })
 
     const select = sanitizeSelect({
       fields: versionFields,
@@ -114,7 +114,7 @@ export const findVersionsOperation = async <TData extends TypeWithVersion<TData>
     const sanitizedLimit = limit ?? (usePagination ? 10 : 0)
     const sanitizedPage = page || 1
 
-    const paginatedDocs = await payload.db.findVersions<TData>({
+    const paginatedDocs = await cms.db.findVersions<TData>({
       collection: collectionConfig.slug,
       limit: sanitizedLimit,
       locale: locale!,

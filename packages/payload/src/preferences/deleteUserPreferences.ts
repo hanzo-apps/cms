@@ -1,6 +1,6 @@
 import type { SanitizedCollectionConfig } from '../collections/config/types.js'
-import type { Payload } from '../index.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMS } from '../index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { preferencesCollectionSlug } from './config.js'
 
@@ -10,12 +10,12 @@ type Args = {
    * User IDs to delete
    */
   ids: (number | string)[]
-  payload: Payload
-  req: PayloadRequest
+  cms: CMS
+  req: CMSRequest
 }
-export const deleteUserPreferences = async ({ collectionConfig, ids, payload, req }: Args) => {
+export const deleteUserPreferences = async ({ collectionConfig, ids, cms, req }: Args) => {
   if (collectionConfig.auth) {
-    await payload.db.deleteMany({
+    await cms.db.deleteMany({
       collection: preferencesCollectionSlug,
       req,
       where: {
@@ -37,7 +37,7 @@ export const deleteUserPreferences = async ({ collectionConfig, ids, payload, re
       },
     })
   } else {
-    await payload.db.deleteMany({
+    await cms.db.deleteMany({
       collection: preferencesCollectionSlug,
       req,
       where: {

@@ -23,7 +23,7 @@ import {
   ElementNode,
 } from 'lexical'
 
-import type { LinkPayload } from '../client/plugins/floatingLinkEditor/types.js'
+import type { LinkCMS } from '../client/plugins/floatingLinkEditor/types.js'
 import type { LinkFields, SerializedLinkNode } from './types.js'
 
 const SUPPORTED_URL_PROTOCOLS = new Set(['http:', 'https:', 'mailto:', 'sms:', 'tel:'])
@@ -284,22 +284,22 @@ export function $isLinkNode(node: LexicalNode | null | undefined): node is LinkN
   return node instanceof LinkNode
 }
 
-export const TOGGLE_LINK_COMMAND: LexicalCommand<LinkPayload | null> =
+export const TOGGLE_LINK_COMMAND: LexicalCommand<LinkCMS | null> =
   createCommand('TOGGLE_LINK_COMMAND')
 
-export function $toggleLink(payload: ({ fields: LinkFields } & LinkPayload) | null): void {
+export function $toggleLink(cms: ({ fields: LinkFields } & LinkCMS) | null): void {
   const selection = $getSelection()
 
-  if (!$isRangeSelection(selection) && (payload === null || !payload.selectedNodes?.length)) {
+  if (!$isRangeSelection(selection) && (cms === null || !cms.selectedNodes?.length)) {
     return
   }
   const nodes = $isRangeSelection(selection)
     ? selection.extract()
-    : payload === null
+    : cms === null
       ? []
-      : payload.selectedNodes
+      : cms.selectedNodes
 
-  if (payload === null) {
+  if (cms === null) {
     // Remove LinkNodes
     nodes?.forEach((node) => {
       const parent = node.getParent()
@@ -326,11 +326,11 @@ export function $toggleLink(payload: ({ fields: LinkFields } & LinkPayload) | nu
       ? firstNode
       : $getLinkAncestor(firstNode)
     if (linkNode !== null) {
-      linkNode.setFields(payload.fields)
+      linkNode.setFields(cms.fields)
 
-      if (payload.text != null && payload.text !== linkNode.getTextContent()) {
+      if (cms.text != null && cms.text !== linkNode.getTextContent()) {
         // remove all children and add child with new textcontent:
-        linkNode.append($createTextNode(payload.text))
+        linkNode.append($createTextNode(cms.text))
         linkNode.getChildren().forEach((child) => {
           if (child !== linkNode.getLastChild()) {
             child.remove()
@@ -353,10 +353,10 @@ export function $toggleLink(payload: ({ fields: LinkFields } & LinkPayload) | nu
 
     if ($isLinkNode(parent)) {
       linkNode = parent
-      parent.setFields(payload.fields)
-      if (payload.text != null && payload.text !== parent.getTextContent()) {
+      parent.setFields(cms.fields)
+      if (cms.text != null && cms.text !== parent.getTextContent()) {
         // remove all children and add child with new textcontent:
-        parent.append($createTextNode(payload.text))
+        parent.append($createTextNode(cms.text))
         parent.getChildren().forEach((child) => {
           if (child !== parent.getLastChild()) {
             child.remove()
@@ -368,7 +368,7 @@ export function $toggleLink(payload: ({ fields: LinkFields } & LinkPayload) | nu
 
     if (!parent.is(prevParent)) {
       prevParent = parent
-      linkNode = $createLinkNode({ fields: payload.fields })
+      linkNode = $createLinkNode({ fields: cms.fields })
 
       if ($isLinkNode(parent)) {
         if (node.getPreviousSibling() === null) {

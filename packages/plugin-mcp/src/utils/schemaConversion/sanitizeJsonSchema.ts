@@ -1,7 +1,7 @@
 import type { JSONSchema4 } from 'json-schema'
 
 /**
- * Removes internal Payload properties (id, createdAt, updatedAt) from a
+ * Removes internal CMS properties (id, createdAt, updatedAt) from a
  * JSON Schema so they don't appear in the generated Zod validation schema.
  * Also strips `id` from the `required` array when present.
  *

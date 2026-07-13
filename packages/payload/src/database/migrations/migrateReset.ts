@@ -8,17 +8,17 @@ import { getMigrations } from './getMigrations.js'
 import { readMigrationFiles } from './readMigrationFiles.js'
 
 export async function migrateReset(this: BaseDatabaseAdapter): Promise<void> {
-  const { payload } = this
-  const migrationFiles = await readMigrationFiles({ payload })
+  const { cms } = this
+  const migrationFiles = await readMigrationFiles({ cms })
 
-  const { existingMigrations } = await getMigrations({ payload })
+  const { existingMigrations } = await getMigrations({ cms })
 
   if (!existingMigrations?.length) {
-    payload.logger.info({ msg: 'No migrations to reset.' })
+    cms.logger.info({ msg: 'No migrations to reset.' })
     return
   }
 
-  const req = await createLocalReq({}, payload)
+  const req = await createLocalReq({}, cms)
 
   migrationFiles.reverse()
 
@@ -29,14 +29,14 @@ export async function migrateReset(this: BaseDatabaseAdapter): Promise<void> {
       (existing) => existing.name === migration.name,
     )
     if (existingMigration) {
-      payload.logger.info({ msg: `Migrating down: ${migration.name}` })
+      cms.logger.info({ msg: `Migrating down: ${migration.name}` })
       try {
         const start = Date.now()
         await initTransaction(req)
-        const session = payload.db.sessions?.[await req.transactionID!]
-        await migration.down({ payload, req, session })
-        await payload.delete({
-          collection: 'payload-migrations',
+        const session = cms.db.sessions?.[await req.transactionID!]
+        await migration.down({ cms, req, session })
+        await cms.delete({
+          collection: 'cms-migrations',
           req,
           where: {
             id: {
@@ -45,10 +45,10 @@ export async function migrateReset(this: BaseDatabaseAdapter): Promise<void> {
           },
         })
         await commitTransaction(req)
-        payload.logger.info({ msg: `Migrated down:  ${migration.name} (${Date.now() - start}ms)` })
+        cms.logger.info({ msg: `Migrated down:  ${migration.name} (${Date.now() - start}ms)` })
       } catch (err: unknown) {
         await killTransaction(req)
-        payload.logger.error({ err, msg: `Error running migration ${migration.name}` })
+        cms.logger.error({ err, msg: `Error running migration ${migration.name}` })
         throw err
       }
     }
@@ -56,8 +56,8 @@ export async function migrateReset(this: BaseDatabaseAdapter): Promise<void> {
 
   // Delete dev migration
   try {
-    await payload.delete({
-      collection: 'payload-migrations',
+    await cms.delete({
+      collection: 'cms-migrations',
       where: {
         batch: {
           equals: -1,
@@ -65,6 +65,6 @@ export async function migrateReset(this: BaseDatabaseAdapter): Promise<void> {
       },
     })
   } catch (err: unknown) {
-    payload.logger.error({ err, msg: 'Error deleting dev migration' })
+    cms.logger.error({ err, msg: 'Error deleting dev migration' })
   }
 }

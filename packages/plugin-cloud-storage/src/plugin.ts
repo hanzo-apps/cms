@@ -48,7 +48,7 @@ export const cloudStoragePlugin =
                 adapter,
                 alwaysInsertFields: true,
                 collection: existingCollection,
-                disablePayloadAccessControl: options.disablePayloadAccessControl,
+                disableCMSAccessControl: options.disableCMSAccessControl,
                 generateFileURL: options.generateFileURL,
                 prefix: options.prefix,
                 useCompositePrefixes,
@@ -88,7 +88,7 @@ export const cloudStoragePlugin =
           const fields = getFields({
             adapter,
             collection: existingCollection,
-            disablePayloadAccessControl: options.disablePayloadAccessControl,
+            disableCMSAccessControl: options.disableCMSAccessControl,
             generateFileURL: options.generateFileURL,
             prefix: options.prefix,
             useCompositePrefixes,
@@ -101,9 +101,9 @@ export const cloudStoragePlugin =
               : []),
           ]
 
-          if (!options.disablePayloadAccessControl) {
+          if (!options.disableCMSAccessControl) {
             handlers.push(adapter.staticHandler)
-            // Else if disablePayloadAccessControl: true and clientUploads is used
+            // Else if disableCMSAccessControl: true and clientUploads is used
             // Build the "proxied" handler that responses only when the file was requested by client upload in addDataAndFileToRequest
           } else if (adapter.clientUploads) {
             handlers.push((req, args) => {
@@ -114,7 +114,7 @@ export const cloudStoragePlugin =
           }
 
           const getSkipSafeFetchSetting = (): AllowList | boolean => {
-            if (options.disablePayloadAccessControl) {
+            if (options.disableCMSAccessControl) {
               return true
             }
             const isBooleanTrueSkipSafeFetch =
@@ -187,10 +187,10 @@ export const cloudStoragePlugin =
 
         return existingCollection
       }),
-      onInit: async (payload) => {
+      onInit: async (cms) => {
         initFunctions.forEach((fn) => fn())
         if (config.onInit) {
-          await config.onInit(payload)
+          await config.onInit(cms)
         }
       },
     }

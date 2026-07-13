@@ -1,4 +1,4 @@
-import type { ImportMap, PayloadComponent } from '@hanzo/cms'
+import type { ImportMap, CMSComponent } from '@hanzo/cms'
 
 import { RenderServerComponent } from '@hanzo/cms-ui/elements/RenderServerComponent'
 import React from 'react'
@@ -7,7 +7,7 @@ export const OGImage: React.FC<{
   description?: string
   Fallback: React.ComponentType
   fontFamily?: string
-  Icon: PayloadComponent
+  Icon: CMSComponent
   importMap: ImportMap
   leader?: string
   title?: string

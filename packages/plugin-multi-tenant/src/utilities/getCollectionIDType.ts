@@ -1,9 +1,9 @@
-import type { CollectionSlug, Payload } from '@hanzo/cms'
+import type { CollectionSlug, CMS } from '@hanzo/cms'
 
 type Args = {
   collectionSlug: CollectionSlug
-  payload: Payload
+  cms: CMS
 }
-export const getCollectionIDType = ({ collectionSlug, payload }: Args): 'number' | 'text' => {
-  return payload.collections[collectionSlug]?.customIDType ?? payload.db.defaultIDType
+export const getCollectionIDType = ({ collectionSlug, cms }: Args): 'number' | 'text' => {
+  return cms.collections[collectionSlug]?.customIDType ?? cms.db.defaultIDType
 }

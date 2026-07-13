@@ -18,7 +18,7 @@ export const confirmOrder: (props: Props) => NonNullable<PaymentAdapter>['confir
     req,
     transactionsSlug = 'transactions',
   }) => {
-    const payload = req.payload
+    const cms = req.cms
     const { apiVersion, appInfo, secretKey } = props || {}
 
     const customerEmail = data.customerEmail
@@ -39,7 +39,7 @@ export const confirmOrder: (props: Props) => NonNullable<PaymentAdapter>['confir
       // @ts-ignore - ignoring since possible versions are not type safe, only the latest version is recognised
       apiVersion: apiVersion || '2025-03-31.basil',
       appInfo: appInfo || {
-        name: 'Stripe Payload Plugin',
+        name: 'Stripe CMS Plugin',
         url: 'https://payloadcms.com',
       },
     })
@@ -58,7 +58,7 @@ export const confirmOrder: (props: Props) => NonNullable<PaymentAdapter>['confir
       }
 
       // Find our existing transaction by the payment intent ID
-      const transactionsResults = await payload.find({
+      const transactionsResults = await cms.find({
         collection: transactionsSlug,
         req,
         where: {
@@ -97,7 +97,7 @@ export const confirmOrder: (props: Props) => NonNullable<PaymentAdapter>['confir
         throw new Error('Cart items snapshot not found or invalid in the PaymentIntent metadata')
       }
 
-      const order = await payload.create({
+      const order = await cms.create({
         collection: ordersSlug,
         data: {
           amount: paymentIntent.amount,
@@ -113,7 +113,7 @@ export const confirmOrder: (props: Props) => NonNullable<PaymentAdapter>['confir
 
       const timestamp = new Date().toISOString()
 
-      await payload.update({
+      await cms.update({
         id: cartID,
         collection: cartsSlug,
         data: {
@@ -122,7 +122,7 @@ export const confirmOrder: (props: Props) => NonNullable<PaymentAdapter>['confir
         req,
       })
 
-      await payload.update({
+      await cms.update({
         id: transaction.id,
         collection: transactionsSlug,
         data: {
@@ -139,7 +139,7 @@ export const confirmOrder: (props: Props) => NonNullable<PaymentAdapter>['confir
         ...(order.accessToken ? { accessToken: order.accessToken } : {}),
       }
     } catch (error) {
-      payload.logger.error({ err: error, msg: 'Error confirming order with Stripe' })
+      cms.logger.error({ err: error, msg: 'Error confirming order with Stripe' })
 
       throw new Error(error instanceof Error ? error.message : 'Unknown error initiating payment')
     }

@@ -25,12 +25,12 @@ export const updateJobs: UpdateJobs = async function updateMany(
 
   const { collectionConfig, Model } = getCollection({
     adapter: this,
-    collectionSlug: 'payload-jobs',
+    collectionSlug: 'cms-jobs',
   })
 
   const sort: Record<string, unknown> | undefined = buildSortParam({
     adapter: this,
-    config: this.payload.config,
+    config: this.cms.config,
     fields: collectionConfig.flattenedFields,
     sort: sortArg || collectionConfig.defaultSort,
     timestamps: true,

@@ -22,7 +22,7 @@ export const find: Find = async function find(
     where,
   },
 ) {
-  const collectionConfig: SanitizedCollectionConfig = this.payload.collections[collection].config
+  const collectionConfig: SanitizedCollectionConfig = this.cms.collections[collection].config
   const sort = sortArg !== undefined && sortArg !== null ? sortArg : collectionConfig.defaultSort
 
   const tableName = this.tableNameMap.get(toSnakeCase(collectionConfig.slug))

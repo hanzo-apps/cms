@@ -1,6 +1,6 @@
 import sanitize from 'sanitize-filename'
 
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { docWithFilenameExists } from './docWithFilenameExists.js'
 import { fileExists } from './fileExists.js'
@@ -33,7 +33,7 @@ type Args = {
   collectionSlug: string
   desiredFilename: string
   prefix?: string
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * Filesystem path where uploads are stored. When omitted, only the database
    * is consulted for filename conflicts - useful for cloud-storage adapters
@@ -50,7 +50,7 @@ type Args = {
  * @param args.collectionSlug - The slug of the upload collection
  * @param args.desiredFilename - The original filename to make safe
  * @param args.prefix - Optional prefix path for cloud storage adapters
- * @param args.req - The Payload request object
+ * @param args.req - The CMS request object
  * @param args.staticPath - The filesystem path where uploads are stored
  * @returns A unique filename that doesn't conflict with existing files
  *

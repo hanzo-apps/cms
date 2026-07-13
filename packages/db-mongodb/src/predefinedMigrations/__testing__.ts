@@ -5,8 +5,8 @@
  */
 const imports = ``
 const upSQL = `  // Test predefined migration from @hanzo/cms-db-mongodb/__testing__
-  payload.logger.info('Test migration UP executed')`
+  cms.logger.info('Test migration UP executed')`
 const downSQL = `  // Test predefined migration DOWN
-  payload.logger.info('Test migration DOWN executed')`
+  cms.logger.info('Test migration DOWN executed')`
 
 export { downSQL, imports, upSQL }

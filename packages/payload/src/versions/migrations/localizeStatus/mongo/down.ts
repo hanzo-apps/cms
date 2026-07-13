@@ -1,16 +1,16 @@
-import type { Payload } from '../../../../types/index.js'
+import type { CMS } from '../../../../types/index.js'
 
 import { hasLocalizeStatusEnabled } from '../../../../utilities/getVersionsConfig.js'
 
 export type LocalizeStatusArgs = {
   collectionSlug?: string
   globalSlug?: string
-  payload: Payload
+  cms: CMS
   req?: any
 }
 
 export async function down(args: LocalizeStatusArgs): Promise<void> {
-  const { collectionSlug, globalSlug, payload } = args
+  const { collectionSlug, globalSlug, cms } = args
 
   if (!collectionSlug && !globalSlug) {
     throw new Error('Either collectionSlug or globalSlug must be provided')
@@ -24,13 +24,13 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
   // MongoDB collection names are case-insensitive and stored as lowercase
   const versionsCollection = `_${entitySlug}_versions`.toLowerCase()
 
-  if (!payload.config.localization) {
-    throw new Error('Localization is not enabled in payload config')
+  if (!cms.config.localization) {
+    throw new Error('Localization is not enabled in cms config')
   }
 
   const entityConfig = collectionSlug
-    ? payload.config.collections.find((c) => c.slug === collectionSlug)
-    : payload.config.globals.find((g) => g.slug === globalSlug!)
+    ? cms.config.collections.find((c) => c.slug === collectionSlug)
+    : cms.config.globals.find((g) => g.slug === globalSlug!)
 
   if (!entityConfig) {
     throw new Error(
@@ -45,21 +45,21 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
     )
   }
 
-  const defaultLocale = payload.config.localization.defaultLocale
+  const defaultLocale = cms.config.localization.defaultLocale
 
-  payload.logger.info({
+  cms.logger.info({
     msg: `Rolling back _status localization migration for ${collectionSlug ? 'collection' : 'global'}: ${entitySlug}`,
   })
 
   // Get MongoDB connection
-  const connection = (payload.db as any).connection
+  const connection = (cms.db as any).connection
 
-  payload.logger.info({ msg: 'Fetching all version documents...' })
+  cms.logger.info({ msg: 'Fetching all version documents...' })
 
   // Get all versions
   const allVersions = await connection.collection(versionsCollection).find({}).toArray()
 
-  payload.logger.info({ msg: `Found ${allVersions.length} version documents` })
+  cms.logger.info({ msg: `Found ${allVersions.length} version documents` })
 
   // Update each version document: convert version._status from object to string
   let updateCount = 0
@@ -87,7 +87,7 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
     updateCount++
   }
 
-  payload.logger.info({ msg: `Updated ${updateCount} version documents` })
+  cms.logger.info({ msg: `Updated ${updateCount} version documents` })
 
   // Rollback main collection/global document status
   if (collectionSlug) {
@@ -95,7 +95,7 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
     const mainDoc = await connection.collection(mainCollection).findOne({})
 
     if (mainDoc && '_status' in mainDoc && typeof mainDoc._status === 'object') {
-      payload.logger.info({ msg: `Rolling back main collection documents for: ${mainCollection}` })
+      cms.logger.info({ msg: `Rolling back main collection documents for: ${mainCollection}` })
 
       const allDocs = await connection.collection(mainCollection).find({}).toArray()
 
@@ -115,13 +115,13 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
         }
       }
 
-      payload.logger.info({ msg: `Rolled back ${allDocs.length} collection documents` })
+      cms.logger.info({ msg: `Rolled back ${allDocs.length} collection documents` })
     }
   } else if (globalSlug) {
     const globalDoc = await connection.collection('globals').findOne({ globalType: globalSlug })
 
     if (globalDoc && '_status' in globalDoc && typeof globalDoc.status === 'object') {
-      payload.logger.info({ msg: `Rolling back main global document for: ${globalSlug}` })
+      cms.logger.info({ msg: `Rolling back main global document for: ${globalSlug}` })
 
       // Convert from { en: 'published', es: 'draft' } to 'published' (using default locale)
       const statusValue =
@@ -138,9 +138,9 @@ export async function down(args: LocalizeStatusArgs): Promise<void> {
         },
       )
 
-      payload.logger.info({ msg: 'Rolled back global document' })
+      cms.logger.info({ msg: 'Rolled back global document' })
     }
   }
 
-  payload.logger.info({ msg: 'Rollback completed successfully' })
+  cms.logger.info({ msg: 'Rollback completed successfully' })
 }

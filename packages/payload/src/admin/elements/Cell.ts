@@ -21,7 +21,7 @@ import type {
   TextFieldClient,
   UploadFieldClient,
 } from '../../fields/config/types.js'
-import type { Payload } from '../../types/index.js'
+import type { CMS } from '../../types/index.js'
 import type { ViewTypes } from '../types.js'
 
 export type RowData = Record<string, any>
@@ -94,5 +94,5 @@ export type DefaultServerCellComponentProps<
   collectionConfig: SanitizedCollectionConfig
   field: Field
   i18n: I18nClient
-  payload: Payload
+  cms: CMS
 } & Omit<DefaultCellComponentProps<TField, TCellData>, 'field'>

@@ -1,5 +1,5 @@
 import type { SerializedEditorState } from 'lexical'
-import type { Field, FlattenedBlock, Payload } from '@hanzo/cms'
+import type { Field, FlattenedBlock, CMS } from '@hanzo/cms'
 
 import { createHeadlessEditor } from '@lexical/headless'
 import { fieldAffectsData, fieldHasSubFields, fieldIsArrayType, tabHasName } from '@hanzo/cms/shared'
@@ -13,14 +13,14 @@ type NestedRichTextFieldsArgs = {
 
   fields: Field[]
   found: number
-  payload: Payload
+  cms: CMS
 }
 
 export const upgradeDocumentFieldsRecursively = ({
   data,
   fields,
   found,
-  payload,
+  cms,
 }: NestedRichTextFieldsArgs): number => {
   for (const field of fields) {
     if (fieldHasSubFields(field) && !fieldIsArrayType(field)) {
@@ -29,14 +29,14 @@ export const upgradeDocumentFieldsRecursively = ({
           data: data[field.name] as Record<string, unknown>,
           fields: field.fields,
           found,
-          payload,
+          cms,
         })
       } else {
         found += upgradeDocumentFieldsRecursively({
           data,
           fields: field.fields,
           found,
-          payload,
+          cms,
         })
       }
     } else if (field.type === 'tabs') {
@@ -45,7 +45,7 @@ export const upgradeDocumentFieldsRecursively = ({
           data: (tabHasName(tab) ? data[tab.name] : data) as Record<string, unknown>,
           fields: tab.fields,
           found,
-          payload,
+          cms,
         })
       })
     } else if (Array.isArray(data[field.name])) {
@@ -54,7 +54,7 @@ export const upgradeDocumentFieldsRecursively = ({
           const blockTypeToMatch: string = row?.blockType as string
 
           const block =
-            payload.blocks[blockTypeToMatch] ??
+            cms.blocks[blockTypeToMatch] ??
             ((field.blockReferences ?? field.blocks).find(
               (block) => typeof block !== 'string' && block.slug === blockTypeToMatch,
             ) as FlattenedBlock | undefined)
@@ -64,7 +64,7 @@ export const upgradeDocumentFieldsRecursively = ({
               data: row,
               fields: block.fields,
               found,
-              payload,
+              cms,
             })
           }
         })
@@ -76,7 +76,7 @@ export const upgradeDocumentFieldsRecursively = ({
             data: row,
             fields: field.fields,
             found,
-            payload,
+            cms,
           })
         })
       }

@@ -1,4 +1,4 @@
-import type { CollectionConfig, PayloadRequest, UploadConfig } from '@hanzo/cms'
+import type { CollectionConfig, CMSRequest, UploadConfig } from '@hanzo/cms'
 
 import { sanitizePrefix } from './sanitizePrefix.js'
 
@@ -24,7 +24,7 @@ export async function getFilePrefix({
   collection: CollectionConfig
   filename: string
   prefixQueryParam?: string
-  req: PayloadRequest
+  req: CMSRequest
 }): Promise<string> {
   if (typeof prefixQueryParam === 'string') {
     return sanitizePrefix(prefixQueryParam)
@@ -42,7 +42,7 @@ export async function getFilePrefix({
 
   const imageSizes = (collection?.upload as UploadConfig)?.imageSizes || []
 
-  const files = await req.payload.find({
+  const files = await req.cms.find({
     collection: collection.slug,
     depth: 0,
     draft: true,

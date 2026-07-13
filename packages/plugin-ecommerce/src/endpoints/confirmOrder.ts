@@ -57,7 +57,7 @@ export const confirmOrderHandler: ConfirmOrderHandler =
     await addDataAndFileToRequest(req)
 
     const data = req.data
-    const payload = req.payload
+    const cms = req.cms
     const user = req.user
 
     let currency: string = currenciesConfig.defaultCurrency
@@ -102,7 +102,7 @@ export const confirmOrderHandler: ConfirmOrderHandler =
           req.query.secret = cartSecret
         }
 
-        cart = await payload.findByID({
+        cart = await cms.findByID({
           id: cartID,
           collection: cartsSlug,
           depth: 2,
@@ -169,7 +169,7 @@ export const confirmOrderHandler: ConfirmOrderHandler =
       })
 
       if (paymentResponse.transactionID) {
-        const transaction = await payload.findByID({
+        const transaction = await cms.findByID({
           id: paymentResponse.transactionID,
           collection: transactionsSlug,
           depth: 0,
@@ -184,7 +184,7 @@ export const confirmOrderHandler: ConfirmOrderHandler =
             if (item.variant) {
               const id = typeof item.variant === 'object' ? item.variant.id : item.variant
 
-              await payload.db.updateOne({
+              await cms.db.updateOne({
                 id,
                 collection: variantsSlug,
                 data: {
@@ -196,7 +196,7 @@ export const confirmOrderHandler: ConfirmOrderHandler =
             } else if (item.product) {
               const id = typeof item.product === 'object' ? item.product.id : item.product
 
-              await payload.db.updateOne({
+              await cms.db.updateOne({
                 id,
                 collection: productsSlug,
                 data: {
@@ -216,7 +216,7 @@ export const confirmOrderHandler: ConfirmOrderHandler =
 
       return Response.json(paymentResponse)
     } catch (error) {
-      payload.logger.error(error, 'Error confirming order.')
+      cms.logger.error(error, 'Error confirming order.')
 
       return Response.json(
         {

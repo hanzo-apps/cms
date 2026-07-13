@@ -1,13 +1,13 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { getRequestCollectionWithID } from '../../utilities/getRequestEntity.js'
 import { headersWithCors } from '../../utilities/headersWithCors.js'
 import { parseParams } from '../../utilities/parseParams/index.js'
 import { findByIDOperation } from '../operations/findByID.js'
 
-export const findByIDHandler: PayloadHandler = async (req) => {
+export const findByIDHandler: CMSHandler = async (req) => {
   const { data: dataArg } = req
   const { id, collection } = getRequestCollectionWithID(req)
 

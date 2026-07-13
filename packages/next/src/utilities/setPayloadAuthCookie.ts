@@ -1,26 +1,26 @@
 import type { Auth } from '@hanzo/cms'
 
 import { cookies as getCookies } from 'next/headers.js'
-import { generatePayloadCookie } from '@hanzo/cms'
+import { generateCMSCookie } from '@hanzo/cms'
 
-type SetPayloadAuthCookieArgs = {
+type SetCMSAuthCookieArgs = {
   authConfig: Auth
   cookiePrefix: string
   token: string
 }
 
-export async function setPayloadAuthCookie({
+export async function setCMSAuthCookie({
   authConfig,
   cookiePrefix,
   token,
-}: SetPayloadAuthCookieArgs): Promise<void> {
+}: SetCMSAuthCookieArgs): Promise<void> {
   const cookies = await getCookies()
 
   const cookieExpiration = authConfig.tokenExpiration
     ? new Date(Date.now() + authConfig.tokenExpiration)
     : undefined
 
-  const payloadCookie = generatePayloadCookie({
+  const cmsCookie = generateCMSCookie({
     collectionAuthConfig: authConfig,
     cookiePrefix,
     expires: cookieExpiration,
@@ -28,10 +28,10 @@ export async function setPayloadAuthCookie({
     token,
   })
 
-  if (payloadCookie.value) {
-    cookies.set(payloadCookie.name, payloadCookie.value, {
+  if (cmsCookie.value) {
+    cookies.set(cmsCookie.name, cmsCookie.value, {
       domain: authConfig.cookies.domain,
-      expires: payloadCookie.expires ? new Date(payloadCookie.expires) : undefined,
+      expires: cmsCookie.expires ? new Date(cmsCookie.expires) : undefined,
       httpOnly: true,
       sameSite: (typeof authConfig.cookies.sameSite === 'string'
         ? authConfig.cookies.sameSite.toLowerCase()

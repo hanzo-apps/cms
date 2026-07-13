@@ -114,7 +114,7 @@ import type { SanitizedCollectionConfig, TypeWithID } from '../../collections/co
 import type {
   CustomComponent,
   LabelFunction,
-  PayloadComponent,
+  CMSComponent,
   StaticLabel,
   Timezone,
   TimezonesConfig,
@@ -143,7 +143,7 @@ import type {
   DefaultValue,
   JsonObject,
   Operation,
-  PayloadRequest,
+  CMSRequest,
   PickPreserveOptional,
   Where,
 } from '../../types/index.js'
@@ -206,7 +206,7 @@ export type FieldHookArgs<TData extends TypeWithID = any, TValue = any, TSibling
   /** The previous value of the field, before changes, only in `beforeChange`, `afterChange`, `beforeDuplicate` and `beforeValidate` field hooks. */
   previousValue?: TValue
   /** The Express request object. It is mocked for Local API operations. */
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * The schemaPath of the field, e.g. ["group", "myArray", "textField"]. The schemaPath is the path but without indexes and would be used in the context of field schemas, not field data.
    */
@@ -250,8 +250,8 @@ export type FieldAccessArgs<TData extends TypeWithID = any, TSiblingData = any> 
    * The `id` of the current document being read or updated. `id` is undefined during the `create` operation.
    */
   id?: number | string
-  /** The `payload` object to interface with the payload API */
-  req: PayloadRequest
+  /** The `cms` object to interface with the cms API */
+  req: CMSRequest
   /**
    * Immediately adjacent data to this field. For example, if this is a `group` field, then `siblingData` will be the other fields within the group.
    */
@@ -290,7 +290,7 @@ export type Condition<TData extends TypeWithID = any, TSiblingData = any> = (
      * The path of the field, e.g. ["group", "myArray", 1, "textField"]. The path is the schemaPath but with indexes and would be used in the context of field data, not field schemas.
      */
     path: (number | string)[]
-    user: PayloadRequest['user']
+    user: CMSRequest['user']
   },
 ) => boolean
 
@@ -311,7 +311,7 @@ export type FilterOptionsProps<TData = any> = {
    * The collection `slug` to filter against, limited to this field's `relationTo` property.
    */
   relationTo: CollectionSlug
-  req: PayloadRequest
+  req: CMSRequest
   /**
    * An object containing document data that is scoped to only fields within the same parent of this field. Will be an empty object when called on a `Filter` component within the list view.
    */
@@ -319,7 +319,7 @@ export type FilterOptionsProps<TData = any> = {
   /**
    * An object containing the currently authenticated user.
    */
-  user: Partial<PayloadRequest['user']>
+  user: Partial<CMSRequest['user']>
 }
 
 export type FilterOptionsFunc<TData = any> = (
@@ -348,14 +348,14 @@ export type FieldPosition = 'main' | 'sidebar'
 export type FieldAdmin = {
   className?: string
   components?: {
-    Cell?: PayloadComponent<DefaultServerCellComponentProps, DefaultCellComponentProps>
-    Description?: PayloadComponent<FieldDescriptionServerProps, FieldDescriptionClientProps>
-    Diff?: PayloadComponent<FieldDiffServerProps, FieldDiffClientProps>
-    Field?: PayloadComponent<FieldClientComponent | FieldServerComponent>
+    Cell?: CMSComponent<DefaultServerCellComponentProps, DefaultCellComponentProps>
+    Description?: CMSComponent<FieldDescriptionServerProps, FieldDescriptionClientProps>
+    Diff?: CMSComponent<FieldDiffServerProps, FieldDiffClientProps>
+    Field?: CMSComponent<FieldClientComponent | FieldServerComponent>
     /**
      * The Filter component has to be a client component
      */
-    Filter?: PayloadComponent
+    Filter?: CMSComponent
   }
   /**
    * You can programmatically show / hide fields based on what other fields are doing.
@@ -452,7 +452,7 @@ export type BaseValidateOptions<TData, TSiblingData, TValue> = {
   path: (number | string)[]
   preferences: DocumentPreferences
   previousValue?: TValue
-  req: PayloadRequest
+  req: CMSRequest
   required?: boolean
   siblingData: Partial<TSiblingData>
 }
@@ -955,14 +955,14 @@ export type UIField = {
        * Allow any custom components to be added to the UI field. This allows
        * the UI field to be used as a vessel for getting components rendered.
        */
-      [key: string]: PayloadComponent | undefined
+      [key: string]: CMSComponent | undefined
       Cell?: CustomComponent
       // Can be optional, in case the UI field is just used as a vessel for custom components
       Field?: CustomComponent
       /**
        * The Filter component has to be a client component
        */
-      Filter?: PayloadComponent
+      Filter?: CMSComponent
     } & FieldAdmin['components']
     condition?: Condition
     /** Extension point to add your custom data. Available in server and client. */
@@ -1181,7 +1181,7 @@ export type SelectField = {
   filterOptions?: (args: {
     data: Data
     options: Option[]
-    req: PayloadRequest
+    req: CMSRequest
     siblingData: Data
   }) => Option[]
   hasMany?: boolean
@@ -1522,8 +1522,8 @@ export type Block = {
       /**
        * This will replace the entire block component, including the block header / collapsible.
        */
-      Block?: PayloadComponent<any, any>
-      Label?: PayloadComponent<any, any>
+      Block?: CMSComponent<any, any>
+      Label?: CMSComponent<any, any>
     }
     /** Extension point to add your custom data. Available in server and client. */
     custom?: Record<string, any>
@@ -1565,7 +1565,7 @@ export type Block = {
        */
       thumbnail?: { alt?: string; url: string } | string
     }
-    jsx?: PayloadComponent
+    jsx?: CMSComponent
   }
   /** Extension point to add your custom data. Server only. */
   custom?: Record<string, any>
@@ -2156,7 +2156,7 @@ export function fieldShouldBeLocalized({
     'localized' in field &&
     field.localized! &&
     (!parentIsLocalized ||
-      process.env.NEXT_PUBLIC_PAYLOAD_COMPATIBILITY_allowLocalizedWithinLocalized === 'true')
+      process.env.NEXT_PUBLIC_CMS_COMPATIBILITY_allowLocalizedWithinLocalized === 'true')
   )
 }
 

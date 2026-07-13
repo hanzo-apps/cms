@@ -11,9 +11,9 @@ export const migrate: BaseDatabaseAdapter['migrate'] = async function migrate(
   this: BaseDatabaseAdapter,
   args,
 ): Promise<void> {
-  const { payload } = this
-  const migrationFiles = args?.migrations || (await readMigrationFiles({ payload }))
-  const { existingMigrations, latestBatch } = await getMigrations({ payload })
+  const { cms } = this
+  const migrationFiles = args?.migrations || (await readMigrationFiles({ cms }))
+  const { existingMigrations, latestBatch } = await getMigrations({ cms })
 
   const newBatch = latestBatch + 1
 
@@ -29,17 +29,17 @@ export const migrate: BaseDatabaseAdapter['migrate'] = async function migrate(
     }
 
     const start = Date.now()
-    const req = await createLocalReq({}, payload)
+    const req = await createLocalReq({}, cms)
 
-    payload.logger.info({ msg: `Migrating: ${migration.name}` })
+    cms.logger.info({ msg: `Migrating: ${migration.name}` })
 
     try {
       await initTransaction(req)
-      const session = payload.db.sessions?.[await req.transactionID!]
-      await migration.up({ payload, req, session })
-      payload.logger.info({ msg: `Migrated:  ${migration.name} (${Date.now() - start}ms)` })
-      await payload.create({
-        collection: 'payload-migrations',
+      const session = cms.db.sessions?.[await req.transactionID!]
+      await migration.up({ cms, req, session })
+      cms.logger.info({ msg: `Migrated:  ${migration.name} (${Date.now() - start}ms)` })
+      await cms.create({
+        collection: 'cms-migrations',
         data: {
           name: migration.name,
           batch: newBatch,
@@ -49,7 +49,7 @@ export const migrate: BaseDatabaseAdapter['migrate'] = async function migrate(
       await commitTransaction(req)
     } catch (err: unknown) {
       await killTransaction(req)
-      payload.logger.error({ err, msg: `Error running migration ${migration.name}` })
+      cms.logger.error({ err, msg: `Error running migration ${migration.name}` })
       throw err
     }
   }

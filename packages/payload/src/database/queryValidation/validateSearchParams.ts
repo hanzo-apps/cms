@@ -1,7 +1,7 @@
 import type { SanitizedCollectionConfig } from '../../collections/config/types.js'
 import type { FlattenedField } from '../../fields/config/types.js'
 import type { SanitizedGlobalConfig } from '../../globals/config/types.js'
-import type { PayloadRequest, WhereField } from '../../types/index.js'
+import type { CMSRequest, WhereField } from '../../types/index.js'
 import type { EntityPolicies, PathToQuery } from './types.js'
 
 import { fieldAffectsData } from '../../fields/config/types.js'
@@ -24,13 +24,13 @@ type Args = {
   // TODO: Rename to permissions or entityPermissions in 4.0
   policies: EntityPolicies
   polymorphicJoin?: boolean
-  req: PayloadRequest
+  req: CMSRequest
   val: unknown
   versionFields?: FlattenedField[]
 }
 
 /**
- * Validate the Payload key / value / operator
+ * Validate the CMS key / value / operator
  */
 export async function validateSearchParam({
   collectionConfig,
@@ -80,7 +80,7 @@ export async function validateSearchParam({
       locale: req.locale!,
       overrideAccess,
       parentIsLocalized,
-      payload: req.payload,
+      cms: req.cms,
     })
   }
   const promises: Promise<void>[] = []
@@ -128,7 +128,7 @@ export async function validateSearchParam({
           if (!policies.collections![collectionSlug]) {
             policies.collections![collectionSlug] = await getEntityPermissions({
               blockReferencesPermissions,
-              entity: req.payload.collections[collectionSlug]!.config,
+              entity: req.cms.collections[collectionSlug]!.config,
               entityType: 'collection',
               fetchData: false,
               operations: ['read'],
@@ -207,7 +207,7 @@ export async function validateSearchParam({
             if (pathToQueryIndex === 0) {
               promises.push(
                 validateQueryPaths({
-                  collectionConfig: req.payload.collections[pathCollectionSlug!]!.config,
+                  collectionConfig: req.cms.collections[pathCollectionSlug!]!.config,
                   errors,
                   globalConfig: undefined,
                   overrideAccess,

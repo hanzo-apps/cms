@@ -1,4 +1,4 @@
-import type { Document, PayloadRequest, SanitizedGlobalConfig } from '@hanzo/cms'
+import type { Document, CMSRequest, SanitizedGlobalConfig } from '@hanzo/cms'
 
 import { isolateObjectProperty, restoreVersionOperationGlobal } from '@hanzo/cms'
 
@@ -11,7 +11,7 @@ type Resolver = (
     id: number | string
   },
   context: {
-    req: PayloadRequest
+    req: CMSRequest
   },
 ) => Promise<Document>
 export function restoreVersion(globalConfig: SanitizedGlobalConfig): Resolver {

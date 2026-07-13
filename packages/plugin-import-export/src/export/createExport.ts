@@ -1,5 +1,5 @@
 /* eslint-disable perfectionist/sort-objects */
-import type { PayloadRequest, Sort, TypedUser, Where } from '@hanzo/cms'
+import type { CMSRequest, Sort, TypedUser, Where } from '@hanzo/cms'
 
 import { stringify } from 'csv-stringify/sync'
 import { APIError } from '@hanzo/cms'
@@ -52,7 +52,7 @@ export type CreateExportArgs = {
    * If true, stream the file instead of saving it
    */
   download?: boolean
-  req: PayloadRequest
+  req: CMSRequest
 } & Export
 
 export const createExport = async (args: CreateExportArgs) => {
@@ -77,10 +77,10 @@ export const createExport = async (args: CreateExportArgs) => {
     userID,
     where: whereFromInput = {},
   } = args
-  const { locale: localeFromReq, payload } = req
+  const { locale: localeFromReq, cms } = req
 
   if (debug) {
-    req.payload.logger.debug({
+    req.cms.logger.debug({
       msg: '[createExport] Starting export process',
       exportDocId: id,
       exportName: nameArg,
@@ -93,7 +93,7 @@ export const createExport = async (args: CreateExportArgs) => {
   }
 
   const locale = localeFromInput ?? localeFromReq
-  const collectionConfig = payload.config.collections.find(({ slug }) => slug === collectionSlug)
+  const collectionConfig = cms.config.collections.find(({ slug }) => slug === collectionSlug)
 
   if (!collectionConfig) {
     throw new APIError(`Collection with slug ${collectionSlug} not found.`)
@@ -102,7 +102,7 @@ export const createExport = async (args: CreateExportArgs) => {
   let user: TypedUser | undefined
 
   if (userCollection && userID) {
-    user = (await req.payload.findByID({
+    user = (await req.cms.findByID({
       id: userID,
       collection: userCollection,
       overrideAccess: true,
@@ -133,7 +133,7 @@ export const createExport = async (args: CreateExportArgs) => {
   const select = Array.isArray(fields) && fields.length > 0 ? getSelect(fields) : undefined
 
   if (debug) {
-    req.payload.logger.debug({ isCSV, locale, msg: 'Export configuration:', name })
+    req.cms.logger.debug({ isCSV, locale, msg: 'Export configuration:', name })
   }
 
   // Determine maximum export documents:
@@ -159,7 +159,7 @@ export const createExport = async (args: CreateExportArgs) => {
   let totalDocs = 0
   let accessDenied = false
   try {
-    const countResult = await payload.count({
+    const countResult = await cms.count({
       collection: collectionSlug,
       user,
       locale,
@@ -171,7 +171,7 @@ export const createExport = async (args: CreateExportArgs) => {
     // We'll create an empty export file
     accessDenied = true
     if (debug) {
-      req.payload.logger.debug({
+      req.cms.logger.debug({
         collectionSlug,
         msg: 'Access denied for collection, creating empty export',
       })
@@ -197,7 +197,7 @@ export const createExport = async (args: CreateExportArgs) => {
   }
 
   if (debug) {
-    req.payload.logger.debug({ findArgs, msg: 'Find arguments:' })
+    req.cms.logger.debug({ findArgs, msg: 'Find arguments:' })
   }
 
   const exportFieldHooks = getExportFieldFunctions({
@@ -258,8 +258,8 @@ export const createExport = async (args: CreateExportArgs) => {
     let schemaColumns: string[] = []
     if (isCSV) {
       const localeCodes =
-        locale === 'all' && payload.config.localization
-          ? payload.config.localization.localeCodes
+        locale === 'all' && cms.config.localization
+          ? cms.config.localization.localeCodes
           : undefined
 
       schemaColumns = getSchemaColumns({
@@ -271,7 +271,7 @@ export const createExport = async (args: CreateExportArgs) => {
       })
 
       if (debug) {
-        req.payload.logger.debug({
+        req.cms.logger.debug({
           columnCount: schemaColumns.length,
           msg: 'Schema-based column inference complete',
         })
@@ -307,14 +307,14 @@ export const createExport = async (args: CreateExportArgs) => {
           return
         }
 
-        const result = await payload.find({
+        const result = await cms.find({
           ...findArgs,
           page: currentBatchPage,
           limit: Math.min(batchSize, remaining),
         })
 
         if (debug) {
-          req.payload.logger.debug(
+          req.cms.logger.debug(
             `Streaming batch ${currentBatchPage} with ${result.docs.length} docs`,
           )
         }
@@ -381,7 +381,7 @@ export const createExport = async (args: CreateExportArgs) => {
             columnsFinalized = true
 
             if (debug) {
-              req.payload.logger.debug({
+              req.cms.logger.debug({
                 dataColumnsCount: dataColumns.length,
                 finalColumnsCount: allColumns.length,
                 msg: 'Merged schema and data columns',
@@ -472,7 +472,7 @@ export const createExport = async (args: CreateExportArgs) => {
 
         if (!result.hasNextPage || fetched >= maxDocs) {
           if (debug) {
-            req.payload.logger.debug('Stream complete - no more pages')
+            req.cms.logger.debug('Stream complete - no more pages')
           }
           if (!isCSV) {
             this.push(encoder.encode(']'))
@@ -492,7 +492,7 @@ export const createExport = async (args: CreateExportArgs) => {
 
   // Non-download path (buffered export)
   if (debug) {
-    req.payload.logger.debug('Starting file generation')
+    req.cms.logger.debug('Starting file generation')
   }
 
   // Create export batch processor
@@ -551,8 +551,8 @@ export const createExport = async (args: CreateExportArgs) => {
   if (isCSV) {
     // Get schema-based columns for consistent ordering
     const localeCodes =
-      locale === 'all' && payload.config.localization
-        ? payload.config.localization.localeCodes
+      locale === 'all' && cms.config.localization
+        ? cms.config.localization.localeCodes
         : undefined
 
     const schemaColumns = getSchemaColumns({
@@ -600,12 +600,12 @@ export const createExport = async (args: CreateExportArgs) => {
   const content = format === 'json' ? `[${outputData.join(',')}]` : outputData.join('')
   const buffer = Buffer.from(content.length > 0 ? content : '\n')
   if (debug) {
-    req.payload.logger.debug(`${format} file generation complete`)
+    req.cms.logger.debug(`${format} file generation complete`)
   }
 
   if (!id) {
     if (debug) {
-      req.payload.logger.debug('Creating new export file')
+      req.cms.logger.debug('Creating new export file')
     }
     req.file = {
       name,
@@ -615,7 +615,7 @@ export const createExport = async (args: CreateExportArgs) => {
     }
   } else {
     if (debug) {
-      req.payload.logger.debug({
+      req.cms.logger.debug({
         msg: '[createExport] Updating export document with file',
         exportDocId: id,
         exportCollection,
@@ -625,7 +625,7 @@ export const createExport = async (args: CreateExportArgs) => {
       })
     }
     try {
-      await req.payload.update({
+      await req.cms.update({
         id,
         collection: exportCollection,
         data: {},
@@ -646,11 +646,11 @@ export const createExport = async (args: CreateExportArgs) => {
               message: error.message,
               name: error.name,
               stack: error.stack,
-              // @ts-expect-error - data might exist on Payload errors
+              // @ts-expect-error - data might exist on CMS errors
               data: error.data,
             }
           : error
-      req.payload.logger.error({
+      req.cms.logger.error({
         msg: '[createExport] Failed to update export document with file',
         err: errorDetails,
         exportDocId: id,
@@ -661,6 +661,6 @@ export const createExport = async (args: CreateExportArgs) => {
     }
   }
   if (debug) {
-    req.payload.logger.debug('Export process completed successfully')
+    req.cms.logger.debug('Export process completed successfully')
   }
 }

@@ -1,6 +1,6 @@
 import type {
   Document,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectType,
   TransformCollectionWithSelect,
@@ -21,7 +21,7 @@ import {
   deepCopyObjectSimple,
   type FindOptions,
   type GeneratedTypes,
-  type Payload,
+  type CMS,
   type RequestContext,
   type TypedLocale,
 } from '../../../index.js'
@@ -96,10 +96,10 @@ type BaseOptions<TSlug extends CollectionSlug, TSelect extends SelectType> = {
    */
   publishAllLocales?: boolean
   /**
-   * The `PayloadRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
+   * The `CMSRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
    * Recommended to pass when using the Local API from hooks, as usually you want to execute the operation within the current transaction.
    */
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * Opt-in to receiving hidden fields. By default, they are hidden from returned documents in accordance to your config.
    * @default false
@@ -187,7 +187,7 @@ export async function createLocal<
   TSlug extends CollectionSlug,
   TSelect extends SelectFromCollectionSlug<TSlug>,
 >(
-  payload: Payload,
+  cms: CMS,
   options: Options<TSlug, TSelect>,
 ): Promise<TransformCollectionWithSelect<TSlug, TSelect>> {
   const {
@@ -208,7 +208,7 @@ export async function createLocal<
     showHiddenFields,
   } = options
 
-  const collection = payload.collections[collectionSlug]
+  const collection = cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(
@@ -216,7 +216,7 @@ export async function createLocal<
     )
   }
 
-  const req = await createLocalReq(options as CreateLocalReqOptions, payload)
+  const req = await createLocalReq(options as CreateLocalReqOptions, cms)
 
   req.file = file ?? (await getFileByPath(filePath!))
 

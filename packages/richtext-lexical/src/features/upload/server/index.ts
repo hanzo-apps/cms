@@ -4,7 +4,7 @@ import type {
   FieldSchemaMap,
   FileData,
   FileSizeImproved,
-  Payload,
+  CMS,
   TypeWithID,
   UploadCollectionSlug,
 } from '@hanzo/cms'
@@ -62,8 +62,8 @@ export type UploadFeatureProps = {
 /**
  * Get the absolute URL for an upload URL by potentially prepending the serverURL
  */
-function getAbsoluteURL(url: string, payload: Payload): string {
-  return url?.startsWith('http') ? url : (payload?.config?.serverURL || '') + url
+function getAbsoluteURL(url: string, cms: CMS): string {
+  return url?.startsWith('http') ? url : (cms?.config?.serverURL || '') + url
 }
 
 export const UploadFeature = createServerFeature<
@@ -148,7 +148,7 @@ export const UploadFeature = createServerFeature<
                 // @ts-expect-error - for backwards-compatibility
                 const id = node?.value?.id || node?.value
 
-                if (req?.payload) {
+                if (req?.cms) {
                   const uploadDocument: {
                     value?: FileData & TypeWithID
                   } = {}
@@ -177,7 +177,7 @@ export const UploadFeature = createServerFeature<
                     return `<img />`
                   }
 
-                  const url = getAbsoluteURL(uploadDocument?.value?.url ?? '', req?.payload)
+                  const url = getAbsoluteURL(uploadDocument?.value?.url ?? '', req?.cms)
 
                   const alt =
                     (node.fields?.alt as string) ||
@@ -221,7 +221,7 @@ export const UploadFeature = createServerFeature<
                     ) {
                       continue
                     }
-                    const imageSizeURL = getAbsoluteURL(imageSize?.url, req?.payload)
+                    const imageSizeURL = getAbsoluteURL(imageSize?.url, req?.cms)
 
                     pictureHTML += `<source srcset="${imageSizeURL}" media="(max-width: ${imageSize.width}px)" type="${imageSize.mimeType}">`
                   }
@@ -246,7 +246,7 @@ export const UploadFeature = createServerFeature<
               }
               return allSubFields
             }
-            const collection = req ? req.payload.collections[node?.relationTo] : null
+            const collection = req ? req.cms.collections[node?.relationTo] : null
 
             if (collection) {
               const collectionFieldSchema = props?.collections?.[node?.relationTo]?.fields
@@ -280,12 +280,12 @@ export const UploadFeature = createServerFeature<
                 if (!node?.value) {
                   return node
                 }
-                const collection = req.payload.collections[node?.relationTo]
+                const collection = req.cms.collections[node?.relationTo]
 
                 if (!collection) {
                   return node
                 }
-                // @ts-expect-error - Fix in Payload v4
+                // @ts-expect-error - Fix in CMS v4
                 const id = node?.value?.id || node?.value // for backwards-compatibility
 
                 const populateDepth =

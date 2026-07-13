@@ -1,5 +1,5 @@
 import type { Storage } from '@google-cloud/storage'
-import type { CollectionConfig, PayloadRequest } from '@hanzo/cms'
+import type { CollectionConfig, CMSRequest } from '@hanzo/cms'
 
 import { ApiError } from '@google-cloud/storage'
 import {
@@ -17,7 +17,7 @@ interface GetFileArgs {
   filename: string
   incomingHeaders?: Headers
   prefixQueryParam?: string
-  req: PayloadRequest
+  req: CMSRequest
   useCompositePrefixes?: boolean
 }
 
@@ -126,7 +126,7 @@ export async function getFile({
     if (err instanceof ApiError && err.code === 404) {
       return new Response(null, { status: 404, statusText: 'Not Found' })
     }
-    req.payload.logger.error(err)
+    req.cms.logger.error(err)
     return new Response('Internal Server Error', { status: 500 })
   }
 }

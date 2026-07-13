@@ -7,7 +7,7 @@ import type {
   ListViewClientProps,
   ListViewServerPropsOnly,
   PaginatedDocs,
-  PayloadComponent,
+  CMSComponent,
   QueryPreset,
   SanitizedCollectionPermission,
 } from '@hanzo/cms'
@@ -43,7 +43,7 @@ export type RenderListViewArgs = {
    * the collection's configured list view component (if any).
    */
   ComponentOverride?:
-    | PayloadComponent
+    | CMSComponent
     | React.ComponentType<ListViewClientProps | (ListViewClientProps & ListViewServerPropsOnly)>
   customCellProps?: Record<string, any>
   disableBulkDelete?: boolean
@@ -103,8 +103,8 @@ export const renderListView = async (
     req,
     req: {
       i18n,
-      payload,
-      payload: { config },
+      cms,
+      cms: { config },
       query: queryFromReq,
       user,
     },
@@ -148,9 +148,9 @@ export const renderListView = async (
 
   if (collectionPreferences?.preset) {
     try {
-      queryPreset = (await payload.findByID({
+      queryPreset = (await cms.findByID({
         id: collectionPreferences?.preset,
-        collection: 'payload-query-presets',
+        collection: 'cms-query-presets',
         depth: 0,
         overrideAccess: false,
         user,
@@ -160,14 +160,14 @@ export const renderListView = async (
         queryPresetPermissions = (
           await getDocumentPermissions({
             id: queryPreset.id,
-            collectionConfig: req.payload.collections['payload-query-presets'].config,
+            collectionConfig: req.cms.collections['cms-query-presets'].config,
             data: queryPreset,
             req,
           })
         )?.docPermissions
       }
     } catch (err) {
-      req.payload.logger.error(`Error fetching query preset or preset permissions: ${err}`)
+      req.cms.logger.error(`Error fetching query preset or preset permissions: ${err}`)
     }
   }
 
@@ -283,7 +283,7 @@ export const renderListView = async (
         req,
       })
     } else {
-      data = await req.payload.find({
+      data = await req.cms.find({
         collection: collectionSlug,
         depth: 0,
         draft: true,
@@ -318,7 +318,7 @@ export const renderListView = async (
         fieldPermissions: permissions?.collections?.[collectionSlug]?.fields,
         i18n: req.i18n,
         orderableFieldName: collectionConfig.orderable === true ? '_order' : undefined,
-        payload: req.payload,
+        cms: req.cms,
         query,
         req,
         useAsTitle: collectionConfig.admin.useAsTitle,
@@ -328,7 +328,7 @@ export const renderListView = async (
   } catch (err) {
     if (err.name !== 'QueryError') {
       // QueryErrors are expected when a user filters by a field they do not have access to
-      req.payload.logger.error({
+      req.cms.logger.error({
         err,
         msg: `There was an error fetching the list view data for collection ${collectionSlug}`,
       })
@@ -336,7 +336,7 @@ export const renderListView = async (
     }
   }
 
-  const renderedFilters = renderFilters(collectionConfig.fields, req.payload.importMap)
+  const renderedFilters = renderFilters(collectionConfig.fields, req.cms.importMap)
 
   const resolvedFilterOptions = await resolveAllFilterOptions({
     fields: collectionConfig.fields,
@@ -374,7 +374,7 @@ export const renderListView = async (
     listSearchableFields: collectionConfig.admin.listSearchableFields,
     locale: fullLocale,
     params,
-    payload,
+    cms,
     permissions,
     searchParams,
     user,
@@ -391,7 +391,7 @@ export const renderListView = async (
     collectionConfig,
     description: staticDescription,
     notFoundDocId,
-    payload,
+    cms,
     serverProps,
   })
 
@@ -436,7 +436,7 @@ export const renderListView = async (
             Component:
               ComponentOverride ?? collectionConfig?.admin?.components?.views?.list?.Component,
             Fallback: DefaultListView,
-            importMap: payload.importMap,
+            importMap: cms.importMap,
             serverProps,
           })}
         </ListQueryProvider>

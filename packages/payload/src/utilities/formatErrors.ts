@@ -5,7 +5,7 @@ import { ValidationError } from '../errors/ValidationError.js'
 
 export const formatErrors = (incoming: { [key: string]: unknown } | APIError): ErrorResult => {
   if (incoming) {
-    // Payload 'ValidationError' and 'APIError'
+    // CMS 'ValidationError' and 'APIError'
     if ((incoming instanceof ValidationError || incoming instanceof APIError) && incoming.data) {
       return {
         errors: [

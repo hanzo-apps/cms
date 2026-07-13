@@ -11,14 +11,14 @@ export const findVersions: FindVersions = async function findVersions(
   this: DrizzleAdapter,
   { collection, limit, locale, page, pagination, req, select, sort: sortArg, where },
 ) {
-  const collectionConfig: SanitizedCollectionConfig = this.payload.collections[collection].config
+  const collectionConfig: SanitizedCollectionConfig = this.cms.collections[collection].config
   const sort = sortArg !== undefined && sortArg !== null ? sortArg : collectionConfig.defaultSort
 
   const tableName = this.tableNameMap.get(
     `_${toSnakeCase(collectionConfig.slug)}${this.versionsSuffix}`,
   )
 
-  const fields = buildVersionCollectionFields(this.payload.config, collectionConfig, true)
+  const fields = buildVersionCollectionFields(this.cms.config, collectionConfig, true)
 
   return findMany({
     adapter: this,

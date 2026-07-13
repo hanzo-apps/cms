@@ -53,7 +53,7 @@ export const NotFoundPage = async ({
     locale,
     permissions,
     req,
-    req: { payload },
+    req: { cms },
   } = await initReq({
     configPromise: config,
     importMap,
@@ -83,7 +83,7 @@ export const NotFoundPage = async ({
       i18n={req.i18n}
       locale={locale}
       params={params}
-      payload={payload}
+      cms={cms}
       permissions={permissions}
       searchParams={searchParams}
       user={req.user}

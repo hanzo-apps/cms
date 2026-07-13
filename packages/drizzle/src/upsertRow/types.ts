@@ -1,5 +1,5 @@
 import type { SQL } from 'drizzle-orm'
-import type { FlattenedField, JoinQuery, PayloadRequest, SelectType } from '@hanzo/cms'
+import type { FlattenedField, JoinQuery, CMSRequest, SelectType } from '@hanzo/cms'
 
 import type { DrizzleAdapter, DrizzleTransaction, GenericColumn } from '../types.js'
 
@@ -23,7 +23,7 @@ type BaseArgs = {
   ignoreResult?: 'idOnly' | boolean
   joinQuery?: JoinQuery
   path?: string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   tableName: string
 }
 

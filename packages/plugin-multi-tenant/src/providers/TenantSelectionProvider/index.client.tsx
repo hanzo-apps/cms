@@ -66,7 +66,7 @@ const Context = createContext<ContextType>({
   updateTenants: () => null,
 })
 
-const DEFAULT_COOKIE_NAME = 'payload-tenant'
+const DEFAULT_COOKIE_NAME = 'cms-tenant'
 
 const setTenantCookie = (args: { cookieName?: string; value: string }) => {
   const { cookieName = DEFAULT_COOKIE_NAME, value } = args

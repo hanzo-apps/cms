@@ -1,11 +1,11 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { headersWithCors } from '../../utilities/headersWithCors.js'
 import { accessOperation } from '../operations/access.js'
 
-export const accessHandler: PayloadHandler = async (req) => {
+export const accessHandler: CMSHandler = async (req) => {
   const headers = headersWithCors({
     headers: new Headers(),
     req,

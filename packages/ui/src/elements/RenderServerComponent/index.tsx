@@ -1,4 +1,4 @@
-import type { ImportMap, PayloadComponent } from '@hanzo/cms'
+import type { ImportMap, CMSComponent } from '@hanzo/cms'
 
 import { getFromImportMap, isPlainObject, isReactServerComponentOrFunction } from '@hanzo/cms/shared'
 import React from 'react'
@@ -8,8 +8,8 @@ import { removeUndefined } from '../../utilities/removeUndefined.js'
 type RenderServerComponentFn = (args: {
   readonly clientProps?: object
   readonly Component?:
-    | PayloadComponent
-    | PayloadComponent[]
+    | CMSComponent
+    | CMSComponent[]
     | React.ComponentType
     | React.ComponentType[]
   readonly Fallback?: React.ComponentType
@@ -56,7 +56,7 @@ export const RenderServerComponent: RenderServerComponentFn = ({
   if (typeof Component === 'string' || isPlainObject(Component)) {
     const ResolvedComponent = getFromImportMap<React.ComponentType>({
       importMap,
-      PayloadComponent: Component,
+      CMSComponent: Component,
       schemaPath: '',
     })
 

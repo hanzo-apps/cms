@@ -63,7 +63,7 @@ export const initiatePaymentHandler: InitiatePayment =
   async (req) => {
     await addDataAndFileToRequest(req)
     const data = req.data
-    const payload = req.payload
+    const cms = req.cms
     const user = req.user
 
     let currency: string = currenciesConfig.defaultCurrency
@@ -111,7 +111,7 @@ export const initiatePaymentHandler: InitiatePayment =
           req.query.secret = cartSecret
         }
 
-        cart = await payload.findByID({
+        cart = await cms.findByID({
           id: cartID,
           collection: cartsSlug,
           depth: 2,
@@ -201,7 +201,7 @@ export const initiatePaymentHandler: InitiatePayment =
       if (item.product && !item.variant) {
         const id = typeof item.product === 'object' ? item.product.id : item.product
 
-        const product = await payload.findByID({
+        const product = await cms.findByID({
           id,
           collection: productsSlug,
           depth: 0,
@@ -234,7 +234,7 @@ export const initiatePaymentHandler: InitiatePayment =
             })
           }
         } catch (error) {
-          payload.logger.error(
+          cms.logger.error(
             error,
             'Error validating product or variant during payment initiation.',
           )
@@ -253,7 +253,7 @@ export const initiatePaymentHandler: InitiatePayment =
         if (item.variant) {
           const id = typeof item.variant === 'object' ? item.variant.id : item.variant
 
-          const variant = await payload.findByID({
+          const variant = await cms.findByID({
             id,
             collection: variantsSlug,
             depth: 0,
@@ -293,7 +293,7 @@ export const initiatePaymentHandler: InitiatePayment =
               })
             }
           } catch (error) {
-            payload.logger.error(
+            cms.logger.error(
               error,
               'Error validating product or variant during payment initiation.',
             )
@@ -327,7 +327,7 @@ export const initiatePaymentHandler: InitiatePayment =
 
       return Response.json(paymentResponse)
     } catch (error) {
-      payload.logger.error(error, 'Error initiating payment.')
+      cms.logger.error(error, 'Error initiating payment.')
 
       return Response.json(
         {

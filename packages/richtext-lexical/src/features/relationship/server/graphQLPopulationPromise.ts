@@ -21,7 +21,7 @@ export const relationshipPopulationPromiseHOC = (
       // @ts-expect-error
       const id = node?.value?.id || node?.value // for backwards-compatibility
 
-      const collection = req.payload.collections[node?.relationTo]
+      const collection = req.cms.collections[node?.relationTo]
 
       if (collection) {
         const populateDepth =

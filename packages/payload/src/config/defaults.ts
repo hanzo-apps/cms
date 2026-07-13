@@ -41,7 +41,7 @@ export const defaults: Omit<Config, 'db' | 'editor' | 'secret'> = {
   },
   bin: [],
   collections: [],
-  cookiePrefix: 'payload',
+  cookiePrefix: 'cms',
   cors: [],
   csrf: [],
   custom: {},
@@ -119,7 +119,7 @@ export const addDefaultsToConfig = (config: Config): Config => {
 
   config.bin = config.bin ?? []
   config.collections = config.collections ?? []
-  config.cookiePrefix = config.cookiePrefix ?? 'payload'
+  config.cookiePrefix = config.cookiePrefix ?? 'cms'
   config.cors = config.cors ?? []
   config.csrf = config.csrf ?? []
   config.custom = config.custom ?? {}

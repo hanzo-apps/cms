@@ -1,7 +1,7 @@
 import { Cron } from 'croner'
 
 import type { Job, TaskConfig, WorkflowConfig } from '../../../index.js'
-import type { PayloadRequest } from '../../../types/index.js'
+import type { CMSRequest } from '../../../types/index.js'
 import type { BeforeScheduleFn, Queueable, ScheduleConfig } from '../../config/types/index.js'
 
 import { type JobStats, jobStatsGlobalSlug } from '../../config/global.js'
@@ -40,10 +40,10 @@ export async function handleSchedules({
    * @default jobs from the `default` queue will be executed.
    */
   queue?: string
-  req: PayloadRequest
+  req: CMSRequest
 }): Promise<HandleSchedulesResult> {
   const queue = _queue ?? 'default'
-  const jobsConfig = req.payload.config.jobs
+  const jobsConfig = req.cms.config.jobs
   const queuesWithSchedules = getQueuesWithSchedules({
     jobsConfig,
   })
@@ -57,7 +57,7 @@ export async function handleSchedules({
     }
   }
 
-  const stats: JobStats = await req.payload.db.findGlobal({
+  const stats: JobStats = await req.cms.db.findGlobal({
     slug: jobStatsGlobalSlug,
     req,
   })
@@ -163,7 +163,7 @@ export async function scheduleQueueable({
   stats,
 }: {
   queueable: Queueable
-  req: PayloadRequest
+  req: CMSRequest
   stats: JobStats
 }): Promise<{
   job?: Job<false>
@@ -203,7 +203,7 @@ export async function scheduleQueueable({
       }
     }
 
-    const job = (await req.payload.jobs.queue({
+    const job = (await req.cms.jobs.queue({
       input: beforeScheduleResult.input ?? {},
       meta: {
         scheduled: true,
@@ -213,7 +213,7 @@ export async function scheduleQueueable({
       task: queueable?.taskConfig?.slug,
       waitUntil: beforeScheduleResult.waitUntil,
       workflow: queueable.workflowConfig?.slug,
-    } as Parameters<typeof req.payload.jobs.queue>[0])) as unknown as Job<false>
+    } as Parameters<typeof req.cms.jobs.queue>[0])) as unknown as Job<false>
 
     await (afterScheduleFN ?? defaultAfterSchedule)({
       // @ts-expect-error we know defaultAfterchedule will never call itself => pass null

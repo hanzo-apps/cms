@@ -400,7 +400,7 @@ export const bgTranslations: DefaultTranslationsObject = {
     password: 'Парола',
     pasteField: 'Постави поле',
     pasteRow: 'Постави ред',
-    payloadSettings: 'Настройки на Payload',
+    cmsSettings: 'Настройки на CMS',
     permanentlyDelete: 'Трайно изтриване',
     permanentlyDeletedCountSuccessfully: 'Успешно изтрити завинаги {{count}} {{label}}.',
     perPage: 'На страница: {{limit}}',

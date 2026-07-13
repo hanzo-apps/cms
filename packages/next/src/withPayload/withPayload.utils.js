@@ -101,7 +101,7 @@ export function getNextjsVersion() {
     const pkgJson = JSON.parse(readFileSync(pkgPath, 'utf8'))
     return parseSemver(pkgJson.version)
   } catch (e) {
-    console.error('Payload: Error getting Next.js version', e)
+    console.error('CMS: Error getting Next.js version', e)
     return undefined
   }
 }

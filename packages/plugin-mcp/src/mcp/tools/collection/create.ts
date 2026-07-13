@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { writeFileSync } from 'fs'
 import { join } from 'path'
@@ -9,7 +9,7 @@ import { validateCollectionFile } from '../../helpers/fileValidation.js'
 import { toolSchemas } from '../schemas.js'
 
 export const createCollection = async (
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   collectionsDirPath: string,
   configFilePath: string,
@@ -18,10 +18,10 @@ export const createCollection = async (
   fields: any[],
   hasUpload: boolean | undefined,
 ) => {
-  const payload = req.payload
+  const cms = req.cms
   if (verboseLogs) {
-    payload.logger.info(
-      `[payload-mcp] Creating collection: ${collectionName} with ${fields.length} fields`,
+    cms.logger.info(
+      `[cms-mcp] Creating collection: ${collectionName} with ${fields.length} fields`,
     )
   }
 
@@ -32,7 +32,7 @@ export const createCollection = async (
     .replace(/^-/, '')
 
   if (verboseLogs) {
-    payload.logger.info(`[payload-mcp] Generated slug: ${slug} for collection: ${collectionName}`)
+    cms.logger.info(`[cms-mcp] Generated slug: ${slug} for collection: ${collectionName}`)
   }
 
   const fieldDefinitions = fields.map(generateFieldDefinitionString).join('\n')
@@ -67,7 +67,7 @@ ${fieldDefinitions}
 
     // Security check: ensure we're working with the collections directory
     if (!filePath.startsWith(collectionsDirPath)) {
-      payload.logger.error(`[payload-mcp] Invalid collection path attempted: ${filePath}`)
+      cms.logger.error(`[cms-mcp] Invalid collection path attempted: ${filePath}`)
       return {
         content: [
           {
@@ -98,7 +98,7 @@ ${fieldDefinitions}
     // Write the collection file
     writeFileSync(filePath, collectionContent, 'utf8')
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Successfully created collection file: ${filePath}`)
+      cms.logger.info(`[cms-mcp] Successfully created collection file: ${filePath}`)
     }
 
     // Validate the generated file
@@ -129,7 +129,7 @@ ${collectionContent}
     }
   } catch (error) {
     const errorMessage = (error as Error).message
-    payload.logger.error(`[payload-mcp] Error creating collection: ${errorMessage}`)
+    cms.logger.error(`[cms-mcp] Error creating collection: ${errorMessage}`)
 
     return {
       content: [
@@ -144,7 +144,7 @@ ${collectionContent}
 
 export const createCollectionTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   collectionsDirPath: string,
   configFilePath: string,
@@ -155,11 +155,11 @@ export const createCollectionTool = (
     fields: any[] = [],
     hasUpload?: boolean,
   ) => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Creating collection: ${collectionName}, fields: ${fields.length}, upload: ${hasUpload}`,
+      cms.logger.info(
+        `[cms-mcp] Creating collection: ${collectionName}, fields: ${fields.length}, upload: ${hasUpload}`,
       )
     }
 
@@ -176,14 +176,14 @@ export const createCollectionTool = (
       )
 
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Collection creation completed for: ${collectionName}`)
+        cms.logger.info(`[cms-mcp] Collection creation completed for: ${collectionName}`)
       }
 
       return result
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(
-        `[payload-mcp] Error creating collection ${collectionName}: ${errorMessage}`,
+      cms.logger.error(
+        `[cms-mcp] Error creating collection ${collectionName}: ${errorMessage}`,
       )
 
       return {

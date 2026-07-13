@@ -2,12 +2,12 @@ import type {
   ApplyDisableErrors,
   CollectionSlug,
   FindOptions,
-  PayloadTypesShape,
+  CMSTypesShape,
   SelectType,
   TypedLocale,
 } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type {
   JoinQuery,
   PopulateType,
@@ -16,7 +16,7 @@ import type {
 } from '../types.js'
 
 export type FindByIDOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TDisableErrors extends boolean,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
@@ -67,12 +67,12 @@ export type FindByIDOptions<
 } & Pick<FindOptions<TSlug, SelectType & TSelect>, 'select'>
 
 export async function findByID<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends CollectionSlug<T>,
   TDisableErrors extends boolean,
   TSelect extends SelectFromCollectionSlug<T, TSlug>,
 >(
-  sdk: PayloadSDK<T>,
+  sdk: CMSSDK<T>,
   options: FindByIDOptions<T, TSlug, TDisableErrors, TSelect>,
   init?: RequestInit,
 ): Promise<ApplyDisableErrors<TransformCollectionWithSelect<T, TSlug, TSelect>, TDisableErrors>> {

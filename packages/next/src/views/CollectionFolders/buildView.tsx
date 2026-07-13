@@ -52,8 +52,8 @@ export const buildCollectionFolderView = async (
     permissions,
     req: {
       i18n,
-      payload,
-      payload: { config },
+      cms,
+      cms: { config },
       query: queryFromReq,
       user,
     },
@@ -141,7 +141,7 @@ export const buildCollectionFolderView = async (
       i18n,
       locale: fullLocale,
       params,
-      payload,
+      cms,
       permissions,
       searchParams,
       subfolders,
@@ -159,7 +159,7 @@ export const buildCollectionFolderView = async (
     //   description: typeof collectionConfig.admin.description === 'function'
     //   ? collectionConfig.admin.description({ t: i18n.t })
     //   : collectionConfig.admin.description,
-    //   payload,
+    //   cms,
     //   serverProps,
     // })
 
@@ -199,7 +199,7 @@ export const buildCollectionFolderView = async (
             } satisfies FolderListViewClientProps,
             // Component: collectionConfig?.admin?.components?.views?.Folders?.Component,
             Fallback: DefaultCollectionFolderView,
-            importMap: payload.importMap,
+            importMap: cms.importMap,
             serverProps,
           })}
         </>

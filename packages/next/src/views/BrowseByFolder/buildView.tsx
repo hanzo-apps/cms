@@ -47,8 +47,8 @@ export const buildBrowseByFolderView = async (
     permissions,
     req: {
       i18n,
-      payload,
-      payload: { config },
+      cms,
+      cms: { config },
       query: queryFromReq,
       user,
     },
@@ -153,7 +153,7 @@ export const buildBrowseByFolderView = async (
     i18n,
     locale: fullLocale,
     params,
-    payload,
+    cms,
     permissions,
     searchParams,
     subfolders,
@@ -164,7 +164,7 @@ export const buildBrowseByFolderView = async (
   //   clientProps: {
   //   },
   //   description: staticDescription,
-  //   payload,
+  //   cms,
   //   serverProps,
   // })
 
@@ -222,7 +222,7 @@ export const buildBrowseByFolderView = async (
           } satisfies FolderListViewClientProps,
           // Component:config.folders?.components?.views?.BrowseByFolders?.Component,
           Fallback: DefaultBrowseByFolderView,
-          importMap: payload.importMap,
+          importMap: cms.importMap,
           serverProps,
         })}
       </>

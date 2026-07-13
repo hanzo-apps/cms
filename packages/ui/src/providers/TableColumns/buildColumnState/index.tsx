@@ -9,8 +9,8 @@ import type {
   Document,
   Field,
   PaginatedDocs,
-  Payload,
-  PayloadRequest,
+  CMS,
+  CMSRequest,
   SanitizedCollectionConfig,
   SanitizedFieldsPermissions,
   ServerComponentProps,
@@ -48,8 +48,8 @@ export type BuildColumnStateArgs = {
   enableRowTypes?: boolean
   fieldPermissions?: SanitizedFieldsPermissions
   i18n: I18nClient
-  payload: Payload
-  req?: PayloadRequest
+  cms: CMS
+  req?: CMSRequest
   serverFields: Field[]
   sortColumnProps?: Partial<SortColumnProps>
   useAsTitle: SanitizedCollectionConfig['admin']['useAsTitle']
@@ -83,7 +83,7 @@ export const buildColumnState = (args: BuildColumnStateArgs): Column[] => {
     enableRowSelections,
     fieldPermissions,
     i18n,
-    payload,
+    cms,
     req,
     serverFields,
     sortColumnProps,
@@ -200,20 +200,20 @@ export const buildColumnState = (args: BuildColumnStateArgs): Column[] => {
 
       const customLabelServerProps: Pick<
         ServerComponentProps,
-        'clientField' | 'collectionSlug' | 'field' | 'i18n' | 'payload'
+        'clientField' | 'collectionSlug' | 'field' | 'i18n' | 'cms'
       > = {
         clientField,
         collectionSlug,
         field: serverField,
         i18n,
-        payload,
+        cms,
       }
 
       CustomLabel = CustomLabelToRender
         ? RenderServerComponent({
             clientProps,
             Component: CustomLabelToRender,
-            importMap: payload.importMap,
+            importMap: cms.importMap,
             serverProps: customLabelServerProps,
           })
         : undefined
@@ -270,7 +270,7 @@ export const buildColumnState = (args: BuildColumnStateArgs): Column[] => {
               enableRowSelections,
               i18n,
               isLinkedColumn: enableLinkedCell && colIndex === activeColumnsIndices[0],
-              payload,
+              cms,
               req,
               rowIndex,
               serverField,

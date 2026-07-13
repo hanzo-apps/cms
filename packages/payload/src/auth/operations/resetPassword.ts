@@ -2,7 +2,7 @@ import { status as httpStatus } from 'http-status'
 
 import type { Collection, DataFromCollectionSlug } from '../../collections/config/types.js'
 import type { AuthCollectionSlug, TypedUser } from '../../index.js'
-import type { PayloadRequest } from '../../types/index.js'
+import type { CMSRequest } from '../../types/index.js'
 
 import { buildAfterOperation } from '../../collections/operations/utilities/buildAfterOperation.js'
 import { buildBeforeOperation } from '../../collections/operations/utilities/buildBeforeOperation.js'
@@ -30,7 +30,7 @@ export type Arguments = {
   }
   depth?: number
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export const resetPasswordOperation = async <TSlug extends AuthCollectionSlug>(
@@ -42,8 +42,8 @@ export const resetPasswordOperation = async <TSlug extends AuthCollectionSlug>(
     depth,
     overrideAccess,
     req: {
-      payload: { secret },
-      payload,
+      cms: { secret },
+      cms,
     },
     req,
   } = args
@@ -85,7 +85,7 @@ export const resetPasswordOperation = async <TSlug extends AuthCollectionSlug>(
       },
     })
 
-    user = await payload.db.findOne<TypedUser>({
+    user = await cms.db.findOne<TypedUser>({
       collection: collectionConfig.slug,
       req,
       where,
@@ -134,7 +134,7 @@ export const resetPasswordOperation = async <TSlug extends AuthCollectionSlug>(
     // Ensure updatedAt date is always updated
     user.updatedAt = new Date().toISOString()
 
-    const doc = await payload.db.updateOne({
+    const doc = await cms.db.updateOne({
       id: user.id,
       collection: collectionConfig.slug,
       data: user,
@@ -151,7 +151,7 @@ export const resetPasswordOperation = async <TSlug extends AuthCollectionSlug>(
 
     const session = await addSessionToUser({
       collectionConfig,
-      payload,
+      cms,
       req,
       user,
     })
@@ -206,7 +206,7 @@ export const resetPasswordOperation = async <TSlug extends AuthCollectionSlug>(
       }
     }
 
-    const fullUser = await payload.findByID({
+    const fullUser = await cms.findByID({
       id: user.id,
       collection: collectionConfig.slug,
       depth,
@@ -246,7 +246,7 @@ export const resetPasswordOperation = async <TSlug extends AuthCollectionSlug>(
     if (sid) {
       await revokeSession({
         collectionConfig,
-        payload,
+        cms,
         req,
         sid,
         user,

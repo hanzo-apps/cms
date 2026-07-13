@@ -1,5 +1,5 @@
 import type { SanitizedGlobalConfig } from '../globals/config/types.js'
-import type { Document, Payload, PayloadRequest, Where } from '../types/index.js'
+import type { Document, CMS, CMSRequest, Where } from '../types/index.js'
 import type { TypeWithVersion } from './types.js'
 
 import { hasDraftsEnabled } from '../utilities/getVersionsConfig.js'
@@ -7,9 +7,9 @@ import { hasDraftsEnabled } from '../utilities/getVersionsConfig.js'
 type Args = {
   config: SanitizedGlobalConfig
   locale?: string
-  payload: Payload
+  cms: CMS
   published?: boolean
-  req?: PayloadRequest
+  req?: CMSRequest
   slug: string
   where: Where
 }
@@ -18,7 +18,7 @@ export const getLatestGlobalVersion = async ({
   slug,
   config,
   locale,
-  payload,
+  cms,
   published,
   req,
   where,
@@ -31,7 +31,7 @@ export const getLatestGlobalVersion = async ({
 
   if (hasDraftsEnabled(config)) {
     latestVersion = (
-      await payload.db.findGlobalVersions({
+      await cms.db.findGlobalVersions({
         global: slug,
         limit: 1,
         locale: locale || req?.locale || undefined,
@@ -42,7 +42,7 @@ export const getLatestGlobalVersion = async ({
     ).docs[0]
   }
 
-  const global = await payload.db.findGlobal({
+  const global = await cms.db.findGlobal({
     slug,
     locale,
     req,

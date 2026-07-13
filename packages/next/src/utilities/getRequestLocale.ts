@@ -1,4 +1,4 @@
-import type { Locale, PayloadRequest } from '@hanzo/cms'
+import type { Locale, CMSRequest } from '@hanzo/cms'
 
 import { upsertPreferences } from '@hanzo/cms-ui/rsc'
 import { findLocaleFromCode } from '@hanzo/cms-ui/shared'
@@ -6,11 +6,11 @@ import { findLocaleFromCode } from '@hanzo/cms-ui/shared'
 import { getPreferences } from './getPreferences.js'
 
 type GetRequestLocalesArgs = {
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export async function getRequestLocale({ req }: GetRequestLocalesArgs): Promise<Locale> {
-  if (req.payload.config.localization) {
+  if (req.cms.config.localization) {
     const localeFromParams = req.query.locale as string | undefined
 
     if (req.user && localeFromParams) {
@@ -20,20 +20,20 @@ export async function getRequestLocale({ req }: GetRequestLocalesArgs): Promise<
     return (
       (req.user &&
         findLocaleFromCode(
-          req.payload.config.localization,
+          req.cms.config.localization,
           localeFromParams ||
             (
               await getPreferences<Locale['code']>(
                 'locale',
-                req.payload,
+                req.cms,
                 req.user.id,
                 req.user.collection,
               )
             )?.value,
         )) ||
       findLocaleFromCode(
-        req.payload.config.localization,
-        req.payload.config.localization.defaultLocale || 'en',
+        req.cms.config.localization,
+        req.cms.config.localization.defaultLocale || 'en',
       )
     )
   }

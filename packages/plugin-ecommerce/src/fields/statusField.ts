@@ -40,7 +40,7 @@ type Props = {
 export const statusField: (props?: Props) => SelectField = (props) => {
   const { overrides } = props || {}
 
-  // @ts-expect-error - issue with payload types
+  // @ts-expect-error - issue with cms types
   const field: SelectField = {
     name: 'status',
     type: 'select',

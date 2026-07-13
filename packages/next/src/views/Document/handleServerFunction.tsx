@@ -25,8 +25,8 @@ export const renderDocumentHandler: RenderDocumentServerFunction = async (args) 
     req,
     req: {
       i18n,
-      payload,
-      payload: { config },
+      cms,
+      cms: { config },
       user,
     },
     searchParams = {},
@@ -38,7 +38,7 @@ export const renderDocumentHandler: RenderDocumentServerFunction = async (args) 
   const clientConfig = getClientConfig({
     config,
     i18n,
-    importMap: req.payload.importMap,
+    importMap: req.cms.importMap,
     user,
   })
   await applyLocaleFiltering({ clientConfig, config, req })
@@ -48,9 +48,9 @@ export const renderDocumentHandler: RenderDocumentServerFunction = async (args) 
   if (docID) {
     const preferencesKey = `${collectionSlug}-edit-${docID}`
 
-    preferences = await payload
+    preferences = await cms
       .find({
-        collection: 'payload-preferences',
+        collection: 'cms-preferences',
         depth: 0,
         limit: 1,
         where: {
@@ -77,10 +77,10 @@ export const renderDocumentHandler: RenderDocumentServerFunction = async (args) 
   }
 
   const visibleEntities: VisibleEntities = {
-    collections: payload.config.collections
+    collections: cms.config.collections
       .map(({ slug, admin: { hidden } }) => (!isEntityHidden({ hidden, user }) ? slug : null))
       .filter(Boolean),
-    globals: payload.config.globals
+    globals: cms.config.globals
       .map(({ slug, admin: { hidden } }) => (!isEntityHidden({ hidden, user }) ? slug : null))
       .filter(Boolean),
   }
@@ -91,13 +91,13 @@ export const renderDocumentHandler: RenderDocumentServerFunction = async (args) 
     documentSubViewType: 'default',
     drawerSlug,
     i18n,
-    importMap: payload.importMap,
+    importMap: cms.importMap,
     initialData,
     initPageResult: {
-      collectionConfig: payload?.collections?.[collectionSlug]?.config,
+      collectionConfig: cms?.collections?.[collectionSlug]?.config,
       cookies,
       docID,
-      globalConfig: payload.config.globals.find((global) => global.slug === collectionSlug),
+      globalConfig: cms.config.globals.find((global) => global.slug === collectionSlug),
       languageOptions: undefined, // TODO
       locale,
       permissions,
@@ -110,7 +110,7 @@ export const renderDocumentHandler: RenderDocumentServerFunction = async (args) 
     params: paramsOverride ?? {
       segments: ['collections', collectionSlug, String(docID)],
     },
-    payload,
+    cms,
     permissions,
     redirectAfterCreate,
     redirectAfterDelete,

@@ -1,4 +1,4 @@
-import { FlattenedField, PayloadRequest } from '@hanzo/cms'
+import { FlattenedField, CMSRequest } from '@hanzo/cms'
 
 import type { ExportFieldHookEntry, ImportFieldHookEntry } from '../types.js'
 
@@ -7,12 +7,12 @@ import { describe, expect, it, vi } from 'vitest'
 import { applyFieldHooks } from './applyFieldHooks.js'
 
 const mockReq = {
-  payload: {
+  cms: {
     logger: {
       error: vi.fn(),
     },
   },
-} as unknown as PayloadRequest
+} as unknown as CMSRequest
 
 describe('applyFieldHooks parent + child traversal', () => {
   it('should run a parent group hook and still run child field hooks against the transformed value (export)', () => {

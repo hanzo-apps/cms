@@ -1,6 +1,6 @@
 import type { Collection } from '@hanzo/cms'
 
-import { generatePayloadCookie, isolateObjectProperty, resetPasswordOperation } from '@hanzo/cms'
+import { generateCMSCookie, isolateObjectProperty, resetPasswordOperation } from '@hanzo/cms'
 
 import type { Context } from '../types.js'
 
@@ -22,9 +22,9 @@ export function resetPassword(collection: Collection): any {
     }
 
     const result = await resetPasswordOperation(options)
-    const cookie = generatePayloadCookie({
+    const cookie = generateCMSCookie({
       collectionAuthConfig: collection.config.auth,
-      cookiePrefix: context.req.payload.config.cookiePrefix,
+      cookiePrefix: context.req.cms.config.cookiePrefix,
       token: result.token,
     })
     context.headers['Set-Cookie'] = cookie

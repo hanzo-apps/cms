@@ -3,7 +3,7 @@ import type { SanitizedCollectionConfig, TypeWithID } from '../../collections/co
 import type { AccessResult } from '../../config/types.js'
 import type { FindGlobalVersionsArgs, FindVersionsArgs } from '../../database/types.js'
 import type { SanitizedGlobalConfig } from '../../globals/config/types.js'
-import type { PayloadRequest, SelectType, Where } from '../../types/index.js'
+import type { CMSRequest, SelectType, Where } from '../../types/index.js'
 
 import { hasWhereAccessResult } from '../../auth/index.js'
 import { combineQueries } from '../../database/combineQueries.js'
@@ -19,7 +19,7 @@ type Arguments<T> = {
   entity: SanitizedCollectionConfig | SanitizedGlobalConfig
   entityType: 'collection' | 'global'
   overrideAccess: boolean
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
 }
 
@@ -31,7 +31,7 @@ export const replaceWithDraftIfAvailable = async <T extends TypeWithID>({
   req,
   select,
 }: Arguments<T>): Promise<T> => {
-  const { locale, payload } = req
+  const { locale, cms } = req
 
   let queryToBuild: Where = {
     and: [
@@ -49,7 +49,7 @@ export const replaceWithDraftIfAvailable = async <T extends TypeWithID>({
         and: [
           {
             or: (
-              (payload.config.localization && payload.config.localization.localeCodes) ||
+              (cms.config.localization && cms.config.localization.localeCodes) ||
               []
             ).map((localeCode) => ({
               [`version._status.${localeCode}`]: {
@@ -117,9 +117,9 @@ export const replaceWithDraftIfAvailable = async <T extends TypeWithID>({
 
   let versionDocs
   if (entityType === 'global') {
-    versionDocs = (await req.payload.db.findGlobalVersions<T>(findVersionsArgs)).docs
+    versionDocs = (await req.cms.db.findGlobalVersions<T>(findVersionsArgs)).docs
   } else {
-    versionDocs = (await req.payload.db.findVersions<T>(findVersionsArgs)).docs
+    versionDocs = (await req.cms.db.findVersions<T>(findVersionsArgs)).docs
   }
 
   let draft = versionDocs[0]

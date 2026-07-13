@@ -6,17 +6,17 @@ import { getMigrations } from './getMigrations.js'
 import { readMigrationFiles } from './readMigrationFiles.js'
 
 export async function migrateStatus(this: BaseDatabaseAdapter): Promise<void> {
-  const { payload } = this
-  const migrationFiles = await readMigrationFiles({ payload })
+  const { cms } = this
+  const migrationFiles = await readMigrationFiles({ cms })
 
-  payload.logger.debug({
+  cms.logger.debug({
     msg: `Found ${migrationFiles.length} migration files.`,
   })
 
-  const { existingMigrations } = await getMigrations({ payload })
+  const { existingMigrations } = await getMigrations({ cms })
 
   if (!migrationFiles.length) {
-    payload.logger.info({ msg: 'No migrations found.' })
+    cms.logger.info({ msg: 'No migrations found.' })
     return
   }
 

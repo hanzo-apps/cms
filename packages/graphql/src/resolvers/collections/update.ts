@@ -1,4 +1,4 @@
-import type { Collection, CollectionSlug, DataFromCollectionSlug, PayloadRequest } from '@hanzo/cms'
+import type { Collection, CollectionSlug, DataFromCollectionSlug, CMSRequest } from '@hanzo/cms'
 
 import { isolateObjectProperty, updateByIDOperation } from '@hanzo/cms'
 
@@ -16,7 +16,7 @@ export type Resolver<TSlug extends CollectionSlug> = (
     trash?: boolean
   },
   context: {
-    req: PayloadRequest
+    req: CMSRequest
   },
 ) => Promise<DataFromCollectionSlug<TSlug>>
 

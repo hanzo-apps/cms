@@ -401,7 +401,7 @@ export const enTranslations = {
     password: 'Password',
     pasteField: 'Paste Field',
     pasteRow: 'Paste Row',
-    payloadSettings: 'Payload Settings',
+    cmsSettings: 'CMS Settings',
     permanentlyDelete: 'Permanently Delete',
     permanentlyDeletedCountSuccessfully: 'Permanently deleted {{count}} {{label}} successfully.',
     perPage: 'Per Page: {{limit}}',

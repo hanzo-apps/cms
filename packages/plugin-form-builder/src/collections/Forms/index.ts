@@ -20,7 +20,7 @@ const applyUploadCollectionLabels = (args: {
     if ('name' in field && field.name === 'uploadCollection' && field.type === 'select') {
       // Replace the default slug labels with the source collection's labels.singular.
       // Select option labels accept strings, locale records and label functions —
-      // Payload's admin resolves them at render time via getTranslation.
+      // CMS's admin resolves them at render time via getTranslation.
       field.options = (uploadCollections || []).map((slug) => {
         const singular = collectionsBySlug.get(slug)?.labels?.singular
         return { label: singular ?? slug, value: slug }

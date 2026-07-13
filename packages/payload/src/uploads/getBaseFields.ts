@@ -49,7 +49,7 @@ export const getBaseUploadFields = ({ collection, config }: Options): Field[] =>
                 ? (originalDoc.sizes?.[adminThumbnail]?.filename as string)
                 : undefined,
             relative: false,
-            serverURL: req.payload.config.serverURL,
+            serverURL: req.cms.config.serverURL,
             urlOrPath:
               typeof adminThumbnail === 'string'
                 ? (originalDoc.sizes?.[adminThumbnail]?.url as string)
@@ -132,7 +132,7 @@ export const getBaseUploadFields = ({ collection, config }: Options): Field[] =>
               config,
               filename: data?.filename || originalDoc?.filename,
               relative: false,
-              serverURL: req.payload.config.serverURL,
+              serverURL: req.cms.config.serverURL,
               urlOrPath: value,
             }),
         ],
@@ -143,7 +143,7 @@ export const getBaseUploadFields = ({ collection, config }: Options): Field[] =>
               config,
               filename: data?.filename || originalDoc?.filename,
               relative: true,
-              serverURL: req.payload.config.serverURL,
+              serverURL: req.cms.config.serverURL,
               urlOrPath: value,
             }),
         ],
@@ -183,7 +183,7 @@ export const getBaseUploadFields = ({ collection, config }: Options): Field[] =>
     mimeType.validate = mimeTypeValidator(uploadOptions.mimeTypes)
   }
 
-  // In Payload v4, image size subfields (`url`, `width`, `height`, etc.) should
+  // In CMS v4, image size subfields (`url`, `width`, `height`, etc.) should
   // default to `disableGroupBy: true`, `disableListColumn: true` and `disableListFilter: true`
   // to avoid cluttering the collection list view and filters by default.
   if (uploadOptions.imageSizes) {
@@ -222,7 +222,7 @@ export const getBaseUploadFields = ({ collection, config }: Options): Field[] =>
                         data?.sizes?.[size.name]?.filename ||
                         originalDoc?.sizes?.[size.name]?.filename,
                       relative: false,
-                      serverURL: req.payload.config.serverURL,
+                      serverURL: req.cms.config.serverURL,
                       urlOrPath: value,
                     }),
                 ],
@@ -235,7 +235,7 @@ export const getBaseUploadFields = ({ collection, config }: Options): Field[] =>
                         data?.sizes?.[size.name]?.filename ||
                         originalDoc?.sizes?.[size.name]?.filename,
                       relative: true,
-                      serverURL: req.payload.config.serverURL,
+                      serverURL: req.cms.config.serverURL,
                       urlOrPath: value,
                     }),
                 ],

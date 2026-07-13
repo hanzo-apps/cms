@@ -28,7 +28,7 @@ const preferenceAccess: Access = ({ req }) => {
   }
 }
 
-export const preferencesCollectionSlug = 'payload-preferences'
+export const preferencesCollectionSlug = 'cms-preferences'
 
 export const getPreferencesCollection = (config: Config): CollectionConfig => ({
   slug: preferencesCollectionSlug,

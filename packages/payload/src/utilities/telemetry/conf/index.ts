@@ -51,7 +51,7 @@ export class Conf<T extends Record<string, any> = Record<string, unknown>>
       projectSuffix: 'nodejs',
     }
 
-    const cwd = envPaths('payload', { suffix: options.projectSuffix }).config
+    const cwd = envPaths('cms', { suffix: options.projectSuffix }).config
 
     this.#options = options
 

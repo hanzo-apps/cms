@@ -1,6 +1,6 @@
 @import '~@hanzo/cms-ui/scss';
 
-@layer payload-default {
+@layer cms-default {
   .add-block-menu {
     all: unset; // reset all default button styles
     border-radius: $style-radius-m;

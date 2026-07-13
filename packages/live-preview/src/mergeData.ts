@@ -13,7 +13,7 @@ const defaultRequestHandler: CollectionPopulationRequestHandler = ({
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
-      'X-Payload-HTTP-Method-Override': 'GET',
+      'X-CMS-HTTP-Method-Override': 'GET',
     },
     method: 'POST',
   })

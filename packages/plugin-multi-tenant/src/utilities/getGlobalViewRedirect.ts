@@ -1,4 +1,4 @@
-import type { Payload, TypedUser, ViewTypes } from '@hanzo/cms'
+import type { CMS, TypedUser, ViewTypes } from '@hanzo/cms'
 
 import { unauthorized } from 'next/navigation.js'
 import { formatAdminURL, hasAutosaveEnabled } from '@hanzo/cms/shared'
@@ -18,7 +18,7 @@ type Args = {
   basePath?: string
   docID?: number | string
   headers: Headers
-  payload: Payload
+  cms: CMS
   slug: string
   tenantFieldName: string
   tenantsArrayFieldName: string
@@ -33,7 +33,7 @@ export async function getGlobalViewRedirect({
   slug: collectionSlug,
   docID,
   headers,
-  payload,
+  cms,
   tenantFieldName,
   tenantsArrayFieldName,
   tenantsArrayTenantFieldName,
@@ -45,7 +45,7 @@ export async function getGlobalViewRedirect({
 }: Args): Promise<string | void> {
   const idType = getCollectionIDType({
     collectionSlug: tenantsCollectionSlug,
-    payload,
+    cms,
   })
   let tenant = getTenantFromCookie(headers, idType)
   let redirectRoute: `/${string}` | void = undefined
@@ -56,7 +56,7 @@ export async function getGlobalViewRedirect({
 
   if (!tenant) {
     const tenantOptions = await getTenantOptions({
-      payload,
+      cms,
       tenantsArrayFieldName,
       tenantsArrayTenantFieldName,
       tenantsCollectionSlug,
@@ -70,7 +70,7 @@ export async function getGlobalViewRedirect({
 
   if (tenant) {
     try {
-      const globalTenantDocQuery = await payload.find({
+      const globalTenantDocQuery = await cms.find({
         collection: collectionSlug,
         depth: 0,
         limit: 1,
@@ -98,7 +98,7 @@ export async function getGlobalViewRedirect({
           // so we need to generate a redirect to the create route
           redirectRoute = await generateCreateRedirect({
             collectionSlug,
-            payload,
+            cms,
             tenantID: tenant,
           })
         }
@@ -112,29 +112,29 @@ export async function getGlobalViewRedirect({
           // so we need to generate a redirect to the create route
           redirectRoute = await generateCreateRedirect({
             collectionSlug,
-            payload,
+            cms,
             tenantID: tenant,
           })
         }
       }
     } catch (e: unknown) {
       const prefix = `${e && typeof e === 'object' && 'message' in e && typeof e.message === 'string' ? `${e.message} - ` : ''}`
-      payload.logger.error(e, `${prefix}Multi Tenant Redirect Error`)
+      cms.logger.error(e, `${prefix}Multi Tenant Redirect Error`)
     }
   } else {
     // no tenants were found, redirect to the admin view
     return formatAdminURL({
-      adminRoute: payload.config.routes.admin,
+      adminRoute: cms.config.routes.admin,
       path: '',
-      serverURL: payload.config.serverURL,
+      serverURL: cms.config.serverURL,
     })
   }
 
   if (redirectRoute) {
     return formatAdminURL({
-      adminRoute: payload.config.routes.admin,
+      adminRoute: cms.config.routes.admin,
       path: redirectRoute,
-      serverURL: payload.config.serverURL,
+      serverURL: cms.config.serverURL,
     })
   }
 
@@ -145,7 +145,7 @@ export async function getGlobalViewRedirect({
 
 type GenerateCreateArgs = {
   collectionSlug: string
-  payload: Payload
+  cms: CMS
   tenantID: number | string
 }
 /**
@@ -156,14 +156,14 @@ type GenerateCreateArgs = {
  */
 async function generateCreateRedirect({
   collectionSlug,
-  payload,
+  cms,
   tenantID,
 }: GenerateCreateArgs): Promise<`/${string}` | undefined> {
-  const collectionConfig = payload.collections[collectionSlug]?.config
+  const collectionConfig = cms.collections[collectionSlug]?.config
   if (hasAutosaveEnabled(collectionConfig!)) {
     // Autosave is enabled, create a document first
     try {
-      const doc = await payload.create({
+      const doc = await cms.create({
         collection: collectionSlug,
         data: {
           tenant: tenantID,
@@ -176,7 +176,7 @@ async function generateCreateRedirect({
       })
       return `/collections/${collectionSlug}/${doc.id}`
     } catch (error) {
-      payload.logger.error(
+      cms.logger.error(
         error,
         `Error creating autosave global multi tenant document for ${collectionSlug}`,
       )

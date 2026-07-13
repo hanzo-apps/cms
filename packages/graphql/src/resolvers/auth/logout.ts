@@ -1,6 +1,6 @@
 import type { Collection } from '@hanzo/cms'
 
-import { generateExpiredPayloadCookie, isolateObjectProperty, logoutOperation } from '@hanzo/cms'
+import { generateExpiredCMSCookie, isolateObjectProperty, logoutOperation } from '@hanzo/cms'
 
 import type { Context } from '../types.js'
 
@@ -13,10 +13,10 @@ export function logout(collection: Collection): any {
     }
 
     const result = await logoutOperation(options)
-    const expiredCookie = generateExpiredPayloadCookie({
+    const expiredCookie = generateExpiredCMSCookie({
       collectionAuthConfig: collection.config.auth,
-      config: context.req.payload.config,
-      cookiePrefix: context.req.payload.config.cookiePrefix,
+      config: context.req.cms.config,
+      cookiePrefix: context.req.cms.config.cookiePrefix,
     })
     context.headers['Set-Cookie'] = expiredCookie
     return result

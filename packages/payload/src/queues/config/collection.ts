@@ -7,7 +7,7 @@ import { handleSchedulesJobsEndpoint } from '../endpoints/handleSchedules.js'
 import { runJobsEndpoint } from '../endpoints/run.js'
 import { getJobTaskStatus } from '../utilities/getJobTaskStatus.js'
 
-export const jobsCollectionSlug = 'payload-jobs'
+export const jobsCollectionSlug = 'cms-jobs'
 
 export const getDefaultJobsCollection: (jobsConfig: SanitizedConfig['jobs']) => CollectionConfig = (
   jobsConfig,
@@ -23,7 +23,7 @@ export const getDefaultJobsCollection: (jobsConfig: SanitizedConfig['jobs']) => 
       if (workflow.concurrency && !jobsConfig.enableConcurrencyControl) {
         throw new Error(
           `Workflow "${workflow.slug}" uses concurrency controls but "jobs.enableConcurrencyControl" is not enabled. ` +
-            `Set "jobs.enableConcurrencyControl: true" in your Payload config to use concurrency controls. ` +
+            `Set "jobs.enableConcurrencyControl: true" in your CMS config to use concurrency controls. ` +
             `Note: This adds a new indexed field to the jobs collection schema and may require a database migration.`,
         )
       }
@@ -42,7 +42,7 @@ export const getDefaultJobsCollection: (jobsConfig: SanitizedConfig['jobs']) => 
       if (task.concurrency && !jobsConfig.enableConcurrencyControl) {
         throw new Error(
           `Task "${task.slug}" uses concurrency controls but "jobs.enableConcurrencyControl" is not enabled. ` +
-            `Set "jobs.enableConcurrencyControl: true" in your Payload config to use concurrency controls. ` +
+            `Set "jobs.enableConcurrencyControl: true" in your CMS config to use concurrency controls. ` +
             `Note: This adds a new indexed field to the jobs collection schema and may require a database migration.`,
         )
       }
@@ -256,7 +256,7 @@ export const getDefaultJobsCollection: (jobsConfig: SanitizedConfig['jobs']) => 
         ({ doc, req }) => {
           // This hook is used to add the virtual `tasks` field to the document, that is computed from the `log` field
 
-          return jobAfterRead({ config: req.payload.config, doc })
+          return jobAfterRead({ config: req.cms.config, doc })
         },
       ],
       /**

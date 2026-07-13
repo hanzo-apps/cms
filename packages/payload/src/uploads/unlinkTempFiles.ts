@@ -2,14 +2,14 @@ import fs from 'fs/promises'
 
 import type { SanitizedCollectionConfig } from '../collections/config/types.js'
 import type { SanitizedConfig } from '../config/types.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 
 import { mapAsync } from '../utilities/mapAsync.js'
 
 type Args = {
   collectionConfig: SanitizedCollectionConfig
   config: SanitizedConfig
-  req: PayloadRequest
+  req: CMSRequest
 }
 /**
  * Cleanup temp files after operation lifecycle

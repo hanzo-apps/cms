@@ -74,7 +74,7 @@ export const getImportCollection = ({
       return doc
     }
 
-    const targetCollection = req.payload.collections[doc.collectionSlug]
+    const targetCollection = req.cms.collections[doc.collectionSlug]
     const targetPluginConfig = targetCollection?.config.custom?.['plugin-import-export']
 
     const disableJobsQueue =
@@ -83,7 +83,7 @@ export const getImportCollection = ({
     const debug = pluginConfig.debug || false
 
     if (debug) {
-      req.payload.logger.info({
+      req.cms.logger.info({
         collectionSlug: doc.collectionSlug,
         disableJobsQueue,
         docId: doc.id,
@@ -190,7 +190,7 @@ export const getImportCollection = ({
 
       // Try to update the document with results
       try {
-        await req.payload.update({
+        await req.cms.update({
           id: doc.id,
           collection: collectionConfig.slug,
           data: {
@@ -203,7 +203,7 @@ export const getImportCollection = ({
       } catch (updateErr) {
         // Update may fail if document not yet committed
         if (debug) {
-          req.payload.logger.error({
+          req.cms.logger.error({
             err: updateErr,
             msg: `Failed to update import document ${doc.id} with results`,
           })
@@ -232,7 +232,7 @@ export const getImportCollection = ({
       }
 
       if (debug) {
-        req.payload.logger.error({
+        req.cms.logger.error({
           docId: doc.id,
           err,
           msg: '[Import Sync Hook] Import processing failed, attempting to update status',
@@ -243,13 +243,13 @@ export const getImportCollection = ({
       // Try to update document with error status
       try {
         if (debug) {
-          req.payload.logger.info({
+          req.cms.logger.info({
             collectionSlug: collectionConfig.slug,
             docId: doc.id,
             msg: '[Import Sync Hook] About to update document with failed status',
           })
         }
-        await req.payload.update({
+        await req.cms.update({
           id: doc.id,
           collection: collectionConfig.slug,
           data: {
@@ -260,7 +260,7 @@ export const getImportCollection = ({
           req,
         })
         if (debug) {
-          req.payload.logger.info({
+          req.cms.logger.info({
             docId: doc.id,
             msg: '[Import Sync Hook] Successfully updated document with failed status',
           })
@@ -268,7 +268,7 @@ export const getImportCollection = ({
       } catch (updateErr) {
         // Update may fail if document not yet committed, log but continue
         // ALWAYS log this error to help debug Postgres issues
-        req.payload.logger.error({
+        req.cms.logger.error({
           err: updateErr,
           msg: `[Import Sync Hook] Failed to update import document ${doc.id} with error status`,
           transactionID: req.transactionID,
@@ -276,7 +276,7 @@ export const getImportCollection = ({
       }
 
       if (debug) {
-        req.payload.logger.info({
+        req.cms.logger.info({
           docId: doc.id,
           msg: '[Import Sync Hook] Returning failed doc',
           status: 'failed',
@@ -297,14 +297,14 @@ export const getImportCollection = ({
       return
     }
 
-    const targetCollection = req.payload.collections[doc.collectionSlug]
+    const targetCollection = req.cms.collections[doc.collectionSlug]
     const targetPluginConfig = targetCollection?.config.custom?.['plugin-import-export']
 
     const disableJobsQueue =
       targetPluginConfig?.importDisableJobsQueue ?? importConfig?.disableJobsQueue ?? false
 
     if (pluginConfig.debug) {
-      req.payload.logger.info({
+      req.cms.logger.info({
         collectionSlug: doc.collectionSlug,
         disableJobsQueue,
         docId: doc.id,
@@ -316,7 +316,7 @@ export const getImportCollection = ({
 
     if (disableJobsQueue) {
       if (pluginConfig.debug) {
-        req.payload.logger.info({
+        req.cms.logger.info({
           docId: doc.id,
           msg: '[Import Job Hook] Skipping job queue (sync mode)',
         })
@@ -352,12 +352,12 @@ export const getImportCollection = ({
         userID: req?.user?.id || req?.user?.user?.id,
       }
 
-      await req.payload.jobs.queue({
+      await req.cms.jobs.queue({
         input,
         task: 'createCollectionImport',
       })
     } catch (err) {
-      req.payload.logger.error({
+      req.cms.logger.error({
         err,
         msg: `Failed to queue import job for document ${doc.id}`,
       })

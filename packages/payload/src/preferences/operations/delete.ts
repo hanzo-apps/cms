@@ -8,7 +8,7 @@ import { preferencesCollectionSlug } from '../config.js'
 export async function deleteOperation(args: PreferenceRequest): Promise<Document> {
   const {
     key,
-    req: { payload },
+    req: { cms },
     req,
     user,
   } = args
@@ -25,7 +25,7 @@ export async function deleteOperation(args: PreferenceRequest): Promise<Document
     ],
   }
 
-  const result = await payload.db.deleteOne({
+  const result = await cms.db.deleteOne({
     collection: preferencesCollectionSlug,
     req,
     where,

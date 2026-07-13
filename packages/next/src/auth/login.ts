@@ -2,9 +2,9 @@
 
 import type { AuthCollectionSlug, LoginResult, MaybePromise, SanitizedConfig } from '@hanzo/cms'
 
-import { getPayload } from '@hanzo/cms'
+import { getCMS } from '@hanzo/cms'
 
-import { setPayloadAuthCookie } from '../utilities/setPayloadAuthCookie.js'
+import { setCMSAuthCookie } from '../utilities/setPayloadAuthCookie.js'
 
 type LoginWithEmail<TSlug extends AuthCollectionSlug> = {
   collection: TSlug
@@ -30,9 +30,9 @@ export async function login<TSlug extends AuthCollectionSlug>({
   password,
   username,
 }: LoginArgs<TSlug>): Promise<LoginResult<TSlug>> {
-  const payload = await getPayload({ config, cron: true })
+  const cms = await getCMS({ config, cron: true })
 
-  const authConfig = payload.collections[collection]?.config.auth
+  const authConfig = cms.collections[collection]?.config.auth
 
   if (!authConfig) {
     throw new Error(`No auth config found for collection: ${collection}`)
@@ -64,15 +64,15 @@ export async function login<TSlug extends AuthCollectionSlug>({
     loginData = { email, password }
   }
 
-  const result = await payload.login({
+  const result = await cms.login({
     collection,
     data: loginData,
   })
 
   if (result.token) {
-    await setPayloadAuthCookie({
+    await setCMSAuthCookie({
       authConfig,
-      cookiePrefix: payload.config.cookiePrefix,
+      cookiePrefix: cms.config.cookiePrefix,
       token: result.token,
     })
   }

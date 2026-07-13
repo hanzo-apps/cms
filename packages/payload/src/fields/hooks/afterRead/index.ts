@@ -1,7 +1,7 @@
 import type { SanitizedCollectionConfig } from '../../../collections/config/types.js'
 import type { SanitizedGlobalConfig } from '../../../globals/config/types.js'
 import type { RequestContext, TypedFallbackLocale } from '../../../index.js'
-import type { JsonObject, PayloadRequest, PopulateType, SelectType } from '../../../types/index.js'
+import type { JsonObject, CMSRequest, PopulateType, SelectType } from '../../../types/index.js'
 
 import { getSelectMode } from '../../../utilities/getSelectMode.js'
 import { traverseFields } from './traverseFields.js'
@@ -26,7 +26,7 @@ export type AfterReadArgs<T extends JsonObject> = {
   locale: string
   overrideAccess: boolean
   populate?: PopulateType
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   showHiddenFields: boolean
 }
@@ -67,9 +67,9 @@ export async function afterRead<T extends JsonObject>(args: AfterReadArgs<T>): P
   let depth =
     incomingDepth || incomingDepth === 0
       ? parseInt(String(incomingDepth), 10)
-      : req.payload.config.defaultDepth
-  if (depth > req.payload.config.maxDepth) {
-    depth = req.payload.config.maxDepth
+      : req.cms.config.defaultDepth
+  if (depth > req.cms.config.maxDepth) {
+    depth = req.cms.config.maxDepth
   }
 
   const currentDepth = incomingCurrentDepth || 1

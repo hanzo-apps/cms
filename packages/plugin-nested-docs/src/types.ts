@@ -1,4 +1,4 @@
-import type { CollectionSlug, PayloadRequest, SanitizedCollectionConfig } from '@hanzo/cms'
+import type { CollectionSlug, CMSRequest, SanitizedCollectionConfig } from '@hanzo/cms'
 
 export type Breadcrumb = {
   doc: string
@@ -10,14 +10,14 @@ export type GenerateURL = (
   docs: Array<Record<string, unknown>>,
   currentDoc: Record<string, unknown>,
   collection: SanitizedCollectionConfig,
-  req: PayloadRequest,
+  req: CMSRequest,
 ) => string
 
 export type GenerateLabel = (
   docs: Array<Record<string, unknown>>,
   currentDoc: Record<string, unknown>,
   collection: SanitizedCollectionConfig,
-  req: PayloadRequest,
+  req: CMSRequest,
 ) => string
 
 export type NestedDocsPluginConfig = {

@@ -23,7 +23,7 @@ export type Props = {
   readonly value: Value
 }
 
-import type { Operator, Option as PayloadOption, ResolvedFilterOptions } from '@hanzo/cms'
+import type { Operator, Option as CMSOption, ResolvedFilterOptions } from '@hanzo/cms'
 
 import type { Option } from '../../ReactSelect/index.js'
 
@@ -63,7 +63,7 @@ export const Condition: React.FC<Props> = (props) => {
 
   const booleanSelect = ['exists'].includes(operator) || reducedField?.field?.type === 'checkbox'
 
-  let valueOptions: PayloadOption[] = []
+  let valueOptions: CMSOption[] = []
 
   if (booleanSelect) {
     valueOptions = [

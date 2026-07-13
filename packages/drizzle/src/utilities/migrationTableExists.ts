@@ -10,7 +10,7 @@ export const migrationTableExists = async (
 
   if (adapter.name === 'postgres') {
     const prependSchema = adapter.schemaName ? `"${adapter.schemaName}".` : ''
-    statement = `SELECT to_regclass('${prependSchema}"payload_migrations"') AS exists;`
+    statement = `SELECT to_regclass('${prependSchema}"cms_migrations"') AS exists;`
   }
 
   if (adapter.name === 'sqlite') {
@@ -21,7 +21,7 @@ export const migrationTableExists = async (
                END AS 'exists'
       FROM sqlite_master
       WHERE type = 'table'
-        AND name = 'payload_migrations';`
+        AND name = 'cms_migrations';`
   }
 
   const result = await adapter.execute({

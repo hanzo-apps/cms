@@ -2,7 +2,7 @@ import type { ParsedArgs } from 'minimist'
 
 import type { SanitizedConfig } from '../config/types.js'
 
-import payload from '../index.js'
+import cms from '../index.js'
 import { prettySyncLoggerDestination } from '../utilities/logger.js'
 
 /**
@@ -60,21 +60,21 @@ export const migrate = async ({ config, migrationDir, parsedArgs }: Args): Promi
 
   if (help) {
     // eslint-disable-next-line no-console
-    console.log(`\n\n${availableCommandsMsg}\n`) // Avoid having to init payload to get the logger
+    console.log(`\n\n${availableCommandsMsg}\n`) // Avoid having to init cms to get the logger
     process.exit(0)
   }
 
-  process.env.PAYLOAD_MIGRATING = 'true'
+  process.env.CMS_MIGRATING = 'true'
 
   // Barebones instance to access database adapter
-  await payload.init({
+  await cms.init({
     config,
     disableDBConnect: args[0] === 'migrate:create',
     disableOnInit: true,
     ...prettySyncLogger,
   })
 
-  const adapter = payload.db
+  const adapter = cms.db
 
   if (!adapter) {
     throw new Error('No database adapter found')
@@ -86,7 +86,7 @@ export const migrate = async ({ config, migrationDir, parsedArgs }: Args): Promi
   }
 
   if (!args.length) {
-    payload.logger.error({
+    cms.logger.error({
       msg: `No migration command provided. ${availableCommandsMsg}`,
     })
     process.exit(1)
@@ -102,7 +102,7 @@ export const migrate = async ({ config, migrationDir, parsedArgs }: Args): Promi
           file,
           forceAcceptWarning,
           migrationName: args[1],
-          payload,
+          cms,
           skipEmpty,
         })
       } catch (err) {
@@ -127,11 +127,11 @@ export const migrate = async ({ config, migrationDir, parsedArgs }: Args): Promi
       break
 
     default:
-      payload.logger.error({
+      cms.logger.error({
         msg: `Unknown migration command: ${args[0]}. ${availableCommandsMsg}`,
       })
       process.exit(1)
   }
 
-  payload.logger.info('Done.')
+  cms.logger.info('Done.')
 }

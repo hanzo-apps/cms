@@ -1,7 +1,7 @@
 import type {
   AdminViewConfig,
   AdminViewServerProps,
-  PayloadComponent,
+  CMSComponent,
   SanitizedCollectionConfig,
 } from '@hanzo/cms'
 
@@ -66,7 +66,7 @@ export const getCustomCollectionViewByRoute = ({
       const adminView = foundViewConfig as AdminViewConfig
       return {
         view: {
-          payloadComponent: adminView.Component as PayloadComponent<AdminViewServerProps>,
+          cmsComponent: adminView.Component as CMSComponent<AdminViewServerProps>,
         },
         viewKey,
       }

@@ -1,7 +1,7 @@
 import type { SanitizedCollectionConfig } from '../../../collections/config/types.js'
 import type { SanitizedGlobalConfig } from '../../../globals/config/types.js'
 import type { RequestContext } from '../../../index.js'
-import type { JsonObject, PayloadRequest } from '../../../types/index.js'
+import type { JsonObject, CMSRequest } from '../../../types/index.js'
 
 import { traverseFields } from './traverseFields.js'
 
@@ -19,7 +19,7 @@ type Args<T extends JsonObject> = {
   global: null | SanitizedGlobalConfig
   operation: 'create' | 'update'
   previousDoc: T
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 /**

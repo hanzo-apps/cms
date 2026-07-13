@@ -59,7 +59,7 @@ export const getCustomViewByRoute = ({
 
   return {
     view: {
-      payloadComponent: foundViewConfig.Component,
+      cmsComponent: foundViewConfig.Component,
     },
     viewConfig: foundViewConfig,
     viewKey,

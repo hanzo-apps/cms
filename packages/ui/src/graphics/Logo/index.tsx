@@ -17,7 +17,7 @@ const css = `
   .graphic-logo .cms-logo-mark--muted { fill: var(--theme-elevation-400); }
 `
 
-export const PayloadLogo: React.FC = () => (
+export const CMSLogo: React.FC = () => (
   <svg
     className="graphic-logo"
     fill="none"

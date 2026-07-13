@@ -1,9 +1,9 @@
 import { describe, beforeEach, expect, it, vitest } from 'vitest'
-import type { PayloadComponent } from '../../index.js'
-import { addPayloadComponentToImportMap } from './utilities/addPayloadComponentToImportMap.js'
+import type { CMSComponent } from '../../index.js'
+import { addCMSComponentToImportMap } from './utilities/addPayloadComponentToImportMap.js'
 import { getImportMapToBaseDirPath } from './utilities/getImportMapToBaseDirPath.js'
 
-describe('addPayloadComponentToImportMap', () => {
+describe('addCMSComponentToImportMap', () => {
   let importMap: Record<string, string>
   let imports: Record<
     string,
@@ -22,14 +22,14 @@ describe('addPayloadComponentToImportMap', () => {
   function componentPathTest({
     baseDir,
     importMapFilePath,
-    payloadComponent,
+    cmsComponent,
     expectedPath,
     expectedSpecifier,
     expectedImportMapToBaseDirPath,
   }: {
     baseDir: string
     importMapFilePath: string
-    payloadComponent: PayloadComponent
+    cmsComponent: CMSComponent
     expectedPath: string
     expectedImportMapToBaseDirPath: string
     expectedSpecifier: string
@@ -42,11 +42,11 @@ describe('addPayloadComponentToImportMap', () => {
     expect(importMapToBaseDirPath).toBe(expectedImportMapToBaseDirPath)
 
     const { path, specifier } =
-      addPayloadComponentToImportMap({
+      addCMSComponentToImportMap({
         importMapToBaseDirPath,
         importMap,
         imports,
-        payloadComponent,
+        cmsComponent,
       }) ?? {}
 
     expect(path).toBe(expectedPath)
@@ -57,7 +57,7 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/myPackage/test/myTest',
       importMapFilePath: '/myPackage/app/(payload)/importMap.js',
-      payloadComponent: './MyComponent.js#MyExport',
+      cmsComponent: './MyComponent.js#MyExport',
       expectedImportMapToBaseDirPath: '../../test/myTest/',
       expectedPath: '../../test/myTest/MyComponent.js',
       expectedSpecifier: 'MyExport',
@@ -68,7 +68,7 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/myPackage/test/myTest',
       importMapFilePath: '/myPackage/test/prod/app/(payload)/importMap.js',
-      payloadComponent: {
+      cmsComponent: {
         path: './MyComponent.js#MyExport',
       },
       expectedImportMapToBaseDirPath: '../../../myTest/',
@@ -81,7 +81,7 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/myPackage/test/myTest',
       importMapFilePath: '/myPackage/test/prod/app/(payload)/importMap.js',
-      payloadComponent: {
+      cmsComponent: {
         path: '../otherTest/MyComponent.js',
         exportName: 'MyExport',
       },
@@ -95,7 +95,7 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/myPackage/test/myTest',
       importMapFilePath: '/myPackage/test/myTest/prod/app/(payload)/importMap.js',
-      payloadComponent: './MyComponent.js#MyExport',
+      cmsComponent: './MyComponent.js#MyExport',
       expectedImportMapToBaseDirPath: '../../../',
       expectedPath: '../../../MyComponent.js',
       expectedSpecifier: 'MyExport',
@@ -106,7 +106,7 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/test/myTest',
       importMapFilePath: '/app/(payload)/importMap.js',
-      payloadComponent: './MyComponent.js#MyExport',
+      cmsComponent: './MyComponent.js#MyExport',
       expectedImportMapToBaseDirPath: '../../test/myTest/',
       expectedPath: '../../test/myTest/MyComponent.js',
       expectedSpecifier: 'MyExport',
@@ -117,7 +117,7 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/test/myTest',
       importMapFilePath: '/app/(payload)/importMap.js',
-      payloadComponent: '../myOtherTest/MyComponent.js#MyExport',
+      cmsComponent: '../myOtherTest/MyComponent.js#MyExport',
       expectedImportMapToBaseDirPath: '../../test/myTest/',
       expectedPath: '../../test/myOtherTest/MyComponent.js',
       expectedSpecifier: 'MyExport',
@@ -128,7 +128,7 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/test/myTest/',
       importMapFilePath: '/app/(payload)/importMap.js',
-      payloadComponent: './MyComponent.js#MyExport',
+      cmsComponent: './MyComponent.js#MyExport',
       expectedImportMapToBaseDirPath: '../../test/myTest/',
       expectedPath: '../../test/myTest/MyComponent.js',
       expectedSpecifier: 'MyExport',
@@ -139,7 +139,7 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/test/myTest',
       importMapFilePath: '/app/(payload)/importMap.js',
-      payloadComponent: '/MyComponent.js#MyExport',
+      cmsComponent: '/MyComponent.js#MyExport',
       expectedImportMapToBaseDirPath: '../../test/myTest/',
       expectedPath: '../../test/myTest/MyComponent.js',
       expectedSpecifier: 'MyExport',
@@ -150,17 +150,17 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/test/myTest',
       importMapFilePath: '/app/(payload)/importMap.js',
-      payloadComponent: '@components/MyComponent.js#MyExport',
+      cmsComponent: '@components/MyComponent.js#MyExport',
       expectedImportMapToBaseDirPath: '../../test/myTest/',
       expectedPath: '@components/MyComponent.js',
       expectedSpecifier: 'MyExport',
     })
   })
-  it('aliased path in PayloadComponent object', () => {
+  it('aliased path in CMSComponent object', () => {
     componentPathTest({
       baseDir: '/test/',
       importMapFilePath: '/app/(payload)/importMap.js',
-      payloadComponent: {
+      cmsComponent: {
         path: '@components/MyComponent.js',
       },
       expectedImportMapToBaseDirPath: '../../test/',
@@ -173,7 +173,7 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/test/myTest',
       importMapFilePath: '/test/myTest/app/importMap.js',
-      payloadComponent: '/../MyComponent.js#MyExport',
+      cmsComponent: '/../MyComponent.js#MyExport',
       expectedImportMapToBaseDirPath: '../',
       expectedPath: '../../MyComponent.js',
       expectedSpecifier: 'MyExport',
@@ -184,7 +184,7 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/test/myTest',
       importMapFilePath: '/test/myTest/app/importMap.js',
-      payloadComponent: './../MyComponent.js#MyExport',
+      cmsComponent: './../MyComponent.js#MyExport',
       expectedImportMapToBaseDirPath: '../',
       expectedPath: '../../MyComponent.js',
       expectedSpecifier: 'MyExport',
@@ -195,7 +195,7 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/test/myTest',
       importMapFilePath: '/test/myTest/importMap.js',
-      payloadComponent: './MyComponent.js#MyExport',
+      cmsComponent: './MyComponent.js#MyExport',
       expectedImportMapToBaseDirPath: './',
       expectedPath: './MyComponent.js',
       expectedSpecifier: 'MyExport',
@@ -206,7 +206,7 @@ describe('addPayloadComponentToImportMap', () => {
     componentPathTest({
       baseDir: '/test/myTest/components',
       importMapFilePath: '/test/myTest/importMap.js',
-      payloadComponent: './MyComponent.js#MyExport',
+      cmsComponent: './MyComponent.js#MyExport',
       expectedImportMapToBaseDirPath: './components/',
       expectedPath: './components/MyComponent.js',
       expectedSpecifier: 'MyExport',

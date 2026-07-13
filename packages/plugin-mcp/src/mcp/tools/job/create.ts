@@ -1,15 +1,15 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest } from '@hanzo/cms'
+import type { CMSRequest } from '@hanzo/cms'
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
 
 import { toCamelCase } from '../../../utils/camelCase.js'
-import { validatePayloadFile } from '../../helpers/fileValidation.js'
+import { validateCMSFile } from '../../helpers/fileValidation.js'
 import { toolSchemas } from '../schemas.js'
 
 const createOrUpdateJobFile = (
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   jobsDir: string,
   jobName: string,
@@ -17,18 +17,18 @@ const createOrUpdateJobFile = (
   jobSlug: string,
   camelCaseJobSlug: string,
 ) => {
-  const payload = req.payload
+  const cms = req.cms
   const jobFilePath = join(jobsDir, `${jobName}.ts`)
   const importName = `${camelCaseJobSlug}${jobType === 'task' ? 'Task' : 'Workflow'}`
   const importPath = `./${jobType === 'task' ? 'tasks' : 'workflows'}/${camelCaseJobSlug}`
 
   if (verboseLogs) {
-    payload.logger.info(`[payload-mcp] Processing job file: ${jobFilePath}`)
+    cms.logger.info(`[cms-mcp] Processing job file: ${jobFilePath}`)
   }
 
   if (existsSync(jobFilePath)) {
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Updating existing job file: ${jobFilePath}`)
+      cms.logger.info(`[cms-mcp] Updating existing job file: ${jobFilePath}`)
     }
 
     // Update existing job file
@@ -38,7 +38,7 @@ const createOrUpdateJobFile = (
     const importStatement = `import { ${importName} } from '${importPath}'`
     if (!content.includes(importStatement)) {
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Adding import: ${importStatement}`)
+        cms.logger.info(`[cms-mcp] Adding import: ${importStatement}`)
       }
 
       // Find the last import statement and add after it
@@ -70,7 +70,7 @@ const createOrUpdateJobFile = (
       content = content.replace(arrayRegex, `$1${newItem}\n  $3`)
 
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Added ${importName} to ${arrayName} array`)
+        cms.logger.info(`[cms-mcp] Added ${importName} to ${arrayName} array`)
       }
     } else {
       // Array doesn't exist, add it
@@ -85,18 +85,18 @@ const createOrUpdateJobFile = (
         content = content.replace(jobsConfigRegex, `$1${newConfig}\n$3`)
 
         if (verboseLogs) {
-          payload.logger.info(`[payload-mcp] Created new ${arrayName} array with ${importName}`)
+          cms.logger.info(`[cms-mcp] Created new ${arrayName} array with ${importName}`)
         }
       }
     }
 
     writeFileSync(jobFilePath, content)
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Successfully updated job file: ${jobFilePath}`)
+      cms.logger.info(`[cms-mcp] Successfully updated job file: ${jobFilePath}`)
     }
   } else {
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Creating new job file: ${jobFilePath}`)
+      cms.logger.info(`[cms-mcp] Creating new job file: ${jobFilePath}`)
     }
 
     // Create new job file
@@ -112,14 +112,14 @@ export const ${camelCaseJobName}JobsConfig: JobsConfig = {
 `
     writeFileSync(jobFilePath, jobFileContent)
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Successfully created new job file: ${jobFilePath}`)
+      cms.logger.info(`[cms-mcp] Successfully created new job file: ${jobFilePath}`)
     }
   }
 }
 
 // Reusable function for creating jobs
 export const createJob = async (
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   jobsDir: string,
   jobName: string,
@@ -130,17 +130,17 @@ export const createJob = async (
   outputSchema: any,
   jobData: Record<string, any>,
 ) => {
-  const payload = req.payload
+  const cms = req.cms
 
   if (verboseLogs) {
-    payload.logger.info(`[payload-mcp] Creating ${jobType}: ${jobName}`)
+    cms.logger.info(`[cms-mcp] Creating ${jobType}: ${jobName}`)
   }
 
   try {
     // Ensure jobs directory exists
     if (!existsSync(jobsDir)) {
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Creating jobs directory: ${jobsDir}`)
+        cms.logger.info(`[cms-mcp] Creating jobs directory: ${jobsDir}`)
       }
       mkdirSync(jobsDir, { recursive: true })
     }
@@ -162,12 +162,12 @@ export const createJob = async (
     const filePath = join(targetDir, fileName)
 
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Target file path: ${filePath}`)
+      cms.logger.info(`[cms-mcp] Target file path: ${filePath}`)
     }
 
     // Security check: ensure we're working with the jobs directory
     if (!filePath.startsWith(jobsDir)) {
-      payload.logger.error(`[payload-mcp] Invalid job path attempted: ${filePath}`)
+      cms.logger.error(`[cms-mcp] Invalid job path attempted: ${filePath}`)
       return {
         content: [
           {
@@ -181,7 +181,7 @@ export const createJob = async (
     // Check if file already exists
     if (existsSync(filePath)) {
       if (verboseLogs) {
-        payload.logger.info(`[payload-mcp] Job file already exists: ${fileName}`)
+        cms.logger.info(`[cms-mcp] Job file already exists: ${fileName}`)
       }
       return {
         content: [
@@ -218,14 +218,14 @@ export const createJob = async (
     // Write the job file
     writeFileSync(filePath, jobContent, 'utf8')
     if (verboseLogs) {
-      payload.logger.info(`[payload-mcp] Successfully created job file: ${filePath}`)
+      cms.logger.info(`[cms-mcp] Successfully created job file: ${filePath}`)
     }
 
     // Update the main job file
     createOrUpdateJobFile(req, verboseLogs, jobsDir, jobName, jobType, jobSlug, camelCaseJobSlug)
 
     // Validate the generated file
-    const validationResult = await validatePayloadFile(fileName, jobType)
+    const validationResult = await validateCMSFile(fileName, jobType)
     if (validationResult.error) {
       return {
         content: [
@@ -257,7 +257,7 @@ ${jobContent}
     }
   } catch (error) {
     const errorMessage = (error as Error).message
-    payload.logger.error(`[payload-mcp] Error creating job: ${errorMessage}`)
+    cms.logger.error(`[cms-mcp] Error creating job: ${errorMessage}`)
 
     return {
       content: [
@@ -291,7 +291,7 @@ export const ${camelCaseJobSlug}Task: Task = {
   handler: async (input, context) => {
     // TODO: Implement your task logic here
     // Access input data: input.fieldName
-    // Access context: context.payload, context.req, etc.
+    // Access context: context.cms, context.req, etc.
 
     // Example implementation:
     const result = {
@@ -342,7 +342,7 @@ export const ${camelCaseJobSlug}Workflow: Workflow = {
 
 export const createJobTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   verboseLogs: boolean,
   jobsDir: string,
 ) => {
@@ -356,8 +356,8 @@ export const createJobTool = (
     jobData: Record<string, any> = {},
   ) => {
     if (verboseLogs) {
-      req.payload.logger.info(
-        `[payload-mcp] Create Job Tool called with: ${jobName}, ${jobType}, ${jobSlug}`,
+      req.cms.logger.info(
+        `[cms-mcp] Create Job Tool called with: ${jobName}, ${jobType}, ${jobSlug}`,
       )
     }
 
@@ -376,13 +376,13 @@ export const createJobTool = (
       )
 
       if (verboseLogs) {
-        req.payload.logger.info(`[payload-mcp] Create Job Tool completed successfully`)
+        req.cms.logger.info(`[cms-mcp] Create Job Tool completed successfully`)
       }
 
       return result
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      req.payload.logger.error(`[payload-mcp] Error in Create Job Tool: ${errorMessage}`)
+      req.cms.logger.error(`[cms-mcp] Error in Create Job Tool: ${errorMessage}`)
 
       return {
         content: [
@@ -398,7 +398,7 @@ export const createJobTool = (
   server.registerTool(
     'createJob',
     {
-      description: 'Creates a new Payload job (task or workflow) with specified configuration',
+      description: 'Creates a new CMS job (task or workflow) with specified configuration',
       inputSchema: toolSchemas.createJob.parameters.shape,
     },
     async (args) => {

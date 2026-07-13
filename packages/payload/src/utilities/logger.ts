@@ -4,10 +4,10 @@ import { build, type PinoPretty, type PrettyOptions } from 'pino-pretty'
 import type { Config } from '../config/types.js'
 
 /**
- * Payload internal logger. Uses Pino.
- * This allows you to bring your own logger instance and let payload use it
+ * CMS internal logger. Uses Pino.
+ * This allows you to bring your own logger instance and let cms use it
  */
-export type PayloadLogger = Logger
+export type CMSLogger = Logger
 
 const prettyOptions: PrettyOptions = {
   colorize: true,
@@ -23,7 +23,7 @@ export const prettySyncLoggerDestination: PinoPretty.PrettyStream = build({
 
 export const defaultLoggerOptions: PinoPretty.PrettyStream = build(prettyOptions)
 
-export const getLogger = (name = 'payload', logger?: Config['logger']): PayloadLogger => {
+export const getLogger = (name = 'cms', logger?: Config['logger']): CMSLogger => {
   if (!logger) {
     return pino(defaultLoggerOptions)
   }

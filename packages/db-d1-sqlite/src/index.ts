@@ -1,5 +1,5 @@
 import type { DrizzleAdapter, Operators } from '@hanzo/cms-drizzle'
-import type { DatabaseAdapterObj, Payload } from '@hanzo/cms'
+import type { DatabaseAdapterObj, CMS } from '@hanzo/cms'
 
 import {
   beginTransaction,
@@ -64,10 +64,10 @@ const filename = fileURLToPath(import.meta.url)
 
 export function sqliteD1Adapter(args: Args): DatabaseAdapterObj<SQLiteD1Adapter> {
   const sqliteIDType = args.idType || 'number'
-  const payloadIDType = sqliteIDType === 'uuid' || sqliteIDType === 'uuidv7' ? 'text' : 'number'
+  const cmsIDType = sqliteIDType === 'uuid' || sqliteIDType === 'uuidv7' ? 'text' : 'number'
   const allowIDOnCreate = args.allowIDOnCreate ?? false
 
-  function adapter({ payload }: { payload: Payload }) {
+  function adapter({ cms }: { cms: CMS }) {
     const migrationDir = findMigrationDir(args.migrationDir)
     let resolveInitializing: () => void = () => {}
     let rejectInitializing: () => void = () => {}
@@ -168,7 +168,7 @@ export function sqliteD1Adapter(args: Args): DatabaseAdapterObj<SQLiteD1Adapter>
         sanitizeStatements,
       }),
       createVersion,
-      defaultIDType: payloadIDType,
+      defaultIDType: cmsIDType,
       deleteMany,
       deleteOne,
       deleteVersions,
@@ -191,7 +191,7 @@ export function sqliteD1Adapter(args: Args): DatabaseAdapterObj<SQLiteD1Adapter>
       migrateStatus,
       migrationDir,
       packageName: '@hanzo/cms-db-d1-sqlite',
-      payload,
+      cms,
       queryDrafts,
       rejectInitializing,
       requireDrizzleKit,
@@ -216,7 +216,7 @@ export function sqliteD1Adapter(args: Args): DatabaseAdapterObj<SQLiteD1Adapter>
   return {
     name: 'd1-sqlite',
     allowIDOnCreate,
-    defaultIDType: payloadIDType,
+    defaultIDType: cmsIDType,
     init: adapter,
   }
 }

@@ -406,7 +406,7 @@ export const roTranslations: DefaultTranslationsObject = {
     password: 'Parola',
     pasteField: 'Lipește câmpul',
     pasteRow: 'Lipește rândul',
-    payloadSettings: 'Setări de Payload',
+    cmsSettings: 'Setări de CMS',
     permanentlyDelete: 'Șterge definitiv',
     permanentlyDeletedCountSuccessfully: 'Șters permanent cu succes {{count}} {{label}}.',
     perPage: 'Pe pagină: {{limit}}',
@@ -424,7 +424,7 @@ export const roTranslations: DefaultTranslationsObject = {
     restoreAsPublished: 'Restabilește ca versiune publicată',
     restoredCountSuccessfully: '{{count}} {{label}} restabilite cu succes.',
     restoring:
-      'Respectați semnificația textului original în contextul Payload. Iată o listă de termeni obișnuiți Payload care au semnificații foarte specifice:\n    - Colectie: O colectie este un grup de documente care împart o structură și un scop comun. Colectiile sunt utilizate pentru a organiza și gestiona conținutul în Payload.\n    - Câmp: Un câmp este o piesă specifică de date dintr-un document dintr-o colecție. Câmpurile definesc structura și tipul de date care pot fi stocate într-un document.\n    - Document',
+      'Respectați semnificația textului original în contextul CMS. Iată o listă de termeni obișnuiți CMS care au semnificații foarte specifice:\n    - Colectie: O colectie este un grup de documente care împart o structură și un scop comun. Colectiile sunt utilizate pentru a organiza și gestiona conținutul în CMS.\n    - Câmp: Un câmp este o piesă specifică de date dintr-un document dintr-o colecție. Câmpurile definesc structura și tipul de date care pot fi stocate într-un document.\n    - Document',
     row: 'Rând',
     rows: 'Rânduri',
     save: 'Salvează',

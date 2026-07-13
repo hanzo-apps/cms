@@ -1,13 +1,13 @@
-import type { NavPreferences, PayloadRequest } from '@hanzo/cms'
+import type { NavPreferences, CMSRequest } from '@hanzo/cms'
 
 import { PREFERENCE_KEYS } from '@hanzo/cms/shared'
 import { cache } from 'react'
 
-export const getNavPrefs = cache(async (req: PayloadRequest): Promise<NavPreferences> => {
+export const getNavPrefs = cache(async (req: CMSRequest): Promise<NavPreferences> => {
   return req?.user?.collection
-    ? await req.payload
+    ? await req.cms
         .find({
-          collection: 'payload-preferences',
+          collection: 'cms-preferences',
           depth: 0,
           limit: 1,
           pagination: false,

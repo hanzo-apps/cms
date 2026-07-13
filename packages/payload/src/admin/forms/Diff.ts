@@ -3,7 +3,7 @@ import type { I18nClient } from '@hanzo/cms-translations'
 import type { ClientField, Field, FieldTypes, Tab } from '../../fields/config/types.js'
 import type {
   ClientFieldWithOptionalType,
-  PayloadRequest,
+  CMSRequest,
   SanitizedFieldPermissions,
   SanitizedFieldsPermissions,
 } from '../../index.js'
@@ -79,7 +79,7 @@ export type FieldDiffServerProps<
   clientField: TClientField
   field: TField
   i18n: I18nClient
-  req: PayloadRequest
+  req: CMSRequest
   selectedLocales: string[]
 } & Omit<FieldDiffClientProps, 'field'>
 

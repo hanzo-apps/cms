@@ -15,8 +15,8 @@ export const init: Init = async function init(this: BaseSQLiteAdapter) {
   this.rawRelations = {}
   this.rawTables = {}
 
-  if (this.payload.config.localization) {
-    locales = this.payload.config.localization.locales.map(({ code }) => code)
+  if (this.cms.config.localization) {
+    locales = this.cms.config.localization.locales.map(({ code }) => code)
   }
 
   const adapter = this as unknown as DrizzleAdapter

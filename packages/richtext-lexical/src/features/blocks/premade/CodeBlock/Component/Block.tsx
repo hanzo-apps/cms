@@ -25,7 +25,7 @@ import { Collapse } from './Collapse/index.js'
 import { defaultLanguages } from './defaultLanguages.js'
 import { FloatingCollapse } from './FloatingCollapse/index.js'
 
-const baseClass = 'payload-richtext-code-block'
+const baseClass = 'cms-richtext-code-block'
 export const CodeBlockBlockComponent: React.FC<Pick<AdditionalCodeComponentProps, 'languages'>> = (
   args,
 ) => {

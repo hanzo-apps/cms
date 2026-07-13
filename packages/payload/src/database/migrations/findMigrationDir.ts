@@ -5,7 +5,7 @@ import path from 'path'
  * Attempt to find migrations directory.
  *
  * Checks for the following directories in order:
- * - `migrationDir` argument from Payload config
+ * - `migrationDir` argument from CMS config
  * - `src/migrations`
  * - `dist/migrations`
  * - `migrations`

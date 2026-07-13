@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url'
 import path from 'path'
 
 import { findConfig } from '../config/find.js'
-import { getPayload, type Payload } from '../index.js'
+import { getCMS, type CMS } from '../index.js'
 import { generateImportMap } from './generateImportMap/index.js'
 import { generateTypes } from './generateTypes.js'
 import { info } from './info.js'
@@ -26,7 +26,7 @@ const availableScripts = [
 
 export const bin = async () => {
   loadEnv()
-  process.env.DISABLE_PAYLOAD_HMR = 'true'
+  process.env.DISABLE_CMS_HMR = 'true'
 
   const args = minimist(process.argv.slice(2))
   const script = (typeof args._[0] === 'string' ? args._[0] : '').toLowerCase()
@@ -35,8 +35,8 @@ export const bin = async () => {
     new Cron(
       args.cron,
       async () => {
-        // If the bin script initializes payload (getPayload), this will only happen once, as getPayload
-        // caches the payload instance on the module scope => no need to manually cache and manage getPayload initialization
+        // If the bin script initializes cms (getCMS), this will only happen once, as getCMS
+        // caches the cms instance on the module scope => no need to manually cache and manage getCMS initialization
         // outside the Cron here.
         await runBinScript({ args, script })
       },
@@ -52,9 +52,9 @@ export const bin = async () => {
 
     return
   } else {
-    const { payload } = await runBinScript({ args, script })
-    if (payload) {
-      await payload.destroy() // close database connections after running jobs so process can exit cleanly
+    const { cms } = await runBinScript({ args, script })
+    if (cms) {
+      await cms.destroy() // close database connections after running jobs so process can exit cleanly
     }
     process.exit(0)
   }
@@ -68,10 +68,10 @@ async function runBinScript({
   script: string
 }): Promise<{
   /**
-   * Scripts can return a payload instance if it exists. The bin script runner can then safely
+   * Scripts can return a cms instance if it exists. The bin script runner can then safely
    * shut off the instance, depending on if it's running in a cron job or not.
    */
-  payload?: Payload
+  cms?: CMS
 }> {
   if (script === 'info') {
     await info()
@@ -153,60 +153,60 @@ async function runBinScript({
   }
 
   if (script === 'jobs:run') {
-    const payload = await getPayload({ config }) // Do not setup crons here - this bin script can set up its own crons
+    const cms = await getCMS({ config }) // Do not setup crons here - this bin script can set up its own crons
     const limit = args.limit ? parseInt(args.limit, 10) : undefined
     const queue = args.queue ? args.queue : undefined
     const allQueues = !!args['all-queues']
     const handleSchedules = !!args['handle-schedules']
 
     if (handleSchedules) {
-      await payload.jobs.handleSchedules({
+      await cms.jobs.handleSchedules({
         allQueues,
         queue,
       })
     }
 
-    await payload.jobs.run({
+    await cms.jobs.run({
       allQueues,
       limit,
       queue,
     })
 
-    return { payload }
+    return { cms }
   }
 
   if (script === 'jobs:handle-schedules') {
-    const payload = await getPayload({ config }) // Do not setup crons here - this bin script can set up its own crons
+    const cms = await getCMS({ config }) // Do not setup crons here - this bin script can set up its own crons
     const queue = args.queue ? args.queue : undefined
     const allQueues = !!args['all-queues']
 
-    await payload.jobs.handleSchedules({
+    await cms.jobs.handleSchedules({
       allQueues,
       queue,
     })
 
-    return { payload }
+    return { cms }
   }
 
   if (script === 'generate:db-schema') {
     // Barebones instance to access database adapter, without connecting to the DB
-    const payload = await getPayload({ config, disableDBConnect: true, disableOnInit: true }) // Do not setup crons here
+    const cms = await getCMS({ config, disableDBConnect: true, disableOnInit: true }) // Do not setup crons here
 
-    if (typeof payload.db.generateSchema !== 'function') {
-      payload.logger.error({
-        msg: `${payload.db.packageName} does not support database schema generation`,
+    if (typeof cms.db.generateSchema !== 'function') {
+      cms.logger.error({
+        msg: `${cms.db.packageName} does not support database schema generation`,
       })
 
-      await payload.destroy()
+      await cms.destroy()
       process.exit(1)
     }
 
-    await payload.db.generateSchema({
+    await cms.db.generateSchema({
       log: args.log === 'false' ? false : true,
       prettify: args.prettify === 'false' ? false : true,
     })
 
-    return { payload }
+    return { cms }
   }
 
   console.error(script ? `Unknown command: "${script}"` : 'Please provide a command to run')

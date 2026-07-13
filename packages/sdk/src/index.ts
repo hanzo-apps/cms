@@ -5,13 +5,13 @@ import type {
   ErrorResult,
   GlobalSlug,
   PaginatedDocs,
-  PayloadTypes,
-  PayloadTypesShape,
+  CMSTypes,
+  CMSTypesShape,
   SelectType,
   TypeWithVersion,
 } from '@hanzo/cms'
 
-export { PayloadSDKError } from './errors/PayloadSDKError.js'
+export { CMSSDKError } from './errors/PayloadSDKError.js'
 
 import type { ForgotPasswordOptions } from './auth/forgotPassword.js'
 import type { LoginOptions, LoginResult } from './auth/login.js'
@@ -60,7 +60,7 @@ import {
   type UpdateManyOptions,
   type UpdateOptions,
 } from './collections/update.js'
-import { PayloadSDKError } from './errors/PayloadSDKError.js'
+import { CMSSDKError } from './errors/PayloadSDKError.js'
 import { findGlobal, type FindGlobalOptions } from './globals/findOne.js'
 import { findGlobalVersionByID } from './globals/findVersionByID.js'
 import { findGlobalVersions } from './globals/findVersions.js'
@@ -86,9 +86,9 @@ type Args = {
    * import type { GeneratedTypes, SanitizedConfig } from '@hanzo/cms';
    * import config from '@payload-config';
    * import { REST_DELETE, REST_GET, REST_PATCH, REST_POST, REST_PUT } from '@hanzo/cms-next/routes';
-   * import { PayloadSDK } from '@hanzo/cms-sdk';
+   * import { CMSSDK } from '@hanzo/cms-sdk';
    *
-   * export type TypedPayloadSDK = PayloadSDK<GeneratedTypes>;
+   * export type TypedCMSSDK = CMSSDK<GeneratedTypes>;
    *
    * const api = {
    *   GET: REST_GET(config),
@@ -100,7 +100,7 @@ type Args = {
    *
    * const awaitedConfig = await config;
    *
-   * export const sdk = new PayloadSDK<GeneratedTypes>({
+   * export const sdk = new CMSSDK<GeneratedTypes>({
    *   baseURL: '',
    *   fetch: (path: string, init: RequestInit) => {
    *     const [slugs, search] = path.slice(1).split('?');
@@ -132,7 +132,7 @@ type Args = {
 /**
  * @experimental
  */
-export class PayloadSDK<T extends PayloadTypesShape = PayloadTypes> {
+export class CMSSDK<T extends CMSTypesShape = CMSTypes> {
   baseInit: RequestInit
 
   baseURL: string
@@ -310,7 +310,7 @@ export class PayloadSDK<T extends PayloadTypesShape = PayloadTypes> {
       if (file) {
         const formData = new FormData()
         formData.append('file', file)
-        formData.append('_payload', JSON.stringify(json))
+        formData.append('_cms', JSON.stringify(json))
         init.body = formData
       } else {
         headers.set('Content-Type', 'application/json')
@@ -337,7 +337,7 @@ export class PayloadSDK<T extends PayloadTypesShape = PayloadTypes> {
 
       const message = errors[0]?.message ?? response.statusText
 
-      throw new PayloadSDKError({
+      throw new CMSSDKError({
         errors,
         message,
         response,

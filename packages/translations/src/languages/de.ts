@@ -409,7 +409,7 @@ export const deTranslations: DefaultTranslationsObject = {
     password: 'Passwort',
     pasteField: 'Feld einfügen',
     pasteRow: 'Zeile einfügen',
-    payloadSettings: 'Payload-Einstellungen',
+    cmsSettings: 'CMS-Einstellungen',
     permanentlyDelete: 'Dauerhaft löschen',
     permanentlyDeletedCountSuccessfully: '{{count}} {{label}} erfolgreich dauerhaft gelöscht.',
     perPage: 'Pro Seite: {{limit}}',

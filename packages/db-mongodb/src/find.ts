@@ -47,7 +47,7 @@ export const find: Find = async function find(
   if (!hasNearConstraint) {
     sort = buildSortParam({
       adapter: this,
-      config: this.payload.config,
+      config: this.cms.config,
       fields: collectionConfig.flattenedFields,
       locale,
       sort: sortArg || collectionConfig.defaultSort,
@@ -90,7 +90,7 @@ export const find: Find = async function find(
   }
 
   if (this.collation) {
-    const localizationConfig = this.payload.config.localization
+    const localizationConfig = this.cms.config.localization
     const defaultLocale =
       (typeof localizationConfig === 'object' && localizationConfig?.defaultLocale) || 'en'
 

@@ -84,7 +84,7 @@ export type EditorType = 'lexical' | 'slate'
 
 export type NextAppDetails = {
   hasTopLevelLayout: boolean
-  isPayloadInstalled?: boolean
+  isCMSInstalled?: boolean
   isSrcDir: boolean
   isSupportedNextVersion: boolean
   nextAppDir?: string

@@ -2,7 +2,7 @@
 
 $cal-icon-width: 18px;
 
-@layer payload-default {
+@layer cms-default {
   [dir='rtl'] {
     .date-time-picker {
       .react-datepicker__input-container input {

@@ -12,7 +12,7 @@ export const create: Create = async function create(
   this: DrizzleAdapter,
   { collection: collectionSlug, customID, data, req, returning, select },
 ) {
-  const collection = this.payload.collections[collectionSlug].config
+  const collection = this.cms.collections[collectionSlug].config
 
   const tableName = this.tableNameMap.get(toSnakeCase(collection.slug))
 

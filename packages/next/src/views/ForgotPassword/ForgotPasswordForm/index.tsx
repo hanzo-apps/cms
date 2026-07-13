@@ -1,7 +1,7 @@
 'use client'
 
 import type { FormProps } from '@hanzo/cms-ui'
-import type { FormState, PayloadRequest } from '@hanzo/cms'
+import type { FormState, CMSRequest } from '@hanzo/cms'
 
 import { EmailField, Form, FormSubmit, TextField, useConfig, useTranslation } from '@hanzo/cms-ui'
 import { email, formatAdminURL, text } from '@hanzo/cms/shared'
@@ -100,11 +100,11 @@ export const ForgotPasswordForm: React.FC = () => {
               path: ['username'],
               preferences: { fields: {} },
               req: {
-                payload: {
+                cms: {
                   config,
                 },
                 t,
-              } as unknown as PayloadRequest,
+              } as unknown as CMSRequest,
               required: true,
               siblingData: {},
             })
@@ -130,7 +130,7 @@ export const ForgotPasswordForm: React.FC = () => {
               event: 'onChange',
               path: ['email'],
               preferences: { fields: {} },
-              req: { payload: { config }, t } as unknown as PayloadRequest,
+              req: { cms: { config }, t } as unknown as CMSRequest,
               required: true,
               siblingData: {},
             })

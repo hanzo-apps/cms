@@ -400,7 +400,7 @@ export const plTranslations: DefaultTranslationsObject = {
     password: 'Hasło',
     pasteField: 'Wklej pole',
     pasteRow: 'Wklej wiersz',
-    payloadSettings: 'Ustawienia Payload',
+    cmsSettings: 'Ustawienia CMS',
     permanentlyDelete: 'Trwale Usuń',
     permanentlyDeletedCountSuccessfully: 'Trwale usunięto {{count}} {{label}} pomyślnie.',
     perPage: 'Na stronę: {{limit}}',

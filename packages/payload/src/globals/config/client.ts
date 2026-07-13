@@ -6,7 +6,7 @@ import type {
   SanitizedConfig,
   ServerOnlyLivePreviewProperties,
 } from '../../config/types.js'
-import type { Payload } from '../../types/index.js'
+import type { CMS } from '../../types/index.js'
 import type { SanitizedGlobalConfig } from './types.js'
 
 import { type ClientField, createClientFields } from '../../fields/config/client.js'
@@ -53,7 +53,7 @@ export const createClientGlobalConfig = ({
   i18n,
   importMap,
 }: {
-  defaultIDType: Payload['config']['db']['defaultIDType']
+  defaultIDType: CMS['config']['db']['defaultIDType']
   global: SanitizedConfig['globals'][0]
   i18n: I18nClient
   importMap: ImportMap
@@ -123,7 +123,7 @@ export const createClientGlobalConfigs = ({
   i18n,
   importMap,
 }: {
-  defaultIDType: Payload['config']['db']['defaultIDType']
+  defaultIDType: CMS['config']['db']['defaultIDType']
   globals: SanitizedConfig['globals']
   i18n: I18nClient
   importMap: ImportMap

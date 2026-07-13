@@ -1,5 +1,5 @@
 import type { PaginateOptions, Schema } from 'mongoose'
-import type { Payload, SanitizedCollectionConfig } from '@hanzo/cms'
+import type { CMS, SanitizedCollectionConfig } from '@hanzo/cms'
 
 import paginate from 'mongoose-paginate-v2'
 
@@ -8,7 +8,7 @@ import { buildSchema } from './buildSchema.js'
 
 export const buildCollectionSchema = (
   collection: SanitizedCollectionConfig,
-  payload: Payload,
+  cms: CMS,
   schemaOptions = {},
 ): Schema => {
   const schema = buildSchema({
@@ -16,7 +16,7 @@ export const buildCollectionSchema = (
       draftsEnabled: Boolean(
         typeof collection?.versions === 'object' && collection.versions.drafts,
       ),
-      indexSortableFields: payload.config.indexSortableFields,
+      indexSortableFields: cms.config.indexSortableFields,
       options: {
         minimize: false,
         timestamps: collection.timestamps !== false,
@@ -26,7 +26,7 @@ export const buildCollectionSchema = (
     compoundIndexes: collection.sanitizedIndexes,
     configFields: collection.fields,
     flattenedFields: collection.flattenedFields,
-    payload,
+    cms,
   })
 
   if (Array.isArray(collection.upload.filenameCompoundIndex)) {

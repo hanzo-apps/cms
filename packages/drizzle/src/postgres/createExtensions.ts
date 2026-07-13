@@ -6,7 +6,7 @@ export const createExtensions = async function (this: BasePostgresAdapter): Prom
       try {
         await this.drizzle.execute(`CREATE EXTENSION IF NOT EXISTS "${extension}"`)
       } catch (err) {
-        this.payload.logger.error({ err, msg: `Failed to create extension ${extension}` })
+        this.cms.logger.error({ err, msg: `Failed to create extension ${extension}` })
       }
     }
   }

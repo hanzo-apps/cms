@@ -405,7 +405,7 @@ export const esTranslations: DefaultTranslationsObject = {
     password: 'Contraseña',
     pasteField: 'Pegar campo',
     pasteRow: 'Pegar fila',
-    payloadSettings: 'Configuración de Payload',
+    cmsSettings: 'Configuración de CMS',
     permanentlyDelete: 'Eliminar Permanentemente',
     permanentlyDeletedCountSuccessfully:
       'Se ha eliminado permanentemente {{count}} {{label}} con éxito.',

@@ -1,4 +1,4 @@
-import type { AuthStrategy, AuthStrategyFunctionArgs, AuthStrategyResult, Payload } from '@hanzo/cms'
+import type { AuthStrategy, AuthStrategyFunctionArgs, AuthStrategyResult, CMS } from '@hanzo/cms'
 
 import { createRemoteJWKSet, jwtVerify } from 'jose'
 
@@ -37,21 +37,21 @@ const getBearer = (headers: AuthStrategyFunctionArgs['headers']): null | string 
  */
 const ensureTenant = async (args: {
   claims: IAMClaims
-  payload: Payload
+  cms: CMS
   tenantsSlug: string
 }): Promise<number | string | undefined> => {
-  const { claims, payload, tenantsSlug } = args
+  const { claims, cms, tenantsSlug } = args
   const slug = claims.owner
   if (!slug) {
     return undefined
   }
 
   // Only touch the collection if it actually exists in this config.
-  if (!payload.collections?.[tenantsSlug]) {
+  if (!cms.collections?.[tenantsSlug]) {
     return undefined
   }
 
-  const existing = await payload.find({
+  const existing = await cms.find({
     collection: tenantsSlug,
     depth: 0,
     limit: 1,
@@ -63,7 +63,7 @@ const ensureTenant = async (args: {
     return existingDoc.id as number | string
   }
 
-  const created = await payload.create({
+  const created = await cms.create({
     collection: tenantsSlug,
     data: { name: slug, slug },
   })
@@ -75,9 +75,9 @@ const ensureTenant = async (args: {
  *
  * Validates a Bearer access token issued by Hanzo IAM (Casdoor, RS256) against
  * the published JWKS — no shared secret, no per-request round-trip to IAM. Maps
- * the verified claims to a Payload user (find-or-provision by IAM `sub`), links
+ * the verified claims to a CMS user (find-or-provision by IAM `sub`), links
  * the user to the tenant derived from the IAM `owner` org (org == tenant), and
- * sets the `payload-tenant` cookie so the multi-tenant plugin scopes every
+ * sets the `cms-tenant` cookie so the multi-tenant plugin scopes every
  * subsequent query to that org.
  *
  * IAM is the sole identity authority: there is no separate CMS login.
@@ -95,7 +95,7 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
     authenticate: async ({
       canSetHeaders,
       headers,
-      payload,
+      cms,
     }: AuthStrategyFunctionArgs): Promise<AuthStrategyResult> => {
       const token = getBearer(headers)
       if (!token) {
@@ -117,10 +117,10 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
         return { user: null }
       }
 
-      const tenantID = await ensureTenant({ claims, payload, tenantsSlug })
+      const tenantID = await ensureTenant({ claims, cms, tenantsSlug })
 
       // find-or-provision the user by IAM subject
-      const found = await payload.find({
+      const found = await cms.find({
         collection: authSlug,
         depth: 0,
         limit: 1,
@@ -141,13 +141,13 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
       let userDoc
       const foundUser = found.docs[0]
       if (foundUser) {
-        userDoc = await payload.update({
+        userDoc = await cms.update({
           id: foundUser.id,
           collection: authSlug,
           data: baseData,
         })
       } else {
-        userDoc = await payload.create({
+        userDoc = await cms.create({
           collection: authSlug,
           data: baseData,
         })
@@ -157,7 +157,7 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
       if (canSetHeaders && tenantID !== undefined) {
         responseHeaders.append(
           'Set-Cookie',
-          `payload-tenant=${encodeURIComponent(String(tenantID))}; Path=/; SameSite=Lax; HttpOnly`,
+          `cms-tenant=${encodeURIComponent(String(tenantID))}; Path=/; SameSite=Lax; HttpOnly`,
         )
       }
 

@@ -1,10 +1,10 @@
-import type { GlobalSlug, PayloadTypesShape, SelectType, TypedLocale } from '@hanzo/cms'
+import type { GlobalSlug, CMSTypesShape, SelectType, TypedLocale } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type { PopulateType, SelectFromGlobalSlug, TransformGlobalWithSelect } from '../types.js'
 
 export type FindGlobalOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends GlobalSlug<T>,
   TSelect = SelectFromGlobalSlug<T, TSlug>,
 > = {
@@ -39,11 +39,11 @@ export type FindGlobalOptions<
 }
 
 export async function findGlobal<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends GlobalSlug<T>,
   TSelect extends SelectFromGlobalSlug<T, TSlug>,
 >(
-  sdk: PayloadSDK<T>,
+  sdk: CMSSDK<T>,
   options: FindGlobalOptions<T, TSlug, TSelect>,
   init?: RequestInit,
 ): Promise<TransformGlobalWithSelect<T, TSlug, TSelect>> {

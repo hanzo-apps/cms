@@ -1,7 +1,7 @@
 import { status as httpStatus } from 'http-status'
 
 import type { Collection } from '../../collections/config/types.js'
-import type { PayloadRequest } from '../../types/index.js'
+import type { CMSRequest } from '../../types/index.js'
 
 import { APIError } from '../../errors/index.js'
 import { appendNonTrashedFilter } from '../../utilities/appendNonTrashedFilter.js'
@@ -12,7 +12,7 @@ import { killTransaction } from '../../utilities/killTransaction.js'
 export type Arguments = {
   allSessions?: boolean
   collection: Collection
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export const logoutOperation = async (incomingArgs: Arguments): Promise<boolean> => {
@@ -56,7 +56,7 @@ export const logoutOperation = async (incomingArgs: Arguments): Promise<boolean>
         },
       })
 
-      const userWithSessions = await req.payload.db.findOne<{
+      const userWithSessions = await req.cms.db.findOne<{
         id: number | string
         sessions: { id: string }[]
       }>({
@@ -82,7 +82,7 @@ export const logoutOperation = async (incomingArgs: Arguments): Promise<boolean>
       // Prevent updatedAt from being updated when only removing a session
       ;(userWithSessions as any).updatedAt = null
 
-      await req.payload.db.updateOne({
+      await req.cms.db.updateOne({
         id: user.id,
         collection: collectionConfig.slug,
         data: userWithSessions,

@@ -1,13 +1,13 @@
 import { status as httpStatus } from 'http-status'
 
-import type { PayloadHandler } from '../../config/types.js'
+import type { CMSHandler } from '../../config/types.js'
 
 import { getRequestCollection } from '../../utilities/getRequestEntity.js'
 import { headersWithCors } from '../../utilities/headersWithCors.js'
-import { generatePayloadCookie } from '../cookies.js'
+import { generateCMSCookie } from '../cookies.js'
 import { refreshOperation } from '../operations/refresh.js'
 
-export const refreshHandler: PayloadHandler = async (req) => {
+export const refreshHandler: CMSHandler = async (req) => {
   const collection = getRequestCollection(req)
   const { t } = req
 
@@ -22,9 +22,9 @@ export const refreshHandler: PayloadHandler = async (req) => {
   })
 
   if (result.setCookie) {
-    const cookie = generatePayloadCookie({
+    const cookie = generateCMSCookie({
       collectionAuthConfig: collection.config.auth,
-      cookiePrefix: req.payload.config.cookiePrefix,
+      cookiePrefix: req.cms.config.cookiePrefix,
       token: result.refreshedToken,
     })
 

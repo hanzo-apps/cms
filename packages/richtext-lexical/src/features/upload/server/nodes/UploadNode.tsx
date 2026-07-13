@@ -58,7 +58,7 @@ export type Internal_UploadData<TUploadExtraFieldsData extends JsonObject = Json
 } & UploadData<TUploadExtraFieldsData>
 
 /**
- * UploadDataImproved is a more precise type, and will replace UploadData in Payload v4.
+ * UploadDataImproved is a more precise type, and will replace UploadData in CMS v4.
  * This type is for internal use only as it will be deprecated in the future.
  * @internal
  *

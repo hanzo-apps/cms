@@ -2,7 +2,7 @@ import type { SanitizedCollectionConfig } from '../../../collections/config/type
 import type { ValidationFieldError } from '../../../errors/index.js'
 import type { SanitizedGlobalConfig } from '../../../globals/config/types.js'
 import type { RequestContext } from '../../../index.js'
-import type { JsonObject, Operation, PayloadRequest } from '../../../types/index.js'
+import type { JsonObject, Operation, CMSRequest } from '../../../types/index.js'
 
 import { ValidationError } from '../../../errors/index.js'
 import { deepCopyObjectSimple } from '../../../utilities/deepCopyObject.js'
@@ -18,7 +18,7 @@ export type Args<T extends JsonObject> = {
   id?: number | string
   operation: Operation
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
   skipValidation?: boolean
 }
 

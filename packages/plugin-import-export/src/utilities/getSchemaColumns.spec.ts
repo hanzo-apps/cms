@@ -76,7 +76,7 @@ describe('getSchemaColumns', () => {
       expect(result).toContain('deletedAt')
     })
 
-    it('should add id when missing from flattenedFields (Payload core limitation)', () => {
+    it('should add id when missing from flattenedFields (CMS core limitation)', () => {
       const flattenedFields: FlattenedField[] = [
         { name: 'title', type: 'text' },
         { name: 'excerpt', type: 'textarea' },
@@ -87,7 +87,7 @@ describe('getSchemaColumns', () => {
       const collectionConfig = createCollectionConfig(flattenedFields)
       const result = getSchemaColumns({ collectionConfig })
 
-      // id is added because Payload core doesn't add it to flattenedFields
+      // id is added because CMS core doesn't add it to flattenedFields
       // but it exists on every document
       expect(result).toContain('id')
       expect(result[0]).toBe('id')

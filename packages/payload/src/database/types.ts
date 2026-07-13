@@ -4,8 +4,8 @@ import type {
   Document,
   JoinQuery,
   JsonObject,
-  Payload,
-  PayloadRequest,
+  CMS,
+  CMSRequest,
   SelectType,
   Sort,
   Where,
@@ -131,9 +131,9 @@ export interface BaseDatabaseAdapter {
    */
   packageName: string
   /**
-   * reference to the instance of payload
+   * reference to the instance of cms
    */
-  payload: Payload
+  cms: CMS
 
   queryDrafts: QueryDrafts
 
@@ -183,7 +183,7 @@ export type CreateMigration = (args: {
   file?: string
   forceAcceptWarning?: boolean
   migrationName?: string
-  payload: Payload
+  cms: CMS
   /**
    * Skips the prompt asking to create empty migrations
    */
@@ -210,7 +210,7 @@ export type QueryDraftsArgs = {
   locale?: string
   page?: number
   pagination?: boolean
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   select?: SelectType
   sort?: Sort
   where?: Where
@@ -223,7 +223,7 @@ export type FindOneArgs = {
   draftsEnabled?: boolean
   joins?: JoinQuery
   locale?: string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   select?: SelectType
   where?: Where
 }
@@ -240,7 +240,7 @@ export type FindArgs = {
   page?: number
   pagination?: boolean
   projection?: Record<string, unknown>
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   select?: SelectType
   /**
    * @deprecated This parameter is going to be removed in the next major version. Use page instead.
@@ -256,7 +256,7 @@ export type Find = <T = TypeWithID>(args: FindArgs) => Promise<PaginatedDocs<T>>
 export type CountArgs = {
   collection: CollectionSlug
   locale?: string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   where?: Where
 }
 
@@ -267,7 +267,7 @@ export type CountVersions = (args: CountArgs) => Promise<{ totalDocs: number }>
 export type CountGlobalVersionArgs = {
   global: string
   locale?: string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   where?: Where
 }
 
@@ -278,7 +278,7 @@ type BaseVersionArgs = {
   locale?: string
   page?: number
   pagination?: boolean
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   select?: SelectType
   /**
    * @deprecated This parameter is going to be removed in the next major version. Use page instead.
@@ -303,7 +303,7 @@ export type FindGlobalVersionsArgs = {
 
 export type FindGlobalArgs = {
   locale?: string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   select?: SelectType
   slug: string
   where?: Where
@@ -316,7 +316,7 @@ export type UpdateGlobalVersionArgs<T extends JsonObject = JsonObject> = {
    * Additional database adapter specific options to pass to the query
    */
   options?: Record<string, unknown>
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * If true, returns the updated documents
    *
@@ -356,7 +356,7 @@ export type FindGlobal = <T extends Record<string, unknown> = any>(
 
 export type CreateGlobalArgs<T extends Record<string, unknown> = any> = {
   data: T
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * If true, returns the updated documents
    *
@@ -375,7 +375,7 @@ export type UpdateGlobalArgs<T extends Record<string, unknown> = any> = {
    * Additional database adapter specific options to pass to the query
    */
   options?: Record<string, unknown>
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * If true, returns the updated documents
    *
@@ -401,7 +401,7 @@ export type DeleteVersionsArgs = {
   collection?: CollectionSlug
   globalSlug?: GlobalSlug
   locale?: string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   sort?: {
     [key: string]: string
   }
@@ -415,7 +415,7 @@ export type CreateVersionArgs<T extends JsonObject = JsonObject> = {
   /** ID of the parent document for which the version should be created for */
   parent: number | string
   publishedLocale?: string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * If true, returns the updated documents
    *
@@ -441,7 +441,7 @@ export type CreateGlobalVersionArgs<T extends JsonObject = JsonObject> = {
   createdAt: string
   globalSlug: GlobalSlug
   publishedLocale?: string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * If true, returns the updated documents
    *
@@ -471,7 +471,7 @@ export type UpdateVersionArgs<T extends JsonObject = JsonObject> = {
    * Additional database adapter specific options to pass to the query
    */
   options?: Record<string, unknown>
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * If true, returns the updated documents
    *
@@ -511,7 +511,7 @@ export type CreateArgs = {
   data: Record<string, unknown>
   draft?: boolean
   locale?: string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * If true, returns the updated documents
    *
@@ -527,7 +527,7 @@ export type FindDistinctArgs = {
   limit?: number
   locale?: string
   page?: number
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   sort?: Sort
   where?: Where
 }
@@ -561,7 +561,7 @@ export type UpdateOneArgs = {
    * Additional database adapter specific options to pass to the query
    */
   options?: Record<string, unknown>
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * If true, returns the updated documents
    *
@@ -596,7 +596,7 @@ export type UpdateManyArgs = {
    * Additional database adapter specific options to pass to the query
    */
   options?: Record<string, unknown>
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * If true, returns the updated documents
    *
@@ -612,7 +612,7 @@ export type UpdateMany = (args: UpdateManyArgs) => Promise<Document[] | null>
 
 export type UpdateJobsArgs = {
   data: Record<string, unknown>
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * If true, returns the updated documents
    *
@@ -641,7 +641,7 @@ export type UpsertArgs = {
   data: Record<string, unknown>
   joins?: JoinQuery
   locale?: string
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * If true, returns the updated documents
    *
@@ -657,7 +657,7 @@ export type Upsert = (args: UpsertArgs) => Promise<Document>
 export type DeleteOneArgs = {
   collection: CollectionSlug
   joins?: JoinQuery
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * If true, returns the updated documents
    *
@@ -676,7 +676,7 @@ export type DeleteOne = (args: DeleteOneArgs) => Promise<Document>
 export type DeleteManyArgs = {
   collection: CollectionSlug
   joins?: JoinQuery
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   where: Where
 }
 
@@ -709,7 +709,7 @@ export type PaginatedDocs<T = any> = {
 export type DatabaseAdapterResult<T = BaseDatabaseAdapter> = {
   allowIDOnCreate?: boolean
   defaultIDType: 'number' | 'text'
-  init: (args: { payload: Payload }) => T
+  init: (args: { cms: CMS }) => T
   /**
    * The name of the database adapter. For example, "postgres" or "mongoose".
    *
@@ -725,7 +725,7 @@ export type DBIdentifierName =
     }) => string)
   | string
 
-export type DynamicMigrationTemplate = (args: { filePath: string; payload: Payload }) => Promise<{
+export type DynamicMigrationTemplate = (args: { filePath: string; cms: CMS }) => Promise<{
   downSQL?: string
   imports?: string
   upSQL?: string

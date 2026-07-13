@@ -150,7 +150,7 @@ export function updateDatabaseConfig(content: string, databaseConfig: DatabaseCo
 
     if (!content.match(mongoImportRegex)) {
       content = content.replace(
-        /(import.*from.*payload.*\n)/,
+        /(import.*from.*cms.*\n)/,
         `$1import { mongooseAdapter } from '@hanzo/cms-db-mongodb'\n`,
       )
     }
@@ -170,7 +170,7 @@ export function updatePluginsConfig(content: string, pluginUpdates: PluginUpdate
   if (pluginUpdates.add) {
     pluginUpdates.add.forEach((pluginImport: string) => {
       if (!content.includes(pluginImport)) {
-        content = content.replace(/(import.*from.*payload.*\n)/, `$1${pluginImport}\n`)
+        content = content.replace(/(import.*from.*cms.*\n)/, `$1${pluginImport}\n`)
       }
     })
   }

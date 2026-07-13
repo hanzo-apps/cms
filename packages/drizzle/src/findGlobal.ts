@@ -10,7 +10,7 @@ export const findGlobal: FindGlobal = async function findGlobal(
   this: DrizzleAdapter,
   { slug, locale, req, select, where },
 ) {
-  const globalConfig = this.payload.globals.config.find((config) => config.slug === slug)
+  const globalConfig = this.cms.globals.config.find((config) => config.slug === slug)
 
   const tableName = this.tableNameMap.get(toSnakeCase(globalConfig.slug))
 

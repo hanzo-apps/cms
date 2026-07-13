@@ -4,7 +4,7 @@ import type { SanitizedGlobalConfig } from '../../../globals/config/types.js'
 import type { RequestContext, TypedFallbackLocale } from '../../../index.js'
 import type {
   JsonObject,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   SelectMode,
   SelectType,
@@ -61,7 +61,7 @@ type Args = {
   parentSchemaPath: string
   populate?: PopulateType
   populationPromises: Promise<void>[]
-  req: PayloadRequest
+  req: CMSRequest
   select?: SelectType
   selectMode?: SelectMode
   showHiddenFields: boolean
@@ -164,7 +164,7 @@ export const promise = async ({
       siblingDoc[field.name!] !== null &&
       shouldLocalizeField &&
       locale !== 'all' &&
-      req.payload.config.localization,
+      req.cms.config.localization,
   )
 
   if (fieldAffectsDataResult && shouldHoistLocalizedValue) {
@@ -525,7 +525,7 @@ export const promise = async ({
           const blockTypeToMatch = (row as JsonObject).blockType
 
           const block: Block | undefined =
-            req.payload.blocks[blockTypeToMatch] ??
+            req.cms.blocks[blockTypeToMatch] ??
             ((field.blockReferences ?? field.blocks).find(
               (curBlock) => typeof curBlock !== 'string' && curBlock.slug === blockTypeToMatch,
             ) as Block | undefined)
@@ -579,7 +579,7 @@ export const promise = async ({
               const blockTypeToMatch = row.blockType
 
               const block: Block | undefined =
-                req.payload.blocks[blockTypeToMatch] ??
+                req.cms.blocks[blockTypeToMatch] ??
                 ((field.blockReferences ?? field.blocks).find(
                   (curBlock) => typeof curBlock !== 'string' && curBlock.slug === blockTypeToMatch,
                 ) as Block | undefined)

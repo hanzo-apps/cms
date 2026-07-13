@@ -1,5 +1,5 @@
 import type { SanitizedPermissions, TypedUser } from '../../index.js'
-import type { PayloadRequest } from '../../types/index.js'
+import type { CMSRequest } from '../../types/index.js'
 
 import { killTransaction } from '../../utilities/killTransaction.js'
 import { executeAuthStrategies } from '../executeAuthStrategies.js'
@@ -11,7 +11,7 @@ export type AuthArgs = {
    */
   canSetHeaders?: boolean
   headers: Request['headers']
-  req?: Omit<PayloadRequest, 'user'>
+  req?: Omit<CMSRequest, 'user'>
 }
 
 export type AuthResult = {
@@ -22,14 +22,14 @@ export type AuthResult = {
 
 export const auth = async (args: Required<AuthArgs>): Promise<AuthResult> => {
   const { canSetHeaders, headers } = args
-  const req = args.req as PayloadRequest
-  const { payload } = req
+  const req = args.req as CMSRequest
+  const { cms } = req
 
   try {
     const { responseHeaders, user } = await executeAuthStrategies({
       canSetHeaders,
       headers,
-      payload,
+      cms,
     })
 
     req.user = user

@@ -7,7 +7,7 @@ import type {
   FieldState,
   FormState,
   Operation,
-  PayloadRequest,
+  CMSRequest,
   SanitizedFieldPermissions,
 } from '@hanzo/cms'
 
@@ -38,7 +38,7 @@ export type RenderFieldArgs = {
   previousFieldState: FieldState
   readOnly?: boolean
   renderAllFields: boolean
-  req: PayloadRequest
+  req: CMSRequest
   schemaPath: string
   siblingData: Data
 }

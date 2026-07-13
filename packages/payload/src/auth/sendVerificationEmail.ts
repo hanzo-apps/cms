@@ -2,7 +2,7 @@ import type { Collection } from '../collections/config/types.js'
 import type { SanitizedConfig } from '../config/types.js'
 import type { InitializedEmailAdapter } from '../email/types.js'
 import type { TypedUser } from '../index.js'
-import type { PayloadRequest } from '../types/index.js'
+import type { CMSRequest } from '../types/index.js'
 import type { VerifyConfig } from './types.js'
 
 import { formatAdminURL } from '../utilities/formatAdminURL.js'
@@ -13,7 +13,7 @@ type Args = {
   config: SanitizedConfig
   disableEmail: boolean
   email: InitializedEmailAdapter
-  req: PayloadRequest
+  req: CMSRequest
   token: string
   user: TypedUser
 }

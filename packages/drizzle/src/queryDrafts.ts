@@ -11,11 +11,11 @@ export const queryDrafts: QueryDrafts = async function queryDrafts(
   this: DrizzleAdapter,
   { collection, joins, limit, locale, page = 1, pagination, req, select, sort, where },
 ) {
-  const collectionConfig: SanitizedCollectionConfig = this.payload.collections[collection].config
+  const collectionConfig: SanitizedCollectionConfig = this.cms.collections[collection].config
   const tableName = this.tableNameMap.get(
     `_${toSnakeCase(collectionConfig.slug)}${this.versionsSuffix}`,
   )
-  const fields = buildVersionCollectionFields(this.payload.config, collectionConfig, true)
+  const fields = buildVersionCollectionFields(this.cms.config, collectionConfig, true)
 
   const combinedWhere = combineQueries({ latest: { equals: true } }, where)
 

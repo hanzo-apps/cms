@@ -6,7 +6,7 @@ import sanitize from 'sanitize-filename'
 
 import type { Collection } from '../collections/config/types.js'
 import type { SanitizedConfig } from '../config/types.js'
-import type { Document, PayloadRequest } from '../types/index.js'
+import type { Document, CMSRequest } from '../types/index.js'
 import type { FileData, FileToSave, ProbedImageSize, UploadEdits } from './types.js'
 
 import { FileRetrievalError, FileUploadError, Forbidden, MissingFile } from '../errors/index.js'
@@ -30,7 +30,7 @@ type Args<T> = {
   operation: 'create' | 'update'
   originalDoc?: T
   overwriteExistingFiles?: boolean
-  req: PayloadRequest
+  req: CMSRequest
   throwOnMissingFile?: boolean
 }
 
@@ -84,7 +84,7 @@ export const generateFileData = async <T>({
     }
   }
 
-  const { serverURL, sharp } = req.payload.config
+  const { serverURL, sharp } = req.cms.config
 
   let file = isDuplicating ? undefined : req.file
 
@@ -382,7 +382,7 @@ export const generateFileData = async <T>({
     }
 
     if (fileSupportsResize && (Array.isArray(imageSizes) || focalPointEnabled !== false)) {
-      req.payloadUploadSizes = {}
+      req.cmsUploadSizes = {}
       // Focal point adjustments
       const focalPoint =
         focalPointEnabled && uploadEdits?.focalPoint
@@ -417,7 +417,7 @@ export const generateFileData = async <T>({
       filesToSave.push(...sizesToSave)
     }
   } catch (err) {
-    req.payload.logger.error(err)
+    req.cms.logger.error(err)
     throw new FileUploadError(req.t)
   }
 
@@ -441,7 +441,7 @@ function parseUploadEditsFromReqOrIncomingData(args: {
   isDuplicating?: boolean
   operation: 'create' | 'update'
   originalDoc: unknown
-  req: PayloadRequest
+  req: CMSRequest
 }): UploadEdits {
   const { data, isDuplicating, operation, originalDoc, req } = args
 

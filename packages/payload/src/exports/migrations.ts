@@ -1,5 +1,5 @@
 /**
- * Exports for Payload migrations
+ * Exports for CMS migrations
  *
  * This module provides migration utilities that users can import in their migration files.
  *
@@ -7,10 +7,10 @@
  * ```ts
  * import { localizeStatus } from '@hanzo/cms/migrations'
  *
- * export async function up({ payload }) {
+ * export async function up({ cms }) {
  *   await localizeStatus.up({
  *     collectionSlug: 'posts',
- *     payload,
+ *     cms,
  *   })
  * }
  * ```

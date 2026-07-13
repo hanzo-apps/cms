@@ -1,5 +1,5 @@
 import type { I18n } from '@hanzo/cms-translations'
-import type { BasePayload, Config, LanguageOptions, TypedUser } from '@hanzo/cms'
+import type { BaseCMS, Config, LanguageOptions, TypedUser } from '@hanzo/cms'
 
 import { FieldLabel } from '@hanzo/cms-ui'
 import React from 'react'
@@ -9,13 +9,13 @@ import './index.scss'
 import { ToggleTheme } from '../ToggleTheme/index.js'
 import { LanguageSelector } from './LanguageSelector.js'
 
-const baseClass = 'payload-settings'
+const baseClass = 'cms-settings'
 
 export const Settings: React.FC<{
   readonly className?: string
   readonly i18n: I18n
   readonly languageOptions: LanguageOptions
-  readonly payload: BasePayload
+  readonly cms: BaseCMS
   readonly theme: Config['admin']['theme']
   readonly user?: TypedUser
 }> = (props) => {
@@ -23,7 +23,7 @@ export const Settings: React.FC<{
 
   return (
     <div className={[baseClass, className].filter(Boolean).join(' ')}>
-      <h3>{i18n.t('general:payloadSettings')}</h3>
+      <h3>{i18n.t('general:cmsSettings')}</h3>
       <div className={`${baseClass}__language`}>
         <FieldLabel htmlFor="language-select" label={i18n.t('general:language')} />
         <LanguageSelector languageOptions={languageOptions} />

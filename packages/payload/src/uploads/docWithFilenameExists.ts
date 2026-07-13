@@ -1,11 +1,11 @@
-import type { PayloadRequest, Where } from '../types/index.js'
+import type { CMSRequest, Where } from '../types/index.js'
 
 type Args = {
   collectionSlug: string
   filename: string
   path: string
   prefix?: string
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export const docWithFilenameExists = async ({
@@ -24,7 +24,7 @@ export const docWithFilenameExists = async ({
     where.prefix = { equals: prefix }
   }
 
-  const doc = await req.payload.db.findOne({
+  const doc = await req.cms.db.findOne({
     collection: collectionSlug,
     req,
     where,

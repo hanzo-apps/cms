@@ -1,4 +1,4 @@
-import type { JsonObject, JsonValue, PayloadRequest } from '../../../types/index.js'
+import type { JsonObject, JsonValue, CMSRequest } from '../../../types/index.js'
 import type { FieldAffectingData } from '../../config/types.js'
 
 import { getDefaultValue } from '../../getDefaultValue.js'
@@ -10,7 +10,7 @@ export async function getFallbackValue({
   siblingDoc,
 }: {
   field: FieldAffectingData
-  req: PayloadRequest
+  req: CMSRequest
   siblingDoc: JsonObject
 }): Promise<JsonValue> {
   let fallbackValue: JsonValue = undefined

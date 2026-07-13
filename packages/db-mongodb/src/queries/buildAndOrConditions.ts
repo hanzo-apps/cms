@@ -1,4 +1,4 @@
-import type { FlattenedField, Payload, Where } from '@hanzo/cms'
+import type { FlattenedField, CMS, Where } from '@hanzo/cms'
 
 import { parseParams } from './parseParams.js'
 
@@ -8,7 +8,7 @@ export async function buildAndOrConditions({
   globalSlug,
   locale,
   parentIsLocalized,
-  payload,
+  cms,
   where,
 }: {
   collectionSlug?: string
@@ -16,7 +16,7 @@ export async function buildAndOrConditions({
   globalSlug?: string
   locale?: string
   parentIsLocalized: boolean
-  payload: Payload
+  cms: CMS
   where: Where[]
 }): Promise<Record<string, unknown>[]> {
   const completedConditions = []
@@ -32,7 +32,7 @@ export async function buildAndOrConditions({
         globalSlug,
         locale,
         parentIsLocalized,
-        payload,
+        cms,
         where: condition,
       })
       if (Object.keys(result).length > 0) {

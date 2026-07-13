@@ -45,7 +45,7 @@ const sanitizeAdminConfig = (configToSanitize: Config): Partial<SanitizedConfig>
   const sanitizedConfig = { ...configToSanitize }
 
   if (configToSanitize?.compatibility?.allowLocalizedWithinLocalized) {
-    process.env.NEXT_PUBLIC_PAYLOAD_COMPATIBILITY_allowLocalizedWithinLocalized = 'true'
+    process.env.NEXT_PUBLIC_CMS_COMPATIBILITY_allowLocalizedWithinLocalized = 'true'
   }
 
   // default logging level will be 'error' if not provided
@@ -392,7 +392,7 @@ export const sanitizeConfig = async (incomingConfig: Config): Promise<SanitizedC
 
     if (hasScheduleProperty) {
       config.jobs.scheduling = true
-      // Add payload-jobs-stats global for tracking when a job of a specific slug was last run
+      // Add cms-jobs-stats global for tracking when a job of a specific slug was last run
       ;(config.globals ??= []).push(
         await sanitizeGlobal(
           config as unknown as Config,

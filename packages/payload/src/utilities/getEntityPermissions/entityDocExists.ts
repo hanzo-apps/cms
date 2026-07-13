@@ -2,7 +2,7 @@ import {
   type AllOperations,
   combineQueries,
   type DefaultDocumentIDType,
-  type PayloadRequest,
+  type CMSRequest,
   type Where,
 } from '../../index.js'
 
@@ -22,12 +22,12 @@ export async function entityDocExists({
   id?: DefaultDocumentIDType
   locale?: string
   operation?: AllOperations
-  req: PayloadRequest
+  req: CMSRequest
   slug: string
   where: Where
 }): Promise<boolean> {
   if (entityType === 'global') {
-    const global = await req.payload.db.findGlobal({
+    const global = await req.cms.db.findGlobal({
       slug,
       locale,
       req,
@@ -42,7 +42,7 @@ export async function entityDocExists({
 
   if (entityType === 'collection' && id) {
     if (operation === 'readVersions') {
-      const count = await req.payload.db.countVersions({
+      const count = await req.cms.db.countVersions({
         collection: slug,
         locale,
         req,
@@ -51,7 +51,7 @@ export async function entityDocExists({
       return count.totalDocs > 0
     }
 
-    const count = await req.payload.db.count({
+    const count = await req.cms.db.count({
       collection: slug,
       locale,
       req,

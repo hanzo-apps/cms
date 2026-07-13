@@ -19,7 +19,7 @@ export const getCollection = ({
 
   Model: CollectionModel
 } => {
-  const collection = adapter.payload.collections[collectionSlug]
+  const collection = adapter.cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(
@@ -67,7 +67,7 @@ interface GetGlobal {
 }
 
 export const getGlobal: GetGlobal = ({ adapter, globalSlug, versions = false }) => {
-  const globalConfig = adapter.payload.config.globals.find((each) => each.slug === globalSlug)
+  const globalConfig = adapter.cms.config.globals.find((each) => each.slug === globalSlug)
 
   if (!globalConfig) {
     throw new APIError(

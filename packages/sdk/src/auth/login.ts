@@ -1,9 +1,9 @@
-import type { AuthCollectionSlug, PayloadTypesShape } from '@hanzo/cms'
+import type { AuthCollectionSlug, CMSTypesShape } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 import type { DataFromAuthSlug } from '../types.js'
 
-export type LoginOptions<T extends PayloadTypesShape, TSlug extends AuthCollectionSlug<T>> = {
+export type LoginOptions<T extends CMSTypesShape, TSlug extends AuthCollectionSlug<T>> = {
   collection: TSlug
   data: {
     email: string
@@ -11,15 +11,15 @@ export type LoginOptions<T extends PayloadTypesShape, TSlug extends AuthCollecti
   }
 }
 
-export type LoginResult<T extends PayloadTypesShape, TSlug extends AuthCollectionSlug<T>> = {
+export type LoginResult<T extends CMSTypesShape, TSlug extends AuthCollectionSlug<T>> = {
   exp?: number
   message: string
   token?: string
   user: DataFromAuthSlug<T, TSlug>
 }
 
-export async function login<T extends PayloadTypesShape, TSlug extends AuthCollectionSlug<T>>(
-  sdk: PayloadSDK<T>,
+export async function login<T extends CMSTypesShape, TSlug extends AuthCollectionSlug<T>>(
+  sdk: CMSSDK<T>,
   options: LoginOptions<T, TSlug>,
   init?: RequestInit,
 ): Promise<LoginResult<T, TSlug>> {

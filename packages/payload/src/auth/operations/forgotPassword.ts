@@ -6,7 +6,7 @@ import type {
   Collection,
 } from '../../collections/config/types.js'
 import type { AuthCollectionSlug } from '../../index.js'
-import type { PayloadRequest, Where } from '../../types/index.js'
+import type { CMSRequest, Where } from '../../types/index.js'
 
 import { buildAfterOperation } from '../../collections/operations/utilities/buildAfterOperation.js'
 import { buildBeforeOperation } from '../../collections/operations/utilities/buildBeforeOperation.js'
@@ -28,7 +28,7 @@ export type Arguments<TSlug extends AuthCollectionSlug> = {
   disableEmail?: boolean
   expiration?: number
   overrideAccess?: boolean
-  req: PayloadRequest
+  req: CMSRequest
 }
 
 export type Result = string
@@ -78,8 +78,8 @@ export const forgotPasswordOperation = async <TSlug extends AuthCollectionSlug>(
       disableEmail,
       expiration,
       req: {
-        payload: { config, email },
-        payload,
+        cms: { config, email },
+        cms,
       },
       req,
     } = args
@@ -126,7 +126,7 @@ export const forgotPasswordOperation = async <TSlug extends AuthCollectionSlug>(
       where: whereConstraint,
     })
 
-    let user = await payload.db.findOne<UserDoc>({
+    let user = await cms.db.findOne<UserDoc>({
       collection: collectionConfig.slug,
       req,
       where: whereConstraint,
@@ -144,7 +144,7 @@ export const forgotPasswordOperation = async <TSlug extends AuthCollectionSlug>(
       Date.now() + (collectionConfig.auth?.forgotPassword?.expiration ?? expiration ?? 3600000),
     ).toISOString()
 
-    user = await payload.update({
+    user = await cms.update({
       id: user.id,
       collection: collectionConfig.slug,
       data: {

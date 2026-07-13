@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { PayloadRequest, SelectType, TypedUser } from '@hanzo/cms'
+import type { CMSRequest, SelectType, TypedUser } from '@hanzo/cms'
 
 import type { MCPPluginConfig } from '../../../types.js'
 
@@ -8,7 +8,7 @@ import { toolSchemas } from '../schemas.js'
 
 export const findResourceTool = (
   server: McpServer,
-  req: PayloadRequest,
+  req: CMSRequest,
   user: TypedUser,
   verboseLogs: boolean,
   collectionSlug: string,
@@ -31,11 +31,11 @@ export const findResourceTool = (
       type: 'text'
     }>
   }> => {
-    const payload = req.payload
+    const cms = req.cms
 
     if (verboseLogs) {
-      payload.logger.info(
-        `[payload-mcp] Reading resource from collection: ${collectionSlug}${id ? ` with ID: ${id}` : ''}, limit: ${limit}, page: ${page}${locale ? `, locale: ${locale}` : ''}`,
+      cms.logger.info(
+        `[cms-mcp] Reading resource from collection: ${collectionSlug}${id ? ` with ID: ${id}` : ''}, limit: ${limit}, page: ${page}${locale ? `, locale: ${locale}` : ''}`,
       )
     }
 
@@ -46,10 +46,10 @@ export const findResourceTool = (
         try {
           whereClause = JSON.parse(where)
           if (verboseLogs) {
-            payload.logger.info(`[payload-mcp] Using where clause: ${where}`)
+            cms.logger.info(`[cms-mcp] Using where clause: ${where}`)
           }
         } catch (_parseError) {
-          payload.logger.warn(`[payload-mcp] Invalid where clause JSON: ${where}`)
+          cms.logger.warn(`[cms-mcp] Invalid where clause JSON: ${where}`)
           const response = {
             content: [{ type: 'text' as const, text: 'Error: Invalid JSON in where clause' }],
           }
@@ -69,7 +69,7 @@ export const findResourceTool = (
         try {
           selectClause = JSON.parse(select) as SelectType
         } catch (_parseError) {
-          payload.logger.warn(`[payload-mcp] Invalid select clause JSON: ${select}`)
+          cms.logger.warn(`[cms-mcp] Invalid select clause JSON: ${select}`)
           const response = {
             content: [{ type: 'text' as const, text: 'Error: Invalid JSON in select clause' }],
           }
@@ -86,7 +86,7 @@ export const findResourceTool = (
       // If ID is provided, use findByID
       if (id) {
         try {
-          const doc = await payload.findByID({
+          const doc = await cms.findByID({
             id,
             collection: collectionSlug,
             depth,
@@ -100,7 +100,7 @@ export const findResourceTool = (
           })
 
           if (verboseLogs) {
-            payload.logger.info(`[payload-mcp] Found document with ID: ${id}`)
+            cms.logger.info(`[cms-mcp] Found document with ID: ${id}`)
           }
 
           const response = {
@@ -121,8 +121,8 @@ ${JSON.stringify(doc)}`,
             }>
           }
         } catch (_findError) {
-          payload.logger.warn(
-            `[payload-mcp] Document not found with ID: ${id} in collection: ${collectionSlug}`,
+          cms.logger.warn(
+            `[cms-mcp] Document not found with ID: ${id} in collection: ${collectionSlug}`,
           )
           const response = {
             content: [
@@ -143,7 +143,7 @@ ${JSON.stringify(doc)}`,
       }
 
       // Otherwise, use find to get multiple documents
-      const findOptions: Parameters<typeof payload.find>[0] = {
+      const findOptions: Parameters<typeof cms.find>[0] = {
         collection: collectionSlug,
         depth,
         limit,
@@ -165,11 +165,11 @@ ${JSON.stringify(doc)}`,
         findOptions.where = whereClause
       }
 
-      const result = await payload.find(findOptions)
+      const result = await cms.find(findOptions)
 
       if (verboseLogs) {
-        payload.logger.info(
-          `[payload-mcp] Found ${result.docs.length} documents in collection: ${collectionSlug}`,
+        cms.logger.info(
+          `[cms-mcp] Found ${result.docs.length} documents in collection: ${collectionSlug}`,
         )
       }
 
@@ -200,8 +200,8 @@ Page: ${result.page} of ${result.totalPages}
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      payload.logger.error(
-        `[payload-mcp] Error reading resources from collection ${collectionSlug}: ${errorMessage}`,
+      cms.logger.error(
+        `[cms-mcp] Error reading resources from collection ${collectionSlug}: ${errorMessage}`,
       )
       const response = {
         content: [

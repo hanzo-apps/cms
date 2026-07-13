@@ -1,4 +1,4 @@
-import type { FlattenedField, Payload, PayloadRequest } from '@hanzo/cms'
+import type { FlattenedField, CMS, CMSRequest } from '@hanzo/cms'
 
 import type { BasePostgresAdapter, PostgresDB } from '../../../types.js'
 import type { DocsToResave } from '../types.js'
@@ -15,8 +15,8 @@ type Args = {
   fields: FlattenedField[]
   globalSlug?: string
   isVersions: boolean
-  payload: Payload
-  req?: Partial<PayloadRequest>
+  cms: CMS
+  req?: Partial<CMSRequest>
   tableName: string
 }
 
@@ -29,17 +29,17 @@ export const fetchAndResave = async ({
   fields,
   globalSlug,
   isVersions,
-  payload,
+  cms,
   req,
   tableName,
 }: Args) => {
   for (const [id, rows] of Object.entries(docsToResave)) {
     if (collectionSlug) {
-      const collectionConfig = payload.collections[collectionSlug].config
+      const collectionConfig = cms.collections[collectionSlug].config
 
       if (collectionConfig) {
         if (isVersions) {
-          const doc = await payload.findVersionByID({
+          const doc = await cms.findVersionByID({
             id,
             collection: collectionSlug,
             depth: 0,
@@ -50,7 +50,7 @@ export const fetchAndResave = async ({
           })
 
           if (debug) {
-            payload.logger.info(
+            cms.logger.info(
               `The collection "${collectionConfig.slug}" version with ID ${id} will be migrated`,
             )
           }
@@ -76,7 +76,7 @@ export const fetchAndResave = async ({
               tableName,
             })
           } catch (err) {
-            payload.logger.error(
+            cms.logger.error(
               `"${collectionConfig.slug}" version with ID ${doc.id} FAILED TO MIGRATE`,
             )
 
@@ -84,12 +84,12 @@ export const fetchAndResave = async ({
           }
 
           if (debug) {
-            payload.logger.info(
+            cms.logger.info(
               `"${collectionConfig.slug}" version with ID ${doc.id} migrated successfully!`,
             )
           }
         } else {
-          const doc = await payload.findByID({
+          const doc = await cms.findByID({
             id,
             collection: collectionSlug,
             depth: 0,
@@ -100,7 +100,7 @@ export const fetchAndResave = async ({
           })
 
           if (debug) {
-            payload.logger.info(
+            cms.logger.info(
               `The collection "${collectionConfig.slug}" with ID ${doc.id} will be migrated`,
             )
           }
@@ -126,7 +126,7 @@ export const fetchAndResave = async ({
               tableName,
             })
           } catch (err) {
-            payload.logger.error(
+            cms.logger.error(
               `The collection "${collectionConfig.slug}" with ID ${doc.id} has FAILED TO MIGRATE`,
             )
 
@@ -134,7 +134,7 @@ export const fetchAndResave = async ({
           }
 
           if (debug) {
-            payload.logger.info(
+            cms.logger.info(
               `The collection "${collectionConfig.slug}" with ID ${doc.id} has migrated successfully!`,
             )
           }
@@ -143,11 +143,11 @@ export const fetchAndResave = async ({
     }
 
     if (globalSlug) {
-      const globalConfig = payload.config.globals?.find((global) => global.slug === globalSlug)
+      const globalConfig = cms.config.globals?.find((global) => global.slug === globalSlug)
 
       if (globalConfig) {
         if (isVersions) {
-          const { docs } = await payload.findGlobalVersions({
+          const { docs } = await cms.findGlobalVersions({
             slug: globalSlug,
             depth: 0,
             fallbackLocale: null,
@@ -158,7 +158,7 @@ export const fetchAndResave = async ({
           })
 
           if (debug) {
-            payload.logger.info(`${docs.length} global "${globalSlug}" versions will be migrated`)
+            cms.logger.info(`${docs.length} global "${globalSlug}" versions will be migrated`)
           }
 
           for (const doc of docs) {
@@ -183,19 +183,19 @@ export const fetchAndResave = async ({
                 tableName,
               })
             } catch (err) {
-              payload.logger.error(`"${globalSlug}" version with ID ${doc.id} FAILED TO MIGRATE`)
+              cms.logger.error(`"${globalSlug}" version with ID ${doc.id} FAILED TO MIGRATE`)
 
               throw err
             }
 
             if (debug) {
-              payload.logger.info(
+              cms.logger.info(
                 `"${globalSlug}" version with ID ${doc.id} migrated successfully!`,
               )
             }
           }
         } else {
-          const doc = await payload.findGlobal({
+          const doc = await cms.findGlobal({
             slug: globalSlug,
             depth: 0,
             fallbackLocale: null,
@@ -224,13 +224,13 @@ export const fetchAndResave = async ({
               tableName,
             })
           } catch (err) {
-            payload.logger.error(`The global "${globalSlug}" has FAILED TO MIGRATE`)
+            cms.logger.error(`The global "${globalSlug}" has FAILED TO MIGRATE`)
 
             throw err
           }
 
           if (debug) {
-            payload.logger.info(`The global "${globalSlug}" has migrated successfully!`)
+            cms.logger.info(`The global "${globalSlug}" has migrated successfully!`)
           }
         }
       }

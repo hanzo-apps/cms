@@ -2,7 +2,7 @@ import type {
   CollectionSlug,
   FindOptions,
   JoinQuery,
-  Payload,
+  CMS,
   RequestContext,
   SelectType,
   TypedFallbackLocale,
@@ -11,7 +11,7 @@ import type {
 import type {
   ApplyDisableErrors,
   Document,
-  PayloadRequest,
+  CMSRequest,
   PopulateType,
   TransformCollectionWithSelect,
 } from '../../../types/index.js'
@@ -92,10 +92,10 @@ type BaseFindByIDOptions<
    */
   populate?: PopulateType
   /**
-   * The `PayloadRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
+   * The `CMSRequest` object. You can pass it to thread the current [transaction](https://payloadcms.com/docs/database/transactions), user and locale to the operation.
    * Recommended to pass when using the Local API from hooks, as usually you want to execute the operation within the current transaction.
    */
-  req?: Partial<PayloadRequest>
+  req?: Partial<CMSRequest>
   /**
    * Opt-in to receiving hidden fields. By default, they are hidden from returned documents in accordance to your config.
    * @default false
@@ -129,7 +129,7 @@ export async function findByIDLocal<
   TDisableErrors extends boolean,
   TSelect extends SelectFromCollectionSlug<TSlug>,
 >(
-  payload: Payload,
+  cms: CMS,
   options: Options<TSlug, TDisableErrors, TSelect>,
 ): Promise<ApplyDisableErrors<TransformCollectionWithSelect<TSlug, TSelect>, TDisableErrors>> {
   const {
@@ -150,7 +150,7 @@ export async function findByIDLocal<
     trash = false,
   } = options
 
-  const collection = payload.collections[collectionSlug]
+  const collection = cms.collections[collectionSlug]
 
   if (!collection) {
     throw new APIError(
@@ -171,7 +171,7 @@ export async function findByIDLocal<
     joins,
     overrideAccess,
     populate,
-    req: await createLocalReq(options as CreateLocalReqOptions, payload),
+    req: await createLocalReq(options as CreateLocalReqOptions, cms),
     select,
     showHiddenFields,
     trash,

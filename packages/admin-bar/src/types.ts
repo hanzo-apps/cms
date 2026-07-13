@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactElement } from 'react'
 
-export type PayloadMeUser =
+export type CMSMeUser =
   | {
       email: string
       id: string
@@ -8,7 +8,7 @@ export type PayloadMeUser =
   | null
   | undefined
 
-export type PayloadAdminBarProps = {
+export type CMSAdminBarProps = {
   adminPath?: string
   apiPath?: string
   authCollectionSlug?: string
@@ -51,7 +51,7 @@ export type PayloadAdminBarProps = {
     [key: string]: unknown
     style?: CSSProperties
   }
-  onAuthChange?: (user: PayloadMeUser) => void
+  onAuthChange?: (user: CMSMeUser) => void
   onPreviewExit?: () => void
   preview?: boolean
   previewProps?: {

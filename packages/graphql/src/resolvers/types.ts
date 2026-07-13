@@ -1,9 +1,9 @@
-import type { PayloadRequest, SelectType } from '@hanzo/cms'
+import type { CMSRequest, SelectType } from '@hanzo/cms'
 
 export type Context = {
   headers: {
     [key: string]: string
   }
-  req: PayloadRequest
+  req: CMSRequest
   select: SelectType
 }

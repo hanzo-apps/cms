@@ -1,7 +1,7 @@
 @import '~@hanzo/cms-ui/scss';
 
-@layer payload-default {
-  .payload-settings {
+@layer cms-default {
+  .cms-settings {
     position: relative;
     margin-bottom: calc(var(--base) * 2);
 

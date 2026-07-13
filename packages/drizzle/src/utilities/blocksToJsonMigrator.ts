@@ -1,8 +1,8 @@
 import type {
   DynamicMigrationTemplate,
   FlattenedField,
-  Payload,
-  PayloadRequest,
+  CMS,
+  CMSRequest,
   SanitizedConfig,
 } from '@hanzo/cms'
 import type tsTypes from 'typescript'
@@ -28,7 +28,7 @@ import type {
 import { getTransaction } from './getTransaction.js'
 
 const DEFAULT_BATCH_SIZE = 100
-const TEMP_FOLDER_NAME = '.payload-blocks-migration'
+const TEMP_FOLDER_NAME = '.cms-blocks-migration'
 
 const writeEntitiesToTempFile = (
   entities: BlocksToJsonEntityToMigrate[],
@@ -241,7 +241,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
 
   private async migrateEntities(
     entities: BlocksToJsonEntityToMigrate[],
-    req: PayloadRequest,
+    req: CMSRequest,
   ): Promise<void> {
     this.adapter.blocksAsJSON = true
     this.resetSchema()
@@ -300,7 +300,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
 
       processed++
       if (processed % this.batchSize === 0 || processed === totalEntities) {
-        this.adapter.payload.logger.info(
+        this.adapter.cms.logger.info(
           `Migrated ${processed}/${totalEntities} entities (${Math.round((processed / totalEntities) * 100)}%)`,
         )
       }
@@ -319,7 +319,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
     this.adapter.enums = {}
   }
 
-  private async syncTransactionDrizzleInstance(req: PayloadRequest) {
+  private async syncTransactionDrizzleInstance(req: CMSRequest) {
     const tsx = (await getTransaction(this.adapter, req)) as any
 
     tsx._ = this.adapter.drizzle._
@@ -330,11 +330,11 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
   cleanupTempFolder(): void {
     rmSync(this.tempFolderPath, { force: true, recursive: true })
 
-    this.adapter.payload.logger.info(`Cleaned up temp folder at ${this.tempFolderPath}`)
+    this.adapter.cms.logger.info(`Cleaned up temp folder at ${this.tempFolderPath}`)
   }
 
   async collectAndSaveEntitiesToBatches(
-    req: PayloadRequest,
+    req: CMSRequest,
     options?: {
       batchSize?: number
     },
@@ -351,7 +351,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
 
     // Count total entities to migrate
     let totalExpected = 0
-    for (const collection of this.adapter.payload.config.collections.filter(entityHasBlocksField)) {
+    for (const collection of this.adapter.cms.config.collections.filter(entityHasBlocksField)) {
       const { totalDocs } = await this.adapter.count({ collection: collection.slug })
       totalExpected += totalDocs
 
@@ -363,7 +363,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
       }
     }
 
-    for (const globalConfig of this.adapter.payload.config.globals.filter(entityHasBlocksField)) {
+    for (const globalConfig of this.adapter.cms.config.globals.filter(entityHasBlocksField)) {
       totalExpected += 1 // Global itself
 
       if (globalConfig.versions) {
@@ -374,7 +374,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
       }
     }
 
-    this.adapter.payload.logger.info(
+    this.adapter.cms.logger.info(
       `Found ${totalExpected} total entities to collect and save to batches`,
     )
 
@@ -387,7 +387,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
         writeEntitiesToTempFile(currentBatch, this.tempFolderPath, batchIndex)
         const percentage =
           totalExpected > 0 ? Math.round((totalCollected / totalExpected) * 100) : 0
-        this.adapter.payload.logger.info(
+        this.adapter.cms.logger.info(
           `Saved batch ${batchIndex} with ${currentBatch.length} entities (${totalCollected}/${totalExpected} - ${percentage}%)`,
         )
         batchIndex++
@@ -403,7 +403,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
       }
     }
 
-    for (const collection of this.adapter.payload.config.collections.filter(entityHasBlocksField)) {
+    for (const collection of this.adapter.cms.config.collections.filter(entityHasBlocksField)) {
       let page = 1
       let hasMore = true
 
@@ -420,7 +420,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
             slug: collection.slug,
             type: 'collection',
             blocks: collectBlocksToMigrate({
-              config: this.adapter.payload.config,
+              config: this.adapter.cms.config,
               data: doc,
               fields: collection.flattenedFields,
               parentAccessor: [],
@@ -432,7 +432,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
           addEntity(entity)
         }
 
-        this.adapter.payload.logger.info(
+        this.adapter.cms.logger.info(
           `Collected ${docs.length} entries from ${collection.slug} (page ${page})`,
         )
 
@@ -458,9 +458,9 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
               slug: collection.slug,
               type: 'collectionVersion',
               blocks: collectBlocksToMigrate({
-                config: this.adapter.payload.config,
+                config: this.adapter.cms.config,
                 data: versionDoc,
-                fields: buildVersionCollectionFields(this.adapter.payload.config, collection, true),
+                fields: buildVersionCollectionFields(this.adapter.cms.config, collection, true),
                 parentAccessor: [],
                 parentIsLocalized: false,
               }),
@@ -470,7 +470,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
             addEntity(entity)
           }
 
-          this.adapter.payload.logger.info(
+          this.adapter.cms.logger.info(
             `Collected ${versionDocs.length} versions from ${collection.slug} (page ${versionPage})`,
           )
 
@@ -480,14 +480,14 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
       }
     }
 
-    for (const globalConfig of this.adapter.payload.config.globals.filter(entityHasBlocksField)) {
+    for (const globalConfig of this.adapter.cms.config.globals.filter(entityHasBlocksField)) {
       const globalDoc = await this.adapter.findGlobal({ slug: globalConfig.slug })
 
       const entity: BlocksToJsonEntityToMigrate = {
         slug: globalConfig.slug,
         type: 'global',
         blocks: collectBlocksToMigrate({
-          config: this.adapter.payload.config,
+          config: this.adapter.cms.config,
           data: globalDoc,
           fields: globalConfig.flattenedFields,
           parentAccessor: [],
@@ -497,7 +497,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
       }
 
       addEntity(entity)
-      this.adapter.payload.logger.info(`Collected global ${globalConfig.slug}`)
+      this.adapter.cms.logger.info(`Collected global ${globalConfig.slug}`)
 
       if (globalConfig.versions) {
         let globalVersionPage = 1
@@ -517,9 +517,9 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
               slug: globalConfig.slug,
               type: 'globalVersion',
               blocks: collectBlocksToMigrate({
-                config: this.adapter.payload.config,
+                config: this.adapter.cms.config,
                 data: globalVersionDoc,
-                fields: buildVersionGlobalFields(this.adapter.payload.config, globalConfig, true),
+                fields: buildVersionGlobalFields(this.adapter.cms.config, globalConfig, true),
                 parentAccessor: [],
                 parentIsLocalized: false,
               }),
@@ -529,7 +529,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
             addEntity(entity)
           }
 
-          this.adapter.payload.logger.info(
+          this.adapter.cms.logger.info(
             `Collected ${globalVersionDocs.length} versions from global ${globalConfig.slug} (page ${globalVersionPage})`,
           )
 
@@ -541,7 +541,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
 
     flushBatch()
 
-    this.adapter.payload.logger.info(
+    this.adapter.cms.logger.info(
       `Collected total of ${totalCollected} entities across ${batchIndex} batches`,
     )
   }
@@ -583,7 +583,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
   }
 
   async migrateEntitiesFromTempFolder(
-    req: PayloadRequest,
+    req: CMSRequest,
     options?: {
       clearBatches?: boolean
     },
@@ -597,7 +597,7 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
       hasEntities = true
       totalEntities += entities.length
 
-      this.adapter.payload.logger.info(
+      this.adapter.cms.logger.info(
         `Migrating batch with ${entities.length} entities (total: ${totalEntities})`,
       )
 
@@ -605,18 +605,18 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
     }
 
     if (!hasEntities) {
-      this.adapter.payload.logger.warn('No entities found in temp folder to migrate')
+      this.adapter.cms.logger.warn('No entities found in temp folder to migrate')
       return
     }
 
-    this.adapter.payload.logger.info(
+    this.adapter.cms.logger.info(
       `Completed migration of ${totalEntities} entities from temp folder`,
     )
 
     if (clearBatches) {
       this.cleanupTempFolder()
     } else {
-      this.adapter.payload.logger.info(
+      this.adapter.cms.logger.info(
         `Temp folder preserved at ${this.tempFolderPath} (clearBatches: false)`,
       )
     }
@@ -626,14 +626,14 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
     this.tempFolderPath = tempFolderPath
   }
 
-  async updatePayloadConfigFile(): Promise<void> {
+  async updateCMSConfigFile(): Promise<void> {
     let configPath: string
 
     try {
       configPath = findConfig()
     } catch {
-      this.adapter.payload.logger.info(
-        'updatePayloadConfigFile failed - could not find the payload config. Please set the blocksAsJSON DB adapter property manually to "true"',
+      this.adapter.cms.logger.info(
+        'updateCMSConfigFile failed - could not find the cms config. Please set the blocksAsJSON DB adapter property manually to "true"',
       )
       return
     }
@@ -698,8 +698,8 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
     ])
 
     if (!hadChanges) {
-      this.adapter.payload.logger.info(
-        'No changes made to payload config. Set blocksAsJSON to true manually.',
+      this.adapter.cms.logger.info(
+        'No changes made to cms config. Set blocksAsJSON to true manually.',
       )
       return
     }
@@ -714,14 +714,14 @@ class BlocksToJsonMigratorImpl implements BlocksToJsonMigrator {
       const config = configPath ? await prettier.resolveConfig(configPath) : {}
       output = await prettier.format(output, { ...config, parser: 'typescript' })
     } catch (err) {
-      this.adapter.payload.logger.error({
+      this.adapter.cms.logger.error({
         err,
-        msg: 'Could not format payload config with Prettier',
+        msg: 'Could not format cms config with Prettier',
       })
     }
 
     writeFileSync(configPath, output, 'utf-8')
-    this.adapter.payload.logger.info(`Updated ${configPath} with blocksAsJSON: true`)
+    this.adapter.cms.logger.info(`Updated ${configPath} with blocksAsJSON: true`)
   }
 }
 
@@ -737,11 +737,11 @@ export const createBlocksToJsonMigrator = ({
   return new BlocksToJsonMigratorImpl(adapter, sanitizeStatements, executeMethod)
 }
 
-export const getBlocksToJsonMigrator = (payload: Payload): BlocksToJsonMigrator => {
-  const migrator = (payload.db as DrizzleAdapter).blocksToJsonMigrator
+export const getBlocksToJsonMigrator = (cms: CMS): BlocksToJsonMigrator => {
+  const migrator = (cms.db as DrizzleAdapter).blocksToJsonMigrator
 
   if (!migrator) {
-    throw new APIError(`blocksToJsonMigrator is not defined for ${payload.db.packageName}`)
+    throw new APIError(`blocksToJsonMigrator is not defined for ${cms.db.packageName}`)
   }
 
   return migrator
@@ -752,21 +752,21 @@ export const buildDynamicPredefinedBlocksToJsonMigration = ({
 }: {
   packageName: string
 }): DynamicMigrationTemplate => {
-  return async ({ filePath, payload }) => {
-    const migrator = getBlocksToJsonMigrator(payload)
+  return async ({ filePath, cms }) => {
+    const migrator = getBlocksToJsonMigrator(cms)
 
     const migrationStatements = await migrator.getMigrationStatements()
 
     migrationStatements.writeDrizzleSnapshot(filePath)
 
-    await migrator.updatePayloadConfigFile()
+    await migrator.updateCMSConfigFile()
     const upSQL = `
-const migrator = getBlocksToJsonMigrator(payload)
+const migrator = getBlocksToJsonMigrator(cms)
 migrator.setTempFolder(TEMP_FOLDER)
 await migrator.collectAndSaveEntitiesToBatches(req, { batchSize: BATCH_SIZE })
 
 ${migrationStatements.statements}
-payload.logger.info("Executed blocks to JSON migration statements.")
+cms.logger.info("Executed blocks to JSON migration statements.")
 
 await migrator.migrateEntitiesFromTempFolder(req, { clearBatches: true })
   `

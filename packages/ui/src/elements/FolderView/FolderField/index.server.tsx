@@ -7,14 +7,14 @@ import './index.scss'
 const baseClass = 'folder-edit-field'
 
 export const FolderField = (props: RelationshipFieldServerProps) => {
-  if (props.payload.config.folders === false) {
+  if (props.cms.config.folders === false) {
     return null
   }
   return (
     <MoveDocToFolder
       className={baseClass}
-      folderCollectionSlug={props.payload.config.folders.slug}
-      folderFieldName={props.payload.config.folders.fieldName}
+      folderCollectionSlug={props.cms.config.folders.slug}
+      folderFieldName={props.cms.config.folders.fieldName}
     />
   )
 }

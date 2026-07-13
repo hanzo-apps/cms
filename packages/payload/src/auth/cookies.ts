@@ -122,7 +122,7 @@ export const getCookieExpiration = ({ seconds = 7200 }: GetCookieExpirationArgs)
   return currentTime
 }
 
-type GeneratePayloadCookieArgs = {
+type GenerateCMSCookieArgs = {
   /* The auth collection config */
   collectionAuthConfig: SanitizedCollectionConfig['auth']
   /* Prefix to scope the cookie */
@@ -132,7 +132,7 @@ type GeneratePayloadCookieArgs = {
   /* The token to be stored in the cookie */
   token: string
 }
-export const generatePayloadCookie = <T extends GeneratePayloadCookieArgs>({
+export const generateCMSCookie = <T extends GenerateCMSCookieArgs>({
   collectionAuthConfig,
   cookiePrefix,
   returnCookieAsObject = false,
@@ -158,7 +158,7 @@ export const generatePayloadCookie = <T extends GeneratePayloadCookieArgs>({
   })
 }
 
-export const generateExpiredPayloadCookie = <T extends Omit<GeneratePayloadCookieArgs, 'token'>>({
+export const generateExpiredCMSCookie = <T extends Omit<GenerateCMSCookieArgs, 'token'>>({
   collectionAuthConfig,
   cookiePrefix,
   returnCookieAsObject = false,

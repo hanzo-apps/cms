@@ -1,9 +1,9 @@
-import type { AuthCollectionSlug, PayloadTypesShape } from '@hanzo/cms'
+import type { AuthCollectionSlug, CMSTypesShape } from '@hanzo/cms'
 
-import type { PayloadSDK } from '../index.js'
+import type { CMSSDK } from '../index.js'
 
 export type ForgotPasswordOptions<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends AuthCollectionSlug<T>,
 > = {
   collection: TSlug
@@ -15,10 +15,10 @@ export type ForgotPasswordOptions<
 }
 
 export async function forgotPassword<
-  T extends PayloadTypesShape,
+  T extends CMSTypesShape,
   TSlug extends AuthCollectionSlug<T>,
 >(
-  sdk: PayloadSDK<T>,
+  sdk: CMSSDK<T>,
   options: ForgotPasswordOptions<T, TSlug>,
   init?: RequestInit,
 ): Promise<{ message: string }> {

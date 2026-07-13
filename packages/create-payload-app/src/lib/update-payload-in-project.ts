@@ -13,7 +13,7 @@ import { info } from '../utils/log.js'
 import { getPackageManager } from './get-package-manager.js'
 import { installPackages } from './install-packages.js'
 
-export async function updatePayloadInProject(
+export async function updateCMSInProject(
   appDetails: NextAppDetails,
 ): Promise<{ message: string; success: boolean }> {
   if (!appDetails.nextConfigPath) {
@@ -29,32 +29,32 @@ export async function updatePayloadInProject(
     throw new Error('No package.json found in this project')
   }
 
-  const payloadVersion = packageObj.dependencies?.payload
-  if (!payloadVersion) {
-    throw new Error('Payload is not installed in this project')
+  const cmsVersion = packageObj.dependencies?.payload
+  if (!cmsVersion) {
+    throw new Error('CMS is not installed in this project')
   }
 
   const packageManager = await getPackageManager({ projectDir })
 
-  // Fetch latest Payload version
-  const latestPayloadVersion = await getLatestPackageVersion({ packageName: 'payload' })
+  // Fetch latest CMS version
+  const latestCMSVersion = await getLatestPackageVersion({ packageName: 'payload' })
 
-  if (payloadVersion === latestPayloadVersion) {
-    return { message: `Payload v${payloadVersion} is already up to date.`, success: true }
+  if (cmsVersion === latestCMSVersion) {
+    return { message: `CMS v${cmsVersion} is already up to date.`, success: true }
   }
 
-  // Update all existing Payload packages
-  const payloadPackages = Object.keys(packageObj.dependencies).filter((dep) =>
+  // Update all existing CMS packages
+  const cmsPackages = Object.keys(packageObj.dependencies).filter((dep) =>
     dep.startsWith('@hanzo/cms-'),
   )
 
-  const packageNames = ['@hanzo/cms', ...payloadPackages]
+  const packageNames = ['@hanzo/cms', ...cmsPackages]
 
-  const packagesToUpdate = packageNames.map((pkg) => `${pkg}@${latestPayloadVersion}`)
+  const packagesToUpdate = packageNames.map((pkg) => `${pkg}@${latestCMSVersion}`)
 
   info(`Using ${packageManager}.\n`)
   info(
-    `Updating ${packagesToUpdate.length} Payload packages to v${latestPayloadVersion}...\n\n${packageNames.map((p) => `  - ${p}`).join('\n')}`,
+    `Updating ${packagesToUpdate.length} CMS packages to v${latestCMSVersion}...\n\n${packageNames.map((p) => `  - ${p}`).join('\n')}`,
   )
 
   const { success: updateSuccess } = await installPackages({
@@ -64,11 +64,11 @@ export async function updatePayloadInProject(
   })
 
   if (!updateSuccess) {
-    throw new Error('Failed to update Payload packages')
+    throw new Error('Failed to update CMS packages')
   }
-  info('Payload packages updated successfully.')
+  info('CMS packages updated successfully.')
 
-  info(`Updating Payload Next.js files...`)
+  info(`Updating CMS Next.js files...`)
 
   const templateFilesPath =
     process.env.JEST_WORKER_ID !== undefined
@@ -83,5 +83,5 @@ export async function updatePayloadInProject(
     ['custom.scss$'], // Do not overwrite user's custom.scss
   )
 
-  return { message: 'Payload updated successfully.', success: true }
+  return { message: 'CMS updated successfully.', success: true }
 }

@@ -1,5 +1,5 @@
 import type { RequiredDataFromCollectionSlug } from '../collections/config/types.js'
-import type { AuthCollection, CollectionSlug, PayloadRequest } from '../index.js'
+import type { AuthCollection, CollectionSlug, CMSRequest } from '../index.js'
 
 import { ValidationError } from '../errors/index.js'
 
@@ -7,7 +7,7 @@ type ValidateUsernameOrEmailArgs<TSlug extends CollectionSlug> = {
   authOptions: AuthCollection['config']['auth']
   collectionSlug: string
   data: RequiredDataFromCollectionSlug<TSlug>
-  req: PayloadRequest
+  req: CMSRequest
 } & (
   | {
       operation: 'create'

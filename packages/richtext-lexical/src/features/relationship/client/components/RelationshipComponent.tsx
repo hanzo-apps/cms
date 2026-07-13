@@ -4,7 +4,7 @@ import type { ElementFormatType } from 'lexical'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext.js'
 import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
 import { getTranslation } from '@hanzo/cms-translations'
-import { Button, useConfig, usePayloadAPI, useTranslation } from '@hanzo/cms-ui'
+import { Button, useConfig, useCMSAPI, useTranslation } from '@hanzo/cms-ui'
 import { $getNodeByKey } from 'lexical'
 import { formatAdminURL } from '@hanzo/cms/shared'
 import React, { useCallback, useReducer, useRef, useState } from 'react'
@@ -55,7 +55,7 @@ export const RelationshipComponent: React.FC<Props> = (props) => {
 
   const { i18n, t } = useTranslation()
   const [cacheBust, dispatchCacheBust] = useReducer((state) => state + 1, 0)
-  const [{ data }, { setParams }] = usePayloadAPI(
+  const [{ data }, { setParams }] = useCMSAPI(
     formatAdminURL({ apiRoute: api, path: `/${relatedCollection.slug}/${value}`, serverURL }),
     { initialParams },
   )
@@ -74,7 +74,7 @@ export const RelationshipComponent: React.FC<Props> = (props) => {
   const updateRelationship = React.useCallback(() => {
     setParams({
       ...initialParams,
-      cacheBust, // do this to get the usePayloadAPI to re-fetch the data even though the URL string hasn't changed
+      cacheBust, // do this to get the useCMSAPI to re-fetch the data even though the URL string hasn't changed
     })
 
     closeDocumentDrawer()

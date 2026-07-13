@@ -10,7 +10,7 @@ export async function findOne<T extends TypeWithID>(
   this: DrizzleAdapter,
   { collection, draftsEnabled, joins, locale, req, select, where }: FindOneArgs,
 ): Promise<null | T> {
-  const collectionConfig: SanitizedCollectionConfig = this.payload.collections[collection].config
+  const collectionConfig: SanitizedCollectionConfig = this.cms.collections[collection].config
 
   const tableName = this.tableNameMap.get(toSnakeCase(collectionConfig.slug))
 

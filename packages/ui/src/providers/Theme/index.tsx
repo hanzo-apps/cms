@@ -62,7 +62,7 @@ export const ThemeProvider: React.FC<{
   const { config } = useConfig()
 
   const preselectedTheme = config.admin.theme
-  const cookieKey = `${config.cookiePrefix || 'payload'}-theme`
+  const cookieKey = `${config.cookiePrefix || 'cms'}-theme`
 
   const [theme, setThemeState] = useState<Theme>(initialTheme || defaultTheme)
 

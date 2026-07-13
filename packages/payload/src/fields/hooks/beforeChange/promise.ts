@@ -2,7 +2,7 @@ import type { RichTextAdapter } from '../../../admin/RichText.js'
 import type { SanitizedCollectionConfig } from '../../../collections/config/types.js'
 import type { ValidationFieldError } from '../../../errors/index.js'
 import type { SanitizedGlobalConfig } from '../../../globals/config/types.js'
-import type { JsonObject, Operation, PayloadRequest } from '../../../types/index.js'
+import type { JsonObject, Operation, CMSRequest } from '../../../types/index.js'
 import type { Block, Field, TabAsField, Validate } from '../../config/types.js'
 
 import { MissingEditorProp } from '../../../errors/index.js'
@@ -52,7 +52,7 @@ type Args = {
   parentIsLocalized: boolean
   parentPath: string
   parentSchemaPath: string
-  req: PayloadRequest
+  req: CMSRequest
   siblingData: JsonObject
   siblingDoc: JsonObject
   siblingDocWithLocales?: JsonObject
@@ -103,7 +103,7 @@ export const promise = async ({
     parentSchemaPath,
   })
 
-  const { localization } = req.payload.config
+  const { localization } = req.cms.config
   const defaultLocale = localization ? localization?.defaultLocale : 'en'
   const operationLocale = req.locale || defaultLocale
 
@@ -228,7 +228,7 @@ export const promise = async ({
                 const blockConfig =
                   typeof blockConfigOrSlug !== 'string'
                     ? blockConfigOrSlug
-                    : req.payload.config?.blocks?.[blockConfigOrSlug]
+                    : req.cms.config?.blocks?.[blockConfigOrSlug]
 
                 const blockLabelPath =
                   field?.label === false
@@ -358,7 +358,7 @@ export const promise = async ({
           const blockTypeToMatch = (row as JsonObject).blockType || rowSiblingDoc.blockType
 
           const block: Block | undefined =
-            req.payload.blocks[blockTypeToMatch] ??
+            req.cms.blocks[blockTypeToMatch] ??
             ((field.blockReferences ?? field.blocks).find(
               (curBlock) => typeof curBlock !== 'string' && curBlock.slug === blockTypeToMatch,
             ) as Block | undefined)

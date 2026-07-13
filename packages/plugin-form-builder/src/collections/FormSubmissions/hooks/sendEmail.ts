@@ -16,7 +16,7 @@ export const sendEmail = async (
     const {
       data,
       doc: { id: formSubmissionID },
-      req: { locale, payload },
+      req: { locale, cms },
       req,
     } = afterChangeParameters
 
@@ -24,7 +24,7 @@ export const sendEmail = async (
     const { beforeEmail, defaultToEmail, formOverrides } = formConfig || {}
 
     try {
-      const form = await payload.findByID({
+      const form = await cms.findByID({
         id: formID,
         collection: formOverrides?.slug || 'forms',
         locale,
@@ -54,7 +54,7 @@ export const sendEmail = async (
               subject,
             } = email
 
-            const emailTo = emailToFromConfig || defaultToEmail || payload.email.defaultFromAddress
+            const emailTo = emailToFromConfig || defaultToEmail || cms.email.defaultFromAddress
 
             const to = replaceDoubleCurlys(emailTo, submissionData)
             const cc = emailCC ? replaceDoubleCurlys(emailCC, submissionData) : ''
@@ -90,10 +90,10 @@ export const sendEmail = async (
           emailsToSend.map(async (email) => {
             const { to } = email
             try {
-              const emailPromise = await payload.sendEmail(email)
+              const emailPromise = await cms.sendEmail(email)
               return emailPromise
             } catch (err: unknown) {
-              payload.logger.error({
+              cms.logger.error({
                 err,
                 msg: `Error while sending email to address: ${to}. Email not sent.`,
               })
@@ -101,11 +101,11 @@ export const sendEmail = async (
           }),
         )
       } else {
-        payload.logger.info({ msg: 'No emails to send.' })
+        cms.logger.info({ msg: 'No emails to send.' })
       }
     } catch (err: unknown) {
       const msg = `Error while sending one or more emails in form submission id: ${formSubmissionID}.`
-      payload.logger.error({ err, msg })
+      cms.logger.error({ err, msg })
     }
   }
 }

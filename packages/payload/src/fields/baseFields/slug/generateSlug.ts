@@ -1,4 +1,4 @@
-import type { PayloadRequest } from '../../../types/index.js'
+import type { CMSRequest } from '../../../types/index.js'
 import type { FieldHook } from '../../config/types.js'
 import type { SlugFieldArgs, Slugify } from './index.js'
 
@@ -19,7 +19,7 @@ const slugify = ({
 }: {
   customSlugify?: Slugify
   data: Record<string, unknown>
-  req: PayloadRequest
+  req: CMSRequest
   valueToSlugify?: string
 }) => {
   if (customSlugify) {
