@@ -13,21 +13,17 @@ images:
     dockerfile: Dockerfile
     repo: ghcr.io/hanzoai/cms
 
-# Deploy: roll the freshly-built image onto the `cms` Service CR. Fires only on
-# `main` (+ tags); PRs and forks build but never deploy. KMS hands back the
-# kubeconfig at run time.
-deploy:
-  cluster: do-sfo3-hanzo-k8s
-  namespace: hanzo
-  # Quoted to dodge YAML 1.1 boolean coercion of a bare `on:` key.
-  'on': [main]
-  services:
-    - name: cms
-      image: cms
+# BUILD-ONLY for the first cutover: no `deploy:` block, so main pushes the image
+# to GHCR but never rolls the CR itself. The deploy is done through the universe
+# CR bump (infra/k8s/operator/crs/cms.yaml image.tag) IN LOCKSTEP with the
+# PAYLOAD_SECRET→CMS_SECRET env fix (harden/cms-secret-env) — merging the image
+# without that env fix would drop admin auth to the dev fallback. Once the first
+# rebranded image is verified live, this can adopt world's auto-deploy `deploy:`
+# block. (Same controlled path world.hanzo.ai uses today.)
 
-# KMS (kms.hanzo.ai, Universal Auth) supplies the GHCR push token and the target
-# kubeconfig at run time. Only KMS_CLIENT_ID/KMS_CLIENT_SECRET live in GitHub;
-# everything else is fetched here.
+# KMS (kms.hanzo.ai, Universal Auth) supplies the GHCR push token at run time.
+# Only KMS_CLIENT_ID/KMS_CLIENT_SECRET live in GitHub; everything else is fetched
+# here.
 kms:
   path: /deploy
   environment: prod

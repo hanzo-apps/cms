@@ -9,7 +9,8 @@ name: CI/CD
 
 on:
   push:
-    branches: [main]
+    # hanzo-cms is this repo's mainline (default branch); main kept for parity.
+    branches: [hanzo-cms, main]
     tags: ['v*']
   pull_request:
   workflow_dispatch:
