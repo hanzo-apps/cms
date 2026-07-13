@@ -8,6 +8,11 @@ const __filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(__filename)
 
 const nextConfig: NextConfig = {
+  // Emit a self-contained server bundle so the image can run `node
+  // apps/hanzo-demo/server.js` (exactly what the operator CR invokes) without
+  // node_modules. In a pnpm monorepo the standalone lands at
+  // .next/standalone/apps/hanzo-demo/server.js, so file-tracing must root at the
+  // workspace, not the app dir, or the traced runtime misses workspace deps.
   images: {
     localPatterns: [
       {
@@ -15,6 +20,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  output: 'standalone',
+  outputFileTracingRoot: path.resolve(dirname, '../..'),
   turbopack: {
     // Monorepo root (two levels up from apps/hanzo-demo). In this pnpm
     // isolated-linker workspace `next` is symlinked from the root .pnpm store,

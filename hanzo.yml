@@ -1,0 +1,33 @@
+# Canonical CI/CD config for hanzoai/cms — read by both the hanzoai/ci reusable
+# workflow (.github/workflows/cicd.yml) and platform.hanzo.ai. One image (the
+# @hanzo/cms admin/app, Next standalone via Dockerfile), rolled onto the existing
+# `cms` operator Service CR (universe: infra/k8s/operator/crs/cms.yaml).
+#
+# No separate `test:` block: the Dockerfile IS the gate — `pnpm build:all` +
+# `next build` fail the image on any build break, so nothing broken ships (same
+# pattern as hanzoai/world + hanzoai/console).
+
+images:
+  - name: cms
+    context: .
+    dockerfile: Dockerfile
+    repo: ghcr.io/hanzoai/cms
+
+# Deploy: roll the freshly-built image onto the `cms` Service CR. Fires only on
+# `main` (+ tags); PRs and forks build but never deploy. KMS hands back the
+# kubeconfig at run time.
+deploy:
+  cluster: do-sfo3-hanzo-k8s
+  namespace: hanzo
+  # Quoted to dodge YAML 1.1 boolean coercion of a bare `on:` key.
+  'on': [main]
+  services:
+    - name: cms
+      image: cms
+
+# KMS (kms.hanzo.ai, Universal Auth) supplies the GHCR push token and the target
+# kubeconfig at run time. Only KMS_CLIENT_ID/KMS_CLIENT_SECRET live in GitHub;
+# everything else is fetched here.
+kms:
+  path: /deploy
+  environment: prod
