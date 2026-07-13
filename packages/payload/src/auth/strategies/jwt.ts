@@ -12,12 +12,12 @@ type JWTToken = {
 }
 
 async function autoLogin({
-  isGraphQL,
   cms,
+  isGraphQL,
   strategyName = 'local-jwt',
 }: {
-  isGraphQL: boolean
   cms: CMS
+  isGraphQL: boolean
   strategyName?: string
 }): Promise<{
   user: AuthStrategyResult['user']
@@ -75,23 +75,23 @@ async function autoLogin({
  * Authentication strategy function for JWT tokens
  */
 export const JWTAuthentication: AuthStrategyFunction = async ({
+  cms,
   headers,
   isGraphQL = false,
-  cms,
   strategyName = 'local-jwt',
 }) => {
   try {
-    const token = extractJWT({ headers, cms })
+    const token = extractJWT({ cms, headers })
 
     if (!token) {
       if (headers.get('DisableAutologin') !== 'true') {
-        return await autoLogin({ isGraphQL, cms, strategyName })
+        return await autoLogin({ cms, isGraphQL, strategyName })
       }
       return { user: null }
     }
 
     const secretKey = new TextEncoder().encode(cms.secret)
-    const { cms: decodedCMS } = await jwtVerify<JWTToken>(token, secretKey)
+    const { payload: decodedCMS } = await jwtVerify<JWTToken>(token, secretKey)
     const collection = cms.collections[decodedCMS.collection]
 
     const user = (await cms.findByID({
@@ -120,13 +120,13 @@ export const JWTAuthentication: AuthStrategyFunction = async ({
       }
     } else {
       if (headers.get('DisableAutologin') !== 'true') {
-        return await autoLogin({ isGraphQL, cms, strategyName })
+        return await autoLogin({ cms, isGraphQL, strategyName })
       }
       return { user: null }
     }
   } catch (ignore) {
     if (headers.get('DisableAutologin') !== 'true') {
-      return await autoLogin({ isGraphQL, cms, strategyName })
+      return await autoLogin({ cms, isGraphQL, strategyName })
     }
     return { user: null }
   }

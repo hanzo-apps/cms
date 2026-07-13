@@ -1,5 +1,6 @@
-import { withPayload } from '@hanzo/cms-next/withPayload'
 import type { NextConfig } from 'next'
+
+import { withCMS } from '@hanzo/cms-next/withPayload'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -14,6 +15,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  turbopack: {
+    root: path.resolve(dirname),
+  },
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],
@@ -23,9 +27,6 @@ const nextConfig: NextConfig = {
 
     return webpackConfig
   },
-  turbopack: {
-    root: path.resolve(dirname),
-  },
 }
 
-export default withPayload(nextConfig, { devBundleServerPackages: false })
+export default withCMS(nextConfig, { devBundleServerPackages: false })

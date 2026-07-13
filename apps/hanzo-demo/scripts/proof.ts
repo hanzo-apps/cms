@@ -5,12 +5,12 @@
  *   1. @hanzo/cms boots on Base/SQLite (per-org libsql file)
  *   2. a real media upload lands in SeaweedFS S3 (real object)
  *   3. Hanzo IAM SSO: a REAL IAM token verifies via the auth strategy (JWKS)
- *   4. draft -> publish (Payload-native versions)
+ *   4. draft -> publish (CMS-native versions)
  *   5. per-org isolation (two orgs, separate SQLite, no cross-read)
  *
  * Run: HANZO_ORG=... S3_*=... IAM_TOKEN=... tsx scripts/proof.ts
  */
-import { getPayload } from '@hanzo/cms'
+import { getCMS } from '@hanzo/cms'
 import { hanzoIAMStrategy } from '@hanzo/cms-auth-iam'
 import { readFileSync } from 'fs'
 import path from 'path'
@@ -34,20 +34,20 @@ const run = async () => {
   // ---- 1. BOOT on Base/SQLite (per-org) --------------------------------
   step(`1. BOOT @hanzo/cms on Base/SQLite (org=${org})`)
   const config = await loadConfig()
-  const payload = await getPayload({ config })
-  ok(`booted; db adapter = ${payload.db.name}`)
-  const dbUrl = (payload.db as unknown as { client?: { url?: string } }).client?.url
+  const cms = await getCMS({ config })
+  ok(`booted; db adapter = ${cms.db.name}`)
+  const dbUrl = (cms.db as unknown as { client?: { url?: string } }).client?.url
   ok(`per-org SQLite = ${dbUrl ?? 'file (libsql)'}`)
 
   // provision the tenant for this org (org == tenant). Idempotent.
-  const existingTenant = await payload.find({
+  const existingTenant = await cms.find({
     collection: 'tenants',
     limit: 1,
     where: { slug: { equals: org } },
   })
   const tenant =
     existingTenant.docs[0] ??
-    (await payload.create({ collection: 'tenants', data: { name: org, slug: org } }))
+    (await cms.create({ collection: 'tenants', data: { name: org, slug: org } }))
   ok(`tenant (== IAM org) id=${tenant.id} slug=${(tenant as { slug?: string }).slug}`)
 
   // ---- 2. real media upload -> SeaweedFS S3 ----------------------------
@@ -57,7 +57,7 @@ const run = async () => {
   if (haveS3) {
     const pngPath = path.resolve(dirname, 'fixture.png')
     const bytes = readFileSync(pngPath)
-    const media = await payload.create({
+    const media = await cms.create({
       collection: 'media',
       data: { alt: 'proof pixel', tenant: tenant.id },
       file: {
@@ -82,22 +82,22 @@ const run = async () => {
     const headers = new Headers({ authorization: `Bearer ${token}` })
     const res = await strat.authenticate({
       canSetHeaders: true,
+      cms,
       headers,
-      payload,
     } as Parameters<typeof strat.authenticate>[0])
     if (res.user) {
       ok(`IAM token verified; user email=${(res.user as { email?: string }).email}`)
       ok(`mapped iamOrg (== tenant) = ${(res.user as { iamOrg?: string }).iamOrg}`)
       const setCookie = res.responseHeaders?.get('set-cookie')
-      ok(`payload-tenant cookie set: ${setCookie ? 'yes' : 'no'}`)
+      ok(`cms-tenant cookie set: ${setCookie ? 'yes' : 'no'}`)
     } else {
       fail('IAM token did NOT verify (expected a real valid token)')
     }
     // negative control: a garbage token must be rejected
     const bad = await strat.authenticate({
       canSetHeaders: true,
+      cms,
       headers: new Headers({ authorization: 'Bearer not.a.jwt' }),
-      payload,
     } as Parameters<typeof strat.authenticate>[0])
     if (!bad.user) {
       ok('negative control: invalid token rejected (user=null)')
@@ -109,15 +109,15 @@ const run = async () => {
   }
 
   // ---- 4. draft -> publish --------------------------------------------
-  step('4. Draft -> Publish (Payload-native versions)')
-  const draft = await payload.create({
+  step('4. Draft -> Publish (CMS-native versions)')
+  const draft = await cms.create({
     collection: 'pages',
     data: { slug: 'launch', _status: 'draft', tenant: tenant.id, title: 'Launch Announcement' },
   })
   ok(`created DRAFT page id=${draft.id} status=${(draft as { _status?: string })._status}`)
 
   // before publish: there must be NO row whose published status is 'published'
-  const publishedBefore = await payload.find({
+  const publishedBefore = await cms.find({
     collection: 'pages',
     where: { and: [{ slug: { equals: 'launch' } }, { _status: { equals: 'published' } }] },
   })
@@ -127,14 +127,14 @@ const run = async () => {
     fail(`unexpected published version before publish: ${publishedBefore.totalDocs}`)
   }
 
-  const published = await payload.update({
+  const published = await cms.update({
     id: draft.id,
     collection: 'pages',
     data: { _status: 'published' },
   })
   ok(`published page id=${published.id} status=${(published as { _status?: string })._status}`)
 
-  const publishedAfter = await payload.find({
+  const publishedAfter = await cms.find({
     collection: 'pages',
     where: { and: [{ slug: { equals: 'launch' } }, { _status: { equals: 'published' } }] },
   })
@@ -144,7 +144,7 @@ const run = async () => {
     fail(`expected 1 published doc, got ${publishedAfter.totalDocs}`)
   }
 
-  const versions = await payload.findVersions({
+  const versions = await cms.findVersions({
     collection: 'pages',
     where: { parent: { equals: draft.id } },
   })
@@ -158,7 +158,7 @@ const run = async () => {
   // process — see the runner.)
   if (process.env.PROOF_ORG2 === '1') {
     step('5. Per-org isolation — org2 on its OWN SQLite')
-    const pages2 = await payload.find({ collection: 'pages' })
+    const pages2 = await cms.find({ collection: 'pages' })
     if (pages2.totalDocs === 0) {
       ok(`org2 (${org}) sees 0 pages — org1 data NOT visible -> isolated`)
     } else {
@@ -171,7 +171,7 @@ const run = async () => {
     JSON.stringify(
       {
         boot: true,
-        dbAdapter: payload.db.name,
+        dbAdapter: cms.db.name,
         draftThenPublish: publishedAfter.totalDocs === 1,
         iamVerified: Boolean(token),
         org,
