@@ -6,9 +6,10 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "next build --webpack",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation hanzo-cms generate:importmap && next build --webpack",
     "dev": "next dev --webpack",
-    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation hanzo-cms generate:importmap",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation hanzo-cms generate:types",
     "start": "next start"
   },
   "dependencies": {
