@@ -1,6 +1,6 @@
 {
   "name": "@hanzo/cms-auth-iam",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hanzo IAM SSO auth strategy for Hanzo CMS. Verifies IAM (Casdoor) access tokens via JWKS; org == tenant. No separate CMS login.",
   "license": "MIT",
   "type": "module",

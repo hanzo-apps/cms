@@ -38,4 +38,17 @@ export const iamAuthFields: Field[] = [
     type: 'text',
     label: 'Username',
   },
+  {
+    name: 'isAdmin',
+    type: 'checkbox',
+    admin: { description: 'Hanzo IAM platform admin (all-tenant access).', readOnly: true },
+    index: true,
+    label: 'IAM Admin',
+  },
+  {
+    name: 'groups',
+    type: 'json',
+    admin: { description: 'Hanzo IAM group slugs.', readOnly: true },
+    label: 'IAM Groups',
+  },
 ]

@@ -29,9 +29,9 @@ export default buildConfig({
     // Hanzo branding on the admin panel — the browser tab / login no longer
     // shows the upstream framework name.
     meta: {
-      titleSuffix: '— Hanzo CMS',
-      title: 'Hanzo CMS',
       description: 'Hanzo CMS — headless content for the Hanzo platform.',
+      title: 'Hanzo CMS',
+      titleSuffix: '— Hanzo CMS',
     },
   },
   collections: [Users, Tenants, Pages, Media],
@@ -70,8 +70,10 @@ export default buildConfig({
         pages: {},
       },
       tenantsSlug: 'tenants',
-      userHasAccessToAllTenants: (user) =>
-        Boolean(user && (user as { iamOrg?: string }).iamOrg === 'admin'),
+      userHasAccessToAllTenants: (user) => {
+        const u = user as { iamOrg?: string; isAdmin?: boolean } | null
+        return Boolean(u && (u.iamOrg === 'admin' || u.isAdmin))
+      },
     }),
     // Brand-neutral / white-label by domain. Neutral when no brand matches.
     whiteLabelPlugin({

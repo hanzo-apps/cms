@@ -7,6 +7,10 @@ export type IAMClaims = {
   aud?: string | string[]
   email?: string
   exp?: number
+  /** group slugs the user belongs to */
+  groups?: string[]
+  /** platform admin — grants all-tenant access */
+  isAdmin?: boolean
   iss?: string
   /** username */
   name?: string

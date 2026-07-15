@@ -60,14 +60,14 @@ const ensureTenant = async (args: {
 
   const existingDoc = existing.docs[0]
   if (existingDoc) {
-    return existingDoc.id as number | string
+    return existingDoc.id
   }
 
   const created = await cms.create({
     collection: tenantsSlug,
     data: { name: slug, slug },
   })
-  return created.id as number | string
+  return created.id
 }
 
 /**
@@ -94,8 +94,8 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
     name,
     authenticate: async ({
       canSetHeaders,
-      headers,
       cms,
+      headers,
     }: AuthStrategyFunctionArgs): Promise<AuthStrategyResult> => {
       const token = getBearer(headers)
       if (!token) {
@@ -129,13 +129,13 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
 
       const baseData = {
         email: claims.email || `${claims.sub}@iam.local`,
+        groups: Array.isArray(claims.groups) ? claims.groups : [],
         iamOrg: claims.owner,
         iamSub: claims.sub,
+        isAdmin: Boolean(claims.isAdmin),
         username: claims.name,
         ...(config.claimsToUser ? config.claimsToUser(claims) : {}),
-        ...(tenantID !== undefined
-          ? { [tenantsArrayField]: [{ tenant: tenantID }] }
-          : {}),
+        ...(tenantID !== undefined ? { [tenantsArrayField]: [{ tenant: tenantID }] } : {}),
       }
 
       let userDoc
