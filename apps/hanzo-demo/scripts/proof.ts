@@ -150,6 +150,42 @@ const run = async () => {
   })
   ok(`version history rows = ${versions.totalDocs} (>=1)`)
 
+  // ---- 4b. PUBLIC (unauthenticated) read: published visible, drafts hidden --
+  // Headless storefronts (e.g. karma.style/journal) fetch pages with NO token.
+  // Pages.access.read returns {_status: published} for an anonymous request, and
+  // the multi-tenant plugin adds no tenant constraint without a user — so
+  // published docs are world-readable while drafts and writes stay gated.
+  step('4b. Public read — anon sees PUBLISHED only (headless storefront)')
+  const hiddenDraft = await cms.create({
+    collection: 'pages',
+    data: { slug: 'unpublished-draft', _status: 'draft', tenant: tenant.id, title: 'Draft Only' },
+  })
+  // overrideAccess:false with no req.user == an anonymous public API request.
+  const anon = await cms.find({
+    collection: 'pages',
+    overrideAccess: false,
+    where: { slug: { in: ['launch', 'unpublished-draft'] } },
+  })
+  const anonSlugs = anon.docs.map((d) => (d as { slug?: string }).slug)
+  const publicReadOk = anonSlugs.includes('launch') && !anonSlugs.includes('unpublished-draft')
+  if (publicReadOk) {
+    ok(`anon read = [${anonSlugs.join(', ')}] — published 'launch' visible, draft hidden`)
+  } else {
+    fail(`anon read wrong: [${anonSlugs.join(', ')}] (expected published only, no drafts)`)
+  }
+  // negative control: an anonymous by-id GET of a draft must NOT return it.
+  const anonDraftById = await cms.findByID({
+    id: hiddenDraft.id,
+    collection: 'pages',
+    disableErrors: true,
+    overrideAccess: false,
+  })
+  if (!anonDraftById) {
+    ok('negative control: anon by-id read of a DRAFT is blocked (null)')
+  } else {
+    fail('SECURITY: anonymous read exposed a draft document')
+  }
+
   // ---- 5. per-org isolation -------------------------------------------
   // org == tenant means each org gets its OWN SQLite database (Base). We prove
   // isolation by pointing a second, independent Payload build at org2's DB and
@@ -175,6 +211,7 @@ const run = async () => {
         draftThenPublish: publishedAfter.totalDocs === 1,
         iamVerified: Boolean(token),
         org,
+        publicRead: publicReadOk,
         s3ObjectKey: uploadedKey ?? null,
       },
       null,

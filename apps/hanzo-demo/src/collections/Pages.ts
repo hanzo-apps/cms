@@ -7,6 +7,16 @@ import type { CollectionConfig } from '@hanzo/cms'
  */
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  access: {
+    // Headless read model: PUBLISHED docs are world-readable (storefronts fetch
+    // them with no token); drafts and every write stay gated exactly as before.
+    // The multi-tenant plugin composes this (withTenantAccess): an authenticated
+    // caller returns `true` and the plugin then scopes reads to their org; an
+    // anonymous caller has no user, so the plugin adds NO tenant constraint and
+    // this filter stands alone — published docs of ANY tenant are public, which
+    // is correct for a headless CMS serving many brands' storefronts.
+    read: ({ req: { user } }) => (user ? true : { _status: { equals: 'published' } }),
+  },
   admin: {
     useAsTitle: 'title',
   },
