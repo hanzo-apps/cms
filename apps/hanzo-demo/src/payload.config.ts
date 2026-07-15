@@ -13,6 +13,7 @@ import { Media } from './collections/Media.js'
 import { Pages } from './collections/Pages.js'
 import { Tenants } from './collections/Tenants.js'
 import { Users } from './collections/Users.js'
+import { migrations } from './migrations/index.js'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -41,10 +42,13 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   // DB = Hanzo Base / SQLite (per-org). libsql; no Postgres/Mongo default.
+  // prodMigrations run once on boot in production (the dev-only schema push is
+  // skipped there) — this is how the local-auth columns reach the live DB.
   db: sqliteAdapter({
     client: {
       url: process.env.DATABASE_URI || `file:${path.resolve(dirname, `../data/${ORG}.db`)}`,
     },
+    prodMigrations: migrations,
   }),
   plugins: [
     // Media/DAM -> SeaweedFS (hanzoai/s3), per-org prefix. forcePathStyle required.

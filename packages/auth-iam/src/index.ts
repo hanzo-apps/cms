@@ -8,16 +8,12 @@ export type { HanzoIAMStrategyConfig, IAMClaims } from './types.js'
  * Spread these into your users collection `fields`.
  *
  *   fields: [...iamAuthFields, ...yourFields]
+ *
+ * NOTE: `email` is intentionally NOT here — the local auth strategy adds it.
+ * A collection with `disableLocalStrategy: true` must add an `email` field
+ * itself.
  */
 export const iamAuthFields: Field[] = [
-  {
-    // Auth collections with `disableLocalStrategy: true` do NOT get the email
-    // field auto-added (that comes from the local strategy), so add it here.
-    name: 'email',
-    type: 'email',
-    index: true,
-    label: 'Email',
-  },
   {
     name: 'iamSub',
     type: 'text',

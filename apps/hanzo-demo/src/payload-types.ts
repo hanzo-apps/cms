@@ -71,11 +71,11 @@ export interface Config {
     tenants: Tenant;
     pages: Page;
     media: Media;
-    'cms-kv': CMSKv;
-    'cms-jobs': CMSJob;
-    'cms-locked-documents': CMSLockedDocument;
-    'cms-preferences': CMSPreference;
-    'cms-migrations': CMSMigration;
+    'cms-kv': CmsKv;
+    'cms-jobs': CmsJob;
+    'cms-locked-documents': CmsLockedDocument;
+    'cms-preferences': CmsPreference;
+    'cms-migrations': CmsMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
@@ -83,11 +83,11 @@ export interface Config {
     tenants: TenantsSelect<false> | TenantsSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    'cms-kv': CMSKvSelect<false> | CMSKvSelect<true>;
-    'cms-jobs': CMSJobsSelect<false> | CMSJobsSelect<true>;
-    'cms-locked-documents': CMSLockedDocumentsSelect<false> | CMSLockedDocumentsSelect<true>;
-    'cms-preferences': CMSPreferencesSelect<false> | CMSPreferencesSelect<true>;
-    'cms-migrations': CMSMigrationsSelect<false> | CMSMigrationsSelect<true>;
+    'cms-kv': CmsKvSelect<false> | CmsKvSelect<true>;
+    'cms-jobs': CmsJobsSelect<false> | CmsJobsSelect<true>;
+    'cms-locked-documents': CmsLockedDocumentsSelect<false> | CmsLockedDocumentsSelect<true>;
+    'cms-preferences': CmsPreferencesSelect<false> | CmsPreferencesSelect<true>;
+    'cms-migrations': CmsMigrationsSelect<false> | CmsMigrationsSelect<true>;
   };
   db: {
     defaultIDType: number;
@@ -135,7 +135,6 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
-  email?: string | null;
   /**
    * Hanzo IAM subject (user id).
    */
@@ -145,6 +144,22 @@ export interface User {
    */
   iamOrg?: string | null;
   username?: string | null;
+  /**
+   * Hanzo IAM platform admin (all-tenant access).
+   */
+  isAdmin?: boolean | null;
+  /**
+   * Hanzo IAM group slugs.
+   */
+  groups?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   tenants?:
     | {
         tenant: number | Tenant;
@@ -153,6 +168,21 @@ export interface User {
     | null;
   updatedAt: string;
   createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
   collection: 'users';
 }
 /**
@@ -222,7 +252,7 @@ export interface Media {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cms-kv".
  */
-export interface CMSKv {
+export interface CmsKv {
   id: number;
   key: string;
   data:
@@ -239,7 +269,7 @@ export interface CMSKv {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cms-jobs".
  */
-export interface CMSJob {
+export interface CmsJob {
   id: number;
   /**
    * Input data provided to the job
@@ -331,7 +361,7 @@ export interface CMSJob {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cms-locked-documents".
  */
-export interface CMSLockedDocument {
+export interface CmsLockedDocument {
   id: number;
   document?:
     | ({
@@ -362,7 +392,7 @@ export interface CMSLockedDocument {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cms-preferences".
  */
-export interface CMSPreference {
+export interface CmsPreference {
   id: number;
   user: {
     relationTo: 'users';
@@ -385,7 +415,7 @@ export interface CMSPreference {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cms-migrations".
  */
-export interface CMSMigration {
+export interface CmsMigration {
   id: number;
   name?: string | null;
   batch?: number | null;
@@ -397,10 +427,11 @@ export interface CMSMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  email?: T;
   iamSub?: T;
   iamOrg?: T;
   username?: T;
+  isAdmin?: T;
+  groups?: T;
   tenants?:
     | T
     | {
@@ -409,6 +440,20 @@ export interface UsersSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -457,7 +502,7 @@ export interface MediaSelect<T extends boolean = true> {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cms-kv_select".
  */
-export interface CMSKvSelect<T extends boolean = true> {
+export interface CmsKvSelect<T extends boolean = true> {
   key?: T;
   data?: T;
 }
@@ -465,7 +510,7 @@ export interface CMSKvSelect<T extends boolean = true> {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cms-jobs_select".
  */
-export interface CMSJobsSelect<T extends boolean = true> {
+export interface CmsJobsSelect<T extends boolean = true> {
   input?: T;
   taskStatus?: T;
   completedAt?: T;
@@ -496,7 +541,7 @@ export interface CMSJobsSelect<T extends boolean = true> {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cms-locked-documents_select".
  */
-export interface CMSLockedDocumentsSelect<T extends boolean = true> {
+export interface CmsLockedDocumentsSelect<T extends boolean = true> {
   document?: T;
   globalSlug?: T;
   user?: T;
@@ -507,7 +552,7 @@ export interface CMSLockedDocumentsSelect<T extends boolean = true> {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cms-preferences_select".
  */
-export interface CMSPreferencesSelect<T extends boolean = true> {
+export interface CmsPreferencesSelect<T extends boolean = true> {
   user?: T;
   key?: T;
   value?: T;
@@ -518,7 +563,7 @@ export interface CMSPreferencesSelect<T extends boolean = true> {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cms-migrations_select".
  */
-export interface CMSMigrationsSelect<T extends boolean = true> {
+export interface CmsMigrationsSelect<T extends boolean = true> {
   name?: T;
   batch?: T;
   updatedAt?: T;
