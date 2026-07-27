@@ -21,7 +21,7 @@
 name: deploy
 on:
   push:
-    branches: [main]
+    branches: [hanzo-cms]
   workflow_dispatch:
 
 concurrency:
