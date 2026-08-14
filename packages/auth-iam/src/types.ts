@@ -9,7 +9,7 @@ export type IAMClaims = {
   exp?: number
   /** group slugs the user belongs to */
   groups?: string[]
-  /** platform admin — grants all-tenant access */
+  /** Administers the org named by `owner`. Scoped to it; see `isSuperAdmin`. */
   isAdmin?: boolean
   iss?: string
   /** username */

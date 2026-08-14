@@ -145,7 +145,7 @@ export interface User {
   iamOrg?: string | null;
   username?: string | null;
   /**
-   * Hanzo IAM platform admin (all-tenant access).
+   * Administers the org in IAM Org. Grants nothing outside it.
    */
   isAdmin?: boolean | null;
   /**

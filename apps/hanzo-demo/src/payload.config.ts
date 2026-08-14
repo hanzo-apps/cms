@@ -1,5 +1,5 @@
 import { buildConfig } from '@hanzo/cms'
-import { hanzoIAMStrategy } from '@hanzo/cms-auth-iam'
+import { isSuperAdmin } from '@hanzo/cms-auth-iam'
 import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
 import { multiTenantPlugin } from '@hanzo/cms-plugin-multi-tenant'
 import { whiteLabelPlugin } from '@hanzo/cms-plugin-whitelabel'
@@ -20,14 +20,6 @@ const dirname = path.dirname(filename)
 
 // org == tenant. Every persistent primitive is per-org.
 const ORG = process.env.HANZO_ORG || 'hanzo'
-
-// Who may cross tenant boundaries, decided from verified IAM claims. The
-// multi-tenant plugin and the jobs lock-down below both read this, so the
-// question has one answer rather than two that can drift apart.
-const isSuper = (user: unknown): boolean => {
-  const u = user as { iamOrg?: string; isAdmin?: boolean } | null
-  return Boolean(u && (u.iamOrg === 'admin' || u.isAdmin))
-}
 
 export default buildConfig({
   admin: {
@@ -80,10 +72,10 @@ export default buildConfig({
     jobsCollectionOverrides: ({ defaultJobsCollection }) => ({
       ...defaultJobsCollection,
       access: {
-        create: ({ req }) => isSuper(req.user),
-        delete: ({ req }) => isSuper(req.user),
-        read: ({ req }) => isSuper(req.user),
-        update: ({ req }) => isSuper(req.user),
+        create: ({ req }) => isSuperAdmin(req.user),
+        delete: ({ req }) => isSuperAdmin(req.user),
+        read: ({ req }) => isSuperAdmin(req.user),
+        update: ({ req }) => isSuperAdmin(req.user),
       },
     }),
   },
@@ -124,7 +116,8 @@ export default buildConfig({
         pages: {},
       },
       tenantsSlug: 'tenants',
-      userHasAccessToAllTenants: (user) => isSuper(user),
+      // Reserved `admin` org only. The jobs access above reads the same predicate.
+      userHasAccessToAllTenants: isSuperAdmin,
     }),
     // Brand-neutral / white-label by domain. Neutral when no brand matches.
     whiteLabelPlugin({

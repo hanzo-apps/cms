@@ -1,6 +1,7 @@
 import type { Field } from '@hanzo/cms'
 
 export { hanzoIAMStrategy } from './strategy.js'
+export { isSuperAdmin } from './super.js'
 export type { HanzoIAMStrategyConfig, IAMClaims } from './types.js'
 
 /**
@@ -37,9 +38,12 @@ export const iamAuthFields: Field[] = [
   {
     name: 'isAdmin',
     type: 'checkbox',
-    admin: { description: 'Hanzo IAM platform admin (all-tenant access).', readOnly: true },
+    admin: {
+      description: 'Administers the org in IAM Org. Grants nothing outside it.',
+      readOnly: true,
+    },
     index: true,
-    label: 'IAM Admin',
+    label: 'Org Admin',
   },
   {
     name: 'groups',
