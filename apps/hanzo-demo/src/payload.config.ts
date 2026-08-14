@@ -14,6 +14,7 @@ import { Pages } from './collections/Pages.js'
 import { Tenants } from './collections/Tenants.js'
 import { Users } from './collections/Users.js'
 import { migrations } from './migrations/index.js'
+import { seedSuperAdmin } from './seed.js'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -61,6 +62,7 @@ export default buildConfig({
   },
   collections: [Users, Tenants, Pages, Media],
   editor: lexicalEditor(),
+  onInit: seedSuperAdmin,
   // The job queue is a framework collection, added by sanitizeConfig after every
   // plugin has run, so the multi-tenant plugin never sees it and it kept the
   // auth-only default while exposing REST endpoints. That let any authenticated
@@ -69,6 +71,15 @@ export default buildConfig({
   // own. Nothing outside the server needs this collection: jobs are enqueued and
   // run through the local API, which overrides access.
   jobs: {
+    // The rows and the control plane are one surface: reading a job exposes the
+    // document in its `input`, and running or cancelling one acts on that
+    // document. Both answer to the same predicate. A job carries no tenant, so
+    // there is nothing narrower to scope it by.
+    access: {
+      cancel: ({ req }) => isSuperAdmin(req.user),
+      queue: ({ req }) => isSuperAdmin(req.user),
+      run: ({ req }) => isSuperAdmin(req.user),
+    },
     jobsCollectionOverrides: ({ defaultJobsCollection }) => ({
       ...defaultJobsCollection,
       access: {

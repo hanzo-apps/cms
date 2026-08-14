@@ -20,6 +20,21 @@ export const Users: CollectionConfig = {
     // renders its form; the IAM bearer strategy is layered on top for SSO/API.
     strategies: [hanzoIAMStrategy()],
   },
+  // sanitizeConfig appends the framework's auth endpoints AFTER a collection's
+  // own, and the router takes the first match, so this replaces `/first-register`
+  // rather than adding to it. That route creates a user from the request body
+  // with `overrideAccess: true` — skipping field access, so the body may carry
+  // `iamOrg` — and returns a session, guarded only by the table being empty.
+  // Identity comes from IAM and the superuser comes from the seed, so nothing
+  // needs it. Refused for everyone: an authenticated caller has no more claim
+  // to mint the first user than an anonymous one.
+  endpoints: [
+    {
+      handler: () => Response.json({ errors: [{ message: 'Forbidden' }] }, { status: 403 }),
+      method: 'post',
+      path: '/first-register',
+    },
+  ],
   fields: [
     // `email` is supplied by the local auth strategy; iamAuthFields carries the
     // IAM claim-mapping fields only.

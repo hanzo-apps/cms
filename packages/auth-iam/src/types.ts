@@ -22,6 +22,13 @@ export type IAMClaims = {
 
 export type HanzoIAMStrategyConfig = {
   /**
+   * IAM client ids this deployment answers to. A token is accepted when its
+   * `aud` carries any of them. Defaults to HANZO_IAM_AUDIENCE (comma
+   * separated). Empty accepts any client of the issuer, which is every app on
+   * the platform, so name the clients wherever the deployment is known.
+   */
+  audience?: string[]
+  /**
    * Slug of the CMS auth collection users are mapped into (e.g. 'users').
    */
   authSlug?: string

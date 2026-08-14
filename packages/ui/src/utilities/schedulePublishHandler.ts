@@ -20,7 +20,7 @@ export const schedulePublishHandler: ServerFunction<SchedulePublishHandlerArgs> 
   req,
   timezone,
 }) => {
-  const { i18n, cms, user } = req
+  const { cms, i18n, user } = req
 
   await canAccessAdmin({ req })
 
@@ -28,6 +28,9 @@ export const schedulePublishHandler: ServerFunction<SchedulePublishHandlerArgs> 
     if (deleteID) {
       await cms.delete({
         collection: 'cms-jobs',
+        // `deleteID` is whatever the caller sent, and the default here would
+        // override access and delete it. The collection's own rule decides.
+        overrideAccess: false,
         req,
         where: { id: { equals: deleteID } },
       })

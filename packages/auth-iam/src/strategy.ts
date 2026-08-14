@@ -1,5 +1,6 @@
 import type { AuthStrategy, AuthStrategyFunctionArgs, AuthStrategyResult, CMS } from '@hanzo/cms'
 
+import { randomBytes } from 'crypto'
 import { createRemoteJWKSet, jwtVerify } from 'jose'
 
 import type { HanzoIAMStrategyConfig, IAMClaims } from './types.js'
@@ -89,6 +90,15 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
   const tenantsArrayField = config.tenantsArrayField || 'tenants'
   const issuer = config.issuer || process.env.HANZO_IAM_ISSUER || DEFAULT_ISSUER
   const jwksUri = config.jwksUri || process.env.HANZO_IAM_JWKS_URI || DEFAULT_JWKS
+  // Which IAM clients this deployment answers to. Every client in the issuer
+  // shares one signing key, so issuer and signature alone admit a token minted
+  // for any other app; naming the clients is what confines it to this one.
+  // A token is accepted when its `aud` carries any listed client.
+  const audience = config.audience?.length
+    ? config.audience
+    : (process.env.HANZO_IAM_AUDIENCE?.split(',')
+        .map((entry) => entry.trim())
+        .filter(Boolean) ?? [])
 
   return {
     name,
@@ -105,6 +115,7 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
       let claims: IAMClaims
       try {
         const { payload: verified } = await jwtVerify(token, getJWKS(jwksUri), {
+          ...(audience.length ? { audience } : {}),
           issuer,
         })
         claims = verified as IAMClaims
@@ -149,7 +160,11 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
       } else {
         userDoc = await cms.create({
           collection: authSlug,
-          data: baseData,
+          // A collection that keeps the local strategy requires a password on
+          // every row, and this one is reached by SSO alone. A random value
+          // satisfies that and is discarded here: it is never returned, logged
+          // or reused, so the row has no password anyone can present.
+          data: { ...baseData, password: randomBytes(32).toString('base64url') },
         })
       }
 
