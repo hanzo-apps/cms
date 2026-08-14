@@ -138,6 +138,11 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
         where: { iamSub: { equals: claims.sub } },
       })
 
+      // IAM is the authority on identity, so the row takes the claims of the
+      // token presented and holds them until the next sign-in. Clients differ
+      // in what they emit — one that omits `isAdmin` clears it — so the row
+      // reflects the app a caller last arrived from. Naming `audience` is what
+      // settles that: it confines the row to clients this deployment answers to.
       const baseData = {
         email: claims.email || `${claims.sub}@iam.local`,
         groups: Array.isArray(claims.groups) ? claims.groups : [],
