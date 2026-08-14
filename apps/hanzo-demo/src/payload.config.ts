@@ -1,5 +1,5 @@
 import { buildConfig } from '@hanzo/cms'
-import { isSuperAdmin } from '@hanzo/cms-auth-iam'
+import { claimOnly, isSuperAdmin } from '@hanzo/cms-auth-iam'
 import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
 import { multiTenantPlugin } from '@hanzo/cms-plugin-multi-tenant'
 import { whiteLabelPlugin } from '@hanzo/cms-plugin-whitelabel'
@@ -115,6 +115,10 @@ export default buildConfig({
         media: {},
         pages: {},
       },
+      // Membership follows the IAM `owner` claim, which the strategy rewrites on
+      // every sign-in. Field access holds REST and GraphQL to that, so a caller
+      // cannot add itself to a tenant between sign-ins.
+      tenantsArrayField: { arrayFieldAccess: claimOnly, tenantFieldAccess: claimOnly },
       tenantsSlug: 'tenants',
       // Reserved `admin` org only. The jobs access above reads the same predicate.
       userHasAccessToAllTenants: isSuperAdmin,

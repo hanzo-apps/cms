@@ -13,7 +13,7 @@ export type { HanzoIAMStrategyConfig, IAMClaims } from './types.js'
  * `iamOrg` decides who crosses a tenant boundary (see `isSuperAdmin`), so a
  * client able to write it is a client able to promote itself.
  */
-const claimOnly = { create: () => false, update: () => false }
+export const claimOnly = { create: () => false, update: () => false }
 
 /**
  * Fields the IAM strategy needs on the auth collection to map + dedupe users.

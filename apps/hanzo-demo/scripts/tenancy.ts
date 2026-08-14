@@ -213,19 +213,55 @@ const run = async () => {
     'SELF-PROMOTION reached another tenant',
   )
 
-  // Control: the strategy writes through the local API, which overrides access,
-  // so a sign-in must still be able to set the claim fields.
+  step('Tenant membership is written from claims only')
+  const selfJoined = await cms.update({
+    id: acmeAdmin.id,
+    collection: 'users',
+    data: { tenants: [{ tenant: acme.id }, { tenant: maxpower.id }] },
+    overrideAccess: false,
+    user: acmeAdmin,
+  })
+  const joinedRows = (selfJoined as { tenants?: unknown[] }).tenants ?? []
+  check(
+    joinedRows.length === 1,
+    'an org admin adding a foreign tenant to their own row leaves it unchanged',
+    `SELF-JOIN: the row now holds ${joinedRows.length} tenants`,
+  )
+
+  const afterJoin = await cms.find({
+    collection: 'pages',
+    overrideAccess: false,
+    user: { ...selfJoined, collection: 'users' },
+  })
+  check(
+    !afterJoin.docs.some((d) => (d as { slug?: string }).slug === maxPage.slug),
+    'and the other tenant stays unreachable',
+    'SELF-JOIN reached another tenant',
+  )
+
+  step('Controls: the strategy writes both on sign-in')
+  // The strategy writes through the local API, which overrides access. If these
+  // fail, every sign-in silently stops assigning identity and tenancy.
   const byStrategy = await cms.update({
     id: acmeAdmin.id,
     collection: 'users',
-    data: { iamOrg: 'acme-renamed' },
+    data: { iamOrg: 'acme-renamed', tenants: [{ tenant: acme.id }, { tenant: maxpower.id }] },
   })
   check(
     (byStrategy as { iamOrg?: string }).iamOrg === 'acme-renamed',
-    'the strategy still writes iamOrg on sign-in',
-    'the field guard also blocked the strategy',
+    'the strategy still writes iamOrg',
+    'the field guard also blocked the strategy on iamOrg',
   )
-  await cms.update({ id: acmeAdmin.id, collection: 'users', data: { iamOrg: 'acme' } })
+  check(
+    ((byStrategy as { tenants?: unknown[] }).tenants ?? []).length === 2,
+    'the strategy still writes tenant membership',
+    'the field guard also blocked the strategy on tenants',
+  )
+  await cms.update({
+    id: acmeAdmin.id,
+    collection: 'users',
+    data: { iamOrg: 'acme', tenants: [{ tenant: acme.id }] },
+  })
 
   step('The reserved `admin` org still crosses every tenant')
   const superRead = await cms.find({ collection: 'pages', overrideAccess: false, user: superAdmin })
