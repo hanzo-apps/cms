@@ -27,6 +27,17 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     user: Users.slug,
+    // The login card and the nav header draw `graphics`, not the meta icons, so
+    // without these the admin still showed the upstream framework's mark on the
+    // one screen every user sees before they are let in. Paths resolve against
+    // importMap.baseDir and are wired by `generate:importmap`, which the build
+    // script runs ahead of `next build`.
+    components: {
+      graphics: {
+        Icon: '/components/HanzoIcon#HanzoIcon',
+        Logo: '/components/HanzoLogo#HanzoLogo',
+      },
+    },
     // Hanzo branding on the admin panel — the browser tab / login no longer
     // shows the upstream framework name.
     meta: {

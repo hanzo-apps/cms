@@ -24,6 +24,8 @@ import { UnderlineFeatureClient as UnderlineFeatureClient_f7125e09e6413bde1ccaad
 import { BoldFeatureClient as BoldFeatureClient_f7125e09e6413bde1ccaad0012c9118f } from '@hanzo/cms-richtext-lexical/client'
 import { ItalicFeatureClient as ItalicFeatureClient_f7125e09e6413bde1ccaad0012c9118f } from '@hanzo/cms-richtext-lexical/client'
 import { AssignTenantFieldTrigger as AssignTenantFieldTrigger_8f580e1c1bbcf3604f2e3f34dd3997be } from '@hanzo/cms-plugin-multi-tenant/client'
+import { HanzoIcon as HanzoIcon_38f96ca47befcdf7cde8d89ddb32f0e3 } from '../../../components/HanzoIcon'
+import { HanzoLogo as HanzoLogo_50092731a2a6c1a1e10b005f06bd9a66 } from '../../../components/HanzoLogo'
 import { TenantSelector as TenantSelector_e585459e58febe1a4b504a03e0dbc116 } from '@hanzo/cms-plugin-multi-tenant/rsc'
 import { S3ClientUploadHandler as S3ClientUploadHandler_51dbdf928a166495df53b9676973cb1a } from '@hanzo/cms-storage-s3/client'
 import { TenantSelectionProvider as TenantSelectionProvider_e585459e58febe1a4b504a03e0dbc116 } from '@hanzo/cms-plugin-multi-tenant/rsc'
@@ -82,6 +84,8 @@ export const importMap = {
     ItalicFeatureClient_f7125e09e6413bde1ccaad0012c9118f,
   '@hanzo/cms-plugin-multi-tenant/client#AssignTenantFieldTrigger':
     AssignTenantFieldTrigger_8f580e1c1bbcf3604f2e3f34dd3997be,
+  '/components/HanzoIcon#HanzoIcon': HanzoIcon_38f96ca47befcdf7cde8d89ddb32f0e3,
+  '/components/HanzoLogo#HanzoLogo': HanzoLogo_50092731a2a6c1a1e10b005f06bd9a66,
   '@hanzo/cms-plugin-multi-tenant/rsc#TenantSelector':
     TenantSelector_e585459e58febe1a4b504a03e0dbc116,
   '@hanzo/cms-storage-s3/client#S3ClientUploadHandler':
