@@ -31,7 +31,20 @@ export default buildConfig({
     // shows the upstream framework name.
     meta: {
       description: 'Hanzo CMS — headless content for the Hanzo platform.',
-      title: 'Hanzo CMS',
+      // Tab icon: the Hanzo mark, served from this app's public/ dir. Ink is
+      // inverted for the dark tab bar, so the mark stays legible either way.
+      icons: [
+        { type: 'image/svg+xml', rel: 'icon', url: '/icon-black.svg' },
+        {
+          type: 'image/svg+xml',
+          media: '(prefers-color-scheme: dark)',
+          rel: 'icon',
+          url: '/icon-white.svg',
+        },
+      ],
+      // No `title` here: every view spreads admin.meta OVER its own title, so
+      // setting one would stamp "Hanzo CMS — Hanzo CMS" on every page and lose
+      // the view name. The suffix alone gives "Dashboard — Hanzo CMS".
       titleSuffix: '— Hanzo CMS',
     },
   },

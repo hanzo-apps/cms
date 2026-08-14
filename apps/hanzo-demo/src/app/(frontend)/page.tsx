@@ -1,5 +1,4 @@
 import { headers as getHeaders } from 'next/headers.js'
-import Image from 'next/image'
 import { getCMS } from '@hanzo/cms'
 import React from 'react'
 import { fileURLToPath } from 'url'
@@ -18,15 +17,9 @@ export default async function HomePage() {
   return (
     <div className="home">
       <div className="content">
-        <picture>
-          <source srcSet="https://raw.githubusercontent.com/payloadcms/payload/3.x/packages/ui/src/assets/payload-favicon.svg" />
-          <Image
-            alt="CMS Logo"
-            height={65}
-            src="https://raw.githubusercontent.com/payloadcms/payload/3.x/packages/ui/src/assets/payload-favicon.svg"
-            width={65}
-          />
-        </picture>
+        {/* Served from this app's public/ dir. The page is always dark, so the
+            mark is always the white one. */}
+        <img alt="Hanzo" height={65} src="/icon-white.svg" width={65} />
         {!user && <h1>Welcome to your new project.</h1>}
         {user && <h1>Welcome back, {user.email}</h1>}
         <div className="links">
@@ -40,7 +33,7 @@ export default async function HomePage() {
           </a>
           <a
             className="docs"
-            href="https://payloadcms.com/docs"
+            href="https://docs.hanzo.ai"
             rel="noopener noreferrer"
             target="_blank"
           >

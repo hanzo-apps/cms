@@ -44,8 +44,11 @@ RUN groupadd --system --gid 1001 nodejs && useradd --system --uid 1001 --gid nod
 # path, and the traced node_modules ride alongside it at the workspace root).
 COPY --from=builder --chown=nextjs:nodejs /app/apps/hanzo-demo/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/apps/hanzo-demo/.next/static ./apps/hanzo-demo/.next/static
-# No public/ dir in this app — media is served from S3 (hanzo-cms bucket), not
-# a static public folder, so there is nothing to copy.
+# Uploaded media rides S3 (hanzo-cms bucket), so public/ holds only the brand
+# marks the admin <link rel="icon"> points at. `next build` does not fold public/
+# into the standalone tree, and server.js chdir's to its own dir, so the folder
+# has to be copied next to server.js or the tab icon 404s.
+COPY --from=builder --chown=nextjs:nodejs /app/apps/hanzo-demo/public ./apps/hanzo-demo/public
 
 USER nextjs
 EXPOSE 3000
