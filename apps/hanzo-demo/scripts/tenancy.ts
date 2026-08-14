@@ -185,6 +185,48 @@ const run = async () => {
     cms.find({ collection: 'cms-jobs', overrideAccess: false, user: acmeAdmin }),
   )
 
+  step('`iamOrg` is written from claims only')
+  // The field decides who crosses a tenant boundary, so a client able to write
+  // it is a client able to promote itself. Field access drops the value rather
+  // than refusing the request, so assert the stored value, not the status.
+  const selfRaised = await cms.update({
+    id: acmeAdmin.id,
+    collection: 'users',
+    data: { iamOrg: 'admin', isAdmin: true },
+    overrideAccess: false,
+    user: acmeAdmin,
+  })
+  check(
+    (selfRaised as { iamOrg?: string }).iamOrg === 'acme',
+    'an org admin writing iamOrg on their own row leaves it unchanged',
+    `SELF-PROMOTION: iamOrg became ${(selfRaised as { iamOrg?: string }).iamOrg}`,
+  )
+
+  const stillScoped = await cms.find({
+    collection: 'pages',
+    overrideAccess: false,
+    user: { ...selfRaised, collection: 'users' },
+  })
+  check(
+    !stillScoped.docs.some((d) => (d as { slug?: string }).slug === maxPage.slug),
+    'and they still cannot reach the other tenant',
+    'SELF-PROMOTION reached another tenant',
+  )
+
+  // Control: the strategy writes through the local API, which overrides access,
+  // so a sign-in must still be able to set the claim fields.
+  const byStrategy = await cms.update({
+    id: acmeAdmin.id,
+    collection: 'users',
+    data: { iamOrg: 'acme-renamed' },
+  })
+  check(
+    (byStrategy as { iamOrg?: string }).iamOrg === 'acme-renamed',
+    'the strategy still writes iamOrg on sign-in',
+    'the field guard also blocked the strategy',
+  )
+  await cms.update({ id: acmeAdmin.id, collection: 'users', data: { iamOrg: 'acme' } })
+
   step('The reserved `admin` org still crosses every tenant')
   const superRead = await cms.find({ collection: 'pages', overrideAccess: false, user: superAdmin })
   const superSlugs = superRead.docs.map((d) => (d as { slug?: string }).slug)

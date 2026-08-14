@@ -5,6 +5,17 @@ export { isSuperAdmin } from './super.js'
 export type { HanzoIAMStrategyConfig, IAMClaims } from './types.js'
 
 /**
+ * Written from verified IAM claims and from nowhere else. `admin.readOnly` only
+ * greys the input out; field access is what REST and GraphQL are held to. The
+ * strategy writes through the local API, which overrides access, so it still
+ * sets them on every sign-in.
+ *
+ * `iamOrg` decides who crosses a tenant boundary (see `isSuperAdmin`), so a
+ * client able to write it is a client able to promote itself.
+ */
+const claimOnly = { create: () => false, update: () => false }
+
+/**
  * Fields the IAM strategy needs on the auth collection to map + dedupe users.
  * Spread these into your users collection `fields`.
  *
@@ -18,6 +29,7 @@ export const iamAuthFields: Field[] = [
   {
     name: 'iamSub',
     type: 'text',
+    access: claimOnly,
     admin: { description: 'Hanzo IAM subject (user id).', readOnly: true },
     index: true,
     label: 'IAM Subject',
@@ -26,6 +38,7 @@ export const iamAuthFields: Field[] = [
   {
     name: 'iamOrg',
     type: 'text',
+    access: claimOnly,
     admin: { description: 'Hanzo IAM org slug (== tenant).', readOnly: true },
     index: true,
     label: 'IAM Org',
@@ -33,11 +46,13 @@ export const iamAuthFields: Field[] = [
   {
     name: 'username',
     type: 'text',
+    access: claimOnly,
     label: 'Username',
   },
   {
     name: 'isAdmin',
     type: 'checkbox',
+    access: claimOnly,
     admin: {
       description: 'Administers the org in IAM Org. Grants nothing outside it.',
       readOnly: true,
@@ -48,6 +63,7 @@ export const iamAuthFields: Field[] = [
   {
     name: 'groups',
     type: 'json',
+    access: claimOnly,
     admin: { description: 'Hanzo IAM group slugs.', readOnly: true },
     label: 'IAM Groups',
   },
