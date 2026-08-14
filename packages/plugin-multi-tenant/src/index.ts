@@ -1,8 +1,8 @@
-import type { AcceptedLanguages } from '@hanzo/cms-translations'
 import type { CollectionConfig, Config } from '@hanzo/cms'
+import type { AcceptedLanguages } from '@hanzo/cms-translations'
 
-import chalk from 'chalk'
 import { hasAutosaveEnabled } from '@hanzo/cms/shared'
+import chalk from 'chalk'
 
 import type { PluginDefaultTranslationsObject } from './translations/types.js'
 import type { MultiTenantPluginConfig } from './types.js'
@@ -88,6 +88,9 @@ export const multiTenantPlugin =
      * Add tenants array field to users collection
      */
     if (pluginConfig?.tenantsArrayField?.includeDefaultField !== false) {
+      // Same reason as addFilterOptionsToFields: `fields` is optional until
+      // sanitize, which runs after plugins.
+      adminUsersCollection.fields ??= []
       adminUsersCollection.fields.push(
         tenantsArrayField({
           ...(pluginConfig?.tenantsArrayField || {}),
@@ -201,6 +204,7 @@ export const multiTenantPlugin =
               tenantsArrayTenantFieldName,
               tenantsCollectionSlug,
               unique: false,
+              userHasAccessToAllTenants,
             }),
           )
         }
@@ -395,6 +399,7 @@ export const multiTenantPlugin =
               tenantsArrayTenantFieldName,
               tenantsCollectionSlug,
               unique: isGlobal,
+              userHasAccessToAllTenants,
             }),
           )
         }

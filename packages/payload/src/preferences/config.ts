@@ -35,6 +35,12 @@ export const getPreferencesCollection = (config: Config): CollectionConfig => ({
   access: {
     delete: preferenceAccess,
     read: preferenceAccess,
+    // Without this, update fell back to the auth-only default while read and
+    // delete were scoped, so any authenticated caller could write over any
+    // other user's row through the generic REST route. `create` needs no entry:
+    // the `user` field below is taken from the request, so a new row is always
+    // filed under its author.
+    update: preferenceAccess,
   },
   admin: {
     hidden: true,

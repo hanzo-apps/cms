@@ -21,6 +21,14 @@ const dirname = path.dirname(filename)
 // org == tenant. Every persistent primitive is per-org.
 const ORG = process.env.HANZO_ORG || 'hanzo'
 
+// Who may cross tenant boundaries, decided from verified IAM claims. The
+// multi-tenant plugin and the jobs lock-down below both read this, so the
+// question has one answer rather than two that can drift apart.
+const isSuper = (user: unknown): boolean => {
+  const u = user as { iamOrg?: string; isAdmin?: boolean } | null
+  return Boolean(u && (u.iamOrg === 'admin' || u.isAdmin))
+}
+
 export default buildConfig({
   admin: {
     importMap: {
@@ -61,6 +69,24 @@ export default buildConfig({
   },
   collections: [Users, Tenants, Pages, Media],
   editor: lexicalEditor(),
+  // The job queue is a framework collection, added by sanitizeConfig after every
+  // plugin has run, so the multi-tenant plugin never sees it and it kept the
+  // auth-only default while exposing REST endpoints. That let any authenticated
+  // org read other orgs' job rows — a schedule-publish job carries the target
+  // document in its `input` — and enqueue jobs against documents it does not
+  // own. Nothing outside the server needs this collection: jobs are enqueued and
+  // run through the local API, which overrides access.
+  jobs: {
+    jobsCollectionOverrides: ({ defaultJobsCollection }) => ({
+      ...defaultJobsCollection,
+      access: {
+        create: ({ req }) => isSuper(req.user),
+        delete: ({ req }) => isSuper(req.user),
+        read: ({ req }) => isSuper(req.user),
+        update: ({ req }) => isSuper(req.user),
+      },
+    }),
+  },
   secret: process.env.CMS_SECRET || 'dev-secret-change-me',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
@@ -98,10 +124,7 @@ export default buildConfig({
         pages: {},
       },
       tenantsSlug: 'tenants',
-      userHasAccessToAllTenants: (user) => {
-        const u = user as { iamOrg?: string; isAdmin?: boolean } | null
-        return Boolean(u && (u.iamOrg === 'admin' || u.isAdmin))
-      },
+      userHasAccessToAllTenants: (user) => isSuper(user),
     }),
     // Brand-neutral / white-label by domain. Neutral when no brand matches.
     whiteLabelPlugin({

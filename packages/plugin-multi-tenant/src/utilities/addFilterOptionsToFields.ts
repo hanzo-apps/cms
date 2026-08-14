@@ -8,7 +8,7 @@ import { filterDocumentsByTenants } from '../filters/filterDocumentsByTenants.js
 type AddFilterOptionsToFieldsArgs<ConfigType = unknown> = {
   blockReferencesWithFilters: string[]
   config: Config | SanitizedConfig
-  fields: Field[]
+  fields?: Field[]
   tenantEnabledCollectionSlugs: string[]
   tenantEnabledGlobalSlugs: string[]
   tenantFieldName: string
@@ -23,7 +23,16 @@ type AddFilterOptionsToFieldsArgs<ConfigType = unknown> = {
 export function addFilterOptionsToFields<ConfigType = unknown>({
   blockReferencesWithFilters,
   config,
-  fields,
+  // `fields` is optional on an incoming CollectionConfig and Payload does not
+  // default it to [] until sanitize, which runs after every plugin. This plugin
+  // therefore sees `undefined` for any tenant-enabled collection that declares
+  // no fields of its own — an upload-only Media collection being the ordinary
+  // case — and the loop below would throw `fields is not iterable` during
+  // buildConfig, i.e. at the first request, as a 500 the liveness probe reads as
+  // a dead container. Normalizing here covers all three call sites, because each
+  // assigns this return value back to `collection.fields` before unshifting the
+  // tenant field into it.
+  fields = [],
   tenantEnabledCollectionSlugs,
   tenantEnabledGlobalSlugs,
   tenantFieldName,
