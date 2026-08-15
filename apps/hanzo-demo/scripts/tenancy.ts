@@ -3,31 +3,20 @@
  * database. Two tenants, three principals, every call through the access layer
  * (`overrideAccess: false`), so a refusal is the same 403 a REST caller gets.
  *
+ * The principals are not written by hand: each one signs in with an IAM token
+ * minted against a local key set (scripts/iam.ts), so the rows under test carry
+ * the identity and the tenancy the strategy derived from verified claims.
+ *
  * Run: HANZO_ORG=tenancy-proof tsx scripts/tenancy.ts
  */
+
 import { getCMS } from '@hanzo/cms'
+import { hanzoIAMStrategy } from '@hanzo/cms-auth-iam'
 
-const step = (m: string) => {
-  console.log(`\n=== ${m} ===`)
-}
+import type { Claims } from './iam.js'
 
-const ok = (m: string) => {
-  console.log(`  ✓ ${m}`)
-}
-
-const fail = (m: string) => {
-  console.error(`  ✗ ${m}`)
-  process.exitCode = 1
-}
-
-/** Record one assertion: `passed` prints the claim, otherwise `detail` prints why. */
-const check = (passed: boolean, claim: string, detail: string) => {
-  if (passed) {
-    ok(claim)
-  } else {
-    fail(detail)
-  }
-}
+import { check, fail, ok, step } from './check.js'
+import { openIAM } from './iam.js'
 
 /** Run a call that must be refused, and assert it is refused with a 403. */
 const expectForbidden = async (label: string, call: () => Promise<unknown>) => {
@@ -48,55 +37,86 @@ const expectForbidden = async (label: string, call: () => Promise<unknown>) => {
 const run = async () => {
   process.env.HANZO_ORG = process.env.HANZO_ORG || 'tenancy-proof'
 
-  const config = (await import('../src/payload.config.js')).default
+  // Before the config: the strategy reads the IAM variables when it is built,
+  // and importing the config builds it.
+  const iam = await openIAM()
+
+  const config = await (await import('../src/payload.config.js')).default
   const cms = await getCMS({ config })
 
-  const tenantFor = async (slug: string) => {
+  const strategy = hanzoIAMStrategy()
+
+  /** Sign in with these claims and return the principal the strategy mapped them to. */
+  const signIn = async (claims: Claims) => {
+    const { user } = await strategy.authenticate({
+      canSetHeaders: false,
+      cms,
+      headers: new Headers({ authorization: `Bearer ${iam.mint(claims)}` }),
+    } as Parameters<typeof strategy.authenticate>[0])
+    return user as { iamOrg?: string; id: number | string; isAdmin?: boolean; tenants?: unknown[] }
+  }
+
+  const acmeClaims: Claims = {
+    name: 'acme-admin',
+    email: 'acme-admin@iam.local',
+    orgs: [{ org: 'acme', role: 'admin' }],
+    owner: 'acme',
+    sub: 'acme-admin',
+  }
+  const maxClaims: Claims = {
+    name: 'max-admin',
+    email: 'max-admin@iam.local',
+    orgs: [{ org: 'maxpower', role: 'admin' }],
+    owner: 'maxpower',
+    sub: 'max-admin',
+  }
+  const superClaims: Claims = {
+    name: 'super',
+    email: 'super@iam.local',
+    orgs: [{ org: 'admin', role: 'member' }],
+    owner: 'admin',
+    sub: 'super',
+  }
+
+  // Both org admins carry `isAdmin`, so a predicate reading it as a platform
+  // privilege shows up in every cross-tenant case below. The super carries none:
+  // membership in the reserved org is the whole of platform privilege.
+  const acmeAdmin = await signIn(acmeClaims)
+  const maxAdmin = await signIn(maxClaims)
+  const superAdmin = await signIn(superClaims)
+
+  const tenantID = async (slug: string) => {
     const found = await cms.find({
       collection: 'tenants',
       limit: 1,
       where: { slug: { equals: slug } },
     })
-    return (
-      found.docs[0] ?? (await cms.create({ collection: 'tenants', data: { name: slug, slug } }))
-    )
+    return found.docs[0]?.id
   }
+  const acme = await tenantID('acme')
+  const maxpower = await tenantID('maxpower')
 
-  const acme = await tenantFor('acme')
-  const maxpower = await tenantFor('maxpower')
-
-  const principal = async (email: string, iamOrg: string, isAdmin: boolean, tenant?: unknown) => {
-    const found = await cms.find({
-      collection: 'users',
-      limit: 1,
-      where: { email: { equals: email } },
-    })
-    const data = {
-      email,
-      iamOrg,
-      iamSub: email,
-      isAdmin,
-      ...(tenant ? { tenants: [{ tenant }] } : {}),
-    }
-    const doc = found.docs[0]
-      ? await cms.update({ id: found.docs[0].id, collection: 'users', data })
-      : await cms.create({
-          collection: 'users',
-          data: { ...data, password: 'proof-only-never-shipped' },
-        })
-    return { ...doc, collection: 'users' }
-  }
-
-  // Both org admins carry `isAdmin`, so a predicate reading it as a platform
-  // privilege shows up in every cross-tenant case below.
-  const acmeAdmin = await principal('acme-admin@iam.local', 'acme', true, acme.id)
-  const maxAdmin = await principal('max-admin@iam.local', 'maxpower', true, maxpower.id)
-  const superAdmin = await principal('super@iam.local', 'admin', false, acme.id)
+  step('Signing in maps claims onto a principal')
+  check(
+    Boolean(acme && maxpower),
+    'each org in the claims became a tenant',
+    `orgs did not become tenants (acme=${acme}, maxpower=${maxpower})`,
+  )
+  check(
+    acmeAdmin.isAdmin === true && superAdmin.isAdmin === false,
+    'the home org role becomes isAdmin, which the super does not carry',
+    `isAdmin: acme=${acmeAdmin.isAdmin}, super=${superAdmin.isAdmin}`,
+  )
+  check(
+    superAdmin.iamOrg === 'admin',
+    'the super is the `owner` claim naming the reserved org',
+    `super iamOrg=${superAdmin.iamOrg}, expected admin`,
+  )
 
   step("Seed: one page per tenant, written by that tenant's own admin")
   const acmePage = await cms.create({
     collection: 'pages',
-    data: { slug: `acme-${Date.now()}`, tenant: acme.id, title: 'Acme Private' },
+    data: { slug: `acme-${Date.now()}`, tenant: acme, title: 'Acme Private' },
     overrideAccess: false,
     user: acmeAdmin,
   })
@@ -104,7 +124,7 @@ const run = async () => {
 
   const maxPage = await cms.create({
     collection: 'pages',
-    data: { slug: `max-${Date.now()}`, tenant: maxpower.id, title: 'MaxPower Private' },
+    data: { slug: `max-${Date.now()}`, tenant: maxpower, title: 'MaxPower Private' },
     overrideAccess: false,
     user: maxAdmin,
   })
@@ -155,7 +175,7 @@ const run = async () => {
   await expectForbidden("acme admin WRITING into maxpower's tenant", () =>
     cms.create({
       collection: 'pages',
-      data: { slug: `steal-${Date.now()}`, tenant: maxpower.id, title: 'Planted' },
+      data: { slug: `steal-${Date.now()}`, tenant: maxpower, title: 'Planted' },
       overrideAccess: false,
       user: acmeAdmin,
     }),
@@ -165,7 +185,7 @@ const run = async () => {
     cms.update({
       id: acmePage.id,
       collection: 'pages',
-      data: { tenant: maxpower.id },
+      data: { tenant: maxpower },
       overrideAccess: false,
       user: acmeAdmin,
     }),
@@ -174,7 +194,7 @@ const run = async () => {
   await expectForbidden('acme admin planting a DRAFT, where validate is skipped', () =>
     cms.create({
       collection: 'pages',
-      data: { slug: `draft-${Date.now()}`, _status: 'draft', tenant: maxpower.id, title: 'Draft' },
+      data: { slug: `draft-${Date.now()}`, _status: 'draft', tenant: maxpower, title: 'Draft' },
       draft: true,
       overrideAccess: false,
       user: acmeAdmin,
@@ -217,7 +237,7 @@ const run = async () => {
   const selfJoined = await cms.update({
     id: acmeAdmin.id,
     collection: 'users',
-    data: { tenants: [{ tenant: acme.id }, { tenant: maxpower.id }] },
+    data: { tenants: [{ tenant: acme }, { tenant: maxpower }] },
     overrideAccess: false,
     user: acmeAdmin,
   })
@@ -239,29 +259,35 @@ const run = async () => {
     'SELF-JOIN reached another tenant',
   )
 
-  step('Controls: the strategy writes both on sign-in')
+  step('Controls: a sign-in writes both')
   // The strategy writes through the local API, which overrides access. If these
-  // fail, every sign-in silently stops assigning identity and tenancy.
-  const byStrategy = await cms.update({
-    id: acmeAdmin.id,
-    collection: 'users',
-    data: { iamOrg: 'acme-renamed', tenants: [{ tenant: acme.id }, { tenant: maxpower.id }] },
+  // fail, the guard that holds a caller is holding IAM too, and every sign-in
+  // silently stops assigning identity and tenancy.
+  const rejoined = await signIn({
+    ...acmeClaims,
+    orgs: [
+      { org: 'acme-renamed', role: 'admin' },
+      { org: 'maxpower', role: 'member' },
+    ],
+    owner: 'acme-renamed',
   })
   check(
-    (byStrategy as { iamOrg?: string }).iamOrg === 'acme-renamed',
-    'the strategy still writes iamOrg',
-    'the field guard also blocked the strategy on iamOrg',
+    rejoined.iamOrg === 'acme-renamed',
+    'a sign-in still writes iamOrg',
+    `the field guard also blocked the strategy on iamOrg (iamOrg=${rejoined.iamOrg})`,
   )
   check(
-    ((byStrategy as { tenants?: unknown[] }).tenants ?? []).length === 2,
-    'the strategy still writes tenant membership',
-    'the field guard also blocked the strategy on tenants',
+    (rejoined.tenants ?? []).length === 2,
+    'a sign-in still writes tenant membership',
+    `the field guard also blocked the strategy on tenants (${(rejoined.tenants ?? []).length})`,
   )
-  await cms.update({
-    id: acmeAdmin.id,
-    collection: 'users',
-    data: { iamOrg: 'acme', tenants: [{ tenant: acme.id }] },
-  })
+  // A membership dropped upstream is dropped here on the next arrival.
+  const restored = await signIn(acmeClaims)
+  check(
+    restored.iamOrg === 'acme' && (restored.tenants ?? []).length === 1,
+    'and the next sign-in drops what the claims no longer carry',
+    `restored to iamOrg=${restored.iamOrg} with ${(restored.tenants ?? []).length} tenant(s)`,
+  )
 
   step('The reserved `admin` org still crosses every tenant')
   const superRead = await cms.find({ collection: 'pages', overrideAccess: false, user: superAdmin })
@@ -274,7 +300,7 @@ const run = async () => {
 
   const superWrite = await cms.create({
     collection: 'pages',
-    data: { slug: `super-${Date.now()}`, tenant: maxpower.id, title: 'Super Write' },
+    data: { slug: `super-${Date.now()}`, tenant: maxpower, title: 'Super Write' },
     overrideAccess: false,
     user: superAdmin,
   })
@@ -294,6 +320,12 @@ const run = async () => {
     'super reads the job queue',
     'super cannot read the job queue',
   )
+
+  // The pages this run wrote. Principals and tenants come from claims and are
+  // rewritten on every sign-in, so only the content accumulates.
+  for (const id of [acmePage.id, maxPage.id, superWrite.id]) {
+    await cms.delete({ id, collection: 'pages' })
+  }
 
   console.log(
     process.exitCode ? '\n=== TENANCY PROOF FAILED ===' : '\n=== TENANCY PROOF COMPLETE ===',
