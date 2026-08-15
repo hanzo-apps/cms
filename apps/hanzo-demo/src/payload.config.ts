@@ -3,24 +3,34 @@ import { claimOnly, isSuperAdmin } from '@hanzo/cms-auth-iam'
 import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
 import { multiTenantPlugin } from '@hanzo/cms-plugin-multi-tenant'
 import { whiteLabelPlugin } from '@hanzo/cms-plugin-whitelabel'
-import { lexicalEditor } from '@hanzo/cms-richtext-lexical'
+import {
+  BlocksFeature,
+  EXPERIMENTAL_TableFeature,
+  FixedToolbarFeature,
+  lexicalEditor,
+} from '@hanzo/cms-richtext-lexical'
 import { s3Storage } from '@hanzo/cms-storage-s3'
 import path from 'path'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'
 
+import { Callout, CodeBlock, Embed, Quote } from './blocks/index.js'
 import { Media } from './collections/Media.js'
 import { Pages } from './collections/Pages.js'
 import { Tenants } from './collections/Tenants.js'
 import { Users } from './collections/Users.js'
 import { migrations } from './migrations/index.js'
-import { seedSuperAdmin } from './seed.js'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 // org == tenant. Every persistent primitive is per-org.
 const ORG = process.env.HANZO_ORG || 'hanzo'
+
+// The one origin this deployment serves. It names the host the admin builds its
+// links against AND the origin the session cookie may be presented from, which
+// are the same fact and so are read from one place.
+const SERVER_URL = process.env.SERVER_URL || 'https://cms.hanzo.ai'
 
 export default buildConfig({
   admin: {
@@ -37,6 +47,14 @@ export default buildConfig({
       graphics: {
         Icon: '/components/HanzoIcon#HanzoIcon',
         Logo: '/components/HanzoLogo#HanzoLogo',
+      },
+      // Identity is IAM's, so these two screens are doors onto it rather than
+      // forms of their own. getRouteData resolves a one-segment route to its view
+      // key and consults the configured views BEFORE the built-ins, so these
+      // replace the framework's login and logout while keeping their chrome.
+      views: {
+        login: { Component: '/components/IAMLogin#IAMLogin' },
+        logout: { Component: '/components/IAMLogout#IAMLogout' },
       },
     },
     // Hanzo branding on the admin panel — the browser tab / login no longer
@@ -61,8 +79,22 @@ export default buildConfig({
     },
   },
   collections: [Users, Tenants, Pages, Media],
-  editor: lexicalEditor(),
-  onInit: seedSuperAdmin,
+  // Which origins may present the session cookie. Empty means "any", and the
+  // cookie is read on same-site requests, so naming this origin is what stops
+  // another one from riding it.
+  csrf: [SERVER_URL],
+  // The editor's whole surface is configuration. BlocksFeature generates its own
+  // slash-menu group and fixed-toolbar entries from the blocks it is given, so
+  // the block and slash-command editor is these four declarations rather than
+  // code. Everything here ships in the richtext package already.
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      FixedToolbarFeature(),
+      BlocksFeature({ blocks: [CodeBlock, Callout, Quote, Embed], inlineBlocks: [] }),
+      EXPERIMENTAL_TableFeature(),
+    ],
+  }),
   // The job queue is a framework collection, added by sanitizeConfig after every
   // plugin has run, so the multi-tenant plugin never sees it and it kept the
   // auth-only default while exposing REST endpoints. That let any authenticated
@@ -94,8 +126,8 @@ export default buildConfig({
   // missing it never starts and the fallback is reachable only in development.
   secret: process.env.CMS_SECRET || 'dev-secret-change-me',
   // Names the host the admin and its links are built against, so a request
-  // header cannot decide where a reset link points.
-  serverURL: process.env.SERVER_URL || 'https://cms.hanzo.ai',
+  // header cannot decide where a link points.
+  serverURL: SERVER_URL,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

@@ -1,0 +1,63 @@
+// The sign-in card. Identity is IAM's, so this screen is a door and not a form,
+// and it is laid out as one: the mark, the name, then the way in.
+//
+// Colours are the admin's own theme variables, so the card follows light and
+// dark with the rest of the panel instead of carrying a second palette.
+.iam-login {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--base, 20px);
+  margin: 0 auto;
+  max-width: 22rem;
+  padding: calc(var(--base, 20px) * 2) var(--base, 20px);
+  text-align: center;
+
+  &__mark {
+    color: var(--theme-elevation-800);
+    line-height: 0;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  &__lede {
+    color: var(--theme-elevation-600);
+    margin: calc(var(--base, 20px) * -0.75) 0 0;
+  }
+
+  &__alert {
+    background: var(--theme-error-100);
+    border-radius: 3px;
+    color: var(--theme-error-600);
+    margin: 0;
+    padding: calc(var(--base, 20px) * 0.5) var(--base, 20px);
+    width: 100%;
+  }
+
+  // The one action reads as the button it is; the operator door stays a link,
+  // because it is the exception and should not compete with the common path.
+  &__action {
+    background: var(--theme-elevation-800);
+    border-radius: 3px;
+    color: var(--theme-elevation-0);
+    display: block;
+    padding: calc(var(--base, 20px) * 0.6) var(--base, 20px);
+    text-decoration: none;
+    width: 100%;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--theme-elevation-1000);
+      color: var(--theme-elevation-0);
+    }
+  }
+
+  &__alt {
+    color: var(--theme-elevation-600);
+    font-size: 0.875rem;
+    margin-top: calc(var(--base, 20px) * -0.5);
+  }
+}
