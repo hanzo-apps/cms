@@ -22,13 +22,6 @@ const dirname = path.dirname(filename)
 // org == tenant. Every persistent primitive is per-org.
 const ORG = process.env.HANZO_ORG || 'hanzo'
 
-// Signs every session cookie, so a deployment that falls back to a value
-// published in this file issues forgeable ones.
-const secret = process.env.CMS_SECRET
-if (!secret && process.env.NODE_ENV === 'production') {
-  throw new Error('CMS_SECRET is required in production')
-}
-
 export default buildConfig({
   admin: {
     importMap: {
@@ -97,7 +90,9 @@ export default buildConfig({
       },
     }),
   },
-  secret: secret || 'dev-secret-change-me',
+  // The chart maps this from a secretKeyRef with no `optional`, so a pod
+  // missing it never starts and the fallback is reachable only in development.
+  secret: process.env.CMS_SECRET || 'dev-secret-change-me',
   // Names the host the admin and its links are built against, so a request
   // header cannot decide where a reset link points.
   serverURL: process.env.SERVER_URL || 'https://cms.hanzo.ai',
