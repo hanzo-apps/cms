@@ -29,11 +29,16 @@ const check = (passed: boolean, claim: string, detail: string) => {
   }
 }
 
-const API = 'http://cms.test/api'
+const ORIGIN = 'http://cms.test'
+const API = `${ORIGIN}/api`
 
 const run = async () => {
   process.env.HANZO_ORG = process.env.HANZO_ORG || 'http-proof'
   process.env.CMS_SUPERUSER_PASSWORD = 'proof-only-superuser-password'
+  // Cookie-authenticated writes are checked against the configured host, so
+  // these requests have to come from it. Otherwise a refusal reads as a denied
+  // permission when it was a rejected origin.
+  process.env.SERVER_URL = ORIGIN
 
   const config = (await import('../src/payload.config.js')).default
   // Booting runs onInit, which is where the superuser is provisioned.
@@ -52,6 +57,7 @@ const run = async () => {
       body: init.body === undefined ? undefined : JSON.stringify(init.body),
       headers: {
         'Content-Type': 'application/json',
+        Origin: ORIGIN,
         ...(init.token ? { Authorization: `Bearer ${init.token}` } : {}),
       },
       method,
@@ -132,6 +138,7 @@ const run = async () => {
       headers: {
         'Content-Type': 'application/json',
         Cookie: `${config.cookiePrefix ?? 'cms'}-token=${token}`,
+        Origin: ORIGIN,
       },
       method,
     })

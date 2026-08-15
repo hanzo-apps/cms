@@ -16,6 +16,9 @@ export const Users: CollectionConfig = {
     useAsTitle: 'email',
   },
   auth: {
+    // The session this cookie carries reaches every tenant when it belongs to
+    // the reserved org, so it travels over TLS only.
+    cookies: { secure: true },
     // Local (email/password) strategy stays ENABLED so the admin login view
     // renders its form; the IAM bearer strategy is layered on top for SSO/API.
     strategies: [hanzoIAMStrategy()],

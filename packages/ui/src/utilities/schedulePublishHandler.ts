@@ -45,6 +45,8 @@ export const schedulePublishHandler: ServerFunction<SchedulePublishHandlerArgs> 
         timezone,
         user: user.id,
       },
+      // The caller names the document, so the jobs rule decides.
+      overrideAccess: false,
       task: 'schedulePublish',
       waitUntil: date,
     })
