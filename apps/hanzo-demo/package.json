@@ -17,6 +17,7 @@
     "@hanzo/cms-auth-iam": "workspace:*",
     "@hanzo/cms-db-sqlite": "workspace:*",
     "@hanzo/cms-next": "workspace:*",
+    "@hanzo/cms-plugin-ai": "workspace:*",
     "@hanzo/cms-plugin-multi-tenant": "workspace:*",
     "@hanzo/cms-plugin-whitelabel": "workspace:*",
     "@hanzo/cms-richtext-lexical": "workspace:*",

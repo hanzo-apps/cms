@@ -1,6 +1,7 @@
 import { buildConfig } from '@hanzo/cms'
 import { claimOnly, isSuperAdmin } from '@hanzo/cms-auth-iam'
 import { sqliteAdapter } from '@hanzo/cms-db-sqlite'
+import { HanzoAIFeature, hanzoAIPlugin } from '@hanzo/cms-plugin-ai'
 import { multiTenantPlugin } from '@hanzo/cms-plugin-multi-tenant'
 import { whiteLabelPlugin } from '@hanzo/cms-plugin-whitelabel'
 import {
@@ -93,6 +94,7 @@ export default buildConfig({
       FixedToolbarFeature(),
       BlocksFeature({ blocks: [CodeBlock, Callout, Quote, Embed], inlineBlocks: [] }),
       EXPERIMENTAL_TableFeature(),
+      HanzoAIFeature(),
     ],
   }),
   // The job queue is a framework collection, added by sanitizeConfig after every
@@ -171,6 +173,11 @@ export default buildConfig({
       // Reserved `admin` org only. The jobs access above reads the same predicate.
       userHasAccessToAllTenants: isSuperAdmin,
     }),
+    // Drafting, rewriting and image generation, each call carrying the editor's
+    // OWN IAM bearer. Attribution, spend limits and metering are then the
+    // gateway's, against the editor's org, and this deployment writes no billing
+    // code and holds no AI credential.
+    hanzoAIPlugin(),
     // Brand-neutral / white-label by domain. Neutral when no brand matches.
     whiteLabelPlugin({
       brands: [
