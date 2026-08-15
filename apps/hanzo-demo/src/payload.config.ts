@@ -11,6 +11,7 @@ import {
   lexicalEditor,
 } from '@hanzo/cms-richtext-lexical'
 import { s3Storage } from '@hanzo/cms-storage-s3'
+import { mkdirSync } from 'fs'
 import path from 'path'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'
@@ -27,6 +28,13 @@ const dirname = path.dirname(filename)
 
 // org == tenant. Every persistent primitive is per-org.
 const ORG = process.env.HANZO_ORG || 'hanzo'
+
+// Where the per-org database file lives when no DATABASE_URI names one. libsql
+// opens the file; it does not create the directory holding it.
+const DATA_DIR = path.resolve(dirname, '../data')
+if (!process.env.DATABASE_URI) {
+  mkdirSync(DATA_DIR, { recursive: true })
+}
 
 // The one origin this deployment serves. It names the host the admin builds its
 // links against AND the origin the session cookie may be presented from, which
@@ -138,7 +146,7 @@ export default buildConfig({
   // skipped there) — this is how the local-auth columns reach the live DB.
   db: sqliteAdapter({
     client: {
-      url: process.env.DATABASE_URI || `file:${path.resolve(dirname, `../data/${ORG}.db`)}`,
+      url: process.env.DATABASE_URI || `file:${path.join(DATA_DIR, `${ORG}.db`)}`,
     },
     prodMigrations: migrations,
   }),

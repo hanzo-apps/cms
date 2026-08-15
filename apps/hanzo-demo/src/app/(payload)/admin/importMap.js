@@ -3,6 +3,7 @@ import { TenantField as TenantField_8f580e1c1bbcf3604f2e3f34dd3997be } from '@ha
 import { RscEntryLexicalCell as RscEntryLexicalCell_b3d943505c628266b3fe43882d413162 } from '@hanzo/cms-richtext-lexical/rsc'
 import { RscEntryLexicalField as RscEntryLexicalField_b3d943505c628266b3fe43882d413162 } from '@hanzo/cms-richtext-lexical/rsc'
 import { LexicalDiffComponent as LexicalDiffComponent_b3d943505c628266b3fe43882d413162 } from '@hanzo/cms-richtext-lexical/rsc'
+import { HanzoAIFeatureClient as HanzoAIFeatureClient_2c57c205d026944943e59ab97820f354 } from '@hanzo/cms-plugin-ai/client'
 import { TableFeatureClient as TableFeatureClient_f7125e09e6413bde1ccaad0012c9118f } from '@hanzo/cms-richtext-lexical/client'
 import { BlocksFeatureClient as BlocksFeatureClient_f7125e09e6413bde1ccaad0012c9118f } from '@hanzo/cms-richtext-lexical/client'
 import { InlineToolbarFeatureClient as InlineToolbarFeatureClient_f7125e09e6413bde1ccaad0012c9118f } from '@hanzo/cms-richtext-lexical/client'
@@ -47,6 +48,8 @@ export const importMap = {
     RscEntryLexicalField_b3d943505c628266b3fe43882d413162,
   '@hanzo/cms-richtext-lexical/rsc#LexicalDiffComponent':
     LexicalDiffComponent_b3d943505c628266b3fe43882d413162,
+  '@hanzo/cms-plugin-ai/client#HanzoAIFeatureClient':
+    HanzoAIFeatureClient_2c57c205d026944943e59ab97820f354,
   '@hanzo/cms-richtext-lexical/client#TableFeatureClient':
     TableFeatureClient_f7125e09e6413bde1ccaad0012c9118f,
   '@hanzo/cms-richtext-lexical/client#BlocksFeatureClient':

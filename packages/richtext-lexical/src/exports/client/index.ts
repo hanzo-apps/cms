@@ -59,6 +59,7 @@ export {
   sanitizeClientEditorConfig,
   sanitizeClientFeatures,
 } from '../../lexical/config/client/sanitize.js'
+export { AIIcon } from '../../lexical/ui/icons/AI/index.js'
 export { CAN_USE_DOM } from '../../lexical/utils/canUseDOM.js'
 export { getDOMRangeRect } from '../../lexical/utils/getDOMRangeRect.js'
 export { getSelectedNode } from '../../lexical/utils/getSelectedNode.js'
