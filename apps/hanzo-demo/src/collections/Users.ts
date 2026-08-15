@@ -1,6 +1,12 @@
 import type { CollectionConfig } from '@hanzo/cms'
 
-import { clearIAMCookies, hanzoIAMStrategy, iamAuthFields, iamRefresh } from '@hanzo/cms-auth-iam'
+import {
+  claimOnly,
+  clearIAMCookies,
+  hanzoIAMStrategy,
+  iamAuthFields,
+  iamRefresh,
+} from '@hanzo/cms-auth-iam'
 
 /**
  * Users authenticate through Hanzo IAM and through nothing else. The IAM access
@@ -24,12 +30,23 @@ export const Users: CollectionConfig = {
     // the browser returns from IAM by top-level navigation, which Strict would
     // not send the cookie on — the sign-in would complete and read as failed.
     cookies: { sameSite: 'Lax', secure: true },
-    // `{ enableFields: true }` rather than `true`: the auth fields stay in the
-    // schema, so email / salt / hash / login_attempts / lock_until / sessions
-    // remain columns and the live database needs no migration to adopt this.
-    // `useAsTitle: 'email'` keeps working for the same reason. Nothing writes a
-    // password any more; the columns simply stay empty.
-    disableLocalStrategy: { enableFields: true },
+    // No local fields at all. Keeping them would leave a writable password path
+    // — a PATCH carrying `password` still writes salt and hash, which no field
+    // access governs — and an HS256 verifier that would accept a token this
+    // deployment's own secret could sign. Both are unreachable while this is the
+    // only auth collection, and both become reachable the moment a second one
+    // registers the local strategy globally. An invariant that holds by accident
+    // is not one; removing the fields removes the question.
+    //
+    // `email` is declared below instead, on the column that already exists.
+    disableLocalStrategy: true,
+    // `/me` and `/refresh-token` otherwise echo the raw IAM bearer into
+    // same-origin JavaScript. That token is the caller's credential for EVERY
+    // Hanzo service, not just this one, so a scripting bug here would not leak a
+    // CMS session — it would leak a portable platform credential with hours left
+    // on it. The admin reads its session from the cookie and never needs the
+    // string.
+    removeTokenFromResponses: true,
     strategies: [hanzoIAMStrategy()],
     // Eight hours, matching the IAM client's own token lifetime. The two are one
     // fact — a cookie outliving its token is a session that looks alive and
@@ -37,8 +54,23 @@ export const Users: CollectionConfig = {
     tokenExpiration: 28800,
   },
   fields: [
-    // `email` comes from the auth fields, which `enableFields` keeps; iamAuthFields
-    // carries the IAM claim-mapping fields only.
+    // The identity IAM sends, on the column that has always held it: text, not
+    // null, unique index `users_email_idx`. Declaring it exactly as the local
+    // strategy did means the schema still describes the live table, so removing
+    // that strategy needs no migration. `useAsTitle` reads it.
+    //
+    // Claim-written like every other identity field: it names who someone is,
+    // and it arrives from IAM, so a caller editing their own row cannot set it.
+    {
+      name: 'email',
+      type: 'email',
+      access: claimOnly,
+      admin: { description: 'From the IAM token.', readOnly: true },
+      index: true,
+      label: 'Email',
+      required: true,
+      unique: true,
+    },
     ...iamAuthFields,
   ],
   hooks: {

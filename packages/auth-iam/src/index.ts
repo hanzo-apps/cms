@@ -1,6 +1,6 @@
 import type { Field } from '@hanzo/cms'
 
-export { activeOrg } from './org.js'
+export { activeOrg, clearedTenantCookie, TENANT_COOKIE, tenantCookie } from './org.js'
 export { clearIAMCookies, iamRefresh } from './refresh.js'
 export { authorizeURL, beginAuth, exchangeCode, iamIssuer, signOutURL } from './session.js'
 export { hanzoIAMStrategy, iamToken } from './strategy.js'

@@ -117,6 +117,25 @@ const run = async () => {
     `bearer sign-in -> ${superMe.status}, iamOrg=${superUser?.iamOrg}, rows ${before.totalDocs} -> ${after.totalDocs}`,
   )
 
+  // The bearer is a credential for EVERY Hanzo service, not only this one, and
+  // these two responses reach same-origin JavaScript. Echoing it there turns a
+  // scripting bug in the admin into theft of a portable platform credential with
+  // hours left on it. The admin reads its session from the cookie and never
+  // needs the string.
+  const meBody = JSON.parse(superMe.body) as Record<string, unknown>
+  check(
+    !('token' in meBody) && !('refreshedToken' in meBody),
+    'GET /users/me returns no token',
+    `me echoed: ${Object.keys(meBody).join(', ')}`,
+  )
+  const refreshed = await call(post, 'POST', 'users/refresh-token', { token: superToken })
+  const refreshBody = JSON.parse(refreshed.body) as Record<string, unknown>
+  check(
+    !('refreshedToken' in refreshBody) && !('token' in refreshBody),
+    `POST /users/refresh-token returns no token (${refreshed.status})`,
+    `refresh echoed: ${Object.keys(refreshBody).join(', ')}`,
+  )
+
   const acmeMe = await asUser(get, 'GET', 'users/me', acmeToken)
   const acmeUser = whoami(acmeMe.body)
   check(
@@ -162,6 +181,32 @@ const run = async () => {
     login.status === 403,
     `POST /users/login -> ${login.status}`,
     `login -> ${login.status}, expected 403`,
+  )
+
+  // A collection that kept the auth FIELDS while disabling the strategy still
+  // accepted a password on an ordinary update, and writing one writes salt and
+  // hash — columns no field access governs, because they are the framework's
+  // rather than the config's. That row could then be signed in against by
+  // anything that verifies a local credential. There are no such columns now, so
+  // there is nothing for the write to land in.
+  const adminRows = await cms.find({
+    collection: 'users',
+    where: { iamOrg: { equals: 'admin' } },
+  })
+  const superRow = adminRows.docs[0] as { id: number | string }
+  await call(post, 'PATCH', `users/${superRow.id}`, {
+    body: { password: 'a-password-nobody-asked-for' },
+    token: superToken,
+  })
+  const rowAfter = (await cms.findByID({
+    id: superRow.id,
+    collection: 'users',
+    showHiddenFields: true,
+  })) as Record<string, unknown>
+  check(
+    !rowAfter.salt && !rowAfter.hash && !rowAfter.password,
+    'a password sent on an update writes no credential',
+    `update left salt=${String(rowAfter.salt)} hash=${String(rowAfter.hash)}`,
   )
 
   // ---- a token this deployment did not issue ---------------------------

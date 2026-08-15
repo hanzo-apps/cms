@@ -15,6 +15,23 @@ import { isSuperAdmin } from './super.js'
  */
 const hasUnsafeRune = (s: string): boolean => /[\s\p{Cc}\p{Cf}]/u.test(s)
 
+/** The tenant selection. Named once, so every reader agrees with every writer. */
+export const TENANT_COOKIE = 'cms-tenant'
+
+// Secure, like the session cookie beside it. It travels with a session that
+// reaches every tenant when it belongs to the reserved org, so a request that
+// carries it belongs on TLS. Lax because the browser returns from IAM by
+// top-level navigation, which Strict would not send it on.
+const ATTRIBUTES = 'Path=/; SameSite=Lax; HttpOnly; Secure'
+
+/** Open the session on a tenant. */
+export const tenantCookie = (id: number | string): string =>
+  `${TENANT_COOKIE}=${encodeURIComponent(String(id))}; ${ATTRIBUTES}`
+
+/** End the selection. Same attributes, because a browser drops a cookie only
+ *  when the expiry arrives on one it recognises as the same cookie. */
+export const clearedTenantCookie = (): string => `${TENANT_COOKIE}=; Max-Age=0; ${ATTRIBUTES}`
+
 const idsOf = (user: unknown): string[] =>
   ((user as { tenants?: { tenant?: unknown }[] } | null)?.tenants ?? [])
     .map((row) => {
@@ -52,7 +69,7 @@ const idsOf = (user: unknown): string[] =>
  */
 export const activeOrg = async (req: CMSRequest): Promise<string> => {
   const home = (req.user as { iamOrg?: string } | null)?.iamOrg ?? ''
-  const selectedID = parseCookies(req.headers).get('cms-tenant')
+  const selectedID = parseCookies(req.headers).get(TENANT_COOKIE)
   if (!selectedID) {
     return home
   }

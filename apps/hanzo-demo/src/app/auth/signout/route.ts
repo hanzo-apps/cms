@@ -1,4 +1,4 @@
-import { signOutURL } from '@hanzo/cms-auth-iam'
+import { clearedTenantCookie, signOutURL } from '@hanzo/cms-auth-iam'
 import { getCMS } from '@hanzo/cms'
 import { generateExpiredCMSCookie } from '@hanzo/cms/shared'
 import configPromise from '@payload-config'
@@ -33,7 +33,7 @@ export const GET = async (request: Request): Promise<Response> => {
       }),
     )
   }
-  headers.append('Set-Cookie', 'cms-tenant=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax')
+  headers.append('Set-Cookie', clearedTenantCookie())
 
   return new Response(null, { headers, status: 302 })
 }

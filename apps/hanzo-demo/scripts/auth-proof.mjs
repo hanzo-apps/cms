@@ -152,6 +152,11 @@ const run = async () => {
     check(addressed, `the token is addressed to ${q.get('client_id')}, not to some other app`)
   }
   check(Boolean(tenant), 'a tenant is selected')
+  // Secure, like the session cookie beside it. It is still stored here because
+  // localhost is a trustworthy origin — the flag costs nothing in the dev loop
+  // and is what keeps the selection off the wire everywhere else.
+  check(Boolean(tenant?.secure), 'the tenant cookie is Secure')
+  check(Boolean(tenant?.httpOnly), 'the tenant cookie is httpOnly')
 
   console.log('\n=== the panel knows who this is ===')
   await page.goto(`${BASE}/admin/account`, { waitUntil: 'networkidle' })

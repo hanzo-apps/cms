@@ -2,6 +2,7 @@ import type { CollectionAfterLogoutHook, CollectionRefreshHook } from '@hanzo/cm
 
 import { decodeJwt } from 'jose'
 
+import { clearedTenantCookie } from './org.js'
 import { iamToken } from './strategy.js'
 
 /**
@@ -49,6 +50,6 @@ export const iamRefresh: CollectionRefreshHook = ({ args, user }) => {
  */
 export const clearIAMCookies: CollectionAfterLogoutHook = ({ req }) => {
   const headers = req.responseHeaders ?? new Headers()
-  headers.append('Set-Cookie', 'cms-tenant=; Path=/; Max-Age=0; SameSite=Lax; HttpOnly')
+  headers.append('Set-Cookie', clearedTenantCookie())
   req.responseHeaders = headers
 }

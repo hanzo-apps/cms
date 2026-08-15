@@ -5,6 +5,8 @@ import { createRemoteJWKSet, jwtVerify } from 'jose'
 
 import type { HanzoIAMStrategyConfig, IAMClaims } from './types.js'
 
+import { TENANT_COOKIE, tenantCookie } from './org.js'
+
 const DEFAULT_ISSUER = 'https://hanzo.id'
 const DEFAULT_JWKS = 'https://hanzo.id/v1/iam/.well-known/jwks'
 
@@ -161,7 +163,18 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
       let claims: IAMClaims
       try {
         const { payload: verified } = await jwtVerify(token, getJWKS(jwksUri), {
+          // Name the algorithm. Left open, the verifier accepts whatever the
+          // header asks for among the key's permitted set, which makes the
+          // token's own header a party to deciding how it is checked. IAM signs
+          // RS256; nothing else is expected and nothing else is accepted.
+          algorithms: ['RS256'],
           ...(audience.length ? { audience } : {}),
+          // IAM sets nbf equal to iat, and jose allows no skew by default, so a
+          // server running seconds ahead of the issuer rejects a token that was
+          // just minted — a sign-in that fails with no reason a user can see and
+          // no reason a log makes obvious. Thirty seconds is far inside the
+          // token's own lifetime.
+          clockTolerance: 30,
           issuer,
         })
         claims = verified as IAMClaims
@@ -233,12 +246,9 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
       // not this strategy's problem to police — activeOrg discards it, and the
       // plugin intersects it with the tenant constraint, so a stale one narrows.
       const responseHeaders = new Headers()
-      const selected = parseCookies(headers).get('cms-tenant')
+      const selected = parseCookies(headers).get(TENANT_COOKIE)
       if (canSetHeaders && homeTenantID !== undefined && !selected) {
-        responseHeaders.append(
-          'Set-Cookie',
-          `cms-tenant=${encodeURIComponent(String(homeTenantID))}; Path=/; SameSite=Lax; HttpOnly`,
-        )
+        responseHeaders.append('Set-Cookie', tenantCookie(homeTenantID))
       }
 
       return {

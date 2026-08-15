@@ -1,4 +1,4 @@
-import { exchangeCode } from '@hanzo/cms-auth-iam'
+import { clearedTenantCookie, exchangeCode } from '@hanzo/cms-auth-iam'
 import { getCMS } from '@hanzo/cms'
 import { generateCMSCookie, parseCookies } from '@hanzo/cms/shared'
 import configPromise from '@payload-config'
@@ -123,7 +123,7 @@ export const GET = async (request: Request): Promise<Response> => {
     'Set-Cookie',
     `${OAUTH_COOKIE}=; Path=/auth; Max-Age=0; HttpOnly; SameSite=Lax${secure ? '; Secure' : ''}`,
   )
-  headers.append('Set-Cookie', 'cms-tenant=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax')
+  headers.append('Set-Cookie', clearedTenantCookie())
 
   return new Response(null, { headers, status: 302 })
 }
