@@ -2,19 +2,30 @@
  * Claims we rely on from a Hanzo IAM (Casdoor) access token.
  * `owner` is the org slug — in Hanzo, org == tenant. There is no separate CMS
  * tenant concept; the IAM org IS the tenancy boundary.
+ *
+ * Names are the ones IAM signs (hanzoai/iam internal/oidc/jwt.go Claims).
+ * `isAdmin` and `picture` are NOT here: IAM serves both from userinfo and never
+ * puts them in a token, so a field for either would read as always-false /
+ * always-absent. Org administration arrives instead as the `orgs` entry role.
  */
 export type IAMClaims = {
   aud?: string | string[]
+  /** display name */
+  displayName?: string
   email?: string
   exp?: number
   /** group slugs the user belongs to */
   groups?: string[]
-  /** Administers the org named by `owner`. Scoped to it; see `isSuperAdmin`. */
-  isAdmin?: boolean
   iss?: string
   /** username */
   name?: string
-  /** org slug — the tenant */
+  /**
+   * Tenancy set: home org first, then every explicit membership, deduped.
+   * Present on every user token; omitted on a machine (client_credentials) one,
+   * which has no membership and so reaches no tenant here.
+   */
+  orgs?: { org: string; role?: 'admin' | 'member' | 'owner' }[]
+  /** org slug — the home tenant */
   owner?: string
   /** user id (uuid) */
   sub?: string

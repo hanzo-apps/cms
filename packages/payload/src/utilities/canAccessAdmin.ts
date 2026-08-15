@@ -28,6 +28,18 @@ export const canAccessAdmin = async ({ req }: { req: CMSRequest }) => {
       throw new UnauthorizedError()
     }
   } else {
+    // The allowance below exists for ONE flow: letting the first user be created
+    // on an empty installation. A collection with no local strategy cannot create
+    // one — registerFirstUser refuses it — so on such a collection the allowance
+    // has nothing left to permit and can only grant. That matters because an
+    // SSO-only installation starts empty by construction: users are provisioned
+    // from verified claims on first sign-in, so the table is empty until somebody
+    // signs in, and the allowance would hand the admin's server functions to
+    // whoever asked first.
+    if (req.cms.collections[adminUserSlug]?.config.auth?.disableLocalStrategy) {
+      throw new UnauthorizedError()
+    }
+
     const hasUsers = await req.cms.find({
       collection: adminUserSlug,
       depth: 0,

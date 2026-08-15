@@ -1,6 +1,6 @@
 import type { AuthStrategy, AuthStrategyFunctionArgs, AuthStrategyResult, CMS } from '@hanzo/cms'
 
-import { randomBytes } from 'crypto'
+import { parseCookies } from '@hanzo/cms/shared'
 import { createRemoteJWKSet, jwtVerify } from 'jose'
 
 import type { HanzoIAMStrategyConfig, IAMClaims } from './types.js'
@@ -20,16 +20,65 @@ const getJWKS = (uri: string) => {
   return set
 }
 
-const getBearer = (headers: AuthStrategyFunctionArgs['headers']): null | string => {
-  const raw = headers.get('authorization') || headers.get('Authorization')
-  if (!raw) {
+/**
+ * The IAM access token, from the Authorization header or from the session
+ * cookie. The cookie is `${cookiePrefix}-token` — the framework's own session
+ * name — so an IAM token written there IS the session, and the whole admin
+ * (RootPage, /me, /refresh) reads it with no second mechanism.
+ *
+ * The cookie arm repeats extractJWT's Origin / Sec-Fetch-Site rule rather than
+ * calling it: extractJWT is internal to the framework, and this strategy owns
+ * its own transport. Same rule, same order — an Origin is checked against the
+ * csrf allowlist; with no Origin, Sec-Fetch-Site decides; a cross-site request
+ * or a non-browser client presenting neither is refused, so the cookie cannot
+ * be ridden from another origin.
+ */
+export const iamToken = (headers: AuthStrategyFunctionArgs['headers'], cms: CMS): null | string => {
+  const raw = headers.get('authorization')
+  if (raw) {
+    const [scheme, token] = raw.split(' ')
+    if (scheme && token && scheme.toLowerCase() === 'bearer') {
+      return token.trim()
+    }
+  }
+
+  const cookieToken = parseCookies(headers).get(`${cms.config.cookiePrefix}-token`)
+  if (!cookieToken) {
     return null
   }
-  const [scheme, token] = raw.split(' ')
-  if (!scheme || !token || scheme.toLowerCase() !== 'bearer') {
-    return null
+
+  const csrf = cms.config.csrf
+  const origin = headers.get('Origin')
+  if (origin) {
+    return csrf.length === 0 || csrf.includes(origin) ? cookieToken : null
   }
-  return token.trim()
+  if (csrf.length === 0) {
+    return cookieToken
+  }
+  const site = headers.get('Sec-Fetch-Site')
+  return site === 'same-origin' || site === 'same-site' || site === 'none' ? cookieToken : null
+}
+
+/**
+ * The org slugs this token grants, home first. `orgs` is the signed tenancy set
+ * — home org, then every explicit membership — so it is the whole answer when
+ * present. `owner` alone is the fallback for a token that carries no membership.
+ */
+const orgsOf = (claims: IAMClaims): string[] => {
+  const home = claims.owner
+  const slugs = (claims.orgs ?? []).map((entry) => entry?.org).filter((org): org is string => !!org)
+  const ordered = home ? [home, ...slugs.filter((org) => org !== home)] : slugs
+  return [...new Set(ordered)]
+}
+
+/**
+ * Administers the org named by `owner`. IAM derives the home entry's role from
+ * the user's own admin bit, so the home role IS that bit — read back here rather
+ * than from a token field, because there is no such field to read.
+ */
+const administersHome = (claims: IAMClaims): boolean => {
+  const home = claims.orgs?.find((entry) => entry?.org === claims.owner)
+  return home?.role === 'admin' || home?.role === 'owner'
 }
 
 /**
@@ -37,15 +86,11 @@ const getBearer = (headers: AuthStrategyFunctionArgs['headers']): null | string 
  * its id. Idempotent: keyed on the org slug.
  */
 const ensureTenant = async (args: {
-  claims: IAMClaims
   cms: CMS
+  slug: string
   tenantsSlug: string
 }): Promise<number | string | undefined> => {
-  const { claims, cms, tenantsSlug } = args
-  const slug = claims.owner
-  if (!slug) {
-    return undefined
-  }
+  const { slug, cms, tenantsSlug } = args
 
   // Only touch the collection if it actually exists in this config.
   if (!cms.collections?.[tenantsSlug]) {
@@ -74,12 +119,13 @@ const ensureTenant = async (args: {
 /**
  * The Hanzo IAM SSO auth strategy.
  *
- * Validates a Bearer access token issued by Hanzo IAM (Casdoor, RS256) against
- * the published JWKS — no shared secret, no per-request round-trip to IAM. Maps
- * the verified claims to a CMS user (find-or-provision by IAM `sub`), links
- * the user to the tenant derived from the IAM `owner` org (org == tenant), and
- * sets the `cms-tenant` cookie so the multi-tenant plugin scopes every
- * subsequent query to that org.
+ * Validates a Hanzo IAM access token (RS256) against the published JWKS — no
+ * shared secret, no per-request round-trip to IAM. The token arrives as a Bearer
+ * header from an API client or in the session cookie from the admin, and either
+ * way IAM signed it. Verified claims map to a CMS user (find-or-provision by IAM
+ * `sub`), whose tenant set is the token's `orgs` membership (org == tenant), and
+ * the `cms-tenant` cookie opens on the home org so the multi-tenant plugin scopes
+ * every subsequent query.
  *
  * IAM is the sole identity authority: there is no separate CMS login.
  */
@@ -107,7 +153,7 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
       cms,
       headers,
     }: AuthStrategyFunctionArgs): Promise<AuthStrategyResult> => {
-      const token = getBearer(headers)
+      const token = iamToken(headers, cms)
       if (!token) {
         return { user: null }
       }
@@ -128,7 +174,18 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
         return { user: null }
       }
 
-      const tenantID = await ensureTenant({ claims, cms, tenantsSlug })
+      // Every org the token grants becomes a tenant, home first. The membership
+      // is the token's, so it is re-derived on every sign-in and a tenant a user
+      // has lost is dropped from the row the next time they arrive.
+      const slugs = orgsOf(claims)
+      const tenantIDs: (number | string)[] = []
+      for (const slug of slugs) {
+        const id = await ensureTenant({ slug, cms, tenantsSlug })
+        if (id !== undefined) {
+          tenantIDs.push(id)
+        }
+      }
+      const homeTenantID = tenantIDs[0]
 
       // find-or-provision the user by IAM subject
       const found = await cms.find({
@@ -140,18 +197,20 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
 
       // IAM is the authority on identity, so the row takes the claims of the
       // token presented and holds them until the next sign-in. Clients differ
-      // in what they emit — one that omits `isAdmin` clears it — so the row
-      // reflects the app a caller last arrived from. Naming `audience` is what
-      // settles that: it confines the row to clients this deployment answers to.
+      // in what they emit, so the row reflects the app a caller last arrived
+      // from. Naming `audience` is what settles that: it confines the row to
+      // clients this deployment answers to.
       const baseData = {
         email: claims.email || `${claims.sub}@iam.local`,
         groups: Array.isArray(claims.groups) ? claims.groups : [],
         iamOrg: claims.owner,
         iamSub: claims.sub,
-        isAdmin: Boolean(claims.isAdmin),
+        isAdmin: administersHome(claims),
         username: claims.name,
         ...(config.claimsToUser ? config.claimsToUser(claims) : {}),
-        ...(tenantID !== undefined ? { [tenantsArrayField]: [{ tenant: tenantID }] } : {}),
+        ...(tenantIDs.length
+          ? { [tenantsArrayField]: tenantIDs.map((tenant) => ({ tenant })) }
+          : {}),
       }
 
       let userDoc
@@ -163,21 +222,22 @@ export const hanzoIAMStrategy = (config: HanzoIAMStrategyConfig = {}): AuthStrat
           data: baseData,
         })
       } else {
-        userDoc = await cms.create({
-          collection: authSlug,
-          // A collection that keeps the local strategy requires a password on
-          // every row, and this one is reached by SSO alone. A random value
-          // satisfies that and is discarded here: it is never returned, logged
-          // or reused, so the row has no password anyone can present.
-          data: { ...baseData, password: randomBytes(32).toString('base64url') },
-        })
+        // No password: the local strategy is off, so the row has no credential
+        // to present and none to guess.
+        userDoc = await cms.create({ collection: authSlug, data: baseData })
       }
 
+      // Open the session on the home tenant, and only then: the switcher writes
+      // this same cookie, so re-asserting home on every request would undo a
+      // selection the moment it was made. A selection outside the token's set is
+      // not this strategy's problem to police — activeOrg discards it, and the
+      // plugin intersects it with the tenant constraint, so a stale one narrows.
       const responseHeaders = new Headers()
-      if (canSetHeaders && tenantID !== undefined) {
+      const selected = parseCookies(headers).get('cms-tenant')
+      if (canSetHeaders && homeTenantID !== undefined && !selected) {
         responseHeaders.append(
           'Set-Cookie',
-          `cms-tenant=${encodeURIComponent(String(tenantID))}; Path=/; SameSite=Lax; HttpOnly`,
+          `cms-tenant=${encodeURIComponent(String(homeTenantID))}; Path=/; SameSite=Lax; HttpOnly`,
         )
       }
 

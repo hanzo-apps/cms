@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@hanzo/cms": "workspace:*",
+    "@hanzo/iam": "^0.21.8",
     "jose": "5.10.0"
   },
   "devDependencies": {
