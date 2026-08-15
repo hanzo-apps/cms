@@ -1,6 +1,8 @@
 import type { ChatCompletion } from '@hanzo/ai'
 import type { Endpoint } from '@hanzo/cms'
 
+import { activeOrg } from '@hanzo/cms-auth-iam'
+
 import type { HanzoAIPluginConfig, ImageRequest, WriteAction, WriteRequest } from './types.js'
 
 import { caller, refuse, reply } from './gateway.js'
@@ -77,9 +79,11 @@ const filename = (args: { mimetype: string; prompt: string }): string => {
  */
 export const endpoints = (pluginConfig: HanzoAIPluginConfig): Endpoint[] => {
   const { baseUrl } = pluginConfig
-  const imageModel = pluginConfig.imageModel ?? 'zen3-image'
+  const imageModel = pluginConfig.imageModel ?? 'zen-image'
   const mediaSlug = pluginConfig.mediaSlug ?? 'media'
-  const model = pluginConfig.model ?? 'zen3'
+  const tenantsSlug = pluginConfig.tenantsSlug ?? 'tenants'
+  const tenantField = pluginConfig.tenantField ?? 'tenant'
+  const model = pluginConfig.model ?? 'zen5'
 
   return [
     {
@@ -148,12 +152,28 @@ export const endpoints = (pluginConfig: HanzoAIPluginConfig): Endpoint[] => {
             return reply({ message: 'The AI returned no image.' }, 502)
           }
 
-          // Through the request, so the upload lands as the caller: access runs,
-          // the tenant field takes the org they are acting in, and storage keys
-          // the object under that org's prefix.
+          // The tenant is resolved here rather than left to the plugin, which
+          // reads it from the `cms-tenant` cookie: this upload is made by the
+          // server on the caller's behalf, so it must name the org they are
+          // acting in instead of depending on a cookie riding along with the
+          // request that asked for it.
+          const org = await activeOrg(req)
+          const tenant = org
+            ? (
+                await req.cms.find({
+                  collection: tenantsSlug,
+                  depth: 0,
+                  limit: 1,
+                  where: { slug: { equals: org } },
+                })
+              ).docs[0]?.id
+            : undefined
+
+          // Through the request, so the upload lands as the caller: access runs
+          // and storage keys the object under that org's prefix.
           const media = (await req.cms.create({
             collection: mediaSlug,
-            data: { alt: prompt },
+            data: { alt: prompt, ...(tenant === undefined ? {} : { [tenantField]: tenant }) },
             file: {
               name: filename({ mimetype: file.mimetype, prompt }),
               data: file.data,

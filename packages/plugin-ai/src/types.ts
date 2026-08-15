@@ -11,6 +11,10 @@ export type HanzoAIPluginConfig = {
   mediaSlug?: string
   /** Model the write endpoint asks for. */
   model?: string
+  /** Name of the tenant relationship on the media collection. */
+  tenantField?: string
+  /** Slug of the tenants collection (org == tenant). */
+  tenantsSlug?: string
 }
 
 export type WriteRequest = {
