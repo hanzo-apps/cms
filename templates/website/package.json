@@ -22,6 +22,7 @@
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
   },
   "dependencies": {
+    "@hanzo/font": "^1.8.0",
     "@hanzo/cms-admin-bar": "workspace:*",
     "@hanzo/cms-db-mongodb": "workspace:*",
     "@hanzo/cms-live-preview-react": "workspace:*",
@@ -41,7 +42,6 @@
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
-    "geist": "^1.3.0",
     "graphql": "^16.8.2",
     "lucide-react": "0.563.0",
     "next": "16.2.6",
