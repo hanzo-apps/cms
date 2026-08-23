@@ -17,6 +17,7 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
+    "@hanzo/font": "^1.8.0",
     "@hanzo/cms-db-mongodb": "latest",
     "@hanzo/cms-live-preview-react": "latest",
     "@hanzo/cms-next": "latest",
@@ -34,7 +35,6 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
-    "geist": "^1.3.0",
     "graphql": "^16.8.2",
     "jsonwebtoken": "9.0.2",
     "lucide-react": "^0.378.0",

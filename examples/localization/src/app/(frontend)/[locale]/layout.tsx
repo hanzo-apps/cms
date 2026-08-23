@@ -1,8 +1,5 @@
 import type { Metadata } from 'next'
 
-import { cn } from '@/utilities/ui'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
 import React from 'react'
 
 import { Footer } from '@/globals/Footer/Component'
@@ -14,6 +11,7 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 import { TypedLocale } from '@hanzo/cms'
 
+import '@hanzo/font/css'
 import './globals.css'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
@@ -42,12 +40,7 @@ export default async function RootLayout({ children, params }: Args) {
   const messages = await getMessages()
 
   return (
-    <html
-      className={cn(GeistSans.variable, GeistMono.variable)}
-      lang={locale}
-      dir={direction}
-      suppressHydrationWarning
-    >
+    <html lang={locale} dir={direction} suppressHydrationWarning>
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
