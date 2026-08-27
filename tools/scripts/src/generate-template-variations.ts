@@ -11,11 +11,11 @@
 
 import type { DbType, StorageAdapterType } from '@hanzo/create-cms-app/types'
 
+import { configureCMSConfig } from '@hanzo/create-cms-app/lib/configure-payload-config.js'
+import { copyRecursiveSync } from '@hanzo/create-cms-app/utils/copy-recursive-sync.js'
 import { PROJECT_ROOT, TEMPLATES_DIR } from '@tools/constants'
 import chalk from 'chalk'
 import { execSync } from 'child_process'
-import { configurePayloadConfig } from '@hanzo/create-cms-app/lib/configure-payload-config.js'
-import { copyRecursiveSync } from '@hanzo/create-cms-app/utils/copy-recursive-sync.js'
 import minimist from 'minimist'
 import * as fs from 'node:fs/promises'
 import path from 'path'
@@ -271,7 +271,7 @@ async function main() {
         storageAdapter: storage,
       }
 
-      await configurePayloadConfig(configureArgs)
+      await configureCMSConfig(configureArgs)
 
       log('Configuring .env.example')
       // Replace DATABASE_URL with the correct env name if set
