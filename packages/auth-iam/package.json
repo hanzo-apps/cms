@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@hanzo/cms": "workspace:*",
-    "jose": "5.10.0"
+    "jose": "catalog:"
   },
   "devDependencies": {
     "@hanzo/cms-eslint-config": "workspace:*"

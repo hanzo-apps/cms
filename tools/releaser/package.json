@@ -34,21 +34,21 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@swc-node/register": "1.11.1",
+    "@swc-node/register": "catalog:",
     "@tools/constants": "workspace:*",
-    "chalk": "^4.1.2",
-    "changelogen": "^0.6.2",
-    "execa": "5.1.1",
-    "minimist": "1.2.8",
-    "open": "^10.1.0",
-    "p-limit": "^5.0.0",
-    "prompts": "2.4.2",
-    "semver": "^7.5.4",
-    "tsx": "^4.19.2"
+    "chalk": "catalog:",
+    "changelogen": "catalog:",
+    "execa": "catalog:",
+    "minimist": "catalog:",
+    "open": "catalog:",
+    "p-limit": "catalog:",
+    "prompts": "catalog:",
+    "semver": "catalog:",
+    "tsx": "catalog:"
   },
   "devDependencies": {
-    "@types/minimist": "1.2.5",
-    "@types/prompts": "^2.4.5",
-    "@types/semver": "^7.5.3"
+    "@types/minimist": "catalog:",
+    "@types/prompts": "catalog:",
+    "@types/semver": "catalog:"
   }
 }

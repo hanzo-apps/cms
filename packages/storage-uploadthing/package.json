@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@hanzo/cms-plugin-cloud-storage": "workspace:*",
-    "uploadthing": "7.3.0"
+    "uploadthing": "catalog:"
   },
   "devDependencies": {
     "@hanzo/cms": "workspace:*"

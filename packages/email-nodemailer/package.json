@@ -42,10 +42,10 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "nodemailer": "^9.0.1"
+    "nodemailer": "catalog:"
   },
   "devDependencies": {
-    "@types/nodemailer": "^8.0.0",
+    "@types/nodemailer": "catalog:",
     "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {

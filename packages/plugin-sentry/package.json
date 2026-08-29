@@ -54,19 +54,19 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@sentry/nextjs": "^9.5.0",
-    "@sentry/types": "^9.5.0"
+    "@sentry/nextjs": "catalog:",
+    "@sentry/types": "catalog:"
   },
   "devDependencies": {
     "@hanzo/cms-eslint-config": "workspace:*",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
     "@hanzo/cms": "workspace:*",
-    "react": "^19.0.1 || ^19.1.2 || ^19.2.1",
-    "react-dom": "^19.0.1 || ^19.1.2 || ^19.2.1"
+    "react": ">=19.2.8",
+    "react-dom": ">=19.2.8"
   },
   "publishConfig": {
     "exports": {

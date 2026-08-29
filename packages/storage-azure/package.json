@@ -47,8 +47,8 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@azure/abort-controller": "^1.1.0",
-    "@azure/storage-blob": "^12.11.0",
+    "@azure/abort-controller": "catalog:",
+    "@azure/storage-blob": "catalog:",
     "@hanzo/cms-plugin-cloud-storage": "workspace:*"
   },
   "devDependencies": {

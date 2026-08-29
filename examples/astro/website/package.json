@@ -9,9 +9,9 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/node": "^9.0.0",
-    "astro": "^5.1.1",
-    "@hanzo/cms": "3.11.0",
+    "@astrojs/node": "catalog:",
+    "astro": "catalog:",
+    "@hanzo/cms": "catalog:",
     "payload-app": "workspace:*"
   }
 }

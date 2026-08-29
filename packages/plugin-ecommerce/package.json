@@ -85,22 +85,22 @@
   "dependencies": {
     "@hanzo/cms-translations": "workspace:*",
     "@hanzo/cms-ui": "workspace:*",
-    "qs-esm": "8.0.1"
+    "qs-esm": "catalog:"
   },
   "devDependencies": {
     "@hanzo/cms-eslint-config": "workspace:*",
     "@hanzo/cms-next": "workspace:*",
     "@hanzo/cms-translations": "workspace:*",
-    "@types/json-schema": "7.0.15",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
+    "@types/json-schema": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "@hanzo/cms": "workspace:*",
-    "stripe": "18.3.0"
+    "stripe": "catalog:"
   },
   "peerDependencies": {
     "@hanzo/cms": "workspace:*",
-    "react": "^19.0.1 || ^19.1.2 || ^19.2.1",
-    "react-dom": "^19.0.1 || ^19.1.2 || ^19.2.1"
+    "react": ">=19.2.8",
+    "react-dom": ">=19.2.8"
   },
   "publishConfig": {
     "exports": {

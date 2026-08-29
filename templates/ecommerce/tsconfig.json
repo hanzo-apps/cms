@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "esModuleInterop": true,
     "target": "es2022",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -23,6 +22,7 @@
       }
     ],
     "paths": {
+      "*": ["./*"],
       "@payload-config": ["./src/payload.config.ts"],
       "react": ["./node_modules/@types/react"],
       "@/*": ["./src/*"],

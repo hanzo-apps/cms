@@ -50,7 +50,7 @@
     "@hanzo/cms-plugin-cloud-storage": "workspace:*"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20260218.0",
+    "@cloudflare/workers-types": "catalog:",
     "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {

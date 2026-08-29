@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "esModuleInterop": true,
     "target": "ES2022",
     "lib": [
@@ -27,6 +26,7 @@
       }
     ],
     "paths": {
+      "*": ["./*"],
       "@payload-config": [
         "./src/payload.config.ts"
       ],
@@ -38,7 +38,7 @@
       ],
       "@/*": [
         "./src/*"
-      ],
+      ]
     }
   },
   "include": [

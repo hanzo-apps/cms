@@ -42,8 +42,8 @@
   },
   "dependencies": {
     "@hanzo/cms": "workspace:*",
-    "qs-esm": "8.0.1",
-    "ts-essentials": "10.0.3"
+    "qs-esm": "catalog:",
+    "ts-essentials": "catalog:"
   },
   "devDependencies": {
     "@hanzo/cms-eslint-config": "workspace:*"

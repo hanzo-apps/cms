@@ -10,25 +10,25 @@
     "start": "cross-env NODE_ENV=production node dist/server.js"
   },
   "dependencies": {
-    "@hanzo/cms-db-mongodb": "latest",
-    "@hanzo/cms-next": "latest",
-    "@hanzo/cms-richtext-lexical": "latest",
-    "cross-env": "^7.0.3",
-    "express": "^4.21.1",
-    "graphql": "^16.8.1",
-    "next": "15.4.11",
-    "@hanzo/cms": "latest",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1"
+    "@hanzo/cms-db-mongodb": "catalog:",
+    "@hanzo/cms-next": "catalog:",
+    "@hanzo/cms-richtext-lexical": "catalog:",
+    "cross-env": "catalog:",
+    "express": "catalog:",
+    "graphql": "catalog:",
+    "next": "catalog:",
+    "@hanzo/cms": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@types/express": "^5.0.0",
-    "@types/node": "^18.11.5",
-    "@types/react": "19.2.9",
-    "@types/react-dom": "19.2.3",
-    "nodemon": "^3.1.7",
-    "ts-node": "^10.9.2",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
+    "@types/express": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "nodemon": "catalog:",
+    "ts-node": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
   }
 }

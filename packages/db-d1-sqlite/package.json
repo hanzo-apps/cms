@@ -72,17 +72,17 @@
   },
   "dependencies": {
     "@hanzo/cms-drizzle": "workspace:*",
-    "console-table-printer": "2.12.1",
-    "drizzle-kit": "0.31.7",
-    "drizzle-orm": "0.45.2",
-    "prompts": "2.4.2",
-    "to-snake-case": "1.0.0",
-    "uuid": "13.0.2"
+    "console-table-printer": "catalog:",
+    "drizzle-kit": "catalog:",
+    "drizzle-orm": "catalog:",
+    "prompts": "catalog:",
+    "to-snake-case": "catalog:",
+    "uuid": "catalog:"
   },
   "devDependencies": {
     "@hanzo/cms-eslint-config": "workspace:*",
-    "@types/pg": "8.20.0",
-    "@types/to-snake-case": "1.0.0",
+    "@types/pg": "catalog:",
+    "@types/to-snake-case": "catalog:",
     "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {

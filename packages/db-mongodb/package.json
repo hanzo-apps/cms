@@ -52,17 +52,17 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "mongoose": "8.22.1",
-    "mongoose-paginate-v2": "1.9.4",
-    "prompts": "2.4.2",
-    "uuid": "13.0.2"
+    "mongoose": "catalog:",
+    "mongoose-paginate-v2": "catalog:",
+    "prompts": "catalog:",
+    "uuid": "catalog:"
   },
   "devDependencies": {
     "@hanzo/cms-eslint-config": "workspace:*",
-    "@types/mongoose-aggregate-paginate-v2": "1.0.12",
-    "@types/prompts": "^2.4.5",
-    "mongodb": "6.20.0",
-    "mongodb-memory-server": "10.1.4",
+    "@types/mongoose-aggregate-paginate-v2": "catalog:",
+    "@types/prompts": "catalog:",
+    "mongodb": "catalog:",
+    "mongodb-memory-server": "catalog:",
     "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {

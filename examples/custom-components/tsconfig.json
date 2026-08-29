@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "lib": [
       "DOM",
       "DOM.Iterable",
@@ -23,17 +22,18 @@
       }
     ],
     "paths": {
+      "*": ["./*"],
       "@/*": [
         "./src/*"
       ],
       "@payload-config": [
-        "src/payload.config.ts"
+        "./src/payload.config.ts"
       ],
       "@payload-types": [
-        "src/payload-types.ts"
+        "./src/payload-types.ts"
       ]
     },
-    "target": "ES2022",
+    "target": "ES2022"
   },
   "include": [
     "next-env.d.ts",

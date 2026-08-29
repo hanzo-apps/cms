@@ -41,7 +41,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "ioredis": "^5.4.1"
+    "ioredis": "catalog:"
   },
   "devDependencies": {
     "@hanzo/cms": "workspace:*"

@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@hanzo/cms-plugin-cloud-storage": "workspace:*",
-    "@vercel/blob": "2.3.1"
+    "@vercel/blob": "catalog:"
   },
   "devDependencies": {
     "@hanzo/cms": "workspace:*"
