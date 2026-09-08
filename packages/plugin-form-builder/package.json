@@ -63,21 +63,21 @@
   },
   "dependencies": {
     "@hanzo/cms-ui": "workspace:*",
-    "escape-html": "^1.0.3"
+    "escape-html": "catalog:"
   },
   "devDependencies": {
     "@hanzo/cms-eslint-config": "workspace:*",
-    "@types/escape-html": "^1.0.4",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "copyfiles": "^2.4.1",
-    "cross-env": "^7.0.3",
+    "@types/escape-html": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "copyfiles": "catalog:",
+    "cross-env": "catalog:",
     "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
     "@hanzo/cms": "workspace:*",
-    "react": "^19.0.1 || ^19.1.2 || ^19.2.1",
-    "react-dom": "^19.0.1 || ^19.1.2 || ^19.2.1"
+    "react": ">=19.2.8",
+    "react-dom": ">=19.2.8"
   },
   "publishConfig": {
     "exports": {

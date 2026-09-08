@@ -53,19 +53,19 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "graphql-scalars": "1.22.2",
-    "pluralize": "8.0.0",
-    "ts-essentials": "10.0.3",
-    "tsx": "4.22.4"
+    "graphql-scalars": "catalog:",
+    "pluralize": "catalog:",
+    "ts-essentials": "catalog:",
+    "tsx": "catalog:"
   },
   "devDependencies": {
     "@hanzo/cms-eslint-config": "workspace:*",
-    "@types/pluralize": "^0.0.33",
-    "graphql-http": "^1.22.0",
+    "@types/pluralize": "catalog:",
+    "graphql-http": "catalog:",
     "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {
-    "graphql": "^16.8.1",
+    "graphql": ">=17",
     "@hanzo/cms": "workspace:*"
   },
   "publishConfig": {

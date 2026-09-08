@@ -47,10 +47,10 @@
   "devDependencies": {
     "@hanzo/cms-eslint-config": "workspace:*",
     "@hanzo/cms": "workspace:*",
-    "vue": "^3.0.0"
+    "vue": "catalog:"
   },
   "peerDependencies": {
-    "vue": "^3.0.0"
+    "vue": ">=3"
   },
   "publishConfig": {
     "exports": {

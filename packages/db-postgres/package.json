@@ -75,20 +75,20 @@
   },
   "dependencies": {
     "@hanzo/cms-drizzle": "workspace:*",
-    "@types/pg": "8.20.0",
-    "console-table-printer": "2.12.1",
-    "drizzle-kit": "0.31.7",
-    "drizzle-orm": "0.45.2",
-    "pg": "8.20.0",
-    "prompts": "2.4.2",
-    "to-snake-case": "1.0.0",
-    "uuid": "13.0.2"
+    "@types/pg": "catalog:",
+    "console-table-printer": "catalog:",
+    "drizzle-kit": "catalog:",
+    "drizzle-orm": "catalog:",
+    "pg": "catalog:",
+    "prompts": "catalog:",
+    "to-snake-case": "catalog:",
+    "uuid": "catalog:"
   },
   "devDependencies": {
-    "@hyrious/esbuild-plugin-commonjs": "0.2.6",
+    "@hyrious/esbuild-plugin-commonjs": "catalog:",
     "@hanzo/cms-eslint-config": "workspace:*",
-    "@types/to-snake-case": "1.0.0",
-    "esbuild": "0.27.1",
+    "@types/to-snake-case": "catalog:",
+    "esbuild": "catalog:",
     "@hanzo/cms": "workspace:*"
   },
   "peerDependencies": {

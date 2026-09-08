@@ -55,15 +55,15 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "date-fns": "4.1.0"
+    "date-fns": "catalog:"
   },
   "devDependencies": {
     "@hanzo/cms-eslint-config": "workspace:*",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "dotenv": "16.4.7",
-    "prettier": "3.5.3",
-    "typescript": "5.7.3"
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "dotenv": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
   },
   "publishConfig": {
     "exports": {

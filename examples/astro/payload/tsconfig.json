@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "lib": [
       "DOM",
       "DOM.Iterable",
@@ -23,6 +22,7 @@
       }
     ],
     "paths": {
+      "*": ["./*"],
       "@/*": [
         "./src/*"
       ],
@@ -31,7 +31,7 @@
       ],
       "sharp": ["./node_modules/sharp"]
     },
-    "target": "ES2022",
+    "target": "ES2022"
   },
   "include": [
     "next-env.d.ts",

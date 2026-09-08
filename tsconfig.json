@@ -1,10 +1,12 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "paths": {
+      "*": ["./*"]
+    },
     "composite": false,
-    "noEmit": true,
-    "baseUrl": ".",
-  },
+    "noEmit": true
+    },
   "references": [
     {
       "path": "./packages/admin-bar"

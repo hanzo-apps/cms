@@ -47,7 +47,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@google-cloud/storage": "7.19.0",
+    "@google-cloud/storage": "catalog:",
     "@hanzo/cms-plugin-cloud-storage": "workspace:*"
   },
   "devDependencies": {
