@@ -140,25 +140,14 @@ svg {
     }
   }
 
-  .footer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .pages {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 8px;
+    text-align: center;
 
-    @media (max-width: 1024px) {
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    p {
-      margin: 0;
-    }
-
-    .codeLink {
-      text-decoration: none;
-      padding: 0 0.5rem;
-      background: rgb(60, 60, 60);
-      border-radius: 4px;
+    li {
+      margin: 4px 0;
     }
   }
 }
