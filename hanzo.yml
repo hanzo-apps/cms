@@ -12,6 +12,13 @@ images:
     context: .
     dockerfile: Dockerfile
     repo: ghcr.io/hanzoai/cms
+    # Name both, because naming neither means "whatever the builder happened to
+    # be". A build that landed on the arm64 node produced an arm64 image under a
+    # tag the amd64 deployment then pulled, and the pod came up far enough to
+    # fail its probes on `Cannot find module '@libsql/linux-arm64-gnu'` — the
+    # native module pnpm resolved for the machine that built it. The deployment
+    # is pinned to amd64 today; arm64 is here so it does not have to be.
+    platforms: [linux/amd64, linux/arm64]
 
 # BUILD-ONLY for the first cutover: no `deploy:` block, so main pushes the image
 # to GHCR but never rolls the CR itself. The deploy is done through the universe
