@@ -1,15 +1,24 @@
-# Neutralized — the canonical build + deploy pipeline is now native Hanzo Git.
-# The image build (BuildKit → ghcr.io/hanzoai/cms:<sha>) and the operator deploy
-# (kubectl patch app cms) run in-cluster from .hanzo/workflows/deploy.yml.
-# GitHub is a mirror; this workflow no longer builds or deploys anything.
+# ~7-line canonical caller — all real config lives in /hanzo.yml.
+#
+# It replaces .hanzo/workflows/deploy.yml, which never ran a single build here.
+# That workflow asks for `runs-on: [hanzo-build-linux-amd64]`, and every label in
+# that pool maps to catthehacker/ubuntu:act-24.04 — an image with no
+# buildctl-daemonless.sh and no docker socket. A run sat queued for half an hour
+# with run_started_at still null while other repos built beside it, because the
+# job it wanted could not be served by the only runners that answer.
 name: CI/CD
-
 on:
   workflow_dispatch:
-
+  push:
+    branches: [hanzo-cms]
+    tags: ['v*']
+  pull_request:
 jobs:
-  notice:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Sync notice
-        run: echo "native pipeline is .hanzo/workflows/deploy.yml; GitHub is a mirror"
+  cicd:
+    uses: hanzoai/ci/.github/workflows/build.yml@v1
+    # BuildKit in-cluster, not docker on the runner: delegating posts the build to
+    # the door on api.hanzo.ai, which runs it as a BuildKit Job and pushes from
+    # there. That is the path that actually built this image.
+    with:
+      mode: delegate
+    secrets: inherit
