@@ -20,6 +20,15 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_OPTIONS=--max-old-space-size=8192
 RUN corepack enable && corepack prepare pnpm@10.27.0 --activate
 
+# bufferutil is ws's native speedup and reaches this image with no prebuilt
+# binary for it, so pnpm falls back to node-gyp -- which needs python3 and a C++
+# toolchain, neither of which is in a slim base. Without them the install dies on
+# "Could not find any Python installation to use" and takes the whole build with
+# it. Builder stage only: the runner below is still the slim image.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends python3 make g++ \
+ && rm -rf /var/lib/apt/lists/*
+
 # Whole workspace (Turbopack/webpack resolve @hanzo/cms* from src via workspace
 # links; the app's next.config roots file-tracing at the workspace).
 COPY . .
